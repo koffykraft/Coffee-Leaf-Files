@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engere: A Schoolbook Guide for Young Women & Families — Part 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --terracotta: #8b4513;
+            --sienna: #a0522d;
+            --brown: #6b5a4a;
+            --tan: #d4a574;
+            --cream: #faf6f0;
+            --pale: #f5e6d3;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, var(--pale) 0%, var(--cream) 100%);
+            padding: 40px 20px;
+            color: var(--brown);
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--sienna) 100%);
+            color: white;
+            padding: 60px 45px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+        
+        header h1 {
+            font-size: 3.2em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        header .subtitle {
+            font-size: 1.4em;
+            color: var(--tan);
+            margin-bottom: 20px;
+        }
+        
+        header .tagline {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.95);
+        }
+        
+        section {
+            background: white;
+            padding: 50px 45px;
+            margin-bottom: 50px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--tan);
+        }
+        
+        h2 {
+            font-size: 2em;
+            color: var(--brown);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--tan);
+            letter-spacing: 1px;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+            color: var(--terracotta);
+            margin: 35px 0 18px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--pale);
+        }
+        
+        p {
+            margin-bottom: 18px;
+            color: var(--brown);
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 14px;
+            color: var(--brown);
+            line-height: 1.8;
+        }
+        
+        strong {
+            color: var(--terracotta);
+            font-weight: 600;
+        }
+        
+        em {
+            color: var(--sienna);
+            font-style: italic;
+        }
+        
+        .quote-box {
+            background: #f9f4eb;
+            padding: 25px;
+            border-left: 4px solid var(--tan);
+            margin: 25px 0;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-style: italic;
+            color: var(--brown);
+            line-height: 1.8;
+        }
+        
+        .study-box {
+            background: #f5e6d3;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid var(--terracotta);
+        }
+        
+        .study-box h4 {
+            color: var(--terracotta);
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        .study-box p {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .method-section {
+            background: #f9f6f3;
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 3px solid var(--tan);
+        }
+        
+        .method-title {
+            font-size: 1.3em;
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .method-subtitle {
+            color: var(--brown);
+            font-size: 0.95em;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .detail-box {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--tan);
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: var(--terracotta);
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            color: var(--brown);
+            font-size: 1em;
+        }
+        
+        .step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 18px;
+            padding: 15px;
+            background: #f9f6f3;
+            border-radius: 6px;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--tan);
+            color: white;
+            border-radius: 50%;
+            flex-shrink: 0;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+        
+        .step-content p {
+            margin: 0;
+            font-size: 0.95em;
+            color: var(--brown);
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .data-table th {
+            background: var(--terracotta);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--pale);
+            color: var(--brown);
+        }
+        
+        .data-table tr:hover {
+            background: #f9f6f3;
+        }
+        
+        .safety-highlight {
+            background: #c8e6c9;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .safety-highlight strong {
+            color: #1b5e20;
+        }
+        
+        .safety-highlight p {
+            color: #2e7d32;
+        }
+        
+        .footer-note {
+            text-align: center;
+            padding: 30px;
+            background: var(--pale);
+            border-radius: 8px;
+            margin-top: 40px;
+            color: var(--brown);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            header {
+                padding: 40px 25px;
+            }
+            
+            header h1 {
+                font-size: 2.2em;
+            }
+            
+            section {
+                padding: 30px 20px;
+            }
+            
+            h2 {
+                font-size: 1.6em;
+            }
+            
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <header>
+            <h1>Engere</h1>
+            <div class="subtitle">A Schoolbook Guide for Young Women & Families — PART 1</div>
+            <div class="tagline">Learn the science, the technique, the wisdom, and the cultural meaning of this beverage that strengthens mothers, supports recovery, and buffers acidity. From the Gofa Zone highlands of South Ethiopia, through your hands, to your family's health.</div>
+        </header>
+        
+        <!-- LESSON 0 -->
+        <section>
+            <h2>Lesson 0: What Is Engere? The Foundation</h2>
+            
+            <p><strong>Engere</strong> is a traditional herbal infusion made from coffee leaf brew combined with fresh cow's milk, predominantly consumed in the Gofa, Gamo, and South Omo zones of South Ethiopia. It is popular among farmers, agro-pastoralists, and lactating women, who value it for strength enhancement, recovery, and medicinal benefits.</p>
+            
+            <div class="quote-box">
+                Engere is not a casual drink. It is a targeted intervention. While Chemo (plain coffee leaf brew) is consumed twice daily as a daily staple, Engere is consumed once daily as a ritualistic strength-enhancing beverage. This distinction reflects sophisticated traditional knowledge about when and why each beverage is appropriate.
+            </div>
+            
+            <h3>Key Characteristics</h3>
+            <ul>
+                <li><strong>Always served hot</strong> — Never cold, never reheated</li>
+                <li><strong>Always prepared with fresh cow's milk</strong> — This is the defining ingredient</li>
+                <li><strong>Coffee leaves are strained and discarded</strong> — Never consumed; only the brewed liquid is used</li>
+                <li><strong>Valued for therapeutic purposes</strong> — Not for daily stimulation like Chemo</li>
+                <li><strong>Consumed once daily</strong> — A targeted, purposeful beverage</li>
+            </ul>
+            
+            <h3>Where This Knowledge Comes From</h3>
+            
+            <div class="study-box">
+                <h4>Research Study: Yohannis et al. (2026)</h4>
+                <p><strong>Title:</strong> Indigenous coffee leaf brew and Engere brewing practices, and consumption patterns in South Ethiopia</p>
+                <p><strong>Study Period:</strong> January – March 2024</p>
+                <p><strong>Location:</strong> Gofa Zone, South Ethiopia (Demba Gofa, Zala, Uba Debretsehay Districts)</p>
+                <p><strong>Also documented in:</strong> Gamo and South Omo zones</p>
+                <p><strong>Participants:</strong> 385 households + 3 focus group discussions (10 participants each)</p>
+                <p><strong>Methods:</strong> Semi-structured interviews, observation checklists</p>
+                <p><strong>Analysis:</strong> Descriptive statistics (SPSS v24) + qualitative coding</p>
+                <p><strong>Ethics Approval:</strong> Jimma University and Gofa Zone Administration</p>
+            </div>
+        </section>
+        
+        <!-- LESSON 1 -->
+        <section>
+            <h2>Lesson 1: The Milk Buffer Effect — Why Milk Changes Everything</h2>
+            
+            <h3>The Safety Profile</h3>
+            
+            <div class="safety-highlight">
+                <strong>100% of respondents (n=385) reported ZERO health-related problems linked to Engere consumption.</strong> Zero gastritis. Zero heart-related symptoms. Compare this to plain coffee leaf brew (Chemo): 35.6% experienced gastritis or heart symptoms; only 64.4% reported no issues.
+            </div>
+            
+            <h3>How Milk Buffers — The Science</h3>
+            
+            <p>The milk component in Engere works in two primary ways:</p>
+            
+            <ol>
+                <li><strong>Acid buffering:</strong> Fresh cow's milk contains calcium and alkaline compounds that neutralize the acidity of coffee leaf brew. Coffee leaves contain chlorogenic acids and other phenolic compounds that can irritate the stomach lining if consumed concentrated. The milk's alkaline properties create a pH-balanced beverage that is gentler on the digestive system.</li>
+                
+                <li><strong>Spice intensity reduction:</strong> When Method 3 (with spices) is used, the milk's fat and protein content coat the stomach lining and reduce the intensity of warming spices. This prevents the sharp, irritating sensation that some people experience with plain coffee leaf brew.</li>
+            </ol>
+            
+            <h3>Why This Matters for Different People</h3>
+            
+            <p><strong>Engere's 100% safety rate makes it ideal for:</strong></p>
+            <ul>
+                <li>Lactating mothers (no risk to infant through breast milk)</li>
+                <li>Young children (gentle on developing digestive systems)</li>
+                <li>Elderly individuals (easier to digest)</li>
+                <li>People with gastric sensitivity or history of ulcers</li>
+                <li>Anyone recovering from illness</li>
+                <li>Resource-limited settings where formal healthcare is inaccessible</li>
+            </ul>
+        </section>
+        
+        <!-- LESSON 2 -->
+        <section>
+            <h2>Lesson 2: The Three Preparation Methods</h2>
+            
+            <p>The Yohannis study documents three primary preparation types representing actual consumer preferences. All three are legitimate traditional preparations. The choice depends on who will drink it, when, and what therapeutic goal is prioritized.</p>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>% of Households</th>
+                        <th>Formula</th>
+                        <th>Primary Use</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Method 1: Simple</strong></td>
+                        <td><strong>19.7%</strong></td>
+                        <td>Brew + milk (no additions)</td>
+                        <td>Pure synergy, minimal prep</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Method 2: + Sweetener</strong></td>
+                        <td><strong>22.6%</strong></td>
+                        <td>Brew + milk + honey/sugar</td>
+                        <td>Balanced sweetness, better taste</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Method 3: + Spices</strong></td>
+                        <td><strong>37.7%</strong></td>
+                        <td>Brew + milk + spices + sweeteners</td>
+                        <td>Enhanced therapeutic benefit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TOTAL CONSUMERS</strong></td>
+                        <td><strong>54.8%</strong></td>
+                        <td colspan="2">Of all households prepare Engere in some form</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p style="margin-top: 20px;"><strong>Key insight:</strong> 42.3% of households use Methods 1 or 2 (simple preparations), showing that straightforward formulations remain highly valued in traditional knowledge.</p>
+            
+            <!-- METHOD 1 -->
+            <h3>Method 1: Simple (Brew + Milk Only) — 19.7% of Households</h3>
+            
+            <div class="method-section">
+                <div class="method-title">The Austere Preparation</div>
+                <div class="method-subtitle">Minimal ingredients, pure coffee-milk relationship, quickest preparation</div>
+                
+                <div class="method-grid">
+                    <div class="detail-box">
+                        <div class="detail-label">Base Recipe</div>
+                        <div class="detail-value">1L brew + 1/3 to 1/2 L fresh milk</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Total Yield</div>
+                        <div class="detail-value">~1400ml (350ml per 4 servings)</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Serving Size</div>
+                        <div class="detail-value">50ml per cup</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Time</div>
+                        <div class="detail-value">10-15 minutes</div>
+                    </div>
+                </div>
+                
+                <h4 style="margin-top: 20px; font-size: 1.1em; color: var(--terracotta);">Steps</h4>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Prepare coffee leaf brew (Chemo method)</strong>
+                        <p>Brew coffee leaves using one of the documented decoction methods. Strain completely to remove ALL spent leaves. The brew must be hot.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Pour into serving vessel</strong>
+                        <p>Pour the hot strained brew into a clean pot or traditional serving vessel.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Add fresh cow's milk</strong>
+                        <p><strong>CRITICAL:</strong> Use fresh, unpasteurized cow's milk. This is preferred for flavor and medicinal properties. Ratio: 1/3 to 1/2 liter per liter of brew. Start with 1/3 L for stronger coffee flavor; use 1/2 L for creamier mouthfeel.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Stir gently to combine</strong>
+                        <p>The final beverage should be creamy light-to-medium brown, depending on leaf maturity and milk ratio.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <strong>Serve immediately while hot</strong>
+                        <p>Pour 50ml into each cup. Serve hot, not boiling. Consume soon after preparation — do not cool, store, or reheat.</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>When to use:</strong> Lactating mothers (early postpartum recovery), young children, individuals with sensitive digestion, quick preparation needs, authentic simplicity desired.</p>
+                
+                <p><strong>Flavor profile:</strong> Aromatic, coffee-forward, creamy richness. No spice warmth. Pure coffee-milk relationship. Smooth mouthfeel, pleasant aftertaste.</p>
+            </div>
+            
+            <!-- METHOD 2 -->
+            <h3>Method 2: With Sweetener (Brew + Milk + Honey/Sugar) — 22.6% of Households</h3>
+            
+            <div class="method-section">
+                <div class="method-title">The Balanced Preparation</div>
+                <div class="method-subtitle">Simple with balanced sweetness, improved palatability</div>
+                
+                <div class="method-grid">
+                    <div class="detail-box">
+                        <div class="detail-label">Base Recipe</div>
+                        <div class="detail-value">1L brew + 1/3-1/2 L milk + honey</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Sweetener Amount</div>
+                        <div class="detail-value">30-45g honey per batch</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">How to Start</div>
+                        <div class="detail-value">Begin with 30g, adjust upward</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Why Honey</div>
+                        <div class="detail-value">Additional medicinal benefit believed</div>
+                    </div>
+                </div>
+                
+                <h4 style="margin-top: 20px; font-size: 1.1em; color: var(--terracotta);">Steps</h4>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Prepare coffee leaf brew</strong>
+                        <p>Brew using Chemo method. Strain completely. Keep hot.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Add honey or sugar to hot brew</strong>
+                        <p>Start with 30g honey. Stir until completely dissolved. Taste and adjust upward if needed. Sweetness should complement, not mask, the coffee-milk base.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Add fresh milk</strong>
+                        <p>Pour fresh cow's milk (1/3 to 1/2 liter) into the sweetened brew. Stir gently.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Taste and adjust</strong>
+                        <p>The final beverage should be balanced — neither too sweet nor too bitter. Adjust honey based on preference and leaf maturity.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <strong>Serve immediately while hot</strong>
+                        <p>Pour 50ml into each cup. Serve hot. Do not store or reheat.</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>When to use:</strong> Improved palatability without complexity, children, individuals preferring mild sweetness, balancing coffee's bitterness, situations where honey is available and valued.</p>
+                
+                <p><strong>Flavor profile:</strong> Aromatic, coffee-forward with honey sweetness. Creamy mouthfeel. No spice warmth. Balance of coffee and sweetness. Pleasant aftertaste.</p>
+            </div>
+            
+            <!-- METHOD 3 -->
+            <h3>Method 3: With Spices (Brew + Milk + Spices + Sweeteners) — 37.7% of Households</h3>
+            
+            <div class="method-section">
+                <div class="method-title">The Most Comprehensive Preparation</div>
+                <div class="method-subtitle">Enhanced therapeutic benefit, complex aromatic profile, most popular method</div>
+                
+                <div class="method-grid">
+                    <div class="detail-box">
+                        <div class="detail-label">Base Recipe</div>
+                        <div class="detail-value">1.5L brew + milk + spices + honey</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Popularity</div>
+                        <div class="detail-value">37.7% of households use this</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Time</div>
+                        <div class="detail-value">20-25 minutes (includes spice grinding)</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Equipment</div>
+                        <div class="detail-value">Mortar & pestle (preferably wooden)</div>
+                    </div>
+                </div>
+                
+                <h4 style="margin-top: 20px; font-size: 1.1em; color: var(--terracotta);">Spice Guidelines</h4>
+                
+                <p>Traditional warming spices are believed to amplify medicinal properties. Common spices: ginger, cinnamon, cloves, black pepper. Exact combinations vary by region and family preference. Grind fresh using wooden mortar & pestle (wooden tools preserve medicinal properties better than metal).</p>
+                
+                <h4 style="margin-top: 15px; font-size: 1.1em; color: var(--terracotta);">Steps</h4>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Prepare larger batch of coffee leaf brew</strong>
+                        <p>Method 3 uses 1.5 liters of brew. Strain completely.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Grind spices fresh</strong>
+                        <p>Use wooden mortar and pestle. Grind ginger, cinnamon, cloves, black pepper, or other warming spices. Begin conservatively; add more as you learn your family's preferences. Spices should enhance, not dominate.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Add spices to hot brew</strong>
+                        <p>Add ground spices to the hot brew. Stir well. Allow spices to infuse 2-3 minutes while hot, but BEFORE milk is added. This develops the warming character.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Add honey or sugar</strong>
+                        <p>Add 30-45g honey. Stir until completely dissolved. Sweetness balances spice intensity.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <strong>Add fresh milk</strong>
+                        <p>Pour fresh cow's milk (1/3 to 1/2 liter) into the spiced, sweetened brew. The milk's fat and protein coat the stomach lining and reduce spice intensity, creating the characteristic smooth finish.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <strong>Taste and adjust</strong>
+                        <p>Balance should be: coffee base + balanced warmth from spices + milk richness + complementary sweetness from honey. If spices are too strong, you used too much — note this for next time.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <strong>Serve immediately while hot</strong>
+                        <p>Pour 50ml into each cup. Serve hot. Do not store or reheat.</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Why most popular:</strong> Method 3 balances cultural tradition with enhanced therapeutic benefit. Spices amplify medicinal properties. Milk buffer prevents gastrointestinal issues. This method is chosen when deeper therapeutic benefit is needed with digestive safety.</p>
+                
+                <p><strong>Regional variations:</strong> Spice combinations, ratios, and preferences vary across districts and zones. Different communities and ethnic groups may have different preferences. Learn your family's tradition and adapt mindfully.</p>
+                
+                <p><strong>Flavor profile:</strong> Aromatic, coffee-forward base. Balanced warmth from spices. Creamy milk richness. Complementary sweetness. Smooth mouthfeel. Spices enhance rather than dominate. Complex, pleasant aftertaste.</p>
+            </div>
+        </section>
+        
+        <!-- LESSON 3 -->
+        <section>
+            <h2>Lesson 3: The Milk Choice — Fresh, Pasteurized, or Never</h2>
+            
+            <h3>Fresh Unpasteurized Milk — The Traditional Choice</h3>
+            
+            <p><strong>This is the preferred milk for Engere.</strong> Fresh, unpasteurized cow's milk is critical for both flavor and perceived medicinal properties. The beverage's therapeutic benefit is believed to depend on the milk preserving beneficial enzymes and micronutrients affected by heat treatment.</p>
+            
+            <p><strong>If you have access to fresh cow's milk:</strong> Use it. This is the traditional standard and is believed to preserve maximum medicinal benefit.</p>
+            
+            <h3>Pasteurized Milk — An Acceptable Substitute</h3>
+            
+            <p>Pasteurized milk from a store can be used if fresh milk is not available. It will work functionally — the milk buffer effect will still protect against gastritis, and the beverage will still be safe and nourishing. However, some practitioners believe pasteurized milk loses beneficial enzymes due to high-temperature processing.</p>
+            
+            <p><strong>If using pasteurized milk:</strong> The beverage is still safe and effective, but understand you are trading traditional practice for convenience or availability.</p>
+            
+            <h3>UHT Milk and Non-Dairy Alternatives — Do Not Use</h3>
+            
+            <div class="safety-highlight">
+                <strong>Never use ultra-high-temperature (UHT) milk or non-dairy alternatives if authenticity is desired.</strong> UHT milk has undergone extreme heat treatment that destroys compounds believed to preserve medicinal properties. Non-dairy alternatives (coconut, almond, oat milk) do not provide the same buffer effect and are not part of the traditional preparation.
+            </div>
+            
+            <h3>Milk Ratio and Adjustment</h3>
+            
+            <p><strong>The standard range is 1/3 to 1/2 liter of milk per 1 liter of coffee leaf brew.</strong> This is not arbitrary — it matters:</p>
+            
+            <ul>
+                <li><strong>Less milk (1/3 liter):</strong> Stronger coffee flavor dominates. Better for people who want coffee in the foreground. Thinner, less creamy.</li>
+                
+                <li><strong>More milk (1/2 liter):</strong> Creamier mouthfeel, more nourishing. Coffee-milk balance is integrated. Better for lactating mothers and children needing additional calories.</li>
+            </ul>
+            
+            <p><strong>Adjust based on:</strong> Preference for coffee strength vs creaminess, who will drink it (mothers need more milk), leaf maturity (mature leaves pair with more milk), individual digestive sensitivity (more milk = gentler).</p>
+        </section>
+        
+        <!-- LESSON 4 -->
+        <section>
+            <h2>Lesson 4: How to Know If You Did It Right — Quality Indicators</h2>
+            
+            <h3>What A Well-Prepared Engere Has</h3>
+            
+            <p><strong>Sight:</strong> Creamy light-to-medium brown color (depends on leaf maturity and milk ratio). Dark brown/black means very dark-roasted leaves or less milk. Pale tan means young leaves or light roasting.</p>
+            
+            <p><strong>Aroma:</strong> Aromatic, coffee-forward scent from the leaf brew base. With spices, balanced warmth should complement coffee aroma — not overpower. Unpleasant or musty aroma signals problems in brewing or leaf preparation.</p>
+            
+            <p><strong>Mouthfeel:</strong> <strong>Smooth, creamy, with ZERO grittiness.</strong> If you feel grit or sand on your tongue, the spent leaves were not completely strained. This is a critical failure — leaf particles should never be in the beverage. Always strain through fine cloth or fine mesh.</p>
+            
+            <p><strong>Taste:</strong> Balanced coffee flavor with milk richness. With spices: warmth and complexity without dominating. With sweetener: complements without masking. Flat or weak flavor means too much milk or too-brief brewing.</p>
+            
+            <p><strong>Aftertaste:</strong> Pleasant, lingering coffee-milk warmth. No bitter edge. No harsh spice burn. No chemical taste. A good aftertaste makes you want another sip.</p>
+            
+            <h3>Critical Detail: Grittiness Means Failure</h3>
+            
+            <p><strong>Grittiness is not a minor quality issue.</strong> Spent coffee leaves are tough and fibrous and are never meant to be consumed. If you taste grittiness, you did not strain properly. This affects both texture and safety. Always use fine cloth, traditional sieves, or fine mesh strainers to remove ALL spent leaves.</p>
+        </section>
+        
+        <!-- LESSON 5 -->
+        <section>
+            <h2>Lesson 5: What People Believe Engere Does — Health Benefits</h2>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Health Condition / Benefit</th>
+                        <th>% of Respondents</th>
+                        <th>Context & Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Body strength & recovery</strong></td>
+                        <td><strong>54.5%</strong></td>
+                        <td>PRIMARY therapeutic use — most important</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enhances lactation</strong></td>
+                        <td><strong>100%</strong></td>
+                        <td><strong>UNIVERSAL — ALL participants agreed</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Postpartum bleeding & recovery</td>
+                        <td>16.9%</td>
+                        <td>Especially valued by nursing mothers</td>
+                    </tr>
+                    <tr>
+                        <td>Stunting & childhood diseases</td>
+                        <td>16.9%</td>
+                        <td>Nutritional support for children</td>
+                    </tr>
+                    <tr>
+                        <td>Joint & backbone pain</td>
+                        <td>16.4%</td>
+                        <td>Mobility and musculoskeletal support</td>
+                    </tr>
+                    <tr>
+                        <td>Blood pressure, anemia, heart</td>
+                        <td>13.0%</td>
+                        <td>Cardiovascular health support</td>
+                    </tr>
+                    <tr>
+                        <td>Gastritis</td>
+                        <td>12.5%</td>
+                        <td>Stomach health (milk buffer effect)</td>
+                    </tr>
+                    <tr>
+                        <td>Respiratory & abdominal pain</td>
+                        <td>8.8%</td>
+                        <td>General wellness support</td>
+                    </tr>
+                    <tr>
+                        <td>Eye vision & appetite</td>
+                        <td>7.3%</td>
+                        <td>Sensory & digestive support</td>
+                    </tr>
+                    <tr>
+                        <td>Typhoid & malaria</td>
+                        <td>7.0%</td>
+                        <td>Fever management during illness</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>The Two Most Critical Beliefs</h3>
+            
+            <p><strong>1. Strength and recovery (54.5%):</strong> This is the PRIMARY therapeutic use. Engere is made specifically to provide body strength, rapid recovery from physical exertion, and resilience. It is not casual — it is made to do work in the body.</p>
+            
+            <p><strong>2. Lactation enhancement (100%):</strong> EVERY participant believed Engere enhances lactation in nursing mothers. This belief is so consistent that it shapes how Engere is used in the postpartum period. Combined with Engere's safety profile and nutrient density, it positions Engere as a culturally appropriate, economically accessible solution for supporting maternal nutrition and milk production in agricultural communities.</p>
+            
+            <h3>The Science Behind the Benefits</h3>
+            
+            <p><strong>Coffee leaf bioactive compounds:</strong> Coffee leaves are rich in polyphenols and antioxidants, including compounds exclusive to leaves (mangiferin, isomangiferin, chlorogenic acids) that are absent from coffee beans. These have documented antioxidant and anti-inflammatory properties.</p>
+            
+            <p><strong>Milk's nutritional profile:</strong> Fresh cow's milk provides protein, fat-soluble vitamins (A, D, K), and minerals (calcium, phosphorus). This combination supports recovery from physical exertion and postpartum restoration.</p>
+            
+            <p><strong>Synergistic function:</strong> The combination of coffee leaf bioactive compounds with milk's nutritional density creates a synergistic functional beverage. Neither part alone does what the combination does together.</p>
+        </section>
+        
+        <!-- LESSON 6 -->
+        <section>
+            <h2>Lesson 6: When & How Often — Consumption Patterns</h2>
+            
+            <h3>Engere vs. Chemo: Different Beverages for Different Purposes</h3>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Engere</th>
+                        <th>Chemo (Plain Coffee Brew)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Primary Purpose</strong></td>
+                        <td>Strength & medicinal (54.5%)</td>
+                        <td>Daily stimulant & staple (55.8%)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Frequency</strong></td>
+                        <td><strong>Once daily (55.6%)</strong></td>
+                        <td><strong>Twice daily (44.2%)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Primary Consumers</strong></td>
+                        <td>Lactating mothers, laborers, agro-pastoralists, post-labor recovery</td>
+                        <td>General population, all groups</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Timing</strong></td>
+                        <td>Before meals, as meal replacement, during/after labor</td>
+                        <td>During meals, social gatherings, any time</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Social Context</strong></td>
+                        <td>Ritualistic, health-focused, caring gesture</td>
+                        <td>Daily sustenance, social cohesion, hospitality</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Adverse Effects</strong></td>
+                        <td><strong>0% (100% no problems)</strong></td>
+                        <td>35.6% (gastritis/heart symptoms)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shelf Life</strong></td>
+                        <td><strong>6-12 hours (no reheating)</strong></td>
+                        <td>Longer shelf life, can be reheated</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>The Crucial Distinction</h3>
+            
+            <p><strong>Engere is consumed ONCE daily as a ritualistic strength-enhancing beverage. Chemo is consumed TWICE daily as a daily staple.</strong> This distinction reflects sophisticated traditional knowledge about appropriate use contexts. Engere is not casual. It is a targeted intervention — you make it specifically because someone needs strength, recovery, or support.</p>
+            
+            <h3>Postpartum Practice: The Most Important Context</h3>
+            
+            <p>Engere is particularly valued during the postpartum period and throughout lactation. <strong>Traditional practice involves consuming 1-2 cups daily during lactation.</strong> This is not excessive — it is precise dosing based on postpartum needs.</p>
+            
+            <p><strong>Method 1 (simple) is preferred during early recovery</strong> because it is easiest to digest and absorb. The combination of calories from milk, perceived lactation-supporting properties, and energizing coffee leaf benefits makes Engere ideal for sustaining nursing mothers during critical recovery period.</p>
+            
+            <h3>Critical: Do NOT Reheat Engere</h3>
+            
+            <p><strong>Engere should be served hot, but NOT stored and reheated.</strong> Traditional practice involves daily preparation and immediate consumption. Engere should be consumed within 6-12 hours of preparation. Leftover Engere is discarded, not reheated.</p>
+            
+            <p><strong>Why?</strong> Reheating may damage aromatic compounds, may encourage bacterial growth in the milk-based beverage, and may alter medicinal properties. Fresh preparation ensures freshness of aromatic compounds and preserves perceived potency of therapeutic benefits.</p>
+        </section>
+        
+        <div class="footer-note">
+            <p><strong>END OF PART 1 — Lessons 0-6</strong></p>
+            <p>See Part 2 for: Equipment & technique, Regional variations, Storage & serving details, Quality standards, Knowledge transmission, and Closing synthesis.</p>
+        </div>
+        
+    </div>
+</body>
+</html>

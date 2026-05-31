@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citane Hack: DIY Grill-Wilted Leaves</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --dark: #1a1a1a;
+            --slate: #2d3436;
+            --gray: #636e72;
+            --light-gray: #b2bec3;
+            --cream: #f8f9fa;
+            --accent: #5f4a42;
+            --subtle: #d4c5c0;
+            --good: #27ae60;
+            --citane: #8B6F47;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 30px;
+        }
+        
+        header {
+            margin-bottom: 50px;
+            text-align: center;
+            border-bottom: 3px solid var(--citane);
+            padding-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.2em;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .subtitle {
+            font-size: 1.05em;
+            color: var(--citane);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .tagline {
+            font-size: 0.95em;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+        h2 {
+            font-size: 1.7em;
+            font-weight: 600;
+            margin-top: 45px;
+            margin-bottom: 20px;
+            color: var(--dark);
+            border-bottom: 2px solid var(--subtle);
+            padding-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            color: var(--slate);
+        }
+        
+        p {
+            margin-bottom: 16px;
+            font-size: 0.97em;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        
+        .callout {
+            background: #fffbf8;
+            border-left: 4px solid var(--citane);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 6px;
+        }
+        
+        .callout strong {
+            color: var(--citane);
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 18px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .step-box {
+            background: white;
+            border: 2px solid var(--citane);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--citane);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .step-box h4 {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .step-box p {
+            font-size: 0.95em;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        .tip-box {
+            background: #f5f0ed;
+            border-left: 3px solid var(--accent);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 0.93em;
+        }
+        
+        .tip-box strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+        
+        .image-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--subtle);
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f5f0ed 0%, #e8dfd8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .image-caption {
+            padding: 18px;
+            border-top: 1px solid var(--subtle);
+        }
+        
+        .image-caption strong {
+            display: block;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+        
+        .image-caption p {
+            font-size: 0.85em;
+            color: var(--gray);
+            margin: 0;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .comparison-item {
+            background: white;
+            border: 1px solid var(--subtle);
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .comparison-item h4 {
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .comparison-value {
+            font-size: 1.6em;
+            font-weight: 600;
+            color: var(--citane);
+            margin-bottom: 8px;
+        }
+        
+        .comparison-label {
+            font-size: 0.85em;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+        .results-box {
+            background: #f0fdf4;
+            border-left: 4px solid var(--good);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 6px;
+        }
+        
+        .results-box strong {
+            color: var(--good);
+            display: block;
+            margin-bottom: 12px;
+        }
+        
+        .troubleshoot {
+            background: #fef3f0;
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 0.93em;
+        }
+        
+        .troubleshoot strong {
+            color: #e74c3c;
+            display: block;
+            margin-bottom: 6px;
+        }
+        
+        .notes {
+            background: white;
+            border: 1px dashed var(--subtle);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 30px 0;
+            font-size: 0.93em;
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 35px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.4em;
+            }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <header>
+            <h1>Citane Hack</h1>
+            <div class="subtitle">DIY Grill-Wilted Coffee Leaves</div>
+            <div class="tagline">A simple, low-tech method to process fresh coffee leaves at home using just a sandwich grill. Fresh → Wilted → Ready to brew in minutes.</div>
+        </header>
+        
+        <h2>What Is This?</h2>
+        <p>This is a <strong>quick processing hack</strong> for creating dried coffee leaves from fresh leaves using a standard sandwich grill (or panini press). It's not fermentation—it's simple wilting. The result is bright, fresh-tasting leaves with good GABA content, similar to a light-fermented leaf.</p>
+        
+        <div class="callout">
+            <strong>Why this matters:</strong> If you have access to fresh coffee leaves (from your own trees or local sources), this method lets you process them yourself in 15-20 minutes instead of waiting for commercial fermentation. Perfect for experimenting, testing leaves, or creating small batches.
+        </div>
+        
+        <h2>What You Need</h2>
+        <ul>
+            <li><strong>Fresh coffee leaves</strong> (picked that day or the day before)</li>
+            <li><strong>Sandwich grill or panini press</strong> (regular countertop model)</li>
+            <li><strong>Clean cloth or parchment paper</strong> (optional, to prevent sticking)</li>
+            <li><strong>Container</strong> (to store dried leaves)</li>
+            <li><strong>Water</strong> (for rinsing)</li>
+        </ul>
+        
+        <h2>Step-by-Step Process</h2>
+        
+        <div class="step-box">
+            <div class="step-number">1</div>
+            <h4>Pick & Rinse Your Leaves</h4>
+            <p>Select young, healthy leaves from the top buds of the branch. Rinse them gently in cool water to remove any dust. Pat dry with a clean cloth—you want them damp, not soaking wet.</p>
+            <div class="tip-box">
+                <strong>Leaf selection:</strong> Young leaves (the tender growth at the tip) have more GABA and better flavor than older, tougher leaves. Avoid leaves that are damaged or yellowed.
+            </div>
+        </div>
+        
+        <div class="step-box">
+            <div class="step-number">2</div>
+            <h4>Prepare Your Grill</h4>
+            <p>Heat your sandwich grill to medium-low to medium heat (around 300-350°F / 150-175°C). You want it warm enough to wilt leaves, not so hot it burns them. Test by holding your hand near it—you should be able to hold it there for 5-10 seconds.</p>
+            <div class="tip-box">
+                <strong>Heat is key:</strong> Too hot and leaves burn (black spots, bitter taste). Too cool and they don't wilt, just get soggy. Medium heat is the sweet spot.
+            </div>
+        </div>
+        
+        <div class="step-box">
+            <div class="step-number">3</div>
+            <h4>Place Leaves on Grill</h4>
+            <p>Lay your leaves flat on the bottom plate of the grill. Don't overlap them—let them lie in a single layer so air can circulate. You can do multiple batches if you have lots of leaves. Close the grill top gently (don't press hard).</p>
+            <div class="tip-box">
+                <strong>Don't crush them:</strong> The grill top should just rest on the leaves. If you press down hard, you'll damage them and release too much moisture too fast.
+            </div>
+        </div>
+        
+        <div class="step-box">
+            <div class="step-number">4</div>
+            <h4>Wilt for 5-10 Minutes</h4>
+            <p>Let the leaves sit on the grill for 5-10 minutes. Watch for color change: they'll go from bright green → pale green/yellowish-green → light brown at the edges. When they look wilted (slightly papery, color changed), they're done.</p>
+            <div class="tip-box">
+                <strong>Visual cue:</strong> When you open the grill, the leaves should look softer and darker than when you started, but still mostly green or light yellow. If they're turning brown/black, you're overdoing it.
+            </div>
+        </div>
+        
+        <div class="step-box">
+            <div class="step-number">5</div>
+            <h4>Cool & Dry Completely</h4>
+            <p>Remove leaves from the grill and spread them on a clean cloth or paper towel. Let them cool and air-dry for 30 minutes to an hour. They should become crispy and dry, not moist. Once completely dry, they're ready to store or brew.</p>
+            <div class="tip-box">
+                <strong>Drying matters:</strong> If you store leaves that still have moisture, they'll develop mold. Make sure they're completely dry before sealing in a container.
+            </div>
+        </div>
+        
+        <h2>What to Expect</h2>
+        
+        <div class="results-box">
+            <strong>Flavor Profile</strong>
+            Your grill-wilted leaves will taste:
+            <ul style="margin-top: 10px;">
+                <li>Fresh and slightly green (like green tea)</li>
+                <li>Mild sweetness (not as much as fermented leaves, but present)</li>
+                <li>Bright, clean finish</li>
+                <li>Pleasant aroma—grassy but not harsh</li>
+            </ul>
+        </div>
+        
+        <div class="results-box">
+            <strong>Functional Profile</strong>
+            <ul style="margin-top: 10px;">
+                <li><strong>GABA content:</strong> Similar to light-fermented (0.28-0.35 mg/g)—good but not maximum</li>
+                <li><strong>Caffeine:</strong> Higher than fermented (because less processing time)</li>
+                <li><strong>Phenolics:</strong> High (green leaves have excellent antioxidant content)</li>
+                <li><strong>Best for:</strong> Afternoon focus, daytime clarity</li>
+            </ul>
+        </div>
+        
+        <h2>How It Compares</h2>
+        
+        <div class="comparison-grid">
+            <div class="comparison-item">
+                <h4>Grill-Wilted</h4>
+                <div class="comparison-value">15 min</div>
+                <div class="comparison-label">Time to ready<br/>(picking to dried)</div>
+            </div>
+            <div class="comparison-item">
+                <h4>Light Fermented</h4>
+                <div class="comparison-value">6-12h</div>
+                <div class="comparison-label">Time to ready<br/>(professional)</div>
+            </div>
+            <div class="comparison-item">
+                <h4>Oolong-Style</h4>
+                <div class="comparison-value">12-18h</div>
+                <div class="comparison-label">Time to ready<br/>(professional)</div>
+            </div>
+            <div class="comparison-item">
+                <h4>Fully Fermented</h4>
+                <div class="comparison-value">24h+</div>
+                <div class="comparison-label">Time to ready<br/>(professional)</div>
+            </div>
+        </div>
+        
+        <div class="comparison-grid">
+            <div class="comparison-item">
+                <h4>Grill-Wilted</h4>
+                <div class="comparison-value">Green</div>
+                <div class="comparison-label">Color<br/>(bright)</div>
+            </div>
+            <div class="comparison-item">
+                <h4>Light Fermented</h4>
+                <div class="comparison-value">Yellow-Green</div>
+                <div class="comparison-label">Color<br/>(transitional)</div>
+            </div>
+            <div class="comparison-item">
+                <h4>Oolong-Style</h4>
+                <div class="comparison-value">Gold-Brown</div>
+                <div class="comparison-label">Color<br/>(developed)</div>
+            </div>
+            <div class="comparison-item">
+                <h4>Fully Fermented</h4>
+                <div class="comparison-value">Brown-Black</div>
+                <div class="comparison-label">Color<br/>(deep)</div>
+            </div>
+        </div>
+        
+        <h2>Brewing Your Grill-Wilted Leaves</h2>
+        
+        <h3>Basic Recipe</h3>
+        <ul>
+            <li><strong>Leaves:</strong> 10-12g (about a small handful)</li>
+            <li><strong>Water:</strong> 1 cup (250ml)</li>
+            <li><strong>Temperature:</strong> 75-80°C (let boiling water cool 2-3 minutes)</li>
+            <li><strong>Brew time:</strong> 7-8 minutes</li>
+        </ul>
+        
+        <p><strong>What to expect:</strong> The brew will be light green, fresh-tasting, slightly sweet. The aroma will be grassy-green with subtle floral notes. You'll get good afternoon focus and clarity without jitters (the grill-wilted leaves have decent GABA but more caffeine than fermented leaves).</p>
+        
+        <h2>Troubleshooting</h2>
+        
+        <div class="troubleshoot">
+            <strong>Leaves turned black/burnt</strong>
+            Your grill was too hot. Try medium-low next time. You can still drink them, but they'll taste harsh and bitter.
+        </div>
+        
+        <div class="troubleshoot">
+            <strong>Leaves are still moist after cooling</strong>
+            They didn't spend enough time on the grill, or your grill wasn't hot enough. You can put them back on a lower-heat setting, or spread them in the sun for an hour to finish drying.
+        </div>
+        
+        <div class="troubleshoot">
+            <strong>No color change—leaves still bright green</strong>
+            Grill wasn't hot enough. Increase heat next time. The leaves should visibly fade to yellow-green or light brown at edges.
+        </div>
+        
+        <div class="troubleshoot">
+            <strong>Leaves stick to the grill</strong>
+            Use parchment paper next time, or make sure you rinse and dry leaves completely before putting them on (they should be damp, not wet).
+        </div>
+        
+        <div class="troubleshoot">
+            <strong>Brew tastes too grassy or vegetal</strong>
+            This is normal for grill-wilted leaves—they're green, not fermented. If you want sweeter taste, let the next batch wilt longer (closer to 10 minutes) to develop more browning.
+        </div>
+        
+        <h2>Why This Hack Works</h2>
+        
+        <p>The grill does what takes hours in professional fermentation, but faster and simpler:</p>
+        
+        <ul>
+            <li><strong>Heat denatures enzymes</strong> that would cause browning—keeps leaves green</li>
+            <li><strong>Moisture removal</strong> happens quickly—ready in minutes instead of hours</li>
+            <li><strong>Some GABA development</strong> occurs during the heat (not as much as fermented, but enough to feel effect)</li>
+            <li><strong>No special equipment</strong> needed—just a grill you already have</li>
+        </ul>
+        
+        <div class="callout">
+            <strong>Perfect for:</strong> Testing new leaves, small batch processing, quick experimentation, learning how processing affects flavor and function.
+        </div>
+        
+        <h2>Next Steps to Explore</h2>
+        
+        <ul>
+            <li><strong>Temperature testing:</strong> Try lower heat (250°F) vs higher (350°F) and compare results</li>
+            <li><strong>Time variations:</strong> Try 5 min, 8 min, 12 min and taste differences</li>
+            <li><strong>Oolong-style on grill:</strong> Can you approximate oolong fermentation by grilling longer at lower heat?</li>
+            <li><strong>Roasted leaf hack:</strong> What if you grill at higher heat for shorter time? (Might create a roasted/pan-fired leaf like Japanese green teas)</li>
+        </ul>
+        
+        <div class="notes">
+            <strong>Note:</strong> This is an experimental hack, not a scientifically validated processing method. Results will vary based on your grill, leaf freshness, exact temperature, and other factors. The goal is to explore and learn, not to replicate commercial processing. Have fun testing!
+        </div>
+        
+    </div>
+</body>
+</html>

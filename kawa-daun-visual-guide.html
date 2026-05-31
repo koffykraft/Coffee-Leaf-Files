@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawa Daun: Complete Visual Guide — All Four Methods</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --ash: #3d3028;
+            --smoke: #6b5e4e;
+            --amber: #b5651d;
+            --gold: #c8922a;
+            --pale: #ede6d8;
+            --cream: #faf6ef;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: var(--pale);
+            padding: 30px 20px;
+            color: var(--ash);
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: var(--ash);
+            color: var(--cream);
+            padding: 50px 40px;
+            border-radius: 8px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        header h1 {
+            font-size: 2.8em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+        
+        header .subtitle {
+            font-size: 1.3em;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        header .tagline {
+            font-size: 1em;
+            color: rgba(250,246,239,0.9);
+            line-height: 1.7;
+        }
+        
+        .section-intro {
+            background: white;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            border-left: 3px solid var(--amber);
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: var(--ash);
+            margin: 60px 0 35px 0;
+            text-align: center;
+            letter-spacing: 1px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--amber);
+        }
+        
+        /* METHOD CARDS GRID */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .method-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--amber);
+        }
+        
+        .method-header {
+            background: linear-gradient(135deg, var(--smoke) 0%, var(--ash) 100%);
+            color: white;
+            padding: 25px;
+        }
+        
+        .method-number {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+        
+        .method-title {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .method-subtitle {
+            font-size: 0.95em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .method-visual {
+            padding: 35px;
+            text-align: center;
+            font-size: 4em;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f6f3;
+        }
+        
+        .method-body {
+            padding: 25px;
+        }
+        
+        .method-stat {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f9f6f3;
+            border-radius: 6px;
+            align-items: center;
+        }
+        
+        .stat-icon {
+            font-size: 1.6em;
+            min-width: 35px;
+        }
+        
+        .stat-text strong {
+            display: block;
+            color: var(--ash);
+            margin-bottom: 2px;
+            font-size: 0.95em;
+        }
+        
+        .stat-text span {
+            color: var(--smoke);
+            font-size: 0.9em;
+        }
+        
+        .step-sequence {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(181,101,29,0.08);
+            border-left: 2px solid var(--amber);
+            border-radius: 4px;
+        }
+        
+        .step-item {
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            color: var(--smoke);
+            line-height: 1.5;
+        }
+        
+        .step-item strong {
+            color: var(--ash);
+        }
+        
+        .producer-box {
+            margin-top: 15px;
+            padding: 12px;
+            background: #f0ebe3;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: var(--smoke);
+            border-left: 3px solid var(--gold);
+        }
+        
+        .producer-box strong {
+            color: var(--ash);
+        }
+        
+        /* SENSORY DATA */
+        .sensory-section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .sensory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .sensory-card {
+            padding: 20px;
+            background: #f9f6f3;
+            border-left: 3px solid var(--amber);
+            border-radius: 4px;
+        }
+        
+        .sensory-time {
+            font-weight: 600;
+            color: var(--ash);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .sensory-detail {
+            font-size: 0.9em;
+            color: var(--smoke);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        .sensory-detail strong {
+            color: var(--ash);
+        }
+        
+        /* CULTURAL/BREWING SECTION */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .column-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .column-box h3 {
+            font-size: 1.3em;
+            color: var(--ash);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--amber);
+        }
+        
+        .column-box p {
+            margin-bottom: 12px;
+            font-size: 0.95em;
+            color: var(--smoke);
+            line-height: 1.7;
+        }
+        
+        .column-box ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .column-box li {
+            margin-bottom: 8px;
+            color: var(--smoke);
+            font-size: 0.95em;
+        }
+        
+        /* SERVING VARIANTS */
+        .variants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .variant-card {
+            padding: 20px;
+            background: #f9f6f3;
+            border-radius: 6px;
+            border: 1px solid var(--amber);
+        }
+        
+        .variant-name {
+            font-weight: 600;
+            color: var(--ash);
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+        
+        .variant-description {
+            font-size: 0.9em;
+            color: var(--smoke);
+            line-height: 1.6;
+        }
+        
+        /* HISTORY TIMELINE */
+        .history-timeline {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .timeline-event {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--pale);
+            align-items: flex-start;
+        }
+        
+        .timeline-event:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-period {
+            font-weight: 600;
+            color: var(--ash);
+            min-width: 120px;
+            font-size: 0.95em;
+        }
+        
+        .timeline-text {
+            flex: 1;
+            color: var(--smoke);
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+        
+        .timeline-text strong {
+            color: var(--ash);
+        }
+        
+        /* KNOWLEDGE TRANSMISSION */
+        .knowledge-box {
+            background: linear-gradient(135deg, var(--smoke) 0%, var(--ash) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+        
+        .knowledge-box h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .knowledge-box p {
+            color: rgba(250,246,239,0.95);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        
+        /* CLOSING */
+        .closing-message {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 50px 0;
+            border: 2px solid var(--amber);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .closing-message p {
+            font-size: 1.1em;
+            color: var(--ash);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .methods-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Kawa Daun</h1>
+            <div class="subtitle">Complete Visual Guide — All Four Methods</div>
+            <div class="tagline">From West Sumatra, Indonesia. A beverage born from resistance, made with hands and senses. Four ways to smoke, brew, and serve coffee leaves.</div>
+        </header>
+        
+        <!-- INTRODUCTION -->
+        <div class="section-intro">
+            <p><strong>Kawa Daun</strong> means "coffee leaf" — leaves from Robusta coffee plants grown in West Sumatra, processed by smoking and dried into powder, then brewed by decoction. Four distinct methods exist, each with its own character, duration, and history. All use the same raw material: mature leaves harvested from pruning waste (NOT fresh-picked).</p>
+            <p style="margin-top: 12px;"><strong>The Minang people say:</strong> "If they do not drink kawa daun before work, they lack strength and energy." The beverage is warming, energising, and restorative — consumed before physical labour, before important days, and at special occasions.</p>
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- THE FOUR METHODS -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">The Four Traditional & Modern Methods</h2>
+        
+        <div class="methods-grid">
+            
+            <!-- METHOD 1: PENDIANGAN -->
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-number">Method 01 — Oldest Tradition</div>
+                    <div class="method-title">Pendiangan</div>
+                    <div class="method-subtitle">Kitchen-fire slow drying</div>
+                </div>
+                
+                <div class="method-visual">⏰ 🔥 ☕ 🏠</div>
+                
+                <div class="method-body">
+                    <div class="method-stat">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-text">
+                            <strong>Duration</strong>
+                            <span>2+ weeks</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-text">
+                            <strong>Heat Source</strong>
+                            <span>Everyday kitchen fire</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">📏</div>
+                        <div class="stat-text">
+                            <strong>Distance</strong>
+                            <span>100cm+ from fire</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-text">
+                            <strong>Batch & Yield</strong>
+                            <span>1-2 kg fresh → 0.3-0.8 kg dry</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">💧</div>
+                        <div class="stat-text">
+                            <strong>Final Moisture</strong>
+                            <span>7.6% (highest)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="step-sequence">
+                        <div class="step-item"><strong>1.</strong> Harvest mature Robusta leaves 8-9am (18-33cm long, 9-14cm wide)</div>
+                        <div class="step-item"><strong>2.</strong> Pierce leaves with bamboo skewers</div>
+                        <div class="step-item"><strong>3.</strong> Suspend over kitchen fire, 100cm+ away</div>
+                        <div class="step-item"><strong>4.</strong> Dry passively for 2+ weeks while cooking happens daily</div>
+                        <div class="step-item"><strong>5.</strong> Grind with blender, store in airtight containers</div>
+                    </div>
+                    
+                    <div class="producer-box">
+                        <strong>Producer:</strong> Producer 4, Lampasi, Lima Puluh Kota<br>
+                        <strong>Type:</strong> Family-scale, pre-commercial, oldest method<br>
+                        <strong>Knowledge:</strong> Learned from producers in Tanah Datar
+                    </div>
+                </div>
+            </div>
+            
+            <!-- METHOD 2: CLOSED FURNACE -->
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-number">Method 02 — Commercial Scale</div>
+                    <div class="method-title">Smoking — Closed Furnace</div>
+                    <div class="method-subtitle">Concentrated cinnamon-wood smoke</div>
+                </div>
+                
+                <div class="method-visual">🔥 💨 ☕ ⏱️</div>
+                
+                <div class="method-body">
+                    <div class="method-stat">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-text">
+                            <strong>Duration</strong>
+                            <span>50-120 minutes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-text">
+                            <strong>Fuel</strong>
+                            <span>Cinnamon wood (Cinnamomum burmannii)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">📏</div>
+                        <div class="stat-text">
+                            <strong>Distance</strong>
+                            <span>60-100cm from heat</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-text">
+                            <strong>Batch Size</strong>
+                            <span>6-15 kg fresh (2-3 kg per bamboo pin)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">⬇️</div>
+                        <div class="stat-text">
+                            <strong>Output</strong>
+                            <span>3-5 kg dry, moisture 3.6-4.1%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="step-sequence">
+                        <div class="step-item"><strong>1.</strong> Harvest mature Robusta 8-10am (18-33cm long, 9-13cm wide)</div>
+                        <div class="step-item"><strong>2.</strong> Clamp leaves between two 180cm bamboo sticks (2-3 kg per pin)</div>
+                        <div class="step-item"><strong>3.</strong> Place inside closed furnace, burn cinnamon wood</div>
+                        <div class="step-item"><strong>4.</strong> Suspend 60-100cm from heat, smoke 50-120 minutes at high heat (90-180°C)</div>
+                        <div class="step-item"><strong>5.</strong> Grind to powder with blender, store in airtight containers</div>
+                        <div class="step-item"><strong>Result:</strong> Grayish-black powder, dense texture</div>
+                    </div>
+                    
+                    <div class="producer-box">
+                        <strong>Producers:</strong> Producers 1 & 2, Tabek Patah, Tanah Datar<br>
+                        <strong>Type:</strong> Commercial production center<br>
+                        <strong>Knowledge:</strong> Transmitted mother-to-grandmother, now supplies West Sumatra & Riau
+                    </div>
+                </div>
+            </div>
+            
+            <!-- METHOD 3: OPEN FURNACE/TOASTING -->
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-number">Method 03 — Traditional Hands-On</div>
+                    <div class="method-title">Toasting — Open Furnace</div>
+                    <div class="method-subtitle">Direct flame, manual rotation</div>
+                </div>
+                
+                <div class="method-visual">🔥 🤚 ☕ ⏱️</div>
+                
+                <div class="method-body">
+                    <div class="method-stat">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-text">
+                            <strong>Duration</strong>
+                            <span>45-60 minutes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-text">
+                            <strong>Method</strong>
+                            <span>YOU hold the leaves</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">📏</div>
+                        <div class="stat-text">
+                            <strong>Distance</strong>
+                            <span>15-25cm from flame</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-text">
+                            <strong>Batch Size</strong>
+                            <span>4-6 kg fresh (2-3 kg per clamp)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">⬇️</div>
+                        <div class="stat-text">
+                            <strong>Output</strong>
+                            <span>3-4 kg dry, moisture 4.7%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="step-sequence">
+                        <div class="step-item"><strong>1.</strong> Harvest mature Robusta 9-11am (20-30cm long, 9-14cm wide)</div>
+                        <div class="step-item"><strong>2.</strong> Clamp leaves using their OWN MIDRIB (unique to this method)</div>
+                        <div class="step-item"><strong>3.</strong> YOU HOLD the clamped leaves in your hands</div>
+                        <div class="step-item"><strong>4.</strong> ROTATE constantly, 15-25cm from open flame</div>
+                        <div class="step-item"><strong>5.</strong> Watch the color change from green to dark brown</div>
+                        <div class="step-item"><strong>6.</strong> Smell the aroma develop (45-60 minutes total)</div>
+                        <div class="step-item"><strong>7.</strong> YOU DECIDE when leaves are thoroughly dried</div>
+                        <div class="step-item"><strong>8.</strong> Grind to powder</div>
+                    </div>
+                    
+                    <div class="producer-box">
+                        <strong>Producer:</strong> Producer 3, Pasir Laweh, Tanah Datar<br>
+                        <strong>Type:</strong> Fastest traditional method, hand-held<br>
+                        <strong>Knowledge:</strong> Learned from mother-in-law<br>
+                        <strong>Note:</strong> Higher PAH than closed-furnace, but lower than commercial coffee processing
+                    </div>
+                </div>
+            </div>
+            
+            <!-- METHOD 4: MICROWAVE -->
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-number">Method 04 — Modern Rapid</div>
+                    <div class="method-title">Microwave Drying</div>
+                    <div class="method-subtitle">Electric, no smoke character</div>
+                </div>
+                
+                <div class="method-visual">⚡ ⏱️ ☕ ✨</div>
+                
+                <div class="method-body">
+                    <div class="method-stat">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-text">
+                            <strong>Duration</strong>
+                            <span>2 minutes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-text">
+                            <strong>Power</strong>
+                            <span>750W microwave</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-text">
+                            <strong>Yield</strong>
+                            <span>35.99% (highest)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">🍃</div>
+                        <div class="stat-text">
+                            <strong>Washing</strong>
+                            <span>YES - only method with washing</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-text">
+                            <strong>Antioxidant Activity</strong>
+                            <span>63.43% (highest preservation)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="step-sequence">
+                        <div class="step-item"><strong>1.</strong> Harvest and wash thoroughly (only method that washes)</div>
+                        <div class="step-item"><strong>2.</strong> Prepare ~4 leaves per batch</div>
+                        <div class="step-item"><strong>3.</strong> Slice leaves</div>
+                        <div class="step-item"><strong>4.</strong> Microwave 750W for EXACTLY 2 minutes (optimal)</div>
+                        <div class="step-item"><strong>⚠️ WARNING:</strong> 4-10 min reduces polyphenol content & antioxidant activity</div>
+                        <div class="step-item"><strong>5.</strong> Air-dry to stabilize weight & ensure uniform dimensions</div>
+                        <div class="step-item"><strong>6.</strong> Grind with kitchen spice grinder/blender</div>
+                        <div class="step-item"><strong>7.</strong> Pass through 20-mesh sieve for uniform fine powder</div>
+                        <div class="step-item"><strong>Result:</strong> Yield 35.99% (highest of all methods)</div>
+                    </div>
+                    
+                    <div class="producer-box">
+                        <strong>Type:</strong> Modern, commercial rapid method<br>
+                        <strong>Quality:</strong> No negative effect on chemical components at 2-minute optimal duration<br>
+                        <strong>Use:</strong> When speed matters more than traditional smoke character
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SENSORY DATA FROM DEFRI -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">The Sensory Experience — What You See, Smell, Taste (Defri et al. 2021, 65 Panelists)</h2>
+        
+        <div class="section-intro">
+            <p><strong>The leaf surface colour is the PRIMARY quality indicator.</strong> Longer smoking produces darker leaves, stronger aroma, and lower astringency. Optimal sensory acceptance is achieved at 6 hours smoking duration.</p>
+        </div>
+        
+        <div class="sensory-section">
+            <h3 style="color: var(--ash); margin-bottom: 20px; font-size: 1.3em;">How Color & Chemistry Change With Smoking Duration</h3>
+            
+            <div class="sensory-grid">
+                
+                <div class="sensory-card">
+                    <div class="sensory-time">2 Hours</div>
+                    <div class="sensory-detail"><strong>Leaf Color:</strong> Light Brown</div>
+                    <div class="sensory-detail"><strong>Brewed Liquid:</strong> Reddish-brown</div>
+                    <div class="sensory-detail"><strong>pH:</strong> 5.78</div>
+                    <div class="sensory-detail"><strong>Moisture:</strong> 9.04%</div>
+                    <div class="sensory-detail"><strong>Character:</strong> Fresh, light smoke, milder flavor</div>
+                </div>
+                
+                <div class="sensory-card">
+                    <div class="sensory-time">4 Hours</div>
+                    <div class="sensory-detail"><strong>Leaf Color:</strong> Dark Brown</div>
+                    <div class="sensory-detail"><strong>Brewed Liquid:</strong> Dark Brown</div>
+                    <div class="sensory-detail"><strong>pH:</strong> 6.38</div>
+                    <div class="sensory-detail"><strong>Moisture:</strong> 4.29%</div>
+                    <div class="sensory-detail"><strong>Character:</strong> Strong aroma, balanced flavor</div>
+                </div>
+                
+                <div class="sensory-card" style="border-left: 3px solid var(--gold); background: #fffbf0;">
+                    <div class="sensory-time">★ 6 Hours ★</div>
+                    <div class="sensory-detail"><strong>Leaf Color:</strong> Grayish-Black</div>
+                    <div class="sensory-detail"><strong>Brewed Liquid:</strong> Black</div>
+                    <div class="sensory-detail"><strong>pH:</strong> 6.63</div>
+                    <div class="sensory-detail"><strong>Moisture:</strong> 3.04%</div>
+                    <div class="sensory-detail"><strong>Character:</strong> <strong>OPTIMAL</strong> — Most prized sensory profile</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- REGIONAL PREFERENCES -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="two-column">
+            
+            <div class="column-box">
+                <h3>Tanah Datar District</h3>
+                <p><strong>Standard:</strong> 6-hour smoking</p>
+                <p>The traditional heartland of Kawa Daun production. Tanah Datar producers maintain the full 6-hour smoking duration for maximum sensory acceptance and the most prized profile.</p>
+                <p><strong>Why:</strong> This is the historic standard. Producers here have grandmother-to-granddaughter knowledge going back centuries.</p>
+                <p><strong>Occasions:</strong> 6-hour smoked kawa daun is specifically requested for weddings, circumcisions, and community events.</p>
+            </div>
+            
+            <div class="column-box">
+                <h3>Agam District</h3>
+                <p><strong>Standard:</strong> 4-hour smoking</p>
+                <p>Agam producers prefer 4 hours for efficiency reasons. Cinnamon wood is costly and increasingly scarce in this region, making longer smoking less economical.</p>
+                <p><strong>Why:</strong> 4 hours still produces excellent dark brown color and strong aroma with lower resource cost.</p>
+                <p><strong>Occasions:</strong> Everyday consumption, commercial production for kedai kawa (kawa daun cafés).</p>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- BREWING & SERVING -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">Brewing & Serving</h2>
+        
+        <div class="two-column">
+            
+            <div class="column-box">
+                <h3>How to Brew (Decoction)</h3>
+                <p><strong>Method:</strong> Bring water and leaf powder to boil TOGETHER (not steeped in pre-boiled water)</p>
+                <p><strong>Ratio:</strong> 1g powder per 100ml water (or 1 liter = 10g powder)</p>
+                <p><strong>Duration:</strong> 15-30 minutes after reaching boil</p>
+                <p><strong>Straining:</strong> Pour through cloth or fine sieve</p>
+                <p><strong>Serving:</strong> Warm (not necessarily hot) — consume throughout the day</p>
+                <p><strong>Tradition:</strong> Served in coconut shell (tempurung kelapa) on bamboo base</p>
+            </div>
+            
+            <div class="column-box">
+                <h3>Serving Variants — Five Ways to Drink</h3>
+                <p style="font-size: 0.9em; color: var(--smoke); margin-bottom: 15px;"><strong>Key finding:</strong> Sweetness is the PRIMARY preference driver (Fibrianto 2021, 150 respondents). Served plain or with additions according to preference.</p>
+                
+                <div class="variant-card">
+                    <div class="variant-name">Original</div>
+                    <div class="variant-description">Plain, no additions. <strong>Character:</strong> Bitter, astringent, slightly grassy. <strong>Who:</strong> Preferred by older consumers (>35 years)</div>
+                </div>
+                
+                <div class="variant-card" style="border: 2px solid var(--gold); background: #fffbf0;">
+                    <div class="variant-name">★ Gula Merah</div>
+                    <div class="variant-description"><strong>MOST WIDELY PREFERRED.</strong> With palm sugar or coconut sugar. Brings sweetness forward. <strong>Why:</strong> Sweetness correlates strongly with preference (r=0.97)</div>
+                </div>
+                
+                <div class="variant-card">
+                    <div class="variant-name">Susu Kental</div>
+                    <div class="variant-description">With condensed milk. Softens astringency, adds body and sweetness</div>
+                </div>
+                
+                <div class="variant-card">
+                    <div class="variant-name">Telur Madu</div>
+                    <div class="variant-description">With egg and honey. A richer, more indulgent variant sold in kedai kawa (kawa daun cafés)</div>
+                </div>
+                
+                <div class="variant-card">
+                    <div class="variant-name">Susu Murni</div>
+                    <div class="variant-description">With fresh milk. Documented in café variants in Jakarta and West Sumatra</div>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- HISTORY -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">History: A Beverage Born from Resistance</h2>
+        
+        <div class="history-timeline">
+            
+            <div class="timeline-event">
+                <div class="timeline-period">Pre-colonial</div>
+                <div class="timeline-text">The Minangkabau people cultivated Robusta coffee in the highlands of West Sumatra before Dutch arrival. They used the leaves to make kawa — a practice predating any colonial record of the beverage.</div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-period">19th century</div>
+                <div class="timeline-text">Under the <em>cultuurstelsel</em> (forced cultivation) system, Minangkabau farmers were ordered to grow coffee for Dutch colonial trade. All harvested beans had to be deposited at Dutch storehouses (<em>pankhuis</em>). Local people who wanted the beans had to buy them back. <strong>With the beans inaccessible, they continued — and perhaps intensified — their use of the leaves. "No coffee beans; the leaves became the drink."</strong></div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-period">2001 onwards</div>
+                <div class="timeline-text"><strong>Commercial Revival.</strong> Tabek Patah, Tanah Datar became a production centre. Producer families, whose knowledge had been transmitted grandmother to granddaughter, began supplying kedai kawa (kawa daun cafés) throughout West Sumatra and into Riau Province. This knowledge transmission — grandmother to granddaughter — remains the backbone of the tradition.</div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-period">2020</div>
+                <div class="timeline-text">Kawa Daun is inscribed in the Slow Food Ark of Taste, recognizing it as an endangered traditional food product worthy of protection and cultural preservation.</div>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- KNOWLEDGE TRANSMISSION -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="knowledge-box">
+            <h3>The Heart of Kawa Daun: Grandmother to Granddaughter</h3>
+            <p>The knowledge of how to select leaves, how to smoke them, when to stop, how to grind the powder, how to brew — this is not written down in books. It lives in the hands and noses and eyes of women who have been making kawa daun for their families for generations.</p>
+            <p>This knowledge is transmitted <strong>directly, person to person, in the kitchen.</strong> A grandmother teaches her granddaughter by doing it together. The granddaughter learns to watch the color. To smell the aroma. To feel when the leaves are crispy enough. This is why Kawa Daun is real, living tradition — not a recipe, but a relationship with the plant and the fire.</p>
+            <p>When you make Kawa Daun, you are part of this chain. You are learning what grandmothers before you knew. You are becoming part of a heritage that survived colonization, survived the commodity trade taking the beans, and is now being recognized globally as something precious.</p>
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- CULTURAL MEANING -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">Cultural Meaning & When Kawa Daun Is Made</h2>
+        
+        <div class="section-intro">
+            <p><strong>Minang people say:</strong> "If they do not drink kawa daun before work, they lack strength and energy."</p>
+            <p>The beverage is perceived as <strong>warming, energising, and restorative.</strong> It is consumed:</p>
+            <ul style="margin-left: 20px; margin-top: 12px;">
+                <li><strong>Before physical labour</strong> — especially during the coffee harvest season</li>
+                <li><strong>In the morning</strong> — to start the day with strength</li>
+                <li><strong>At special occasions</strong> — weddings, circumcisions, community events (specifically requesting 6-hour smoked version)</li>
+            </ul>
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- CONSUMER DATA & SAFETY -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="two-column">
+            
+            <div class="column-box">
+                <h3>Consumer Awareness & Preference</h3>
+                <p><strong>69%</strong> of Indonesians outside West Sumatra are unaware of Kawa Daun's existence.</p>
+                <p><strong>80%</strong> prefer it over black tea when tasted blind in consumer research (Fibrianto 2021, 150 respondents).</p>
+                <p><strong>Primary preference driver:</strong> Sweetness (high correlation r=0.97)</p>
+                <p><strong>Preference:</strong> Higher sweetness = higher overall preference and relaxation perception</p>
+            </div>
+            
+            <div class="column-box">
+                <h3>Safety & Chemistry</h3>
+                <p><strong>Cinnamon wood (Cinnamomum burmannii):</strong> Benzo[a]pyrene 0.04 ppm — food-safe level</p>
+                <p><strong>Closed-furnace smoking:</strong> Lowest PAH content of the traditional methods</p>
+                <p><strong>Open-furnace toasting:</strong> Higher PAH than closed-furnace, but still lower than commercial coffee processing</p>
+                <p><strong>Microwave drying:</strong> No smoke compounds — cleanest method, but loses traditional smoke character</p>
+                <p><strong>Acid woods must be avoided</strong> — they produce off-flavors</p>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- BIOACTIVE COMPOUNDS -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">What Makes Kawa Daun Special — Bioactive Compounds Exclusive to Coffee Leaves</h2>
+        
+        <div class="section-intro">
+            <p>Robusta coffee leaves contain a distinct compound profile from the coffee bean — with some compounds found ONLY in leaves and absent from any other part of the coffee plant.</p>
+        </div>
+        
+        <div class="sensory-section">
+            <div class="sensory-grid">
+                
+                <div class="sensory-card">
+                    <div class="sensory-time">Mangiferin</div>
+                    <div class="sensory-detail"><strong>What it is:</strong> Xanthone compound</div>
+                    <div class="sensory-detail"><strong>Found where:</strong> Coffee leaves AND mango leaves</div>
+                    <div class="sensory-detail"><strong>NOT found:</strong> In coffee beans</div>
+                    <div class="sensory-detail"><strong>Action:</strong> Strong antioxidant & anti-inflammatory</div>
+                </div>
+                
+                <div class="sensory-card" style="border-left: 3px solid var(--gold); background: #fffbf0;">
+                    <div class="sensory-time">Isomangiferin</div>
+                    <div class="sensory-detail"><strong>What it is:</strong> Co-occurs with mangiferin</div>
+                    <div class="sensory-detail"><strong>EXCLUSIVE:</strong> NEVER found in any other part of the coffee plant</div>
+                    <div class="sensory-detail"><strong>Only in:</strong> Coffee leaves</div>
+                    <div class="sensory-detail"><strong>Significance:</strong> Unique to this beverage</div>
+                </div>
+                
+                <div class="sensory-card">
+                    <div class="sensory-time">Chlorogenic Acids</div>
+                    <div class="sensory-detail"><strong>Forms:</strong> 5-CQA and 3,5-DiCQA are dominant</div>
+                    <div class="sensory-detail"><strong>Role:</strong> Primary antioxidant compounds</div>
+                    <div class="sensory-detail"><strong>Key:</strong> Release peaks around 100°C</div>
+                    <div class="sensory-detail"><strong>Extraction:</strong> Why decoction (boiling) is traditional</div>
+                </div>
+                
+                <div class="sensory-card">
+                    <div class="sensory-time">Caffeine</div>
+                    <div class="sensory-detail"><strong>Content:</strong> 0.12–1.15% in dry leaf</div>
+                    <div class="sensory-detail"><strong>vs beans:</strong> Significantly lower</div>
+                    <div class="sensory-detail"><strong>During smoking:</strong> Partially degraded</div>
+                    <div class="sensory-detail"><strong>Effect:</strong> Contributes to pH change</div>
+                </div>
+                
+                <div class="sensory-card">
+                    <div class="sensory-time">Trigonelline</div>
+                    <div class="sensory-detail"><strong>Content:</strong> 2x the concentration in kawa daun vs coffee beans</div>
+                    <div class="sensory-detail"><strong>Reason:</strong> Partial degradation during smoking process</div>
+                    <div class="sensory-detail"><strong>Note:</strong> Unique enrichment from smoking</div>
+                </div>
+                
+                <div class="sensory-card">
+                    <div class="sensory-time">Theobromine</div>
+                    <div class="sensory-detail"><strong>Content:</strong> 0.17–4.14 mg/g dry weight</div>
+                    <div class="sensory-detail"><strong>Level:</strong> Higher concentration in Robusta leaves</div>
+                    <div class="sensory-detail"><strong>Similar to:</strong> Compounds in chocolate</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- MICROWAVE ANTIOXIDANT SPECIFICS -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="two-column">
+            
+            <div class="column-box">
+                <h3>Antioxidant Preservation by Method</h3>
+                <p><strong>Microwave (2-minute optimal):</strong></p>
+                <p>Antioxidant activity: 63.43%</p>
+                <p>Polyphenol content: 48.56 mgGAE/g</p>
+                <p><strong>Why optimal at exactly 2 min:</strong> Longer exposure (4-10 min) reduces total water-soluble material and significantly decreases polyphenol retention.</p>
+                <p style="font-size: 0.9em; color: var(--amber); margin-top: 12px;"><strong>⚠️ Critical timing:</strong> Every additional minute after 2 minutes reduces functional value.</p>
+            </div>
+            
+            <div class="column-box">
+                <h3>Brewing Extraction Note</h3>
+                <p><strong>Traditional decoction (15-30 min boil):</strong> Significantly longer than scientific optimum (~5 min at 93-95°C)</p>
+                <p><strong>Why extended duration?</strong> Traditional timing may reflect different objectives than just antioxidant yield:</p>
+                <ul style="margin-left: 20px; margin-top: 12px;">
+                    <li>Body and mouthfeel development</li>
+                    <li>Color depth and intensity</li>
+                    <li>Heat-dependent compound extraction</li>
+                    <li>Brewing ritual and ceremonial timing</li>
+                </ul>
+                <p style="font-size: 0.9em; color: var(--smoke); margin-top: 12px;">This is <strong>grandmother knowledge</strong> — generations of adjustment for taste and experience, not lab optimization.</p>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- CLOSING -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="closing-message">
+            <p><strong>Kawa Daun is not just a beverage. It is a memory.</strong></p>
+            <p>It remembers the time before the beans were taken, when leaves sustained families. It remembers grandmothers teaching granddaughters over kitchen fires. It remembers the smell of cinnamon smoke at dawn before work. It remembers that something precious can survive even when a whole system tries to erase it.</p>
+            <p>When you make Kawa Daun, you are holding all of this in your hands.</p>
+        </div>
+        
+    </div>
+</body>
+</html>
