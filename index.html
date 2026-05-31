@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,256 +7,287 @@
 
 <style>
 
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background: #f7f5ee;
-    color: #2f4630;
-    font-family: "Segoe UI", Calibri, Arial, sans-serif;
-    line-height: 1.8;
+body{
+    margin:0;
+    padding:0;
+    background:#f7f5ee;
+    color:#2f4630;
+    font-family:Segoe UI, Calibri, Arial, sans-serif;
+    line-height:1.8;
 }
 
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 60px 30px 100px;
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:40px 28px 100px;
 }
 
-.hero {
-    text-align: center;
-    padding: 40px 0 80px;
+.hero{
+    text-align:center;
+    padding:40px 0 60px;
 }
 
-.hero img {
-    width: 120px;
-    max-width: 100%;
-    margin-bottom: 20px;
+.buna-logo{
+    width:120px;
+    max-width:100%;
+    margin-bottom:20px;
 }
 
-.hero h1 {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 5rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    color: #2f4630;
+h1{
+    margin:0;
+    font-family:Georgia, serif;
+    font-size:72px;
+    font-weight:500;
+    letter-spacing:4px;
+    color:#2f4630;
 }
 
-.hero h2 {
-    margin-top: 10px;
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #4b5f4c;
+.subtitle{
+    margin-top:8px;
+    font-size:16px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    color:#4b5f4c;
 }
 
-.intro {
-    max-width: 650px;
-    margin: 40px auto 0;
-    text-align: center;
-    color: #4f4f4f;
-    font-size: 1.05rem;
+.intro{
+    margin:40px auto 0;
+    max-width:650px;
+    text-align:center;
+    color:#555;
 }
 
-.section {
-    margin-top: 80px;
+.statement{
+    margin-top:24px;
+    font-size:15px;
+    color:#4b5f4c;
 }
 
-.section h3 {
-    font-family: Georgia, serif;
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #d8d3c7;
-    padding-bottom: 12px;
+.section{
+    margin-top:70px;
 }
 
-.entry {
-    margin-bottom: 24px;
+.section h2{
+    font-family:Georgia, serif;
+    font-weight:500;
+    font-size:30px;
+    margin-bottom:20px;
+    border-top:1px solid #d8d3c7;
+    padding-top:20px;
 }
 
-.entry a {
-    color: #2f4630;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.05rem;
+.entry{
+    margin-bottom:18px;
 }
 
-.entry a:hover {
-    text-decoration: underline;
+.entry a{
+    color:#2f4630;
+    text-decoration:none;
+    font-weight:600;
 }
 
-.entry p {
-    margin: 4px 0 0;
-    color: #666;
-    font-size: 0.96rem;
+.entry a:hover{
+    text-decoration:underline;
 }
 
-.footer {
-    margin-top: 100px;
-    padding-top: 40px;
-    border-top: 1px solid #d8d3c7;
-    text-align: center;
-    color: #666;
-    font-size: 0.95rem;
+.entry p{
+    margin:3px 0 0;
+    color:#666;
+    font-size:14px;
 }
 
-@media (max-width: 768px) {
-
-.hero h1 {
-    font-size: 3.4rem;
+.footer{
+    margin-top:90px;
+    border-top:1px solid #d8d3c7;
+    padding-top:40px;
+    text-align:center;
+    color:#666;
 }
 
-.hero h2 {
-    font-size: 1rem;
+.kk-logo{
+    width:55px;
+    margin:20px 0;
+}
+
+@media(max-width:768px){
+
+h1{
+    font-size:48px;
+}
+
+.section h2{
+    font-size:24px;
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-```
 <div class="hero">
 
-    <!-- Replace buna-leaf.png with your leaf image filename -->
-    <img src="buna-leaf.png" alt="Buna Leaf">
+<img src="buna-leaf.png" alt="Buna Leaf" class="buna-logo">
 
-    <h1>BUNA</h1>
+<h1>BUNA</h1>
 
-    <h2>Coffee Leaf Library</h2>
+<div class="subtitle">
+Coffee Leaf Library
+</div>
 
-    <div class="intro">
-        Open documentation of coffee leaf traditions, preparation methods,
-        sensory exploration, and modern practice.
+<div class="intro">
 
-        <br><br>
+Open documentation of coffee leaf traditions,
+preparation methods, sensory exploration,
+and modern practice.
 
-        Published openly by KoffyKraft.
-    </div>
+<div class="statement">
+
+Traditional knowledge.<br>
+Historical records.<br>
+Modern experimentation.<br><br>
+
+Shared openly.
+
+</div>
+
+</div>
 
 </div>
 
 <div class="section">
 
-    <h3>Start Here</h3>
+<h2>Start Here</h2>
 
-    <div class="entry">
-        <a href="the-foliage-of-buna-minimal.html">The Foliage of Buna</a>
-        <p>Why coffee leaf knowledge survived outside the coffee industry.</p>
-    </div>
+<div class="entry">
+<a href="the-foliage-of-buna-minimal.html">The Foliage of Buna</a>
+<p>The story of coffee leaf knowledge and how it survived.</p>
+</div>
 
-    <div class="entry">
-        <a href="buna-visual-guide.html">Visual Guide to Buna</a>
-        <p>A quick introduction to the plant, leaves, and traditions.</p>
-    </div>
+<div class="entry">
+<a href="buna-visual-guide.html">Visual Guide to Buna</a>
+<p>A visual introduction to the plant, traditions and research.</p>
+</div>
 
-    <div class="entry">
-        <a href="the-buna-lifestyle-manual.html">The Buna Lifestyle Manual</a>
-        <p>How coffee leaf beverages fit into daily life.</p>
-    </div>
+<div class="entry">
+<a href="the-buna-lifestyle-manual.html">The Buna Lifestyle Manual</a>
+<p>Practical applications for modern life.</p>
+</div>
 
 </div>
 
 <div class="section">
 
-    <h3>Traditional Preparations</h3>
+<h2>Traditional Preparations</h2>
 
-    <div class="entry">
-        <a href="engere-visual-guide.html">Engere</a>
-        <p>Milk based Ethiopian preparation.</p>
-    </div>
+<div class="entry">
+<a href="engere.html">Engere</a>
+<p>Traditional Ethiopian milk-based preparation.</p>
+</div>
 
-    <div class="entry">
-        <a href="chemo.html">Chemo</a>
-        <p>Spiced Ethiopian coffee leaf decoction.</p>
-    </div>
+<div class="entry">
+<a href="chemo.html">Chemo</a>
+<p>Spiced Ethiopian coffee leaf decoction.</p>
+</div>
 
-    <div class="entry">
-        <a href="kuti-schoolbook-guide.html">Kuti</a>
-        <p>Concentrated medicinal preparation.</p>
-    </div>
+<div class="entry">
+<a href="kuti.html">Kuti</a>
+<p>Concentrated traditional medicinal preparation.</p>
+</div>
 
-    <div class="entry">
-        <a href="kawa-daun-schoolbook-guide.html">Kawa Daun</a>
-        <p>Traditional smoked leaf tea from West Sumatra.</p>
-    </div>
+<div class="entry">
+<a href="kawa-daun.html">Kawa Daun</a>
+<p>Traditional smoked coffee leaf beverage of West Sumatra.</p>
+</div>
 
 </div>
 
 <div class="section">
 
-    <h3>Making Guides</h3>
+<h2>Guides</h2>
 
-    <div class="entry">
-        <a href="engere-schoolbook-guide-part-1.html">Engere Guide Part 1</a>
-    </div>
+<div class="entry">
+<a href="engere-schoolbook-guide-part-1.html">Engere Schoolbook Guide Part 1</a>
+</div>
 
-    <div class="entry">
-        <a href="engere-schoolbook-guide-part-2.html">Engere Guide Part 2</a>
-    </div>
+<div class="entry">
+<a href="engere-schoolbook-guide-part-2.html">Engere Schoolbook Guide Part 2</a>
+</div>
 
-    <div class="entry">
-        <a href="chemo-schoolbook-guide.html">Chemo Schoolbook Guide</a>
-    </div>
+<div class="entry">
+<a href="engere-visual-pictogram-guide.html">Engere Visual Guide</a>
+</div>
 
-    <div class="entry">
-        <a href="chemo-visual-pictogram-guide.html">Chemo Visual Guide</a>
-    </div>
+<div class="entry">
+<a href="kuti-schoolbook-guide.html">Kuti Schoolbook Guide</a>
+</div>
 
-    <div class="entry">
-        <a href="kuti-schoolbook-guide.html">Kuti Schoolbook Guide</a>
-    </div>
+<div class="entry">
+<a href="kuti-visual-pictogram-guide.html">Kuti Visual Guide</a>
+</div>
 
-    <div class="entry">
-        <a href="kuti-visual-pictogram-guide.html">Kuti Visual Guide</a>
-    </div>
+<div class="entry">
+<a href="chemo-schoolbook-guide.html">Chemo Schoolbook Guide</a>
+</div>
 
-    <div class="entry">
-        <a href="kawa-daun-schoolbook-guide.html">Kawa Daun Schoolbook Guide</a>
-    </div>
+<div class="entry">
+<a href="chemo-visual-pictogram-guide.html">Chemo Visual Guide</a>
+</div>
 
-    <div class="entry">
-        <a href="kawa-daun-visual-guide.html">Kawa Daun Visual Guide</a>
-    </div>
+<div class="entry">
+<a href="kawa-daun-schoolbook-guide-complete.html">Kawa Daun Schoolbook Guide</a>
+</div>
+
+<div class="entry">
+<a href="kawa-daun-visual-pictogram-guide-complete.html">Kawa Daun Visual Guide</a>
+</div>
 
 </div>
 
 <div class="section">
 
-    <h3>Citane Lab</h3>
+<h2>Citane Lab</h2>
 
-    <div class="entry">
-        <a href="citane-hack-grill-wilted-leaves.html">Citane Experimental Pathways</a>
-        <p>Observations, trials, processing notes and modern exploration.</p>
-    </div>
+<div class="entry">
+<a href="citane-processing-protocols.html">Citane Processing Protocols</a>
+<p>Experimental observations, processing notes and field trials.</p>
+</div>
+
+<div class="entry">
+<a href="citane-hack-gas-flame-roasted-leaf.html">Gas Flame Roasted Leaf</a>
+</div>
+
+<div class="entry">
+<a href="citane-hack-grill-wilted-leaves.html">Grill Wilted Leaves</a>
+</div>
 
 </div>
 
 <div class="footer">
 
-    BUNA Coffee Leaf Library
+<img src="KoffyKraftLogo.png" alt="KoffyKraft" class="kk-logo">
 
-    <br>
+<br>
 
-    Maintained by KoffyKraft
+Published by KoffyKraft
 
-    <br>
+<br>
 
-    Shared openly for study, discussion, adaptation and further exploration.
+Kerala, India
+
+<br><br>
+
+Shared openly for study, discussion,
+adaptation and further exploration.
 
 </div>
-```
 
 </div>
 
