@@ -4,475 +4,185 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BUNA | Coffee Leaf Library</title>
-
 <style>
 * {
     box-sizing: border-box;
 }
-
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     margin: 0;
     padding: 0;
     background: #f7f5ee;
     color: #263927;
-    font-family: "Segoe UI", Calibri, Arial, sans-serif;
-    line-height: 1.75;
+    font-family: Arial, sans-serif;
+    line-height: 1.7;
 }
-
-a {
-    color: #263927;
+.container {
+    max-width: 960px;
+    margin: auto;
+    padding: 40px 25px 80px;
 }
-
-.page {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 36px 26px 90px;
-}
-
 .hero {
-    min-height: 92vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     text-align: center;
-    padding: 50px 0 75px;
+    padding: 60px 0 80px;
 }
-
-.logo-leaf {
-    width: 138px;
-    max-width: 55%;
-    display: block;
-    margin: 0 auto 30px;
+.hero img {
+    width: 140px;
+    max-width: 50%;
 }
-
 .hero h1 {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(4rem, 12vw, 8rem);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: #263927;
+    margin: 20px 0 5px;
+    font-size: 72px;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    letter-spacing: 6px;
 }
-
-.library-title {
-    margin-top: 8px;
-    font-size: 1rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: #526453;
-}
-
-.rule {
-    width: 116px;
-    height: 1px;
-    background: #cfc7b8;
-    margin: 36px auto;
-}
-
-.hero-text {
-    max-width: 680px;
-    margin: 0 auto;
-    color: #555;
-    font-size: 1.07rem;
-}
-
-.hero-words {
-    margin-top: 34px;
-    color: #314732;
-    font-size: 0.98rem;
-}
-
-.nav {
-    margin-top: 44px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.nav a {
-    text-decoration: none;
-    border: 1px solid #cfc7b8;
-    border-radius: 999px;
-    padding: 9px 16px;
-    font-size: 0.9rem;
-}
-
-.nav a:hover {
-    border-color: #263927;
-}
-
-section {
-    border-top: 1px solid #d8d0c2;
-    padding: 76px 0;
-}
-
-.eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 0.78rem;
-    color: #777;
-    margin-bottom: 10px;
-}
-
-h2 {
-    margin: 0 0 22px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2rem, 5vw, 3.1rem);
-    font-weight: 500;
-    line-height: 1.15;
-    color: #263927;
-}
-
-.section-text {
-    max-width: 730px;
-    color: #5b5b5b;
-    margin-bottom: 44px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 34px 48px;
-}
-
-.item {
-    padding-bottom: 23px;
-    border-bottom: 1px solid #ddd6ca;
-}
-
-.item a {
-    text-decoration: none;
-    font-weight: 650;
-    font-size: 1.06rem;
-}
-
-.item a:hover {
-    text-decoration: underline;
-}
-
-.item p {
-    margin: 7px 0 0;
+.hero p {
     color: #666;
-    font-size: 0.94rem;
+    max-width: 650px;
+    margin: 20px auto;
 }
-
-.guide-columns {
-    columns: 2;
-    column-gap: 50px;
+.section {
+    border-top: 1px solid #d8d0c2;
+    padding: 60px 0;
 }
-
-.guide-columns .item {
-    break-inside: avoid;
-    margin-bottom: 24px;
+.section h2 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    margin-bottom: 30px;
 }
-
-.note {
-    margin-top: 38px;
-    padding: 28px;
-    background: rgba(255,255,255,0.38);
-    border: 1px solid #d8d0c2;
-    color: #555;
+.card {
+    display: block;
+    text-decoration: none;
+    color: #263927;
+    padding: 16px 0;
+    border-bottom: 1px solid #e4ddd0;
 }
-
+.card:hover {
+    opacity: 0.8;
+}
+.card h3 {
+    margin: 0;
+    font-size: 20px;
+}
+.card p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 14px;
+}
 .footer {
     border-top: 1px solid #d8d0c2;
-    margin-top: 50px;
-    padding-top: 54px;
     text-align: center;
-    color: #666;
+    padding-top: 50px;
+    margin-top: 50px;
 }
-
-.logo-kk {
-    width: 58px;
-    max-width: 22%;
-    display: block;
-    margin: 0 auto 22px;
+.footer img {
+    width: 60px;
 }
-
-.footer strong {
-    display: block;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.45rem;
-    font-weight: 500;
-    color: #263927;
-}
-
 .footer p {
-    max-width: 650px;
-    margin: 12px auto 0;
-}
-
-@media (max-width: 760px) {
-    .page {
-        padding: 30px 22px 80px;
-    }
-
-    .hero {
-        min-height: auto;
-        padding: 68px 0 72px;
-    }
-
-    .logo-leaf {
-        width: 118px;
-    }
-
-    .grid,
-    .guide-columns {
-        display: block;
-        columns: 1;
-    }
-
-    .item {
-        margin-bottom: 25px;
-    }
-
-    section {
-        padding: 58px 0;
-    }
-
-    .nav {
-        gap: 9px;
-    }
-
-    .nav a {
-        font-size: 0.84rem;
-        padding: 8px 13px;
-    }
+    color: #666;
 }
 </style>
 </head>
-
 <body>
-
-<div class="page">
-
-<header class="hero">
-
-    <img src="buna-leaf.svg" alt="Buna leaf" class="logo-leaf">
-
-    <h1>BUNA</h1>
-
-    <div class="library-title">Coffee Leaf Library</div>
-
-    <div class="rule"></div>
-
-    <div class="hero-text">
-        A public archive of coffee leaf traditions, historical records,
-        modern research and contemporary experimentation.
-    </div>
-
-    <div class="hero-words">
-        Traditional knowledge.<br>
-        Historical records.<br>
-        Modern experimentation.<br>
-        Shared openly.
-    </div>
-
-    <nav class="nav" aria-label="Library sections">
-        <a href="#start">Start Here</a>
-        <a href="#traditions">Traditional Pathways</a>
-        <a href="#guides">Guides</a>
-        <a href="#research">Research</a>
-        <a href="#citane">Citane Lab</a>
-    </nav>
-
-</header>
-
-<section id="start">
-
-    <div class="eyebrow">Start here</div>
-
-    <h2>What is Buna?</h2>
-
-    <div class="section-text">
-        Buna is the wider world of the coffee plant before coffee became only a roasted bean.
-        These pages introduce the plant, the leaf, the history, and the modern doorway into
-        coffee leaf practice.
-    </div>
-
-    <div class="grid">
-
-        <div class="item">
-            <a href="the-foliage-of-buna.html">The Foliage of Buna</a>
-            <p>The larger story of coffee leaf knowledge, how it survived, and why it matters now.</p>
-        </div>
-
-        <div class="item">
-            <a href="buna-visual-guide.html">Buna Visual Guide</a>
-            <p>A visual introduction to the coffee plant, the leaf, traditions and research pathways.</p>
-        </div>
-
-        <div class="item">
-            <a href="the-buna-lifestyle-manual.html">The Buna Lifestyle Manual</a>
-            <p>A practical view of how coffee leaf beverages may fit into daily life.</p>
-        </div>
-
-        <div class="item">
-            <a href="coffee-leaf-health-benefits.html">Coffee Leaf Health Benefits</a>
-            <p>Modern research on compounds, function, relaxation and sensory relevance.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section id="traditions">
-
-    <div class="eyebrow">Traditional pathways</div>
-
-    <h2>Four living preparations</h2>
-
-    <div class="section-text">
-        Coffee leaves were never used in only one way. Different cultures shaped different
-        preparations through place, need, ingredients, labour, illness, hospitality and daily life.
-    </div>
-
-    <div class="grid">
-
-        <div class="item">
-            <a href="engere.html">Engere</a>
-            <p>Traditional Ethiopian milk-based coffee leaf preparation.</p>
-        </div>
-
-        <div class="item">
-            <a href="chemo.html">Chemo</a>
-            <p>Spiced Ethiopian coffee leaf decoction with culinary and restorative character.</p>
-        </div>
-
-        <div class="item">
-            <a href="kuti.html">Kuti</a>
-            <p>A traditional coffee leaf preparation with household, medicinal and cultural context.</p>
-        </div>
-
-        <div class="item">
-            <a href="kawa-daun.html">Kawa Daun</a>
-            <p>Smoked coffee leaf beverage from the Minangkabau highlands of West Sumatra.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section id="guides">
-
-    <div class="eyebrow">Learning and making</div>
-
-    <h2>Guides for practice</h2>
-
-    <div class="section-text">
-        These guides are for people who want to understand the actual making. They include
-        schoolbook explanations, visual guides and step-by-step pictogram pages.
-    </div>
-
-    <div class="guide-columns">
-
-        <div class="item"><a href="engere-schoolbook-guide-part-1.html">Engere Schoolbook Guide Part 1</a></div>
-
-        <div class="item"><a href="engere-schoolbook-guide-part-2.html">Engere Schoolbook Guide Part 2</a></div>
-
-        <div class="item"><a href="engere-visual-guide.html">Engere Visual Guide</a></div>
-
-        <div class="item"><a href="chemo-schoolbook-guide.html">Chemo Schoolbook Guide</a></div>
-
-        <div class="item"><a href="chemo-visual-pictogram-guide.html">Chemo Visual Guide</a></div>
-
-        <div class="item"><a href="kuti-schoolbook-guide.html">Kuti Schoolbook Guide</a></div>
-
-        <div class="item"><a href="kuti-visual-pictogram-guide.html">Kuti Visual Guide</a></div>
-
-        <div class="item"><a href="kawa-daun-schoolbook-guide.html">Kawa Daun Schoolbook Guide</a></div>
-
-        <div class="item"><a href="kawa-daun-visual-guide.html">Kawa Daun Visual Guide</a></div>
-
-    </div>
-
-</section>
-
-<section id="research">
-
-    <div class="eyebrow">Modern research</div>
-
-    <h2>Science and reference</h2>
-
-    <div class="section-text">
-        The library includes modern research summaries and reference documents. These do not
-        replace traditional knowledge. They sit beside it as another way of reading the plant.
-    </div>
-
-    <div class="grid">
-
-        <div class="item">
-            <a href="functional-compendium.html">Functional Compendium</a>
-            <p>Modern research summary on coffee leaf tea, brewing, sensory response and functional outcomes.</p>
-        </div>
-
-        <div class="item">
-            <a href="the-foliage-of-buna.html">Historical and Cultural Reference</a>
-            <p>The broader framing document connecting history, ethnobotany and modern rediscovery.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section id="citane">
-
-    <div class="eyebrow">Citane Lab</div>
-
-    <h2>KoffyKraft experiments</h2>
-
-    <div class="section-text">
-        Citane Lab is KoffyKraft's contribution to the library: modern observations, processing
-        trials, sensory notes and open experiments with coffee leaves.
-    </div>
-
-    <div class="grid">
-
-        <div class="item">
-            <a href="citane-processing-protocols.html">Citane Processing Protocols</a>
-            <p>Experimental observations, processing notes and field trials.</p>
-        </div>
-
-        <div class="item">
-            <a href="citane-hack-grill-wilted-leaves.html">Grill Wilted Leaves</a>
-            <p>A practical trial pathway using grilled or wilted coffee leaves.</p>
-        </div>
-
-        <div class="item">
-            <a href="citane-hack-gas-flame-roasted-leaf.html">Gas Flame Roasted Leaf</a>
-            <p>A direct heat experiment exploring roasted leaf character and extraction.</p>
-        </div>
-
-    </div>
-
-    <div class="note">
-        No attempt is made here to claim ownership over traditional knowledge.
-        Citane Lab documents one modern exploration inside a much wider coffee leaf world.
-    </div>
-
-</section>
-
-<footer class="footer">
-
-    <img src="KoffyKraftLogo.png" alt="KoffyKraft" class="logo-kk">
-
-    <strong>Published by KoffyKraft</strong>
-
-    <p>Kerala, India</p>
-
-    <p>
-        Shared openly for study, discussion, adaptation and further exploration.
-        Sources are cited wherever possible. Corrections and additional references are welcome.
-    </p>
-
-</footer>
-
+<div class="container">
+<div class="hero">
+<img src="buna-leaf.svg" alt="Buna">
+<h1>BUNA</h1>
+<p>
+Coffee Leaf Library
+</p>
+<p>
+A public archive of coffee leaf traditions,
+historical records, modern research,
+and contemporary experimentation.
+</p>
 </div>
-
+<div class="section">
+<h2>BUNA</h2>
+<a class="card" href="the-foliage-of-buna-minimal.html">
+<h3>The Foliage of Buna</h3>
+<p>History, ethnobotany and cultural context.</p>
+</a>
+<a class="card" href="buna-visual-guide.html">
+<h3>Buna Visual Guide</h3>
+<p>Introduction to coffee leaf traditions.</p>
+</a>
+<a class="card" href="the-buna-lifestyle-manual.html">
+<h3>The Buna Lifestyle Manual</h3>
+<p>A broader perspective on coffee leaf culture and practice.</p>
+</a>
+</div>
+<div class="section">
+<h2>Traditional Pathways</h2>
+<a class="card" href="engere.html">
+<h3>Engere</h3>
+</a>
+<a class="card" href="kuti.html">
+<h3>Kuti</h3>
+</a>
+<a class="card" href="chemo.html">
+<h3>Chemo</h3>
+</a>
+<a class="card" href="kawa-daun.html">
+<h3>Kawa Daun</h3>
+</a>
+</div>
+<div class="section">
+<h2>Guides & Learning</h2>
+<a class="card" href="engere-schoolbook-guide-part-1.html">
+<h3>Engere Schoolbook Guide Part 1</h3>
+</a>
+<a class="card" href="engere-schoolbook-guide-part-2.html">
+<h3>Engere Schoolbook Guide Part 2</h3>
+</a>
+<a class="card" href="engere-visual-pictogram-guide.html">
+<h3>Engere Visual Guide</h3>
+</a>
+<a class="card" href="kuti-schoolbook-guide.html">
+<h3>Kuti Schoolbook Guide</h3>
+</a>
+<a class="card" href="kuti-visual-pictogram-guide.html">
+<h3>Kuti Visual Guide</h3>
+</a>
+<a class="card" href="chemo-schoolbook-guide.html">
+<h3>Chemo Schoolbook Guide</h3>
+</a>
+<a class="card" href="chemo-visual-pictogram-guide.html">
+<h3>Chemo Visual Guide</h3>
+</a>
+<a class="card" href="kawa-daun-schoolbook-guide.html">
+<h3>Kawa Daun Schoolbook Guide</h3>
+</a>
+<a class="card" href="kawa-daun-visual-pictogram-guide.html">
+<h3>Kawa Daun Visual Guide</h3>
+</a>
+</div>
+<div class="section">
+<h2>Research & Reference</h2>
+<a class="card" href="functional-compendium.html">
+<h3>Functional Compendium</h3>
+</a>
+<a class="card" href="the-foliage-of-buna-minimal.html">
+<h3>Historical and Cultural Reference</h3>
+</a>
+</div>
+<div class="section">
+<h2>Citane Lab</h2>
+<a class="card" href="citane-hack-grill-wilted-leaves.html">
+<h3>Grill Wilted Leaves</h3>
+<p>Experimental Citane processing notes.</p>
+</a>
+</div>
+<div class="footer">
+<img src="KoffyKraftLogo.png" alt="KoffyKraft">
+<p>
+Published by KoffyKraft
+</p>
+<p>
+Shared openly for study, discussion,
+adaptation and further exploration.
+</p>
+</div>
+</div>
 </body>
 </html>
