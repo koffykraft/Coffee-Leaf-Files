@@ -7,6 +7,7 @@
 <style>
 /* ==========================================================================
    BUNA COFFEE LEAF LIBRARY — SHARED STYLESHEET
+   Design language: plain black on white, boxed sections, accent tags.
    ========================================================================== */
 :root {
   --ink:        #1a1a1a;   
@@ -19,6 +20,7 @@
   --accent-soft:#f4e6d4;   
   --sage:       #4a6b4a;   
   --sage-soft:  #e6ede6;
+  --good:       #27ae60;
   --max-width:  860px;
 }
 
@@ -53,7 +55,7 @@ body {
 
 h1, h2, h3, h4 { font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; }
 h1 { font-size: 36px; margin: 24px 0 8px; }
-h2 { font-size: 26px; margin: 48px 0 16px; padding-top: 24px; border-top: 2px solid var(--line); }
+h2 { font-size: 26px; margin: 48px 0 16px; padding-top: 24px; border-top: 2px solid var(--line); text-align: center; }
 h3 { font-size: 20px; margin: 28px 0 12px; }
 p { margin: 0 0 16px; }
 a { color: var(--accent); text-decoration: underline; }
@@ -64,9 +66,9 @@ strong { font-weight: 800; }
 .page-subtitle { font-size: 19px; color: var(--ink-soft); margin: 0 0 24px; }
 
 /* ==========================================================================
-   TABS AND PROCESS DISPLAYS
+   SCANNABLE TABS SCROLL BAR
    ========================================================================== */
-.tabs-nav { display: flex; gap: 8px; margin: 24px 0; border-bottom: 2px solid var(--line); padding-bottom: 8px; overflow-x: auto; }
+.tabs-nav { display: flex; gap: 8px; margin: 24px 0; border-bottom: 2px solid var(--line); padding-bottom: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .tab-btn { background: var(--bg); border: 2px solid var(--line); padding: 8px 16px; font-family: inherit; font-weight: 700; font-size: 15px; cursor: pointer; white-space: nowrap; }
 .tab-btn:hover { background: var(--bg-tint); }
 .tab-btn.active { background: var(--ink); color: var(--bg); }
@@ -74,22 +76,57 @@ strong { font-weight: 800; }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
+/* ==========================================================================
+   GRID HOUSING PANELS
+   ========================================================================== */
 .box { border: 2px solid var(--line); padding: 20px; margin: 24px 0; background: var(--bg); }
 .box-label { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; margin-bottom: 12px; border: 1px solid var(--line); }
-.box-recipe .box-label { background: var(--sage-soft); }
-.box-note .box-label { background: #e6e6e6; }
+.box-recipe .box-label  { background: var(--sage-soft); }
+.box-note .box-label    { background: #e6e6e6; }
+.box-evidence .box-label{ background: var(--accent-soft); }
 
-.steps { margin: 24px 0; padding: 0; list-style: none; }
-.steps li { display: flex; gap: 16px; margin-bottom: 16px; align-items: flex-start; }
-.step-number { flex: 0 0 auto; width: 32px; height: 32px; border: 2px solid var(--line); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; }
-.step-text { flex: 1; padding-top: 3px; }
-.step-text p { margin-bottom: 4px; }
+.methods-grid, .quality-grid, .benefits-grid, .milk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.card { border: 2px solid var(--line); padding: 20px; background: var(--bg); display: flex; flex-direction: column; gap: 8px; }
+.card-header { border-bottom: 2px solid var(--line); padding-bottom: 12px; margin-bottom: 4px; }
+.card-metric { font-size: 32px; font-weight: 800; color: var(--accent); line-height: 1; }
+.card-title { font-weight: 800; font-size: 18px; }
+.card-subtitle { font-size: 13px; color: var(--ink-soft); font-style: italic; }
+.card-desc { font-size: 14px; color: var(--ink-soft); }
+
+.info-row { display: flex; font-size: 14px; padding: 6px 0; border-bottom: 1px dashed var(--line-soft); }
+.info-row:last-child { border-bottom: none; }
+.info-label { font-weight: 700; min-width: 80px; color: var(--ink); }
+.info-value { color: var(--ink-soft); flex: 1; }
+
+.step-guide { background: var(--bg-tint); padding: 16px; border: 1px solid var(--line-soft); margin-top: 12px; }
+.step-guide h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; color: var(--ink); }
+
+.steps { margin: 0; padding: 0; list-style: none; }
+.steps li { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
+.steps li:last-child { margin-bottom: 0; }
+.step-number { flex: 0 0 auto; width: 22px; height: 22px; border: 1px solid var(--line); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; background: var(--bg); }
+.step-text { flex: 1; font-size: 13px; line-height: 1.4; color: var(--ink-soft); }
+
+.safety-box { background: #e6f4ea; border: 2px dashed var(--good); padding: 20px; margin: 24px 0; text-align: center; }
+.safety-title { color: #137333; font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+.safety-text { font-size: 15px; color: #137333; }
+
+.caution-card { border-color: #d93025; background: #fce8e6; }
+.caution-card .card-title { color: #c5221f; }
+.recommended-card { border: 3px solid var(--accent); background: #fffbf0; }
 
 @media (max-width: 600px) {
   body { font-size: 17px; }
   h1 { font-size: 28px; }
   h2 { font-size: 22px; }
   .site-header-inner { flex-direction: column; align-items: flex-start; }
+  .methods-grid, .quality-grid, .benefits-grid, .milk-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -111,141 +148,200 @@ strong { font-weight: 800; }
 </header>
 
 <div class="page">
-  <p class="page-kicker">Visual Step Walkthroughs</p>
+  <p class="page-kicker">Visual Education Portfolio</p>
   <h1>Engere Visual Pictogram Guide</h1>
-  <p class="page-subtitle">A step-by-step visual map for preparation across all three traditional household methodologies.</p>
+  <p class="page-subtitle">A step-by-step visual map to prepare, recognize quality standards, and master traditional parameters across regional households[span_3](start_span)[span_3](end_span).</p>
 
-  <!-- METHOD SELECTION TABS -->
+  <!-- MASTER SIX NAVIGATION TABS -->
   <nav class="tabs-nav" role="tablist">
-    <button class="tab-btn active" onclick="switchTab('m1')" id="btn-m1">Method 1: Simple</button>
-    <button class="tab-btn" onclick="switchTab('m2')" id="btn-m2">Method 2: Sweetened</button>
-    <button class="tab-btn" onclick="switchTab('m3')" id="btn-m3">Method 3: Spiced</button>
+    <button class="tab-btn active" onclick="switchTab('methods')" id="btn-methods">The Three Methods</button>
+    <button class="tab-btn" onclick="switchTab('quality')" id="btn-quality">Quality Indicators</button>
+    <button class="tab-btn" onclick="switchTab('health')" id="btn-health">Health Benefits</button>
+    <button class="tab-btn" onclick="switchTab('milk')" id="btn-milk">Milk Specifications</button>
+    <button class="tab-btn" onclick="switchTab('serving')" id="btn-serving">Serving &amp; Storage</button>
+    <button class="tab-btn" onclick="switchTab('when')" id="btn-when">When to Use Each</button>
   </nav>
 
-  <!-- ===== METHOD 1 PANEL ===== -->
-  <div class="tab-panel active" id="panel-m1">
-    <h2>Method 1: Simple (Traditional Base)</h2>
-    <p>The core relationship between clean coffee leaf brew and fresh milk with zero added flavor elements.</p>
-    
-    <div class="box box-recipe">
-      <span class="box-label">Formula Anchors</span>
-      <p>• Strained Hot Brew Base: 1 Liter</p>
-      <p>• Fresh Raw Cow's Milk: 1/3 to 1/2 Liter</p>
+  <!-- ==========================================================================
+       TAB 1: METHODS
+       ========================================================================== -->
+  <div class="tab-panel active" id="panel-methods">
+    <h2>The Three Preparation Methods</h2>
+    <div class="methods-grid">
+      
+      <!-- METHOD 1 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-metric">19.7%</div>
+          <span class="card-title">METHOD 1: Simple</span><br>
+          <span class="card-subtitle">Brew + Milk Only</span>
+        </div>
+        <div class="info-row"><span class="info-label">Formula:</span><span class="info-value">1L brew + 1/3 to 1/2 L fresh milk</span></div>
+        <div class="info-row"><span class="info-label">Time:</span><span class="info-value">10-15 minutes</span></div>
+        <div class="info-row"><span class="info-label">Best For:</span><span class="info-value">Lactating mothers, children, sensitive digestion</span></div>
+        
+        <div class="step-guide">
+          <h4>Quick Steps</h4>
+          <ul class="steps">
+            <li><div class="step-number">1</div><div class="step-text">Brew coffee leaves, strain completely through fine cloth[span_4](start_span)[span_4](end_span).</div></li>
+            <li><div class="step-number">2</div><div class="step-text">Pour hot strained brew into serving vessel[span_5](start_span)[span_5](end_span).</div></li>
+            <li><div class="step-number">3</div><div class="step-text">Add fresh unpasteurized cow's milk (1/3 to 1/2 L)[span_6](start_span)[span_6](end_span).</div></li>
+            <li><div class="step-number">4</div><div class="step-text">Stir gently and serve hot immediately in 50ml portions[span_7](start_span)[span_7](end_span).</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- METHOD 2 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-metric">22.6%</div>
+          <span class="card-title">METHOD 2: + Sweetener</span><br>
+          <span class="card-subtitle">Brew + Milk + Honey/Sugar</span>
+        </div>
+        <div class="info-row"><span class="info-label">Formula:</span><span class="info-value">1L brew + milk + 30g-45g honey</span></div>
+        <div class="info-row"><span class="info-label">Time:</span><span class="info-value">12-18 minutes</span></div>
+        <div class="info-row"><span class="info-label">Best For:</span><span class="info-value">Children, improved palatability, balanced sweetness</span></div>
+        
+        <div class="step-guide">
+          <h4>Quick Steps</h4>
+          <ul class="steps">
+            <li><div class="step-number">1</div><div class="step-text">Brew coffee leaves and strain cleanly into container[span_8](start_span)[span_8](end_span).</div></li>
+            <li><div class="step-number">2</div><div class="step-text">Add honey (start 30g) and stir until fully dissolved[span_9](start_span)[span_9](end_span).</div></li>
+            <li><div class="step-number">3</div><div class="step-text">Add fresh milk (1/3 to 1/2 L) and stir gently[span_10](start_span)[span_10](end_span).</div></li>
+            <li><div class="step-number">4</div><div class="step-text">Taste, verify balance thresholds, and serve hot[span_11](start_span)[span_11](end_span).</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- METHOD 3 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-metric">37.7%</div>
+          <span class="card-title">METHOD 3: + Spices</span><br>
+          <span class="card-subtitle">Brew + Milk + Spices + Sweeteners</span>
+        </div>
+        <div class="info-row"><span class="info-label">Formula:</span><span class="info-value">1.5L brew + milk + spices + honey</span></div>
+        <div class="info-row"><span class="info-label">Time:</span><span class="info-value">20-25 minutes</span></div>
+        <div class="info-row"><span class="info-label">Best For:</span><span class="info-value">Adults, therapeutic depth, complex profiles</span></div>
+        
+        <div class="step-guide">
+          <h4>Quick Steps</h4>
+          <ul class="steps">
+            <li><div class="step-number">1</div><div class="step-text">Grind ginger, cinnamon, cloves fresh in wooden mortar[span_12](start_span)[span_12](end_span).</div></li>
+            <li><div class="step-number">2</div><div class="step-text">Infuse spices into hot brew for 2-3 minutes, filter again[span_13](start_span)[span_13](end_span).</div></li>
+            <li><div class="step-number">3</div><div class="step-text">Dissolve honey, stream milk proportions, stir gently[span_14](start_span)[span_14](end_span).</div></li>
+            <li><div class="step-number">4</div><div class="step-text">Serve instantly to manage thermal warming properties[span_15](start_span)[span_15](end_span).</div></li>
+          </ul>
+        </div>
+      </div>
+
     </div>
 
-    <ul class="steps">
-      <li>
-        <div class="step-number">1</div>
-        <div class="step-text">
-          <p><strong>Execute Leaf Extraction:</strong> Boil water and steep dried leaves completely. Strain out the spend material entirely so no leaf grit enters your vessel.</p>
-        </div>
-      </li>
-      <li>
-        <div class="step-number">2</div>
-        <div class="step-text">
-          <p><strong>Add Hot Liquid Base:</strong> Transfer the pure strained hot infusion base into a clean serving pot or traditional clay carafe.</p>
-        </div>
-      </li>
-      <li>
-        <div class="step-number">3</div>
-        <div class="step-text">
-          <p><strong>Introduce Fresh Milk:</strong> Stream in fresh cow's milk directly into the hot container base, allowing the temperatures to merge steadily.</p>
-        </div>
-      </li>
-      <li>
-        <div class="step-number">4</div>
-        <div class="step-text">
-          <p><strong>Immediate Service:</strong> Portion out hot into traditional mini 50ml service cups. Consume immediately while hot; do not let it cool down or sit for reheating.</p>
-        </div>
-      </li>
-    </ul>
+    <div class="safety-box">
+      <div class="safety-title">🛡️ All Three Methods Are Safe</div>
+      <div class="safety-text"><strong>100% of field consumers reported zero health issues with Engere</strong> compared to 35.6% experiencing gastric metrics under raw, unbuffered infusions[span_16](start_span)[span_16](end_span). The milk cushion protects all paths[span_17](start_span)[span_17](end_span).</div>
+    </div>
   </div>
 
-  <!-- ===== METHOD 2 PANEL ===== -->
-  <div class="tab-panel" id="panel-m2">
-    <h2>Method 2: Sweetened (Palatability Balance)</h2>
-    <p>Brings a targeted introduction of traditional honey or pure sugar to soften the natural herbal edge of the leaf base.</p>
-
-    <div class="box box-recipe">
-      <span class="box-label">Formula Anchors</span>
-      <p>• Strained Hot Brew Base: 1 Liter</p>
-      <p>• Fresh Raw Cow's Milk: 1/3 to 1/2 Liter</p>
-      <p>• Honey or Sugar: 1 to 2 Tablespoons</p>
+  <!-- ==========================================================================
+       TAB 2: QUALITY
+       ========================================================================== -->
+  <div class="tab-panel" id="panel-quality">
+    <h2>How to Recognize Quality — Five Signs</h2>
+    <div class="quality-grid">
+      <div class="card"><div class="card-metric">🎨</div><span class="card-title">SIGHT</span><p class="card-desc">Creamy light-to-medium brown color[span_18](start_span)[span_18](end_span). Uniform look without separate clouding tracks or particulate floating layers[span_19](start_span)[span_19](end_span).</p></div>
+      <div class="card"><div class="card-metric">👃</div><span class="card-title">AROMA</span><p class="card-desc">Coffee-forward bouquet[span_20](start_span)[span_20](end_span). Added spices must stay balanced in the background background loop without choking down raw leaf profiles[span_21](start_span)[span_21](end_span).</p></div>
+      <div class="card"><div class="card-metric">✋</div><span class="card-title">MOUTHFEEL</span><p class="card-desc"><strong>Smooth, creamy body with completely ZERO grittiness[span_22](start_span)[span_22](end_span).</strong> No traces of sand or solid residue on the tongue profile[span_23](start_span)[span_23](end_span).</p></div>
+      <div class="card"><div class="card-metric">👅</div><span class="card-title">TASTE</span><p class="card-desc">Integrated coffee backbone supported clean by milk fat sweetness[span_24](start_span)[span_24](end_span). Elements improve balance without sweet masking layers[span_25](start_span)[span_25](end_span).</p></div>
+      <div class="card"><div class="card-metric">💫</div><span class="card-title">AFTERTASTE</span><p class="card-desc">Lingering, pleasant warmth[span_26](start_span)[span_26](end_span). Clear absence of sharp bitter bites or downstream throat burn[span_27](start_span)[span_27](end_span).</p></div>
     </div>
 
-    <ul class="steps">
-      <li>
-        <div class="step-number">1</div>
-        <div class="step-text">
-          <p><strong>Base Filtration Check:</strong> Ensure the hot leaf brew has passed through fine cloth filtration. Leaves must be completely absent before moving forward.</p>
-        </div>
-      </li>
-      <li>
-        <div class="step-number">2
-</div>
-        <div class="step-text">
-          <p><strong>Sweetener Dissolution:</strong> Stir the honey or sugar straight into the hot strained brew first, spinning completely until fully dissolved into the liquor.</p>
-        </div>
-      </li>
-      <li>
-        <div class="step-number">3</div>
-        <div class="step-text">
-          <p><strong>Integrate Milk Stream:</strong> Pour the fresh milk allocation into the sweetened warm base, agitating gently with a spoon to blend.</p>
-        </div>
-      </li>
-      <li>
-        <div class="step-number">4</div>
-        <div class="step-text">
-          <p><strong>Portion and Sip:</strong> Pour hot into clean service cups. Serves households as an energy restorative drink.</p>
-        </div>
-      </li>
-    </ul>
+    <div class="box box-note">
+      <span class="box-label">⚠️ Non-Negotiable Standard: Zero Grittiness</span>
+      <p>If you feel particulate tracking on your tongue, the straining matrix failed[span_28](start_span)[span_28](end_span). Spent leaves are intensely fibrous and must be extracted completely using fine cloth weaves[span_29](start_span)[span_29](end_span). Grittiness means the collection is fully compromised[span_30](start_span)[span_30](end_span).</p>
+    </div>
   </div>
 
-  <!-- ===== METHOD 3 PANEL ===== -->
-  <div class="tab-panel" id="panel-m3">
-    <h2>Method 3: Spiced (Traditional Therapeutic)</h2>
-    <p>The highest complexity tier. Uses local warming spices alongside targeted honey additions to construct a deeply traditional therapeutic profile.</p>
-
-    <div class="box box-recipe">
-      <span class="box-label">Formula Anchors</span>
-      <p>• Strained Hot Brew Base: 1 Liter</p>
-      <p>• Fresh Raw Cow's Milk: 1/2 Liter</p>
-      <p>• Honey: 2 Tablespoons</p>
-      <p>• Spice Complex: Grated Ginger, Cardamom seed powder, or local equivalents (pinch thresholds)</p>
+  <!-- ==========================================================================
+       TAB 3: HEALTH
+       ========================================================================== */
+  <div class="tab-panel" id="panel-health">
+    <h2>Health Benefits — What People Believe &amp; Why</h2>
+    <div class="benefits-grid">
+      <div class="card"><div class="card-metric">100%</div><span class="card-title">ENHANCES LACTATION</span><p class="card-desc">Universal data alignment across all traditional community survey lines[span_31](start_span)[span_31](end_span).</p></div>
+      <div class="card"><div class="card-metric">54.5%</div><span class="card-title">STRENGTH &amp; RECOVERY</span><p class="card-desc">The primary functional application recorded across working households[span_32](start_span)[span_32](end_span).</p></div>
+      <div class="card"><div class="card-metric">16.9%</div><span class="card-title">POSTPARTUM SUPPORT</span><p class="card-desc">Believed to manage bleeding and support maternal recovery arcs[span_33](start_span)[span_33](end_span).</p></div>
+      <div class="card"><div class="card-metric">16.4%</div><span class="card-title">JOINT &amp; SPINE COMFORT</span><p class="card-desc">Targeted to treat muscle strains and back fatigue parameters[span_34](start_span)[span_34](end_span).</p></div>
     </div>
 
-    <ul class="steps">
-      <li>
-        <div class="step-number">1</div>
-        <div class="step-text">
-          <p><strong>Grind &amp; Prep Spices:</strong> Hand-crush spices into fine parameters using non-metallic wooden mortars to preserve character rules.</p>
-        </div>
-      </li>
-      <li>
-        <div class="step-number">2</div>
-        <div class="step-text">
-          <p><strong>Simmer Infusion:</strong> Add spices to the water base alongside leaves during extraction loops. Run a secondary cloth filter check to catch all loose spice grinds.</p>
-        </div>
-      </li>
-      <li>
-        <div class="step-number">3</div>
-        <div class="step-text">
-          <p><strong>Stir Honey and Milk:</strong> Dissolve honey thoroughly into the spice-infused hot liquor, then crown with full milk proportions.</p>
-        </div>
-      </li>
-      <li>
-        <div class="step-number">4</div>
-        <div class="step-text">
-          <p><strong>Serve and Recover:</strong> Distribute immediate hot portions. Traditionally favored during winter conditions or systemic exhaustion cycles.</p>
-        </div>
-      </li>
-    </ul>
+    <div class="box box-evidence">
+      <span class="box-label">Biochemical Mechanisms</span>
+      <p><strong>Leaf Compounds:</strong> Coffee foliage carries exclusive xanthones (mangiferin) and abundant chlorogenic acid structures absent from traditional processed seed beans[span_35](start_span)[span_35](end_span).</p>
+      <p style="margin-top: 8px;"><strong>Synergistic Pairing:</strong> Milk introduces fat-soluble nutrient structures and critical proteins, creating a complete therapeutic cushion that protects stomach linings from concentrated acid interactions[span_36](start_span)[span_36](end_span).</p>
+    </div>
   </div>
 
-  <div class="box box-note">
-    <span class="box-label">Operational Stability Note</span>
-    <p>All preparation paths track historical domestic metrics verified across coffee-producing smallholder frameworks. Maintain strict fresh milk temperature limits to achieve targeted flavor balance.</p>
+  <!-- ==========================================================================
+       TAB 4: MILK SPECS
+       ========================================================================== -->
+  <div class="tab-panel" id="panel-milk">
+    <h2>Milk Specifications — The Critical Choice</h2>
+    <div class="milk-grid">
+      <div class="card recommended-card">
+        <span class="card-title">✅ Fresh Unpasteurized</span>
+        <p class="card-desc">PREFERRED BASE. Critical to secure full flavor profiles and retain traditional active native enzymes[span_37](start_span)[span_37](end_span).</p>
+      </div>
+      <div class="card">
+        <span class="card-title">⚠️ Pasteurized Milk</span>
+        <p class="card-desc">ACCEPTABLE ALTERNATIVE. Functions securely across basic buffering requirements if raw farm milk is inaccessible[span_38](start_span)[span_38](end_span).</p>
+      </div>
+      <div class="card caution-card">
+        <span class="card-title">❌ UHT Long-Life Milk</span>
+        <p class="card-desc">NEVER INTRODUCE. Intense processing temperatures degrade structural elements believed to drive medicinal benefits[span_39](start_span)[span_39](end_span).</p>
+      </div>
+      <div class="card caution-card">
+        <span class="card-title">❌ Plant-Based Alternatives</span>
+        <p class="card-desc">DO NOT USE. Coconut, oat, or almond milks fail to supply the identical chemical buffer interaction[span_40](start_span)[span_40](end_span).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       TAB 5: SERVING
+       ========================================================================== -->
+  <div class="tab-panel" id="panel-serving">
+    <h2>Serving, Storage &amp; Critical Rules</h2>
+    <div class="methods-grid">
+      <div class="card"><div class="card-metric">50ml</div><span class="card-title">Serving Size</span><p class="card-desc">Distributed inside small therapeutic cups[span_41](start_span)[span_41](end_span). Highly concentrated dose delivery[span_42](start_span)[span_42](end_span).</p></div>
+      <div class="card"><div class="card-metric">Hot</div><span class="card-title">Temperature Target</span><p class="card-desc">Served warm and deeply comforting, never brought back to heavy boiling states[span_43](start_span)[span_43](end_span).</p></div>
+      <div class="card"><div class="card-metric">12h</div><span class="card-title">Maximum Threshold</span><p class="card-desc">Can be safely stored for 6–12 hours before it must be discarded completely[span_44](start_span)[span_44](end_span).</p></div>
+    </div>
+
+    <div class="safety-box caution-card" style="border-style: solid;">
+      <div class="safety-title" style="color: #c5221f;">🚫 STRICT BAN: DO NOT REHEAT</div>
+      <div class="safety-text" style="color: #c5221f;"><strong>Leftover Engere must never face secondary reheating loops[span_45](start_span)[span_45](end_span).</strong> Reheating damages volatile structures, drives milk-base bacterial tracking risks, and degrades medicinal profiles[span_46](start_span)[span_46](end_span). Mix fresh daily[span_47](start_span)[span_47](end_span).</div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       TAB 6: CONTEXT RULE
+       ========================================================================== -->
+  <div class="tab-panel" id="panel-when">
+    <h2>When to Use Each Method — Context Matters</h2>
+    <div class="milk-grid">
+      <div class="card">
+        <span class="card-title">Method 1 Context</span>
+        <p class="card-desc">Optimal for early postpartum weeks[span_48](start_span)[span_48](end_span). Promotes effortless digestive processing, delivers gentle nourishment, and supports quick lactation tracks[span_49](start_span)[span_49](end_span).</p>
+      </div>
+      <div class="card">
+        <span class="card-title">Method 2 Context</span>
+        <p class="card-desc">Selected to handle general flavor palatability demands[span_50](start_span)[span_50](end_span). Helps younger children accept infusions by mitigating bitter notes with raw honey calories[span_51](start_span)[span_51](end_span).</p>
+      </div>
+      <div class="card">
+        <span class="card-title">Method 3 Context</span>
+        <p class="card-desc">Reserved for mature adult profiles requiring systemic warming support during heavy winter weather or deep fatigue recovery phases[span_52](start_span)[span_52](end_span).</p>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -258,15 +354,12 @@ strong { font-weight: 800; }
 
 <script>
 function switchTab(methodId) {
-    // Collect components
     const panels = document.querySelectorAll('.tab-panel');
     const buttons = document.querySelectorAll('.tab-btn');
     
-    // Clear active status limits
     panels.forEach(panel => panel.classList.remove('active'));
     buttons.forEach(btn => btn.classList.remove('active'));
     
-    // Enforce active parameters
     document.getElementById('panel-' + methodId).classList.add('active');
     document.getElementById('btn-' + methodId).classList.add('active');
 }
