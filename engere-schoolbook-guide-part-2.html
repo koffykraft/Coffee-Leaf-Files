@@ -1,453 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engere: A Schoolbook Guide for Young Women & Families — Part 2</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --terracotta: #8b4513;
-            --sienna: #a0522d;
-            --brown: #6b5a4a;
-            --tan: #d4a574;
-            --cream: #faf6f0;
-            --pale: #f5e6d3;
-        }
-        
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, var(--pale) 0%, var(--cream) 100%);
-            padding: 40px 20px;
-            color: var(--brown);
-            line-height: 1.8;
-        }
-        
-        .container {
-            max-width: 950px;
-            margin: 0 auto;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--sienna) 100%);
-            color: white;
-            padding: 60px 45px;
-            border-radius: 12px;
-            margin-bottom: 60px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
-        }
-        
-        header h1 {
-            font-size: 3.2em;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-        
-        header .subtitle {
-            font-size: 1.4em;
-            color: var(--tan);
-            margin-bottom: 20px;
-        }
-        
-        section {
-            background: white;
-            padding: 50px 45px;
-            margin-bottom: 50px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            border-left: 5px solid var(--tan);
-        }
-        
-        section.closing {
-            background: linear-gradient(135deg, var(--brown) 0%, var(--terracotta) 100%);
-            color: white;
-            border-left: 5px solid var(--tan);
-        }
-        
-        section.closing h2 {
-            color: var(--tan);
-        }
-        
-        section.closing p {
-            color: rgba(255,255,255,0.95);
-        }
-        
-        h2 {
-            font-size: 2em;
-            color: var(--brown);
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--tan);
-            letter-spacing: 1px;
-        }
-        
-        h3 {
-            font-size: 1.4em;
-            color: var(--terracotta);
-            margin: 35px 0 18px 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--pale);
-        }
-        
-        p {
-            margin-bottom: 18px;
-            color: var(--brown);
-            font-size: 1.05em;
-            line-height: 1.8;
-        }
-        
-        ul, ol {
-            margin-left: 30px;
-            margin-bottom: 20px;
-        }
-        
-        li {
-            margin-bottom: 14px;
-            color: var(--brown);
-            line-height: 1.8;
-        }
-        
-        strong {
-            color: var(--terracotta);
-            font-weight: 600;
-        }
-        
-        em {
-            color: var(--sienna);
-            font-style: italic;
-        }
-        
-        .quote-box {
-            background: #f9f4eb;
-            padding: 25px;
-            border-left: 4px solid var(--tan);
-            margin: 25px 0;
-            border-radius: 6px;
-            font-size: 1.1em;
-            font-style: italic;
-            color: var(--brown);
-            line-height: 1.8;
-        }
-        
-        .key-box {
-            background: #f9f6f3;
-            padding: 25px;
-            border-left: 4px solid var(--tan);
-            margin: 25px 0;
-            border-radius: 6px;
-        }
-        
-        .regional-box {
-            background: #f5e6d3;
-            padding: 20px;
-            border-left: 4px solid var(--terracotta);
-            margin: 15px 0;
-            border-radius: 6px;
-        }
-        
-        .regional-box strong {
-            display: block;
-            margin-bottom: 8px;
-        }
-        
-        .step {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 18px;
-            padding: 15px;
-            background: #f9f6f3;
-            border-radius: 6px;
-        }
-        
-        .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background: var(--tan);
-            color: white;
-            border-radius: 50%;
-            flex-shrink: 0;
-            font-weight: 600;
-            font-size: 1.1em;
-        }
-        
-        .step-content {
-            flex: 1;
-        }
-        
-        .step-content strong {
-            display: block;
-            margin-bottom: 6px;
-        }
-        
-        .step-content p {
-            margin: 0;
-            font-size: 0.95em;
-            color: var(--brown);
-        }
-        
-        .closing {
-            text-align: center;
-        }
-        
-        .closing p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 15px;
-            }
-            
-            header {
-                padding: 40px 25px;
-            }
-            
-            section {
-                padding: 30px 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUNA | Engere Schoolbook Guide — Part 2</title>
+<style>
+/* ==========================================================================
+   BUNA COFFEE LEAF LIBRARY — SHARED STYLESHEET
+   ========================================================================== */
+:root {
+  --ink:        #1a1a1a;   
+  --ink-soft:   #4a4a4a;   
+  --line:       #1a1a1a;   
+  --line-soft:  #d0d0d0;   
+  --bg:         #ffffff;   
+  --bg-tint:    #f7f5f0;   
+  --accent:     #b8721e;   
+  --accent-soft:#f4e6d4;   
+  --sage:       #4a6b4a;   
+  --sage-soft:  #e6ede6;
+  --max-width:  860px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.page { max-width: var(--max-width); margin: 0 auto; padding: 0 28px 80px; }
+
+.site-header { border-bottom: 2px solid var(--line); padding: 20px 24px; margin-bottom: 8px; }
+.site-header-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.site-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); }
+.site-logo img { width: auto; height: 42px; }
+.site-logo-text { font-weight: 800; font-size: 20px; letter-spacing: 0.05em; }
+.site-logo-sub { font-size: 13px; color: var(--ink-soft); font-weight: 400; }
+.breadcrumb { font-size: 14px; color: var(--ink-soft); }
+.breadcrumb a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px dotted var(--ink-soft); }
+.breadcrumb a:hover { color: var(--accent); border-color: var(--accent); }
+.breadcrumb .sep { margin: 0 6px; color: var(--line-soft); }
+.breadcrumb .current { color: var(--ink); font-weight: 600; }
+
+.site-footer { border-top: 2px solid var(--line); margin-top: 64px; padding: 32px 24px; }
+.site-footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.footer-back { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; text-decoration: none; color: var(--ink); border: 2px solid var(--line); padding: 10px 18px; width: fit-content; font-size: 15px; }
+.footer-back:hover { background: var(--ink); color: var(--bg); }
+
+h1, h2, h3, h4 { font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; }
+h1 { font-size: 36px; margin: 24px 0 8px; }
+h2 { font-size: 26px; margin: 48px 0 16px; padding-top: 24px; border-top: 2px solid var(--line); }
+h2:first-of-type { border-top: none; padding-top: 0; margin-top: 32px; }
+h3 { font-size: 20px; margin: 28px 0 12px; }
+h4 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin: 24px 0 8px; }
+p { margin: 0 0 16px; }
+a { color: var(--accent); text-decoration: underline; }
+a:hover { color: var(--ink); }
+strong { font-weight: 800; }
+em { font-style: italic; }
+
+.page-kicker { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin: 24px 0 4px; }
+.page-subtitle { font-size: 19px; color: var(--ink-soft); margin: 0 0 24px; }
+
+.box { border: 2px solid var(--line); padding: 20px; margin: 24px 0; background: var(--bg); }
+.box-label { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; margin-bottom: 12px; border: 1px solid var(--line); }
+.box p:last-child { margin-bottom: 0; }
+.box-evidence .box-label   { background: var(--accent-soft); }
+.box-caution  .box-label   { background: #f5d6d6; }
+.box-caution { border-style: dashed; }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin: 24px 0; }
+.card { border: 2px solid var(--line); padding: 18px; display: flex; flex-direction: column; gap: 8px; background: var(--bg); }
+.card-title { font-weight: 800; font-size: 18px; }
+.card-desc { font-size: 14px; color: var(--ink-soft); }
+
+ul, ol { margin-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 22px; }
+  .site-header-inner { flex-direction: column; align-items: flex-start; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        
-        <header>
-            <h1>Engere</h1>
-            <div class="subtitle">A Schoolbook Guide for Young Women & Families — PART 2</div>
-        </header>
-        
-        <!-- LESSON 7 -->
-        <section>
-            <h2>Lesson 7: Equipment and Technique</h2>
-            
-            <h3>Traditional Equipment Preferred</h3>
-            
-            <p>Authentic preparation traditionally uses specific equipment. Wooden mortars and pestles are preferred for grinding spices. Traditional wooden tools are valued for perceived preservation of medicinal properties. Traditional coffee pots (Jabena) are used for serving and presenting the beverage.</p>
-            
-            <p><strong>Why traditional equipment matters:</strong> These are not decorative choices. The materials and design are believed to interact with the beverage's compounds in ways that preserve medicinal properties. Wooden tools, in particular, are thought to preserve the beverage differently than glass or metal do.</p>
-            
-            <h3>Modern Equipment Can Substitute</h3>
-            
-            <p>Modern equipment (metal mortar and pestle, electric grinder, regular pot) can be used if traditional equipment is not available. However, understand that this substitution may alter flavor profiles. Some practitioners believe that using modern equipment results in a less potent beverage because the materials interact differently with the compounds.</p>
-            
-            <p><strong>Make the choice consciously:</strong> If you use modern equipment, you gain convenience. You may lose something in terms of the traditional way the compounds interact with the materials. Each person makes this choice based on their circumstances and values.</p>
-            
-            <h3>Critical Technique: Straining is Non-Negotiable</h3>
-            
-            <p><strong>The base coffee leaf brew MUST be strained to remove all spent leaves before milk is added.</strong> Coffee leaves are tough and fibrous and are never meant to be consumed. This is not optional. This is not a minor step.</p>
-            
-            <p><strong>Best straining methods:</strong> Use fine cloth (most traditional), traditional sieves, or fine mesh strainers. Pour slowly and ensure all spent leaves are caught. Proper straining ensures correct mouthfeel and prevents grittiness.</p>
-            
-            <p><strong>What happens if you don't strain properly:</strong> You will taste grittiness on your tongue. The beverage will have a sandy, unpleasant texture. This signals that leaf particles are in the beverage, which violates the fundamental principle of Engere preparation. If this happens, that batch is compromised.</p>
-        </section>
-        
-        <!-- LESSON 8 -->
-        <section>
-            <h2>Lesson 8: Regional Knowledge and Variations</h2>
-            
-            <h3>Geographic Area of Knowledge</h3>
-            
-            <p>This documentation reflects research from <strong>Gofa Zone in South Ethiopia</strong>, specifically: Demba Gofa, Zala, and Uba Debretsehay Districts. Engere is also consumed in Gamo and South Omo zones. While the basic formula (coffee leaf brew + milk) remains constant across all regions, variations exist in specific preferences and practices.</p>
-            
-            <h3>What Varies Across Regions and Communities</h3>
-            
-            <div class="regional-box">
-                <strong>Spice Preferences</strong>
-                <p>Different communities favor different spice combinations. What is traditional in Demba Gofa may differ from what is traditional in Zala or Uba Debretsehay. Gamo and South Omo may have their own regional preferences. <strong>Learn your family's tradition.</strong> This is not "anything goes" — it is understanding the principles, then adapting within tradition.</p>
-            </div>
-            
-            <div class="regional-box">
-                <strong>Milk Ratios</strong>
-                <p>Some communities prefer stronger coffee flavor (using 1/3 liter of milk per liter of brew). Others prefer creamier beverage (using 1/2 liter of milk). Neither is "wrong" — they reflect different priorities. The ratio depends on who will drink it and what they need from it.</p>
-            </div>
-            
-            <div class="regional-box">
-                <strong>Sweetener Choices</strong>
-                <p>Honey is traditionally preferred and is believed to add medicinal benefit. Some communities may use sugar, jaggery, or other sweeteners. Availability and regional tradition shape these choices.</p>
-            </div>
-            
-            <div class="regional-box">
-                <strong>Equipment and Preparation Style</strong>
-                <p>Some communities maintain strong traditional equipment practices (wooden mortars, Jabena). Others have more readily adopted modern equipment. Both represent valid choices within the tradition.</p>
-            </div>
-            
-            <h3>Ethnic and Community Variations</h3>
-            
-            <p>While the basic formula (coffee leaf brew + milk) is universal, <strong>variations in spice preferences, milk ratios, and sweetener choices may exist across different communities and ethnic groups</strong> in Gofa, Gamo, and South Omo zones. These variations are not errors — they are the living adaptation of tradition to local circumstances, available ingredients, and cultural preferences.</p>
-            
-            <p><strong>When learning to make Engere:</strong> Begin with your family's way. Understand why they do it that way. Then, as you become skilled, you can learn other communities' approaches and choose consciously.</p>
-        </section>
-        
-        <!-- LESSON 9 -->
-        <section>
-            <h2>Lesson 9: Storage, Serving, and the 6-12 Hour Rule</h2>
-            
-            <h3>Fresh Preparation Only — No Batch Storage</h3>
-            
-            <p><strong>Engere should be prepared fresh, immediately before consumption. Do not prepare large batches for storage.</strong> Traditional practice involves daily preparation. This is not because of convenience — it is because of chemistry and respect for the beverage.</p>
-            
-            <h3>The 6-12 Hour Shelf Life</h3>
-            
-            <p>If Engere is prepared and not immediately consumed, it can be held for 6-12 hours maximum. After that time, it should be discarded. This is a firm traditional boundary, not a guideline.</p>
-            
-            <p><strong>Why?</strong> In milk-based beverages, bacterial growth increases over time. Aromatic compounds degrade. The perceived potency of therapeutic benefits declines. Fresh preparation ensures the beverage is at its most potent.</p>
-            
-            <h3>Critical: Do NOT Reheat Engere</h3>
-            
-            <p><strong>Leftover Engere is NOT reheated.</strong> This is a clear traditional rule. Reheating may:</p>
-            <ul>
-                <li>Damage aromatic compounds that define the beverage's character</li>
-                <li>Encourage bacterial growth in the milk-based formula</li>
-                <li>Alter medicinal properties that depend on fresh preparation</li>
-                <li>Degrade the perceived potency of therapeutic benefits</li>
-            </ul>
-            
-            <p><strong>Instead:</strong> If you have leftover Engere after 6-12 hours, discard it. This teaches respect for the beverage and honors the tradition. Make fresh daily. This is how it is meant to be done.</p>
-            
-            <h3>Serving Details</h3>
-            
-            <p><strong>Serving size:</strong> 50ml per cup (a small portion — it is concentrated and therapeutic)</p>
-            
-            <p><strong>Serving temperature:</strong> Hot, not boiling. The beverage should be warm enough to feel comforting but not so hot that it damages your mouth.</p>
-            
-            <p><strong>Can you add cold milk to hot brew?</strong> Yes. This is acceptable and traditional. The final beverage will still be sufficiently warm. However, some practitioners prefer to add milk to the brew while both are hot, for maximum integration.</p>
-            
-            <p><strong>Vessel:</strong> Traditional: Jabena (Ethiopian coffee pot) or coconut shell cups. Modern: any cup. Traditional vessels are valued for perceived preservation of medicinal properties.</p>
-        </section>
-        
-        <!-- LESSON 10 -->
-        <section>
-            <h2>Lesson 10: When to Use Each Method — Context-Based Choices</h2>
-            
-            <h3>Method 1 (Simple) — Choose When:</h3>
-            <ul>
-                <li>Lactating mothers during early postpartum recovery (easiest to digest)</li>
-                <li>Young children (gentle, uncomplicated)</li>
-                <li>Individuals with sensitive digestion</li>
-                <li>Quick preparation is needed</li>
-                <li>Minimal equipment is available</li>
-                <li>Authentic simplicity and purity are desired</li>
-                <li>You want to maximize the pure coffee-milk relationship</li>
-            </ul>
-            
-            <h3>Method 2 (With Sweetener) — Choose When:</h3>
-            <ul>
-                <li>Improved palatability is desired without complexity</li>
-                <li>Children who prefer mild sweetness</li>
-                <li>Individuals who want to balance coffee's natural bitterness</li>
-                <li>Fresh honey is available and its medicinal benefit is valued</li>
-                <li>Recovery situations where added calories from sweetness are helpful</li>
-                <li>Someone finds plain coffee-milk insufficient but doesn't need spice warming</li>
-            </ul>
-            
-            <h3>Method 3 (With Spices) — Choose When:</h3>
-            <ul>
-                <li>Deeper therapeutic benefit is needed</li>
-                <li>Adults without digestive sensitivity</li>
-                <li>Someone needs the warming, energizing character of spices</li>
-                <li>Occasions requiring sophistication and tradition</li>
-                <li>Winter or cold-weather consumption</li>
-                <li>Recovery from extended illness or physical exertion</li>
-                <li>You want the full traditional, complex flavor</li>
-            </ul>
-            
-            <h3>Special Case: The Postpartum Period</h3>
-            
-            <p><strong>During the first weeks after birth:</strong> Method 1 (simple) is preferred because easy digestion and absorption are critical. The combination of calories from milk, perceived lactation-supporting properties, and energizing coffee leaf benefits makes Method 1 ideal for sustaining nursing mothers during the critical recovery period.</p>
-            
-            <p><strong>Throughout lactation:</strong> 1-2 cups daily is traditional practice. This is precise dosing based on postpartum needs — not excessive, not insufficient.</p>
-            
-            <p><strong>As recovery progresses:</strong> Methods 2 or 3 can be introduced as digestion becomes stronger and appetite returns.</p>
-        </section>
-        
-        <!-- LESSON 11 -->
-        <section>
-            <h2>Lesson 11: The Full Quality Standard</h2>
-            
-            <h3>A Perfectly Prepared Engere Has ALL These Qualities</h3>
-            
-            <p><strong>Sight (Visual Quality):</strong> Creamy light-to-medium brown color. The exact shade depends on leaf maturity and milk ratio, but it should be inviting and uniform. No cloudiness or separation. No dark particles visible.</p>
-            
-            <p><strong>Aroma (Olfactory Quality):</strong> Aromatic, coffee-forward scent from the leaf brew base. With Method 3, a balanced warmth from spices should complement the coffee aroma — not overpower it. The aroma should draw you in and make you want to drink it. An unpleasant or musty aroma signals problems in brewing or leaf preparation.</p>
-            
-            <p><strong>Mouthfeel (Tactile Quality):</strong> Smooth, creamy, with absolutely ZERO grittiness. This is critical. If you feel any sand or grit on your tongue, the straining failed. The beverage should coat your mouth smoothly, not scratch or irritate. The mouthfeel should be pleasant and inviting.</p>
-            
-            <p><strong>Taste (Flavor Quality):</strong> Balanced coffee flavor with milk richness. If you used spices, they should add warmth and complexity without dominating the coffee-milk base. If you used sweetener, it should complement the coffee and milk without masking them. If the flavor is flat or weak, you either used too much milk or brewed the leaves too briefly. Engere should taste alive, not dilute.</p>
-            
-            <p><strong>Aftertaste (Lasting Impression):</strong> Pleasant, lingering coffee-milk warmth. No bitter edge. No harsh spice burn. No chemical taste. A good aftertaste should make you want another sip. The memory of the beverage should be positive.</p>
-            
-            <h3>The One Non-Negotiable Quality: No Grittiness</h3>
-            
-            <p><strong>If your Engere is gritty, it has failed.</strong> Grittiness means spent leaves were not completely strained. This is not a minor quality issue. It affects both texture and respect for the preparation. Spent coffee leaves are tough and fibrous and are never meant to be consumed.</p>
-            
-            <p>If you taste grittiness: Acknowledge that your straining was incomplete. Learn from it. Next time, strain through finer cloth or mesh. Pour more slowly. Wait longer to ensure all particles are caught. Straining is not optional — it is fundamental.</p>
-        </section>
-        
-        <!-- LESSON 12 -->
-        <section>
-            <h2>Lesson 12: Knowledge Transmission and Cultural Meaning</h2>
-            
-            <h3>Engere Is a Woman's Knowledge</h3>
-            
-            <p>While the Yohannis study documents Engere consumption across both men and women, <strong>preparation remains primarily a woman's practice.</strong> Engere is prepared by mothers for children, by mothers for post-labor mothers, by wives for husbands recovering from labor, by young women learning from their mothers and grandmothers how to nourish and restore.</p>
-            
-            <p>This beverage reinforces women's roles in household health management and intergenerational knowledge transmission, supporting family wellbeing through traditional preparation methods. When you make Engere, you are exercising ancient knowledge and authority.</p>
-            
-            <h3>The Ritual of Care</h3>
-            
-            <p><strong>Engere is a ritualistic beverage — a caring gesture.</strong> You do not make Engere casually. You make it specifically because someone needs strength, recovery, or support. The time you take to grind spices, to measure the milk ratio, to wait while it brews — this time is part of the message. The message is: <em>I am taking care of you. Your recovery matters. Your strength matters.</em></p>
-            
-            <p>This is why Engere cannot be made in bulk and stored. This is why it must be prepared fresh daily. This is why you do not reheat it. Each cup is made with intention, with presence, with attention. This is the ritual.</p>
-            
-            <h3>Knowledge Transmission: Grandmother to Granddaughter</h3>
-            
-            <p>You learn to make Engere not from a book. You learn in the kitchen, watching your grandmother's or mother's hands. You learn by doing it alongside her, feeling the resistance of the wooden mortar as you grind spices, watching the color of the brew as milk is added, tasting and adjusting the honey until the balance is right.</p>
-            
-            <p>This knowledge is transmitted directly, person to person, in the kitchen, in the moment. It is embedded in your hands, your senses, your memory. When you teach your daughter or granddaughter, you transmit not just the procedure but the relationship — between generations, between the care-giver and the person being cared for, between tradition and the present moment.</p>
-            
-            <h3>The Broader Significance</h3>
-            
-            <p><strong>Engere represents indigenous knowledge as primary healthcare.</strong> In resource-limited settings where formal healthcare access is limited, Engere provides an affordable, culturally sanctioned remedy for common health challenges: weakness, postpartum recovery, childhood malnutrition, joint pain. This reflects how indigenous knowledge systems serve as primary healthcare infrastructure in resource-limited contexts.</p>
-            
-            <p><strong>Engere represents agricultural sustainability.</strong> By creating market demand for coffee leaf byproducts, Engere supports sustainable utilization of entire coffee plants, reducing waste and providing income diversification for smallholder farmers facing volatile coffee bean markets. This has implications for rural livelihoods and environmental conservation in coffee-producing zones.</p>
-            
-            <p><strong>Engere represents cultural preservation.</strong> 54.8% of households in Gofa Zone prepare Engere in some form. This is not a dying tradition — it is living, practiced, transmitted. By learning to make it well, you are part of this preservation.</p>
-        </section>
-        
-        <!-- CLOSING -->
-        <section class="closing">
-            <h2>What You Now Hold In Your Hands</h2>
-            
-            <p>You know the foundational knowledge: What Engere is, why the milk buffer matters, why this beverage has a 100% safety rate where plain coffee leaf brew has 35.6% adverse effects.</p>
-            
-            <p>You know the three methods — from the austere simplicity of Method 1 to the balanced sophistication of Method 2 to the enhanced therapeutic complexity of Method 3. You know which method to choose based on who will drink it and what they need.</p>
-            
-            <p>You know the critical choice of milk — fresh unpasteurized preferred, pasteurized acceptable, UHT and non-dairy prohibited. You know the milk ratios (1/3 to 1/2 liter) and why they matter.</p>
-            
-            <p>You know that <strong>100% of people believe Engere enhances lactation</strong> and that 54.5% identify strength and recovery as the primary therapeutic use. You know the safety profile that makes Engere appropriate for lactating mothers, young children, and vulnerable populations.</p>
-            
-            <p>You know the consumption pattern: once daily, not twice daily like Chemo. You know the shelf life rule: 6-12 hours maximum, never reheated. You know that postpartum practice involves 1-2 cups daily during lactation.</p>
-            
-            <p>You know that regional variations exist in spice preferences and milk ratios, and that this reflects living tradition, not error. You know that Demba Gofa, Zala, and Uba Debretsehay have their own ways, and that Gamo and South Omo have theirs.</p>
-            
-            <p>You know that grittiness is a sign of incomplete straining and that proper straining is non-negotiable. You know the quality standards: creamy light-to-medium brown color, aromatic scent, smooth mouthfeel, balanced taste, pleasant aftertaste.</p>
-            
-            <p>Most importantly: <strong>You know that Engere is not a recipe. It is a ritual, a caring gesture, a transmission of knowledge from one woman to another across generations.</strong> When you make Engere, you are joining a conversation that spans centuries of resistance, survival, and cultural preservation.</p>
-            
-            <p style="margin-top: 30px; font-size: 1.1em;"><strong>Engere is proof that something precious can be preserved through the hands of women who refuse to forget.</strong></p>
-        </section>
-        
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="index.html">
+      <img src="buna-leaf.svg" alt="BUNA">
+      <span>
+        <span class="site-logo-text">BUNA</span><br>
+        <span class="site-logo-sub">Coffee Leaf Library</span>
+      </span>
+    </a>
+    <nav class="breadcrumb">
+      <a href="index.html">Index</a><span class="sep">/</span><span class="current">Schoolbook Part 2</span>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <p class="page-kicker">Schoolbook Series · Lessons 7–12</p>
+  <h1>Engere: A Guide for Families — Part 2</h1>
+  <p class="page-subtitle">Continuing the comprehensive study of traditional equipment, regional variations, storage thresholds, quality metrics, and the transmission of maternal knowledge[span_160](start_span)[span_160](end_span).</p>
+
+  <!-- LESSON 7 -->
+  <h2>Lesson 7: Equipment and Technique</h2>
+  <p>Authentic preparation traditionally uses specific equipment[span_161](start_span)[span_161](end_span). Wooden mortars and pestles are preferred for grinding spices, valued for the perceived preservation of medicinal properties[span_162](start_span)[span_162](end_span). Traditional coffee pots (Jabena) are used for serving and presenting the final hot beverage[span_163](start_span)[span_163](end_span).</p>
+  <p>Modern equipment (metal mortar, electric grinder, regular kitchen pot) can be used as a substitute if traditional tools are unavailable[span_164](start_span)[span_164](end_span). However, note that this may alter flavor profiles[span_165](start_span)[span_165](end_span). Some practitioners believe modern metallic surfaces interact differently with the leaf's organic compounds, resulting in a less potent beverage[span_166](start_span)[span_166](end_span).</p>
+
+  <div class="box box-caution">
+    <span class="box-label">Straining is Non-Negotiable</span>
+    <p><strong>The base coffee leaf brew MUST be strained to remove all spent leaves before milk is added[span_167](start_span)[span_167](end_span).</strong> Coffee leaves are tough and fibrous and are never meant to be consumed[span_168](start_span)[span_168](end_span). Use fine cloth, traditional sieves, or fine mesh strainers[span_169](start_span)[span_169](end_span). If you feel any sand or grittiness on your tongue, the batch is compromised[span_170](start_span)[span_170](end_span).</p>
+  </div>
+
+  <!-- LESSON 8 -->
+  <h2>Lesson 8: Regional Knowledge and Variations</h2>
+  <p>This documentation reflects research from **Gofa Zone in South Ethiopia**, specifically: Demba Gofa, Zala, and Uba Debretsehay Districts[span_171](start_span)[span_171](end_span). It is also widely practiced across the Gamo and South Omo zones[span_172](start_span)[span_172](end_span). While the core formula remains constant, unique family and regional preferences exist[span_173](start_span)[span_173](end_span).</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-title">Spice Preferences</span>
+      <span class="card-desc">Different communities favor different spice combinations[span_174](start_span)[span_174](end_span). What is traditional in Demba Gofa may differ from what is traditional in Zala or Uba Debretsehay[span_175](start_span)[span_175](end_span). Learn your family's way first[span_176](start_span)[span_176](end_span).</span>
     </div>
+    <div class="card">
+      <span class="card-title">Milk Ratios</span>
+      <span class="card-desc">Some communities prefer stronger coffee flavor (using 1/3 L of milk per liter of brew)[span_177](start_span)[span_177](end_span). Others prefer a creamier beverage (using 1/2 L of milk)[span_178](start_span)[span_178](end_span). The ratio adapts to what the body requires[span_179](start_span)[span_179](end_span).</span>
+    </div>
+    <div class="card">
+      <span class="card-title">Sweetener &amp; Style</span>
+      <span class="card-desc">Honey is traditionally preferred and is believed to add medicinal benefit[span_180](start_span)[span_180](end_span). Some communities use sugar or jaggery depending on local market availability[span_181](start_span)[span_181](end_span).</span>
+    </div>
+  </div>
+  <p>These variations across different communities and ethnic groups are not errors — they represent the living adaptation of tradition to local circumstances, available ingredients, and cultural preferences[span_182](start_span)[span_182](end_span).</p>
+
+  <!-- LESSON 9 -->
+  <h2>Lesson 9: Storage, Serving, and the 6–12 Hour Rule</h2>
+  <p><strong>Engere should be prepared fresh, immediately before consumption[span_183](start_span)[span_183](end_span). Do not prepare large batches for storage[span_184](start_span)[span_184](end_span).</strong> If Engere is prepared and not immediately consumed, it can be held for 6–12 hours maximum[span_185](start_span)[span_185](end_span). After that time, it must be discarded[span_186](start_span)[span_186](end_span).</p>
+
+  <div class="box box-caution">
+    <span class="box-label">Leftover Engere Is Never Reheated</span>
+    <p>This is a clear traditional rule[span_187](start_span)[span_187](end_span). Reheating damages the delicate volatile aromatic compounds[span_188](start_span)[span_188](end_span), encourages bacterial overgrowth in the warm milk base[span_189](start_span)[span_189](end_span), and degrades the perceived potency of therapeutic benefits[span_190](start_span)[span_190](end_span). Discard leftovers after 12 hours and prepare fresh daily[span_191](start_span)[span_191](end_span).</p>
+  </div>
+  <p><strong>Serving Parameters:</strong> Portions are served in small 50ml therapeutic cups[span_192](start_span)[span_192](end_span). Serving temperature must be hot and comforting, never boiling[span_193](start_span)[span_193](end_span). Traditional vessels (Jabena or coconut shell cups) are highly valued for the perceived preservation of medicinal properties[span_194](start_span)[span_194](end_span).</p>
+
+  <!-- LESSON 10 -->
+  <h2>Lesson 10: When to Use Each Method — Context-Based Choices</h2>
+  <ul>
+    <li><strong>Method 1 (Simple):</strong> Choose for lactating mothers during early postpartum recovery (easiest to digest), young children, or individuals with intense gastric sensitivity[span_195](start_span)[span_195](end_span).</li>
+    <li><strong>Method 2 (With Sweetener):</strong> Choose for improved palatability without spice complexity, balancing natural leaf bitterness, or where honey calories support recovery[span_196](start_span)[span_196](end_span).</li>
+    <li><strong>Method 3 (With Spices):</strong> Choose when deeper therapeutic warmth and energizing character are needed for adults without digestive issues, or during cold weather[span_197](start_span)[span_197](end_span).</li>
+  </ul>
+
+  <!-- LESSON 11 -->
+  <h2>Lesson 11: The Full Quality Standard</h2>
+  <p>A perfectly prepared Engere must show complete excellence across all five senses[span_198](start_span)[span_198](end_span):</p>
+  <ul>
+    <li><strong>Sight:</strong> An inviting, uniform, creamy light-to-medium brown color without separation[span_199](start_span)[span_199](end_span).</li>
+    <li><strong>Aroma:</strong> Aromatic, coffee-forward scent where spice notes complement rather than dominate[span_200](start_span)[span_200](end_span).</li>
+    <li><strong>Mouthfeel:</strong> Smooth, creamy, with absolutely ZERO grittiness[span_201](start_span)[span_201](end_span). Any sand or particulate texture means the straining failed[span_202](start_span)[span_202](end_span).</li>
+    <li><strong>Taste:</strong> Integrated leaf base richness paired cleanly with milk fat and complementary sweetness[span_203](start_span)[span_203](end_span).</li>
+  </ul>
+
+  <!-- LESSON 12 -->
+  <h2>Lesson 12: Knowledge Transmission and Cultural Meaning</h2>
+  <p>While Engere is consumed by both men and women, **preparation remains primarily a woman's practice**[span_204](start_span)[span_204](end_span). Engere is prepared by mothers for children, by mothers for post-labor mothers, and by wives for husbands recovering from physical exhaustion[span_205](start_span)[span_205](end_span). This beverage reinforces women's roles in household health management and intergenerational knowledge transmission[span_206](start_span)[span_206](end_span).</p>
+  <p>Engere represents **indigenous knowledge as primary healthcare**[span_207](start_span)[span_207](end_span). In resource-limited settings, it provides an affordable, culturally sanctioned remedy for common health challenges: weakness, postpartum recovery, and joint pain[span_208](start_span)[span_208](end_span). Concurrently, it supports agricultural sustainability by creating market demand for coffee leaf byproducts, reducing waste, and providing income diversification for smallholder farmers[span_209](start_span)[span_209](end_span).</p>
+
+  <div class="box box-evidence">
+    <span class="box-label">The Core Synthesis</span>
+    <p>Engere is not just a recipe[span_210](start_span)[span_210](end_span). It is a ritual, a caring gesture, and a transmission of knowledge from one woman to another across generations[span_211](start_span)[span_211](end_span). It is proof that something precious can be preserved through the hands of those who refuse to forget[span_212](start_span)[span_212](end_span).</p>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <a class="footer-back" href="index.html">← Return to BUNA Library</a>
+  </div>
+</footer>
+
 </body>
 </html>
