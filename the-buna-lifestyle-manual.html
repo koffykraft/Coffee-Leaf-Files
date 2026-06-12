@@ -12,7 +12,7 @@
   --ink:        #1a1a1a;   
   --ink-soft:   #4a4a4a;   
   --line:       #1a1a1a;   
-  --line-soft:  #d0d0d0;   
+  --line-soft:  --line-soft;   
   --bg:         #ffffff;   
   --bg-tint:    #f7f5f0;   
   --accent:     #b8721e;   
@@ -576,6 +576,8 @@ tr:nth-child(even) td {
 <script>
 function showPathway(pathwayId) {
     const sections = document.querySelectorAll('.content-section');
+    const optionsContainer = document.getElementById('mainNav');
+    
     sections.forEach(section => {
         section.classList.remove('active');
     });
@@ -583,13 +585,13 @@ function showPathway(pathwayId) {
     if (pathwayId !== 'main') {
         const element = document.getElementById(pathwayId);
         if (element) {
+            optionsContainer.style.display = 'none';
             element.classList.add('active');
-            setTimeout(function() {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 50);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     } else {
-        document.getElementById('mainNav').scrollIntoView({ behavior: 'smooth' });
+        optionsContainer.style.display = 'grid';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 </script>
