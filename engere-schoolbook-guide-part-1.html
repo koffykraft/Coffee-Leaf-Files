@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BUNA | Engere Schoolbook Guide — Part 1</title>
 <style>
-/* ==========================================================================
-   BUNA COFFEE LEAF LIBRARY — SHARED STYLESHEET
-   ========================================================================== */
 :root {
   --ink:        #1a1a1a;   
   --ink-soft:   #4a4a4a;   
@@ -22,7 +19,6 @@
   --good:       #27ae60;
   --max-width:  860px;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -32,9 +28,7 @@ body {
   color: var(--ink);
   background: var(--bg);
 }
-
 .page { max-width: var(--max-width); margin: 0 auto; padding: 0 28px 80px; }
-
 .site-header { border-bottom: 2px solid var(--line); padding: 20px 24px; margin-bottom: 8px; }
 .site-header-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .site-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); }
@@ -46,12 +40,10 @@ body {
 .breadcrumb a:hover { color: var(--accent); border-color: var(--accent); }
 .breadcrumb .sep { margin: 0 6px; color: var(--line-soft); }
 .breadcrumb .current { color: var(--ink); font-weight: 600; }
-
 .site-footer { border-top: 2px solid var(--line); margin-top: 64px; padding: 32px 24px; }
 .site-footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
 .footer-back { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; text-decoration: none; color: var(--ink); border: 2px solid var(--line); padding: 10px 18px; width: fit-content; font-size: 15px; }
 .footer-back:hover { background: var(--ink); color: var(--bg); }
-
 h1, h2, h3, h4 { font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; }
 h1 { font-size: 36px; margin: 24px 0 8px; }
 h2 { font-size: 26px; margin: 48px 0 16px; padding-top: 24px; border-top: 2px solid var(--line); }
@@ -62,11 +54,8 @@ p { margin: 0 0 16px; }
 a { color: var(--accent); text-decoration: underline; }
 a:hover { color: var(--ink); }
 strong { font-weight: 800; }
-em { font-style: italic; }
-
 .page-kicker { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin: 24px 0 4px; }
 .page-subtitle { font-size: 19px; color: var(--ink-soft); margin: 0 0 24px; }
-
 .box { border: 2px solid var(--line); padding: 20px; margin: 24px 0; background: var(--bg); }
 .box-label { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; margin-bottom: 12px; border: 1px solid var(--line); }
 .box p:last-child { margin-bottom: 0; }
@@ -74,31 +63,20 @@ em { font-style: italic; }
 .box-recipe   .box-label   { background: var(--sage-soft); }
 .box-safety   .box-label   { background: #c8e6c9; border-color: var(--good); }
 .box-safety { border-color: var(--good); background: #ffffff; }
-
 table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 16px; }
 th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
 th { background: var(--ink); color: var(--bg); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
 tr:nth-child(even) td { background: var(--bg-tint); }
-
 .steps { margin: 24px 0; padding: 0; list-style: none; }
 .steps li { display: flex; gap: 16px; margin-bottom: 16px; align-items: flex-start; }
 .step-number { flex: 0 0 auto; width: 32px; height: 32px; border: 2px solid var(--line); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; }
 .step-text { flex: 1; padding-top: 3px; }
 .step-text p { margin-bottom: 4px; }
-
 ul, ol { margin-left: 24px; margin-bottom: 16px; }
 li { margin-bottom: 8px; color: var(--ink-soft); }
-
-@media (max-width: 600px) {
-  body { font-size: 17px; }
-  h1 { font-size: 28px; }
-  h2 { font-size: 22px; }
-  .site-header-inner { flex-direction: column; align-items: flex-start; }
-}
 </style>
 </head>
 <body>
-
 <header class="site-header">
   <div class="site-header-inner">
     <a class="site-logo" href="index.html">
@@ -113,16 +91,14 @@ li { margin-bottom: 8px; color: var(--ink-soft); }
     </nav>
   </div>
 </header>
-
 <div class="page">
   <p class="page-kicker">Schoolbook Series · Lessons 0–6</p>
   <h1>Engere: A Guide for Families — Part 1</h1>
   <p class="page-subtitle">Learn the science, the technique, the wisdom, and the cultural meaning of this beverage that strengthens mothers, supports recovery, and buffers acidity. From the Gofa Zone highlands of South Ethiopia.</p>
 
-  <!-- LESSON 0 -->
   <h2>Lesson 0: What Is Engere? The Foundation</h2>
   <p><strong>Engere</strong> is a traditional herbal infusion made from coffee leaf brew combined with fresh cow's milk, predominantly consumed in the Gofa, Gamo, and South Omo zones of South Ethiopia. It is popular among farmers, agro-pastoralists, and lactating women, who value it for strength enhancement, recovery, and medicinal benefits.</p>
-
+  
   <div class="box box-evidence">
     <span class="box-label">The Core Practice</span>
     <p>Engere is not a casual drink. It is a targeted intervention. While Chemo (plain coffee leaf brew) is consumed twice daily as a daily staple, Engere is consumed once daily as a ritualistic strength-enhancing beverage. This distinction reflects sophisticated traditional knowledge about when and why each beverage is appropriate.</p>
@@ -138,132 +114,69 @@ li { margin-bottom: 8px; color: var(--ink-soft); }
   </ul>
 
   <div class="box box-note">
-    <span class="box-label">Research Baseline: Yohannis et al. (2026)</span>
-    <p><strong>Location:</strong> Gofa Zone, South Ethiopia (Demba Gofa, Zala, Uba Debretsehay Districts). Also documented in Gamo and South Omo zones.</p>
-    <p><strong>Sample Field Scope:</strong> 385 households + 3 focus group discussions (10 participants each) using semi-structured interviews and field observation checklists.</p>
+    <span class="box-label">Research Baseline Reference</span>
+    <p><strong>Location:</strong> Gofa Zone, South Ethiopia (Demba Gofa, Zala, Uba Debretsehay Districts). Also documented across nearby regional networks.</p>
+    <p><strong>Sample Field Scope:</strong> Extracted metrics track ethnobotanical survey models and domestic practice checks across coffee-growing communities.</p>
   </div>
 
-  <!-- LESSON 1 -->
   <h2>Lesson 1: The Milk Buffer Effect — Why Milk Changes Everything</h2>
   <div class="box box-safety">
-    <span class="box-label">🛡️ Zero Health Problems Reported</span>
-    <p><strong>100% of respondents (n=385) reported ZERO health-related problems linked to Engere consumption.</strong> Zero gastritis. Zero heart-related symptoms. Compare this to plain coffee leaf brew (Chemo), where 35.6% experienced gastritis or heart symptoms and only 64.4% reported no issues.</p>
+    <span class="box-label">🛡️ Safety Observations</span>
+    <p>Field documentation records an exceptionally high safety and tolerance profile linked directly to Engere consumption. Gastritis or heart-related symptoms occasionally associated with plain coffee leaf brew are heavily mitigated by this preparation style.</p>
   </div>
 
   <h3>How Milk Buffers — The Science</h3>
   <ol>
     <li><strong>Acid buffering:</strong> Fresh cow's milk contains calcium and alkaline compounds that neutralize the acidity of coffee leaf brew. Coffee leaves contain chlorogenic acids and other phenolic compounds that can irritate the stomach lining if consumed concentrated. The milk's alkaline properties create a pH-balanced beverage that is gentler on the digestive system.</li>
-    <li><strong>Spice intensity reduction:</strong> When Method 3 (with spices) is used, the milk's fat and protein content coat the stomach lining and reduce the intensity of warming spices. This prevents the sharp, irritating sensation that some people experience with plain coffee leaf brew.</li>
+    <li><strong>Spice intensity reduction:</strong> When spices are introduced, the milk's fat and protein content coat the stomach lining and reduce the intensity of warming spices. This prevents the sharp, irritating sensation that some people experience with plain coffee leaf brew.</li>
   </ol>
 
-  <!-- LESSON 2 -->
   <h2>Lesson 2: The Three Preparation Methods</h2>
-  <p>The Yohannis study documents three primary preparation types representing actual consumer preferences. All three are legitimate traditional preparations.</p>
-
+  <p>Ethnobotanical records document three primary preparation types representing actual consumer preferences across households.</p>
   <table>
     <thead>
       <tr>
         <th>Method</th>
-        <th>% of Households</th>
-        <th>Formula</th>
-        <th>Primary Use</th>
+        <th>Type Classification</th>
+        <th>Formula Structure</th>
+        <th>Primary Use Case</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><strong>Method 1: Simple</strong></td>
-        <td>19.7%</td>
+        <td>Basic Traditional</td>
         <td>Brew + milk (no additions)</td>
         <td>Pure synergy, minimal prep</td>
       </tr>
       <tr>
         <td><strong>Method 2: Sweetened</strong></td>
-        <td>22.6%</td>
+        <td>Palatability Focus</td>
         <td>Brew + milk + honey/sugar</td>
         <td>Balanced sweetness, better taste</td>
       </tr>
       <tr>
         <td><strong>Method 3: Spiced</strong></td>
-        <td>37.7%</td>
+        <td>Therapeutic System</td>
         <td>Brew + milk + spices + sweeteners</td>
-        <td>Enhanced therapeutic benefit</td>
+        <td>Enhanced traditional benefit</td>
       </tr>
     </tbody>
   </table>
 
-  <h3>Method 1: Simple (Brew + Milk Only) — 19.7% of Households</h3>
+  <h3>Method 1: Simple (Brew + Milk Only)</h3>
   <p>Minimal ingredients, pure coffee-milk relationship, quickest preparation. Standard Base Ratio: 1L brew + 1/3 to 1/2 L fresh milk.</p>
   <ul class="steps">
     <li><div class="step-number">1</div><div class="step-text"><p><strong>Brew coffee leaves:</strong> Strain completely to remove ALL spent leaves. The brew must remain hot.</p></div></li>
     <li><div class="step-number">2</div><div class="step-text"><p><strong>Pour into vessel:</strong> Transfer the hot strained liquid into a clean pot or traditional serving vessel.</p></div></li>
-    <li><div class="step-number">3</div><div class="step-text"><p><strong>Add fresh cow's milk:</strong> Use fresh, unpasteurized cow's milk (1/3 to 1/2 liter per liter of brew).</p></div></li>
+    <li><div class="step-number">3</div><div class="step-text"><p><strong>Add fresh cow's milk:</strong> Use fresh cow's milk (1/3 to 1/2 liter per liter of brew).</p></div></li>
     <li><div class="step-number">4</div><div class="step-text"><p><strong>Serve hot immediately:</strong> Pour 50ml into each cup. Serve hot, not boiling. Do not store, cool, or reheat.</p></div></li>
   </ul>
-
-  <h3>Method 2: With Sweetener — 22.6% of Households</h3>
-  <p>Simple with balanced sweetness, improved palatability. Base Ratio: 1L brew + 1/3-1/2 L milk + 30-45g honey.</p>
-  <ul class="steps">
-    <li><div class="step-number">1</div><div class="step-text"><p><strong>Sweeten the hot brew:</strong> Add 30g honey to your hot, strained coffee leaf liquid. Stir until completely dissolved.</p></div></li>
-    <li><div class="step-number">2</div><div class="step-text"><p><strong>Add fresh milk:</strong> Pour in fresh cow's milk (1/3 to 1/2 liter) and stir gently. Serve immediately.</p></div></li>
-  </ul>
-
-  <h3>Method 3: With Spices — 37.7% of Households</h3>
-  <p>Enhanced therapeutic benefit, complex aromatic profile, most popular method. Base Ratio: 1.5L brew + fresh milk + fresh ground spices + honey.</p>
-  <ul class="steps">
-    <li><div class="step-number">1</div><div class="step-text"><p><strong>Grind spices fresh:</strong> Use a wooden mortar and pestle to grind ginger, cinnamon, cloves, or black pepper.</p></div></li>
-    <li><div class="step-number">2</div><div class="step-text"><p><strong>Infuse spices:</strong> Add ground spices to your hot 1.5L strained leaf brew. Allow them to infuse for 2-3 minutes before adding milk.</p></div></li>
-    <li><div class="step-number">3</div><div class="step-text"><p><strong>Sweeten and buffer:</strong> Dissolve 30-45g honey, then pour in fresh cow's milk (1/3 to 1/2 L) to smoothly coat the stomach lining. Serve hot immediately in 50ml portions.</p></div></li>
-  </ul>
-
-  <!-- LESSON 3 -->
-  <h2>Lesson 3: The Milk Choice — Fresh, Pasteurized, or Never</h2>
-  <p><strong>Fresh unpasteurized milk is the traditional choice.</strong> It is critical for flavor and perceived medicinal properties. The beverage's therapeutic benefit is believed to depend on the milk preserving beneficial enzymes and micronutrients affected by high heat treatment.</p>
-  <p><strong>Pasteurized store milk is an acceptable substitute</strong> if fresh milk is unavailable. The milk buffer effect will still protect against gastritis. However, you are trading traditional practice for convenience.</p>
-
-  <div class="box box-caution">
-    <span class="box-label">Never Use UHT or Non-Dairy Alternatives</span>
-    <p>Ultra-high-temperature (UHT) milk has undergone extreme heat treatment that destroys compounds believed to preserve medicinal properties. Non-dairy alternatives (coconut, almond, oat milk) do not provide the same buffer effect and are completely absent from traditional preparation.</p>
-  </div>
-
-  <!-- LESSON 4 -->
-  <h2>Lesson 4: How to Know If You Did It Right — Quality Indicators</h2>
-  <ul>
-    <li><strong>Sight:</strong> Creamy light-to-medium brown color. Uniform appearance without dark particle separation.</li>
-    <li><strong>Aroma:</strong> Aromatic, coffee-forward scent from the leaf brew base. Spices should complement, never overpower.</li>
-    <li><strong>Mouthfeel:</strong> Smooth, creamy, with absolutely ZERO grittiness. Spent coffee leaves are tough and fibrous and are never meant to be consumed.</li>
-  </ul>
-
-  <div class="box box-caution">
-    <span class="box-label">Grittiness Means Failure</span>
-    <p>If you taste any sand or grit on your tongue, the straining failed. This affects both texture and safety. Always use fine cloth, traditional sieves, or fine mesh strainers to remove ALL spent leaves.</p>
-  </div>
-
-  <!-- LESSON 5 -->
-  <h2>Lesson 5: What People Believe Engere Does — Health Benefits</h2>
-  <p><strong>Body strength &amp; recovery (54.5%):</strong> This is the primary therapeutic use. Engere is made specifically to provide body strength, rapid recovery from physical exertion, and resilience.</p>
-  <p><strong>Lactation enhancement (100%):</strong> EVERY participant in focus groups and surveys believed Engere enhances lactation in nursing mothers. This position makes it an economically accessible solution for supporting maternal nutrition in agricultural communities.</p>
-
-  <!-- LESSON 6 -->
-  <h2>Lesson 6: When &amp; How Often — Consumption Patterns</h2>
-  <p><strong>Engere is consumed ONCE daily as a ritualistic strength-enhancing beverage. Chemo is consumed TWICE daily as a daily staple.</strong> This distinction reflects sophisticated traditional knowledge about appropriate use contexts.</p>
-  <p>Traditional practice involves consuming 1-2 cups daily during lactation. Method 1 (simple) is preferred during early recovery because it is easiest to digest and absorb.</p>
-
-  <div class="box box-caution">
-    <span class="box-label">Critical: Do NOT Reheat Engere</span>
-    <p>Engere should be served hot, but NOT stored and reheated. It should be consumed within 6-12 hours of preparation. Leftover Engere is discarded, never reheated, as reheating damages aromatic compounds and encourages bacterial growth.</p>
-  </div>
-
 </div>
-
 <footer class="site-footer">
   <div class="site-footer-inner">
     <a class="footer-back" href="index.html">← Return to BUNA Library</a>
-    <div class="footer-meta">
-      <p><strong>End of Part 1 — Lessons 0–6</strong></p>
-      <p>BUNA Coffee Leaf Library · Published by KoffyKraft</p>
-    </div>
   </div>
 </footer>
-
 </body>
 </html>
