@@ -581,6 +581,127 @@
             margin-bottom: 12px;
         }
 
+        /* ====================================================
+           ENERGY SYSTEM CARDS
+           ==================================================== */
+        .energy-card {
+            display: flex;
+            gap: 20px;
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 16px 0;
+            align-items: flex-start;
+        }
+        .energy-label {
+            flex: 0 0 120px;
+            font-weight: 800;
+            font-size: 0.95em;
+            color: var(--accent);
+            line-height: 1.3;
+        }
+        .energy-body p { margin-bottom: 8px; }
+        .energy-body p:last-child { margin-bottom: 0; }
+        @media (max-width: 600px) {
+            .energy-card { flex-direction: column; gap: 8px; }
+            .energy-label { flex: none; }
+        }
+
+        /* ====================================================
+           DOMAIN CARDS
+           ==================================================== */
+        .domain-card {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 16px 0;
+        }
+        .domain-title {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        /* Route map extras */
+        .route-title {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .route-step {
+            font-weight: 700;
+            padding: 6px 0;
+            border-top: 1px solid var(--subtle);
+        }
+        .route-step.first { border-top: none; }
+        .route-annotation {
+            color: var(--gray);
+            font-size: 0.9em;
+            padding: 2px 0 6px 16px;
+        }
+        .route-outcome {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid var(--dark);
+            font-weight: 700;
+            color: var(--recipe);
+        }
+
+        /* Network map */
+        .network-map {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 16px 0;
+        }
+        .net-title {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .network-map pre {
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 0.78em;
+            line-height: 1.7;
+            color: var(--gray);
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        /* State cards */
+        .state-card {
+            display: flex;
+            gap: 20px;
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 24px;
+            margin: 16px 0;
+            align-items: flex-start;
+        }
+        .state-greek {
+            flex: 0 0 60px;
+            font-size: 2.5em;
+            font-weight: 800;
+            text-align: center;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .state-name { font-weight: 700; font-size: 1.05em; margin-bottom: 8px; }
+        @media (max-width: 600px) {
+            .state-card { flex-direction: column; align-items: center; text-align: center; }
+        }
+
     </style>
 </head>
 <body>
@@ -1499,21 +1620,749 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- PART III — PLACEHOLDER FOR NEXT SECTION -->
+        <!-- PART III -->
         <!-- ============================================ -->
-        <!-- TO BE CONTINUED: Part III Activation Events (s15-s20),
-             Part IV Energy Systems (s21-s23), Part V Process Domains (s24-s29),
-             Part VI Precursor Network (s30-s32), Part VII Emergent States (s33-s39),
-             Appendices (a1-a2) -->
+        <div class="part-divider" id="part3">
+            <div class="part-label">Part III</div>
+            <h2 class="part-title">Activation Events</h2>
+            <p class="part-intro">Reservoirs do not transform spontaneously. Something must trigger them. These are the activation events — the physical, chemical, and biological interventions that unlock, redirect, or combine the leaf's compound pools. Each event has its own character, selectivity, and risks. New events can be added to this framework as they are discovered without requiring a structural rewrite.</p>
+        </div>
+
+        <section id="s15">
+            <div class="section-num">Section 15</div>
+            <h2>Activation Event A — <em>Mechanical Disruption</em></h2>
+            <div class="event-card">
+                <div class="event-label">Rolling &middot; Wringing &middot; Bruising &middot; Crushing</div>
+                <div class="event-title">Breaking the cell wall to release what is inside</div>
+                <p>Intact leaf cells maintain spatial separation between reactive compounds and the enzymes that would otherwise transform them. PPO (polyphenol oxidase) is compartmentalised in the chloroplast and vacuole. Its phenolic substrates are stored elsewhere. Physical disruption — rolling, wringing, crushing — breaks cell walls and membranes, bringing enzyme and substrate into contact for the first time.</p>
+                <p>This is the fundamental mechanism of oolong and black tea manufacture. A rolled leaf begins oxidising within minutes. The degree of rolling determines how much of the catechin and CGA pools become exposed to enzymatic action.</p>
+                <p>For Citane: the question is not whether to roll, but how much, when in the sequence, and for how long. Light bruising activates the oxidative domain gently. Full rolling drives it aggressively. The decision commits the leaf to a trajectory.</p>
+                <ul class="outcome-list">
+                    <li>Primary reservoirs activated: C (Catechin/Procyanidin), A (Chlorogenic acids), partially J (Lipid &mdash; lipoxygenase)</li>
+                    <li>Primary mechanism: PPO-driven oxidation cascade</li>
+                    <li>Reversibility: none &mdash; once oxidation begins it cannot be stopped without heat</li>
+                </ul>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s16">
+            <div class="section-num">Section 16</div>
+            <h2>Activation Event B — <em>Water &amp; Moisture</em></h2>
+            <div class="event-card">
+                <div class="event-label">Soaking &middot; Steaming &middot; Misting &middot; Koji Water &middot; Rain</div>
+                <div class="event-title">The universal solvent of biochemical transformation</div>
+                <p>Water provides molecular mobility for compounds previously immobilised in dry tissue. It activates hydrolytic enzymes — glycosidases and esterases — that require aqueous conditions. It creates the medium through which microbial activity can proceed. It is the substrate for hydrolysis reactions that unlock the glycoside reservoir (E).</p>
+                <p>The temperature of water matters significantly. Hot water drives rapid extraction and hydrolysis. Cool water produces slower, more selective extraction with different selectivity. Koji water is a specific instance — it brings not only moisture but a cocktail of fungal enzymes that act on multiple reservoirs simultaneously.</p>
+                <ul class="outcome-list">
+                    <li>Primary reservoirs activated: E (Glycoside &mdash; hydrolysis), D (Amino acids &mdash; mobility), I (Sugar &mdash; dissolution and availability)</li>
+                    <li>Primary mechanism: solvation, hydrolysis, molecular mobility</li>
+                </ul>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s17">
+            <div class="section-num">Section 17</div>
+            <h2>Activation Event C — <em>Oxygen &amp; Oxidative Environment</em></h2>
+            <div class="event-card">
+                <div class="event-label">Air exposure &middot; Thin-layer spreading &middot; Enzymatic or auto-oxidation</div>
+                <div class="event-title">The most available and least controllable trigger</div>
+                <p>Oxygen is present in every open-air processing step. The question is whether oxidation is enzymatically directed (via PPO and peroxidase, operating below approximately 70&deg;C), chemically auto-driven (non-enzymatic, slower, less selective), or actively suppressed.</p>
+                <p>Enzymatic oxidation is structured — PPO preferentially attacks o-diphenols including catechins and CGAs, producing specific quinone products that then couple with amino acids and other phenolics in complex but partially predictable cascades. Auto-oxidation is less selective and tends to produce more random degradation products over longer timescales.</p>
+                <ul class="outcome-list">
+                    <li>Primary reservoirs activated: A (CGA &rarr; quinones), C (Catechin &rarr; theaflavin analogues), G (Chlorophyll &rarr; pheophytin)</li>
+                    <li>Key variable: temperature &mdash; above ~70&deg;C, PPO is denatured and enzymatic oxidation ceases</li>
+                    <li>Secondary: J (Lipid oxidation via lipoxygenase at low temperatures)</li>
+                </ul>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s18">
+            <div class="section-num">Section 18</div>
+            <h2>Activation Event D — <em>Heat</em></h2>
+            <div class="event-card">
+                <div class="event-label">Pan-firing &middot; Steaming &middot; Oven drying &middot; Roasting</div>
+                <div class="event-title">The most versatile and consequential trigger</div>
+                <p>Heat operates differently at different temperatures. At low temperatures (60&ndash;80&deg;C) it fixes enzymatic activity, denatures PPO, and stabilises the leaf in whatever oxidative state it has reached. At medium temperatures (100&ndash;150&deg;C) it drives moisture out, concentrates flavour compounds, and begins Maillard reactions. At high temperatures (160&deg;C+) it triggers trigonelline degradation, CGA thermal breakdown into lactones, and deeper Maillard chemistry producing pyrazines and roast character.</p>
+                <p>Heat also drives the most visible changes to the chlorophyll system — green to olive to brown — providing a practical process indicator legible to the eye.</p>
+                <ul class="outcome-list">
+                    <li>60&ndash;80&deg;C: enzyme inactivation (kills PPO), colour and aroma stabilisation &mdash; locks current state</li>
+                    <li>100&ndash;150&deg;C: Maillard onset (D + I reservoirs), moisture reduction, caramel and toasted notes</li>
+                    <li>160&deg;C+: trigonelline degradation (F), CGA lactone formation (A), pyrazine generation (D+I), deep roast character</li>
+                </ul>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s19">
+            <div class="section-num">Section 19</div>
+            <h2>Activation Event E — <em>Microbial Activity</em></h2>
+            <div class="event-card">
+                <div class="event-label">Native epiphytes &middot; Yeasts &middot; LAB &middot; Koji &middot; Environmental microbiota</div>
+                <div class="event-title">The most chemically diverse and least predictable trigger</div>
+                <p>Microorganisms do not simply consume substrate — they produce enzymes, organic acids, alcohols, esters, carbon dioxide, and secondary metabolites inaccessible through any physical or thermal process. Microbes are simultaneously catalysts and energy harvesters: consuming one reservoir and generating new compounds from another.</p>
+                <p>The coffee leaf carries a native epiphytic microbiome — bacteria and fungi living on the leaf surface in the field. Beyond this, controlled inoculation with Koji, lactic acid bacteria, or selected yeast strains opens the full range of fermentative chemistry.</p>
+                <ul class="outcome-list">
+                    <li>Microbial glycosidases: unlock Reservoir E (glycosides &rarr; aroma compounds)</li>
+                    <li>Microbial proteases: increase free amino acid pool (Reservoir D) &rarr; amplifies all downstream pathways</li>
+                    <li>Yeasts: ferment sugars (Reservoir I) &rarr; ethanol + fruity esters</li>
+                    <li>LAB: produce lactic and acetic acids &rarr; shift pH, influence flavour and microbial ecology</li>
+                    <li>Key variable: which organisms, at what temperature, for how long, under what oxygen regime</li>
+                </ul>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s20">
+            <div class="section-num">Section 20</div>
+            <h2>Activation Event F — <em>Time: The Silent Variable</em></h2>
+            <div class="event-card">
+                <div class="event-label">Duration &middot; Rest periods &middot; Ageing</div>
+                <div class="event-title">The medium through which every other event operates</div>
+                <p>Time is not a driver of chemistry in the way heat or oxygen are. But it is the medium through which every other event operates. A 4-hour wither produces a different leaf from a 24-hour wither. A 48-hour Koji contact is chemically distinct from 96 hours. Post-process rest allows microbial populations to consolidate and enzymatic work to continue at ambient pace.</p>
+                <p>Time is also the only variable that cannot be compressed. This makes it the most often overlooked — and one of the most practically significant — in a processing sequence. For Citane route mapping, time should be recorded as precisely as temperature. Subtle changes in rest periods between steps may account for large differences in final sensory profile.</p>
+                <ul class="outcome-list">
+                    <li>Allows every other activation event to reach completion &mdash; or to overshoot</li>
+                    <li>Controls depth of oxidation in aerobic environments</li>
+                    <li>Controls depth of fermentation in microbial environments</li>
+                    <li>Is the variable most commonly unrecorded in informal processing sequences</li>
+                    <li>Should always appear in route maps with precision: not "overnight" but "14 hours at 22&deg;C"</li>
+                </ul>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART IV -->
+        <!-- ============================================ -->
+        <div class="part-divider" id="part4">
+            <div class="part-label">Part IV</div>
+            <h2 class="part-title">Layer 0 — Energy Systems</h2>
+            <p class="part-intro">An important structural insight: the framework so far has treated compounds as if they simply transform. But transformations are energy transfer events. A compound does not "choose" to become something else. An energy system pushes it across a reaction barrier, or lowers that barrier so the reaction can proceed. This layer sits beneath activation events and gives the model its physical grounding.</p>
+        </div>
+
+        <section id="s21">
+            <div class="section-num">Section 21</div>
+            <h2>What Is an <em>Energy System?</em></h2>
+            <p>In chemistry, reactions do not happen unless energy is available to drive them. Some reactions are thermodynamically favourable — they would release energy if they happened — but they do not proceed because the activation energy barrier is too high. Something must either supply energy to push molecules over the barrier, or lower the barrier so the reaction can proceed at ambient conditions.</p>
+            <p>This is what energy systems do. They do not create compounds. They make reactions possible — either by supplying energy, lowering the barrier, or providing a pathway that was not otherwise available.</p>
+            <p>Understanding energy systems explains why the same compounds can produce radically different outcomes depending on the processing context. Trigonelline does not "choose" to become pyridines. Heat pushes its molecules over the thermal degradation barrier. Catechins do not "decide" to oxidise. PPO lowers the activation barrier for oxidation at ambient temperature. These distinctions matter for designing processing sequences intentionally.</p>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s22">
+            <div class="section-num">Section 22</div>
+            <h2>The Five <em>Energy Systems</em></h2>
+
+            <div class="energy-card">
+                <div class="energy-label">Thermal Energy</div>
+                <div class="energy-body">
+                    <p><strong>What it does:</strong> Supplies kinetic energy to molecules, pushing them over reaction barriers. More heat = more reactions accessible. Temperature determines which reactions become active.</p>
+                    <p><strong>In Citane processing:</strong> Every heat application &mdash; from pan-firing at 80&deg;C to roasting at 180&deg;C &mdash; is a thermal energy input. The temperature profile determines whether you are in the enzyme-inactivation range, the Maillard onset range, or the deep thermal conversion range.</p>
+                </div>
+            </div>
+
+            <div class="energy-card">
+                <div class="energy-label">Enzymatic Catalysis</div>
+                <div class="energy-body">
+                    <p><strong>What it does:</strong> Lowers the activation energy barrier for specific reactions, allowing them to proceed at ambient temperature and speed. Enzymes are highly selective &mdash; each acts on specific substrates via specific pathways.</p>
+                    <p><strong>In Citane processing:</strong> PPO (oxidation of catechins and CGAs), &beta;-glucosidase (glycoside hydrolysis), lipoxygenase (lipid oxidation), proteases (protein breakdown). Endogenous leaf enzymes, Koji-derived enzymes, and microbial enzymes all operate in this system.</p>
+                </div>
+            </div>
+
+            <div class="energy-card">
+                <div class="energy-label">Microbial Metabolism</div>
+                <div class="energy-body">
+                    <p><strong>What it does:</strong> Microbes are simultaneously catalysts and energy harvesters. They consume one compound to extract chemical energy, then release new compounds as metabolic products. Unlike enzymes, they have goals &mdash; reproduction &mdash; and will continue transforming substrate until it is exhausted or conditions become hostile.</p>
+                    <p><strong>In Citane processing:</strong> Every fermentation step. Yeasts consuming sugars to produce esters. LAB consuming sugars to produce lactic acid. Native microbiota transforming the leaf surface environment before intentional inoculation.</p>
+                </div>
+            </div>
+
+            <div class="energy-card">
+                <div class="energy-label">Oxidative Potential</div>
+                <div class="energy-body">
+                    <p><strong>What it does:</strong> Oxygen accepts electrons from reduced compounds, oxidising them. This releases energy and changes molecular structure. The rate of oxidation is controlled by oxygen availability, temperature, pH, and the presence of pro-oxidants or antioxidants (including mangiferin).</p>
+                    <p><strong>In Citane processing:</strong> The primary driver of colour development and flavour transformation in all open-air processing steps. Controlled by how thinly the leaf is spread, airflow, temperature, and whether enzymatic or non-enzymatic oxidation is dominant.</p>
+                </div>
+            </div>
+
+            <div class="energy-card">
+                <div class="energy-label">Water Activity</div>
+                <div class="energy-body">
+                    <p><strong>What it does:</strong> Water activity (a<sub>w</sub>) describes how much of the water in a system is "free" &mdash; available to support chemical reactions, enzyme activity, and microbial growth. High water activity enables all aqueous reactions. Low water activity (dry leaf) suppresses most biological activity but does not prevent thermal reactions.</p>
+                    <p><strong>In Citane processing:</strong> Controls which reactions are possible at any given stage. A dry leaf cannot support enzymatic hydrolysis of glycosides. A wet leaf in a warm environment will support rapid microbial growth. Water activity management is implicit in every drying, soaking, and resting decision.</p>
+                </div>
+            </div>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s23">
+            <div class="section-num">Section 23</div>
+            <h2>Energy Systems and <em>Activation Events</em></h2>
+            <p>The complete model, with Layer 0 included, reads as follows:</p>
+
+            <div class="flow-diagram">
+                <div class="flow-diagram-label">The Full Framework — Layer 0 Included</div>
+                <div class="flow-row">
+                    <div class="flow-box highlight">Energy System</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-box">drives</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-box highlight">Activation Event</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-box">unlocks</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-box highlight">Reservoir(s)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-box">transforms into</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-box sage">Emergent State</div>
+                </div>
+                <div class="flow-example" style="padding-bottom:0;">
+                    Example: Thermal energy (Layer 0) drives Roasting at 150&deg;C (Activation Event) &rarr; activates Amino Acid &times; Sugar interaction (Reservoirs D + I) &rarr; produces pyrazines and caramel compounds &rarr; Emergent State Delta (Roasted).<br><br>
+                    Example: Enzymatic catalysis (Layer 0) drives PPO activation after rolling (Activation Event) &rarr; oxidises Catechin pool (Reservoir C) &rarr; produces theaflavin-analogous amber pigments &rarr; Emergent State Beta (Amber).
+                </div>
+            </div>
+
+            <div class="route-map">
+                <div class="route-title">The Horizontal Layer — Across Reservoirs</div>
+                Reservoir A &harr; Reservoir C &rarr; coupled oxidation products<br>
+                Reservoir E &rarr; Reservoir I &rarr; microbial fermentation<br>
+                Reservoir I &rarr; [pH drop via LAB] &rarr; modifies PPO rate &rarr; feeds back into Reservoir C<br>
+                Reservoir D &times; Reservoir I &rarr; [heat] &rarr; Maillard products<br><br>
+                <span style="color:var(--light-gray); font-size:0.9em;">Reservoirs interact. The network is not a pipeline &mdash; it is a web with feedback loops.</span>
+            </div>
+
+            <p>This layered model allows a more precise diagnosis of why a processing sequence produced a particular result — and more importantly, why it failed to produce an expected one. If the thermal energy was insufficient (temperature too low), the Maillard reactions do not proceed. If the enzymatic catalysis was interrupted (PPO denatured too early by heat), oxidation stops regardless of oxygen availability. The energy system layer is where troubleshooting begins.</p>
+
+            <div class="box box-evidence">
+                <span class="box-label">How Energy Systems Interact With Each Other</span>
+                <p>Energy systems do not operate in isolation — they govern each other. <strong>Water activity</strong> is the gatekeeper: if the leaf is too dry, enzymatic catalysis and microbial metabolism cannot operate regardless of how much enzyme or how many microbes are present. <strong>Temperature</strong> determines which energy system dominates: below ~70&deg;C, enzymatic catalysis is possible; above it, thermal energy takes over and enzymes are denatured. <strong>Oxidative potential</strong> is modulated by the antioxidant content of the leaf — a high-mangiferin leaf will have a different oxidative environment than a low-mangiferin leaf, even under identical atmospheric conditions.</p>
+                <p>This means that a processing decision which changes one energy system almost always affects others. Drying the leaf (reducing water activity) does not just stop microbial activity — it also stops enzymatic hydrolysis of glycosides, preventing Reservoir E from unlocking further. A decision about moisture level is simultaneously a decision about which energy systems remain operative.</p>
+            </div>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART V -->
+        <!-- ============================================ -->
+        <div class="part-divider" id="part5">
+            <div class="part-label">Part V</div>
+            <h2 class="part-title">Process Domains</h2>
+            <p class="part-intro">When activation events combine in characteristic ways, they create Process Domains — recognisable territories of chemistry with their own logic and sensory tendencies. A processing sequence can move through several domains in sequence, or commit deeply to one. The hybrid domain — where multiple domains overlap — is typically where the most complex and interesting results emerge.</p>
+        </div>
+
+        <section id="s24">
+            <div class="section-num">Section 24</div>
+            <h2>Domain 1 — <em>Oxidative Domain</em></h2>
+            <div class="domain-card">
+                <div class="domain-title">Primary drivers: Oxygen &middot; PPO &middot; Mechanical disruption &middot; Time</div>
+                <p>Entered when the leaf is physically disrupted and exposed to air below the PPO denaturation threshold (~70&deg;C). The classical analogue is oolong or black tea manufacture. The Oxidative Domain converts catechins and CGAs into polymeric oxidation products. Colour shifts from green toward amber and brown. Grassy notes diminish. Tea-like, honeyed, and sometimes floral notes emerge.</p>
+                <p>For coffee leaf, the xanthone pool (Reservoir B) coexists with the catechin system throughout this domain — potentially buffering oxidative reactions in ways that have no direct tea analogy.</p>
+            </div>
+            <div class="route-map">
+                <div class="route-title">Oxidative Domain — Conceptual Route</div>
+                <div class="route-step first">Fresh leaf harvest</div>
+                <div class="route-step">Wither (12&ndash;48 hrs, ambient) &mdash; moisture loss, initial enzyme priming</div>
+                <div class="route-annotation">&#8627; Chlorophyll: green &rarr; yellow-green &middot; CGA pool: stable &middot; Lipoxygenase: possible C6 aldehyde formation</div>
+                <div class="route-step">Roll / bruise &mdash; cell disruption, PPO-substrate contact</div>
+                <div class="route-annotation">&#8627; Oxidation cascade begins &middot; amber colour develops &middot; catechin pool activates</div>
+                <div class="route-step">Oxidation rest (2&ndash;8 hrs depending on target depth, at 20&ndash;28&deg;C)</div>
+                <div class="route-annotation">&#8627; Catechin &rarr; theaflavin analogues &middot; Procyanidins polymerise &middot; CGA quinones couple with amino acids</div>
+                <div class="route-step">Heat-fix (80&ndash;100&deg;C) &mdash; PPO denatured, chemistry locked at current state</div>
+                <div class="route-step">Dry</div>
+                <div class="route-outcome">Emergent State: Beta (Amber) &mdash; depth varies with oxidation duration</div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s25">
+            <div class="section-num">Section 25</div>
+            <h2>Domain 2 — <em>Thermal Domain</em></h2>
+            <div class="domain-card">
+                <div class="domain-title">Primary drivers: Heat &middot; Amino acids &middot; Reducing sugars &middot; Trigonelline &middot; Maillard chemistry</div>
+                <p>The Thermal Domain begins where heat becomes the primary transformation agent, operating on the leaf's precursor pools rather than simply fixing what oxidation has done. This means temperatures above approximately 130&deg;C, where Maillard chemistry begins to dominate and trigonelline degradation becomes significant.</p>
+                <p>The sensory products are toasted grain, roasted nut, caramel, and — at higher temperatures — pyridine and furan notes that move the profile toward coffee-adjacent territory. The trigonelline pathway in coffee leaf has not been specifically studied; its behaviour here is extrapolated from well-characterised coffee bean roasting science.</p>
+            </div>
+            <div class="route-map">
+                <div class="route-title">Thermal Domain — Conceptual Route</div>
+                <div class="route-step first">Fresh or partially dried leaf (moisture content: 10&ndash;15%)</div>
+                <div class="route-step">Pre-dry at 50&ndash;70&deg;C &mdash; stabilise, reduce moisture to ~5%</div>
+                <div class="route-step">Roast in small batches (130&ndash;160&deg;C, 8&ndash;20 min depending on target depth)</div>
+                <div class="route-annotation">&#8627; 130&ndash;140&deg;C: Maillard onset &mdash; amino acids (D) + sugars (I) &rarr; pyrazines, furanones</div>
+                <div class="route-annotation">&#8627; 150&ndash;160&deg;C: trigonelline (F) &rarr; pyridines, nicotinic acid &middot; CGA lactone formation (A)</div>
+                <div class="route-annotation">&#8627; &gt;160&deg;C: deep roast character, chlorophyll fully destroyed (G)</div>
+                <div class="route-step">Cool rapidly</div>
+                <div class="route-outcome">Emergent State: Delta (Roasted) &mdash; depth controlled by time &times; temperature relationship</div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s26">
+            <div class="section-num">Section 26</div>
+            <h2>Domain 3 — <em>Enzymatic Domain</em></h2>
+            <div class="domain-card">
+                <div class="domain-title">Primary drivers: Endogenous leaf enzymes &middot; Wither &middot; Controlled rest &middot; Ambient temperature</div>
+                <p>This domain uses the leaf's own enzymes as the primary transformation tools, without mechanical disruption sufficient to trigger the full oxidation cascade, and without heat or significant microbial activity. The analogue is a long, slow wither in green tea — where the leaf softens, loses moisture, and allows glycosidase and esterase activity to proceed gently.</p>
+                <p>The Enzymatic Domain is subtle and its products are the hardest to observe directly — unlocked aromatic compounds from the glycoside reservoir, mild textural changes, gradual acidity shifts. It is the domain of patience and small changes that may only become perceptible in the brewed cup.</p>
+            </div>
+            <div class="route-map">
+                <div class="route-title">Enzymatic Domain — Conceptual Route</div>
+                <div class="route-step first">Fresh leaf, intact (no mechanical disruption)</div>
+                <div class="route-step">Long wither, no disruption (24&ndash;72 hrs, controlled humidity 60&ndash;75%, 18&ndash;24&deg;C)</div>
+                <div class="route-annotation">&#8627; Endogenous glycosidases active at low rate &middot; glycoside reservoir gradually unlocked</div>
+                <div class="route-annotation">&#8627; Minimal PPO activation &middot; no significant oxidation without mechanical disruption</div>
+                <div class="route-annotation">&#8627; Terpene glycosides (Reservoir K): slow hydrolysis &mdash; floral potential begins to emerge</div>
+                <div class="route-step">Heat-fix gently (70&ndash;80&deg;C) to arrest enzymatic activity</div>
+                <div class="route-step">Dry at low temperature</div>
+                <div class="route-outcome">Emergent State: Alpha &rarr; Beta transition &mdash; herbaceous with possible floral lift</div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s27">
+            <div class="section-num">Section 27</div>
+            <h2>Domain 4 — <em>Koji Domain</em></h2>
+            <div class="domain-card">
+                <div class="domain-title">Primary drivers: Aspergillus oryzae &middot; Amylases &middot; Proteases &middot; Glycosidases</div>
+                <p>Koji (<em>Aspergillus oryzae</em>) is a food-safe mould used in Japanese culture to produce sake, miso, and soy sauce. Its relevance to coffee leaf processing comes from its enzyme cocktail: proteases that break proteins into amino acids, amylases that convert starches to sugars, and &beta;-glucosidases that cleave glycosidic bonds. Applied via Koji water or direct inoculation, these enzymes can simultaneously unlock the glycoside reservoir (E), increase the free amino acid pool (D), and create new fermentable sugar substrate (I) — all at low temperature, without thermal damage.</p>
+            </div>
+            <div class="route-map">
+                <div class="route-title">Koji Domain — Conceptual Route</div>
+                <div class="route-step first">Fresh or lightly withered leaf</div>
+                <div class="route-step">Koji water contact or Koji inoculation (28&ndash;32&deg;C, 48&ndash;96 hrs, humidity controlled)</div>
+                <div class="route-annotation">&#8627; &beta;-Glucosidase: O-glycoside bonds cleaved &rarr; aglycones released (E)</div>
+                <div class="route-annotation">&#8627; Protease: proteins &rarr; free amino acids &rarr; increased Maillard potential (D)</div>
+                <div class="route-annotation">&#8627; Amylase: polysaccharides &rarr; fermentable sugars &rarr; increased microbial substrate (I)</div>
+                <div class="route-step">Remove / arrest Koji activity (dry or gentle heat-fix)</div>
+                <div class="route-outcome">Emergent State: Beta &rarr; Epsilon transition &mdash; mild sweetness, possible floral notes, increased depth</div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s28">
+            <div class="section-num">Section 28</div>
+            <h2>Domain 5 — <em>Microbial Domain</em></h2>
+            <div class="domain-card">
+                <div class="domain-title">Primary drivers: Yeasts &middot; Lactic Acid Bacteria &middot; Native leaf microbiota</div>
+                <p>The Microbial Domain encompasses broader fermentative activity by multiple organism classes in a less controlled environment. This is the territory of natural fermentation — analogous to the spontaneous fermentation of coffee mucilage in wet-process coffee, or the native fermentation of pu-erh tea.</p>
+                <p>Ester and organic acid production creates profiles that can be simultaneously fruity, sour, complex, and unexpected. The risk of off-flavours — excessive acetic acid, unwanted microbial metabolites — is higher here than in any other domain. But so is the potential for sensory territory that no controlled physical or thermal process could produce.</p>
+            </div>
+            <div class="route-map">
+                <div class="route-title">Microbial Domain — Conceptual Route</div>
+                <div class="route-step first">Fresh leaf, possibly moistened to raise water activity</div>
+                <div class="route-step">Native microbiome activation or selected inoculation (yeast / LAB)</div>
+                <div class="route-step">Fermentation (24&ndash;120 hrs depending on organism, temperature, oxygen regime)</div>
+                <div class="route-annotation">&#8627; Yeasts: sugars (I) &rarr; CO&#8322; + ethanol + esters (fruity, floral)</div>
+                <div class="route-annotation">&#8627; LAB: sugars (I) &rarr; lactic acid + acetic acid (sour, clean or vinegary depending on ratio)</div>
+                <div class="route-annotation">&#8627; Microbial enzymes: glycoside (E) and amino acid (D) pools transformed</div>
+                <div class="route-step">Dry to arrest microbial activity (a<sub>w</sub> below 0.85 suppresses most pathogens; below 0.70 suppresses even xerophilic moulds)</div>
+                <div class="route-outcome">Emergent State: Gamma (Brown/Fermented) &mdash; complex, layered, volatile</div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s29">
+            <div class="section-num">Section 29</div>
+            <h2>Domain 6 — <em>Hybrid Domain</em></h2>
+            <div class="domain-card">
+                <div class="domain-title">Multiple domains overlap simultaneously — the most interesting territory</div>
+                <p>No real-world processing sequence operates in a single domain. Every step carries forward the chemical state established by the previous step. The Hybrid Domain recognises that the most interesting Citane profiles will emerge from deliberate sequences that move through two or more domains in a designed order — each step operating on the outputs of the previous one.</p>
+                <p>A wither followed by Koji treatment followed by a gentle roast combines enzymatic aroma release, enzyme-amplified amino acid substrate, and thermal Maillard development on that enriched substrate — three domains, each feeding the next. This is the territory of State Epsilon.</p>
+            </div>
+            <div class="route-map">
+                <div class="route-title">Hybrid Domain — A Theoretical Sequence</div>
+                <div class="route-step first">Wither (Enzymatic Domain, 24 hrs, 20&deg;C, 70% RH)</div>
+                <div class="route-annotation">&#8627; Glycosides partially unlocked &middot; leaf softened &middot; terpene potential begins</div>
+                <div class="route-step">Wring lightly (Oxidative Domain entry, 2 hrs at 22&deg;C)</div>
+                <div class="route-annotation">&#8627; PPO activated &middot; catechin oxidation begins &middot; colour shifts amber</div>
+                <div class="route-step">Koji water contact (Koji Domain, 48 hrs, 30&deg;C)</div>
+                <div class="route-annotation">&#8627; Glycosidases continue unlocking aromas &middot; proteases amplify amino acid pool &middot; amylases increase sugar substrate</div>
+                <div class="route-step">Rest (Microbial Domain, 24 hrs, native microbiota, anaerobic)</div>
+                <div class="route-annotation">&#8627; Ester formation from available amino acids and sugars</div>
+                <div class="route-step">Dry (70&deg;C, 4 hrs)</div>
+                <div class="route-step">Light roast (130&ndash;140&deg;C, 10&ndash;12 min)</div>
+                <div class="route-annotation">&#8627; Maillard onset on enriched amino acid + sugar pool from Koji step</div>
+                <div class="route-outcome">Emergent State: Epsilon &mdash; genuinely unknown. Requires observation and recording.</div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART VI -->
+        <!-- ============================================ -->
+        <div class="part-divider" id="part6">
+            <div class="part-label">Part VI</div>
+            <h2 class="part-title">The Precursor Network</h2>
+            <p class="part-intro">The Reservoir Model presents compounds as distinct pools. But this is a simplification — the pools are connected. A sugar feeds a microbe. The microbe produces an acid. The acid shifts the pH. The shifted pH changes how an enzyme behaves. Every processing journey is a path through an interconnected network, not a sequence of isolated transformations. This section upgrades the model from a static map to a dynamic one.</p>
+        </div>
+
+        <section id="s30">
+            <div class="section-num">Section 30</div>
+            <h2>From Static Reservoirs to <em>a Dynamic Network</em></h2>
+            <p>The original framework treats compounds as if they merely transform — as if each reservoir is a room, and processing is the key that opens it. This is directionally useful, but it misses something important: the compounds are not in separate rooms. They are in a continuous chemical environment, and they interact.</p>
+            <p>Consider what happens in a single extended wither. Endogenous glycosidases slowly cleave glycoside bonds in Reservoir E, releasing aglycones and free sugars into the medium. The sugars feed the native microbiota on the leaf surface (Reservoir I &rarr; microbial activity). The microbiota produce organic acids that lower the pH. The lower pH changes the rate of PPO activity. PPO acts on the catechin pool (Reservoir C) at a modified rate. The modified oxidation produces different quinone products. Those quinones couple with the freed amino acids (Reservoir D) to produce new pigments and flavour compounds that would not exist in the sum of the reservoirs treated individually.</p>
+            <p>This cascade — triggered by a single activation event, propagating through multiple reservoirs in a specific sequence — is what makes coffee leaf processing genuinely complex, and genuinely interesting. The model should reflect it.</p>
+
+            <div class="box box-evidence">
+                <span class="box-label">Cascade vs. Feedback Loop — An Important Distinction</span>
+                <p>The wither example above describes a <strong>cascade</strong>: A &rarr; B &rarr; C &rarr; D, each step triggered by the previous. This is already more complex than treating reservoirs as isolated. But real biological systems also contain <strong>feedback loops</strong> — where a downstream product modifies the rate of an upstream reaction.</p>
+                <p>Example of a feedback loop in this system: Microbial organic acid production (from Reservoir I sugar consumption) lowers pH. Lower pH changes the activity of PPO. Changed PPO activity alters the rate of catechin oxidation (Reservoir C). The catechin oxidation products are different at lower pH. Those products re-enter the environment and modify the conditions in which microbes are operating. The microbes' behaviour changes as a result. The loop closes.</p>
+                <p>No single step in this loop is large or dramatic. But the accumulation of small feedback effects over hours or days is precisely what makes extended processing sequences produce outcomes that are disproportionate to what any single activation event would suggest. This is what is meant by "system dynamics" rather than "inventory."</p>
+            </div>
+
+            <div class="box box-note">
+                <span class="box-label">The Shift in Question</span>
+                <p>The old question: <em>Which reservoir are we activating?</em><br>
+                The new question: <em>Which pathway through the network am I initiating — and what feedback loops will it encounter along the way?</em></p>
+            </div>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s31">
+            <div class="section-num">Section 31</div>
+            <h2>The <em>Network Map</em></h2>
+            <p>The following diagram represents the key compound nodes and the connections between them. Arrows indicate transformation pathways. The pathways are activated by specific energy systems and activation events — indicated in brackets.</p>
+
+            <div class="network-map">
+                <div class="net-title">Citane Precursor Network — Theoretical Connections</div>
+<pre>
+                    [Enzymatic / Time]
+GLYCOSIDES (E) ──────────────────────────&gt; FREE AGLYCONES (quercetin, kaempferol, terpenes)
+      │                                              │
+      │ [Enzymatic / Microbial]                      │ [Microbial / Thermal]
+      v                                              v
+FREE SUGARS (I) ────────────────────────────────&gt; ESTERS &middot; ACIDS &middot; MAILLARD PRODUCTS
+      │                    [Microbial]               │
+      │                                              │
+      v [Thermal &gt; 120&deg;C]                          v [Thermal &gt; 130&deg;C]
+MAILLARD NETWORK &lt;──── AMINO ACIDS (D) &lt;──── PROTEINS [Protease]
+      │                      │
+      v                      v [Microbial / Thermal]
+PYRAZINES &middot; FURANONES   ESTERS &middot; ALDEHYDES &middot; ORGANIC ACIDS
+
+                    [Mechanical / Oxygen / PPO]
+CATECHINS (C) ──────────────────────────────&gt; QUINONES
+      │                                         │
+      │                                         v [Time / Oxygen]
+      │                                   THEAFLAVIN ANALOGUES &rarr; COLOUR &middot; BODY
+      │                                         │
+      │                                         v [Amino acids D]
+      │                                   BROWN PIGMENTS (coupled products)
+      │                                         │
+      │           &lt; &lt; [FEEDBACK LOOP] &lt; &lt; &lt; &lt; &lt;│
+      │           pH drop (from microbial acids, Reservoir I)
+      │           modifies PPO activity &rarr; alters oxidation rate of this pool
+      │
+CHLOROGENIC ACIDS (A) ──[PPO]──&gt; CGA QUINONES ──&gt; COLOUR &middot; STRUCTURE
+      │
+      └──[Heat &gt; 160&deg;C]──&gt; CGA LACTONES ──&gt; STRUCTURED BITTERNESS
+
+TRIGONELLINE (F) ──[Heat &gt; 160&deg;C]──&gt; PYRIDINES &middot; NICOTINIC ACID ──&gt; ROAST NOTES
+
+MANGIFERIN (B) ──────&gt; ANTIOXIDANT BUFFERING ──&gt; slows / buffers rate of CGA (A) and Catechin (C) oxidation
+      │                ^ [feedback: as A and C oxidise, oxidative potential drops; B buffers this]
+      └──[Unknown]──&gt; POSSIBLE SENSORY CONTRIBUTION (not yet characterised)
+
+LIPIDS (J) ──[Lipoxygenase / Mechanical]──&gt; C6 ALDEHYDES ──&gt; GREEN &middot; GRASSY &middot; FRESH NOTES
+      │
+      └──[Thermal]──&gt; ALDEHYDES &middot; KETONES ──&gt; COOKED &middot; ROASTED NOTES
+
+VOLATILE PRECURSORS (K) ──[Glycosidase]──&gt; FREE TERPENES ──&gt; FLORAL &middot; CITRUS &middot; SPICE
+      │
+      └──[Carotenoid cleavage / Thermal]──&gt; IONONES &middot; DAMASCENONES ──&gt; FLORAL &middot; TOBACCO
+
+CHLOROPHYLL (G) ──[Withering]──&gt; PHEOPHYTIN ──&gt; COLOUR SHIFT (green &rarr; olive &rarr; brown)
+      │
+      └──[Carotenoid path / Thermal]──&gt; VOLATILE PRECURSORS (K)
+</pre>
+            </div>
+            <p style="font-size: 0.85em; color: var(--light-gray);">Note: All pathways are theoretically proposed from published chemistry in analogous systems. Pathways marked [Unknown] have no established analogue. The network is not exhaustive — it represents current understanding of likely connections, not a complete biochemical map.</p>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s32">
+            <div class="section-num">Section 32</div>
+            <h2>Reading a <em>Network Journey</em></h2>
+            <p>A network journey is what happens when you trace a specific processing sequence through the network map. Instead of asking "what does this step do?" you ask "where in the network does this step take me — and what does the chemistry encounter next?"</p>
+
+            <div class="route-map">
+                <div class="route-title">Example Network Journey — Koji + Gentle Roast</div>
+                <div class="route-step first">START: Fresh leaf &middot; Reservoirs A, B, C, D, E, F, G, H, I, J, K all present and mostly inactive</div>
+                <div class="route-step">Koji water contact (48 hrs, 30&deg;C)</div>
+                <div class="route-annotation">&#8627; Network entry point: Glycosides (E) &rarr; &beta;-glucosidase &rarr; free aglycones + free sugars (I)</div>
+                <div class="route-annotation">&#8627; Proteases &rarr; proteins &rarr; free amino acids (D) pool increases significantly</div>
+                <div class="route-annotation">&#8627; Network now primed: enlarged D and I pools available for downstream reactions</div>
+                <div class="route-step">Dry at 70&deg;C (4 hrs)</div>
+                <div class="route-annotation">&#8627; Water activity drops &rarr; microbial and enzymatic activity arrested &middot; chemistry locked temporarily</div>
+                <div class="route-step">Light roast (135&deg;C, 10 min)</div>
+                <div class="route-annotation">&#8627; Thermal energy activates Maillard network: enlarged D &times; enlarged I &rarr; rich pyrazine and furanone production</div>
+                <div class="route-annotation">&#8627; Trigonelline (F) &rarr; partial degradation &rarr; mild pyridine notes begin</div>
+                <div class="route-annotation">&#8627; CGA lactones (A): moderate formation &mdash; structured bitterness layer</div>
+                <div class="route-annotation">&#8627; Released terpenes (K, from Koji glycosidase step) may survive low-temperature roast as volatile character</div>
+                <div class="route-outcome">Network outcome: A Maillard profile built on a Koji-amplified amino acid &times; sugar substrate, layered over mild trigonelline conversion and possible terpene lift. State Epsilon &mdash; distinct from a standard roasted leaf pathway.</div>
+            </div>
+
+            <p>This is the difference between a process description and a network journey. The process description says: "Koji treatment, then roast." The network journey says: "Koji treatment amplified the amino acid and sugar pools, which were then converted by Maillard chemistry during roasting into a richer pyrazine profile than a direct-roast pathway would produce — with a possible additional volatile layer from Koji's glycosidase activity on the terpene glycoside pool."</p>
+            <p>One describes what was done. The other describes why it produced something different.</p>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART VII -->
+        <!-- ============================================ -->
+        <div class="part-divider" id="part7">
+            <div class="part-label">Part VII</div>
+            <h2 class="part-title">Emergent States &amp; Route Maps</h2>
+            <p class="part-intro">Rather than targeting specific flavours, the model predicts states — broad sensory territories defined by which chemical systems are dominant at the point of brewing. A batch does not "achieve" a state; it arrives at a position in the landscape. The route maps record how it got there.</p>
+        </div>
+
+        <section id="s33">
+            <div class="section-num">Section 33</div>
+            <h2>State Alpha — <em>Green</em></h2>
+            <div class="state-card">
+                <div class="state-greek">&alpha;</div>
+                <div>
+                    <div class="state-name">State Alpha / Green — The Unactivated Leaf</div>
+                    <p>Intact chlorophyll dominates. Catechin and CGA pools are largely unreacted. No significant oxidation, no Maillard chemistry, no fermentation. Accessed by minimal-disruption, low-heat processing: steaming to kill-green, then drying at low temperature with no mechanical disruption and no fermentation.</p>
+                    <p><strong>Sensory tendency:</strong> Fresh, vegetal, herbal, bright. Possible marine or seaweed note if chlorophyll is prominent. Mild grassiness. Relatively simple profile — the leaf at its least transformed, with the highest proportion of intact compounds.</p>
+                    <ul class="compound-list">
+                        <li>Dominant: Chlorophyll (intact) &middot; Unreacted CGAs &middot; Intact catechins &middot; Xanthones (non-reacted)</li>
+                        <li>Present: Lipid-derived C6 aldehydes if any mechanical disruption occurred (Reservoir J)</li>
+                        <li>Absent or minimal: Theaflavin analogues &middot; Maillard products &middot; Fermentation esters &middot; Trigonelline degradation products</li>
+                    </ul>
+                </div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s34">
+            <div class="section-num">Section 34</div>
+            <h2>State Beta — <em>Amber</em></h2>
+            <div class="state-card">
+                <div class="state-greek">&beta;</div>
+                <div>
+                    <div class="state-name">State Beta / Amber — The Oxidised Leaf</div>
+                    <p>Oxidised catechin products dominate the sensory profile. This is the most "tea-like" state available to Citane. Accessed by partial to full oxidation pathways, stopped before fermentation or deep thermal conversion.</p>
+                    <p><strong>Sensory tendency:</strong> Rounded, tea-like, honeyed, possibly floral. Amber to deep amber liquor. Moderate to full body. Smooth acidity from modified CGA pool. The xanthone pool (mangiferin, Reservoir B) may contribute an antioxidant buffering that makes the cup feel stable and clean rather than harsh — a character specific to coffee leaf and absent from tea.</p>
+                    <ul class="compound-list">
+                        <li>Dominant: Oxidised catechin polymers &middot; Modified CGAs &middot; Mangiferin (relatively stable)</li>
+                        <li>Possible: Glycoside-released aroma compounds if enzymatic domain preceded oxidation</li>
+                        <li>Absent: Fresh chlorophyll character &middot; Intact catechin bitterness</li>
+                    </ul>
+                </div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s35">
+            <div class="section-num">Section 35</div>
+            <h2>State Gamma — <em>Brown</em></h2>
+            <div class="state-card">
+                <div class="state-greek">&gamma;</div>
+                <div>
+                    <div class="state-name">State Gamma / Brown — The Fermented Leaf</div>
+                    <p>Microbial activity has had significant influence on the leaf's chemistry. Fermentation esters, organic acids, and biotransformed phenolics characterise this territory. The analogy is aged or wet-pile pu-erh tea, or naturally fermented coffee — a profile that is layered, complex, and not immediately legible to an untrained palate.</p>
+                    <p><strong>Sensory tendency:</strong> Earthy, layered, fermented complexity, possible dried fruit or vinous notes. Body can be significant. Acidity shifts from the bright CGA-acidity of green states to a softer organic-acid acidity from lactate and acetate production. This is the state where Citane can move furthest from conventional coffee leaf character.</p>
+                    <ul class="compound-list">
+                        <li>Dominant: Fermentation esters &middot; Lactic/acetic acids &middot; Biotransformed polyphenols</li>
+                        <li>Possible: Microbial biotransformation of mangiferin (B) and lignan (H) pools</li>
+                        <li>Absent: Fresh chlorophyll character &middot; Intact CGA bitterness</li>
+                    </ul>
+                </div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s36">
+            <div class="section-num">Section 36</div>
+            <h2>State Delta — <em>Roasted</em></h2>
+            <div class="state-card">
+                <div class="state-greek">&delta;</div>
+                <div>
+                    <div class="state-name">State Delta / Roasted — The Thermal Leaf</div>
+                    <p>The thermal domain, taken to sufficient depth, produces State Delta. Maillard products — pyrazines, furans, aldehydes — dominate. Trigonelline degradation adds pyridine notes. CGA lactones contribute structured bitterness distinct from raw CGA bitterness. Chlorophyll is fully transformed.</p>
+                    <p><strong>Sensory tendency:</strong> Nutty, toasted grain, caramel, roasted — coffee-adjacent but distinct from roasted coffee beans because the starting chemistry differs. The trigonelline-to-caffeine ratio in the leaf is different from the bean, and the far lower lipid content compared to the bean (far fewer diterpenes and wax esters) means the roast character will be cleaner and less heavy. The leaf's identity remains present, but the transformations are deeper and more irreversible than in any other state.</p>
+                    <ul class="compound-list">
+                        <li>Dominant: Maillard products &middot; Pyrazines &middot; Trigonelline degradation products &middot; CGA lactones</li>
+                        <li>Variable: Depends heavily on pre-roast processing &mdash; Koji-amplified pathways produce richer Maillard output</li>
+                        <li>Absent: Chlorophyll &middot; Intact catechins &middot; Fresh aromatics</li>
+                    </ul>
+                </div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s37">
+            <div class="section-num">Section 37</div>
+            <h2>State Epsilon — <em>Unknown</em></h2>
+            <div class="state-card">
+                <div class="state-greek">&epsilon;</div>
+                <div>
+                    <div class="state-name">State Epsilon / Unknown — The Unmapped Territory</div>
+                    <p>State Epsilon is not a failure of the model. It is the model's most honest entry — and arguably its most important one.</p>
+                    <p>When multiple domains overlap — when enzymatic, oxidative, microbial, and thermal chemistry occur in close sequence, each acting on the outputs of the previous — the resulting compound profile cannot be predicted from individual reservoir descriptions alone. Coupling reactions between different compound classes, novel biotransformation products, and the emergence of compounds not present in the starting material: these are the chemistry of State Epsilon.</p>
+                    <p>This is where an entirely new Citane identity may emerge. It cannot be designed from first principles. It must be arrived at through experimentation, recognised when it appears, and recorded precisely enough that the route back can be found.</p>
+                    <p>State Epsilon is not a destination. It is a territory to be explored. Every Epsilon batch that produces something interesting becomes the seed of a new route map — and the model grows from the accumulation of those routes into an actual navigable geography of coffee leaf transformation.</p>
+                </div>
+            </div>
+            <div class="box box-evidence">
+                <span class="box-label">Why the Unknown State Is Scientifically Rigorous</span>
+                <p>Most food processing documents pretend to understand everything. Koji, oxidation, endogenous enzymes, leaf microbiome, and roasting chemistry all interacting together in a novel substrate is extraordinarily difficult to predict from first principles. State Epsilon is not a placeholder to be filled in later. It is a principled acknowledgement that complex interacting systems generate outcomes that cannot be computed from their components. This is rigour, not weakness.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s38">
+            <div class="section-num">Section 38</div>
+            <h2>The Route Map — <em>Template and Instructions</em></h2>
+            <p>A Route Map is a record of a processing sequence and its observed outcome. It is the primary tool for converting exploration into repeatable craft. Without route maps, every batch is an experiment with no memory. With them, experiments accumulate into knowledge.</p>
+
+            <div class="batch-sheet">
+                <div class="field-row"><div class="field-label">Batch ID / Date</div><div>_________________ / _________________</div></div>
+                <div class="field-row"><div class="field-label">Leaf source</div><div>Variety &middot; Age at harvest &middot; Harvest date &middot; Weather &middot; Altitude &middot; Shade type</div></div>
+                <div class="field-row"><div class="field-label">Step 1</div><div>[Event type] &middot; Duration: ___ hrs &middot; Temperature: ___&deg;C &middot; Humidity: ___% &middot; Notes:</div></div>
+                <div class="field-row"><div class="field-label">Step 2</div><div>[Event type] &middot; Duration: ___ hrs &middot; Temperature: ___&deg;C &middot; Humidity: ___% &middot; Notes:</div></div>
+                <div class="field-row"><div class="field-label">Step 3</div><div>[Event type] &middot; Duration: ___ hrs &middot; Temperature: ___&deg;C &middot; Humidity: ___% &middot; Notes:</div></div>
+                <div class="field-row"><div class="field-label">&hellip;</div><div style="color:var(--light-gray); font-style:italic;">continue for each step &mdash; precision matters: not "overnight" but "14 hours at 22&deg;C"</div></div>
+                <div class="field-row"><div class="field-label">Brew parameters</div><div>Dose (g/L) &middot; Water temperature (&deg;C) &middot; Brew time (min) &middot; Vessel type &middot; Water quality</div></div>
+                <div class="field-row"><div class="field-label">Observed state</div><div>Dry leaf colour &amp; aroma &middot; Liquor colour &middot; Aroma &middot; Taste &middot; Body &middot; Finish &amp; duration</div></div>
+                <div class="field-row"><div class="field-label">Closest state</div><div><span class="state-tag state-alpha">&alpha;</span><span class="state-tag state-beta">&beta;</span><span class="state-tag state-gamma">&gamma;</span><span class="state-tag state-delta">&delta;</span><span class="state-tag state-epsilon">&epsilon;</span></div></div>
+                <div class="field-row"><div class="field-label">Network journey</div><div>Which reservoirs were activated, in what sequence, and what the chemistry encountered at each step. Example: "Wither activated E (glycosidase) &rarr; released sugars into I &rarr; Koji amplified D (amino acids) &rarr; roast converted D&times;I via Maillard &rarr; State Delta with unusual floral note (possibly K terpene release during Koji step)." Even a one-sentence note is better than nothing.</div></div>
+                <div class="field-row"><div class="field-label">Evaluation</div><div>What worked &middot; What to modify &middot; What was unexpected &middot; Worth repeating? Y/N</div></div>
+            </div>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s39">
+            <div class="section-num">Section 39</div>
+            <h2>The Most Unexplored <em>Territory</em></h2>
+            <p>After surveying the full model — eleven reservoirs, six activation events, five energy systems, six process domains, five emergent states, and the precursor network — one intersection stands out as the most theoretically rich and practically accessible unexplored territory in Citane chemistry.</p>
+            <p>It is not the trigonelline thermal pathway. That is well-understood in the context of coffee bean roasting and can be extrapolated with reasonable confidence.</p>
+            <p>It is not the oxidative domain. That has analogues in a century of tea processing science.</p>
+            <p>The most unexplored Citane territory is:</p>
+
+            <div class="box box-evidence">
+                <span class="box-label">The Frontier</span>
+                <p style="font-size: 1.1em; font-weight: 700;">Glycosides (E) + Amino Acids (D) + Microbial Enzymes + Mild Heat</p>
+                <p>The convergence of enzymatic glycoside unlocking, microbial and Koji-driven amplification of the amino acid pool, and low-temperature thermal development of the resulting substrates.</p>
+                <p>This intersection sits directly at the centre of existing Citane experimental practice: withering, wringing, Koji water treatment, resting, drying, and gentle roasting. Each of these steps makes sense individually. What the network model reveals is that they are not independent — they are a cascade. Each step modifies the substrate that the next step works on. The Koji treatment does not simply add flavour. It rebuilds the chemical landscape that the roasting step encounters.</p>
+                <p>A direct-roast coffee leaf and a Koji-treated-then-roasted coffee leaf begin with the same starting material. They do not end in the same place — because the energy systems acting on the Koji-treated leaf operate on an enriched and partially transformed precursor network. The outcome is structurally different, not merely flavour-different.</p>
+                <p>This is the shortest route toward genuinely new coffee-leaf flavour territory — flavour that is not a version of tea, not a version of roasted coffee, and not a version of fermented fruit, but something that emerges from the specific chemistry of this leaf, processed with these tools, in this sequence.</p>
+            </div>
+
+            <div class="box box-note">
+                <span class="box-label">A Note on Ambition</span>
+                <p>This document has not resolved the question of what Citane's most distinctive flavour identity is. It cannot — that question is answered in the cup, not on paper. What it has done is map the territory where that answer is most likely to be found, provide the vocabulary for describing the journey, and establish the framework for recording what is discovered along the way.</p>
+                <p>The work is in the leaf. The document is the map.</p>
+            </div>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- APPENDICES -->
+        <!-- ============================================ -->
+        <div class="part-divider" id="appendices">
+            <div class="part-label">Appendices</div>
+            <h2 class="part-title">Reference Data &amp; Attribution</h2>
+        </div>
+
+        <section id="a1">
+            <div class="section-num">Appendix 1</div>
+            <h2>Full Compound Table — <em>Cangeloni et al. 2022</em></h2>
+            <p style="color: var(--gray);">Complete compound identification data as reported in the source paper. Rt = retention time. Concentrations in g/kg dry weight where measured. All ESI negative mode unless marked.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>#</th><th>Compound Name</th><th>Chemical Class</th><th>Rt (min)</th><th>[M&minus;H]&#8315;</th><th>g/kg DW</th><th>%RSD</th></tr></thead>
+                    <tbody>
+                        <tr><td>18</td><td>Quinic acid</td><td>Organic acid</td><td>1.01</td><td>191</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>1</td><td>3-Caffeoylquinic acid (3-CGA)</td><td>Chlorogenic acid</td><td>3.51</td><td>353</td><td>1.28&plusmn;0.12</td><td>9.2</td></tr>
+                        <tr><td>19</td><td>Iriflophenone 3-C-glucoside</td><td>Xanthone</td><td>5.07</td><td>407</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>20a</td><td>Catechin / Epicatechin</td><td>Flavonoid / Flavan-3-ol</td><td>5.28</td><td>289</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>2</td><td>1-Caffeoylquinic acid</td><td>Chlorogenic acid</td><td>6.69</td><td>353</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>3</td><td>4-Caffeoylquinic acid (4-CGA)</td><td>Chlorogenic acid</td><td>7.06</td><td>353</td><td>0.89&plusmn;0.07</td><td>8.0</td></tr>
+                        <tr><td>4</td><td>5-Caffeoylquinic acid (5-CGA)</td><td>Chlorogenic acid</td><td>7.70</td><td>353</td><td>16.27&plusmn;1.66</td><td>10.2</td></tr>
+                        <tr><td>20b</td><td>Catechin / Epicatechin (isomer)</td><td>Flavonoid / Flavan-3-ol</td><td>10.38</td><td>289</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>21</td><td>Procyanidin B (dimer)</td><td>Procyanidin</td><td>11.22</td><td>577</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>22</td><td>Isomangiferin</td><td>Xanthone</td><td>11.63</td><td>421</td><td>0.52&plusmn;0.03</td><td>5.8</td></tr>
+                        <tr><td>5</td><td>Mangiferin</td><td>Xanthone</td><td>12.42</td><td>421</td><td>4.43&plusmn;0.14</td><td>3.3</td></tr>
+                        <tr><td>24</td><td>Procyanidin trimer A-type</td><td>Procyanidin</td><td>16.19</td><td>863</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>25</td><td>Procyanidin tetramer B-type</td><td>Procyanidin</td><td>17.10</td><td>576*</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>26</td><td>Apigenin 6,8-di-C-glucoside</td><td>Flavonoid (C-glycoside)</td><td>17.91</td><td>593</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>27</td><td>Procyanidin C (trimer)</td><td>Procyanidin</td><td>18.95</td><td>865</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>28</td><td>5-Feruloylquinic acid (5-FQA)</td><td>Chlorogenic acid</td><td>19.25</td><td>367</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>29</td><td>Rutin glycoside</td><td>Flavonoid glycoside</td><td>19.89</td><td>771</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>30</td><td>Quercetin sophoroside</td><td>Flavonoid glycoside</td><td>20.70</td><td>625</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>31a</td><td>Cinchonain I isomer a</td><td>Lignan</td><td>21.75</td><td>451</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>32</td><td>Kaempferol triglycoside</td><td>Flavonoid glycoside</td><td>22.41</td><td>755</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>6</td><td>Rutin (quercetin rutinoside)</td><td>Flavonoid</td><td>23.36</td><td>609</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>33</td><td>3,4-Dicaffeoylquinic acid (3,4-dCQA)</td><td>Chlorogenic acid (di-)</td><td>24.00</td><td>515</td><td>0.63&plusmn;0.05</td><td>7.6</td></tr>
+                        <tr><td>34</td><td>3,5-Dicaffeoylquinic acid (3,5-dCQA)</td><td>Chlorogenic acid (di-)</td><td>24.62</td><td>515</td><td>0.58&plusmn;0.02</td><td>3.4</td></tr>
+                        <tr><td>35</td><td>Kaempferol-3-O-rhamnoglucoside</td><td>Flavonoid glycoside</td><td>25.50</td><td>593</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>36</td><td>4,5-Dicaffeoylquinic acid (4,5-dCQA)</td><td>Chlorogenic acid (di-)</td><td>26.44</td><td>515</td><td>0.91&plusmn;0.05</td><td>5.3</td></tr>
+                        <tr><td>37</td><td>6-O-(p-hydroxybenzoyl)mangiferin</td><td>Xanthone (acylated)</td><td>27.10</td><td>541</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>31b</td><td>Cinchonain I isomer b</td><td>Lignan</td><td>28.52</td><td>451</td><td>&mdash;</td><td>&mdash;</td></tr>
+                        <tr><td>38&dagger;</td><td>Trigonelline</td><td>Alkaloid</td><td>1.11</td><td>&mdash;</td><td>4.47&plusmn;0.13</td><td>2.9</td></tr>
+                        <tr><td>39&dagger;</td><td>Caffeine</td><td>Alkaloid</td><td>20.69</td><td>&mdash;</td><td>7.94&plusmn;0.42</td><td>5.3</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size: 0.8em; color: var(--light-gray);">* Doubly deprotonated [M&minus;2H]&sup2;&#8315; &nbsp; &dagger; ESI positive mode [M+H]&#8314; &nbsp; NMR additionally detected (not in table): Malic acid, Lactic acid, Leucine, Alanine, Glutamine, Aspartic acid, Cysteine, Choline, Saccharides (hexose, deoxyhexose, pentose)</p>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="a2">
+            <div class="section-num">Appendix 2</div>
+            <h2>Source Attribution &amp; Disclaimers</h2>
+
+            <div class="box box-evidence">
+                <span class="box-label">Primary Scientific Source</span>
+                <p>Cangeloni, L.; Bonechi, C.; Leone, G.; Consumi, M.; Andreassi, M.; Magnani, A.; Rossi, C.; Tamasi, G. Characterization of Extracts of Coffee Leaves (<em>Coffea arabica</em> L.) by Spectroscopic and Chromatographic/Spectrometric Techniques. <em>Foods</em> 2022, 11, 2495. DOI: 10.3390/foods11162495. Published under Creative Commons Attribution (CC BY) 4.0.</p>
+                <p>All compound data, quantitative values, chromatographic parameters, and analytical findings cited in this document originate from this paper. The research belongs to the original authors. Citane / KoffyKraft make no claim of ownership over this scientific data.</p>
+            </div>
+
+            <div class="box box-caution">
+                <span class="box-label">Status of This Document</span>
+                <p>This document is a conceptual model only. It is not experimentally validated. It is not a processing protocol. It is not a functional or health claim of any kind. All theoretical statements about compound behaviour under processing conditions are extrapolations from published chemistry in analogous systems (tea, wine, coffee bean roasting, plant fermentation) and have not been specifically tested on coffee leaf material from Thumpassery Estate or anywhere else.</p>
+                <p>Reservoirs I (Sugar), J (Lipid), and K (Volatile Precursor) are proposed theoretical extensions beyond the Cangeloni 2022 dataset, based on known plant leaf chemistry and documented in the relevant sections as such. They represent testable hypotheses, not established findings.</p>
+                <p>Where the model speculates, it says so. Where it does not know, it says so. This is intentional — a document that pretends to certainty it does not have is not a useful scientific tool.</p>
+            </div>
+
+            <div class="box box-tradition">
+                <span class="box-label">Production Entity &amp; Editorial Attribution</span>
+                <p>KoffyKraft — Thumpassery Estate, Karavaloor, near Punalur, Kollam District, Kerala, India. Arabica Chandragiri variety, grown under rubber shade at approximately 130m altitude. The Citane beverage category is developed and documented by KoffyKraft.</p>
+                <p>Compiled and editorially structured by Citane / KoffyKraft. Source research belongs to the original scientific authors. Traditional knowledge of coffee leaf use belongs to the communities of origin who have practised it for centuries.</p>
+            </div>
+
+            <p style="text-align: center; font-size: 0.8em; color: var(--light-gray); line-height: 2; margin-top: 30px; border-top: 1px solid var(--subtle); padding-top: 20px;">
+                CITANE REACTIVE LANDSCAPE MODEL &middot; VERSION 2.0<br>
+                KoffyKraft / Thumpassery Estate &middot; Karavaloor &middot; Kollam &middot; Kerala &middot; India<br>
+                Scientific pivot: Cangeloni et al., Foods 2022, 11, 2495 &middot; CC BY 4.0<br>
+                Not experimentally validated &middot; A map, not a protocol &middot; Speculative by design
+            </p>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
 
     </div>
 
     <footer>
         <div class="footer-back"><a href="index.html">&larr; Back to BUNA Library</a></div>
-        <p><strong>Citane Reactive Landscape Model</strong> · Version 2.0 [Build in progress]</p>
-        <p>KoffyKraft / Thumpassery Estate · Karavaloor · Kollam · Kerala · India</p>
+        <p><strong>Citane Reactive Landscape Model</strong> &middot; Version 2.0</p>
+        <p>KoffyKraft / Thumpassery Estate &middot; Karavaloor &middot; Kollam &middot; Kerala &middot; India</p>
         <div class="source-block">
-            <strong>Note:</strong> This is the new design system shell for Paper I, with the Primer (P1–P5) and full Table of Contents complete. Parts I through VII and the Appendices are being migrated section-by-section from the previous version.
+            <strong>Scientific pivot:</strong> Cangeloni et al., <em>Foods</em> 2022, 11, 2495 &middot; CC BY 4.0. All theoretical extensions (Reservoirs I, J, K and all "Theoretical Behaviour" sections) are clearly labelled hypotheses, not established findings. This is a conceptual model, not a processing protocol or health claim.
         </div>
     </footer>
 
