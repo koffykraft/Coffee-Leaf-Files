@@ -483,6 +483,104 @@
             padding-top: 15px;
             text-align: left;
         }
+        /* ====================================================
+           RESERVOIR CARDS
+           ==================================================== */
+        .reservoir {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .reservoir-header {
+            background: var(--dark);
+            color: white;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .res-tag {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            background: var(--accent);
+            padding: 4px 10px;
+            border-radius: 3px;
+        }
+        .res-name { font-weight: 600; }
+        .reservoir-body { padding: 20px 24px; }
+        .primer-line {
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--subtle);
+        }
+        .compound-list, .outcome-list {
+            list-style: none;
+            margin: 8px 0 16px;
+        }
+        .compound-list li {
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 0.88em;
+            padding: 4px 0 4px 18px;
+            position: relative;
+            color: var(--dark);
+        }
+        .compound-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        .outcome-list li {
+            padding: 5px 0 5px 18px;
+            position: relative;
+            font-size: 0.95em;
+        }
+        .outcome-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--light-gray);
+        }
+        .proposed-tag {
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 0.7em;
+            color: var(--caution);
+            margin-left: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ====================================================
+           ACTIVATION EVENT CARDS
+           ==================================================== */
+        .event-card {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .event-label {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .event-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
     </style>
 </head>
 <body>
@@ -984,12 +1082,429 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- PART II — PLACEHOLDER FOR NEXT SECTION -->
+        <!-- PART II -->
         <!-- ============================================ -->
-        <!-- TO BE CONTINUED: Part II Reservoirs A-K (s4-s14),
-             Part III Activation Events (s15-s20), Part IV Energy Systems (s21-s23),
-             Part V Process Domains (s24-s29), Part VI Precursor Network (s30-s32),
-             Part VII Emergent States (s33-s39), Appendices (a1-a2) -->
+        <div class="part-divider" id="part2">
+            <div class="part-label">Part II</div>
+            <h2 class="part-title">The Reservoir Model</h2>
+            <p class="part-intro">The coffee leaf is a collection of distinct chemical systems — each with its own pool of compounds, its own reactivity, and its own flavour potential. We identify eleven reservoirs (A through K). Eight are directly evidenced by Cangeloni 2022; three — Sugar (I), Lipid (J), and Volatile Precursor (K) — are proposed theoretical extensions based on known plant leaf chemistry, clearly labelled as such throughout. All eleven coexist simultaneously in every leaf. Processing determines which become active.</p>
+        </div>
+
+        <section id="s4">
+            <div class="section-num">Section 04</div>
+            <h2>Reservoir A — <em>Chlorogenic Acid System</em></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR A</span><span class="res-name">Chlorogenic Acid System — The Dominant Pool</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: these are the most abundant compounds in your leaf. They give structure, mild bitterness, and acidity to the cup. Under heat or oxidation they transform significantly.</p>
+                    <h4>Compounds Present (from Cangeloni 2022)</h4>
+                    <ul class="compound-list">
+                        <li>5-CGA — 16.27 g/kg DW [dominant by mass]</li>
+                        <li>3-CGA — 1.28 g/kg DW</li>
+                        <li>4-CGA — 0.89 g/kg DW &middot; 1-CGA — detected</li>
+                        <li>4,5-dCQA — 0.91 &middot; 3,4-dCQA — 0.63 &middot; 3,5-dCQA — 0.58 g/kg DW</li>
+                        <li>5-Feruloylquinic acid (5-FQA) — detected</li>
+                        <li>Quinic acid (free) — detected</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&rarr; Reservoir C</strong> (Catechin): CGA quinones couple with catechin oxidation products to form brown pigments — the two pools interact during oxidation, not separately</li>
+                        <li><strong>&rarr; Reservoir D</strong> (Amino acids): CGA quinones couple with free amino acids under heat or oxidation &rarr; brown pigments, flavour compounds</li>
+                        <li><strong>&rarr; Reservoir I</strong> (Sugar): Quinic acid released from CGA hydrolysis enters the sugar pool &rarr; available for fermentation or Maillard</li>
+                        <li><strong>&larr; Reservoir B</strong> (Mangiferin): Mangiferin buffers the oxidative environment, modifying how fast and how far CGA oxidation proceeds</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>Enzymatic oxidation via PPO produces o-quinones &rarr; colour development (amber to brown), body</li>
+                        <li>Thermal degradation above ~160&deg;C yields chlorogenic acid lactones — structured bitterness distinct from raw CGA bitterness</li>
+                        <li>Hydrolysis under heat or acid conditions releases quinic acid and caffeic acid</li>
+                        <li>At moderate concentrations: clean, pleasant acidity. At high concentrations: astringency</li>
+                        <li>Interaction with amino acids under heat &rarr; Maillard browning products</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box-note">
+                <span class="box-label">Theoretical Note</span>
+                <p>The dicaffeoylquinic acids (dCQAs) are structurally more complex than the monoacyl forms and may behave differently under equivalent conditions. Their specific reactivity in coffee leaf processing has not been studied. Their collective concentration (~2.1 g/kg DW) is not negligible — they may contribute to body and colour development in ways that remain to be characterised.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s5">
+            <div class="section-num">Section 05</div>
+            <h2>Reservoir B — <em>Mangiferin &amp; Xanthone System</em></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR B</span><span class="res-name">Mangiferin &amp; Xanthone System — The Distinctive Pool</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: mangiferin is the compound that makes coffee leaf unusual among beverage ingredients. It is not found in meaningful quantities in tea, wine, or coffee beans. Its flavour role is not fully understood — which is precisely what makes it interesting.</p>
+                    <h4>Compounds Present</h4>
+                    <ul class="compound-list">
+                        <li>Mangiferin — 4.43 g/kg DW [dominant xanthone]</li>
+                        <li>Isomangiferin — 0.52 g/kg DW</li>
+                        <li>Iriflophenone 3-C-glucoside — detected</li>
+                        <li>6-O-(p-hydroxybenzoyl)mangiferin — detected [novel, not previously reported in coffee leaf]</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&harr; Reservoir A</strong> (Chlorogenic acids): Mangiferin's antioxidant capacity buffers CGA oxidation — the two pools do not transform independently during oxidation</li>
+                        <li><strong>&harr; Reservoir C</strong> (Catechins): Same buffering relationship — mangiferin may slow the catechin oxidation cascade, producing a gentler, more extended oxidative state</li>
+                        <li><strong>&rarr; Reservoir E</strong> (Glycosides): Iriflophenone 3-C-glucoside is itself a glycoside within this reservoir — subject to the same glycosidase unlocking as other glycoside compounds</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>High thermal stability — survives temperatures that degrade catechins and CGAs</li>
+                        <li>Strong antioxidant capacity — may buffer oxidative reactions in the cup, contributing to stability</li>
+                        <li>Possible mild bitterness at high concentrations; sensory threshold not established for infusion</li>
+                        <li>Oxidative biotransformation products under prolonged fermentation: largely unexplored</li>
+                        <li>The acylated form (compound 37) may behave differently from mangiferin itself under heat</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box-caution">
+                <span class="box-label">The Open Question</span>
+                <p>Mangiferin's specific sensory contribution in a brewed Citane infusion is genuinely unknown. At 4.43 g/kg DW it is present in significant quantity. Whether it contributes a perceptible flavour — or acts as an antioxidant buffer that modifies how other compounds behave — is one of the most interesting unanswered questions in Citane chemistry. Observation in the cup is currently the only route to an answer.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s6">
+            <div class="section-num">Section 06</div>
+            <h2>Reservoir C — <em>Catechin &amp; Procyanidin System</em></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR C</span><span class="res-name">Catechin &amp; Procyanidin System — The Oxidation Engine</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: this is the system responsible for black tea chemistry. When the leaf is damaged and exposed to air, catechins oxidise — producing amber colour, body, and rounded flavour. Coffee leaves contain the same system.</p>
+                    <h4>Compounds Present</h4>
+                    <ul class="compound-list">
+                        <li>Catechin / Epicatechin — two distinct chromatographic peaks (20a, 20b)</li>
+                        <li>Procyanidin B — dimer, B-type</li>
+                        <li>Procyanidin trimer A-type</li>
+                        <li>Procyanidin tetramer B-type</li>
+                        <li>Procyanidin C — trimer</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&harr; Reservoir A</strong> (Chlorogenic acids): Both pools activate under the same PPO-driven oxidation event — their products interact and co-polymerise. The combined result is different from either pool acting alone</li>
+                        <li><strong>&larr; Reservoir B</strong> (Mangiferin): Mangiferin buffers the oxidation rate — reducing mangiferin concentration (if it is consumed) may accelerate catechin oxidation</li>
+                        <li><strong>&rarr; Reservoir D</strong> (Amino acids): Catechin quinones couple with amino acids to form brown pigments — this is a cross-reservoir coupling reaction</li>
+                        <li><strong>&larr; Reservoir I</strong> (Sugar): Sugars released into the medium by glycoside hydrolysis can participate in Maillard coupling with catechin-derived products under heat</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>Enzymatic oxidation via PPO produces theaflavin-analogous compounds &rarr; amber to red-brown liquor</li>
+                        <li>Further polymerisation of oxidation products &rarr; thearubigin-analogous compounds &rarr; body, depth</li>
+                        <li>Procyanidins may polymerise under oxidative or thermal conditions &rarr; tannin-like mouthfeel</li>
+                        <li>Hui Gan effect (returning sweetness) has been observed with aged and oxidised catechin systems in tea</li>
+                        <li>Chill haze possible at lower brew temperatures due to polyphenol-protein precipitation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box-tradition">
+                <span class="box-label">Tea Processing Analogy</span>
+                <p>In black tea, catechin oxidation produces theaflavins (brightness, briskness) and thearubigins (body, colour, depth). Whether PPO in coffee leaf produces structurally identical or only analogous compounds has not been established. The analogy is directionally reliable; it is not a precise prediction. The presence of a large xanthone pool alongside the catechin system — absent from <em>Camellia sinensis</em> tea — means the overall oxidative chemistry of coffee leaf will have its own character.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s7">
+            <div class="section-num">Section 07</div>
+            <h2>Reservoir D — <em>Amino Acid System</em></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR D</span><span class="res-name">Amino Acid System — The Flavour Precursor Pool</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: amino acids are not flavours themselves, but they become flavours. Under heat they react with sugars to create toasted and nutty aromas. Under microbial activity they become esters, organic acids, and fruity notes. This is arguably the most reactive pool in the leaf relative to its concentration.</p>
+                    <h4>Compounds Present (NMR detection)</h4>
+                    <ul class="compound-list">
+                        <li>Alanine — Maillard precursor &rarr; mild roasted sweetness</li>
+                        <li>Leucine — microbial precursor &rarr; isoamyl alcohol pathway (fruity esters)</li>
+                        <li>Glutamine — possible umami background (speculative)</li>
+                        <li>Aspartic acid — Maillard precursor</li>
+                        <li>Cysteine — sulphur-containing aroma precursor under roasting</li>
+                        <li>Choline — Maillard and microbial substrate</li>
+                        <li>Malic acid (organic acid) — contributes clean, apple-like acidity</li>
+                        <li>Lactic acid (organic acid) — soft, round acidity</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&harr; Reservoir I</strong> (Sugar): Amino acids and sugars are the two co-reactants in the Maillard reaction — neither produces roasted aromas without the other. This is the most direct cross-reservoir dependency in the model</li>
+                        <li><strong>&larr; Reservoir E</strong> (Glycosides): Sugar released from glycoside hydrolysis replenishes the Maillard sugar pool — glycosidase activity in Reservoir E directly amplifies the thermal potential of Reservoir D</li>
+                        <li><strong>&rarr; Reservoir C</strong> (Catechins): Free amino acids couple with catechin quinones during oxidation &rarr; brown pigments and new flavour compounds</li>
+                        <li><strong>&larr; Koji / Microbial</strong>: Protease activity (Koji, LAB) increases the free amino acid pool — the most powerful known way to amplify this reservoir before thermal processing</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>Maillard reactions with reducing sugars above ~120&deg;C &rarr; pyrazines (nutty, roasted), furans (caramel)</li>
+                        <li>Leucine via yeast &rarr; isoamyl acetate (banana-like ester) under fermentative conditions</li>
+                        <li>Cysteine under roasting &rarr; sulphur-containing heterocycles (coffee-adjacent roast notes)</li>
+                        <li>Free amino acid pool increases after protease activity (Koji, microbial) — amplifying all above pathways</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box-evidence">
+                <span class="box-label">Why Amino Acids May Matter More Than Trigonelline</span>
+                <p>In coffee roasting science, amino acids are often more important than trigonelline in generating flavour complexity because they participate in vast, overlapping Maillard networks with sugars, CGAs, and each other. The amino acid pool in the coffee leaf may be small in absolute terms, but it is highly reactive. Any processing step that increases the free amino acid pool — Koji treatment, proteolytic fermentation, extended enzymatic withering — potentially amplifies every downstream thermal and fermentative pathway.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s8">
+            <div class="section-num">Section 08</div>
+            <h2>Reservoir E — <em>Glycoside System</em></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR E</span><span class="res-name">Glycoside System — Locked Aromas</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: several flavour and colour compounds in the leaf are chemically locked to sugar molecules — like a key inside a safe. In this locked form they are flavour-inactive. Processing can break the lock and release the active compound. This is one of the least explored but potentially most rewarding reservoirs in Citane.</p>
+                    <h4>Compounds Present (glycosylated forms)</h4>
+                    <ul class="compound-list">
+                        <li>Rutin glycoside &rarr; releases quercetin on hydrolysis</li>
+                        <li>Quercetin sophoroside &rarr; releases quercetin</li>
+                        <li>Kaempferol triglycoside &rarr; releases kaempferol</li>
+                        <li>Kaempferol-3-O-rhamnoglucoside &rarr; releases kaempferol</li>
+                        <li>Apigenin 6,8-di-C-glucoside &rarr; releases apigenin (C-glycoside, harder to hydrolyse)</li>
+                        <li>Iriflophenone 3-C-glucoside &rarr; xanthone glycoside</li>
+                        <li>Hexose, deoxyhexose, pentose monosaccharides (NMR) — freed sugar pool</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&rarr; Reservoir I</strong> (Sugar): Every glycoside hydrolysis event releases a sugar into the medium — glycoside unlocking and sugar pool growth are the same event, not separate ones</li>
+                        <li><strong>&rarr; Reservoir K</strong> (Volatile Precursors): Terpene glycosides in this reservoir, when cleaved, release free terpene alcohols — this is how the hidden volatile pool becomes accessible</li>
+                        <li><strong>&larr; Reservoir B</strong> (Mangiferin): Iriflophenone 3-C-glucoside is a glycosylated xanthone — its hydrolysis connects Reservoirs B and E</li>
+                        <li><strong>&larr; Energy System: Water Activity</strong>: Glycosidase activity requires sufficient free water. Dry-leaf conditions arrest unlocking even if the enzyme is present</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>&beta;-Glucosidase (endogenous or Koji-derived) cleaves O-glycoside bonds &rarr; releases aglycones</li>
+                        <li>C-glycosides (apigenin form) are resistant to simple enzymatic hydrolysis — require more extreme conditions</li>
+                        <li>Quercetin release &rarr; mild bitterness, slight astringency</li>
+                        <li>Kaempferol release &rarr; mildly floral character (described in some contexts)</li>
+                        <li>Sugar release into medium &rarr; substrate for microbial fermentation, Maillard reactions</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box-evidence">
+                <span class="box-label">Koji Relevance</span>
+                <p>Aspergillus oryzae produces &beta;-glucosidase enzymes capable of cleaving glycosidic bonds at low temperatures (28&ndash;32&deg;C), without the thermal degradation that acidic hydrolysis at high temperature would cause. This is theoretically one of the most precise tools available for unlocking the glycoside reservoir — releasing aroma compounds without collateral damage to other systems. This remains untested on coffee leaf specifically.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s9">
+            <div class="section-num">Section 09</div>
+            <h2>Reservoir F — <em>Alkaloid System</em></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR F</span><span class="res-name">Alkaloid System — Caffeine &amp; Trigonelline</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: caffeine you know. Trigonelline you may not — but it is just as important. Under roasting, trigonelline breaks down and produces the distinctive smell of roasted coffee. Coffee leaves contain significant amounts of both.</p>
+                    <h4>Compounds Present</h4>
+                    <ul class="compound-list">
+                        <li>Caffeine — 7.94 g/kg DW (~half the concentration of coffee beans)</li>
+                        <li>Trigonelline — 4.47 g/kg DW (notably high; ratio to caffeine different from beans)</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&rarr; Reservoir D</strong> (Amino acids): Trigonelline degradation products (pyridines) interact with Maillard products from the amino acid pool — the combined roast aroma is a cross-reservoir output</li>
+                        <li><strong>&harr; Reservoir A</strong> (Chlorogenic acids): Caffeine modulates bitter perception, including suppression of CGA bitterness — the sensory output of Reservoir A is partly governed by the ratio of caffeine present</li>
+                        <li><strong>&larr; Microbial</strong>: Some bacteria can demethylate caffeine. This connection is theoretical in coffee leaf context but establishes that the alkaloid pool is not immune to microbial intervention</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>Caffeine: thermally stable up to high temperatures; extraction increases with temperature and time</li>
+                        <li>Caffeine: modulates bitter perception — can mask or suppress harsh CGA bitterness at certain ratios</li>
+                        <li>Trigonelline: degrades significantly above ~160&deg;C &rarr; pyridines, nicotinic acid (niacin)</li>
+                        <li>Trigonelline degradation products: roasted, slightly tobacco-like aroma notes — the thermal pathway</li>
+                        <li>Trigonelline: possible microbial substrate; specific leaf-context pathways not established</li>
+                        <li>Caffeine demethylation by specific bacteria (Pseudomonas, Rhodococcus): theoretically possible in fermentative pathways</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box-evidence">
+                <span class="box-label">The Trigonelline Opportunity</span>
+                <p>In coffee beans, trigonelline is well-studied. Its presence at 4.47 g/kg DW in the coffee leaf — and particularly its ratio to caffeine (roughly 1:1.8, compared to a much lower ratio in beans) — suggests the leaf may produce a different roast-aroma profile from the bean when taken through equivalent thermal treatments. Whether this translates into a distinctive "roasted coffee leaf" aroma distinct from roasted coffee remains an open question. The thermal domain (Section 25) is where this hypothesis can be explored.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s10">
+            <div class="section-num">Section 10</div>
+            <h2>Reservoir G — <em>Chlorophyll System</em></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR G</span><span class="res-name">Chlorophyll System — The Green Indicator</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: chlorophyll is the green colour of your leaf. It is also a reliable indicator of what state the leaf is in. A green cup means chlorophyll is intact — minimal processing. An olive or brown cup means it has transformed. Tracking colour is a practical proxy for tracking the state of this reservoir.</p>
+                    <h4>Compounds Present</h4>
+                    <ul class="compound-list">
+                        <li>Chlorophyll a (dominant) and Chlorophyll b</li>
+                        <li>Pheophytin (dechlorophyllised product — olive/grey-green)</li>
+                        <li>Carotenoids (implied; not specifically characterised in Cangeloni 2022)</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&rarr; Reservoir K</strong> (Volatile Precursors): Carotenoids co-localised with chlorophyll in the chloroplast degrade to produce &beta;-ionone and geranylacetone — chlorophyll transformation and volatile precursor release are linked events</li>
+                        <li><strong>&larr; Energy System: Oxidative Potential</strong>: The rate and depth of chlorophyll transformation is governed by the oxidative environment — a measure of Reservoir G state is therefore an indirect measure of overall oxidative potential</li>
+                        <li><strong>&larr; Reservoir J</strong> (Lipid): Membrane lipid oxidation is coupled to chloroplast membrane integrity — lipid and chlorophyll degradation tend to co-occur during leaf senescence and processing</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>Heat-fixed (kill-green, 80&ndash;100&deg;C): chlorophyll stabilised &rarr; jade-green liquor, vegetal aroma preserved</li>
+                        <li>Withering without heat: slow enzymatic degradation &rarr; yellowing, grassy notes soften, hay character emerges</li>
+                        <li>Prolonged oxidation: chlorophyll &rarr; pheophytin &rarr; olive/amber, grassy notes largely gone</li>
+                        <li>Roasting: chlorophyll destruction, carotenoid-derived volatile aroma compounds released</li>
+                        <li>Colour of the brewed liquor is a direct read of chlorophyll state — useful as a process indicator</li>
+                    </ul>
+                </div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s11">
+            <div class="section-num">Section 11</div>
+            <h2>Reservoir H — <em>Lignan System</em></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR H</span><span class="res-name">Lignan System — The Novel Finding</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: lignans (specifically cinchonain isomers) were found in coffee leaves for the first time by Cangeloni 2022. We do not yet know what they taste like or what they do under processing. They are documented here because honest science includes documenting the unknowns.</p>
+                    <h4>Compounds Present</h4>
+                    <ul class="compound-list">
+                        <li>Cinchonain I isomer a (Rt 21.75 min, [M&minus;H]&#8315; 451)</li>
+                        <li>Cinchonain I isomer b (Rt 28.52 min, [M&minus;H]&#8315; 451)</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&harr; Reservoir C</strong> (Catechins): Structural similarity suggests possible co-oxidation with catechins under PPO — cinchonains may enter the oxidative cascade as minor participants</li>
+                        <li><strong>&larr; Microbial</strong>: Lignans are known microbial substrates — their transformation products in fermented coffee leaf are unknown and represent a genuinely open question</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>Structural similarity to catechins — possible participation in oxidative cascades</li>
+                        <li>Known antioxidant activity in other plant contexts</li>
+                        <li>Lignans are documented substrates for microbial biotransformation — possible fermentation products</li>
+                        <li>Sensory contribution in brewed infusion: unknown — no established flavour precedent at these concentrations</li>
+                    </ul>
+                </div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s12">
+            <div class="section-num">Section 12</div>
+            <h2>Reservoir I — <em>Sugar System</em> <span class="proposed-tag">[Proposed Extension]</span></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR I</span><span class="res-name">Sugar System — The Energy Currency</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: sugars sit at the centre of almost everything. Microbes eat them. Heat converts them into caramel. They react with amino acids to create roasted aromas. And many of the other compounds in the leaf are locked to sugar molecules. Sugars deserve their own entry in the model.</p>
+                    <h4>Compounds Present (inferred from Cangeloni 2022 NMR data)</h4>
+                    <ul class="compound-list">
+                        <li>Hexose monosaccharides (glucose, fructose — probable)</li>
+                        <li>Deoxyhexose monosaccharides (rhamnose — probable, given glycoside structures)</li>
+                        <li>Pentose monosaccharides (arabinose — probable)</li>
+                        <li>Sugars released from glycoside hydrolysis (all Reservoir E compounds carry sugar moieties)</li>
+                        <li>Sucrose and other disaccharides (likely present but not specifically characterised)</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&harr; Reservoir D</strong> (Amino acids): Sugars and amino acids are the two co-reactants of the Maillard reaction — neither acts without the other above 120&deg;C</li>
+                        <li><strong>&larr; Reservoir E</strong> (Glycosides): Every glycoside hydrolysis event releases sugar into this pool — Reservoir E is a direct feeder of Reservoir I</li>
+                        <li><strong>&rarr; Microbial systems</strong>: Dissolved sugar concentration governs microbial energy availability, growth rate, and the competition between yeast and LAB populations</li>
+                        <li><strong>&larr; Feedback</strong>: Microbial acid production lowers pH &rarr; pH change affects enzyme activity (PPO, glycosidases) &rarr; changed enzyme activity alters how other reservoirs transform. Sugar consumption is the trigger for this feedback loop.</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>Microbial fermentation: yeasts and LAB consume hexoses &rarr; CO&#8322;, ethanol, lactic acid, acetic acid, esters</li>
+                        <li>Maillard reactions with amino acids (Reservoir D) above ~120&deg;C &rarr; roasted, caramel, nutty aromas</li>
+                        <li>Caramelisation above ~160&deg;C &rarr; caramel-specific aroma compounds</li>
+                        <li>Sugar pool increases as glycoside bonds are broken (Reservoir E unlocking) — cascading into microbial or Maillard pathways</li>
+                        <li>Water activity and dissolved sugar concentration influence microbial population dynamics</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box-caution">
+                <span class="box-label">Why This Reservoir Was Added</span>
+                <p>The original Cangeloni dataset identifies sugars within glycoside structures and in the NMR saccharide region, but does not quantify free sugars as a distinct pool. The theoretical review of this framework identified that sugars function as the central energy currency connecting microbial activity, thermal chemistry, and glycoside hydrolysis — and therefore merit their own reservoir designation. The sugar quantities in coffee leaf have not been separately characterised in the available literature and represent a gap worth filling.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s13">
+            <div class="section-num">Section 13</div>
+            <h2>Reservoir J — <em>Lipid System</em> <span class="proposed-tag">[Proposed Extension]</span></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR J</span><span class="res-name">Lipid System — The Overlooked Pool</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: coffee leaves contain far less fat than coffee beans, but not zero. Lipids matter because their oxidation products include some of the most powerful aroma compounds in plant foods — the green, grassy, and fruity notes that define fresh leaves, and the roasted, aldehyde-rich notes that emerge under heat. Tea science takes this seriously. Coffee leaf science has not yet begun here.</p>
+                    <h4>Compounds Present (theoretical — not characterised in Cangeloni 2022)</h4>
+                    <ul class="compound-list">
+                        <li>Membrane lipids: glycolipids and phospholipids (certain — present in all leaf tissue)</li>
+                        <li>Fatty acids: linolenic acid, linoleic acid, palmitic acid (probable — standard leaf lipid profile)</li>
+                        <li>Wax esters and cuticular waxes (present — documented in coffee leaf literature separately)</li>
+                        <li>Carotenoids (lipid-soluble — referenced under Reservoir G)</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&rarr; Reservoir K</strong> (Volatile Precursors): C6 aldehydes from lipid oxidation are part of the broader volatile precursor landscape — Reservoir J feeds Reservoir K</li>
+                        <li><strong>&harr; Reservoir G</strong> (Chlorophyll): Chloroplast membrane lipids and chlorophyll degrade together — lipid oxidation and chlorophyll transformation are coupled in the same cellular compartment</li>
+                        <li><strong>&larr; Activation Event: Mechanical disruption</strong>: Lipoxygenase is activated by cell rupture — rolling and wringing trigger Reservoir J simultaneously with Reservoir C</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>Enzymatic lipid oxidation (lipoxygenase pathway): linolenic acid &rarr; C6 aldehydes (hexanal, (E)-2-hexenal) &rarr; green, grassy, fresh notes</li>
+                        <li>Thermal lipid oxidation: fatty acids &rarr; aldehydes, ketones &rarr; roasted, fatty, green-to-cooked character</li>
+                        <li>Wax degradation under prolonged heat: waxy, honey-like notes (documented in some tea roasting literature)</li>
+                        <li>Carotenoid degradation: &beta;-ionone, geranylacetone (floral, tobacco-adjacent notes)</li>
+                        <li>Mechanical disruption: activates lipoxygenase — relevant to rolling and wringing steps</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box-tradition">
+                <span class="box-label">What Tea Science Knows</span>
+                <p>Japanese green tea research has documented that the fresh, "marine" vegetal aroma of high-grade matcha is significantly influenced by lipid-derived C6 aldehyde compounds (specifically (Z)-3-hexenal) produced by lipoxygenase activity when the leaf is disrupted. The same enzyme system is present in all green leaves including coffee leaf. The grassy/vegetal character of minimally processed Citane may have a lipid-pathway dimension that has not been studied. This is an open research territory.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s14">
+            <div class="section-num">Section 14</div>
+            <h2>Reservoir K — <em>Volatile Precursor System</em> <span class="proposed-tag">[Proposed Extension]</span></h2>
+            <div class="reservoir">
+                <div class="reservoir-header"><span class="res-tag">RESERVOIR K</span><span class="res-name">Volatile Precursor System — The Hidden Pool</span></div>
+                <div class="reservoir-body">
+                    <p class="primer-line">In plain terms: if you have ever brewed a coffee leaf infusion and noticed a faint floral or citrus note that you cannot explain from looking at the dry leaf — this reservoir may be the reason. Many plants store aroma molecules in a locked, odourless form. Processing unlocks them. The coffee leaf may contain a significant pool of these locked aromas. Nobody has mapped it yet. This is the most speculative entry in the model — and potentially one of the most important.</p>
+                    <h4>Compounds Hypothesised (not characterised in Cangeloni 2022)</h4>
+                    <ul class="compound-list">
+                        <li>Terpene glycosides: bound terpene alcohols (linalool, geraniol, nerol) — documented in other Coffea species</li>
+                        <li>Carotenoid-derived precursors: &beta;-carotene &rarr; &beta;-ionone (floral), geranylacetone (floral/tobacco)</li>
+                        <li>C6 aldehyde precursors: from lipid pathway (see Reservoir J)</li>
+                        <li>Shikimic acid pathway volatiles: bound phenylpropanoid volatiles including eugenol precursors</li>
+                    </ul>
+                    <h4>Connects to Other Reservoirs</h4>
+                    <ul class="outcome-list">
+                        <li><strong>&larr; Reservoir E</strong> (Glycosides): Terpene glycosides in this reservoir are structurally the same type of locked compound as the flavonoid glycosides in Reservoir E — the same glycosidase events that unlock Reservoir E also unlock Reservoir K</li>
+                        <li><strong>&larr; Reservoir J</strong> (Lipids): C6 aldehyde precursors from lipid oxidation feed into the volatile landscape of this reservoir</li>
+                        <li><strong>&larr; Reservoir G</strong> (Chlorophyll): Carotenoid degradation (co-localised with chlorophyll) releases volatile precursors — chlorophyll transformation is partly a Reservoir K activation event</li>
+                    </ul>
+                    <h4>Theoretical Behaviour Under Processing</h4>
+                    <ul class="outcome-list">
+                        <li>Glycosidase (endogenous or Koji): terpene glycosides &rarr; free terpene alcohols &rarr; floral, citrus, spice notes</li>
+                        <li>Carotenoid cleavage (thermal or oxidative): &beta;-ionone, damascenone &rarr; intensely floral, rose-tobacco character</li>
+                        <li>Prolonged withering: terpene glycoside hydrolysis proceeds slowly at ambient temperature</li>
+                        <li>High-altitude leaf (not Thumpassery, but contextually): terpene concentration typically higher — altitude influences terpene biosynthesis</li>
+                        <li>Microbial biotransformation of terpene precursors: documented in wine fermentation; theoretically applicable</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box-caution">
+                <span class="box-label">The Most Speculative Entry</span>
+                <p>Reservoir K is the most theoretically grounded but least empirically supported entry in this model. Terpene glycosides have been documented in other Coffea species and in tea; their presence in <em>Coffea arabica</em> leaves at Thumpassery has not been confirmed. This reservoir is included because the possibility of a significant locked volatile pool — accessible via glycosidase activity — represents one of the most compelling theoretical opportunities for Citane flavour development. It warrants investigation before being dismissed.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART III — PLACEHOLDER FOR NEXT SECTION -->
+        <!-- ============================================ -->
+        <!-- TO BE CONTINUED: Part III Activation Events (s15-s20),
+             Part IV Energy Systems (s21-s23), Part V Process Domains (s24-s29),
+             Part VI Precursor Network (s30-s32), Part VII Emergent States (s33-s39),
+             Appendices (a1-a2) -->
 
     </div>
 
