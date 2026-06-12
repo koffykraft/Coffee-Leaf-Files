@@ -1,672 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Foliage of Buna — Coffee Leaf Knowledge & Practices</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --dark: #1a1a1a;
-            --slate: #2d3436;
-            --gray: #636e72;
-            --light-gray: #b2bec3;
-            --cream: #f8f9fa;
-            --accent: #5f4a42;
-            --subtle: #d4c5c0;
-            --section-1: #8B6F47;
-            --section-2: #5f4a42;
-            --section-3: #2c3e50;
-            --section-4: #27ae60;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--cream);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        /* HEADER / NAVIGATION */
-        header {
-            background: white;
-            border-bottom: 1px solid var(--subtle);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-        
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.4em;
-            font-weight: 600;
-            color: var(--accent);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-        
-        .nav {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-        
-        .nav a {
-            text-decoration: none;
-            color: var(--gray);
-            font-size: 0.9em;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .nav a:hover {
-            color: var(--accent);
-        }
-        
-        /* MAIN CONTAINER */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 30px;
-        }
-        
-        /* HERO SECTION */
-        .hero {
-            text-align: center;
-            margin-bottom: 100px;
-            border-bottom: 2px solid var(--subtle);
-            padding-bottom: 60px;
-        }
-        
-        .hero h1 {
-            font-size: 3.2em;
-            font-weight: 300;
-            letter-spacing: -1px;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .hero .subtitle {
-            font-size: 1.2em;
-            color: var(--accent);
-            font-weight: 500;
-            margin-bottom: 30px;
-        }
-        
-        .hero p {
-            font-size: 1em;
-            color: var(--gray);
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto 20px;
-        }
-        
-        .hero-meta {
-            font-size: 0.9em;
-            color: var(--light-gray);
-            font-style: italic;
-        }
-        
-        /* SECTION STRUCTURE */
-        .section {
-            margin-bottom: 80px;
-        }
-        
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--subtle);
-        }
-        
-        .section-icon {
-            display: none;
-        }
-        
-        .section-header h2 {
-            font-size: 1.8em;
-            font-weight: 600;
-            color: var(--dark);
-            margin: 0;
-        }
-        
-        /* GRID LAYOUTS */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent);
-            padding: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .card:hover {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            transform: translateY(-4px);
-        }
-        
-        .card h3 {
-            font-size: 1.3em;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--dark);
-        }
-        
-        .card p {
-            font-size: 0.95em;
-            color: var(--gray);
-            line-height: 1.6;
-            flex-grow: 1;
-            margin-bottom: 15px;
-        }
-        
-        .card-meta {
-            font-size: 0.85em;
-            color: var(--light-gray);
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
-        }
-        
-        .card-tag {
-            display: inline-block;
-            padding: 4px 10px;
-            background: var(--cream);
-            border-radius: 3px;
-            font-size: 0.8em;
-            font-weight: 500;
-        }
-        
-        /* SECTION COLOR VARIANTS */
-        .section-1 .section-icon {
-            background: rgba(139, 111, 71, 0.1);
-            color: var(--section-1);
-        }
-        
-        .section-1 .card {
-            border-left-color: var(--section-1);
-        }
-        
-        .section-2 .section-icon {
-            background: rgba(95, 74, 66, 0.1);
-            color: var(--section-2);
-        }
-        
-        .section-2 .card {
-            border-left-color: var(--section-2);
-        }
-        
-        .section-3 .section-icon {
-            background: rgba(44, 62, 80, 0.1);
-            color: var(--section-3);
-        }
-        
-        .section-3 .card {
-            border-left-color: var(--section-3);
-        }
-        
-        .section-4 .section-icon {
-            background: rgba(39, 174, 96, 0.1);
-            color: var(--section-4);
-        }
-        
-        .section-4 .card {
-            border-left-color: var(--section-4);
-        }
-        
-        /* CALLOUT */
-        .callout {
-            background: #f5f0ed;
-            border-left: 4px solid var(--accent);
-            padding: 25px;
-            border-radius: 6px;
-            margin: 40px 0;
-        }
-        
-        .callout strong {
-            color: var(--accent);
-        }
-        
-        /* FOOTER */
-        footer {
-            border-top: 1px solid var(--subtle);
-            padding: 50px 30px;
-            margin-top: 100px;
-            background: white;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .footer-section h4 {
-            font-size: 1em;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-section a {
-            text-decoration: none;
-            color: var(--gray);
-            font-size: 0.9em;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-section a:hover {
-            color: var(--accent);
-        }
-        
-        .footer-credit {
-            grid-column: 1 / -1;
-            border-top: 1px solid var(--subtle);
-            padding-top: 30px;
-            text-align: center;
-            font-size: 0.9em;
-            color: var(--light-gray);
-        }
-        
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2em;
-            }
-            
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-header {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUNA | The Foliage of Buna — Coffee Leaf Knowledge &amp; Practices</title>
+<style>
+/* ==========================================================================
+   BUNA COFFEE LEAF LIBRARY — SHARED STYLESHEET
+   Design language: plain black on white, boxed sections, one accent color.
+   ========================================================================== */
+
+:root {
+  --ink:        #1a1a1a;   /* primary text */
+  --ink-soft:   #4a4a4a;   /* secondary text */
+  --line:       #1a1a1a;   /* borders */
+  --line-soft:  #d0d0d0;   /* light dividers */
+  --bg:         #ffffff;   /* page background */
+  --bg-tint:    #f7f5f0;   /* subtle box background */
+  --accent:     #b8721e;   /* amber — KoffyKraft brand, links & highlights */
+  --accent-soft:#f4e6d4;   /* amber tint for tags/labels */
+  --sage:       #4a6b4a;   /* secondary accent — used sparingly for category tags */
+  --sage-soft:  #e6ede6;
+  --max-width:  860px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+/* ==========================================================================
+   LAYOUT & HEADER
+   ========================================================================== */
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 28px 80px;
+}
+
+.site-header {
+  border-bottom: 2px solid var(--line);
+  padding: 20px 24px;
+  margin-bottom: 8px;
+  background: var(--bg);
+}
+
+.site-header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.site-logo img {
+  width: auto;
+  height: 42px;
+}
+
+.site-logo-text {
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+}
+
+.site-logo-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.breadcrumb a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ink-soft);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.breadcrumb .sep {
+  margin: 0 6px;
+  color: var(--line-soft);
+}
+
+.breadcrumb .current {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & TAGS
+   ========================================================================== */
+
+h1, h2, h3, h4 {
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 24px 0 8px;
+}
+
+h2 {
+  font-size: 26px;
+  margin: 48px 0 16px;
+  padding-top: 24px;
+  border-top: 2px solid var(--line);
+}
+
+h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 32px;
+}
+
+h3 {
+  font-size: 20px;
+  margin: 28px 0 12px;
+}
+
+h4 {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin: 24px 0 8px;
+}
+
+p { margin: 0 0 16px; }
+
+a { color: var(--accent); text-decoration: underline; }
+a:hover { color: var(--ink); }
+
+strong { font-weight: 800; }
+
+.page-kicker {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin: 24px 0 4px;
+}
+
+.page-subtitle {
+  font-size: 19px;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  margin: 0 6px 6px 0;
+}
+
+.tag-tradition  { background: var(--sage-soft);   border-color: var(--sage); }
+.tag-research   { background: var(--accent-soft); border-color: var(--accent); }
+.tag-citane     { background: var(--ink);  color: var(--bg); border-color: var(--ink); }
+.tag-guide      { background: var(--bg-tint); border-color: var(--line-soft); }
+
+/* ==========================================================================
+   NAVIGATION BLOCKS & CARDS
+   ========================================================================== */
+
+.toc {
+  border: 2px solid var(--line);
+  padding: 16px 20px;
+  margin: 24px 0 40px;
+  background: var(--bg-tint);
+}
+
+.toc-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+
+.toc a {
+  display: inline-block;
+  margin: 0 16px 8px 0;
+  font-size: 15px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+}
+
+.toc a:hover { color: var(--accent); }
+
+.box {
+  border: 2px solid var(--line);
+  padding: 20px;
+  margin: 24px 0;
+  background: var(--bg);
+}
+
+.box-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+}
+
+.box p:last-child { margin-bottom: 0; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.card {
+  border: 2px solid var(--line);
+  padding: 18px;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background 0.1s, color 0.1s;
+}
+
+.card:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.card:hover .tag {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.card-title {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.card:hover .card-desc { color: #ccc; }
+
+.card-placeholder {
+  border: 2px dashed var(--line-soft);
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  text-align: center;
+  min-height: 80px;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.site-footer {
+  border-top: 2px solid var(--line);
+  margin-top: 64px;
+  padding: 32px 24px;
+  background: var(--bg);
+}
+
+.site-footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+}
+
+.footer-section h4 {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.footer-section a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.footer-credit {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 22px; }
+  .site-header-inner { flex-direction: column; align-items: flex-start; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-    
-    <!-- HEADER -->
-    <header>
-        <div class="header-container">
-            <a href="#" class="logo">THE FOLIAGE OF BUNA</a>
-            <nav class="nav">
-                <a href="#reference">Reference</a>
-                <a href="#start">Start Here</a>
-                <a href="#lifestyle">Modern</a>
-                <a href="#traditional">Traditional</a>
-                <a href="#guides">Guides</a>
-                <a href="#citane">Citane</a>
-            </nav>
-        </div>
-    </header>
-    
-    <!-- MAIN CONTENT -->
-    <div class="container">
-        
-        <!-- HERO -->
-        <section class="hero">
-            <h1>The Foliage of Buna</h1>
-            <div class="subtitle">Coffee Leaf Knowledge & Contemporary Practice</div>
-            <p>A comprehensive monograph on the history, science, and practice of coffee leaf—from medieval medicine through contemporary wellness applications. Includes traditional Ethiopian preparations, modern functional research, and experimental processing methods.</p>
-            <div class="hero-meta">
-                <p>Compiled by Thomas Thumpassery, KoffyKraft | May 2026</p>
-                <p>Sourced from peer-reviewed ethnobotany, historical texts, and field studies (2014–2026)</p>
-                <p style="margin-top: 10px; font-size: 0.85em;">All sources are verifiable and cited explicitly</p>
-            </div>
-        </section>
-        
-        <!-- SECTION 1: REFERENCE LIBRARY -->
-        <section class="section section-1" id="reference">
-            <div class="section-header">
-                <h2>Reference Library</h2>
-            </div>
-            <p style="color: var(--gray); margin-bottom: 30px;">Historical sources, peer-reviewed research, and ethnobotanical documentation that form the foundation of this monograph.</p>
-            <div class="card-grid">
-                <div class="card">
-                    <h3>Research Papers</h3>
-                    <p>Peer-reviewed studies on coffee leaf chemistry, functional properties, sensory profiles, and health applications (2014–2026).</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Academic</span>
-                        <span class="card-tag">2014–2026</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>Historical Sources</h3>
-                    <p>Medieval medical texts, colonial records, and ethnographic accounts documenting coffee leaf use across cultures and centuries.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Historical</span>
-                        <span class="card-tag">Medieval–Modern</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>Ethnobotanical References</h3>
-                    <p>Field documentation of traditional practices in Ethiopia, Indonesia, and other coffee-growing regions where leaf knowledge remains active.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Ethnobotany</span>
-                        <span class="card-tag">Field Studies</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- SECTION 2: START HERE -->
-        <section class="section section-2" id="start">
-            <div class="section-header">
-                
-                <h2>Start Here</h2>
-            </div>
-            <p style="color: var(--gray); margin-bottom: 30px;">Essential context: What coffee leaf is, why it disappeared from global consciousness, and what the science shows.</p>
-            <div class="card-grid">
-                <a href="#" class="card">
-                    <h3>What is Coffee Leaf?</h3>
-                    <p>The plant, the leaf, the chemistry. Understanding what we're working with—anatomy, compounds, and why it matters.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Foundation</span>
-                    </div>
-                </a>
-                <a href="#" class="card">
-                    <h3>Why Coffee Leaf Was Forgotten</h3>
-                    <p>A history of botanical misclassification, colonial commodity systems, and the communities that kept the knowledge alive.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">History</span>
-                    </div>
-                </a>
-                <a href="#" class="card">
-                    <h3>Functional Compendium</h3>
-                    <p>Complete research summary: GABA, phenolics, volatile compounds, and what contemporary science says about health applications.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Science</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-        
-        <!-- SECTION 3: MODERN LIFESTYLE -->
-        <section class="section section-3" id="lifestyle">
-            <div class="section-header">
-                
-                <h2>Modern Lifestyle: Buna</h2>
-            </div>
-            <p style="color: var(--gray); margin-bottom: 30px;">Contemporary wellness applications for busy people. Evidence-based guides to using coffee leaf for stress, focus, mood, and sleep.</p>
-            <div class="card-grid">
-                <a href="the-buna-lifestyle-manual.html" class="card">
-                    <h3>Buna Lifestyle Manual</h3>
-                    <p>Four practical pathways (Stressed, Focus, Mood, Evening) with recipes, timing, and what to expect. Real applications for real life.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Practical</span>
-                        <span class="card-tag">Recipes</span>
-                    </div>
-                </a>
-                <a href="buna-visual-guide.html" class="card">
-                    <h3>Buna Visual Guide</h3>
-                    <p>Charts, timelines, and data visualizations. Cortisol graphs, emotion recognition results, processing comparisons.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Visual</span>
-                        <span class="card-tag">Data</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-        
-        <!-- SECTION 4: TRADITIONAL PREPARATIONS -->
-        <section class="section section-4" id="traditional">
-            <div class="section-header">
-                
-                <h2>Traditional Preparations</h2>
-            </div>
-            <p style="color: var(--gray); margin-bottom: 30px;">Methods that have survived centuries in Ethiopian, Indonesian, and other coffee-growing cultures. Each with its own sensory and functional profile.</p>
-            <div class="card-grid">
-                <a href="#" class="card">
-                    <h3>Engere (Ethiopian)</h3>
-                    <p>The traditional Ethiopian coffee leaf beverage. Hot, spiced, communal. History, method, sensory profile, and modern practice.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Ethiopian</span>
-                    </div>
-                </a>
-                <a href="#" class="card">
-                    <h3>Kuti (Indonesian)</h3>
-                    <p>Gentle, simmered. The careful method. Traditional use in Java and surrounding regions, and what makes it distinct.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Indonesian</span>
-                    </div>
-                </a>
-                <a href="#" class="card">
-                    <h3>Chemo (East African)</h3>
-                    <p>Roasted leaves, warming spices. The bold preparation. Regional variations and how to make it at home.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">East African</span>
-                    </div>
-                </a>
-                <a href="#" class="card">
-                    <h3>Kawa Daun (Leaf Water)</h3>
-                    <p>The simple, everyday method. Subtle, accessible, grounding. How communities use it daily and why it works.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Universal</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-        
-        <!-- SECTION 5: PRACTICAL GUIDES -->
-        <section class="section section-1" id="guides">
-            <div class="section-header">
-                
-                <h2>Practical Guides</h2>
-            </div>
-            <p style="color: var(--gray); margin-bottom: 30px;">How-to guides for each traditional preparation. Schoolbook lessons and visual step-by-step pictograms.</p>
-            <div class="card-grid">
-                <a href="engere-schoolbook-guide-part-1.html" class="card">
-                    <h3>Engere Schoolbook (Part 1)</h3>
-                    <p>Lessons 0–6: Foundations, methods, milk, quality, health, and patterns. Learn the tradition through structured teaching.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Engere</span>
-                        <span class="card-tag">Schoolbook</span>
-                    </div>
-                </a>
-                <a href="engere-schoolbook-guide-part-2.html" class="card">
-                    <h3>Engere Schoolbook (Part 2)</h3>
-                    <p>Lessons 7–12: Equipment, regional variations, storage, timing, quality, and cultural practice. Complete understanding.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Engere</span>
-                        <span class="card-tag">Schoolbook</span>
-                    </div>
-                </a>
-                <a href="engere-visual-pictogram-guide.html" class="card">
-                    <h3>Engere Visual Pictogram Guide</h3>
-                    <p>Three methods shown visually with tabbed sections. See the steps, not just read them. Ideal for visual learners.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Engere</span>
-                        <span class="card-tag">Visual</span>
-                    </div>
-                </a>
-                <a href="kuti-schoolbook-guide.html" class="card">
-                    <h3>Kuti Schoolbook Guide</h3>
-                    <p>Gentle prose teaching the careful method. Understanding Kuti through its philosophy and practice.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Kuti</span>
-                        <span class="card-tag">Schoolbook</span>
-                    </div>
-                </a>
-                <a href="kuti-visual-pictogram-guide.html" class="card">
-                    <h3>Kuti Visual Pictogram Guide</h3>
-                    <p>Step-by-step visual guide to the Kuti method. See the process unfold.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Kuti</span>
-                        <span class="card-tag">Visual</span>
-                    </div>
-                </a>
-                <a href="chemo-schoolbook-guide.html" class="card">
-                    <h3>Chemo Schoolbook Guide</h3>
-                    <p>Eight lessons on the roasted leaf method. History, variations, technique, and regional styles.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Chemo</span>
-                        <span class="card-tag">Schoolbook</span>
-                    </div>
-                </a>
-                <a href="chemo-visual-pictogram-guide.html" class="card">
-                    <h3>Chemo Visual Pictogram Guide</h3>
-                    <p>Visual walkthrough of the Chemo preparation. See the roasting, the spices, the final brew.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Chemo</span>
-                        <span class="card-tag">Visual</span>
-                    </div>
-                </a>
-                <a href="kawa-daun-schoolbook-guide.html" class="card">
-                    <h3>Kawa Daun Schoolbook Guide</h3>
-                    <p>Twelve lessons on the simple method. Daily practice, variations, and why simplicity works.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Kawa Daun</span>
-                        <span class="card-tag">Schoolbook</span>
-                    </div>
-                </a>
-                <a href="kawa-daun-visual-pictogram-guide.html" class="card">
-                    <h3>Kawa Daun Visual Pictogram Guide</h3>
-                    <p>Visual guide to the everyday method. Four techniques shown step-by-step.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Kawa Daun</span>
-                        <span class="card-tag">Visual</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-        
-        <!-- SECTION 6: CITANE EXPERIMENTAL -->
-        <section class="section section-2" id="citane">
-            <div class="section-header">
-                
-                <h2>Citane: Experimental Processing</h2>
-            </div>
-            <p style="color: var(--gray); margin-bottom: 30px;">DIY methods for processing fresh coffee leaves at home. Hacks developed at Thumpassery Estate using simple kitchen tools.</p>
-            <div class="card-grid">
-                <a href="citane-hack-grill-wilted-leaves.html" class="card">
-                    <h3>Citane Hack: Grill-Wilted Leaves</h3>
-                    <p>Using a sandwich grill to wilt fresh leaves. Quick, simple, effective. From fresh to ready-to-brew in 15 minutes.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">DIY</span>
-                        <span class="card-tag">Hack</span>
-                    </div>
-                </a>
-                <a href="#" class="card">
-                    <h3>Citane Hack: Gas-Flame Roasted Leaf</h3>
-                    <p>Roasting leaves over a gas flame for deeper flavor. Managing heat, timing, and development. Coming soon with tasting notes.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">DIY</span>
-                        <span class="card-tag">Roasting</span>
-                        <span class="card-tag">In Progress</span>
-                    </div>
-                </a>
-                <a href="#" class="card">
-                    <h3>Citane Design Notes</h3>
-                    <p>Technical documentation of processing experiments. Variables tested, results recorded, principles emerging.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Technical</span>
-                    </div>
-                </a>
-                <a href="#" class="card">
-                    <h3>Citane Protocols</h3>
-                    <p>Standardized methods for testing new processing approaches. How to document your own experiments.</p>
-                    <div class="card-meta">
-                        <span class="card-tag">Methods</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-        
-        <!-- CALLOUT -->
-        <div class="callout">
-            <strong>How to use this site:</strong> Start with "Start Here" if you're new to coffee leaf. Explore "Traditional Preparations" to understand the practices. Visit "Modern Lifestyle" if you're interested in contemporary wellness applications. Dive into "Practical Guides" to learn how to make each preparation. And check "Citane" if you want to experiment with processing fresh leaves at home.
-        </div>
-        
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="index.html">
+      <img src="https://koffykraft.github.io/Coffee-Leaf-Files/buna-leaf.svg" alt="BUNA">
+      <span>
+        <span class="site-logo-text">BUNA</span><br>
+        <span class="site-logo-sub">Coffee Leaf Library</span>
+      </span>
+    </a>
+    <nav class="breadcrumb">
+      <a href="index.html">Index</a><span class="sep">/</span><span class="current">The Foliage of Buna</span>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <p class="page-kicker">Monograph &amp; Compendium</p>
+  <h1>The Foliage of Buna</h1>
+  <p class="page-subtitle">
+    A comprehensive monograph on the history, science, and practice of coffee leaf—from medieval medicine through contemporary wellness applications[span_7](start_span)[span_7](end_span). Includes traditional Ethiopian preparations, modern functional research, and experimental processing methods[span_8](start_span)[span_8](end_span).
+  </p>
+
+  <div class="box">
+    <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6;">
+      <strong>Compiled by:</strong> Thomas Thumpassery, KoffyKraft | May 2026<br>
+      <strong>Sources:</strong> Sourced from peer-reviewed ethnobotany, historical texts, and field studies (2014–2026)[span_9](start_span)[span_9](end_span). All sources are verifiable and cited explicitly[span_10](start_span)[span_10](end_span).
+    </p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-label">Jump to a section</div>
+    <a href="#reference">Reference Library</a>
+    <a href="#start">Start Here</a>
+    <a href="#lifestyle">Modern Lifestyle</a>
+    <a href="#traditional">Traditional Preparations</a>
+    <a href="#guides">Practical Guides</a>
+    <a href="#citane">Citane Experimental</a>
+  </div>
+
+  <!-- REFERENCE LIBRARY -->
+  <h2 id="reference">Reference Library</h2>
+  <p style="color: var(--ink-soft); margin-bottom: 16px;">Historical sources, peer-reviewed research, and ethnobotanical documentation that form the foundation of this monograph[span_11](start_span)[span_11](end_span).</p>
+  
+  <div class="card-grid">
+    <div class="card">
+      <span class="tag tag-research">Academic</span>
+      <span class="card-title">Research Papers</span>
+      <span class="card-desc">Peer-reviewed studies on coffee leaf chemistry, functional properties, sensory profiles, and health applications (2014–2026)[span_12](start_span)[span_12](end_span).</span>
     </div>
-    
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="#reference">Reference Library</a></li>
-                    <li><a href="#start">Start Here</a></li>
-                    <li><a href="#lifestyle">Modern Lifestyle</a></li>
-                    <li><a href="#traditional">Traditional Preparations</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Guides</h4>
-                <ul>
-                    <li><a href="#guides">Practical Guides</a></li>
-                    <li><a href="#citane">Citane Experimental</a></li>
-                    <li><a href="#">All Visual Guides</a></li>
-                    <li><a href="#">All Schoolbooks</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>About</h4>
-                <ul>
-                    <li><a href="#">The Project</a></li>
-                    <li><a href="#">KoffyKraft</a></li>
-                    <li><a href="#">Thomas Thumpassery</a></li>
-                    <li><a href="#">Sources & Citations</a></li>
-                </ul>
-            </div>
-            <div class="footer-credit">
-                <p><strong>The Foliage of Buna</strong> — Coffee Leaf Knowledge & Contemporary Practice</p>
-                <p>Compiled by Thomas Thumpassery, KoffyKraft | May 2026 | All sources are verifiable and cited explicitly</p>
-                <p style="margin-top: 15px; font-size: 0.85em;">This monograph was compiled with AI assistance. All research sources are peer-reviewed, historical, or ethnobotanical documentation (2014–2026).</p>
-            </div>
-        </div>
-    </footer>
-    
+    <div class="card">
+      <span class="tag tag-guide">Historical</span>
+      <span class="card-title">Historical Sources</span>
+      <span class="card-desc">Medieval medical texts, colonial records, and ethnographic accounts documenting coffee leaf use across cultures and centuries[span_13](start_span)[span_13](end_span).</span>
+    </div>
+    <div class="card">
+      <span class="tag tag-tradition">Ethnobotany</span>
+      <span class="card-title">Ethnobotanical References</span>
+      <span class="card-desc">Field documentation of traditional practices in Ethiopia, Indonesia, and other coffee-growing regions where leaf knowledge remains active[span_14](start_span)[span_14](end_span).</span>
+    </div>
+  </div>
+
+  <!-- START HERE -->
+  <h2 id="start">Start Here</h2>
+  <p style="color: var(--ink-soft); margin-bottom: 16px;">Essential context: What coffee leaf is, why it disappeared from global consciousness, and what the science shows[span_15](start_span)[span_15](end_span).</p>
+  
+  <div class="card-grid">
+    <a class="card" href="#">
+      <span class="tag tag-guide">Foundation</span>
+      <span class="card-title">What is Coffee Leaf?</span>
+      <span class="card-desc">The plant, the leaf, the chemistry[span_16](start_span)[span_16](end_span). Understanding what we're working with—anatomy, compounds, and why it matters[span_17](start_span)[span_17](end_span).</span>
+    </a>
+    <a class="card" href="#">
+      <span class="tag tag-guide">History</span>
+      <span class="card-title">Why Coffee Leaf Was Forgotten</span>
+      <span class="card-desc">A history of botanical misclassification, colonial commodity systems, and the communities that kept the knowledge alive[span_18](start_span)[span_18](end_span).</span>
+    </a>
+    <a class="card" href="#">
+      <span class="tag tag-research">Science</span>
+      <span class="card-title">Functional Compendium</span>
+      <span class="card-desc">Complete research summary: GABA, phenolics, volatile compounds, and what contemporary science says about health applications[span_19](start_span)[span_19](end_span).</span>
+    </a>
+  </div>
+
+  <!-- MODERN LIFESTYLE -->
+  <h2 id="lifestyle">Modern Lifestyle: Buna</h2>
+  <p style="color: var(--ink-soft); margin-bottom: 16px;">Contemporary wellness applications for busy people[span_20](start_span)[span_20](end_span). Evidence-based guides to using coffee leaf for stress, focus, mood, and sleep[span_21](start_span)[span_21](end_span).</p>
+  
+  <div class="card-grid">
+    <a class="card" href="the-buna-lifestyle-manual.html">
+      <span class="tag tag-guide">Practical</span>
+      <span class="card-title">Buna Lifestyle Manual</span>
+      <span class="card-desc">Four practical pathways (Stressed, Focus, Mood, Evening) with recipes, timing, and what to expect[span_22](start_span)[span_22](end_span). Real applications for real life[span_23](start_span)[span_23](end_span).</span>
+    </a>
+    <a class="card" href="buna-visual-guide.html">
+      <span class="tag tag-guide">Visual</span>
+      <span class="card-title">Buna Visual Guide</span>
+      <span class="card-desc">Charts, timelines, and data visualizations[span_24](start_span)[span_24](end_span). Cortisol graphs, emotion recognition results, processing comparisons[span_25](start_span)[span_25](end_span).</span>
+    </a>
+  </div>
+
+  <!-- TRADITIONAL PREPARATIONS -->
+  <h2 id="traditional">Traditional Preparations</h2>
+  <p style="color: var(--ink-soft); margin-bottom: 16px;">Methods that have survived centuries in Ethiopian, Indonesian, and other coffee-growing cultures[span_26](start_span)[span_26](end_span). Each with its own sensory and functional profile[span_27](start_span)[span_27](end_span).</p>
+  
+  <div class="card-grid">
+    <a class="card" href="#">
+      <span class="tag tag-tradition">Ethiopian</span>
+      <span class="card-title">Engere</span>
+      <span class="card-desc">The traditional Ethiopian coffee leaf beverage[span_28](start_span)[span_28](end_span). Hot, spiced, communal[span_29](start_span)[span_29](end_span). History, method, sensory profile, and modern practice[span_30](start_span)[span_30](end_span).</span>
+    </a>
+    <a class="card" href="#">
+      <span class="tag tag-tradition">Indonesian</span>
+      <span class="card-title">Kuti</span>
+      <span class="card-desc">Gentle, simmered[span_31](start_span)[span_31](end_span). The careful method[span_32](start_span)[span_32](end_span). Traditional use in Java and surrounding regions, and what makes it distinct[span_33](start_span)[span_33](end_span).</span>
+    </a>
+    <a class="card" href="#">
+      <span class="tag tag-tradition">East African</span>
+      <span class="card-title">Chemo</span>
+      <span class="card-desc">Roasted leaves, warming spices[span_34](start_span)[span_34](end_span). The bold preparation[span_35](start_span)[span_35](end_span). Regional variations and how to make it at home[span_36](start_span)[span_36](end_span).</span>
+    </a>
+    <a class="card" href="#">
+      <span class="tag tag-tradition">Universal</span>
+      <span class="card-title">Kawa Daun (Leaf Water)</span>
+      <span class="card-desc">The simple, everyday method[span_37](start_span)[span_37](end_span). Subtle, accessible, grounding[span_38](start_span)[span_38](end_span). How communities use it daily and why it works[span_39](start_span)[span_39](end_span).</span>
+    </a>
+  </div>
+
+  <!-- PRACTICAL GUIDES -->
+  <h2 id="guides">Practical Guides</h2>
+  <p style="color: var(--ink-soft); margin-bottom: 16px;">How-to guides for each traditional preparation[span_40](start_span)[span_40](end_span). Schoolbook lessons and visual step-by-step pictograms[span_41](start_span)[span_41](end_span).</p>
+  
+  <div class="card-grid">
+    <a class="card" href="engere-schoolbook-guide-part-1.html">
+      <span class="tag tag-guide">Schoolbook</span>
+      <span class="card-title">Engere Schoolbook (Part 1)</span>
+      <span class="card-desc">Lessons 0–6: Foundations, methods, milk, quality, health, and patterns[span_42](start_span)[span_42](end_span). Learn the tradition through structured teaching[span_43](start_span)[span_43](end_span).</span>
+    </a>
+    <a class="card" href="engere-schoolbook-guide-part-2.html">
+      <span class="tag tag-guide">Schoolbook</span>
+      <span class="card-title">Engere Schoolbook (Part 2)</span>
+      <span class="card-desc">Lessons 7–12: Equipment, regional variations, storage, timing, quality, and cultural practice[span_44](start_span)[span_44](end_span). Complete understanding[span_45](start_span)[span_45](end_span).</span>
+    </a>
+    <a class="card" href="engere-visual-pictogram-guide.html">
+      <span class="tag tag-guide">Visual</span>
+      <span class="card-title">Engere Visual Guide</span>
+      <span class="card-desc">Three methods shown visually with tabbed sections[span_46](start_span)[span_46](end_span). See the steps, not just read them[span_47](start_span)[span_47](end_span). Ideal for visual learners[span_48](start_span)[span_48](end_span).</span>
+    </a>
+    <a class="card" href="kuti-schoolbook-guide.html">
+      <span class="tag tag-guide">Schoolbook</span>
+      <span class="card-title">Kuti Schoolbook Guide</span>
+      <span class="card-desc">Gentle prose teaching the careful method[span_49](start_span)[span_49](end_span). Understanding Kuti through its philosophy and practice[span_50](start_span)[span_50](end_span).</span>
+    </a>
+    <a class="card" href="kuti-visual-pictogram-guide.html">
+      <span class="tag tag-guide">Visual</span>
+      <span class="card-title">Kuti Visual Guide</span>
+      <span class="card-desc">Step-by-step visual guide to the Kuti method[span_51](start_span)[span_51](end_span). See the process unfold[span_52](start_span)[span_52](end_span).</span>
+    </a>
+    <a class="card" href="chemo-schoolbook-guide.html">
+      <span class="tag tag-guide">Schoolbook</span>
+      <span class="card-title">Chemo Schoolbook Guide</span>
+      <span class="card-desc">Eight lessons on the roasted leaf method[span_53](start_span)[span_53](end_span). History, variations, technique, and regional styles[span_54](start_span)[span_54](end_span).</span>
+    </a>
+    <a class="card" href="chemo-visual-pictogram-guide.html">
+      <span class="tag tag-guide">Visual</span>
+      <span class="card-title">Chemo Visual Guide</span>
+      <span class="card-desc">Visual walkthrough of the Chemo preparation[span_55](start_span)[span_55](end_span). See the roasting, the spices, the final brew[span_56](start_span)[span_56](end_span).</span>
+    </a>
+    <a class="card" href="kawa-daun-schoolbook-guide.html">
+      <span class="tag tag-guide">Schoolbook</span>
+      <span class="card-title">Kawa Daun Schoolbook</span>
+      <span class="card-desc">Twelve lessons on the simple method[span_57](start_span)[span_57](end_span). Daily practice, variations, and why simplicity works[span_58](start_span)[span_58](end_span).</span>
+    </a>
+    <a class="card" href="kawa-daun-visual-pictogram-guide.html">
+      <span class="tag tag-guide">Visual</span>
+      <span class="card-title">Kawa Daun Visual Guide</span>
+      <span class="card-desc">Visual guide to the everyday method[span_59](start_span)[span_59](end_span). Four techniques shown step-by-step[span_60](start_span)[span_60](end_span).</span>
+    </a>
+  </div>
+
+  <!-- CITANE EXPERIMENTAL -->
+  <h2 id="citane">Citane: Experimental Processing</h2>
+  <p style="color: var(--ink-soft); margin-bottom: 16px;">DIY methods for processing fresh coffee leaves at home[span_61](start_span)[span_61](end_span). Hacks developed at Thumpassery Estate using simple kitchen tools[span_62](start_span)[span_62](end_span).</p>
+  
+  <div class="card-grid">
+    <a class="card" href="citane-hack-grill-wilted-leaves.html">
+      <span class="tag tag-citane">DIY Hack</span>
+      <span class="card-title">Grill-Wilted Leaves</span>
+      <span class="card-desc">Using a sandwich grill to wilt fresh leaves[span_63](start_span)[span_63](end_span). Quick, simple, effective[span_64](start_span)[span_64](end_span). From fresh to ready-to-brew in 15 minutes[span_65](start_span)[span_65](end_span).</span>
+    </a>
+    <a class="card" href="#">
+      <span class="tag tag-citane">DIY Roast</span>
+      <span class="card-title">Gas-Flame Roasted Leaf</span>
+      <span class="card-desc">Roasting leaves over a gas flame for deeper flavor[span_66](start_span)[span_66](end_span). Managing heat, timing, and development[span_67](start_span)[span_67](end_span). Coming soon[span_68](start_span)[span_68](end_span).</span>
+    </a>
+    <a class="card" href="#">
+      <span class="tag tag-citane">Technical</span>
+      <span class="card-title">Citane Design Notes</span>
+      <span class="card-desc">Technical documentation of processing experiments[span_69](start_span)[span_69](end_span). Variables tested, results recorded, principles emerging[span_70](start_span)[span_70](end_span).</span>
+    </a>
+    <a class="card" href="#">
+      <span class="tag tag-citane">Methods</span>
+      <span class="card-title">Citane Protocols</span>
+      <span class="card-desc">Standardized methods for testing new processing approaches[span_71](start_span)[span_71](end_span). How to document your own experiments[span_72](start_span)[span_72](end_span).</span>
+    </a>
+  </div>
+
+  <div class="box">
+    <p style="font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--accent);">How to use this site:</p>
+    <p style="font-size: 14px; color: var(--ink-soft); margin-bottom: 0;">
+      Start with "Start Here" if you're new to coffee leaf[span_73](start_span)[span_73](end_span). Explore "Traditional Preparations" to understand the practices[span_74](start_span)[span_74](end_span). Visit "Modern Lifestyle" if you're interested in contemporary wellness applications[span_75](start_span)[span_75](end_span). Dive into "Practical Guides" to learn how to make each preparation[span_76](start_span)[span_76](end_span). And check "Citane" if you want to experiment with processing fresh leaves at home[span_77](start_span)[span_77](end_span).
+    </p>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-section">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#reference">Reference Library</a></li>
+        <li><a href="#start">Start Here</a></li>
+        <li><a href="#lifestyle">Modern Lifestyle</a></li>
+        <li><a href="#traditional">Traditional Preparations</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Guides</h4>
+      <ul>
+        <li><a href="#guides">Practical Guides</a></li>
+        <li><a href="#citane">Citane Experimental</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">The Project</a></li>
+        <li><a href="#">KoffyKraft</a></li>
+        <li><a href="#">Thomas Thumpassery</a></li>
+      </ul>
+    </div>
+    <div class="footer-credit">
+      <p><strong>The Foliage of Buna</strong> — Coffee Leaf Knowledge &amp; Contemporary Practice[span_78](start_span)[span_78](end_span)</p>
+      <p>Compiled by Thomas Thumpassery, KoffyKraft | May 2026 | All sources are verifiable and cited explicitly[span_79](start_span)[span_79](end_span)</p>
+      <p style="margin-top: 12px; font-size: 12px; color: var(--ink-soft);">
+        This monograph was compiled with AI assistance[span_80](start_span)[span_80](end_span). All research sources are peer-reviewed, historical, or ethnobotanical documentation (2014–2026)[span_81](start_span)[span_81](end_span).
+      </p>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
