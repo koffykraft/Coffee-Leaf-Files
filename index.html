@@ -71,15 +71,16 @@ body {
 .site-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   text-decoration: none;
   color: var(--ink);
 }
 
 .site-logo img {
-  width: 32px;
-  height: 32px;
+  width: auto;       /* Prevents the image from being squished horizontally */
+  height: 42px;      /* Increases height slightly to balance with the header font size */
 }
+
 
 .site-logo-text {
   font-weight: 800;
