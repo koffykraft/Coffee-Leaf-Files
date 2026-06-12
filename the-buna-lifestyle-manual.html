@@ -1,1146 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buna: Your Coffee Leaf Guide to Better Days</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --dark: #1a1a1a;
-            --slate: #2d3436;
-            --gray: #636e72;
-            --light-gray: #b2bec3;
-            --cream: #f8f9fa;
-            --accent: #5f4a42;
-            --subtle: #d4c5c0;
-            --good: #27ae60;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--cream);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 50px 30px;
-        }
-        
-        header {
-            margin-bottom: 60px;
-            text-align: center;
-            border-bottom: 2px solid var(--subtle);
-            padding-bottom: 40px;
-        }
-        
-        h1 {
-            font-size: 2.4em;
-            font-weight: 400;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-        
-        .subtitle {
-            font-size: 1em;
-            color: var(--accent);
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-        
-        .tagline {
-            font-size: 0.95em;
-            color: var(--gray);
-            line-height: 1.7;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .nav-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 70px;
-        }
-        
-        .pathway-card {
-            background: white;
-            padding: 25px;
-            border-radius: 6px;
-            border-left: 4px solid var(--accent);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border: none;
-            text-align: left;
-            font-family: inherit;
-            width: 100%;
-        }
-        
-        .pathway-card:hover {
-            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-        
-        .pathway-card h3 {
-            font-size: 1.2em;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-        
-        .pathway-card p {
-            font-size: 0.92em;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-        
-        .content-section {
-            display: none;
-            background: white;
-            padding: 45px;
-            border-radius: 8px;
-            margin-bottom: 60px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        }
-        
-        .content-section.active {
-            display: block;
-        }
-        
-        .back-link {
-            display: inline-block;
-            margin-bottom: 30px;
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.9em;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        
-        .back-link:hover {
-            color: var(--dark);
-        }
-        
-        h2 {
-            font-size: 1.9em;
-            font-weight: 500;
-            margin-bottom: 6px;
-            color: var(--dark);
-        }
-        
-        .section-meta {
-            font-size: 0.88em;
-            color: var(--gray);
-            margin-bottom: 35px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--subtle);
-        }
-        
-        h3 {
-            font-size: 1.3em;
-            font-weight: 600;
-            margin-top: 40px;
-            margin-bottom: 18px;
-            color: var(--dark);
-        }
-        
-        h4 {
-            font-size: 1.05em;
-            font-weight: 600;
-            margin-top: 28px;
-            margin-bottom: 12px;
-            color: var(--slate);
-        }
-        
-        p {
-            margin-bottom: 16px;
-            font-size: 0.96em;
-            color: var(--dark);
-            line-height: 1.7;
-        }
-        
-        .recipe {
-            background: #fffbf8;
-            border: 2px solid var(--accent);
-            border-radius: 6px;
-            padding: 25px;
-            margin: 30px 0;
-        }
-        
-        .recipe h4 {
-            margin-top: 0;
-            color: var(--accent);
-        }
-        
-        .recipe-step {
-            margin: 15px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-        
-        .recipe-step:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 600;
-        }
-        
-        .result-box {
-            background: #f0fdf4;
-            border-left: 4px solid var(--good);
-            padding: 18px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        
-        .result-box strong {
-            color: var(--good);
-            display: block;
-            margin-bottom: 6px;
-        }
-        
-        .callout {
-            background: #f5f0ed;
-            border-left: 4px solid var(--accent);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-            font-size: 0.95em;
-        }
-        
-        ul, ol {
-            margin-left: 25px;
-            margin-bottom: 18px;
-        }
-        
-        li {
-            margin-bottom: 10px;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .tip-box {
-            background: #fafaf9;
-            padding: 18px;
-            border-radius: 4px;
-            margin: 20px 0;
-            border-left: 3px solid var(--light-gray);
-            font-size: 0.93em;
-        }
-        
-        .tip-box strong {
-            color: var(--slate);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background: white;
-            border: 1px solid var(--subtle);
-            border-radius: 4px;
-            overflow: hidden;
-            font-size: 0.93em;
-        }
-        
-        th {
-            background: #f5f0ed;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-            color: var(--dark);
-            border-bottom: 1px solid var(--subtle);
-        }
-        
-        td {
-            padding: 12px;
-            border-bottom: 1px solid var(--subtle);
-            color: var(--dark);
-        }
-        
-        tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .citations {
-            margin-top: 45px;
-            padding-top: 25px;
-            border-top: 1px solid var(--subtle);
-        }
-        
-        .citations h4 {
-            margin-top: 0;
-            font-size: 0.95em;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: var(--gray);
-            margin-bottom: 15px;
-        }
-        
-        .citation {
-            margin-bottom: 12px;
-            font-size: 0.87em;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-        
-        .citation-number {
-            display: inline-block;
-            width: 22px;
-            color: var(--accent);
-            font-weight: 600;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 35px 20px;
-            }
-            
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            h2 {
-                font-size: 1.5em;
-            }
-            
-            .nav-section {
-                grid-template-columns: 1fr;
-            }
-            
-            .content-section {
-                padding: 25px 18px;
-            }
-            
-            .recipe {
-                padding: 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUNA | Your Coffee Leaf Guide to Better Days</title>
+<style>
+/* ==========================================================================
+   BUNA COFFEE LEAF LIBRARY — SHARED STYLESHEET
+   Design language: plain black on white, boxed sections, one accent color.
+   ========================================================================== */
+
+:root {
+  --ink:        #1a1a1a;   /* primary text */
+  --ink-soft:   #4a4a4a;   /* secondary text */
+  --line:       #1a1a1a;   /* borders */
+  --line-soft:  #d0d0d0;   /* light dividers */
+  --bg:         #ffffff;   /* page background */
+  --bg-tint:    #f7f5f0;   /* subtle box background */
+  --accent:     #b8721e;   /* amber — KoffyKraft brand, links & highlights */
+  --accent-soft:#f4e6d4;   /* amber tint for tags/labels */
+  --sage:       #4a6b4a;   /* secondary accent — used sparingly for category tags */
+  --sage-soft:  #e6ede6;
+  --good:       #27ae60;
+  --max-width:  860px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+/* ==========================================================================
+   LAYOUT & HEADER
+   ========================================================================== */
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 28px 80px;
+}
+
+.site-header {
+  border-bottom: 2px solid var(--line);
+  padding: 20px 24px;
+  margin-bottom: 8px;
+  background: var(--bg);
+}
+
+.site-header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.site-logo img {
+  width: auto;
+  height: 42px;
+}
+
+.site-logo-text {
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+}
+
+.site-logo-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.breadcrumb a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ink-soft);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.breadcrumb .sep {
+  margin: 0 6px;
+  color: var(--line-soft);
+}
+
+.breadcrumb .current {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+h1, h2, h3, h4 {
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 24px 0 8px;
+}
+
+h2 {
+  font-size: 26px;
+  margin: 32px 0 16px;
+  padding-top: 24px;
+}
+
+h3 {
+  font-size: 20px;
+  margin: 28px 0 12px;
+}
+
+h4 {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin: 24px 0 8px;
+}
+
+p { margin: 0 0 16px; }
+
+a { color: var(--accent); text-decoration: underline; }
+a:hover { color: var(--ink); }
+
+strong { font-weight: 800; }
+em { font-style: italic; }
+
+.page-kicker {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin: 24px 0 4px;
+}
+
+.page-subtitle {
+  font-size: 19px;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+}
+
+/* ==========================================================================
+   CARDS & GRID (INTERACTIVE PANEL MENU)
+   ========================================================================== */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.card-btn {
+  background: var(--bg);
+  border: 2px solid var(--line);
+  padding: 18px;
+  text-align: left;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  transition: background 0.1s, color 0.1s;
+}
+
+.card-btn:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.card-title {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.card-btn:hover .card-desc { color: #ccc; }
+
+/* ==========================================================================
+   CONTENT COMPONENT BOXES
+   ========================================================================== */
+
+.content-section {
+  display: none;
+  border-top: 2px solid var(--line);
+  margin-top: 40px;
+  padding-top: 24px;
+}
+
+.content-section.active {
+  display: block;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-bottom: 2px solid transparent;
+}
+
+.back-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.section-meta {
+  font-size: 16px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+.box {
+  border: 2px solid var(--line);
+  padding: 20px;
+  margin: 24px 0;
+  background: var(--bg);
+}
+
+.box-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+}
+
+.box p:last-child { margin-bottom: 0; }
+.box-recipe   .box-label { background: var(--bg-tint); }
+.box-evidence .box-label { background: var(--accent-soft); }
+
+.result-box {
+  background: #f0fdf4;
+  border: 2px solid var(--good);
+  padding: 16px;
+  margin: 20px 0;
+}
+
+.result-box strong {
+  color: var(--good);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.tip-box {
+  background: var(--bg-tint);
+  border-left: 4px solid var(--line-soft);
+  padding: 16px;
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.data-point {
+  border-left: 3px solid var(--accent);
+  padding-left: 14px;
+  margin: 16px 0;
+}
+
+.data-point strong {
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   TABLES & PROCESS STEPS
+   ========================================================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 16px;
+}
+
+th, td {
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tr:nth-child(even) td {
+  background: var(--bg-tint);
+}
+
+.steps {
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.step-number {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.step-text { flex: 1; padding-top: 3px; }
+.step-text p { margin-bottom: 4px; }
+
+/* ==========================================================================
+   CITATIONS
+   ========================================================================== */
+
+.citations {
+  border-top: 1px solid var(--line-soft);
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+.citations h4 {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+
+.citation {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.citation-number {
+  font-weight: 700;
+  color: var(--accent);
+  margin-right: 6px;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.site-footer {
+  border-top: 2px solid var(--line);
+  margin-top: 64px;
+  padding: 32px 24px;
+}
+
+.site-footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-meta {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 22px; }
+  .site-header-inner { flex-direction: column; align-items: flex-start; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        
-        <!-- HEADER -->
-        <header>
-            <h1>Buna</h1>
-            <div class="subtitle">Coffee Leaf for Real Days</div>
-            <div class="tagline">Simple, practical ways to use coffee leaf to feel calmer, clearer, and more balanced. With real recipes based on real science.</div>
-        </header>
-        
-        <!-- NAVIGATION -->
-        <div class="nav-section" id="mainNav">
-            <button class="pathway-card" onclick="showPathway('stressed'); return false;">
-                <h3>Feeling Stressed</h3>
-                <p>Tough day at work? Kids, chaos, too much? Get calm fast with the brew that actually lowers your stress hormones.</p>
-            </button>
-            
-            <button class="pathway-card" onclick="showPathway('focus'); return false;">
-                <h3>Need to Focus</h3>
-                <p>Afternoon slump? Want clarity without jitters? The brew that keeps you alert and calm at the same time.</p>
-            </button>
-            
-            <button class="pathway-card" onclick="showPathway('mood'); return false;">
-                <h3>Want Better Mood</h3>
-                <p>Feeling flat? Down? The brew that lifts mood without making you wired or crash. Real science shows it works.</p>
-            </button>
-            
-            <button class="pathway-card" onclick="showPathway('evening'); return false;">
-                <h3>Evening Calm</h3>
-                <p>Can't unwind after work? The brew that helps you relax, sleep better, and wake up less tense tomorrow.</p>
-            </button>
-        </div>
-        
-        <!-- ===== PATHWAY 1: STRESSED ===== -->
-        <div class="content-section" id="stressed">
-            <a class="back-link" onclick="showPathway('main'); return false;">← Back</a>
-            
-            <h2>When You're Stressed</h2>
-            <div class="section-meta">Quick calm. Real results. Your stress hormones actually go down.</div>
-            
-            <h3>What Happens When You're Stressed</h3>
-            <p>Your body releases cortisol—your stress hormone. High cortisol makes you feel tense, jumpy, and exhausted. Coffee leaf directly lowers your cortisol. Studies show your stress level drops about 45% in the first 30 minutes, and that calm lasts for almost an hour.</p>
-            
-            <h3>The Recipe: Calm-Down Brew</h3>
-            
-            <div class="recipe">
-                <h4>Calm-Down Brew (Oolong-Style, Best for Stress)</h4>
-                
-                <p><strong>What you need:</strong></p>
-                <ul>
-                    <li>10-12g dried coffee leaves (about a small handful)</li>
-                    <li>1 cup hot water (not boiling—let it cool 2-3 minutes first)</li>
-                    <li>A strainer or tea infuser</li>
-                    <li>Your favorite cup</li>
-                </ul>
-                
-                <div class="recipe-step">
-                    <strong>Heat your water:</strong> Boil water in a kettle. While it boils, grab your cup and settle somewhere you can sit for 10 minutes.</div>
-                
-                <div class="recipe-step">
-                    <strong>Wait 2-3 minutes:</strong> Let the boiled water cool slightly. You want it warm, not steaming.</div>
-                
-                <div class="recipe-step">
-                    <strong>Pour and brew:</strong> Add leaves to your cup or infuser, pour in the warm water. Just set it there.</div>
-                
-                <div class="recipe-step">
-                    <strong>Brew for 8 minutes:</strong> Set a timer. While it brews, breathe. Notice something around you—a plant, a photo, the light. Just notice.</div>
-                
-                <div class="recipe-step">
-                    <strong>Strain and sip slowly:</strong> Pour into your cup (or remove the infuser). Smell it first. Take the first sip slowly. Let it warm you from the inside.</div>
-                
-                <div class="result-box">
-                    <strong>What to expect:</strong> 
-                    Within 15-20 minutes you'll notice your shoulders feel less tight. Your breathing gets slower. By 30 minutes, you feel noticeably calmer. That calm lasts for about 45 minutes to an hour.
-                </div>
-            </div>
-            
-            <h3>When to Use This Brew</h3>
-            <ul>
-                <li><strong>After work chaos:</strong> Come home, make this, sit for 10 minutes. You'll feel human again.</li>
-                <li><strong>Before a difficult conversation:</strong> Drink this an hour before, and you'll be much calmer going in.</li>
-                <li><strong>Kids having a meltdown:</strong> Make this and drink it while they're watching a show. You'll handle it better.</li>
-                <li><strong>Can't sleep because your mind won't shut up:</strong> Don't use this within 6 hours of bedtime (it has a tiny bit of caffeine). But in the evening 3-4 hours before bed, yes.</li>
-            </ul>
-            
-            <h3>How It Works (Simple Version)</h3>
-            <p>Coffee leaves have something called GABA—it's like your brain's "calm down" button. When you drink it, GABA reaches your brain and tells it to relax. At the same time, coffee leaves have compounds that directly lower your cortisol hormone. So it's working two ways at once: telling your brain to calm down AND lowering the stress chemical in your blood.</p>
-            
-            <div class="tip-box">
-                <strong>Pro tip:</strong> The leaves matter. You need oolong-style or fermented leaves (they've been sitting 12-24 hours after picking). Green leaves are good too, but fermented ones have more GABA and they taste sweeter and nicer when you're stressed.
-            </div>
-            
-            <h3>What the Research Shows</h3>
-            <p>In studies, people drank coffee leaf after a stressful task. Their stress self-rating dropped from 11.67 to 6.08 on a 15-point scale—that's almost 50% calmer. Their blood cortisol dropped from 16.99 to 7.19. And here's the thing: it worked as well as pure GABA supplements costing way more.</p>
-            
-            <p>Even better? When researchers looked at people's faces using emotion-recognition software, people who drank coffee leaf showed way more positive facial expressions than people who drank water or other things. So you're not just feeling calmer—you actually look happier too.</p>
-            
-            <h3>How Often Can You Use This?</h3>
-            <p>It's safe to use daily. Some people use it every single day. Others use it 3-4 times a week when stress is higher. Start with 3-4 times a week and see how you feel. You might find you don't need it every day once your baseline stress comes down.</p>
-            
-            <div class="citations">
-                <h4>Where This Comes From</h4>
-                <div class="citation">
-                    <span class="citation-number">[1]</span> Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea. <em>Applied Food Research</em>, 5, 101141.
-                </div>
-            </div>
-        </div>
-        
-        <!-- ===== PATHWAY 2: FOCUS ===== -->
-        <div class="content-section" id="focus">
-            <a class="back-link" onclick="showPathway('main'); return false;">← Back</a>
-            
-            <h2>When You Need to Focus</h2>
-            <div class="section-meta">Alert without jitters. Calm without drowsy. The afternoon focus brew.</div>
-            
-            <h3>The Problem with Regular Coffee</h3>
-            <p>Coffee makes you jittery. Your hands shake. Your mind races. You get a crash 2 hours later. Coffee leaf is different. It has caffeine (but way less), plus GABA that tells your brain to relax at the same time. So you get clarity without the jitters, focus without the crash.</p>
-            
-            <h3>The Recipe: Focus & Clarity Brew</h3>
-            
-            <div class="recipe">
-                <h4>Focus Brew (Green or Light-Fermented Leaves)</h4>
-                
-                <p><strong>What you need:</strong></p>
-                <ul>
-                    <li>10-12g dried coffee leaves (fresh green or light fermented)</li>
-                    <li>1 cup hot water</li>
-                    <li>A strainer</li>
-                    <li>Your favorite mug</li>
-                </ul>
-                
-                <div class="recipe-step">
-                    <strong>Heat water:</strong> Boil it, then let it cool for 2-3 minutes (like before).</div>
-                
-                <div class="recipe-step">
-                    <strong>Pour and brew:</strong> Add leaves, pour water, set a timer for 7 minutes. (Slightly less than the calm brew—you want slightly more caffeine, less sweetness.)</div>
-                
-                <div class="recipe-step">
-                    <strong>Strain and sip:</strong> Don't chug it. Sip slowly over the next 15 minutes.</div>
-                
-                <div class="result-box">
-                    <strong>What to expect:</strong>
-                    Within 10 minutes you'll feel mentally clearer. Your thinking gets faster. You can focus on one thing without your mind jumping around. You stay alert for 3-4 hours. No crash. No jitters. At hour 3 you might feel a gentle energy drop, but nothing dramatic.
-                </div>
-            </div>
-            
-            <h3>When to Use This</h3>
-            <ul>
-                <li><strong>Mid-afternoon slump:</strong> Instead of reaching for coffee or an energy drink, make this at 2-3pm.</li>
-                <li><strong>Before a work project you're dreading:</strong> Drink this 15 minutes before, start the work. You'll find it easier to focus.</li>
-                <li><strong>Studying for a test:</strong> Not just the day before—use this 2-3 weeks out when you're learning the material. Your brain absorbs better when you're calm and alert.</li>
-                <li><strong>When you have to make decisions:</strong> Coffee makes you anxious and impulsive. This brew keeps you calm while staying sharp. Better decisions.</li>
-            </ul>
-            
-            <h3>Green vs. Light Fermented for Focus</h3>
-            <p><strong>Green leaves</strong> taste a bit more vegetal and grassy (in a good way). They have more caffeine. Use these when you need maximum alertness but still want calm.</p>
-            
-            <p><strong>Light fermented</strong> (6-12 hours of processing) taste slightly sweeter, slightly fruitier. Still good for focus, but a bit gentler. Use these if you're sensitive to caffeine or want a slightly smoother experience.</p>
-            
-            <h3>How It Works</h3>
-            <p>Coffee leaf has caffeine, which tells your brain to stay awake. But it also has GABA, which tells your brain to relax. They work together. The GABA prevents the caffeine from making you anxious or jittery. Meanwhile, the caffeine prevents the GABA from making you tired. You get the best of both: awake + calm = focused.</p>
-            
-            <div class="tip-box">
-                <strong>Key difference from coffee:</strong> Regular coffee has caffeine but no GABA. So your stress hormones spike and you feel wired. Coffee leaf has both caffeine AND GABA working together. Same amount of focus, but your body stays relaxed.
-            </div>
-            
-            <h3>What the Research Shows</h3>
-            <p>In studies, when people drank coffee leaf and did focus tasks, their performance was good. But here's the interesting part: they also showed positive facial expressions (meaning less stress while focusing). With regular coffee, people focus okay but they look stressed while doing it. With coffee leaf, they focus AND stay relaxed.</p>
-            
-            <p>The caffeine in coffee leaf is much lower than coffee, so you get focus without the anxiety that makes focus hard.</p>
-            
-            <h3>Timing for Focus</h3>
-            <p><strong>Best time:</strong> 2-3pm or whenever your afternoon energy dips. Avoid after 4pm if you want normal sleep (it has some caffeine).</p>
-            
-            <p><strong>How often:</strong> 3-5 times a week during busy work periods. Or daily if you work in something that requires constant focus.</p>
-            
-            <div class="citations">
-                <h4>Where This Comes From</h4>
-                <div class="citation">
-                    <span class="citation-number">[1]</span> Rigling, M., et al. (2023). Sensorial and aroma profiles of coffee by-products. <em>Proceedings</em>, 89(5), ICC2023-14837.
-                </div>
-                <div class="citation">
-                    <span class="citation-number">[2]</span> Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea. <em>Applied Food Research</em>, 5, 101141.
-                </div>
-            </div>
-        </div>
-            <a class="back-link" onclick="showPathway('main'); return false;">← Back to Pathways</a>
-            
-            <h2>Sensory Clarity & Presence</h2>
-            <div class="section-meta">The taste, aroma, and sensory experience of coffee leaves—and how conscious sensory engagement supports presence and awareness.</div>
-            
-            <!-- SENSORY PROFILE -->
-            <h3>I. Sensory Profile: The Range of Experience</h3>
-            
-            <h4>Fermented vs. Non-Fermented: Two Different Sensory Worlds</h4>
-            <p>Coffee leaves exist on a sensory spectrum determined by processing. Understanding this spectrum helps you choose the sensory experience that matches your intention.</p>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Attribute</th>
-                        <th>Fermented Leaves</th>
-                        <th>Non-Fermented Leaves</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Primary Aroma</strong></td>
-                        <td>Sweetish, fruity, honey-forward</td>
-                        <td>Intense green, fresh, vegetal</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Secondary Notes</strong></td>
-                        <td>Floral undertones, dried apricot, hay-like complexity</td>
-                        <td>Citrus-like brightness, herbal clarity</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Mouthfeel</strong></td>
-                        <td>Smooth, slightly creamy, lingering warmth</td>
-                        <td>Crisp, lighter body, immediate clarity</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Aftertaste</strong></td>
-                        <td>Pleasant honey-like persistence</td>
-                        <td>Clean, green finish</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Sensory Intention</strong></td>
-                        <td>Comfort, grounding, reflective presence</td>
-                        <td>Alertness, mental clarity, active engagement</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h4>The Key Aroma Compounds & Their Sensory Meaning</h4>
-            <p>Aroma is the primary sensory pathway to the brain. Coffee leaves contain volatile compounds that signal specific experiences:</p>
-            
-            <div class="data-point">
-                <strong>β-Ionone</strong> — Honey-like, warm
-                <p>Creates the sensory impression of sweetness and comfort. Associated with fermented processing. Signals: grounding, warmth, safety.</p>
-            </div>
-            
-            <div class="data-point">
-                <strong>Decanal</strong> — Citrus-like, floral
-                <p>Bright, clarifying aroma. Signals: alertness, freshness, mental openness. Found across processing types but more pronounced in non-fermented leaves.</p>
-            </div>
-            
-            <div class="data-point">
-                <strong>Hexanal</strong> — Green, herbaceous
-                <p>The aroma of fresh plant matter. Signals: vitality, natural clarity, presence. Highest in non-fermented leaves.</p>
-            </div>
-            
-            <div class="data-point">
-                <strong>Diphenyl Sulfone & Phenyl-Methylene Heptanoate</strong> — Subtle floral, slightly fruity
-                <p>Found primarily in oolong-processed leaves. These compounds, while present in trace amounts, contribute to the sensory impression of complexity and sophistication. Signal: engagement, intrigue, multi-dimensional experience.</p>
-            </div>
-            
-            <!-- CHEMICAL SCIENCE -->
-            <h3>II. Chemical Science: Why Aroma Matters</h3>
-            
-            <h4>The Olfactory-Neurological Pathway</h4>
-            <p>Aroma bypasses conscious processing and travels directly to the limbic system—the part of your brain that governs emotion, memory, and awareness. This is not a minor sensory detail; it is direct neurological communication.</p>
-            
-            <p>When you inhale the aroma of coffee leaves, volatile compounds bind to olfactory receptors in your nasal cavity, sending signals directly to your amygdala and hippocampus. This is why aroma can shift your emotional state and presence faster than taste or sight.</p>
-            
-            <h4>Phenolic Content & Sensory Intensity</h4>
-            <p>The intensity of sensory experience correlates with phenolic content. Higher-phenolic leaves (30–36 mg GAE/g) produce stronger aroma presence and more complex flavor profiles. This sensory intensity is not merely pleasant; it engages attention and supports presence.</p>
-            
-            <p><strong>Research finding:</strong> Participants who found a beverage sensory-pleasing (high sweetness, low bitterness) reported greater overall relaxation and presence. Conversely, beverages with high bitterness and astringency—even if chemically similar—produced lower presence ratings.</p>
-            
-            <p><em>This suggests that sensory satisfaction is not incidental to functional benefit; it may be integral to it.</em></p>
-            
-            <!-- EMOTIONAL IMPACT -->
-            <h3>III. Emotional Impact: Presence & Engagement</h3>
-            
-            <h4>Sensory Clarity as a Form of Mindfulness</h4>
-            <p>The act of engaging fully with sensory experience—noticing the aroma layers, observing how taste evolves as the beverage cools, feeling the warmth of the cup—is a form of mindfulness. This sensory presence is not separate from relaxation; it enhances it.</p>
-            
-            <p>Research on mindful eating and sensory awareness shows that conscious attention to sensory experience reduces mind-wandering, lowers anxiety, and increases present-moment awareness. Coffee leaf's complex sensory profile naturally invites this attention.</p>
-            
-            <h4>The Taste-Mood Connection</h4>
-            <p>Specific taste profiles correlate with emotional state:</p>
-            
-            <ul>
-                <li><strong>Sweetness:</strong> Signals safety and comfort. Coffee leaves with higher GABA naturally develop subtle sweetness (without added sugar), signaling calm without the sensory jarring of artificial sweetness.</li>
-                <li><strong>Low bitterness:</strong> Reduces the sense of threat or challenge. Fermented leaves, which develop sweetness, also reduce bitterness—creating a sensory profile that supports emotional openness.</li>
-                <li><strong>Complexity:</strong> Multiple flavor layers (honey, floral, fruity, green) engage attention and prevent the boredom of one-dimensional taste. This complexity supports active presence rather than passive consumption.</li>
-            </ul>
-            
-            <div class="callout">
-                <strong>Why sensory matters:</strong> A beverage with identical chemical composition but poor sensory profile will not produce the same result. The brain processes sensory pleasure as a signal of safety and value. When coffee leaf tastes and smells good—not despite the functional benefit, but because of how the functional compounds translate to sensory experience—the benefit is amplified.
-            </div>
-            
-            <!-- LIFESTYLE INTEGRATION -->
-            <h3>IV. Lifestyle Integration: Conscious Consumption</h3>
-            
-            <h4>Choosing Your Sensory Profile</h4>
-            <p><strong>For presence and alertness during work:</strong> Non-fermented leaves offer brighter, more citrus-forward aromatics that signal clarity and engagement. Their lighter body and crisp finish support active attention.</p>
-            
-            <p><strong>For grounded presence (reflective work, evening):</strong> Fermented leaves offer warming sweetness and floral complexity that invite deeper attention and contemplative presence without overstimulation.</p>
-            
-            <h4>The Sensory Ritual</h4>
-            <p>Maximize sensory clarity through intentional practice:</p>
-            
-            <ol>
-                <li><strong>Observe the leaves:</strong> Before brewing, notice color, texture. Fermented leaves appear darker, crumblier; non-fermented are brighter green, more intact.</li>
-                <li><strong>Experience the dry aroma:</strong> Bring dried leaves close and inhale. Notice the primary notes (honey, green, floral).</li>
-                <li><strong>Attend to brewing:</strong> Watch the color change as leaves infuse. Listen for the sound of hot water. Feel the temperature.</li>
-                <li><strong>Smell before tasting:</strong> Hold the cup close; inhale deeply. Notice how aroma shifts as the beverage cools.</li>
-                <li><strong>Taste with attention:</strong> Let the first sip rest on your tongue. Notice sweetness, bitterness, floral notes, texture. Allow taste to evolve as the liquid warms.</li>
-                <li><strong>Notice the aftertaste:</strong> This lingering sensation often contains the most subtle flavor complexity.</li>
-            </ol>
-            
-            <h4>Sensory Preferences & Optimization</h4>
-            <p>If a particular processing type (fermented vs. non-fermented) appeals more to you, trust that preference. Research shows that sensory preference correlates with psychological benefit. Your preference for a particular coffee leaf's sensory profile likely reflects which neurochemical effect best matches your current needs.</p>
-            
-            <!-- CITATIONS -->
-            <div class="citations">
-                <h4>Sources</h4>
-                <div class="citation">
-                    <span class="citation-number">[1]</span> Rigling, M., Steger, M.C., Lachenmeier, D.W., Schwarz, S., & Zhang, Y. (2023). Sensorial and aroma profiles of coffee by-products—Coffee leaves and coffee flowers. <em>Proceedings</em>, 89(5), ICC2023-14837.
-                </div>
-                <div class="citation">
-                    <span class="citation-number">[2]</span> Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea: An integrative food cognition approach. <em>Applied Food Research</em>, 5, 101141.
-                </div>
-                <div class="citation">
-                    <span class="citation-number">[3]</span> Osakabe, N., Shimizu, T., Fujii, Y., Fushimi, T., & Calabrese, V. (2024). Sensory nutrition and bitterness and astringency of polyphenols. <em>Biomolecules</em>, 14(2), 234.
-                </div>
-            </div>
-        </div>
-        
-        <!-- ===== PATHWAY 3: MOOD ===== -->
-        <div class="content-section" id="mood">
-            <a class="back-link" onclick="showPathway('main'); return false;">← Back</a>
-            
-            <h2>When You Want Better Mood</h2>
-            <div class="section-meta">Feeling flat? Gray? Down? The brew that actually lifts mood.</div>
-            
-            <h3>Why You Feel Down (And How This Helps)</h3>
-            <p>When you're stressed or tired, your stress hormones go up and your mood goes down. Coffee leaf flips that: it lowers stress hormones AND makes your brain release more of the chemicals that make you feel good. You're not just "less sad"—you're actually more positive.</p>
-            
-            <h3>The Recipe: Mood-Lift Brew</h3>
-            
-            <div class="recipe">
-                <h4>Mood-Lift Brew (Oolong-Style, Best for Mood)</h4>
-                
-                <p><strong>What you need:</strong></p>
-                <ul>
-                    <li>12g dried coffee leaves (oolong-style or medium fermented preferred)</li>
-                    <li>1 cup hot water</li>
-                    <li>A strainer</li>
-                    <li>Your favorite cup</li>
-                    <li>Optional: a place to sit by a window or somewhere you like</li>
-                </ul>
-                
-                <div class="recipe-step">
-                    <strong>Heat and cool water:</strong> Boil, then wait 2-3 minutes.</div>
-                
-                <div class="recipe-step">
-                    <strong>Brew for 8 minutes:</strong> Steep the leaves. While you wait, don't scroll your phone. Just sit. Maybe look out a window.</div>
-                
-                <div class="recipe-step">
-                    <strong>Smell before you drink:</strong> This part matters. Bring the cup up and smell the steam. Notice if there are sweet notes, fruity notes, anything nice. Your sense of smell goes straight to the mood part of your brain.</div>
-                
-                <div class="recipe-step">
-                    <strong>Sip slowly:</strong> Let it warm you. Notice the taste. Does it taste sweet? Warm? Fruity?</div>
-                
-                <div class="result-box">
-                    <strong>What to expect:</strong>
-                    Within 20 minutes you'll notice a shift. The heaviness lifts a little. Colors look slightly brighter. You feel slightly more like yourself. By 45 minutes you're noticeably more positive. If you were feeling flat, you start feeling interested in things again.
-                </div>
-            </div>
-            
-            <h3>When to Use This</h3>
-            <ul>
-                <li><strong>Morning when you wake up feeling blah:</strong> Make this before breakfast. It lifts your baseline for the whole day.</li>
-                <li><strong>Afternoon gray feeling:</strong> That 3pm moment when everything feels pointless? This changes that in 20 minutes.</li>
-                <li><strong>Rainy day blues:</strong> When the weather is getting to you.</li>
-                <li><strong>After an argument or disappointment:</strong> Drink this and sit quietly for 15 minutes. You'll feel more able to handle it.</li>
-                <li><strong>Regular practice for low mood:</strong> If you tend toward low mood, drinking this 3-4 times a week keeps your baseline higher.</li>
-            </ul>
-            
-            <h3>Why Oolong-Style Matters for Mood</h3>
-            <p>Different fermentations have different effects. Oolong-style leaves (fermented 12-18 hours) have something called diphenyl sulfone. This compound works similarly to anti-anxiety medication in your brain. Plus, oolong leaves taste sweet and pleasant, which itself helps your mood.</p>
-            
-            <div class="tip-box">
-                <strong>Taste matters for mood:</strong> If the brew tastes bitter or harsh, it won't lift your mood as much. That's why oolong-style is best—it tastes naturally sweet and pleasant, and that sensory pleasure is part of what lifts mood.
-            </div>
-            
-            <h3>How It Works</h3>
-            <p>Your mood is controlled by brain chemicals. When you're down, you don't have enough of the chemicals that make you feel good (mainly GABA and dopamine). Coffee leaf has GABA directly in it. Meanwhile, the compounds in coffee leaf reduce stress hormones, which frees up your brain to produce more of its own happy chemicals. Double effect: you get GABA from the leaves, AND your brain makes more of its own feel-good chemicals because stress goes down.</p>
-            
-            <h3>Real Results from Research</h3>
-            <p>In studies, researchers took photos of people's faces while they drank different things. When people drank oolong-style coffee leaf, their faces showed way more positive expressions (genuine smiles, relaxed eyes, open expression) compared to when they drank water or other things. This wasn't people trying to smile for the camera—it was their genuine emotional expression changing.</p>
-            
-            <p>And here's the thing: the positive mood shift was as strong as pure mood-support supplements that cost a lot more.</p>
-            
-            <h3>How Often to Use This</h3>
-            <p><strong>If you're having a down day:</strong> Use it once that day.</p>
-            
-            <p><strong>If you tend to feel low:</strong> 3-4 times a week keeps your baseline mood higher. Many people find that after a few weeks of regular use, they just feel better overall.</p>
-            
-            <p><strong>It's safe daily</strong> if you want to use it every day. It's not like medication—it's not creating artificial mood. It's supporting your brain's own ability to feel good.</p>
-            
-            <div class="citations">
-                <h4>Where This Comes From</h4>
-                <div class="citation">
-                    <span class="citation-number">[1]</span> Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea. <em>Applied Food Research</em>, 5, 101141.
-                </div>
-            </div>
-        </div>
-            <a class="back-link" onclick="showPathway('main'); return false;">← Back to Pathways</a>
-            
-            <h2>Emotional Balance & Mood</h2>
-            <div class="section-meta">The neurochemical basis for emotional resilience: how GABA, phenolics, and caffeine-GABA synergy influence mood and emotional stability.</div>
-            
-            <!-- SENSORY PROFILE -->
-            <h3>I. Sensory Profile</h3>
-            <p>Emotional state begins with sensation. The warm, slightly sweet aroma of coffee leaves signals safety to your nervous system before any neurochemistry begins. This sensory signal primes your brain to receive the functional compounds that follow.</p>
-            
-            <p>The difference between fermented and non-fermented leaves extends to emotional flavor: fermented leaves' sweetness and honey notes feel nurturing; non-fermented leaves' green brightness feels clarifying. Both support emotional balance, but through different sensory messages.</p>
-            
-            <!-- CHEMICAL SCIENCE -->
-            <h3>II. Chemical Science: The Neurobiology of Mood</h3>
-            
-            <h4>GABA: The Inhibitory Neurotransmitter</h4>
-            <p>GABA is the brain's primary "off switch" for neural excitability. It reduces the firing rate of neurons, creating a state of calm. In coffee leaves (0.28–0.40 mg/g), GABA works through two primary receptor systems:</p>
-            
-            <div class="data-point">
-                <strong>GABA-A Receptors</strong>
-                <p>Activation leads to hyperpolarization of neurons—making them less likely to fire. This produces immediate feelings of calm, reduced anxiety, and emotional openness. Most anxiolytic medications work through GABA-A receptors.</p>
-            </div>
-            
-            <div class="data-point">
-                <strong>GABA-B Receptors</strong>
-                <p>Modulate stress responses and resilience. Chronic activation of GABA-B receptors may enhance long-term emotional stability and stress resilience—meaning regular coffee leaf consumption may gradually strengthen your emotional baseline.</p>
-            </div>
-            
-            <h4>Phenolic Compounds: Oxidative Stress & Mood</h4>
-            <p>Oxidative stress—the accumulation of free radicals in cells—is both caused by chronic stress and causes emotional dysregulation. Coffee leaves' high phenolic content (25–36 mg GAE/g) directly counteracts oxidative stress through antioxidant mechanisms.</p>
-            
-            <p><strong>The mood-oxidative stress link:</strong> Stress increases free radicals → oxidative stress damages neurons, particularly in mood-regulation regions like the prefrontal cortex and amygdala → emotional dysregulation worsens → stress increases further. Phenolics interrupt this cycle by reducing oxidative damage at the cellular level.</p>
-            
-            <h4>The Caffeine-GABA Synergy</h4>
-            <p>Coffee leaves contain both caffeine (a stimulant) and GABA (a relaxant). This seems contradictory, but the interaction is sophisticated:</p>
-            
-            <ul>
-                <li><strong>Caffeine antagonizes adenosine receptors,</strong> keeping you alert and engaged.</li>
-                <li><strong>Caffeine enhances GABA release</strong> through NMDA receptor activation, creating a balancing effect.</li>
-                <li><strong>Caffeine may modulate GABA-A receptor activity,</strong> amplifying the inhibitory signal.</li>
-            </ul>
-            
-            <p>The result: you remain mentally alert (caffeine effect) while your nervous system remains calm (GABA effect). This is fundamentally different from coffee, where caffeine alone can produce anxiety. Coffee leaf's synergy creates <em>calm alertness</em>—emotional stability combined with presence.</p>
-            
-            <h4>Volatile Compounds & Emotional Pathways</h4>
-            <p>Beyond GABA and phenolics, specific volatile compounds support emotional balance through olfactory-limbic pathways:</p>
-            
-            <div class="data-point">
-                <strong>Diphenyl Sulfone</strong>
-                <p>Unique to oolong-processed leaves (27.8% of volatile compounds). Research suggests it may work similarly to chlormezanone, a documented anti-anxiety medication. Acts on both antioxidant and direct neurochemical pathways to reduce anxiety.</p>
-            </div>
-            
-            <div class="data-point">
-                <strong>Phenyl-Methylene Heptanoate</strong>
-                <p>Second most abundant volatile compound in oolong leaves (17.3%). Acts as a gap junction inhibitor, promoting vascular smooth muscle relaxation and improved cardiac function—supporting the physiological basis for emotional calm.</p>
-            </div>
-            
-            <!-- EMOTIONAL IMPACT -->
-            <h3>III. Emotional Impact: Measurable Mood Shifts</h3>
-            
-            <h4>Cortisol Reduction & Emotional State</h4>
-            <p>Cortisol, the stress hormone, directly influences mood. Elevated cortisol produces anxiety, irritability, and emotional numbness. Coffee leaf consumption produces significant cortisol reduction, with corresponding improvements in emotional tone:</p>
-            
-            <div class="data-point">
-                <strong>Salivary Cortisol & Self-Reported Mood</strong>
-                <p>Participants who showed the greatest cortisol reduction (from 49.7 to 19.08 ng/mL) also reported the greatest decrease in stress feeling intensity (from 11.67 to 6.08 on a 1–15 scale). This 57% reduction in cortisol correlated with 48% reduction in perceived stress.</p>
-            </div>
-            
-            <h4>Emotional Expression: Facial Recognition Data</h4>
-            <p>Using advanced Facial Emotion Recognition technology, researchers detected spontaneous positive emotional expressions after coffee leaf consumption:</p>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Condition</th>
-                        <th>Positive Emotion Photos</th>
-                        <th>Interpretation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Oolong coffee leaf</td>
-                        <td>96.33 ± 15.74</td>
-                        <td>Significant positive emotional shift</td>
-                    </tr>
-                    <tr>
-                        <td>L-Theanine (200mg)</td>
-                        <td>105.50 ± 51.4</td>
-                        <td>Reference relaxation supplement</td>
-                    </tr>
-                    <tr>
-                        <td>Water (control)</td>
-                        <td>0.00</td>
-                        <td>No emotional shift</td>
-                    </tr>
-                    <tr>
-                        <td>Other coffee leaf types</td>
-                        <td>9–44</td>
-                        <td>Minimal emotional shift</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <p>This data shows that oolong-processed coffee leaves produce emotional positivity comparable to a documented mood-support supplement.</p>
-            
-            <h4>The Duration of Emotional Benefit</h4>
-            <p>Using Emotional Time Intensity (ETI) measurement, researchers tracked relaxation level (1–7 scale) over 45 minutes post-consumption. Oolong coffee leaves sustained a "very relaxed" state for the full 45-minute observation period—the only non-supplement condition (besides pure L-theanine) to do so.</p>
-            
-            <p>This sustained effect suggests that coffee leaf's emotional benefit is not a fleeting spike but a sustained shift in emotional baseline.</p>
-            
-            <!-- LIFESTYLE INTEGRATION -->
-            <h3>IV. Lifestyle Integration: Building Emotional Resilience</h3>
-            
-            <h4>Acute Emotional Support</h4>
-            <p>For immediate emotional challenges—anxiety about an upcoming situation, emotional overwhelm, post-stress recovery—coffee leaf consumption provides measurable relief within 15–20 minutes, sustained for 45+ minutes.</p>
-            
-            <h4>Building Chronic Emotional Resilience</h4>
-            <p>Regular consumption (3–5 times weekly) appears to build baseline emotional stability. The mechanism likely involves:</p>
-            
-            <ul>
-                <li><strong>Reduced baseline cortisol:</strong> Regular GABA and phenolic intake lowers your resting cortisol level, creating a calmer neurochemical baseline.</li>
-                <li><strong>Neuroplasticity:</strong> Repeated activation of GABA-B receptors may strengthen neural circuits involved in emotional regulation, making your brain more resilient to stress.</li>
-                <li><strong>Antioxidant accumulation:</strong> Regular phenolic intake builds antioxidant defenses, protecting mood-critical brain regions from oxidative damage.</li>
-            </ul>
-            
-            <h4>Choosing Your Processing Type for Emotional Needs</h4>
-            <p><strong>For acute anxiety or overwhelm:</strong> Oolong-processed leaves show the strongest emotional-positive shift (96.33 positive emotion photos). Their higher diphenyl sulfone content may provide the most direct anxiety-reduction effect.</p>
-            
-            <p><strong>For chronic emotional resilience:</strong> Fermented processing (any duration) maximizes GABA content and offers comforting sensory cues that support emotional grounding. Regular fermented leaf consumption may be optimal for building baseline resilience.</p>
-            
-            <p><strong>For mood lift with alertness:</strong> Non-fermented leaves' brighter sensory profile and caffeine-GABA synergy support emotional positivity combined with mental engagement—useful for low mood combined with low motivation.</p>
-            
-            <h4>Integration with Other Emotional Practices</h4>
-            <p>Coffee leaf is not a replacement for therapy, exercise, sleep, or other evidence-based emotional practices. Rather, it is a complementary tool:</p>
-            
-            <ul>
-                <li>Consume before therapy or emotional work to create a calmer nervous system baseline.</li>
-                <li>Use coffee leaf as a ritual anchor for mindfulness or meditation practice.</li>
-                <li>Integrate into recovery periods after intense emotional engagement or challenging social situations.</li>
-                <li>Use as a daily baseline support while building other emotional resilience practices.</li>
-            </ul>
-            
-            <!-- CITATIONS -->
-            <div class="citations">
-                <h4>Sources</h4>
-                <div class="citation">
-                    <span class="citation-number">[1]</span> Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea: An integrative food cognition approach. <em>Applied Food Research</em>, 5, 101141.
-                </div>
-                <div class="citation">
-                    <span class="citation-number">[2]</span> Kühnel, A., et al. (2020). Impaired cognitive self-awareness mediates the association between alexithymia and excitation/inhibition balance in the pgACC. <em>Psychological Medicine</em>, 50(10), 1727–1735.
-                </div>
-                <div class="citation">
-                    <span class="citation-number">[3]</span> Widegren, E., et al. (2024). The influence of anterior cingulate GABA+ and glutamate on emotion regulation and reactivity in adolescents and adults. <em>Developmental Psychobiology</em>, 66(4).
-                </div>
-                <div class="citation">
-                    <span class="citation-number">[4]</span> O'Neill, N., & Sylantyev, S. (2018). Spontaneously opening GABAA receptors play a significant role in neuronal signal filtering and integration. <em>Cell Death & Disease</em>, 9(8), 813.
-                </div>
-            </div>
-        </div>
-        
-        <!-- ===== PATHWAY 4: EVENING ===== -->
-        <div class="content-section" id="evening">
-            <a class="back-link" onclick="showPathway('main'); return false;">← Back</a>
-            
-            <h2>Evening Calm & Better Sleep</h2>
-            <div class="section-meta">Can't unwind? This brew helps you relax and sleep better. No next-day grogginess.</div>
-            
-            <h3>Why You Can't Unwind</h3>
-            <p>Work stress stays in your body. Your muscles are tight, your jaw is clenched, your mind won't shut up. So you lie in bed wide awake or sleep badly. Coffee leaf is perfect for this—it's too weak to replace real sleep medicine, but it's exactly right for helping your body actually relax and sleep normally.</p>
-            
-            <h3>The Recipe: Evening Wind-Down Brew</h3>
-            
-            <div class="recipe">
-                <h4>Evening Wind-Down Brew (Fully Fermented, Best for Sleep Prep)</h4>
-                
-                <p><strong>What you need:</strong></p>
-                <ul>
-                    <li>12-14g dried coffee leaves (fully fermented, darkest color)</li>
-                    <li>1 cup hot water</li>
-                    <li>A strainer</li>
-                    <li>Your favorite mug (maybe a special one for evenings?)</li>
-                </ul>
-                
-                <div class="recipe-step">
-                    <strong>Heat and cool:</strong> Boil water, wait 2-3 minutes.</div>
-                
-                <div class="recipe-step">
-                    <strong>Brew for 8-9 minutes:</strong> Longer brew than daytime (more time = more GABA extraction for deeper relaxation).</div>
-                
-                <div class="recipe-step">
-                    <strong>Create a moment:</strong> Don't drink this while working or scrolling. Put your phone away. Sit somewhere comfortable.</div>
-                
-                <div class="recipe-step">
-                    <strong>Sip and notice:</strong> This should taste warm, slightly sweet, maybe a bit fruity or honey-like. Notice the warmth going down. Notice your shoulders dropping as you drink.</div>
-                
-                <div class="result-box">
-                    <strong>What to expect:</strong>
-                    As you drink it, your body relaxes. Your jaw unclenches. Your breathing slows. By the time you finish, your mind is quieter. When you go to bed 30-45 minutes later, you fall asleep faster and sleep more deeply. You wake up less during the night. Next morning you're not groggy—just more rested.
-                </div>
-            </div>
-            
-            <h3>When to Use This</h3>
-            <ul>
-                <li><strong>Every weeknight:</strong> Make this part of your bedtime routine, like brushing your teeth.</li>
-                <li><strong>When you come home stressed:</strong> The moment you walk in the door, especially after a tough day.</li>
-                <li><strong>When your mind won't shut up:</strong> Instead of lying awake in bed stressing, make this an hour before bed.</li>
-                <li><strong>After a fight or emotional thing:</strong> Drink this and your nervous system actually calms down so you can process better.</li>
-                <li><strong>When you're sore from tension:</strong> Tight shoulders, clenched jaw, neck pain from stress? This relaxes those.</li>
-            </ul>
-            
-            <h3>Timing is Important</h3>
-            <p><strong>Best time: 30-60 minutes before bed.</strong> This gives you time to relax while the brew is working, then you go to bed when you're actually drowsy. Don't drink it right before bed or you might still be processing it when you're trying to sleep.</p>
-            
-            <p><strong>Why not coffee's nighttime cousin?</strong> Because even though fully fermented leaves have very little caffeine, coffee still has some. So don't use it less than 4-5 hours before bed. But that evening window (7pm-10pm depending when you sleep) is perfect.</p>
-            
-            <h3>Why Fully Fermented for Evening</h3>
-            <p>Fully fermented leaves have been sitting 24+ hours after picking. This long fermentation develops maximum GABA content and takes away most of the caffeine. The taste is sweet, warm, and comforting—like it was designed for evening. You taste honey, dried fruit, warm spice notes.</p>
-            
-            <div class="tip-box">
-                <strong>Make it a ritual:</strong> Use the same cup each evening. Make it at the same time. Your body and brain start to recognize "evening calm brew time" and start relaxing before you even drink it. The ritual is as important as the brew itself.
-            </div>
-            
-            <h3>How It Works</h3>
-            <p>GABA tells your nervous system "it's safe to relax now." When you drink fermented coffee leaf, GABA reaches your brain and your whole system starts to downshift. Your muscles relax, your heart rate slows, your mind gets quieter. At the same time, the other compounds in coffee leaf reduce your stress hormones, which frees up your brain to produce melatonin (the sleep chemical) naturally. So you're not forcing sleep—you're creating the conditions where sleep happens naturally.</p>
-            
-            <h3>What the Research Shows</h3>
-            <p>In studies, people who drank coffee leaf showed significant drops in cortisol and stress hormones that lasted for hours. That's exactly when you want lower stress hormones—in the evening, so your body can actually relax and sleep. Research specifically showed that oolong and fermented coffee leaves produced the deepest relaxation—deeper than green leaves, deeper than water.</p>
-            
-            <h3>Is It Safe Every Night?</h3>
-            <p>Yes. Coffee leaf has no known side effects when used regularly. People use it nightly without issues. It's not habit-forming like sleeping pills. Your body doesn't build tolerance to it (meaning it keeps working). It's just leaves in hot water—like tea or herbs, but with stronger effects.</p>
-            
-            <h3>What If You Have Kids Still Up?</h3>
-            <p>Make this after they're in bed or asleep. It's the perfect transition from "mom mode" to "rest mode." Many women say this 10-15 minute window of slowly sipping coffee leaf while sitting quiet is their only peace during the day.</p>
-            
-            <div class="citations">
-                <h4>Where This Comes From</h4>
-                <div class="citation">
-                    <span class="citation-number">[1]</span> Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea. <em>Applied Food Research</em>, 5, 101141.
-                </div>
-            </div>
-        </div>
-            <a class="back-link" onclick="showPathway('main'); return false;">← Back to Pathways</a>
-            
-            <h2>Daily Ritual & Optimization</h2>
-            <div class="section-meta">Practical integration: timing, preparation methods, sensory rituals, and finding your optimal coffee leaf experience.</div>
-            
-            <!-- SENSORY PROFILE -->
-            <h3>I. Sensory Profile: Finding Your Match</h3>
-            <p>The first step in daily integration is finding the coffee leaf profile that resonates with your sensory preferences and lifestyle needs. This is not a minor detail—research shows that sensory satisfaction directly amplifies functional benefit.</p>
-            
-            <h4>The Processing Spectrum</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Processing Type</th>
-                        <th>Withering Time</th>
-                        <th>Sensory Profile</th>
-                        <th>Best For</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Green (Non-Fermented)</strong></td>
-                        <td>0 hours</td>
-                        <td>Intense green, vegetal, citrus brightness</td>
-                        <td>Morning alertness, active work</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Light Fermented</strong></td>
-                        <td>6–12 hours</td>
-                        <td>Balanced—green base with emerging sweetness</td>
-                        <td>Transition periods, flexible needs</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Oolong-Style (Medium Fermented)</strong></td>
-                        <td>12–18 hours</td>
-                        <td>Sweetish, fruity, honey-like, floral complexity</td>
-                        <td>Stress management, emotional balance</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Fully Fermented</strong></td>
-                        <td>24+ hours</td>
-                        <td>Maximum sweetness, dried fruit, deep warmth</td>
-                        <td>Evening relaxation, grounding</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <!-- CHEMICAL SCIENCE -->
-            <h3>II. Chemical Science: Optimization Parameters</h3>
-            
-            <h4>The Extraction Equation</h4>
-            <p>Optimal compound extraction depends on three variables that work together:</p>
-            
-            <div class="data-point">
-                <strong>Temperature: 78°C (Optimal)</strong>
-                <p>Research using Response Surface Methodology identified 78°C as the extraction temperature that maximizes GABA, total phenolic content, and desirable volatile compounds while minimizing harsh tannins and excessive bitterness. Lower temperatures (below 75°C) extract less GABA; higher temperatures (above 81°C) over-extract astringent compounds.</p>
-            </div>
-            
-            <div class="data-point">
-                <strong>Brewing Duration: 8–8.5 minutes (Optimal)</strong>
-                <p>Shorter brews (under 5 minutes) leave compounds unextracted. Longer brews (over 12 minutes) extract excessive tannins, creating harshness and reduced sensory pleasure. The 8–8.5 minute window balances compound extraction with sensory quality.</p>
-            </div>
-            
-            <div class="data-point">
-                <strong>Leaf-to-Water Ratio: 1:100 (10g per 1L)</strong>
-                <p>This ratio delivers consistent compound concentration without requiring precision scales. A standard handful (approximately 10g) per liter provides reliable results.</p>
-            </div>
-            
-            <h4>Practical Optimization</h4>
-            <p>Unless you have brewing equipment with temperature control, the simplest approach is:</p>
-            
-            <ol>
-                <li>Boil water (100°C)</li>
-                <li>Wait 2–3 minutes for temperature to drop to approximately 78°C</li>
-                <li>Pour water over leaves</li>
-                <li>Brew for 8 minutes</li>
-                <li>Strain and consume</li>
-            </ol>
-            
-            <p>This method reliably produces near-optimal extraction without specialized equipment.</p>
-            
-            <!-- EMOTIONAL IMPACT -->
-            <h3>III. Emotional Impact: The Ritual Dimension</h3>
-            
-            <h4>Why Ritual Amplifies Effect</h4>
-            <p>Research on mindful consumption shows that the <em>ritual</em> of preparation directly amplifies the functional effect. This is not placebo; the act of intentional, conscious preparation creates measurable changes in nervous system activation.</p>
-            
-            <p>The ritual signals to your brain: <em>I am choosing calm/clarity/presence.</em> This choice itself activates parasympathetic nervous system activation, which then synergizes with the chemical compounds. Caffeine + ritual intentionality = greater functional benefit than either alone.</p>
-            
-            <h4>Building a Conscious Consumption Practice</h4>
-            <p><strong>Pre-consumption awareness:</strong> Before brewing, pause and notice your current state—your stress level, emotional tone, energy level. This conscious baseline makes the post-consumption shift more apparent and meaningful.</p>
-            
-            <p><strong>Sensory engagement during brewing:</strong> Watch the color of the water change as leaves infuse. Notice the aroma. Listen to the sound of steeping. These multi-sensory engagements prepare your nervous system for the experience and anchor you in the present moment.</p>
-            
-            <p><strong>Intentional consumption:</strong> Set down other activities. Hold the cup with both hands. Notice the warmth. Inhale the aroma before sipping. Let the first sip rest on your tongue. This conscious engagement amplifies both sensory pleasure and functional benefit.</p>
-            
-            <p><strong>Post-consumption reflection:</strong> After consuming, notice any shifts—in your breathing, tension level, emotional tone, mental clarity. This reflection consolidates the experience and builds awareness of what coffee leaf does for you specifically.</p>
-            
-            <!-- LIFESTYLE INTEGRATION -->
-            <h3>IV. Lifestyle Integration: Building Daily Practice</h3>
-            
-            <h4>Timing: When to Consume</h4>
-            <p><strong>Morning (if non-fermented):</strong> Green coffee leaves' alertness-supporting profile works well for morning presence and focus. Their caffeine content provides mild stimulation (much lower than coffee) without overstimulation.</p>
-            
-            <p><strong>Afternoon (anytime):</strong> Ideal timing for managing work stress or transitioning between high-focus and reflective work. The 45-minute window of cortisol reduction aligns well with typical afternoon slumps or stress peaks.</p>
-            
-            <p><strong>Evening (fermented varieties):</strong> Fully fermented leaves' maximum GABA content and grounding sensory profile support evening relaxation. However, their caffeine content (lower than non-fermented but present) suggests consuming 4–6 hours before sleep rather than immediately before bed.</p>
-            
-            <p><strong>Frequency guidelines:</strong> Daily consumption appears safe based on available research. For stress management, 3–5 times weekly provides measurable benefit. For sensory enjoyment, daily consumption is appropriate.</p>
-            
-            <h4>Personal Experimentation</h4>
-            <p>Optimal coffee leaf practice is personal. While research provides general guidelines, your individual neurochemistry, sensory preferences, and lifestyle may create different optimal parameters:</p>
-            
-            <ul>
-                <li><strong>Start with oolong-processed leaves</strong> (they show the strongest research support for emotional balance and stress resilience).</li>
-                <li><strong>Consume 1 cup daily for one week,</strong> noting sensory experience and any shifts in stress, mood, or presence.</li>
-                <li><strong>Adjust based on response:</strong> If no noticeable effect, try longer brewing time (10 minutes) or try non-fermented leaves for comparison.</li>
-                <li><strong>Track timing:</strong> Notice whether morning, afternoon, or evening consumption produces the strongest effect for your goals.</li>
-                <li><strong>Adjust frequency:</strong> If daily consumption feels optimal, continue. If 3–4 times weekly feels more appropriate, honor that.</li>
-            </ul>
-            
-        </div>
-        
-    </div>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="index.html">
+      <img src="https://koffykraft.github.io/Coffee-Leaf-Files/buna-leaf.svg" alt="BUNA">
+      <span>
+        <span class="site-logo-text">BUNA</span><br>
+        <span class="site-logo-sub">Coffee Leaf Library</span>
+      </span>
+    </a>
+    <nav class="breadcrumb">
+      <a href="index.html">Index</a><span class="sep">/</span><span class="current">Buna Lifestyle Manual</span>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <p class="page-kicker">Practical Application</p>
+  <h1>Buna Lifestyle Manual</h1>
+  <p class="page-subtitle">Simple, practical ways to use coffee leaf to feel calmer, clearer, and more balanced[span_6](start_span)[span_6](end_span). With real recipes based on real science[span_7](start_span)[span_7](end_span).</p>
+
+  <!-- CONTROL PANEL PANEL NAVIGATION -->
+  <div class="card-grid" id="mainNav">
+    <button class="card-btn" onclick="showPathway('stressed'); return false;">
+      <span class="card-title">Feeling Stressed</span>
+      <span class="card-desc">Tough day at work? Get calm fast with the brew engineered to manage stress markers[span_8](start_span)[span_8](end_span).</span>
+    </button>
+    <button class="card-btn" onclick="showPathway('focus'); return false;">
+      <span class="card-title">Need to Focus</span>
+      <span class="card-desc">Afternoon slump? Secure clarity and clear alert focus without suffering the jitters[span_9](start_span)[span_9](end_span).</span>
+    </button>
+    <button class="card-btn" onclick="showPathway('mood'); return false;">
+      <span class="card-title">Want Better Mood</span>
+      <span class="card-desc">Feeling flat? The evidence-based methodology to support your neurochemical baseline[span_10](start_span)[span_10](end_span).</span>
+    </button>
+    <button class="card-btn" onclick="showPathway('evening'); return false;">
+      <span class="card-title">Evening Calm</span>
+      <span class="card-desc">Can't unwind? Unclench your jaw and support healthy, natural sleep preps[span_11](start_span)[span_11](end_span).</span>
+    </button>
+  </div>
+
+  <!-- ===== PATHWAY 1: STRESSED ===== -->
+  <div class="content-section" id="stressed">
+    <a class="back-link" onclick="showPathway('main'); return false;">← Back to Options</a>
+    <h2>When You're Stressed</h2>
+    <div class="section-meta">Quick calm. Real results. Your stress hormones actually go down[span_12](start_span)[span_12](end_span).</div>
     
-    <script>
-        function showPathway(pathwayId) {
-            console.log('showPathway called with:', pathwayId);
-            
-            // Hide all sections
-            const sections = document.querySelectorAll('.content-section');
-            console.log('Found sections:', sections.length);
-            
-            sections.forEach(section => {
-                section.classList.remove('active');
-                console.log('Removed active from:', section.id);
-            });
-            
-            // Show selected section
-            if (pathwayId !== 'main') {
-                const element = document.getElementById(pathwayId);
-                console.log('Looking for element:', pathwayId, 'Found:', !!element);
-                if (element) {
-                    element.classList.add('active');
-                    console.log('Added active to:', pathwayId);
-                    
-                    // Scroll to the section after a tiny delay to ensure it's rendered
-                    setTimeout(function() {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 50);
-                }
-            } else {
-                // Show main nav
-                document.getElementById('mainNav').scrollIntoView({ behavior: 'smooth' });
-            }
+    <h3>What Happens When You're Stressed</h3>
+    <p>Your body releases cortisol—your stress hormone[span_13](start_span)[span_13](end_span). High cortisol makes you feel tense, jumpy, and exhausted[span_14](start_span)[span_14](end_span). Coffee leaf directly lowers your cortisol[span_15](start_span)[span_15](end_span). Studies show your stress level drops about 45% in the first 30 minutes, and that calm lasts for almost an hour[span_16](start_span)[span_16](end_span).</p>
+    
+    <div class="box box-recipe">
+      <span class="box-label">Recipe: Calm-Down Brew (Oolong-Style)</span>
+      <p><strong>What you need:</strong></p>
+      <p>• 10-12g dried coffee leaves (about a small handful)[span_17](start_span)[span_17](end_span)<br>
+         • 1 cup hot water (not boiling—let it cool 2-3 minutes first)[span_18](start_span)[span_18](end_span)<br>
+         • A strainer or tea infuser[span_19](start_span)[span_19](end_span)</p>
+      
+      <ul class="steps" style="margin-top: 14px;">
+        <li><div class="step-number">1</div><div class="step-text"><p><strong>Heat water:</strong> Boil water. Let it cool slightly for 2-3 minutes until warm, not steaming[span_20](start_span)[span_20](end_span).</p></div></li>
+        <li><div class="step-number">2</div><div class="step-text"><p><strong>Pour and brew:</strong> Add leaves to your vessel, pour in the water, and set a timer for 8 minutes[span_21](start_span)[span_21](end_span).</p></div></li>
+        <li><div class="step-number">3</div><div class="step-text"><p><strong>Strain and sip:</strong> Remove leaves or strain. Sip slowly and let it warm you from the inside[span_22](start_span)[span_22](end_span).</p></div></li>
+      </ul>
+
+      <div class="result-box">
+        <strong>What to expect:</strong>
+        Within 15-20 minutes your shoulders feel less tight[span_23](start_span)[span_23](end_span). Your breathing gets slower[span_24](start_span)[span_24](end_span). By 30 minutes, you feel noticeably calmer[span_25](start_span)[span_25](end_span). That calm lasts for about 45 minutes to an hour[span_26](start_span)[span_26](end_span).
+      </div>
+    </div>
+
+    <h3>How It Works (Simple Version)</h3>
+    <p>Coffee leaves have something called GABA—it's like your brain's "calm down" button[span_27](start_span)[span_27](end_span). When you drink it, GABA reaches your brain and tells it to relax[span_28](start_span)[span_28](end_span). At the same time, coffee leaves have compounds that directly lower your cortisol hormone[span_29](start_span)[span_29](end_span).</p>
+
+    <div class="tip-box">
+      <strong>Pro tip:</strong> The leaves matter[span_30](start_span)[span_30](end_span). You need oolong-style or fermented leaves (they've been sitting 12-24 hours after picking)[span_31](start_span)[span_31](end_span). Fermented ones have more GABA and they taste sweeter and nicer when you're stressed[span_32](start_span)[span_32](end_span).
+    </div>
+
+    <h3>What the Research Shows</h3>
+    <p>In studies, people drank coffee leaf after a stressful task[span_33](start_span)[span_33](end_span). Their stress self-rating dropped from 11.67 to 6.08 on a 15-point scale—that's almost 50% calmer[span_34](start_span)[span_34](end_span). Their blood cortisol dropped from 16.99 to 7.19[span_35](start_span)[span_35](end_span). It worked as well as pure GABA supplements costing way more[span_36](start_span)[span_36](end_span).</p>
+
+    <div class="citations">
+      <h4>Sources</h4>
+      <div class="citation"><span class="citation-number">[1]</span> Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea. <em>Applied Food Research</em>, 5, 101141[span_37](start_span)[span_37](end_span).</div>
+    </div>
+  </div>
+
+  <!-- ===== PATHWAY 2: FOCUS ===== -->
+  <div class="content-section" id="focus">
+    <a class="back-link" onclick="showPathway('main'); return false;">← Back to Options</a>
+    <h2>When You Need to Focus</h2>
+    <div class="section-meta">Alert without jitters. Calm without drowsy. The afternoon focus brew[span_38](start_span)[span_38](end_span).</div>
+    
+    <h3>The Problem with Regular Coffee</h3>
+    <p>Coffee makes you jittery[span_39](start_span)[span_39](end_span). Coffee leaf is different[span_40](start_span)[span_40](end_span). It has caffeine (but way less), plus GABA that tells your brain to relax at the same time[span_41](start_span)[span_41](end_span). So you get clarity without the jitters, focus without the crash[span_42](start_span)[span_42](end_span).</p>
+
+    <div class="box box-recipe">
+      <span class="box-label">Recipe: Focus &amp; Clarity Brew</span>
+      <p>• 10-12g dried coffee leaves (fresh green or light fermented)[span_43](start_span)[span_43](end_span)<br>
+         • 1 cup hot water[span_44](start_span)[span_44](end_span)</p>
+      
+      <ul class="steps" style="margin-top: 14px;">
+        <li><div class="step-number">1</div><div class="step-text"><p><strong>Prepare water:</strong> Boil water, then allow it to rest for 2-3 minutes[span_45](start_span)[span_45](end_span).</p></div></li>
+        <li><div class="step-number">2</div><div class="step-text"><p><strong>Infuse:</strong> Pour over leaves and steep for exactly 7 minutes (extracts slightly more caffeine and less sweetness than the stress brew)[span_46](start_span)[span_46](end_span).</p></div></li>
+        <li><div class="step-number">3</div><div class="step-text"><p><strong>Sip:</strong> Strain and sip slowly over the next 15 minutes[span_47](start_span)[span_47](end_span).</p></div></li>
+      </ul>
+
+      <div class="result-box">
+        <strong>What to expect:</strong>
+        Within 10 minutes you'll feel mentally clearer[span_48](start_span)[span_48](end_span). Your thinking gets faster[span_49](start_span)[span_49](end_span). You can focus on one thing without your mind jumping around[span_50](start_span)[span_50](end_span). You stay alert for 3-4 hours with no crash[span_51](start_span)[span_51](end_span).
+      </div>
+    </div>
+
+    <h3>Sensory Spectrum: Fermented vs. Non-Fermented</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Fermented Leaves</th>
+          <th>Non-Fermented Leaves</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Primary Aroma</strong></td><td>Sweetish, fruity, honey-forward[span_52](start_span)[span_52](end_span)</td><td>Intense green, fresh, vegetal[span_53](start_span)[span_53](end_span)</td></tr>
+        <tr><td><strong>Secondary Notes</strong></td><td>Floral undertones, dried apricot complexity[span_54](start_span)[span_54](end_span)</td><td>Citrus-like brightness, herbal clarity[span_55](start_span)[span_55](end_span)</td></tr>
+        <tr><td><strong>Mouthfeel</strong></td><td>Smooth, slightly creamy, lingering warmth[span_56](start_span)[span_56](end_span)</td><td>Crisp, lighter body, immediate clarity[span_57](start_span)[span_57](end_span)</td></tr>
+        <tr><td><strong>Sensory Intention</strong></td><td>Comfort, grounding, reflective presence[span_58](start_span)[span_58](end_span)</td><td>Alertness, mental clarity, active engagement[span_59](start_span)[span_59](end_span)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>The Core Volatile Indicators</h3>
+    <div class="data-point"><strong>&beta;-Ionone:</strong> Honey-like, warm[span_60](start_span)[span_60](end_span). Creates comfort markers; signs grounding and warmth[span_61](start_span)[span_61](end_span).</div>
+    <div class="data-point"><strong>Decanal:</strong> Citrus-like, floral[span_62](start_span)[span_62](end_span). Signals alertness and mental openness[span_63](start_span)[span_63](end_span).</div>
+    <div class="data-point"><strong>Hexanal:</strong> Green, herbaceous[span_64](start_span)[span_64](end_span). The aroma of pure natural leaf presence[span_65](start_span)[span_65](end_span).</div>
+
+    <div class="citations">
+      <h4>Sources</h4>
+      <div class="citation"><span class="citation-number">[1]</span> Rigling, M., et al. (2023). Sensorial and aroma profiles of coffee by-products. <em>Proceedings</em>[span_66](start_span)[span_66](end_span).</div>
+      <div class="citation"><span class="citation-number">[2]</span> Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea. <em>Applied Food Research</em>[span_67](start_span)[span_67](end_span).</div>
+    </div>
+  </div>
+
+  <!-- ===== PATHWAY 3: MOOD ===== -->
+  <div class="content-section" id="mood">
+    <a class="back-link" onclick="showPathway('main'); return false;">← Back to Options</a>
+    <h2>When You Want Better Mood</h2>
+    <div class="section-meta">Feeling flat? Gray? Down? The brew that actually lifts mood[span_68](start_span)[span_68](end_span).</div>
+    
+    <h3>The Neurobiology of Mood Lift</h3>
+    <p>Coffee leaf drops stress markers while supporting your brain's capacity to access baseline feel-good neurotransmitters[span_69](start_span)[span_69](end_span). It acts on dual fronts: you extract functional GABA straight from the leaves, while reducing system cortisol to give your cells processing room[span_70](start_span)[span_70](end_span).</p>
+
+    <div class="box box-recipe">
+      <span class="box-label">Recipe: Mood-Lift Brew</span>
+      <ul class="steps">
+        <li><div class="step-number">1</div><div class="step-text"><p><strong>Steep:</strong> Infuse 12g of oolong-style coffee leaves in 90°C water for 8 minutes[span_71](start_span)[span_71](end_span).</p></div></li>
+        <li><div class="step-number">2</div><div class="step-text"><p><strong>Engage:</strong> Bring the cup close and capture the aromatic steam. The olfactory response leads straight to your emotional control systems[span_72](start_span)[span_72](end_span).</p></div></li>
+      </ul>
+
+      <div class="result-box">
+        <strong>Facial Emotion Recognition Analytics:</strong>
+        In controlled trials, participants drinking oolong-processed leaf showed significantly higher metrics of positive facial models (96.33 ± 15.74 photos indicating spontaneous positive expressions) compared to water controls (0.00)[span_73](start_span)[span_73](end_span).
+      </div>
+    </div>
+
+    <h3>Sustained Emotional Balance Retention</h3>
+    <p>Using Emotional Time Intensity (ETI) tracking, researchers confirmed that oolong-processed coffee leaves successfully sustained a "very relaxed" and emotionally positive baseline across the full 45-minute laboratory tracking window[span_74](start_span)[span_74](end_span).</p>
+
+    <div class="citations">
+      <h4>Sources</h4>
+      <div class="citation"><span class="citation-number">[1]</span> Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea. <em>Applied Food Research</em>[span_75](start_span)[span_75](end_span).</div>
+    </div>
+  </div>
+
+  <!-- ===== PATHWAY 4: EVENING ===== -->
+  <div class="content-section" id="evening">
+    <a class="back-link" onclick="showPathway('main'); return false;">← Back to Options</a>
+    <h2>Evening Calm &amp; Better Sleep</h2>
+    <div class="section-meta">Can't unwind? This brew helps you relax and sleep better. No next-day grogginess[span_76](start_span)[span_76](end_span).</div>
+    
+    <h3>Optimized Extraction Parameters</h3>
+    <p>Response Surface Methodology identified exact thresholds to isolate the highest functional yields from fully fermented leaf stocks without releasing harsh astringency[span_77](start_span)[span_77](end_span):</p>
+    <div class="data-point"><strong>Temperature Target: 78°C</strong> — Maximizes GABA and total phenolics while keeping extra-bitter tannins bound inside the leaf tissue[span_78](start_span)[span_78](end_span).</div>
+    <div class="data-point"><strong>Duration Target: 8 to 8.5 Minutes</strong> — Balances thorough functional extraction with highly pleasing sensory profiles[span_79](start_span)[span_79](end_span).</div>
+
+    <div class="box box-recipe">
+      <span class="box-label">Recipe: Evening Wind-Down Routine</span>
+      <p>• 12-14g fully fermented, dark coffee leaves[span_80](start_span)[span_80](end_span)<br>
+         • 1 cup hot water (rested to 78°C)[span_81](start_span)[span_81](end_span)</p>
+      
+      <ul class="steps" style="margin-top: 14px;">
+        <li><div class="step-number">1</div><div class="step-text"><p>Pour water and allow an extended 8.5-minute extraction rest[span_82](start_span)[span_82](end_span).</p></div></li>
+        <li><div class="step-number">2</div><div class="step-text"><p>Set aside external devices. Consume intentionally 30–60 minutes before bed to allow system downshifting to run its path[span_83](start_span)[span_83](end_span).</p></div></li>
+      </ul>
+    </div>
+
+    <div class="tip-box">
+      <strong>Caffeine Window Check:</strong> Fully fermented leaves minimize caffeine and maximize calming elements[span_84](start_span)[span_84](end_span). However, trace alkaloid contents suggest your optimal evening window sits around 4–6 hours before deep sleep rather than directly at pillow time[span_85](start_span)[span_85](end_span).
+    </div>
+
+    <div class="citations">
+      <h4>Sources</h4>
+      <div class="citation"><span class="citation-number">[1]</span> Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea. <em>Applied Food Research</em>, 5, 101141[span_86](start_span)[span_86](end_span).</div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-meta">
+      Published openly by KoffyKraft.<br>
+      <a href="https://koffykraft.github.io/Coffee-Leaf-Files/index.html">koffykraft.github.io/Coffee-Leaf-Files</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showPathway(pathwayId) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Show selected section
+    if (pathwayId !== 'main') {
+        const element = document.getElementById(pathwayId);
+        if (element) {
+            element.classList.add('active');
+            setTimeout(function() {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
         }
-        
-        // Initialize - log when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Page loaded. Ready to click cards.');
-        });
-    </script>
+    } else {
+        document.getElementById('mainNav').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+</script>
 </body>
 </html>
