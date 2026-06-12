@@ -1,1038 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engere: Visual Pictogram Guide</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --terracotta: #8b4513;
-            --sienna: #a0522d;
-            --brown: #6b5a4a;
-            --tan: #d4a574;
-            --cream: #faf6f0;
-            --pale: #f5e6d3;
-            --gold: #c9a96e;
-        }
-        
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, var(--pale) 0%, var(--cream) 100%);
-            padding: 30px 20px;
-            color: var(--brown);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--sienna) 100%);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 12px;
-            margin-bottom: 50px;
-            text-align: center;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
-        }
-        
-        header h1 {
-            font-size: 3em;
-            font-weight: 300;
-            letter-spacing: 3px;
-            margin-bottom: 12px;
-        }
-        
-        header .subtitle {
-            font-size: 1.3em;
-            color: var(--tan);
-            margin-bottom: 15px;
-        }
-        
-        header p {
-            font-size: 1em;
-            color: rgba(255,255,255,0.9);
-            line-height: 1.6;
-        }
-        
-        .nav-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .nav-btn {
-            padding: 12px 25px;
-            background: white;
-            border: 2px solid var(--tan);
-            color: var(--terracotta);
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 6px;
-            font-size: 0.95em;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-btn:hover {
-            background: var(--tan);
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .nav-btn.active {
-            background: var(--terracotta);
-            color: white;
-            border-color: var(--terracotta);
-        }
-        
-        .section {
-            display: none;
-        }
-        
-        .section.active {
-            display: block;
-        }
-        
-        h2 {
-            font-size: 2.2em;
-            color: var(--terracotta);
-            margin-bottom: 35px;
-            text-align: center;
-            border-bottom: 3px solid var(--tan);
-            padding-bottom: 20px;
-        }
-        
-        .methods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
-        }
-        
-        .method-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .method-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
-        }
-        
-        .method-header {
-            background: linear-gradient(135deg, var(--tan) 0%, var(--gold) 100%);
-            padding: 25px;
-            color: white;
-            text-align: center;
-        }
-        
-        .method-header h3 {
-            font-size: 1.4em;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .method-percentage {
-            font-size: 2.2em;
-            font-weight: 800;
-            margin-bottom: 8px;
-            color: rgba(255,255,255,0.95);
-        }
-        
-        .method-subtitle {
-            font-size: 0.95em;
-            color: rgba(255,255,255,0.9);
-            font-style: italic;
-        }
-        
-        .method-content {
-            padding: 25px;
-        }
-        
-        .info-row {
-            display: flex;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--pale);
-        }
-        
-        .info-row:last-child {
-            border-bottom: none;
-        }
-        
-        .info-label {
-            font-weight: 600;
-            color: var(--terracotta);
-            min-width: 100px;
-            margin-right: 15px;
-        }
-        
-        .info-value {
-            color: var(--brown);
-            flex: 1;
-        }
-        
-        .step-guide {
-            background: #f9f6f3;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        
-        .step-guide h4 {
-            color: var(--terracotta);
-            margin-bottom: 12px;
-            font-size: 0.95em;
-        }
-        
-        .steps {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .step-item {
-            display: flex;
-            gap: 12px;
-        }
-        
-        .step-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            background: var(--tan);
-            color: white;
-            border-radius: 50%;
-            font-weight: 600;
-            font-size: 0.9em;
-            flex-shrink: 0;
-        }
-        
-        .step-text {
-            font-size: 0.85em;
-            color: var(--brown);
-            line-height: 1.4;
-        }
-        
-        .quality-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .quality-card {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            border-top: 4px solid var(--tan);
-        }
-        
-        .quality-icon {
-            font-size: 2.5em;
-            margin-bottom: 12px;
-        }
-        
-        .quality-name {
-            font-weight: 600;
-            color: var(--terracotta);
-            margin-bottom: 10px;
-            font-size: 1.05em;
-        }
-        
-        .quality-desc {
-            font-size: 0.9em;
-            color: var(--brown);
-            line-height: 1.5;
-        }
-        
-        .safety-box {
-            background: #c8e6c9;
-            border: 2px solid #27ae60;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 30px 0;
-            text-align: center;
-        }
-        
-        .safety-title {
-            color: #1b5e20;
-            font-weight: 600;
-            font-size: 1.1em;
-            margin-bottom: 12px;
-        }
-        
-        .safety-text {
-            color: #2e7d32;
-            line-height: 1.6;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-        
-        .benefit-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid var(--tan);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        }
-        
-        .benefit-percentage {
-            font-size: 1.8em;
-            font-weight: 800;
-            color: var(--terracotta);
-            margin-bottom: 8px;
-        }
-        
-        .benefit-name {
-            font-weight: 600;
-            color: var(--brown);
-            font-size: 0.95em;
-            line-height: 1.3;
-        }
-        
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 40px;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-        }
-        
-        .comparison-table th {
-            background: var(--terracotta);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-        
-        .comparison-table td {
-            padding: 15px;
-            border-bottom: 1px solid var(--pale);
-            color: var(--brown);
-        }
-        
-        .comparison-table tr:hover {
-            background: #f9f6f3;
-        }
-        
-        .milk-spec {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .milk-option {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-        }
-        
-        .milk-option.recommended {
-            border: 3px solid var(--tan);
-            background: #fffbf0;
-        }
-        
-        .milk-option.avoid {
-            border: 3px solid #d32f2f;
-            background: #ffebee;
-        }
-        
-        .milk-name {
-            font-weight: 600;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            color: var(--terracotta);
-        }
-        
-        .milk-desc {
-            font-size: 0.9em;
-            color: var(--brown);
-            line-height: 1.5;
-        }
-        
-        .serving-guide {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-        
-        .serving-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        }
-        
-        .serving-label {
-            font-size: 0.85em;
-            color: var(--tan);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-        
-        .serving-amount {
-            font-size: 2em;
-            font-weight: 800;
-            color: var(--terracotta);
-            margin-bottom: 8px;
-        }
-        
-        .serving-detail {
-            font-size: 0.9em;
-            color: var(--brown);
-        }
-        
-        .checklist {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            margin-bottom: 40px;
-        }
-        
-        .checklist-item {
-            display: flex;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--pale);
-        }
-        
-        .checklist-item:last-child {
-            border-bottom: none;
-        }
-        
-        .checklist-icon {
-            font-size: 1.5em;
-            margin-right: 15px;
-            min-width: 30px;
-        }
-        
-        .checklist-text {
-            color: var(--brown);
-            line-height: 1.5;
-        }
-        
-        .when-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .when-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            border-left: 5px solid var(--tan);
-        }
-        
-        .when-title {
-            font-weight: 600;
-            color: var(--terracotta);
-            margin-bottom: 12px;
-            font-size: 1.05em;
-        }
-        
-        .when-list {
-            list-style: none;
-            font-size: 0.9em;
-            color: var(--brown);
-            line-height: 1.6;
-        }
-        
-        .when-list li {
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-        }
-        
-        .when-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--tan);
-            font-weight: 600;
-        }
-        
-        .closing {
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--sienna) 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 50px 0;
-        }
-        
-        .closing p {
-            font-size: 1.05em;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-        
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
-            }
-            
-            .methods-grid, .quality-grid, .benefits-grid, .milk-spec {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-tabs {
-                justify-content: flex-start;
-                overflow-x: auto;
-            }
-            
-            .comparison-table {
-                font-size: 0.85em;
-            }
-            
-            .comparison-table th, .comparison-table td {
-                padding: 10px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUNA | Engere: Visual Pictogram Guide</title>
+<style>
+/* ==========================================================================
+   BUNA COFFEE LEAF LIBRARY — SHARED STYLESHEET
+   ========================================================================== */
+:root {
+  --ink:        #1a1a1a;   
+  --ink-soft:   #4a4a4a;   
+  --line:       #1a1a1a;   
+  --line-soft:  --line;   
+  --bg:         #ffffff;   
+  --bg-tint:    #f7f5f0;   
+  --accent:     #b8721e;   
+  --accent-soft:#f4e6d4;   
+  --sage:       #4a6b4a;   
+  --sage-soft:  #e6ede6;
+  --good:       #27ae60;
+  --max-width:  860px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.page { max-width: var(--max-width); margin: 0 auto; padding: 0 28px 80px; }
+
+.site-header { border-bottom: 2px solid var(--line); padding: 20px 24px; margin-bottom: 8px; }
+.site-header-inner { max-width: var(--max-width); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.site-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); }
+.site-logo img { width: auto; height: 42px; }
+.site-logo-text { font-weight: 800; font-size: 20px; letter-spacing: 0.05em; }
+.site-logo-sub { font-size: 13px; color: var(--ink-soft); font-weight: 400; }
+.breadcrumb { font-size: 14px; color: var(--ink-soft); }
+.breadcrumb a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px dotted var(--ink-soft); }
+.breadcrumb a:hover { color: var(--accent); border-color: var(--accent); }
+.breadcrumb .sep { margin: 0 6px; color: var(--line-soft); }
+.breadcrumb .current { color: var(--ink); font-weight: 600; }
+
+.site-footer { border-top: 2px solid var(--line); margin-top: 64px; padding: 32px 24px; }
+.site-footer-inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.footer-back { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; text-decoration: none; color: var(--ink); border: 2px solid var(--line); padding: 10px 18px; width: fit-content; font-size: 15px; }
+.footer-back:hover { background: var(--ink); color: var(--bg); }
+
+h1, h2, h3, h4 { font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; }
+h1 { font-size: 36px; margin: 24px 0 8px; }
+h2 { font-size: 26px; margin: 48px 0 16px; padding-top: 24px; border-top: 2px solid var(--line); }
+h2:first-of-type { border-top: none; padding-top: 0; margin-top: 32px; }
+h3 { font-size: 20px; margin: 28px 0 12px; }
+h4 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin: 24px 0 8px; }
+p { margin: 0 0 16px; }
+a { color: var(--accent); text-decoration: underline; }
+a:hover { color: var(--ink); }
+strong { font-weight: 800; }
+
+.page-kicker { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin: 24px 0 4px; }
+.page-subtitle { font-size: 19px; color: var(--ink-soft); margin: 0 0 24px; }
+
+/* ==========================================================================
+   NAVIGATION JUMP TABS
+   ========================================================================== */
+.toc-tabs { border: 2px solid var(--line); padding: 12px; margin: 24px 0; background: var(--bg-tint); display: flex; flex-wrap: wrap; gap: 8px; }
+.tab-btn { background: var(--bg); border: 1px solid var(--line); padding: 6px 12px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.tab-btn:hover { background: var(--bg-tint); color: var(--accent); }
+.tab-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.section-panel { display: none; }
+.section-panel.active { display: block; }
+
+.box { border: 2px solid var(--line); padding: 20px; margin: 24px 0; background: var(--bg); }
+.box-label { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; margin-bottom: 12px; border: 1px solid var(--line); }
+.box p:last-child { margin-bottom: 0; }
+.box-recipe   .box-label { background: var(--accent-soft); }
+.box-safety   .box-label { background: #c8e6c9; border-color: var(--good); }
+.box-safety { border-color: var(--good); }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin: 24px 0; }
+.card { border: 2px solid var(--line); padding: 18px; display: flex; flex-direction: column; gap: 6px; background: var(--bg); }
+.card-title { font-weight: 800; font-size: 16px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+.card-desc { font-size: 15px; color: var(--ink); }
+
+table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 16px; }
+th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+th { background: var(--ink); color: var(--bg); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
+tr:nth-child(even) td { background: var(--bg-tint); }
+
+.steps { margin: 16px 0; padding: 0; list-style: none; }
+.steps li { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+.step-number { flex: 0 0 auto; width: 28px; height: 32px; border: 1px solid var(--line); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; background: var(--bg-tint); }
+.step-text { flex: 1; padding-top: 3px; font-size: 15px; color: var(--ink-soft); }
+
+ul, ol { margin-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--ink-soft); }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 22px; }
+  .site-header-inner { flex-direction: column; align-items: flex-start; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        
-        <header>
-            <h1>Engere</h1>
-            <div class="subtitle">Visual Pictogram Guide</div>
-            <p>Learn to prepare, recognize quality, and understand the cultural meaning through visual education</p>
-        </header>
-        
-        <div class="nav-tabs">
-            <button class="nav-btn active" onclick="showSection('methods')">The Three Methods</button>
-            <button class="nav-btn" onclick="showSection('quality')">Quality Indicators</button>
-            <button class="nav-btn" onclick="showSection('health')">Health Benefits</button>
-            <button class="nav-btn" onclick="showSection('milk')">Milk Specifications</button>
-            <button class="nav-btn" onclick="showSection('serving')">Serving & Storage</button>
-            <button class="nav-btn" onclick="showSection('when')">When to Use Each</button>
-        </div>
-        
-        <!-- METHODS SECTION -->
-        <section id="methods" class="section active">
-            <h2>The Three Preparation Methods</h2>
-            
-            <div class="methods-grid">
-                
-                <!-- METHOD 1 -->
-                <div class="method-card">
-                    <div class="method-header">
-                        <div class="method-percentage">19.7%</div>
-                        <h3>METHOD 1: Simple</h3>
-                        <div class="method-subtitle">Brew + Milk Only</div>
-                    </div>
-                    <div class="method-content">
-                        <div class="info-row">
-                            <div class="info-label">📋 Formula</div>
-                            <div class="info-value">1L brew + 1/3 to 1/2 L fresh milk</div>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-label">⏱️ Time</div>
-                            <div class="info-value">10-15 minutes</div>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-label">👥 Yield</div>
-                            <div class="info-value">~1400ml (350ml × 4 servings)</div>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-label">🎯 Best For</div>
-                            <div class="info-value">Lactating mothers, children, sensitive digestion</div>
-                        </div>
-                        
-                        <div class="step-guide">
-                            <h4>Quick Steps</h4>
-                            <div class="steps">
-                                <div class="step-item">
-                                    <div class="step-number">1</div>
-                                    <div class="step-text">Brew coffee leaves using Chemo method, strain completely</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">2</div>
-                                    <div class="step-text">Pour hot strained brew into serving vessel</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">3</div>
-                                    <div class="step-text">Add fresh unpasteurized cow's milk (1/3 to 1/2 L)</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">4</div>
-                                    <div class="step-text">Stir gently to combine</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">5</div>
-                                    <div class="step-text">Serve immediately while hot (50ml per cup)</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="step-guide" style="background: #fffbf0; margin-top: 12px;">
-                            <h4>Flavor Profile</h4>
-                            <div class="step-text">Aromatic, coffee-forward, creamy richness. No spice warmth. Smooth mouthfeel, pleasant aftertaste.</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- METHOD 2 -->
-                <div class="method-card">
-                    <div class="method-header">
-                        <div class="method-percentage">22.6%</div>
-                        <h3>METHOD 2: + Sweetener</h3>
-                        <div class="method-subtitle">Brew + Milk + Honey/Sugar</div>
-                    </div>
-                    <div class="method-content">
-                        <div class="info-row">
-                            <div class="info-label">📋 Formula</div>
-                            <div class="info-value">1L brew + 1/3-1/2 L milk + honey</div>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-label">🍯 Sweetener</div>
-                            <div class="info-value">30-45g honey per batch (start at 30g)</div>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-label">⏱️ Time</div>
-                            <div class="info-value">12-18 minutes</div>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-label">🎯 Best For</div>
-                            <div class="info-value">Children, improved palatability, balanced sweetness</div>
-                        </div>
-                        
-                        <div class="step-guide">
-                            <h4>Quick Steps</h4>
-                            <div class="steps">
-                                <div class="step-item">
-                                    <div class="step-number">1</div>
-                                    <div class="step-text">Brew coffee leaves, strain completely, keep hot</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">2</div>
-                                    <div class="step-text">Add honey (start 30g, adjust upward to taste)</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">3</div>
-                                    <div class="step-text">Stir until completely dissolved</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">4</div>
-                                    <div class="step-text">Add fresh milk (1/3 to 1/2 L), stir gently</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">5</div>
-                                    <div class="step-text">Taste, adjust honey if needed, serve hot</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="step-guide" style="background: #fffbf0; margin-top: 12px;">
-                            <h4>Flavor Profile</h4>
-                            <div class="step-text">Aromatic, coffee-forward with honey sweetness. Creamy mouthfeel. Balance of coffee and sweetness.</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- METHOD 3 -->
-                <div class="method-card">
-                    <div class="method-header">
-                        <div class="method-percentage">37.7%</div>
-                        <h3>METHOD 3: + Spices</h3>
-                        <div class="method-subtitle">Brew + Milk + Spices + Sweeteners</div>
-                    </div>
-                    <div class="method-content">
-                        <div class="info-row">
-                            <div class="info-label">📋 Formula</div>
-                            <div class="info-value">1.5L brew + milk + spices + honey</div>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-label">🌶️ Spices</div>
-                            <div class="info-value">Ginger, cinnamon, cloves, black pepper (family recipe varies)</div>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-label">⏱️ Time</div>
-                            <div class="info-value">20-25 minutes</div>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-label">🎯 Best For</div>
-                            <div class="info-value">Adults, enhanced therapeutic benefit, deeper flavor</div>
-                        </div>
-                        
-                        <div class="step-guide">
-                            <h4>Quick Steps</h4>
-                            <div class="steps">
-                                <div class="step-item">
-                                    <div class="step-number">1</div>
-                                    <div class="step-text">Brew 1.5L coffee leaves, strain completely</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">2</div>
-                                    <div class="step-text">Grind spices fresh with wooden mortar & pestle</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">3</div>
-                                    <div class="step-text">Add spices to hot brew, infuse 2-3 minutes</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">4</div>
-                                    <div class="step-text">Add honey (30-45g), stir until dissolved</div>
-                                </div>
-                                <div class="step-item">
-                                    <div class="step-number">5</div>
-                                    <div class="step-text">Add milk, taste & adjust, serve hot immediately</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="step-guide" style="background: #fffbf0; margin-top: 12px;">
-                            <h4>Flavor Profile</h4>
-                            <div class="step-text">Coffee base + balanced warmth from spices + milk richness + complementary sweetness. Complex, pleasant aftertaste.</div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <div class="safety-box">
-                <div class="safety-title">🛡️ All Three Methods Are Safe</div>
-                <div class="safety-text"><strong>100% of consumers reported ZERO health problems with Engere</strong> vs 35.6% experiencing gastritis/heart symptoms with plain Chemo. The milk buffer effect protects all three methods.</div>
-            </div>
-        </section>
-        
-        <!-- QUALITY SECTION -->
-        <section id="quality" class="section">
-            <h2>How to Recognize Quality — Five Signs</h2>
-            
-            <div class="quality-grid">
-                <div class="quality-card">
-                    <div class="quality-icon">🎨</div>
-                    <div class="quality-name">SIGHT</div>
-                    <div class="quality-desc">Creamy light-to-medium brown color. Uniform appearance. No cloudiness or visible dark particles.</div>
-                </div>
-                
-                <div class="quality-card">
-                    <div class="quality-icon">👃</div>
-                    <div class="quality-name">AROMA</div>
-                    <div class="quality-desc">Aromatic, coffee-forward scent. With spices, balanced warmth should complement coffee aroma — not overpower.</div>
-                </div>
-                
-                <div class="quality-card">
-                    <div class="quality-icon">✋</div>
-                    <div class="quality-name">MOUTHFEEL</div>
-                    <div class="quality-desc"><strong>Smooth, creamy, with ZERO grittiness.</strong> No sand or particles on your tongue. Soft, pleasant texture.</div>
-                </div>
-                
-                <div class="quality-card">
-                    <div class="quality-icon">👅</div>
-                    <div class="quality-name">TASTE</div>
-                    <div class="quality-desc">Balanced coffee flavor with milk richness. Spices enhance without dominating. Sweetness complements without masking.</div>
-                </div>
-                
-                <div class="quality-card">
-                    <div class="quality-icon">💫</div>
-                    <div class="quality-name">AFTERTASTE</div>
-                    <div class="quality-desc">Pleasant, lingering coffee-milk warmth. No bitter edge. No harsh spice burn. Makes you want another sip.</div>
-                </div>
-            </div>
-            
-            <div class="safety-box">
-                <div class="safety-title">⚠️ Critical: ZERO Grittiness Allowed</div>
-                <div class="safety-text">If you taste grittiness, the straining failed. Spent leaves are tough and fibrous and should never be in the beverage. Always strain through fine cloth or fine mesh. Grittiness means the batch is compromised — this is not a minor issue.</div>
-            </div>
-        </section>
-        
-        <!-- HEALTH SECTION -->
-        <section id="health" class="section">
-            <h2>Health Benefits — What People Believe & Why</h2>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card" style="border-left-color: #c9a96e;">
-                    <div class="benefit-percentage">100%</div>
-                    <div class="benefit-name"><strong>ENHANCES LACTATION</strong><br>All participants agreed</div>
-                </div>
-                
-                <div class="benefit-card" style="border-left-color: #c9a96e;">
-                    <div class="benefit-percentage">54.5%</div>
-                    <div class="benefit-name"><strong>STRENGTH & RECOVERY</strong><br>Primary therapeutic use</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-percentage">16.9%</div>
-                    <div class="benefit-name">Postpartum bleeding & recovery</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-percentage">16.9%</div>
-                    <div class="benefit-name">Stunting & childhood diseases</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-percentage">16.4%</div>
-                    <div class="benefit-name">Joint & backbone pain</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-percentage">13.0%</div>
-                    <div class="benefit-name">Blood pressure, anemia, heart health</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-percentage">12.5%</div>
-                    <div class="benefit-name">Gastritis (milk buffer effect)</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-percentage">8.8%</div>
-                    <div class="benefit-name">Respiratory & abdominal pain</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-percentage">7.3%</div>
-                    <div class="benefit-name">Eye vision & appetite stimulation</div>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-percentage">7.0%</div>
-                    <div class="benefit-name">Typhoid & malaria recovery</div>
-                </div>
-            </div>
-            
-            <div style="background: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 6px 18px rgba(0,0,0,0.08);">
-                <h3 style="margin-top: 0;">Why These Benefits?</h3>
-                <p style="margin-bottom: 15px;"><strong>Coffee leaf bioactive compounds:</strong> Coffee leaves contain polyphenols and antioxidants exclusive to leaves (mangiferin, isomangiferin, chlorogenic acids) — absent from coffee beans.</p>
-                <p style="margin-bottom: 15px;"><strong>Milk's nutritional profile:</strong> Fresh cow's milk provides protein, fat-soluble vitamins (A, D, K), and minerals (calcium, phosphorus).</p>
-                <p><strong>Synergistic function:</strong> The combination creates a functional beverage neither part alone can deliver.</p>
-            </div>
-        </section>
-        
-        <!-- MILK SECTION -->
-        <section id="milk" class="section">
-            <h2>Milk Specifications — The Critical Choice</h2>
-            
-            <div class="milk-spec">
-                <div class="milk-option recommended">
-                    <div class="milk-name">✅ Fresh Unpasteurized</div>
-                    <div class="milk-desc">PREFERRED. Critical for flavor and perceived medicinal properties. If available, use this. Preserves beneficial enzymes.</div>
-                </div>
-                
-                <div class="milk-option">
-                    <div class="milk-name">⚠️ Pasteurized</div>
-                    <div class="milk-desc">ACCEPTABLE. Works functionally. The milk buffer effect still protects. Some believe pasteurization loses beneficial enzymes. Use if fresh is unavailable.</div>
-                </div>
-                
-                <div class="milk-option avoid">
-                    <div class="milk-name">❌ UHT Milk</div>
-                    <div class="milk-desc">NEVER USE. Ultra-high-temperature processing destroys compounds believed to preserve medicinal properties. Do not use if authenticity desired.</div>
-                </div>
-                
-                <div class="milk-option avoid">
-                    <div class="milk-name">❌ Non-Dairy</div>
-                    <div class="milk-desc">NEVER USE. Coconut, almond, oat milk do NOT provide the same buffer effect. Not part of traditional preparation.</div>
-                </div>
-            </div>
-            
-            <div style="background: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 6px 18px rgba(0,0,0,0.08);">
-                <h3 style="margin-top: 0; margin-bottom: 20px;">Milk Ratio Guide</h3>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-                    <div>
-                        <div style="font-weight: 600; color: var(--terracotta); margin-bottom: 8px;">➖ LESS MILK (1/3 Liter)</div>
-                        <div style="font-size: 0.9em; color: var(--brown); line-height: 1.5;">
-                            <div>✓ Stronger coffee flavor</div>
-                            <div>✓ Coffee in foreground</div>
-                            <div>✓ Thinner, less creamy</div>
-                            <div>✓ Choose for: adults seeking pure coffee character</div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div style="font-weight: 600; color: var(--terracotta); margin-bottom: 8px;">➕ MORE MILK (1/2 Liter)</div>
-                        <div style="font-size: 0.9em; color: var(--brown); line-height: 1.5;">
-                            <div>✓ Creamier mouthfeel</div>
-                            <div>✓ More nourishing</div>
-                            <div>✓ Integrated coffee-milk balance</div>
-                            <div>✓ Choose for: lactating mothers, children, recovery</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- SERVING SECTION -->
-        <section id="serving" class="section">
-            <h2>Serving, Storage & Critical Rules</h2>
-            
-            <div class="serving-guide">
-                <div class="serving-card">
-                    <div class="serving-label">Serving Size</div>
-                    <div class="serving-amount">50ml</div>
-                    <div class="serving-detail">One small cup per person</div>
-                </div>
-                
-                <div class="serving-card">
-                    <div class="serving-label">Total Yield</div>
-                    <div class="serving-amount">~1400ml</div>
-                    <div class="serving-detail">From 1L brew + milk combined</div>
-                </div>
-                
-                <div class="serving-card">
-                    <div class="serving-label">Serving Temperature</div>
-                    <div class="serving-amount">Hot</div>
-                    <div class="serving-detail">Not boiling, just warm and comforting</div>
-                </div>
-                
-                <div class="serving-card">
-                    <div class="serving-label">Shelf Life</div>
-                    <div class="serving-amount">6-12 hrs</div>
-                    <div class="serving-detail">Then discard completely</div>
-                </div>
-            </div>
-            
-            <div class="safety-box">
-                <div class="safety-title">🚫 DO NOT REHEAT</div>
-                <div class="safety-text"><strong>Engere is NEVER reheated.</strong> Traditional practice: discard after 6-12 hours. Reheating damages aromatic compounds, encourages bacterial growth in milk-based beverage, alters medicinal properties. Make fresh daily.</div>
-            </div>
-            
-            <div class="checklist">
-                <h3 style="margin-top: 0; margin-bottom: 20px;">Serving Checklist</h3>
-                <div class="checklist-item">
-                    <div class="checklist-icon">✓</div>
-                    <div class="checklist-text"><strong>Prepare fresh</strong> — immediately before consumption</div>
-                </div>
-                <div class="checklist-item">
-                    <div class="checklist-icon">✓</div>
-                    <div class="checklist-text"><strong>Serve hot</strong> — not cold, not reheated</div>
-                </div>
-                <div class="checklist-item">
-                    <div class="checklist-icon">✓</div>
-                    <div class="checklist-text"><strong>50ml per cup</strong> — concentrated, therapeutic beverage</div>
-                </div>
-                <div class="checklist-item">
-                    <div class="checklist-icon">✓</div>
-                    <div class="checklist-text"><strong>Consume 6-12 hours</strong> — maximum before discarding</div>
-                </div>
-                <div class="checklist-item">
-                    <div class="checklist-icon">✓</div>
-                    <div class="checklist-text"><strong>Never reheat</strong> — prepare fresh daily</div>
-                </div>
-                <div class="checklist-item">
-                    <div class="checklist-icon">✓</div>
-                    <div class="checklist-text"><strong>Traditional vessel</strong> (Jabena or cup) adds to ritual</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- WHEN SECTION -->
-        <section id="when" class="section">
-            <h2>When to Use Each Method — Context Matters</h2>
-            
-            <div class="when-grid">
-                <div class="when-card">
-                    <div class="when-title">METHOD 1: Simple (Brew + Milk)</div>
-                    <ul class="when-list">
-                        <li>Lactating mothers (early postpartum)</li>
-                        <li>Young children</li>
-                        <li>Sensitive digestion</li>
-                        <li>Quick preparation needed</li>
-                        <li>Minimal equipment</li>
-                        <li>Authentic simplicity desired</li>
-                        <li>Pure coffee-milk relationship wanted</li>
-                    </ul>
-                </div>
-                
-                <div class="when-card">
-                    <div class="when-title">METHOD 2: + Sweetener (Honey)</div>
-                    <ul class="when-list">
-                        <li>Improved palatability</li>
-                        <li>Children preferring sweetness</li>
-                        <li>Balance coffee's bitterness</li>
-                        <li>Fresh honey available</li>
-                        <li>Recovery situations</li>
-                        <li>Added calories helpful</li>
-                        <li>Someone finds plain insufficient</li>
-                    </ul>
-                </div>
-                
-                <div class="when-card">
-                    <div class="when-title">METHOD 3: + Spices (Full Tradition)</div>
-                    <ul class="when-list">
-                        <li>Deeper therapeutic benefit</li>
-                        <li>Adults without sensitivity</li>
-                        <li>Warming, energizing character needed</li>
-                        <li>Occasions requiring sophistication</li>
-                        <li>Winter or cold-weather</li>
-                        <li>Extended illness recovery</li>
-                        <li>Full traditional flavor desired</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div style="background: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 6px 18px rgba(0,0,0,0.08);">
-                <h3 style="margin-top: 0;">Special Case: The Postpartum Period</h3>
-                
-                <p style="margin-bottom: 15px;"><strong>First weeks after birth:</strong> Method 1 (simple) is preferred. Easy digestion and absorption are critical. The combination of calories from milk, perceived lactation-supporting properties, and energizing coffee leaf benefits makes Method 1 ideal.</p>
-                
-                <p style="margin-bottom: 15px;"><strong>Throughout lactation:</strong> Traditional practice: 1-2 cups daily. This is precise dosing based on postpartum needs — not excessive, not insufficient.</p>
-                
-                <p><strong>As recovery progresses:</strong> Methods 2 or 3 can be introduced as digestion becomes stronger and appetite returns.</p>
-            </div>
-        </section>
-        
-        <div class="closing">
-            <p><strong>Engere is not just a beverage.</strong> It is a ritual of care, a transmission of knowledge, a therapeutic intervention chosen intentionally because someone needs strength, recovery, or support.</p>
-            <p>When you prepare it well — with attention to milk choice, precise ratios, careful straining, immediate serving — you honor centuries of knowledge transmitted from woman to woman.</p>
-            <p style="margin-bottom: 0;"><strong>100% safety. 54.5% strength enhancement. 100% lactation support. This is Engere.</strong></p>
-        </div>
-        
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="index.html">
+      <img src="buna-leaf.svg" alt="BUNA">
+      <span>
+        <span class="site-logo-text">BUNA</span><br>
+        <span class="site-logo-sub">Coffee Leaf Library</span>
+      </span>
+    </a>
+    <nav class="breadcrumb">
+      <a href="index.html">Index</a><span class="sep">/</span><span class="current">Visual Pictogram Guide</span>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <p class="page-kicker">Visual Education Dashboard</p>
+  <h1>Engere: Visual Pictogram Guide</h1>
+  <p class="page-subtitle">Learn to prepare, recognize quality, and understand the cultural meaning of South Ethiopian coffee leaf milk systems through visual data layouts[span_213](start_span)[span_213](end_span).</p>
+
+  <!-- INTERACTIVE TAB JUMP BAR -->
+  <div class="toc-tabs">
+    <button class="tab-btn active" onclick="showSection('methods')">The Three Methods</button>
+    <button class="tab-btn" onclick="showSection('quality')">Quality Indicators</button>
+    <button class="tab-btn" onclick="showSection('health')">Health Benefits</button>
+    <button class="tab-btn" onclick="showSection('milk')">Milk Specifications</button>
+    <button class="tab-btn" onclick="showSection('serving')">Serving &amp; Storage</button>
+    <button class="tab-btn" onclick="showSection('when')">Contextual Use</button>
+  </div>
+
+  <!-- METHODS PANEL -->
+  <div id="methods" class="section-panel active">
+    <h2>The Three Preparation Methods</h2>
+    <p>Household preferences documented in Gofa Zone, South Ethiopia[span_214](start_span)[span_214](end_span). Each matches distinct traditional formulas[span_215](start_span)[span_215](end_span).</p>
+
+    <div class="box box-recipe">
+      <span class="box-label">Method 1: Simple (19.7% of Households)[span_216](start_span)[span_216](end_span)</span>
+      <p><strong>Formula:</strong> 1L brew + 1/3 to 1/2 L fresh unpasteurized milk[span_217](start_span)[span_217](end_span). Time: 10–15 mins[span_218](start_span)[span_218](end_span).</p>
+      <ul class="steps">
+        <li><div class="step-number">1</div><div class="step-text">Brew coffee leaves via Chemo method; strain completely[span_219](start_span)[span_219](end_span).</div></li>
+        <li><div class="step-number">2</div><div class="step-text">Pour hot, strained liquid into pot or traditional serving vessel[span_220](start_span)[span_220](end_span).</div></li>
+        <li><div class="step-number">3</div><div class="step-text">Incorporate fresh unpasteurized cow's milk and stir gently[span_221](start_span)[span_221](end_span).</div></li>
+        <li><div class="step-number">4</div><div class="step-text">Serve immediately while hot in 50ml portions[span_222](start_span)[span_222](end_span).</div></li>
+      </ul>
     </div>
+
+    <div class="box box-recipe">
+      <span class="box-label">Method 2: Sweetened (22.6% of Households)[span_223](start_span)[span_223](end_span)</span>
+      <p><strong>Formula:</strong> 1L brew + 1/3-1/2 L milk + 30-45g honey[span_224](start_span)[span_224](end_span). Time: 12–18 mins[span_225](start_span)[span_225](end_span).</p>
+      <ul class="steps">
+        <li><div class="step-number">1</div><div class="step-text">Brew leaves, strain completely, and hold hot[span_226](start_span)[span_226](end_span).</div></li>
+        <li><div class="step-number">2</div><div class="step-text">Add 30g honey; stir until completely dissolved[span_227](start_span)[span_227](end_span).</div></li>
+        <li><div class="step-number">3</div><div class="step-text">Integrate fresh cow's milk, adjust sweetness, and serve hot[span_228](start_span)[span_228](end_span).</div></li>
+      </ul>
+    </div>
+
+    <div class="box box-recipe">
+      <span class="box-label">Method 3: Spiced (37.7% of Households)[span_229](start_span)[span_229](end_span)</span>
+      <p><strong>Formula:</strong> 1.5L brew + milk + fresh spices + honey[span_230](start_span)[span_230](end_span). Time: 20–25 mins[span_231](start_span)[span_231](end_span).</p>
+      <ul class="steps">
+        <li><div class="step-number">1</div><div class="step-text">Grind ginger, cinnamon, cloves, or black pepper with a wooden mortar[span_232](start_span)[span_232](end_span)[span_233](start_span)[span_233](end_span).</div></li>
+        <li><div class="step-number">2</div><div class="step-text">Add spices to hot, strained 1.5L brew; let infuse for 2-3 minutes[span_234](start_span)[span_234](end_span)[span_235](start_span)[span_235](end_span).</div></li>
+        <li><div class="step-number">3</div><div class="step-text">Blend in honey, add fresh milk to buffer intensity, and serve immediately[span_236](start_span)[span_236](end_span)[span_237](start_span)[span_237](end_span).</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- QUALITY PANEL -->
+  <div id="quality" class="section-panel">
+    <h2>Quality Indicators: Recognizing Excellence</h2>
+    <div class="card-grid">
+      <div class="card"><span class="card-title">🎨 Sight</span><span class="card-desc">Inviting, uniform, creamy light-to-medium brown color without visibility of loose particles[span_238](start_span)[span_238](end_span).</span></div>
+      <div class="card"><span class="card-title">👃 Aroma</span><span class="card-desc">Aromatic and coffee-forward. Added spice notes must complement, never dominate the base[span_239](start_span)[span_239](end_span).</span></div>
+      <div class="card"><span class="card-title">✋ Mouthfeel</span><span class="card-desc">Smooth, rich, and creamy with absolutely **ZERO grittiness**[span_240](start_span)[span_240](end_span).</span></div>
+      <div class="card"><span class="card-title">👅 Taste</span><span class="card-desc">Balanced coffee presence backed by milk fat richness, smooth mouthfeel, and pleasant aftertaste[span_241](start_span)[span_241](end_span).</span></div>
+    </div>
+    <div class="box box-caution">
+      <span class="box-label">Critical Standard</span>
+      <p>Spent coffee leaves are tough and fibrous and must never remain in the cup[span_242](start_span)[span_242](end_span). Grittiness on the tongue means the straining failed and the batch is compromised[span_243](start_span)[span_243](end_span). Always strain completely through fine cloth or extra-fine mesh layers[span_244](start_span)[span_244](end_span).</p>
+    </div>
+  </div>
+
+  <!-- HEALTH PANEL -->
+  <div id="health" class="section-panel">
+    <h2>Health Benefits — Reported Belief Profiles</h2>
+    <table>
+      <thead>
+        <tr><th>Reported Health Association</th><th>% of Surveyed Households</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Enhances lactation in nursing mothers</strong></td><td><strong>100% (Universal Agreement)[span_245](start_span)[span_245](end_span)</strong></td></tr>
+        <tr><td><strong>Body strength &amp; physical recovery</strong></td><td><strong>54.5% (Primary Therapeutic Use)[span_246](start_span)[span_246](end_span)</strong></td></tr>
+        <tr><td>Postpartum bleeding resolution</td><td>16.9%[span_247](start_span)[span_247](end_span)</td></tr>
+        <tr><td>Stunting &amp; childhood nutritional support</td><td>16.9%[span_248](start_span)[span_248](end_span)</td></tr>
+        <tr><td>Joint &amp; musculoskeletal backbone pain</td><td>16.4%[span_249](start_span)[span_249](end_span)</td></tr>
+        <tr><td>Gastritis mitigation (via milk buffer)</td><td>12.5%[span_250](start_span)[span_250](end_span)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size: 14px; color: var(--ink-soft);">*Bioactive Synergy: Coffee leaves provide antioxidants (mangiferin, chlorogenic acids) while fresh milk provides protein and essential fat-soluble vitamins (A, D, K)[span_251](start_span)[span_251](end_span).</p>
+  </div>
+
+  <!-- MILK PANEL -->
+  <div id="milk" class="section-panel">
+    <h2>Milk Specifications — The Critical Ingredient Choice</h2>
+    <table>
+      <thead>
+        <tr><th>Milk Variety</th><th>Status</th><th>Technical Context</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Fresh Unpasteurized Cow Milk</strong></td><td>Preferred[span_252](start_span)[span_252](end_span)[span_253](start_span)[span_253](end_span)</td><td>Critical for traditional flavor and preserving active enzymes[span_254](start_span)[span_254](end_span)[span_255](start_span)[span_255](end_span).</td></tr>
+        <tr><td><strong>Standard Pasteurized Milk</strong></td><td>Acceptable[span_256](start_span)[span_256](end_span)[span_257](start_span)[span_257](end_span)</td><td>Functions perfectly to buffer acidity, though thermal enzymes are altered[span_258](start_span)[span_258](end_span)[span_259](start_span)[span_259](end_span).</td></tr>
+        <tr><td><strong>Ultra-High-Temperature (UHT)</strong></td><td>Prohibited[span_260](start_span)[span_260](end_span)[span_261](start_span)[span_261](end_span)</td><td>Extreme heat treatment makes it unsuited for authentic preparations[span_262](start_span)[span_262](end_span)[span_263](start_span)[span_263](end_span).</td></tr>
+        <tr><td><strong>Plant Alternatives (Oat, Almond)</strong></td><td>Prohibited[span_264](start_span)[span_264](end_span)[span_265](start_span)[span_265](end_span)</td><td>Does not provide the chemical buffer effect or milk fat synergy[span_266](start_span)[span_266](end_span)[span_267](start_span)[span_267](end_span).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SERVING PANEL -->
+  <div id="serving" class="section-panel">
+    <h2>Serving, Storage &amp; The 12-Hour Threshold</h2>
+    <div class="card-grid">
+      <div class="card"><span class="card-title">Dose Metric</span><span class="card-desc">50ml per cup. Served as a small, concentrated, therapeutic portion[span_268](start_span)[span_268](end_span).</span></div>
+      <div class="card"><span class="card-title">Temperature</span><span class="card-desc">Served hot and comforting, never cold, never boiling[span_269](start_span)[span_269](end_span)[span_270](start_span)[span_270](end_span).</span></div>
+      <div class="card"><span class="card-title">Shelf Life</span><span class="card-desc">6–12 hours maximum. Any remaining volume must be discarded[span_271](start_span)[span_271](end_span).</span></div>
+    </div>
+    <div class="box box-caution">
+      <span class="box-label">🚫 Leftovers Are Never Reheated</span>
+      <p>Engere is never reheated[span_272](start_span)[span_272](end_span). Reheating destroys active volatile compounds, alters underlying medicinal dynamics, and fosters rapid bacterial growth in milk-rich bases[span_273](start_span)[span_273](end_span)[span_274](start_span)[span_274](end_span). Prepare fresh daily[span_275](start_span)[span_275](end_span)[span_276](start_span)[span_276](end_span).</p>
+    </div>
+  </div>
+
+  <!-- CONTEXTUAL USE PANEL -->
+  <div id="when" class="section-panel">
+    <h2>Contextual Use Matrix</h2>
+    <p>Match your preparation method directly to the physical requirement[span_277](start_span)[span_277](end_span):</p>
+    <ul>
+      <li><strong>Method 1 (Simple):</strong> Postpartum weeks, infant nourishment, and advanced gastrointestinal sensitivity[span_278](start_span)[span_278](end_span). Easiest to digest and absorb[span_279](start_span)[span_279](end_span).</li>
+      <li><strong>Method 2 (Sweetened):</strong> Everyday palatability enhancement, children, and masking leaf bitterness[span_280](start_span)[span_280](end_span).</li>
+      <li><strong>Method 3 (Spiced):</strong> Robust therapeutic application, manual laborers, winter warming, and illness recovery[span_281](start_span)[span_281](end_span).</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <a class="footer-back" href="index.html">← Return to BUNA Library</a>
+  </div>
+</footer>
+
+<script>
+function showSection(sectionId) {
+    const panels = document.querySelectorAll('.section-panel');
+    panels.forEach(panel => panel.classList.remove('active'));
     
-    <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.remove('active'));
-            
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
-            
-            // Update button states
-            const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-    </script>
+    document.getElementById(sectionId).classList.add('active');
+    
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    window.scrollTo(0, 0);
+}
+</script>
 </body>
 </html>
