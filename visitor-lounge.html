@@ -21,7 +21,18 @@
         .hero { margin-bottom: 60px; }
         h1 { font-size: 2.5em; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; }
         .content { font-size: 1.25em; color: #4a4a4a; margin-bottom: 40px; }
-        .sensory-hook { font-style: italic; color: #555; margin: 20px 0; padding-left: 15px; border-left: 2px solid var(--accent); }
+        
+        /* Sensory Hook - Refined for visual focus */
+        .sensory-hook { 
+            font-size: 1.1em;
+            font-weight: 500;
+            color: var(--ink); 
+            margin: 30px 0; 
+            padding: 20px; 
+            background: #fdfdfd;
+            border-left: 3px solid var(--accent); 
+        }
+        
         .pathways { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 60px; }
         .card { border: 2px solid var(--ink); padding: 30px; display: flex; flex-direction: column; transition: transform 0.2s; }
         .card:hover { transform: translateY(-4px); }
@@ -36,7 +47,9 @@
         <div class="content">
             <p>Coffee is one part of the plant. This library explores another.</p>
             <p>Across coffee-growing regions, the leaves of the coffee plant have been boiled, dried, smoked, infused, mixed with milk, and prepared in household traditions.</p>
+            
             <p class="sensory-hook">Depending on leaf and process, coffee leaf can be green, floral, fruity, honeyed, roasted, smoky, or earthy.</p>
+            
             <p>Many of the traditions described here were observed long before the reasons behind them were understood.</p>
             <p>Some of this knowledge is documented in field studies. Some is being explored through modern sensory and chemical research. Some is being tested carefully through Citane processing trials.</p>
             <p>This site brings those strands together. Begin gently. Follow what interests you. There is depth when you want it.</p>
