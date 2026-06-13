@@ -346,15 +346,69 @@
                 padding: 10px;
             }
         }
+        nav.subnav {
+            background: rgba(26,26,26,0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .subnav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .subnav-inner::-webkit-scrollbar { display: none; }
+        .subnav a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 600;
+            padding: 14px 20px;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.15s;
+        }
+        .subnav a:hover, .subnav a.home {
+            color: white;
+        }
+        .subnav a.home { color: var(--subtle); }
+        .subnav a.to-top {
+            margin-left: auto;
+            color: rgba(255,255,255,0.5);
+        }
+        .subnav a.to-top:hover { color: white; }
+
     </style>
 </head>
 <body>
     
-    <header>
+    <header id="top">
         <div style="margin-bottom: 16px;"><a href="index.html" style="color: var(--gray); text-decoration: none; font-size: 0.9em; border-bottom: 1px solid var(--subtle);">&larr; Back to BUNA Library</a></div>
         <h1>Citane: Experimental Pathways</h1>
         <div class="subtitle">A workbook of processing pathways, sensory directions, and aging protocols — structured for experimentation, comparison, and observation rather than guaranteed outcomes</div>
     </header>
+
+    <nav class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="index.html">Index</a>
+            <a href="#overview">Overview</a>
+            <a href="#pathways">Pathways</a>
+            <a href="#compass">Compass</a>
+            <a href="#protocols">Protocols</a>
+            <a href="#aging">Aging</a>
+            <a href="#expression">Expression</a>
+            <a href="#workbook">Using This Workbook</a>
+            <a href="citane-reactive-landscape.html">&larr; Paper I</a>
+            <a href="citane-processing-manual.html">&larr; Paper II</a>
+            <a href="#top" class="to-top">&uarr; Top</a>
+        </div>
+    </nav>
     
     <div class="container">
 
@@ -391,7 +445,7 @@
         </div>
         
         <!-- OVERVIEW -->
-        <section>
+        <section id="overview">
             <h2>Overview: What is Citane Processing?</h2>
             <p>Citane processing applies heat, fermentation, oxidation, and aging to fresh coffee leaves &mdash; transforming them from a perishable botanical into a shelf-stable beverage base. Different processing choices lead to different sensory territories.</p>
             <p>Citane is not a single method. It is a landscape of approaches, several of which are explored here as named pathways. The goal of this document is to map that landscape broadly &mdash; more broadly than Paper II's seven core pathways &mdash; as a set of starting points for experimentation, not as a menu of confirmed products.</p>
@@ -399,7 +453,7 @@
         </section>
         
         <!-- PROCESSING PATHWAYS OVERVIEW -->
-        <section>
+        <section id="pathways">
             <h2>Core Processing Pathways — A Broader Catalogue</h2>
             <p><span class="src-label src-citane">Experimental Citane Protocol</span></p>
             <div class="frame-box" style="margin-top:0;">
@@ -431,7 +485,7 @@
 
         
         <!-- SENSORY DIRECTIONS MAP -->
-        <section>
+        <section id="compass">
             <h2>The Citane Compass: Six Sensory Directions</h2>
             <p><span class="src-label src-exploratory">Exploratory Concept</span></p>
             <p>Rather than following a single pathway, Citane production can be question-driven: pick a sensory direction you're curious about, and use the starting points below as a first attempt at moving toward it.</p>
@@ -502,7 +556,7 @@
         </section>
         
         <!-- DETAILED PROTOCOLS -->
-        <section>
+        <section id="protocols">
             <h2>Five Comparative Protocols</h2>
             <p><span class="src-label src-citane">Experimental Citane Protocol</span></p>
             <p>These five protocols are starting points adapted from general food-fermentation and tea-processing principles, structured as a comparison set: Protocol 1 is a baseline, and Protocols 2&ndash;5 each change one or two variables relative to it. Run them side by side where possible &mdash; the comparison is often more informative than any single protocol on its own.</p>
@@ -618,7 +672,7 @@
         </section>
         
         <!-- SHENG STYLE AGING -->
-        <section>
+        <section id="aging">
             <h2>Aged Citane: Dry Aging Protocol (Sheng-Style)</h2>
             <p><span class="src-label src-tradition">Traditional Practice (Reference)</span> <span class="src-label src-exploratory">Exploratory Concept (Timeline)</span></p>
 
@@ -693,7 +747,7 @@
         </section>
         
         <!-- POSITIONING -->
-        <section>
+        <section id="expression">
             <h2>Citane Expression: From Core to Reserve</h2>
             <p>The protocols and pathways above form a ladder of expression for Citane &mdash; not a ladder of certainty, but a rough guide to how much exploration each tier represents:</p>
             <p><strong>Core Styles:</strong> The non-fermented control and its direct comparisons (Protocols 1&ndash;3). These are the most accessible starting points &mdash; closest to Paper II's core pathways, and the place to begin if your equipment or leaf is new to you.</p>
@@ -703,7 +757,7 @@
         </section>
         
         <!-- NEXT STEPS -->
-        <section>
+        <section id="workbook">
             <h2>Using This Workbook</h2>
             <p>This workbook is for estate producers, home practitioners, and anyone exploring Citane processing who wants a broader set of starting points than Paper II's seven core pathways &mdash; with the understanding that "broader" means "less validated," not "more advanced."</p>
             <p><strong>Start with Protocol 1 (the non-fermented control).</strong> This gives you a baseline understanding of your leaf material and equipment, and a reference point for everything else in this document.</p>

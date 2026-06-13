@@ -88,11 +88,14 @@
 
         /* Sticky in-page nav */
         nav.subnav {
-            background: var(--dark);
+            background: rgba(26,26,26,0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 100;
             padding: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
         .subnav-inner {
             max-width: 1000px;
@@ -116,6 +119,11 @@
             color: white;
         }
         .subnav a.home { color: var(--subtle); }
+        .subnav a.to-top {
+            margin-left: auto;
+            color: rgba(255,255,255,0.5);
+        }
+        .subnav a.to-top:hover { color: white; }
 
         .container {
             max-width: 1000px;
@@ -1085,7 +1093,7 @@
     </style>
 <body>
 
-    <header>
+    <header id="top">
         <div class="header-back"><a href="index.html">&larr; Back to BUNA Library</a></div>
         <h1>From Leaf to Cup</h1>
         <div class="subtitle">A practical guide to harvesting, processing, brewing, and evaluating Citane — the coffee leaf beverage of KoffyKraft. This manual puts the Reactive Landscape (Paper I) to work in the field and on the bench.</div>
@@ -1105,6 +1113,7 @@
             <a href="#part5">Pathways</a>
             <a href="#part9">Troubleshooting</a>
             <a href="citane-reactive-landscape.html">Paper I &rarr;</a>
+            <a href="#top" class="to-top">&uarr; Top</a>
         </div>
     </nav>
 
