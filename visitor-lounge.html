@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Begin With A Cup | Buna Coffee Leaf Library</title>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --cream: #f7f5f0;
+            --accent: #b8721e;
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            line-height: 1.6; 
+            color: var(--ink); 
+            background: #ffffff; 
+            padding: 60px 20px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        .hero { margin-bottom: 60px; }
+        h1 { font-size: 2.5em; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; }
+        .content { font-size: 1.25em; color: #4a4a4a; margin-bottom: 40px; }
+        .pathways { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 60px; }
+        .card { border: 2px solid var(--ink); padding: 30px; display: flex; flex-direction: column; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-4px); }
+        .card h3 { margin-bottom: 15px; font-size: 1.4em; }
+        .card a { display: inline-block; margin-top: auto; color: var(--accent); font-weight: 700; text-decoration: underline; margin-top: 20px; }
+        .footer-nav { border-top: 2px solid var(--ink); padding-top: 20px; display: flex; justify-content: space-between; font-size: 0.9em; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Begin With A Cup</h1>
+        <div class="content">
+            <p>Coffee is one part of the plant. This library explores another.</p>
+            <p>Across coffee-growing regions, the leaves of the coffee plant have been boiled, dried, smoked, infused, mixed with milk, and prepared in household traditions.</p>
+            <p>Some of this knowledge is documented in field studies. Some is being explored through modern sensory and chemical research. Some is being tested carefully through Citane processing trials.</p>
+            <p>This site brings those strands together. Begin gently. Follow what interests you. There is depth when you want it.</p>
+        </div>
+    </div>
+
+    <div class="pathways">
+        <div class="card">
+            <h3>Look</h3>
+            <p>What is coffee leaf, and why does it matter? An introduction to the plant and the sensory landscape.</p>
+            <a href="index.html#start">Start Here &rarr;</a>
+        </div>
+        <div class="card">
+            <h3>Follow</h3>
+            <p>How have people prepared coffee leaves? An entry into the documented traditions and regional styles.</p>
+            <a href="index.html#traditional">Explore Traditions &rarr;</a>
+        </div>
+        <div class="card">
+            <h3>Explore</h3>
+            <p>What can coffee leaf become? An introduction to processing pathways and Citane research.</p>
+            <a href="index.html#citane">View Research &rarr;</a>
+        </div>
+    </div>
+
+    <div class="footer-nav">
+        <a href="index.html">← Enter the full library (Catalogue)</a>
+        <a href="evidence-discipline.html">How we treat evidence</a>
+    </div>
+</body>
+</html>
