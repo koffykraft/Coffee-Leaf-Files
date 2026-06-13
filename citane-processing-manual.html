@@ -725,6 +725,269 @@
         .conf-pill.exp { background: var(--accent); }
         .conf-pill.open { background: var(--state-epsilon); }
 
+        /* ====================================================
+           LEAF GRID (Part 2)
+           ==================================================== */
+        .leaf-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .leaf-card {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 18px 20px;
+        }
+        .leaf-type { font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+        .leaf-name { font-size: 0.85em; color: var(--gray); font-style: italic; margin-bottom: 10px; }
+        .leaf-chemistry {
+            margin-top: 10px;
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 0.8em;
+            color: var(--gray);
+            border-top: 1px solid var(--subtle);
+            padding-top: 8px;
+        }
+        @media (max-width: 700px) { .leaf-grid { grid-template-columns: 1fr; } }
+
+        /* ====================================================
+           DESTINATION CARDS (Part 3)
+           ==================================================== */
+        .destination-card {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .dest-header {
+            background: var(--dark);
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .dest-state {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: var(--subtle);
+            flex-shrink: 0;
+        }
+        .dest-name { font-weight: 700; margin-bottom: 4px; }
+        .dest-body {
+            padding: 18px 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 18px;
+        }
+        .dest-col-label {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        @media (max-width: 700px) { .dest-body { grid-template-columns: 1fr; } }
+
+        /* ====================================================
+           TOOL CARDS (Part 4)
+           ==================================================== */
+        .tool-card {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 16px 0;
+        }
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--subtle);
+        }
+        .tool-tag {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            background: var(--accent);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+        .tool-name { font-weight: 700; }
+        .param-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 14px;
+            padding: 8px 0;
+            border-top: 1px solid var(--subtle);
+            font-size: 0.92em;
+        }
+        .param-row:first-of-type { border-top: none; }
+        .param-label {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 0.85em;
+        }
+        @media (max-width: 600px) {
+            .param-row { grid-template-columns: 1fr; gap: 4px; }
+        }
+
+        /* Warn box - urgent caution variant */
+        .box-warn {
+            background: var(--caution-bg);
+            border: 2px solid var(--caution);
+            border-radius: 6px;
+            padding: 18px 22px;
+            margin: 16px 0;
+        }
+        .box-warn .box-label { background: var(--caution); color: white; }
+
+        /* ====================================================
+           PATHWAY CARDS (Part 5)
+           ==================================================== */
+        .pathway {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 24px 0;
+        }
+        .pathway-header {
+            background: var(--dark);
+            color: white;
+            padding: 18px 24px;
+        }
+        .pathway-num {
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--subtle);
+            margin-bottom: 6px;
+        }
+        .pathway-title h3 { margin: 0 0 4px; color: white; font-size: 1.3em; }
+        .pathway-sub { color: var(--light-gray); font-size: 0.9em; margin-bottom: 10px; }
+        .pathway-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+        .pathway-tag {
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 3px 10px;
+            border-radius: 3px;
+            color: white;
+        }
+        .tag-state-alpha   { background: var(--state-alpha); }
+        .tag-state-beta    { background: var(--state-beta); }
+        .tag-state-gamma   { background: var(--state-gamma); }
+        .tag-state-delta   { background: var(--state-delta); }
+        .tag-state-epsilon { background: var(--state-epsilon); }
+        .pathway-body { padding: 20px 24px; }
+
+        /* Tradition / research sidebars within pathways */
+        .tradition-sidebar {
+            background: var(--tradition-bg);
+            border-left: 4px solid var(--tradition);
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+        }
+        .tradition-header {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--tradition);
+            margin-bottom: 8px;
+        }
+        .tradition-body p { font-size: 0.92em; margin-bottom: 8px; }
+        .tradition-body p:last-child { margin-bottom: 0; }
+
+        /* Step list with rich detail */
+        .step-list { list-style: none; margin: 16px 0; counter-reset: pwstep; }
+        .step-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 18px;
+            counter-increment: pwstep;
+        }
+        .step-num {
+            flex: 0 0 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .step-title { font-weight: 700; margin-bottom: 4px; }
+        .step-detail { font-size: 0.95em; margin-bottom: 6px; }
+        .step-params {
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 0.8em;
+            color: var(--accent);
+            background: var(--evidence-bg);
+            border-radius: 4px;
+            padding: 6px 10px;
+            margin-bottom: 6px;
+        }
+        .step-why {
+            font-size: 0.88em;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        /* Route Builder */
+        .builder-step {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            margin: 14px 0;
+            overflow: hidden;
+        }
+        .builder-step-header {
+            background: var(--cream);
+            border-bottom: 1px solid var(--subtle);
+            font-weight: 700;
+            padding: 10px 18px;
+            font-size: 0.95em;
+        }
+        .builder-step-body { padding: 14px 18px; }
+        .option-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .option-list li {
+            background: var(--evidence-bg);
+            border: 1px solid var(--subtle);
+            border-radius: 4px;
+            padding: 4px 12px;
+            font-size: 0.85em;
+            color: var(--accent);
+        }
+
+        /* Estate Note / Thumpassery Observation */
+        .box-estate {
+            background: #eef2f6;
+            border-left: 4px solid #5a7a8c;
+            border-radius: 6px;
+            padding: 18px 22px;
+            margin: 16px 0;
+        }
+        .box-estate .box-label { background: #5a7a8c; color: white; }
+
     </style>
 <body>
 
@@ -956,13 +1219,758 @@
         </div>
 
         <!-- ============================================ -->
-        <!-- PART 1 — PLACEHOLDER -->
+        <!-- PART 1 -->
         <!-- ============================================ -->
-        <!-- TO BE CONTINUED: Part 1 (s1) through Part 10 (s30), Pathways pw1-pw7 -->
+        <div class="part-divider" id="part1">
+            <div class="part-label">Part 1</div>
+            <h2 class="part-title">Introduction</h2>
+        </div>
+
+        <section id="s1">
+            <div class="section-num">Section 01</div>
+            <h2>What Citane Is — <em>And What This Manual Is For</em></h2>
+            <p>Citane is a coffee leaf beverage produced by KoffyKraft at Thumpassery Estate, Karavaloor, Kollam, Kerala. The leaf is Arabica Chandragiri, grown under rubber shade at approximately 130 metres above sea level. The beverage category is new — there is no established playbook for Citane specifically. This manual is the beginning of one.</p>
+            <p>Coffee leaves have been consumed as beverages for centuries across Ethiopia (Engere, Kuti, Chemo), Indonesia (Kawa Daun), and other regions. The chemistry that makes those beverages possible is the same chemistry that makes Citane possible. But the variety, altitude, shade conditions, and cultural context at Thumpassery are different. Citane is not a replication of any tradition. It learns from all of them.</p>
+            <p>This manual covers ten areas: understanding the leaf, choosing a destination, the processing toolbox, seven documented pathways, fermentation, brewing and evaluation, recording, troubleshooting, and reference tables. It is designed to be used by a farmer who has never processed a leaf for beverage before, and by a processor who wants to move beyond intuition toward deliberate craft.</p>
+            <div class="box box-note">
+                <span class="box-label">A Working Manual, Not a Final Word</span>
+                <p>Citane processing is genuinely exploratory. Some of what is written here will be revised as more batches are made and recorded. Where guidelines are grounded in published research they are marked with a source note. Where they are extrapolated or adapted, that is stated. Treat this as a living document — the first edition of something that will grow.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART 2 -->
+        <!-- ============================================ -->
+        <div class="part-divider" id="part2">
+            <div class="part-label">Part 2</div>
+            <h2 class="part-title">Understanding the Coffee Leaf</h2>
+            <p class="part-intro">The harvest decision is the first and largest processing decision. Before any tool in Part 4 is applied, the chemistry of the leaf is already determined by when and where it was picked. This section gives you the knowledge to make that first decision well.</p>
+        </div>
+
+        <section id="s2">
+            <div class="section-num">Section 02</div>
+            <h2>Leaf Age — <em>Young, Mature, Old, Senesced</em></h2>
+            <p>Leaf age is the single most powerful determinant of the chemical starting point for any processing pathway. The research is unambiguous: the concentrations of chlorogenic acids, mangiferin, and catechins all decrease significantly as leaves age. A young leaf and an old leaf from the same tree are chemically different raw materials.</p>
+
+            <div class="leaf-grid">
+                <div class="leaf-card">
+                    <div class="leaf-type">Young / Flush Leaf</div>
+                    <div class="leaf-name">Terminal growth tips, small, often reddish or light green</div>
+                    <p>Highest chlorogenic acid concentration. Mangiferin at peak. Highest catechin levels. High moisture content (~73%). More reactive — responds dramatically to oxidative and enzymatic processing.</p>
+                    <div class="leaf-chemistry">CGA: very high &middot; Mangiferin: high &middot; Caffeine: moderate &middot; Moisture: ~73%</div>
+                </div>
+                <div class="leaf-card">
+                    <div class="leaf-type">Mature Leaf</div>
+                    <div class="leaf-name">Fully expanded, dark green, firm texture</div>
+                    <p>Moderate chlorogenic acid levels. Good catechin pool. Easier to handle mechanically than young leaves. The standard starting material for most processed Citane pathways. Moisture ~63%.</p>
+                    <div class="leaf-chemistry">CGA: moderate-high &middot; Mangiferin: moderate &middot; Caffeine: moderate &middot; Moisture: ~63%</div>
+                </div>
+                <div class="leaf-card">
+                    <div class="leaf-type">Old Leaf</div>
+                    <div class="leaf-name">Large, slightly yellowing edges, still on branch</div>
+                    <p>Chlorogenic acids declined (~74% drop from young). Mangiferin declined (~85% from young). Milder flavour potential. Lower bitterness precursors — can produce softer, rounder cups with less astringency. Moisture ~62%.</p>
+                    <div class="leaf-chemistry">CGA: low &middot; Mangiferin: low &middot; Catechin: lower &middot; Moisture: ~62%</div>
+                </div>
+                <div class="leaf-card">
+                    <div class="leaf-type">Senesced / Fallen Leaf</div>
+                    <div class="leaf-name">Yellow to yellow-green, naturally dropped or near-drop</div>
+                    <p>Lowest levels of all active compounds. Kuti tradition (Harar, Ethiopia) specifically uses fallen leaves for their mildness. Appropriate for very mild brews or specific traditional-style pathways. Not generally recommended for Citane's main pathways without specific intention. Moisture: ~56%.</p>
+                    <div class="leaf-chemistry">CGA: very low &middot; Mangiferin: very low &middot; Caffeine: reduced &middot; Moisture: ~56%</div>
+                </div>
+            </div>
+
+            <div class="box box-evidence">
+                <span class="box-label">Research Basis</span>
+                <p>Mangiferin decrease during leaf aging: approximately 85% reduction from young to mature in <em>C. arabica</em> var. Bourbon (Monteiro et al., 2019, <em>Antioxidants</em>). Chlorogenic acid decrease: approximately 74% in 5-CGA from young to mature. Catechin content: highest in young leaves (Campa et al., <em>Frontiers in Plant Science</em>). Moisture content data: Rigling et al., <em>Foods</em> 2022.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s3">
+            <div class="section-num">Section 03</div>
+            <h2>Sun Leaf vs <em>Shade Leaf</em></h2>
+            <p>Thumpassery's Chandragiri is grown under rubber shade. This is a defining characteristic of your leaf's chemistry — and it matters for processing.</p>
+            <p>Research on <em>C. arabica</em> confirms that the phenolic pool — including chlorogenic acids and catechins — is generally greater in full-sun leaves than in shade-grown leaves. Full-sun plants produce more phenolics as a photoprotective response to high light intensity. Shade-grown leaves accumulate less of these compounds but tend to have a different balance — more chlorophyll-rich, with a different fatty acid profile in the membrane lipids.</p>
+            <div class="box box-note">
+                <span class="box-label">What This Means for Citane at Thumpassery</span>
+                <p>Your rubber-shaded leaf may have a lower total phenolic concentration than a sun-grown equivalent, based on the general pattern in <em>C. arabica</em> &mdash; though this has not been measured for Chandragiri at Thumpassery specifically. If that pattern holds, a softer, less astringent starting point would be plausible: oxidative processing (Pathways 3 and 4) could produce a more delicate amber style than equivalent pathways from sun-grown leaf, and the thermal pathway (Pathway 5) could produce a milder roast character. This is not a disadvantage either way &mdash; it is a character to observe and record, not a deficit to correct.</p>
+                <p>This also means your leaf's mangiferin concentration — already the most distinctive compound in coffee leaf — may be somewhat different from the Cangeloni 2022 baseline (which used 1,700m Colombian leaf). Record your sensory outcomes carefully. Over time, the data from your own batches becomes more useful than any published figure.</p>
+            </div>
+            <p style="font-size: 0.85em; color: var(--light-gray);">Source basis: Campa et al. — phenolic pool greater in full-sun vs shade leaves. <em>Frontiers in Plant Science</em>, 2017. Consumer perception study — shade vs sun effects on sensory profile (Fibrianto et al., 2024, IOP Conf. Series EES 1302).</p>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s4">
+            <div class="section-num">Section 04</div>
+            <h2>Position on the Tree — <em>Terminal Flush vs Interior Leaf</em></h2>
+            <p>Within a single branch, leaf chemistry varies with position. Terminal flush leaves — the youngest at the growing tip — contain the highest concentrations of chlorogenic acids, mangiferin, and catechins. As you move inward along the branch toward older leaf pairs, concentrations decline progressively.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Position</th><th>Leaf Pair</th><th>CGA Relative Level</th><th>Mangiferin</th><th>Best Use</th></tr></thead>
+                    <tbody>
+                        <tr><td>Terminal tip</td><td>L1 (youngest)</td><td>Very high</td><td>Very high</td><td>Green Citane, enzymatic pathways</td></tr>
+                        <tr><td>Second pair</td><td>L2</td><td>High</td><td>High</td><td>Oolong-style, general processing</td></tr>
+                        <tr><td>Third pair</td><td>L3</td><td>Moderate-high</td><td>Moderate</td><td>All pathways, good balance</td></tr>
+                        <tr><td>Inner leaves</td><td>L4&ndash;L6</td><td>Declining</td><td>Declining</td><td>Roasted pathways, decoction</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size: 0.85em; color: var(--light-gray);">Source: Phytochemical Profile and Antioxidant Capacity of Coffee Plant Organs (Antioxidants 2020) — L1 to L6 leaf pair sampling, <em>C. arabica</em>.</p>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s5">
+            <div class="section-num">Section 05</div>
+            <h2>Healthy vs <em>Stressed Leaf</em></h2>
+            <p>A stressed leaf is not simply a lower-quality version of a healthy leaf. It is a chemically different raw material. Under biotic stress (pest damage, fungal infection) or abiotic stress (drought, waterlogging, nutrient deficiency), the leaf reallocates resources — sometimes increasing certain phenolics as a defence response, but doing so unevenly and unpredictably.</p>
+
+            <div class="box-warn">
+                <span class="box-label">Reject These Leaves at Harvest</span>
+                <p><strong>Insect-damaged:</strong> PPO (the oxidation enzyme) activates immediately at wound sites. The leaf has already begun transforming before processing begins — and not in a controlled way.</p>
+                <p><strong>Fungal or mould-spotted:</strong> Introduces unwanted microbial populations. Their metabolites will appear in the brew. Avoid entirely.</p>
+                <p><strong>Yellowing from disease</strong> (not natural senescence): Indicates cellular breakdown. Different from the normal ageing of a senesced leaf — contains degradation products rather than rebalanced compounds.</p>
+                <p><strong>Physical damage at harvest:</strong> Torn, crushed, or bruised leaves begin oxidising immediately. Unless you intend to oxidise (Pathway 3 or 4), handle all leaves without disruption.</p>
+            </div>
+
+            <div class="box box-note">
+                <span class="box-label">What a Healthy Leaf Looks and Feels Like</span>
+                <p>Firm, not limp. Consistent colour for its age. Clean surface — no spots, no webbing, no sticky residue. No unusual smell at picking. Stem cleanly removed without tearing. These are your working standards at harvest.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s6">
+            <div class="section-num">Section 06</div>
+            <h2>Wet Season vs <em>Dry Season</em></h2>
+            <p>Seasonal variation in coffee leaf chemistry is real and documented — though specific data for Chandragiri at 130m under rubber shade at Thumpassery does not yet exist. Based on what is known from broader <em>C. arabica</em> research:</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Condition</th><th>Leaf State</th><th>Processing Implications</th></tr></thead>
+                    <tbody>
+                        <tr><td>Dry season, healthy growth</td><td>Firm, lower moisture, concentrated compounds</td><td>Drying faster, more predictable oxidation. Recommended for first batches of each pathway.</td></tr>
+                        <tr><td>Post-rain / wet season</td><td>Higher moisture, may be more turgid</td><td>Withering takes longer. Sun drying may be unreliable. Microbial risk higher if humidity stays elevated.</td></tr>
+                        <tr><td>Harvest during rain</td><td>Wet surface, compromised epiphytic microbiome</td><td>Avoid if possible for fermentation pathways. Acceptable for immediate heat-fix pathways (Green Citane).</td></tr>
+                        <tr><td>Drought stress</td><td>Wilted, reduced turgor</td><td>Not ideal raw material. If unavoidable, document carefully and compare against non-stressed batches.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box box-note">
+                <span class="box-label">Thumpassery-Specific Note</span>
+                <p>The rubber shade canopy at Thumpassery will moderate temperature and humidity swings compared to an open plantation. This may produce a more consistent leaf chemistry across seasons than unshaded plots. Record seasonal timing in every batch sheet — over time, patterns will emerge specific to your estate.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s7">
+            <div class="section-num">Section 07</div>
+            <h2>Thumpassery Specifics — <em>Chandragiri at 130m</em></h2>
+            <p>The published baseline for coffee leaf chemistry in this project (Cangeloni 2022) uses <em>C. arabica</em> Castillo variety at 1,700m in Colombia. Thumpassery's Chandragiri at 130m is a different variety at a dramatically different altitude. The numbers will not be the same.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Factor</th><th>Cangeloni 2022 Baseline</th><th>Thumpassery Estimate</th></tr></thead>
+                    <tbody>
+                        <tr><td>Variety</td><td>Castillo (Colombia)</td><td>Chandragiri (Kerala)</td></tr>
+                        <tr><td>Altitude</td><td>~1,700m ASL</td><td>~130m ASL</td></tr>
+                        <tr><td>Shade</td><td>Field cultivation</td><td>Rubber shade canopy</td></tr>
+                        <tr><td>5-CGA</td><td>16.27 g/kg DW</td><td>Direction unclear &mdash; lower altitude and shade are each independently associated with lower phenolic content in <em>C. arabica</em> generally, but the combined effect on this variety has not been measured. May be lower; could also be offset by other factors. Requires measurement.</td></tr>
+                        <tr><td>Mangiferin</td><td>4.43 g/kg DW</td><td>Direction unclear by the same reasoning &mdash; shade is associated with lower phenolic production generally, but mangiferin specifically has not been studied across altitude/shade gradients. Could be lower, comparable, or higher. Requires measurement.</td></tr>
+                        <tr><td>Caffeine</td><td>7.94 g/kg DW</td><td>Higher caffeine in shade-grown <em>C. arabica</em> is documented in some studies &mdash; comparable or somewhat higher is plausible here, but this is not a Thumpassery-specific finding. Requires measurement.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>These are directional estimates, not measurements. The only way to know Thumpassery's actual leaf chemistry is to measure it. In the meantime, use the Cangeloni baseline as a framework — not as a specification — and let your sensory evaluation fill in the gaps.</p>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s8">
+            <div class="section-num">Section 08</div>
+            <h2>The Harvest Decision — <em>A Field Guide</em></h2>
+            <p>The harvest is the first processing decision. Use this decision framework before picking.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Destination</th><th>Best Leaf Age</th><th>Best Position</th><th>Season</th><th>Condition</th></tr></thead>
+                    <tbody>
+                        <tr><td>Green Citane (&alpha;)</td><td>Young to mature (L1&ndash;L3)</td><td>Terminal flush preferred</td><td>Either; avoid heavy rain</td><td>Perfect &mdash; no damage</td></tr>
+                        <tr><td>Oolong-style (&beta;)</td><td>Mature (L2&ndash;L4)</td><td>Second and third pair</td><td>Dry season preferred</td><td>Clean, firm, uniform</td></tr>
+                        <tr><td>Black-style (&beta; deep)</td><td>Mature to old (L3&ndash;L5)</td><td>Inner and mid pairs</td><td>Either</td><td>Clean &mdash; mechanical disruption will be extensive</td></tr>
+                        <tr><td>Roasted (&delta;)</td><td>Mature to old (L3&ndash;L6)</td><td>Any except fallen</td><td>Either</td><td>Clean &mdash; heat will manage minor variation</td></tr>
+                        <tr><td>Engere-inspired</td><td>Mature (L2&ndash;L4)</td><td>Mid-branch</td><td>Either</td><td>Clean</td></tr>
+                        <tr><td>Koji / Experimental</td><td>Mature (L2&ndash;L4)</td><td>Consistent batch preferred</td><td>Dry season preferred</td><td>Clean &mdash; microbial work requires good starting material</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box box-note">
+                <span class="box-label">At the Moment of Harvest</span>
+                <p>Pick cleanly — no torn stems. Move picked leaves immediately into shade. Do not pile — heat builds quickly in a pile of freshly-picked leaves and begins unintended transformation within 30 minutes. Transport to processing area within two hours of picking. If you cannot process immediately, spread leaves in a single layer in a cool, shaded, well-ventilated space.</p>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART 3 -->
+        <!-- ============================================ -->
+        <div class="part-divider" id="part3">
+            <div class="part-label">Part 3</div>
+            <h2 class="part-title">Choose Your Destination</h2>
+            <p class="part-intro">Before teaching tools or techniques, this section asks the single most important question: where are you going? Your destination determines your leaf choice, your toolbox selections, and your pathway. Start here, not at the toolbox.</p>
+        </div>
+
+        <section id="s9">
+            <div class="section-num">Section 09</div>
+            <h2>The <em>Four Destinations</em></h2>
+
+            <div class="destination-card">
+                <div class="dest-header">
+                    <span class="dest-state">&alpha;</span>
+                    <div>
+                        <div class="dest-name">Green Citane — Fresh &amp; Herbaceous</div>
+                        <span class="conf-pill high">High Confidence</span>
+                    </div>
+                </div>
+                <div class="dest-body">
+                    <div>
+                        <div class="dest-col-label">What It Tastes Like</div>
+                        <p>Fresh, green, herbal. Possible slight grassiness. Clean brightness. Light body. The leaf at its most recognisable — minimal transformation.</p>
+                    </div>
+                    <div>
+                        <div class="dest-col-label">Best Leaf Choice</div>
+                        <p>Young to mature. Terminal flush (L1&ndash;L3). Freshly harvested, no damage. Dry season preferred.</p>
+                    </div>
+                    <div>
+                        <div class="dest-col-label">Pathway</div>
+                        <p>Pathway 1 &mdash; Green Citane. Minimal processing: clean, heat-fix, dry gently. No disruption, no oxidation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="dest-header">
+                    <span class="dest-state">&beta;</span>
+                    <div>
+                        <div class="dest-name">Amber Citane — Tea-Like &amp; Rounded</div>
+                        <span class="conf-pill high">High Confidence</span>
+                    </div>
+                </div>
+                <div class="dest-body">
+                    <div>
+                        <div class="dest-col-label">What It Tastes Like</div>
+                        <p>Rounded, honeyed, tea-like. Amber liquor. Moderate body. Smooth rather than sharp. The most immediately accessible Citane style.</p>
+                    </div>
+                    <div>
+                        <div class="dest-col-label">Best Leaf Choice</div>
+                        <p>Mature leaf (L2&ndash;L5). Mid-branch. Either season. Clean and uniform.</p>
+                    </div>
+                    <div>
+                        <div class="dest-col-label">Pathway</div>
+                        <p>Pathway 3 (oolong-style, lighter oxidation) or Pathway 4 (black-style, deeper oxidation). Choose based on how rounded and full you want the cup.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="dest-header">
+                    <span class="dest-state">&delta;</span>
+                    <div>
+                        <div class="dest-name">Roasted Citane — Deep &amp; Coffee-Adjacent</div>
+                        <span class="conf-pill med">Medium-High Confidence</span>
+                    </div>
+                </div>
+                <div class="dest-body">
+                    <div>
+                        <div class="dest-col-label">What It Tastes Like</div>
+                        <p>Toasted, nutty, caramel, and roasted notes. Coffee-adjacent but distinct — the leaf's own character remains. Deeper, drier finish.</p>
+                    </div>
+                    <div>
+                        <div class="dest-col-label">Best Leaf Choice</div>
+                        <p>Mature to old (L3&ndash;L6). Interior leaves acceptable. Either season. Some variation in starting leaf is manageable.</p>
+                    </div>
+                    <div>
+                        <div class="dest-col-label">Pathway</div>
+                        <p>Pathway 5 &mdash; Roasted Citane. Thermal domain. Temperature profile is the primary variable.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="dest-header">
+                    <span class="dest-state">&epsilon;</span>
+                    <div>
+                        <div class="dest-name">Experimental — Unknown Territory</div>
+                        <span class="conf-pill open">Exploratory</span>
+                    </div>
+                </div>
+                <div class="dest-body">
+                    <div>
+                        <div class="dest-col-label">What It Might Taste Like</div>
+                        <p>Unknown. Possibly floral, fruity, complex, or entirely unexpected. This is where genuinely new Citane identity may emerge.</p>
+                    </div>
+                    <div>
+                        <div class="dest-col-label">Best Leaf Choice</div>
+                        <p>Mature, clean, consistent. You need a stable starting point when the process itself is variable.</p>
+                    </div>
+                    <div>
+                        <div class="dest-col-label">Pathway</div>
+                        <p>Pathway 6 (Koji-assisted) or Pathway 7 (Route Builder). Rigorous recording is non-negotiable for these batches.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s10">
+            <div class="section-num">Section 10</div>
+            <h2>Destination &rarr; Leaf &rarr; Pathway <em>Quick Reference</em></h2>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Destination</th><th>Leaf</th><th>Pathway</th><th>Confidence</th></tr></thead>
+                    <tbody>
+                        <tr><td>Green / Herbal (&alpha;)</td><td>Young-mature, L1&ndash;L3, flush</td><td><a href="#pw1">Pathway 1</a></td><td><span class="conf-pill high">High</span></td></tr>
+                        <tr><td>Decoction / Traditional (&beta;)</td><td>Mature, L2&ndash;L4, mid-branch</td><td><a href="#pw2">Pathway 2</a></td><td><span class="conf-pill med">Medium</span></td></tr>
+                        <tr><td>Amber / Tea-like light (&beta;)</td><td>Mature, L2&ndash;L4</td><td><a href="#pw3">Pathway 3</a></td><td><span class="conf-pill high">High</span></td></tr>
+                        <tr><td>Amber / Tea-like full (&beta;)</td><td>Mature-old, L3&ndash;L5</td><td><a href="#pw4">Pathway 4</a></td><td><span class="conf-pill high">High</span></td></tr>
+                        <tr><td>Roasted / Deep (&delta;)</td><td>Mature-old, L3&ndash;L6</td><td><a href="#pw5">Pathway 5</a></td><td><span class="conf-pill med">Medium-High</span></td></tr>
+                        <tr><td>Koji / Complex (&epsilon;)</td><td>Mature, clean, consistent</td><td><a href="#pw6">Pathway 6</a></td><td><span class="conf-pill exp">Experimental</span></td></tr>
+                        <tr><td>Open / Unknown (&epsilon;)</td><td>Mature, clean, your choice</td><td><a href="#pw7">Pathway 7</a></td><td><span class="conf-pill open">Exploratory</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART 4 -->
+        <!-- ============================================ -->
+        <div class="part-divider" id="part4">
+            <div class="part-label">Part 4</div>
+            <h2 class="part-title">The Processing Toolbox</h2>
+            <p class="part-intro">These are your tools. Each is independent. You can use one, several, or all of them. The order matters enormously — but the order is determined by the pathway you have chosen (Part 5), not by any fixed sequence. Read this section to understand what each tool does. Refer to Part 5 to know when and in what order to use it.</p>
+        </div>
+
+        <section id="s11">
+            <div class="section-num">Section 11</div>
+            <h2>Tool 1 — <em>Withering</em></h2>
+            <div class="tool-card">
+                <div class="tool-header"><span class="tool-tag">Tool 1</span><span class="tool-name">Withering — Controlled moisture loss and enzymatic priming</span></div>
+                <p>Withering is not just drying. It is a period of controlled moisture reduction during which the leaf's own enzymes begin to work at low, ambient-temperature rates. Glycosidases slowly unlock aroma-locked compounds. The leaf softens. Cellular structure changes slightly, making subsequent mechanical disruption more effective and more even.</p>
+                <p>The key distinction is between withering (ambient temperature, controlled) and drying (elevated temperature, intended to arrest chemistry). Withering activates. Drying stops.</p>
+                <h4>Parameters</h4>
+                <div class="param-row"><div class="param-label">Duration</div><div>4&ndash;72 hours depending on pathway. Shorter = more active compounds retained. Longer = more enzymatic work done.</div></div>
+                <div class="param-row"><div class="param-label">Temperature</div><div>Ambient &mdash; 18&ndash;28&deg;C. Higher ambient temperature accelerates enzymatic activity and microbial risk simultaneously.</div></div>
+                <div class="param-row"><div class="param-label">Humidity</div><div>60&ndash;75% RH. Too dry: leaf becomes brittle before enzymatic work is complete. Too humid: microbial growth risk.</div></div>
+                <div class="param-row"><div class="param-label">Arrangement</div><div>Single layer on a raised mesh or bamboo rack. Air must circulate both above and below the leaf.</div></div>
+                <div class="param-row"><div class="param-label">Endpoint</div><div>Leaf loses approximately 20&ndash;30% of its fresh weight. Surface no longer feels wet. Leaf is soft and pliable but not limp.</div></div>
+                <div class="param-row"><div class="param-label">Record</div><div>Start time. End time. Ambient temperature. Humidity if measurable. Weight before and after.</div></div>
+                <div class="box box-evidence" style="margin-top:14px; margin-bottom:0;">
+                    <span class="box-label">Paper I Connection</span>
+                    <p>Withering activates the Enzymatic Domain (Paper I, Section 26). Primary reservoirs engaged: E (Glycoside unlocking), K (Volatile precursor release). Withering without mechanical disruption does NOT significantly activate Reservoir C (Catechins via PPO) &mdash; PPO requires cell damage.</p>
+                </div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s12">
+            <div class="section-num">Section 12</div>
+            <h2>Tool 2 — <em>Mechanical Disruption</em></h2>
+            <div class="tool-card">
+                <div class="tool-header"><span class="tool-tag">Tool 2</span><span class="tool-name">Mechanical Disruption — Unlocking the oxidation cascade</span></div>
+                <p>Rolling, wringing, cutting, or crumbling the leaf breaks cell walls, bringing the polyphenol oxidase enzyme (PPO) into contact with its substrates (catechins, chlorogenic acids) for the first time. This triggers the oxidation cascade that is central to amber-style Citane production. The degree of disruption is the primary control variable.</p>
+                <p>This tool has no reverse. Once the leaf is disrupted and oxidation begins, it cannot be stopped without heat. Choose the degree of disruption deliberately.</p>
+                <h4>Disruption Methods and Their Effects</h4>
+                <div class="param-row"><div class="param-label">Hand rolling</div><div>Moderate cell disruption. Most similar to oolong tea rolling. Produces even, controlled oxidation. Recommended for Pathways 3 and 4.</div></div>
+                <div class="param-row"><div class="param-label">Wringing / twisting</div><div>Stronger disruption than rolling. Used in Citane experimental work (32&deg;C friction roll noted in project records). Increases surface area exposed to oxygen.</div></div>
+                <div class="param-row"><div class="param-label">Cutting to strips</div><div>Moderate disruption, consistent. Research (Rigling 2022): cut leaves showed good catechin retention alongside air drying.</div></div>
+                <div class="param-row"><div class="param-label">Crumbling</div><div>More aggressive than cutting. Good catechin activity retained. Higher surface area &mdash; faster oxidation. Suitable for shorter oxidation windows.</div></div>
+                <div class="param-row"><div class="param-label">Blending</div><div>Maximum disruption. Produces very fast oxidation and significant polyphenol loss through accelerated PPO activity. Not recommended for quality Citane &mdash; used in research contexts for extract preparation.</div></div>
+                <div class="param-row"><div class="param-label">Record</div><div>Method used. Duration of mechanical work. Approximate degree (light / medium / full). Time from end of withering to start of disruption.</div></div>
+                <div class="box box-evidence" style="margin-top:14px; margin-bottom:0;">
+                    <span class="box-label">Paper I Connection</span>
+                    <p>Mechanical disruption is the key activation event for the Oxidative Domain (Paper I, Section 18 and 24). Primary reservoirs engaged: C (Catechins &rarr; theaflavin analogues), A (CGAs &rarr; quinones), J (Lipids &rarr; C6 aldehydes via lipoxygenase). Irreversible above mild bruising.</p>
+                </div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s13">
+            <div class="section-num">Section 13</div>
+            <h2>Tool 3 — <em>Oxidation</em></h2>
+            <div class="tool-card">
+                <div class="tool-header"><span class="tool-tag">Tool 3</span><span class="tool-name">Oxidation — The transformation rest</span></div>
+                <p>After mechanical disruption, the leaf rests in open air while PPO drives the oxidation cascade. This is not a passive period &mdash; it is the most chemically active phase of the amber-style pathways. Colour shifts from green to yellow to amber to brown as catechin oxidation products accumulate. Time and temperature are your two controls.</p>
+                <div class="param-row"><div class="param-label">Temperature</div><div>18&ndash;28&deg;C. Below 18&deg;C: PPO activity slows significantly. Above 30&deg;C: risk of uncontrolled microbial growth. Above 70&deg;C: PPO denatured, oxidation stops &mdash; this is the heat-fix threshold.</div></div>
+                <div class="param-row"><div class="param-label">Duration</div><div>2&ndash;8 hours depending on target depth. Colour is your primary indicator &mdash; see below.</div></div>
+                <div class="param-row"><div class="param-label">Arrangement</div><div>Spread thinly on a rack. Even air exposure. Do not pile or stack &mdash; oxidation will be uneven.</div></div>
+                <div class="param-row"><div class="param-label">Colour guide</div><div>Green &rarr; light amber: 2&ndash;3 hrs (oolong-style). Amber: 4&ndash;5 hrs. Deep amber-brown: 6&ndash;8 hrs (black-style). Stop when you reach your target &mdash; heat-fix immediately.</div></div>
+                <div class="param-row"><div class="param-label">Smell guide</div><div>Fresh grassy notes fade first. Floral or honey notes may emerge. A sharp, green-grass smell persisting after 3 hours suggests incomplete disruption. A sour or vinegary note suggests microbial activity has begun &mdash; heat-fix immediately.</div></div>
+                <div class="param-row"><div class="param-label">Record</div><div>Start time. Temperature. Humidity. Colour at 2, 4, 6 hour checks. Time of heat-fix.</div></div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s14">
+            <div class="section-num">Section 14</div>
+            <h2>Tool 4 — <em>Heat Fixing</em></h2>
+            <div class="tool-card">
+                <div class="tool-header"><span class="tool-tag">Tool 4</span><span class="tool-name">Heat Fixing — Locking the chemistry at its current state</span></div>
+                <p>Heat fixing (also called kill-green) denatures PPO and other active enzymes, freezing the leaf's chemistry at its current state. It is used in Green Citane to preserve the fresh, unoxidised profile; and in amber-style pathways to stop oxidation at the target depth.</p>
+                <div class="param-row"><div class="param-label">Temperature</div><div>80&ndash;100&deg;C. Must reach this temperature through the leaf, not just at the surface.</div></div>
+                <div class="param-row"><div class="param-label">Methods</div><div>Pan-firing (dry heat, stirred continuously &mdash; analogous to Chinese green tea fixation). Steaming (moist heat, 2&ndash;3 minutes, stops oxidation without browning). Oven (80&deg;C for 15&ndash;20 min &mdash; gentler, less risk of scorching).</div></div>
+                <div class="param-row"><div class="param-label">Green pathway</div><div>Steam or oven preferred. Preserves green colour. Pan-firing risks surface browning.</div></div>
+                <div class="param-row"><div class="param-label">Amber pathway</div><div>Pan-firing acceptable &mdash; adds slight toasted note that complements the oxidised profile. Time from last oxidation check to heat-fix must be short.</div></div>
+                <div class="param-row"><div class="param-label">Endpoint</div><div>Leaf becomes slightly limp (steam). Surface is dry and leaf is pliable without feeling wet (pan). Grassy smell is reduced or gone. No sizzling sounds &mdash; water has been driven off the surface.</div></div>
+                <div class="param-row"><div class="param-label">Record</div><div>Method. Temperature. Duration. Colour and smell immediately after.</div></div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s15">
+            <div class="section-num">Section 15</div>
+            <h2>Tool 5 — <em>Drying</em></h2>
+            <div class="tool-card">
+                <div class="tool-header"><span class="tool-tag">Tool 5</span><span class="tool-name">Drying — Reducing water activity to stable storage</span></div>
+                <p>Drying reduces moisture content to a level where biological activity ceases and the leaf can be stored without degradation. Target: moisture content below 8% (German tea standard, DIN 10809). This is non-negotiable &mdash; inadequately dried leaf will mould in storage and cannot be safely brewed.</p>
+                <div class="param-row"><div class="param-label">Sun drying</div><div>Single layer on clean rack. Full sunlight or shade (shade drying is slower but more gentle). 2&ndash;5 days in dry season; longer in humid conditions. Endpoint: leaf is brittle and breaks cleanly with no flex.</div></div>
+                <div class="param-row"><div class="param-label">Oven drying</div><div>70&deg;C, 4 hours, circulating air. More consistent than sun drying. Lower essential oil loss than sun drying. Research (Rigling 2022): oven drying produced higher essential oil content than sun drying. Preferred for Green Citane to preserve volatile profile.</div></div>
+                <div class="param-row"><div class="param-label">Pan drying</div><div>Low heat (50&ndash;70&deg;C), constant movement. Traditional method &mdash; produces slight toasted character. Acceptable for roasted pathway precursors.</div></div>
+                <div class="param-row"><div class="param-label">Endpoint check</div><div>Break a stem &mdash; it should snap cleanly with a dry sound. Bend a large leaf &mdash; it should crack, not flex. Weight: dried weight should be approximately 20&ndash;25% of fresh weight.</div></div>
+                <div class="param-row"><div class="param-label">Storage</div><div>Airtight container. Cool, dark, dry location. Label with batch date and pathway. Properly dried leaf stores well for months without significant chemical degradation.</div></div>
+                <div class="param-row"><div class="param-label">Record</div><div>Method. Start time. End time. Fresh weight. Dried weight. Storage conditions.</div></div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s16">
+            <div class="section-num">Section 16</div>
+            <h2>Tool 6 — <em>Roasting</em></h2>
+            <div class="tool-card">
+                <div class="tool-header"><span class="tool-tag">Tool 6</span><span class="tool-name">Roasting — Thermal development of flavour through Maillard chemistry</span></div>
+                <p>Roasting is the thermal tool that drives the deepest transformation. At temperatures above approximately 130&deg;C, amino acids react with sugars (the Maillard reaction) to produce toasted, nutty, and caramel aromas. At temperatures above 160&deg;C, trigonelline degrades to produce pyridine compounds &mdash; the distinctive aroma of roasted coffee. The leaf must be fully dried before roasting &mdash; any residual moisture will steam rather than roast.</p>
+                <div class="param-row"><div class="param-label">Pre-condition</div><div>Leaf must be below 8% moisture. If in doubt, oven dry at 70&deg;C for 1 hour before roasting.</div></div>
+                <div class="param-row"><div class="param-label">Light roast</div><div>130&ndash;140&deg;C, 8&ndash;12 minutes. Maillard onset. Toasted grain notes. Trigonelline largely intact. Colour: light brown. Suitable for Pathway 5 (light version) and post-Koji development.</div></div>
+                <div class="param-row"><div class="param-label">Medium roast</div><div>140&ndash;160&deg;C, 10&ndash;18 minutes. Deeper Maillard. Caramel notes. Trigonelline beginning to degrade. Colour: medium brown. Typical Pathway 5.</div></div>
+                <div class="param-row"><div class="param-label">Dark roast</div><div>160&ndash;180&deg;C, 15&ndash;25 minutes. Deep roast character. Pyridine notes prominent. Chlorophyll fully destroyed. Risk of bitterness overpowering. Use with caution.</div></div>
+                <div class="param-row"><div class="param-label">Equipment</div><div>Dry pan (iron or clay) over controlled heat. Or oven with temperature probe. Stir or flip every 60&ndash;90 seconds to prevent uneven development. Do not walk away &mdash; the window between light and burnt is narrow.</div></div>
+                <div class="param-row"><div class="param-label">Endpoint</div><div>Colour is your guide (see above). Smell &mdash; nutty and toasted for medium, sharp and coffee-like for dark. Cool immediately once target is reached. Do not roast in the container you will store in &mdash; heat continues in a sealed space.</div></div>
+                <div class="param-row"><div class="param-label">Record</div><div>Temperature. Duration. Final colour (descriptive). Final smell. Any colour or smell anomalies during roasting.</div></div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART 5 -->
+        <!-- ============================================ -->
+        <div class="part-divider" id="part5">
+            <div class="part-label">Part 5</div>
+            <h2 class="part-title">Seven Processing Pathways</h2>
+            <p class="part-intro">These are the routes through the leaf. Each pathway answers the three questions: what leaf, what tools, in what order. Each carries a confidence rating. Each connects to the traditions that informed it and to the Paper I chemistry that explains it.</p>
+            <div class="box box-note" style="margin-top: 16px;">
+                <span class="box-label">Illustrative Pathways</span>
+                <p>Each pathway below is a conceptual procedure showing how the framework's tools (Part 4) can be combined toward a destination. <strong>It demonstrates how the framework describes a sequence of transformations &mdash; it is not necessarily a documented batch.</strong> Parameters (times, temperatures, ratios) are starting points drawn from analogous processing traditions and general food chemistry. Where a pathway predicts how Chandragiri leaf may behave relative to a published study, that prediction is directional, not measured &mdash; treat "may," "could," and "is expected to" as markers of an open question, not a guarantee. Treat the first several batches of any pathway as calibration, and record outcomes per Part 8.</p>
+            </div>
+        </div>
+
+        <!-- PATHWAY 1 -->
+        <div class="pathway" id="pw1">
+            <div class="pathway-header">
+                <div class="pathway-num">Pathway 1</div>
+                <div class="pathway-title">
+                    <h3>Green Citane</h3>
+                    <div class="pathway-sub">Minimal processing — the leaf at its most intact</div>
+                    <div class="pathway-meta">
+                        <span class="pathway-tag tag-state-alpha">State &alpha; — Green</span>
+                        <span class="conf-pill high">High Confidence</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pathway-body">
+                <p><strong>Destination:</strong> Fresh, herbaceous, green. The intact leaf profile — lowest transformation, highest compound retention relative to the fresh leaf.</p>
+                <p><strong>Best leaf:</strong> Young to mature (L1&ndash;L3). Terminal flush preferred. Freshly harvested. No damage.</p>
+                <p><strong>Tools used:</strong> Heat fixing &rarr; Drying only. No withering, no disruption, no oxidation.</p>
+                <h4>Step-by-Step</h4>
+                <ul class="step-list">
+                    <li class="step-item"><div class="step-num">1</div><div><div class="step-title">Harvest and transport</div><div class="step-detail">Pick young to mature leaves cleanly from L1&ndash;L3 positions. No mechanical damage. Move immediately to shaded, ventilated space. Do not allow leaves to sit in piles.</div><div class="step-params">Window: process within 2 hours of harvest</div></div></li>
+                    <li class="step-item"><div class="step-num">2</div><div><div class="step-title">Clean</div><div class="step-detail">Wash gently in cool clean water to remove surface dust and microbiota. Pat dry with clean cloth. Surface water should be removed &mdash; wet leaves entering heat fixing will steam unevenly.</div><div class="step-params">Water temperature: ambient &middot; Pat dry only</div></div></li>
+                    <li class="step-item"><div class="step-num">3</div><div><div class="step-title">Heat fix — steaming</div><div class="step-detail">Steam leaves for 2&ndash;3 minutes until fully wilted and the raw grassy smell has reduced. This denatures PPO and arrests all enzymatic activity. Colour should remain green &mdash; steaming is less likely to cause browning than pan-firing.</div><div class="step-params">Temperature: 100&deg;C steam &middot; Duration: 2&ndash;3 min &middot; Colour: green retained</div><div class="step-why">Why: PPO must be denatured immediately to prevent unintended oxidation. Any browning at this stage is a process error.</div></div></li>
+                    <li class="step-item"><div class="step-num">4</div><div><div class="step-title">Dry</div><div class="step-detail">Spread in single layer. Oven drying at 70&deg;C for 4 hours is preferred &mdash; it preserves the volatile profile better than sun drying and is more consistent. Endpoint: leaf snaps cleanly with no flex.</div><div class="step-params">Oven: 70&deg;C, 4 hrs &middot; OR Sun: 48+ hrs, single layer, avoid direct midday sun</div></div></li>
+                    <li class="step-item"><div class="step-num">5</div><div><div class="step-title">Cool and store</div><div class="step-detail">Allow to reach ambient temperature before sealing. Store in airtight container. Label with batch date, leaf age, and position.</div></div></li>
+                </ul>
+                <h4>Expected Sensory Profile</h4>
+                <p style="font-size: 0.92em; color: var(--gray);">Infusion: pale gold to jade green. Aroma: fresh, grassy, herbal. Taste: clean brightness, mild vegetal note, low astringency if leaf was young. Light body. The most "coffee leaf"-tasting Citane &mdash; it references nothing else.</p>
+                <div class="box box-evidence">
+                    <span class="box-label">Paper I Connection</span>
+                    <p>Heat fixing without prior disruption preserves Reservoirs A, B, C, E, and K in their most intact form. The cup will contain the highest proportion of unreacted compounds of any pathway. Oxidative Domain is explicitly avoided. [Paper I, Sections 14, 26, 33]</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PATHWAY 2 -->
+        <div class="pathway" id="pw2">
+            <div class="pathway-header">
+                <div class="pathway-num">Pathway 2</div>
+                <div class="pathway-title">
+                    <h3>Engere-Inspired Decoction Leaf</h3>
+                    <div class="pathway-sub">Traditional reference — adapted for Chandragiri at Thumpassery</div>
+                    <div class="pathway-meta">
+                        <span class="pathway-tag tag-state-beta">State &beta; — Amber</span>
+                        <span class="conf-pill med">Medium Confidence</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pathway-body">
+                <div class="tradition-sidebar">
+                    <div class="tradition-header">Traditional Reference — Engere (Ethiopia)</div>
+                    <div class="tradition-body">
+                        <p>Engere is a traditional coffee leaf beverage from southern Ethiopia, documented among 385 households in Gofa Zone (Yohannis et al., 2026, <em>Discover Food</em>). It involves boiling ground or chopped mature coffee leaves in water (85&ndash;100&deg;C, 7&ndash;15 minutes) before combining with minor ingredients (spices, herbs) and sometimes fresh cow milk.</p>
+                        <p>The Engere approach uses high-temperature decoction &mdash; not infusion. The leaf is prepared fresh or dried, ground using a traditional wooden mortar, then boiled directly. This produces a fundamentally different extraction chemistry from steeping: higher extraction of thermally stable compounds (mangiferin, caffeine) and greater breakdown of thermally labile ones (some catechins).</p>
+                        <p><strong>What Citane learns from this:</strong> The decoction method, the role of grinding as a processing decision, and the tolerance for bold, full-extraction flavour profiles. Not the specific ingredients, cultural context, or specific preparation ritual &mdash; those belong to the communities of origin.</p>
+                    </div>
+                </div>
+                <p><strong>Destination:</strong> Full-extraction, robust amber cup. More body than infusion-style pathways. Coffee-leaf flavour is prominent rather than subtle.</p>
+                <p><strong>Best leaf:</strong> Mature (L2&ndash;L4). Mid-branch. Either season.</p>
+                <p><strong>Tools used:</strong> Drying &rarr; Grinding &rarr; Brewing by decoction.</p>
+                <h4>Step-by-Step</h4>
+                <ul class="step-list">
+                    <li class="step-item"><div class="step-num">1</div><div><div class="step-title">Harvest and dry</div><div class="step-detail">Harvest mature leaves. Clean. Either sun dry (48+ hrs) or oven dry (70&deg;C, 4 hrs). Fully dried &mdash; leaf must snap. This produces the dried leaf base for decoction.</div></div></li>
+                    <li class="step-item"><div class="step-num">2</div><div><div class="step-title">Grind</div><div class="step-detail">Grind dried leaves coarsely in a mortar or blade grinder. Coarse grind preferred &mdash; fine powder will produce a muddy cup. Particle size: approximately 1&ndash;3mm pieces, not powder.</div><div class="step-params">Target: coarse grind, consistent particle size</div><div class="step-why">Why grinding matters: increased surface area dramatically changes extraction rate during decoction. Engere tradition uses mortar grinding (coarse). This is not equivalent to blending a fresh leaf.</div></div></li>
+                    <li class="step-item"><div class="step-num">3</div><div><div class="step-title">Decoction</div><div class="step-detail">Add ground leaf to cold water. Bring to boil. Simmer at 85&ndash;100&deg;C for 7&ndash;12 minutes. Stir occasionally. The liquor should develop a deep amber colour. Filter thoroughly through fine mesh or cloth.</div><div class="step-params">Ratio: 1g leaf per 100ml water (1:100) &middot; Temperature: 85&ndash;100&deg;C &middot; Duration: 7&ndash;12 min</div></div></li>
+                    <li class="step-item"><div class="step-num">4</div><div><div class="step-title">Serve and evaluate</div><div class="step-detail">Serve hot or chilled. Note colour, aroma, flavour, body, finish. Record. Adjust ratio or duration in next batch based on findings.</div><div class="step-params">Serving: hot or chilled &middot; Optional: sweetener if bitterness is excessive in first batches</div></div></li>
+                </ul>
+                <h4>Expected Sensory Profile</h4>
+                <p style="font-size: 0.92em; color: var(--gray);">Deep amber to brown liquor. Robust body. Coffee-adjacent but distinctly leafy. Higher bitterness than infusion pathways &mdash; this is normal for decoction. Sweetener (honey) can balance this for café service.</p>
+                <div class="box box-note">
+                    <span class="box-label">Confidence Note</span>
+                    <p>Medium confidence because the specific parameter optimisation for Chandragiri leaf at Thumpassery via decoction has not been done. The Engere tradition provides directional guidance. Expect to adjust ratio and duration across the first 3&ndash;5 batches before settling on your preferred parameters.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PATHWAY 3 -->
+        <div class="pathway" id="pw3">
+            <div class="pathway-header">
+                <div class="pathway-num">Pathway 3</div>
+                <div class="pathway-title">
+                    <h3>Oolong-Style Citane</h3>
+                    <div class="pathway-sub">Partial oxidation — the tea-adjacent amber style</div>
+                    <div class="pathway-meta">
+                        <span class="pathway-tag tag-state-beta">State &beta; — Amber (Light)</span>
+                        <span class="conf-pill high">High Confidence</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pathway-body">
+                <div class="tradition-sidebar">
+                    <div class="tradition-header">Research Reference — Chen &amp; Kitts (2018, <em>Food Chemistry</em>)</div>
+                    <div class="tradition-body">
+                        <p>Chen and Kitts applied Japanese-style green tea processing and black tea-processing (BTP) methods to coffee leaves and found contrasting phytochemical and bioactivity outcomes. Green tea-style processing of young leaves produced higher total phenolic content. Oolong-style partial oxidation produced intermediate profiles. Their findings confirm that tea-processing methods are applicable to coffee leaf and produce characteristic phytochemical signatures.</p>
+                    </div>
+                </div>
+                <p><strong>Destination:</strong> Rounded, tea-like, possibly honeyed. Amber liquor. Moderate body. The most accessible Citane style for a café context.</p>
+                <p><strong>Best leaf:</strong> Mature (L2&ndash;L4). Clean and uniform batch.</p>
+                <p><strong>Tools used:</strong> Wither &rarr; Roll lightly &rarr; Oxidise (partial) &rarr; Heat fix &rarr; Dry.</p>
+                <h4>Step-by-Step</h4>
+                <ul class="step-list">
+                    <li class="step-item"><div class="step-num">1</div><div><div class="step-title">Wither</div><div class="step-detail">Spread mature leaves in a single layer on a rack. Wither at ambient temperature (20&ndash;26&deg;C) for 12&ndash;18 hours. Leaf should lose approximately 20% of its fresh weight. Surface no longer feels wet. Leaf is pliable but not limp.</div><div class="step-params">Duration: 12&ndash;18 hrs &middot; Temperature: 20&ndash;26&deg;C &middot; Humidity: 60&ndash;75%</div></div></li>
+                    <li class="step-item"><div class="step-num">2</div><div><div class="step-title">Roll lightly</div><div class="step-detail">Hand roll the withered leaves gently in both hands for 3&ndash;5 minutes. Do not crush &mdash; you are bruising, not tearing. The leaf should darken slightly at the edges where cells are broken. A light, fresh aroma should be released. Leaves can be slightly damp from their own moisture.</div><div class="step-params">Duration: 3&ndash;5 min rolling &middot; Pressure: light-moderate &middot; Target: edge bruising, not full disruption</div><div class="step-why">Why light rolling: you want to activate PPO at the margins, not trigger a full rapid oxidation. The catechin cascade should proceed at a moderate pace &mdash; giving time for the honeyed, floral notes to develop before the deeper, more astringent oxidation products form.</div></div></li>
+                    <li class="step-item"><div class="step-num">3</div><div><div class="step-title">Oxidise — partial</div><div class="step-detail">Spread rolled leaves in a single layer. Rest at 20&ndash;26&deg;C in open air for 2&ndash;4 hours. Check colour every 60 minutes. Target: leaf edges amber, centre still greenish. This partial oxidation is what defines oolong character &mdash; neither fully green nor fully brown.</div><div class="step-params">Duration: 2&ndash;4 hrs &middot; Temperature: 20&ndash;26&deg;C &middot; Colour target: amber edges, green-gold centre</div></div></li>
+                    <li class="step-item"><div class="step-num">4</div><div><div class="step-title">Heat fix</div><div class="step-detail">Pan-fire at medium heat, stirring continuously, for 5&ndash;8 minutes until the leaf is dry and the remaining grassy smell is gone. Or oven at 90&deg;C for 15 minutes. This locks the partial oxidation state.</div><div class="step-params">Pan: medium heat, stirring, 5&ndash;8 min &middot; OR Oven: 90&deg;C, 15 min</div></div></li>
+                    <li class="step-item"><div class="step-num">5</div><div><div class="step-title">Dry and store</div><div class="step-detail">If pan-fired: leaf may already be near target moisture. Check &mdash; it should snap. If not, oven at 70&deg;C for 1&ndash;2 additional hours. Cool, store airtight.</div></div></li>
+                </ul>
+                <h4>Expected Sensory Profile</h4>
+                <p style="font-size: 0.92em; color: var(--gray);">Gold to amber liquor. Aroma: floral, possibly honeyed, light vegetal note. Taste: rounded, smooth, tea-like. Mild astringency. Medium body. This is the closest Citane analog to a high-quality oolong tea &mdash; but with the distinctive mangiferin character of the coffee leaf underneath.</p>
+            </div>
+        </div>
+
+        <!-- PATHWAY 4 -->
+        <div class="pathway" id="pw4">
+            <div class="pathway-header">
+                <div class="pathway-num">Pathway 4</div>
+                <div class="pathway-title">
+                    <h3>Black-Style Citane</h3>
+                    <div class="pathway-sub">Full oxidation — deep amber, full body</div>
+                    <div class="pathway-meta">
+                        <span class="pathway-tag tag-state-beta">State &beta; — Amber (Deep)</span>
+                        <span class="conf-pill high">High Confidence</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pathway-body">
+                <p><strong>Destination:</strong> Deep amber to red-brown liquor. Full body. Robust, tea-like character with depth. The most structured of the infusion-style pathways.</p>
+                <p><strong>Best leaf:</strong> Mature to old (L3&ndash;L5). Interior leaves acceptable. Clean.</p>
+                <p><strong>Tools used:</strong> Wither &rarr; Roll fully &rarr; Oxidise (complete) &rarr; Heat fix &rarr; Dry.</p>
+                <h4>Step-by-Step</h4>
+                <ul class="step-list">
+                    <li class="step-item"><div class="step-num">1</div><div><div class="step-title">Wither</div><div class="step-detail">Spread mature-old leaves. Wither 18&ndash;24 hours at 20&ndash;26&deg;C. Longer wither than Pathway 3 &mdash; the leaf needs more enzymatic preparation before full disruption.</div><div class="step-params">Duration: 18&ndash;24 hrs &middot; Temperature: 20&ndash;26&deg;C</div></div></li>
+                    <li class="step-item"><div class="step-num">2</div><div><div class="step-title">Roll fully</div><div class="step-detail">Roll firmly for 8&ndash;12 minutes. More pressure than Pathway 3. The leaf should release visible moisture and darken across its whole surface, not just at the edges. Wringing or twisting is acceptable here. The full oxidation cascade should begin during rolling.</div><div class="step-params">Duration: 8&ndash;12 min &middot; Pressure: firm &middot; Target: full surface darkening, moisture release</div></div></li>
+                    <li class="step-item"><div class="step-num">3</div><div><div class="step-title">Oxidise — full</div><div class="step-detail">Spread thinly. Rest at 22&ndash;28&deg;C for 4&ndash;8 hours. Target: leaf uniformly amber to deep brown. No remaining green patches. Aroma should be honey-like or sweet at peak &mdash; if it turns sharp or sour, heat-fix immediately.</div><div class="step-params">Duration: 4&ndash;8 hrs &middot; Colour target: uniform deep amber to brown &middot; Check every 90 minutes</div></div></li>
+                    <li class="step-item"><div class="step-num">4</div><div><div class="step-title">Heat fix and dry</div><div class="step-detail">Pan-fire at medium-high heat, 8&ndash;12 minutes, stirring constantly. Leaf should become dry and crisp. Smell: deep, woody, faintly sweet. No remaining grassy note. Cool completely before storage.</div><div class="step-params">Pan: medium-high heat, stirring, 8&ndash;12 min &middot; Endpoint: crisp, no moisture, dark brown</div></div></li>
+                </ul>
+                <h4>Expected Sensory Profile</h4>
+                <p style="font-size: 0.92em; color: var(--gray);">Deep amber to red-brown liquor. Aroma: warm, woody, slightly malty. Taste: full body, structured astringency, possible honey or dried fruit note. Finish: long and dry. Similar depth to a quality black tea &mdash; but the xanthone pool (mangiferin) may create a characteristic softness not found in <em>Camellia sinensis</em> black tea (see Paper I, Reservoir B buffering hypothesis &mdash; unconfirmed).</p>
+            </div>
+        </div>
+
+
+
+        <!-- PATHWAY 5 -->
+        <div class="pathway" id="pw5">
+            <div class="pathway-header">
+                <div class="pathway-num">Pathway 5</div>
+                <div class="pathway-title">
+                    <h3>Roasted Citane</h3>
+                    <div class="pathway-sub">Thermal development — toasted, nutty, coffee-adjacent</div>
+                    <div class="pathway-meta">
+                        <span class="pathway-tag tag-state-delta">State &delta; — Roasted</span>
+                        <span class="conf-pill med">Medium-High Confidence</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pathway-body">
+                <div class="tradition-sidebar">
+                    <div class="tradition-header">Traditional References — Kuti (Ethiopia) &amp; Kawa Daun-Inspired (West Sumatra)</div>
+                    <div class="tradition-body">
+                        <p><strong>Kuti</strong> (Harar, Ethiopia): senesced fallen leaves, sun-dried fully, then pan-roasted on an iron griddle (<em>makeshela</em>) used for coffee beans. A direct thermal pathway applied to a naturally aged leaf. The result is a mild, roasted-leaf infusion with very low bitterness.</p>
+                        <p><strong>Kawa Daun</strong> (West Sumatra): mature robusta leaves, smoked over open fire at 90&ndash;180&deg;C for 50&ndash;120 minutes, then brewed by decoction. Smoking adds a distinct character absent from oven or pan roasting. The documented optimal for consumer acceptance was 6 hours of smoking (Defri et al.).</p>
+                        <p><strong>Citane adaptation:</strong> Pan roasting at controlled temperatures, applied to fully dried Chandragiri leaf. The Kuti and Kawa Daun traditions confirm that direct thermal processing of coffee leaf is an established, consumer-accepted approach. Smoke character is not replicated here &mdash; that is a separate exploration.</p>
+                    </div>
+                </div>
+                <p><strong>Destination:</strong> Toasted, nutty, caramel, coffee-adjacent. For customers who want a roasted character without coffee's intensity.</p>
+                <p><strong>Best leaf:</strong> Mature to old (L3&ndash;L6). Fully dried base essential.</p>
+                <p><strong>Tools used:</strong> Dry &rarr; Roast &rarr; Cool &rarr; Store.</p>
+                <h4>Step-by-Step</h4>
+                <ul class="step-list">
+                    <li class="step-item"><div class="step-num">1</div><div><div class="step-title">Prepare dry base</div><div class="step-detail">Begin with fully dried leaf (moisture below 8%). If starting from fresh, sun dry or oven dry first. You cannot roast a wet leaf well &mdash; steam will form inside, producing an off-flavour before Maillard reactions can develop.</div><div class="step-params">Moisture: &lt;8% &middot; Check: leaf snaps cleanly</div></div></li>
+                    <li class="step-item"><div class="step-num">2</div><div><div class="step-title">Roast — light to medium</div><div class="step-detail">Place dried leaf in a dry pan over medium heat. Stir or flip continuously. Watch the colour progression: tan &rarr; light brown &rarr; medium brown. Smell: the Maillard aromas (nutty, toasted, caramel) appear around 130&ndash;140&deg;C. Do not wait for a coffee smell to appear &mdash; that is the dark roast range.</div><div class="step-params">Temperature: 130&ndash;160&deg;C &middot; Duration: 10&ndash;18 min depending on target &middot; Stir: continuously</div></div></li>
+                    <li class="step-item"><div class="step-num">3</div><div><div class="step-title">Monitor development</div><div class="step-detail">Light roast (10&ndash;12 min, ~130&ndash;140&deg;C): toasted grain, mild. Medium roast (14&ndash;18 min, ~140&ndash;155&deg;C): fuller, nutty, caramel. Dark roast (&gt;18 min, 155&ndash;170&deg;C): deep, coffee-adjacent, risk of bitterness. Stop at your target and remove from heat immediately.</div></div></li>
+                    <li class="step-item"><div class="step-num">4</div><div><div class="step-title">Cool immediately</div><div class="step-detail">Spread in thin layer on a cool surface. Do not seal in a container while hot &mdash; condensation will form and damage the roast character. Allow 15&ndash;20 minutes at ambient temperature before storing.</div><div class="step-params">Cooling: thin layer on cool surface, ambient temperature, 15&ndash;20 min minimum</div></div></li>
+                </ul>
+                <h4>Expected Sensory Profile</h4>
+                <p style="font-size: 0.92em; color: var(--gray);">Brown to deep brown liquor. Aroma: nutty, toasted grain, caramel, slightly roasted. Taste: smooth, roasted character without coffee's sharpness. Body: medium to full. The trigonelline-to-caffeine ratio in the leaf differs from the bean &mdash; expect a roast character that is adjacent to coffee but not a replica (see Paper I, Reservoir F, "The Trigonelline Opportunity" &mdash; the ratio itself is measured; the resulting flavour is not yet confirmed). Bitterness should be structured, not harsh &mdash; if harsh, the roast went too far.</p>
+            </div>
+        </div>
+
+        <!-- PATHWAY 6 -->
+        <div class="pathway" id="pw6">
+            <div class="pathway-header">
+                <div class="pathway-num">Pathway 6</div>
+                <div class="pathway-title">
+                    <h3>Koji-Assisted Citane</h3>
+                    <div class="pathway-sub">Enzymatic enrichment before thermal development</div>
+                    <div class="pathway-meta">
+                        <span class="pathway-tag tag-state-epsilon">State &epsilon; — Epsilon</span>
+                        <span class="conf-pill exp">Experimental</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pathway-body">
+                <p><strong>Destination:</strong> Unknown, and that is the point. The Koji treatment enriches the amino acid and sugar pools before any thermal processing occurs, potentially producing a richer, more complex cup than a direct-roast pathway on the same leaf. But the specific outcome for Chandragiri leaf at Thumpassery is not yet documented anywhere.</p>
+                <p><strong>Best leaf:</strong> Mature, clean, consistent batch. When the process is variable, the raw material should be as stable as possible.</p>
+                <p><strong>Tools used:</strong> Wither &rarr; Koji contact &rarr; Dry &rarr; Light roast.</p>
+                <div class="box-warn">
+                    <span class="box-label">Before You Begin</span>
+                    <p>Koji (<em>Aspergillus oryzae</em>) must be food-safe. Source it from a reputable supplier &mdash; do not improvise with unknown moulds. All equipment in contact with Koji must be scrupulously clean. This pathway requires hygiene attention that the simpler pathways do not.</p>
+                </div>
+                <h4>Step-by-Step</h4>
+                <ul class="step-list">
+                    <li class="step-item"><div class="step-num">1</div><div><div class="step-title">Wither lightly</div><div class="step-detail">Wither mature leaves at ambient temperature for 12 hours. The leaf should be pliable and slightly soft &mdash; this makes it more receptive to Koji enzyme penetration. Do not wither to brittleness.</div><div class="step-params">Duration: 12 hrs &middot; Temperature: 20&ndash;26&deg;C</div></div></li>
+                    <li class="step-item"><div class="step-num">2</div><div><div class="step-title">Koji water contact</div><div class="step-detail">Prepare Koji water: soak food-grade Koji rice in clean water (ratio: approximately 1 part Koji rice to 3 parts water) for 12 hours, strain. The strained liquid contains the active enzyme cocktail. Mist or gently coat the withered leaves with this Koji water. Place leaves in a humid environment at 28&ndash;32&deg;C for 48&ndash;72 hours. Leaves should remain moist but not wet.</div><div class="step-params">Koji water: 1:3 Koji rice to water, strained &middot; Contact: 48&ndash;72 hrs at 28&ndash;32&deg;C, humid</div><div class="step-why">Why this works (theoretically): Koji's &beta;-glucosidases cleave locked aroma compounds (Reservoir E). Koji's proteases increase free amino acids (Reservoir D). Both become available for the subsequent roasting step's Maillard chemistry &mdash; potentially producing a richer roast flavour than the leaf alone would generate. This sequence is the practical implementation of the "Frontier" hypothesis discussed in Paper I, Section 39.</div></div></li>
+                    <li class="step-item"><div class="step-num">3</div><div><div class="step-title">Dry</div><div class="step-detail">Remove from Koji environment. Dry at 70&deg;C for 4&ndash;5 hours until fully dry. This arrests Koji activity and any microbial growth, and prepares the leaf for roasting.</div><div class="step-params">Temperature: 70&deg;C &middot; Duration: 4&ndash;5 hrs &middot; Endpoint: snaps cleanly</div></div></li>
+                    <li class="step-item"><div class="step-num">4</div><div><div class="step-title">Light roast</div><div class="step-detail">Roast at 130&ndash;140&deg;C for 10&ndash;12 minutes. The hypothesis is that the Koji-enriched amino acid and sugar pools will produce a notably richer Maillard output than equivalent roasting of un-treated leaf. Whether this is perceptible in the cup is what this experiment is for.</div><div class="step-params">Temperature: 130&ndash;140&deg;C &middot; Duration: 10&ndash;12 min &middot; Compare directly against a non-Koji roast of the same leaf</div></div></li>
+                    <li class="step-item"><div class="step-num">5</div><div><div class="step-title">Evaluate and record</div><div class="step-detail">Brew both the Koji-treated and non-Koji batches side by side. Document every difference you can observe. This comparative evaluation is the core data point of this pathway.</div></div></li>
+                </ul>
+                <h4>Expected Sensory Profile</h4>
+                <p style="font-size: 0.92em; color: var(--gray);">Unknown &mdash; and intentionally so. The working hypothesis is: deeper Maillard character from the same base roast temperature, possibly with an additional aromatic dimension from terpene glycoside unlocking during Koji contact. Observe with an open evaluation rather than a predetermined expectation.</p>
+            </div>
+        </div>
+
+        <!-- PATHWAY 7 -->
+        <div class="pathway" id="pw7">
+            <div class="pathway-header">
+                <div class="pathway-num">Pathway 7</div>
+                <div class="pathway-title">
+                    <h3>Experimental Route Builder</h3>
+                    <div class="pathway-sub">Open framework — you design the route, the batch records the result</div>
+                    <div class="pathway-meta">
+                        <span class="pathway-tag tag-state-epsilon">State &epsilon; — Exploratory</span>
+                        <span class="conf-pill open">Exploratory</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pathway-body">
+                <p>This is not a pathway with predetermined steps. It is a structured framework for designing your own route. The moment a route is prescribed, it stops being experimental. Paper I's philosophy &mdash; map the route after you walk it, not before &mdash; applies here entirely.</p>
+                <p>Use the six steps below as a design scaffold. Fill in each step with your own choices before you begin processing. The batch sheet in Part 8 then records what you decided, what happened, and what you found.</p>
+
+                <div class="builder-step">
+                    <div class="builder-step-header">Step 1 — Choose Your Leaf</div>
+                    <div class="builder-step-body">
+                        <p>Which leaf are you starting with? Be specific. Age, position, condition, season.</p>
+                        <ul class="option-list">
+                            <li>Young flush (L1)</li><li>Mature mid-branch (L3)</li><li>Old inner leaf (L5)</li><li>Mixed age batch</li><li>Post-pruning leaf</li>
+                        </ul>
+                        <p style="font-size: 0.8em; color: var(--light-gray);">Record your choice on the batch sheet before processing begins.</p>
+                    </div>
+                </div>
+
+                <div class="builder-step">
+                    <div class="builder-step-header">Step 2 — Choose a Destination State</div>
+                    <div class="builder-step-body">
+                        <p>Where are you aiming? Or are you explicitly aiming nowhere &mdash; entering to observe?</p>
+                        <ul class="option-list">
+                            <li>State &alpha; (Green)</li><li>State &beta; (Amber)</li><li>State &gamma; (Brown / fermented)</li><li>State &delta; (Roasted)</li><li>State &epsilon; (Unknown)</li><li>No target — observe</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="builder-step">
+                    <div class="builder-step-header">Step 3 — Select Activation Events</div>
+                    <div class="builder-step-body">
+                        <p>Which tools from Part 4 will you use, and in what order? You do not have to use all of them.</p>
+                        <ul class="option-list">
+                            <li>Wither</li><li>Mechanical disruption (light)</li><li>Mechanical disruption (full)</li><li>Oxidation rest</li><li>Fermentation (native)</li><li>Koji contact</li><li>Heat fix</li><li>Drying</li><li>Roasting</li>
+                        </ul>
+                        <p style="font-size: 0.8em; color: var(--light-gray);">Write out your intended sequence in order before starting. This becomes the processing sequence on your batch sheet.</p>
+                    </div>
+                </div>
+
+                <div class="builder-step">
+                    <div class="builder-step-header">Step 4 — Record Parameters</div>
+                    <div class="builder-step-body">
+                        <p>For each step in your sequence: temperature, duration, humidity, weight before and after, any observations during the step. Be precise. "Overnight" is not a parameter. "14 hours at 23&deg;C" is.</p>
+                    </div>
+                </div>
+
+                <div class="builder-step">
+                    <div class="builder-step-header">Step 5 — Brew and Evaluate</div>
+                    <div class="builder-step-body">
+                        <p>Brew using a consistent method (infusion at 90&deg;C, 5 min, 1:80 ratio, as a starting standard). Evaluate: colour of liquor, aroma dry and wet, taste, body, finish, duration of finish. Use the sensory vocabulary from Part 7. Compare to the closest established Emergent State and note how it differs.</p>
+                    </div>
+                </div>
+
+                <div class="builder-step">
+                    <div class="builder-step-header">Step 6 — Map the Outcome</div>
+                    <div class="builder-step-body">
+                        <p>Assign the batch to an Emergent State or describe it in your own terms if it does not fit. Note: what was unexpected? What would you change? Is this worth repeating? If yes, could you repeat it from the record you just made?</p>
+                        <p style="font-size: 0.8em; color: var(--light-gray);">That last question is the test of a good route map. If you cannot repeat it from your record, the record is incomplete.</p>
+                    </div>
+                </div>
+
+                <div class="box box-evidence">
+                    <span class="box-label">Paper I Connection</span>
+                    <p>The Route Builder is the practical implementation of Paper I's framework for observation (Section 39). Every completed Route Builder batch is a potential new Citane identity waiting to be found &mdash; and a route map waiting to guide the next practitioner who wants to go back there, or to compare an isolated intervention against a combinatory one (see Paper I, Section 39, "Observation as the Central Activity" and "The Engere Comparison"). [Paper I, Sections 38, 39]</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- PART 6 — PLACEHOLDER -->
+        <!-- ============================================ -->
+        <!-- TO BE CONTINUED: Part 6 Fermentation (s17-s21), Part 7 Brewing/Eval (s22-s23),
+             Part 8 Records (s24-s26), Part 9 Troubleshooting (s27),
+             Part 10 Reference (s28-s30) -->
 
     </div>
 
-    <footer>
+<footer>
         <div class="footer-back"><a href="index.html">&larr; Back to BUNA Library</a></div>
         <p><strong>Citane Processing Manual</strong> &middot; From Leaf to Cup</p>
         <p>KoffyKraft / Thumpassery Estate &middot; Karavaloor &middot; Kollam &middot; Kerala &middot; India</p>
