@@ -229,6 +229,104 @@
             background: white;
             margin-top: 60px;
         }
+
+        /* ====================================================
+           SOURCE LABELS — Documented Research / Traditional /
+           Experimental Citane / Exploratory Concept
+           ==================================================== */
+        .src-label {
+            display: inline-block;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 3px 10px;
+            border-radius: 3px;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .src-research    { background: #2f6f4f; }
+        .src-tradition   { background: #b07a3a; }
+        .src-citane      { background: var(--accent); }
+        .src-exploratory { background: #6c5b9e; }
+
+        /* ====================================================
+           FRAMING / ORIENTATION BOXES
+           ==================================================== */
+        .frame-box {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 22px 26px;
+            margin: 22px 0;
+        }
+        .frame-box .frame-label {
+            display: inline-block;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: white;
+            background: var(--accent);
+            padding: 3px 10px;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+        .frame-box.frame-open .frame-label { background: #6c5b9e; }
+        .frame-box.frame-caution {
+            border: 2px solid #b07a3a;
+        }
+        .frame-box.frame-caution .frame-label { background: #b07a3a; }
+        .frame-box p { margin-bottom: 10px; }
+        .frame-box p:last-child { margin-bottom: 0; }
+
+        /* Orientation / library map box */
+        .library-map {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .library-map-item {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 16px 18px;
+        }
+        .library-map-item .lm-num {
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .library-map-item .lm-title { font-weight: 700; margin-bottom: 6px; }
+        .library-map-item p { font-size: 0.9em; color: var(--gray); margin: 0; }
+        @media (max-width: 700px) { .library-map { grid-template-columns: 1fr; } }
+
+        /* Direction card (replaces target-card framing) */
+        .direction-card {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .direction-card h4 {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--accent);
+        }
+        .direction-card .direction-sub {
+            font-size: 0.85em;
+            color: var(--light-gray);
+            font-style: italic;
+            margin-bottom: 14px;
+        }
+
         
         @media (max-width: 768px) {
             header h1 {
@@ -254,125 +352,173 @@
     
     <header>
         <div style="margin-bottom: 16px;"><a href="index.html" style="color: var(--gray); text-decoration: none; font-size: 0.9em; border-bottom: 1px solid var(--subtle);">&larr; Back to BUNA Library</a></div>
-        <h1>Citane: Processing & Protocols</h1>
-        <div class="subtitle">Complete framework for coffee leaf processing pathways, flavor targeting, and detailed preparation methods</div>
+        <h1>Citane: Experimental Pathways</h1>
+        <div class="subtitle">A workbook of processing pathways, sensory directions, and aging protocols — structured for experimentation, comparison, and observation rather than guaranteed outcomes</div>
     </header>
     
     <div class="container">
+
+        <!-- ORIENTATION -->
+        <div class="frame-box">
+            <span class="frame-label">Orientation — Where This Fits</span>
+            <p>This is the third document in the Citane / BUNA library. Each plays a different role:</p>
+            <div class="library-map">
+                <div class="library-map-item">
+                    <div class="lm-num">Paper I</div>
+                    <div class="lm-title">The Reactive Landscape</div>
+                    <p>The framework. Explains the leaf's chemistry &mdash; reservoirs, activation events, energy systems, process domains, and emergent states &mdash; and why processing choices matter.</p>
+                </div>
+                <div class="library-map-item">
+                    <div class="lm-num">Paper II</div>
+                    <div class="lm-title">From Leaf to Cup</div>
+                    <p>The manual. Seven core pathways from harvest to cup, with toolbox, batch sheet, troubleshooting, and the framework's observation-first philosophy.</p>
+                </div>
+                <div class="library-map-item">
+                    <div class="lm-num">Paper III (this document)</div>
+                    <div class="lm-title">Experimental Pathways</div>
+                    <p>The workbook. A broader catalogue of pathways, sensory directions, and aging protocols &mdash; written as structured experiments to run, compare, and record, not as specifications to follow.</p>
+                </div>
+            </div>
+            <p style="font-size: 0.85em; color: var(--light-gray);">If you haven't read Paper I and Paper II, the pathways below will still make sense &mdash; but the reasoning behind why they're framed as open questions rather than guarantees comes from those two documents.</p>
+        </div>
+
+        <!-- EXPERIMENTAL WORKBOOK FRAMING -->
+        <div class="frame-box frame-open">
+            <span class="frame-label">How to Read This Document</span>
+            <p>The pathways, sensory directions, and protocols in this document are <strong>structured experiments</strong>, not guaranteed recipes. Each one is a starting point &mdash; a leaf choice, a sequence of steps, an illustrative timeline &mdash; designed to produce something worth tasting and comparing, not a specification with a fixed endpoint.</p>
+            <p>Where a pathway names a flavour direction (honey-like, floral, citrus, and so on), this describes <em>what to listen for in the cup</em>, not a promised result. Where a timeline or set of parameters is given, treat it as a first attempt to calibrate &mdash; your leaf, your equipment, and your conditions at Thumpassery will shape the outcome, and the first several batches of any pathway should be treated as that calibration.</p>
+            <p>Many of the most interesting Citane expressions may not come from any single pathway followed in isolation, but from <strong>combinations</strong> &mdash; an oxidative pathway followed by aging, a fermentation finished with light roasting, a sensory direction pursued through two different routes and compared. This document is best read as a <strong>landscape of possibilities</strong> to explore and record (see Paper II, Part 8, for the batch sheet), rather than a catalogue of fixed destinations to reproduce exactly.</p>
+        </div>
         
         <!-- OVERVIEW -->
         <section>
             <h2>Overview: What is Citane Processing?</h2>
-            <p>Citane processing is the systematic application of heat, fermentation, oxidation, and aging techniques to fresh coffee leaves—transforming them from perishable botanicals into shelf-stable, flavorful, functional beverages. Each processing pathway produces distinct sensory and chemical outcomes.</p>
-            <p>Citane is not a single method. It is a framework encompassing multiple approaches, each offering different flavor profiles, functional properties, and consumer positioning. The goal of this section is to map the complete landscape: what flavors are possible, how to achieve them, and what protocols ensure safety and reproducibility.</p>
-            <p>Unlike coffee roasting—which is well-documented globally—coffee leaf processing is only recently being systematized through scientific study. What follows combines peer-reviewed research protocols with documented traditional methods used in coffee-growing communities.</p>
+            <p>Citane processing applies heat, fermentation, oxidation, and aging to fresh coffee leaves &mdash; transforming them from a perishable botanical into a shelf-stable beverage base. Different processing choices lead to different sensory territories.</p>
+            <p>Citane is not a single method. It is a landscape of approaches, several of which are explored here as named pathways. The goal of this document is to map that landscape broadly &mdash; more broadly than Paper II's seven core pathways &mdash; as a set of starting points for experimentation, not as a menu of confirmed products.</p>
+            <p>Unlike coffee roasting &mdash; which is well-documented globally &mdash; coffee leaf processing is only recently being studied systematically. What follows draws on three kinds of source, distinguished throughout this document: <span class="src-label src-research">Documented Research Protocol</span> findings adapted from peer-reviewed coffee leaf or analogous-plant research; <span class="src-label src-tradition">Traditional Practice</span> methods documented in coffee-growing communities, referenced as inspiration; and <span class="src-label src-citane">Experimental Citane Protocol</span> / <span class="src-label src-exploratory">Exploratory Concept</span> &mdash; pathways and ideas developed for this project that have not yet been validated through batches at Thumpassery.</p>
         </section>
         
         <!-- PROCESSING PATHWAYS OVERVIEW -->
         <section>
-            <h2>Core Processing Pathways</h2>
-            <p>Coffee leaf can be processed along multiple distinct pathways, each emphasizing different characteristics:</p>
-            
-            <h3>Fresh & Light Pathways</h3>
-            <p><strong>Cold Fresh Citane:</strong> Enzyme-preserved, minimal oxidation. Bright, clean, grassy. Used fresh or briefly dried.</p>
-            <p><strong>White Citane:</strong> Slow shade-wilting with controlled finishing. Honey-hay subtlety, premium positioning, maximum calmness compounds.</p>
+            <h2>Core Processing Pathways — A Broader Catalogue</h2>
+            <p><span class="src-label src-citane">Experimental Citane Protocol</span></p>
+            <div class="frame-box" style="margin-top:0;">
+                <p>The pathways below borrow names and structure from tea processing (oolong, black, white) and from pu-erh aging &mdash; vocabulary that describes the <em>kind</em> of transformation each pathway is modelled on, not a confirmed outcome for coffee leaf. Per Paper I, Section 24, coffee leaf's own chemistry &mdash; particularly its xanthone (mangiferin) pool &mdash; means the resulting cup may diverge from its tea analogue even under similar processing. Treat each description below as "this is the kind of thing this pathway tends toward," not "this is what this pathway produces."</p>
+                <p style="margin-bottom:0;">This catalogue is broader than Paper II's seven core pathways. <strong>Oolong, Roasted, Black-Style, and Koji-Assisted</strong> correspond directly to Paper II Pathways 3, 5, 4, and 6. The remaining entries below &mdash; White, Lactic Fermented, Yeast-Fermented, Aged (Sheng-Style), Smoked, and Fire-Kissed &mdash; represent additional, more exploratory territory not yet given full pathway treatment in Paper II.</p>
+            </div>
+
+            <h3>Fresh &amp; Light Pathways</h3>
+            <p><strong>Cold Fresh Citane:</strong> Enzyme-preserved, minimal oxidation. A starting point for bright, clean, grassy character &mdash; used fresh or briefly dried. Closely related to Paper II Pathway 1 (Green Citane, State Alpha).</p>
+            <p><strong>White Citane:</strong> Slow shade-wilting with controlled finishing. A direction toward honey-hay subtlety. <em>Exploratory &mdash; not yet covered in Paper II.</em></p>
             
             <h3>Oxidative Pathways</h3>
-            <p><strong>Oolong Citane:</strong> Wilt + bruise + partial oxidation. Layered complexity, floral-to-toasty progression. Most versatile pathway.</p>
-            <p><strong>Roasted Citane:</strong> Post-dry roasting for deeper flavor. Comfort, warmth, niacin enhancement, cereal body.</p>
-            <p><strong>Black-Style Citane:</strong> Heavy bruising, deep oxidation. Malty, raisin-like richness, full body.</p>
+            <p><strong>Oolong Citane:</strong> Wilt + bruise + partial oxidation. A direction toward layered, floral-to-toasty complexity &mdash; the most versatile pathway in this catalogue. Corresponds to Paper II Pathway 3.</p>
+            <p><strong>Roasted Citane:</strong> Post-dry roasting for deeper flavour development &mdash; a direction toward comfort, warmth, and cereal body. Corresponds to Paper II Pathway 5.</p>
+            <p><strong>Black-Style Citane:</strong> Heavy bruising, deep oxidation &mdash; a direction toward malty, dried-fruit richness and full body. Corresponds to Paper II Pathway 4.</p>
             
             <h3>Fermented Pathways</h3>
-            <p><strong>Lactic Fermented Citane:</strong> Tangy-sweet, gut-friendly functional appeal. Bridges fresh and aged profiles.</p>
-            <p><strong>Koji-Assisted Citane:</strong> Umami depth, savory novel profile. Specialized technique.</p>
-            <p><strong>Yeast-Fermented Citane:</strong> Fruity esters, craft-cider complexity. Experimental.</p>
+            <p><strong>Lactic Fermented Citane:</strong> A direction toward tangy-sweet character, bridging fresh and aged profiles. <em>Exploratory &mdash; related to Paper II Part 6 (LAB as a tool) but not yet a named pathway there.</em></p>
+            <p><strong>Koji-Assisted Citane:</strong> A direction toward umami depth and a savoury, novel profile. Corresponds to Paper II Pathway 6.</p>
+            <p><strong>Yeast-Fermented Citane:</strong> A direction toward fruity esters and cider-like complexity. <em>Exploratory &mdash; related to Paper II Part 6 (yeast as a tool) but not yet a named pathway there.</em></p>
             
             <h3>Advanced Pathways</h3>
-            <p><strong>Aged Citane (Puerh-Style):</strong> Compressed, aged over years. Deep earthy notes, profound complexity.</p>
-            <p><strong>Smoked Citane:</strong> Light or heavy smoke exposure. Pine-resin or char-caramel notes.</p>
-            <p><strong>Fire-Kissed Citane:</strong> Quick charcoal exposure. Mild char, caramel, roasted depth.</p>
+            <p><strong>Aged Citane (Sheng-Style):</strong> Compressed and aged over months to years &mdash; a direction toward deep, earthy complexity, modelled on Sheng pu-erh. See the dedicated section below. <em>Exploratory.</em></p>
+            <p><strong>Smoked Citane:</strong> Light or heavy smoke exposure &mdash; a direction toward resinous or char-caramel notes. <em>Exploratory.</em></p>
+            <p><strong>Fire-Kissed Citane:</strong> Quick charcoal exposure &mdash; a direction toward mild char and roasted depth. <em>Exploratory.</em></p>
             
-            <p>Each pathway can be customized further through leaf age selection, harvest timing, equipment choices, and finishing techniques. Together, they form a ladder of expression: from core styles to premium reserves to experimental expressions.</p>
+            <p>Each pathway can be adapted further through leaf age and position (Paper II, Part 2), harvest timing, equipment, and finishing choices. Together, they form a ladder of expression: from core styles, to premium directions, to experimental reserves &mdash; explored in more detail in "Citane Expression: From Core to Reserve" below.</p>
         </section>
+
         
-        <!-- FLAVOR TARGET MAP -->
+        <!-- SENSORY DIRECTIONS MAP -->
         <section>
-            <h2>Citane Process Compass: Target Six Flavor Profiles</h2>
-            <p>Instead of following a single pathway, Citane production can be goal-driven: choose your desired taste outcome, then follow the specific steps that produce it. Each target flavor is driven by specific volatile compounds that can be systematically produced through controlled processing.</p>
-            
-            <div class="target-card">
-                <h4>Target 1: Honey-Like Sweetness</h4>
-                <div class="target-detail"><strong>Driver:</strong> β-ionone (OAV 132–927)</div>
-                <div class="target-detail"><strong>Leaf choice:</strong> Older or yellow leaves (higher β-ionone potential)</div>
-                <div class="target-detail"><strong>Processing:</strong> Rolling or cutting before drying to enhance enzymatic release</div>
-                <div class="target-detail"><strong>Drying method:</strong> Sun drying (≥48 hours) or wild/yeast fermentation</div>
-                <div class="target-detail"><strong>Timeline:</strong> Wither 12h @ ~20°C → Ferment 12h @ ~25°C (yeast/Lactobacillus) → Sun dry ≥48h</div>
-                <div class="target-detail"><strong>Target markers:</strong> Honey-like aroma, measurable β-ionone impact >100 OAV</div>
+            <h2>The Citane Compass: Six Sensory Directions</h2>
+            <p><span class="src-label src-exploratory">Exploratory Concept</span></p>
+            <p>Rather than following a single pathway, Citane production can be question-driven: pick a sensory direction you're curious about, and use the starting points below as a first attempt at moving toward it.</p>
+
+            <div class="frame-box frame-caution">
+                <span class="frame-label">Read This Before the Six Directions Below</span>
+                <p>Each direction below names a volatile compound that has been documented, in published research on coffee leaf or related plant material, as associated with the sensory character named (honey, floral, citrus, and so on). The OAV (Odour Activity Value) figures shown indicate the <em>range over which that compound has been reported to be perceptible in some matrix</em> &mdash; they are not measurements of Chandragiri leaf, and they are not a guarantee that processing this leaf in the way described will produce that compound at that level, or that the compound will be perceptible in the cup at all.</p>
+                <p>The leaf choice, processing, and "illustrative sequence" given for each direction are <strong>first attempts at calibration</strong>, not specifications. Treat the first several batches toward any direction as exploratory: follow the sequence, brew, taste, and record (Paper II, Part 8). What to look for is described as a possible signal to taste for &mdash; not a pass/fail marker. If it isn't there, that's a finding too, and may point toward a different leaf choice, a longer step, or a different direction entirely.</p>
+                <p style="margin-bottom:0;">As with Paper I's Reservoir K (Volatile Precursors) &mdash; the most speculative reservoir in that framework &mdash; the connection between any of these compounds and Citane's actual chemistry remains unconfirmed. These six directions are a map of <em>where to start looking</em>, not a map of where you will arrive.</p>
             </div>
             
-            <div class="target-card">
-                <h4>Target 2: Floral & Perfumed</h4>
-                <div class="target-detail"><strong>Drivers:</strong> α-ionone (OAV 30–100), decanal (OAV 14–301)</div>
-                <div class="target-detail"><strong>Leaf choice:</strong> Young or mixed leaves (ionones linked to fresher tissues)</div>
-                <div class="target-detail"><strong>Processing:</strong> Rolling or freezing to rupture cells, then allow partial oxidation</div>
-                <div class="target-detail"><strong>Drying method:</strong> Sun drying or yeast fermentation to enhance floral volatiles</div>
-                <div class="target-detail"><strong>Timeline:</strong> Wither 12h → Ferment 12h → Sun dry ≥48h</div>
-                <div class="target-detail"><strong>Target markers:</strong> Perceptible floral bouquet, α-ionone and decanal among dominant volatiles</div>
+            <div class="direction-card">
+                <h4>Direction 1 — Toward Honey-Like Sweetness</h4>
+                <div class="direction-sub">Associated compound: &beta;-ionone (reported OAV range 132&ndash;927 in related matrices)</div>
+                <div class="target-detail"><strong>Leaf choice (hypothesis):</strong> older or yellow leaves &mdash; carotenoid breakdown products are sometimes associated with riper or senescing tissue</div>
+                <div class="target-detail"><strong>Processing (starting point):</strong> rolling or cutting before drying, to increase enzymatic activity</div>
+                <div class="target-detail"><strong>Illustrative sequence:</strong> wither ~12h @ ~20&deg;C &rarr; ferment ~12h @ ~25&deg;C (native or inoculated) &rarr; sun dry &ge;48h</div>
+                <div class="target-detail"><strong>What to look for:</strong> a honey-like or sweet aromatic note in the brewed cup</div>
             </div>
             
-            <div class="target-card">
-                <h4>Target 3: Citrus-Like Freshness</h4>
-                <div class="target-detail"><strong>Driver:</strong> Decanal (OAV up to 301), (E)-2-nonenal (OAV 1–11)</div>
-                <div class="target-detail"><strong>Leaf choice:</strong> Older leaves or roasted samples</div>
-                <div class="target-detail"><strong>Drying method:</strong> Oven drying (70°C for 4h) or roasting for more citrus-like aldehydes</div>
-                <div class="target-detail"><strong>Timeline:</strong> Wither 12h → Oven dry 4h at 70°C</div>
-                <div class="target-detail"><strong>Target markers:</strong> Crisp citrus aroma, decanal present at high OAV</div>
+            <div class="direction-card">
+                <h4>Direction 2 — Toward Floral &amp; Perfumed</h4>
+                <div class="direction-sub">Associated compounds: &alpha;-ionone (reported OAV 30&ndash;100), decanal (reported OAV 14&ndash;301)</div>
+                <div class="target-detail"><strong>Leaf choice (hypothesis):</strong> young or mixed leaves &mdash; ionones are sometimes linked to fresher tissue</div>
+                <div class="target-detail"><strong>Processing (starting point):</strong> rolling or freezing to rupture cells, then allow partial oxidation</div>
+                <div class="target-detail"><strong>Illustrative sequence:</strong> wither ~12h &rarr; ferment ~12h &rarr; sun dry &ge;48h</div>
+                <div class="target-detail"><strong>What to look for:</strong> a perceptible floral note in aroma or cup</div>
             </div>
             
-            <div class="target-card">
-                <h4>Target 4: Fruity / Melon-Like</h4>
-                <div class="target-detail"><strong>Drivers:</strong> Octanal (OAV 7–23), 2,4-nonadienal (OAV 2–18)</div>
-                <div class="target-detail"><strong>Processing:</strong> Rolling/cutting to stimulate enzymatic activity</div>
-                <div class="target-detail"><strong>Drying method:</strong> Sun drying for slow transformation + yeast fermentation (12h, 25°C)</div>
-                <div class="target-detail"><strong>Timeline:</strong> Wither 12h → Ferment 12h → Sun dry ≥48h</div>
-                <div class="target-detail"><strong>Target markers:</strong> Melon-like sweetness, octanal + 2,4-nonadienal perceptible in aroma profile</div>
+            <div class="direction-card">
+                <h4>Direction 3 — Toward Citrus-Like Freshness</h4>
+                <div class="direction-sub">Associated compounds: decanal (reported OAV up to 301), (E)-2-nonenal (reported OAV 1&ndash;11)</div>
+                <div class="target-detail"><strong>Leaf choice (hypothesis):</strong> older leaves, or leaves that have been roasted</div>
+                <div class="target-detail"><strong>Processing (starting point):</strong> oven drying or light roasting, which may favour these aldehydes over others</div>
+                <div class="target-detail"><strong>Illustrative sequence:</strong> wither ~12h &rarr; oven dry ~4h at ~70&deg;C</div>
+                <div class="target-detail"><strong>What to look for:</strong> a crisp, citrus-like note in aroma</div>
             </div>
             
-            <div class="target-card">
-                <h4>Target 5: Cucumber-Like Freshness</h4>
-                <div class="target-detail"><strong>Driver:</strong> (E,Z)-2,6-nonadienal (OAV 18–256)</div>
-                <div class="target-detail"><strong>Leaf choice:</strong> Young leaves or shoots</div>
-                <div class="target-detail"><strong>Processing:</strong> Steaming (pot steaming until lid @ ~100°C) to preserve green freshness and deactivate enzymes</div>
-                <div class="target-detail"><strong>Drying method:</strong> Oven drying for clean profile</div>
-                <div class="target-detail"><strong>Timeline:</strong> Wither 12h → Steam briefly → Oven dry 4h at 70°C</div>
-                <div class="target-detail"><strong>Target markers:</strong> Clean cucumber aroma, strong (E,Z)-2,6-nonadienal expression</div>
+            <div class="direction-card">
+                <h4>Direction 4 — Toward Fruity / Melon-Like</h4>
+                <div class="direction-sub">Associated compounds: octanal (reported OAV 7&ndash;23), 2,4-nonadienal (reported OAV 2&ndash;18)</div>
+                <div class="target-detail"><strong>Processing (starting point):</strong> rolling or cutting to increase enzymatic activity</div>
+                <div class="target-detail"><strong>Illustrative sequence:</strong> wither ~12h &rarr; ferment ~12h @ ~25&deg;C &rarr; sun dry &ge;48h</div>
+                <div class="target-detail"><strong>What to look for:</strong> a melon-like sweetness in aroma or cup</div>
             </div>
             
-            <div class="target-card">
-                <h4>Target 6: Grassy / Green</h4>
-                <div class="target-detail"><strong>Drivers:</strong> Hexanal (OAV 1–10), 4-heptenal (OAV 1–9)</div>
-                <div class="target-detail"><strong>Leaf choice:</strong> Young leaves with minimal processing</div>
-                <div class="target-detail"><strong>Processing:</strong> Blending or cutting to release grassy aldehydes</div>
-                <div class="target-detail"><strong>Drying method:</strong> Oven drying (fast, 70°C, 4h) locks in the green profile</div>
-                <div class="target-detail"><strong>Timeline:</strong> Wither 12h → Blend/cut → Oven dry 4h</div>
-                <div class="target-detail"><strong>Target markers:</strong> Fresh-cut grass aroma, hexanal clearly detectable</div>
+            <div class="direction-card">
+                <h4>Direction 5 — Toward Cucumber-Like Freshness</h4>
+                <div class="direction-sub">Associated compound: (E,Z)-2,6-nonadienal (reported OAV 18&ndash;256)</div>
+                <div class="target-detail"><strong>Leaf choice (hypothesis):</strong> young leaves or shoots</div>
+                <div class="target-detail"><strong>Processing (starting point):</strong> brief steaming (until lid reaches ~100&deg;C) to preserve green character and slow enzymatic activity</div>
+                <div class="target-detail"><strong>Illustrative sequence:</strong> wither ~12h &rarr; steam briefly &rarr; oven dry ~4h at ~70&deg;C</div>
+                <div class="target-detail"><strong>What to look for:</strong> a clean, cucumber-like freshness in aroma</div>
+            </div>
+            
+            <div class="direction-card">
+                <h4>Direction 6 — Toward Grassy / Green</h4>
+                <div class="direction-sub">Associated compounds: hexanal (reported OAV 1&ndash;10), 4-heptenal (reported OAV 1&ndash;9)</div>
+                <div class="target-detail"><strong>Leaf choice (hypothesis):</strong> young leaves, minimally processed</div>
+                <div class="target-detail"><strong>Processing (starting point):</strong> blending or cutting to release these aldehydes, then fast drying to preserve them</div>
+                <div class="target-detail"><strong>Illustrative sequence:</strong> wither ~12h &rarr; blend/cut &rarr; oven dry ~4h at ~70&deg;C</div>
+                <div class="target-detail"><strong>What to look for:</strong> a fresh-cut-grass note &mdash; closely related to Paper II Pathway 1 (Green Citane)</div>
             </div>
             
             <div class="callout">
-                <strong>Standard brewing for all targets:</strong> 2g dried leaf in 200ml boiling water, infuse 5 minutes, remove leaves, cool briefly before serving.
+                <strong>Starting brewing parameters for comparison tasting:</strong> 2g dried leaf in 200ml water just off the boil, infuse 5 minutes, remove leaves, cool briefly before serving. When comparing batches toward different directions, keep brewing parameters identical across the batches being compared &mdash; so any difference in the cup reflects the processing, not the brew.
             </div>
         </section>
         
         <!-- DETAILED PROTOCOLS -->
         <section>
-            <h2>Complete Processing Protocols</h2>
-            <p>The following five protocols are adapted from peer-reviewed research and documented traditional methods. Each produces distinct flavor and functional outcomes.</p>
+            <h2>Five Comparative Protocols</h2>
+            <p><span class="src-label src-citane">Experimental Citane Protocol</span></p>
+            <p>These five protocols are starting points adapted from general food-fermentation and tea-processing principles, structured as a comparison set: Protocol 1 is a baseline, and Protocols 2&ndash;5 each change one or two variables relative to it. Run them side by side where possible &mdash; the comparison is often more informative than any single protocol on its own.</p>
+            <div class="frame-box" style="margin-top:0;">
+                <p style="margin-bottom:0;">"Mature coffee leaves (3&ndash;6 months old)" below is a starting description and doesn't map precisely onto Paper II's leaf-position system (L1&ndash;L6, Part 2). As a rough starting point, "3&ndash;6 months old, mature" is closer to Paper II's L2&ndash;L4 (mid-branch) than to terminal flush or senesced leaf &mdash; but this hasn't been cross-calibrated. Record the leaf position you actually use alongside the age, per the batch sheet (Paper II, Part 8).</p>
+            </div>
+            <div class="frame-box frame-caution">
+                <p style="margin-bottom:0;"><strong>Before running any fermentation-based protocol (2&ndash;5):</strong> Paper II, Section 21 (Fermentation Failures) describes specific signs that mean stop and discard &mdash; ammonia smell, unexpected mould colour, sliminess, or an off/chemical smell. None of these signs are repeated in the steps below; check Section 21 before your first attempt at any of these protocols, and again if anything about a batch seems off.</p>
+            </div>
             
             <!-- PROTOCOL 1 -->
             <div class="protocol-box">
-                <h4>Protocol 1: Non-Fermented Control (Green/Vegetal Profile)</h4>
-                <p><strong>Purpose:</strong> Produce baseline green leaf character with minimal oxidation. Reference style for comparison.</p>
-                <p><strong>Expected flavor:</strong> Green/vegetal notes, mild bitterness, grassy aroma.</p>
+                <span class="src-label src-citane">Experimental Citane Protocol</span>
+                <h4>Protocol 1: Non-Fermented Control (Green/Vegetal Direction)</h4>
+                <p><strong>Purpose:</strong> Establish a baseline green leaf character with minimal oxidation &mdash; the reference point every other protocol here is compared against.</p>
+                <p><strong>Associated direction:</strong> green/vegetal notes, mild bitterness, grassy aroma &mdash; related to Direction 6 above and Paper II Pathway 1 (Green Citane).</p>
                 <ul class="steps-list">
                     <li>Harvest mature coffee leaves (3–6 months old)</li>
                     <li>Wash gently in clean water and surface-dry on cloth</li>
@@ -381,92 +527,108 @@
                     <li>Cool completely and transfer to airtight container away from light</li>
                 </ul>
                 <p><strong>Brewing:</strong> 2g dried leaf in 200ml water @ 95°C; steep 7–8 minutes; strain.</p>
+                <p><strong>Use case:</strong> Make this batch first, before any of Protocols 2&ndash;5. Everything else in this section is compared against it.</p>
             </div>
             
             <!-- PROTOCOL 2 -->
             <div class="protocol-box">
-                <h4>Protocol 2: Fermented (Fruity/Sweet/Floral Profile)</h4>
-                <p><strong>Purpose:</strong> Develop fruity, honey-like, and floral volatiles through controlled fermentation.</p>
-                <p><strong>Expected flavor:</strong> Honey-like, fruity, floral; softer green notes compared to non-fermented.</p>
+                <span class="src-label src-citane">Experimental Citane Protocol</span>
+                <h4>Protocol 2: Fermented (Fruity/Sweet/Floral Direction)</h4>
+                <p><strong>Purpose:</strong> Explore whether controlled fermentation moves the cup toward fruity, honey-like, or floral character relative to Protocol 1.</p>
+                <p><strong>Associated direction:</strong> honey-like, fruity, floral; softer green notes than the non-fermented control &mdash; related to Directions 1, 2, and 4 above.</p>
                 <ul class="steps-list">
-                    <li>Harvest mature coffee leaves (3–6 months old)</li>
+                    <li>Harvest mature coffee leaves (3–6 months old) &mdash; same leaf source as Protocol 1 if comparing</li>
                     <li>Wash gently in clean water and surface-dry</li>
                     <li>Bruise leaves by rolling or crushing to break cell walls (critical step)</li>
                     <li>Ferment in closed container with damp cloth at 25–30°C for 12–24 hours</li>
-                    <li>Leaves will darken and develop fruity aroma (sign of successful fermentation)</li>
+                    <li>Watch for darkening and a fruity aroma developing &mdash; if instead you notice ammonia, unexpected mould colour, sliminess, or an off/chemical smell, stop (see Paper II, Section 21)</li>
                     <li>Oven-dry at 60–70°C until crisp and stable</li>
                     <li>Cool and store in airtight container away from light</li>
                 </ul>
                 <p><strong>Brewing:</strong> 2g dried fermented leaf in 200ml water @ 95°C; steep 6–7 minutes; strain.</p>
+                <p><strong>Use case:</strong> Compare directly against Protocol 1, same leaf source and brewing where possible. The difference between the two cups is the effect of this fermentation step &mdash; record it.</p>
             </div>
             
             <!-- PROTOCOL 3 -->
             <div class="protocol-box">
-                <h4>Protocol 3: Mild Acidity (Bridging Style)</h4>
-                <p><strong>Purpose:</strong> Bridge gap between green/vegetal and fruity/fermented styles. Creates balanced cup with gentle acidity.</p>
-                <p><strong>Expected flavor:</strong> Honey-like, fruity, with mild lactic or citrusy acidity (refreshing, not sharp).</p>
+                <span class="src-label src-citane">Experimental Citane Protocol</span>
+                <h4>Protocol 3: Mild Acidity (Bridging Direction)</h4>
+                <p><strong>Purpose:</strong> Explore a middle ground between the green/vegetal and fruity/fermented directions &mdash; a cup with gentle acidity rather than either extreme.</p>
+                <p><strong>Associated direction:</strong> honey-like, fruity, with mild lactic or citrus-like acidity &mdash; intended to be refreshing rather than sharp.</p>
                 <ul class="steps-list">
                     <li>Harvest mature green coffee leaves</li>
                     <li>Wash gently and surface-dry</li>
                     <li><strong>Pretreatment (choose one):</strong> Either wither in shade 6–12 hours until pliable, OR freeze overnight (−18°C) and thaw</li>
                     <li>Bruise leaves firmly by rolling or crushing to break down cell walls</li>
                     <li>Ferment in closed container at 25–30°C for 18–24 hours</li>
-                    <li><em>Optional:</em> Add 1 tsp natural whey or sourdough water as starter to encourage lactic acid bacteria</li>
-                    <li>Leaves should darken and develop fruity/floral aroma with mild tang</li>
+                    <li><em>Optional:</em> Add 1 tsp natural whey or sourdough water as starter, to encourage lactic acid bacteria over other organisms</li>
+                    <li>Watch for darkening and a fruity/floral aroma with mild tang &mdash; if instead you notice the failure signs in Paper II, Section 21, stop</li>
                     <li>Oven-dry at 60–70°C until crisp and stable</li>
                     <li>Store in airtight container away from light and moisture</li>
                 </ul>
                 <p><strong>Brewing:</strong> 2–3g dried leaf in 200ml hot water (95°C); steep 6–8 minutes; strain.</p>
-                <p><strong>Use case:</strong> Run side-by-side tastings against non-fermented control and full-fermented fruity style to determine optimal Citane positioning.</p>
+                <p><strong>Use case:</strong> Run side-by-side against Protocol 1 (non-fermented) and Protocol 2 (full fermentation) to see where this lands between them &mdash; and which of the three you and your tasters prefer.</p>
             </div>
             
             <!-- PROTOCOL 4 -->
             <div class="protocol-box">
+                <span class="src-label src-citane">Experimental Citane Protocol</span>
                 <h4>Protocol 4: Mature Leaf — Withering Route</h4>
-                <p><strong>Purpose:</strong> Soften tough mature leaves and develop rounded flavor. Withering allows gradual enzyme activity and sugar concentration.</p>
-                <p><strong>Best for:</strong> Older or fibrous leaves that require pre-treatment for extractability.</p>
-                <p><strong>Expected flavor:</strong> Softer infusion, more rounded and full-bodied, with fruity/honey notes.</p>
+                <p><strong>Purpose:</strong> Explore whether a wither step, before bruising and fermentation, produces a softer, more rounded cup from tougher mature leaves &mdash; one half of a paired comparison with Protocol 5.</p>
+                <p><strong>Best for:</strong> Older or more fibrous leaves.</p>
+                <p><strong>Associated direction:</strong> a softer infusion, more rounded and full-bodied, with fruity/honey notes.</p>
                 <ul class="steps-list">
                     <li>Harvest mature green leaves</li>
                     <li>Wash gently and surface-dry</li>
                     <li>Wither in shaded, ventilated space for 6–12 hours until pliable</li>
                     <li>Roll or crush leaves firmly to break down cell walls</li>
                     <li>Ferment in closed container at 25–30°C for 12–24 hours</li>
-                    <li>Leaves should darken and develop fruity aromas</li>
+                    <li>Watch for darkening and fruity aromas &mdash; if instead you notice the failure signs in Paper II, Section 21, stop</li>
                     <li>Oven-dry at 60–70°C until crisp and stable</li>
                     <li>Store in airtight container away from light and moisture</li>
                 </ul>
                 <p><strong>Brewing:</strong> 2–3g dried leaf in 200ml water (95°C); steep 6–8 minutes; strain.</p>
-                <p><strong>Distinction:</strong> Creates roundness and smoothness; compare with freezing route for sensory difference.</p>
+                <p><strong>Use case:</strong> This protocol and Protocol 5 use the same leaf, the same fermentation, and the same drying &mdash; the only difference is the cell-disruption method (withering + rolling here, vs. freeze-thaw + rolling in Protocol 5). Run both from a single split batch and compare directly; the difference in the cup is the effect of that one variable.</p>
             </div>
             
             <!-- PROTOCOL 5 -->
             <div class="protocol-box">
+                <span class="src-label src-exploratory">Exploratory Concept</span>
                 <h4>Protocol 5: Mature Leaf — Freezing (Cryo-Treatment) Route</h4>
-                <p><strong>Purpose:</strong> Disrupt rigid cell walls through ice-crystal formation, then ferment to unlock sweetness and aroma. Creates cleaner, brighter profile.</p>
-                <p><strong>Best for:</strong> Tough mature leaves requiring maximum extractability.</p>
-                <p><strong>Expected flavor:</strong> Cleaner fruity/floral notes with enhanced extractability. May preserve more sweetness than withering route.</p>
+                <p><strong>Purpose:</strong> Explore whether ice-crystal disruption of cell walls, as an alternative to withering, produces a cleaner or brighter cup &mdash; the paired comparison with Protocol 4.</p>
+                <p><strong>Best for:</strong> Tougher mature leaves, as a direct comparison against Protocol 4.</p>
+                <p><strong>Associated direction:</strong> potentially cleaner fruity/floral notes with enhanced extractability, possibly preserving more sweetness than the withering route &mdash; untested.</p>
+                <div class="frame-box" style="margin: 14px 0;">
+                    <p style="margin-bottom:0; font-size: 0.9em;"><strong>Note on this method:</strong> freeze-thaw disruption is not discussed in Paper I's Activation Events (Section 15, Mechanical Disruption), which covers rolling, wringing, bruising, and crushing. Its effects on the leaf's reservoirs haven't been mapped alongside those methods. This protocol is included as a documented alternative worth comparing &mdash; not because its chemistry is better understood than the others.</p>
+                </div>
                 <ul class="steps-list">
-                    <li>Harvest mature green leaves</li>
+                    <li>Harvest mature green leaves &mdash; same source as Protocol 4 if comparing</li>
                     <li>Wash gently and surface-dry</li>
                     <li>Freeze in freezer (−18°C) overnight to break cell structure through ice crystals</li>
                     <li>Allow to thaw at room temperature until pliable</li>
                     <li>Roll or crush leaves thoroughly after thawing</li>
                     <li>Ferment in closed container at 25–30°C for 12–24 hours</li>
-                    <li>Fruity/floral aroma should develop clearly</li>
+                    <li>Watch for a clear fruity/floral aroma developing &mdash; if instead you notice the failure signs in Paper II, Section 21, stop</li>
                     <li>Oven-dry at 60–70°C until crisp and stable</li>
                     <li>Store in airtight container away from light and moisture</li>
                 </ul>
                 <p><strong>Brewing:</strong> 2–3g dried leaf in 200ml water (95°C); steep 6–8 minutes; strain.</p>
-                <p><strong>Recommendation:</strong> Run side-by-side trials comparing withering (roundness) vs freezing (clarity) to identify your preferred sensory outcome.</p>
+                <p><strong>Use case:</strong> Compare directly against Protocol 4 (same leaf split into two, same fermentation and drying). Record which you and your tasters prefer, and whether the difference is large enough to justify the extra freeze-thaw step.</p>
             </div>
         </section>
         
         <!-- SHENG STYLE AGING -->
         <section>
-            <h2>Sheng-Style Citane: Dry Aging Protocol</h2>
-            <p>Sheng-style Citane is dry-aged coffee leaf, inspired by Pu'erh Sheng tea. Leaves are made shelf-stable first (sanitized, dried to low moisture), then allowed to age naturally under controlled storage. Changes occur through slow chemical reactions (oxidation, polymerization), not active fermentation.</p>
-            <p>Result: A mellower, rounder, deeper Citane cup that evolves over months and years. Reserve/premium product positioning.</p>
+            <h2>Aged Citane: Dry Aging Protocol (Sheng-Style)</h2>
+            <p><span class="src-label src-tradition">Traditional Practice (Reference)</span> <span class="src-label src-exploratory">Exploratory Concept (Timeline)</span></p>
+
+            <div class="frame-box">
+                <span class="frame-label">Traditional Reference — Sheng Pu'erh</span>
+                <p>This protocol is modelled on Sheng pu'erh tea: leaves are made shelf-stable (steamed, pressed into cakes, dried to low moisture), then aged for months to years under controlled storage, with slow non-enzymatic changes (oxidation, polymerization) rather than active fermentation producing a progressively different cup over time.</p>
+                <p style="margin-bottom:0;">What Citane borrows from this tradition is the <em>process</em> &mdash; press, dry fully, wrap breathably, store, monitor. What is <strong>not</strong> known is whether coffee leaf, with its different compound pool (notably the mangiferin/xanthone reservoir &mdash; see Paper I, Reservoir B), ages along a similar trajectory, a different one, or barely changes at all on the timescales pu'erh does. This is a genuinely open question &mdash; not an assumption this protocol can rely on.</p>
+            </div>
+
+            <p>Leaves are made shelf-stable first (sanitized, dried to low moisture), then stored under controlled conditions to observe how they change over time.</p>
             
             <h3>Materials Needed</h3>
             <ul class="steps-list">
@@ -478,7 +640,7 @@
                 <li>Paper or cotton pouches for wrapping</li>
                 <li>Clean cotton bags for storage</li>
                 <li>Storage environment: 20–25°C, 60–70% RH, odor-free</li>
-                <li>Labels and logbook for batch tracking</li>
+                <li>Labels and logbook for batch tracking &mdash; <strong>essential here</strong>, since this protocol's "result" is only visible months or years after the steps below are complete</li>
             </ul>
             
             <h3>Step-by-Step Protocol</h3>
@@ -487,38 +649,41 @@
                 <li><strong>2. Wilt:</strong> Allow leaves to soften in shade or combi (low heat, gentle airflow) until pliable.</li>
                 <li><strong>3. Steam (Sanitize & Soften):</strong> Briefly steam leaves in combi at ~100°C for 1–3 minutes. Purpose: sanitize surface and make leaves pliable for pressing.</li>
                 <li><strong>4. Press (Form Cakes):</strong> Place steamed leaves between cloth, sandwich with planks, and weigh down or use screw press. Keep pressed for 24–48 hours (not longer, to avoid damp mold risk).</li>
-                <li><strong>5. Dry / Dehydrate:</strong> Transfer cakes to combi at 55–60°C, low humidity, gentle fan. Dry until crisp, papery, and pass the "snap test" (leaves break cleanly).</li>
+                <li><strong>5. Dry / Dehydrate:</strong> Transfer cakes to combi at 55–60°C, low humidity, gentle fan. Dry until crisp, papery, and pass the "snap test" (leaves break cleanly) &mdash; see Paper II, Section 15.</li>
                 <li><strong>6. Trim & Wrap:</strong> Trim rough edges if needed. Wrap cakes in plain paper or cotton pouches.</li>
-                <li><strong>7. Store / Age:</strong> Place wrapped cakes inside cotton bags. Store at 20–25°C, 60–70% RH, odor-free, clean environment. Monitor monthly for aroma, dryness, and appearance.</li>
+                <li><strong>7. Store / Age:</strong> Place wrapped cakes inside cotton bags. Store at 20–25°C, 60–70% RH, odor-free, clean environment. Taste a small sample at each interval below and record what you find &mdash; this is the actual content of the protocol from this point on.</li>
             </ul>
             
-            <h3>Aging Timeline</h3>
+            <h3>What to Check, and When (Hypothesis Schedule)</h3>
+            <div class="frame-box frame-open" style="margin-top:0;">
+                <p style="margin-bottom:0;"><strong>No Thumpassery aging records yet exist for any of the intervals below.</strong> The descriptions are hypotheses &mdash; drawn loosely from the general pu'erh aging arc &mdash; about what <em>might</em> be found, framed as things to taste for and record, not as a guaranteed sequence of results. Each interval is a checkpoint: open a sample, taste it, write down what's actually there, and compare to both the previous checkpoint and to these hypotheses. Over several aged batches, replace these hypothesis descriptions with your own observed pattern.</p>
+            </div>
             <div class="timeline-aging">
                 <div class="aging-stage">
-                    <div class="aging-period">0–3 Months</div>
-                    <div class="aging-description">Flavors settle, bitterness softens. Immediate post-production freshness gives way to subtle mellowing.</div>
+                    <div class="aging-period">0–3 Months — Checkpoint 1</div>
+                    <div class="aging-description"><strong>Hypothesis:</strong> flavours may settle and bitterness may soften slightly relative to the freshly-pressed cake. <strong>To check:</strong> taste against a sample retained from day 1 (Step 7) &mdash; is there any difference at all yet?</div>
                 </div>
                 <div class="aging-stage">
-                    <div class="aging-period">6 Months</div>
-                    <div class="aging-description">First noticeable divergence from fresh Citane; smoother, deeper amber liquor. Rounding begins to become apparent in the cup.</div>
+                    <div class="aging-period">6 Months — Checkpoint 2</div>
+                    <div class="aging-description"><strong>Hypothesis:</strong> a first noticeable divergence from the fresh cup &mdash; possibly a smoother or deeper liquor. <strong>To check:</strong> taste against both the day-1 sample and the 0&ndash;3 month sample. Is a trend visible across all three?</div>
                 </div>
                 <div class="aging-stage">
-                    <div class="aging-period">12 Months</div>
-                    <div class="aging-description">Clear aged character evident. Honey-woody aroma, mellow taste. Distinct from fresh Citane; approaching premium maturity.</div>
+                    <div class="aging-period">12 Months — Checkpoint 3</div>
+                    <div class="aging-description"><strong>Hypothesis:</strong> a more clearly "aged" character may be evident &mdash; possibly honey-woody aroma, mellower taste, distinct from the fresh cup. <strong>To check:</strong> taste against the full retained series. Does the change from 6 to 12 months look like a continuation of the 0-to-6-month trend, or something different?</div>
                 </div>
                 <div class="aging-stage">
-                    <div class="aging-period">2–3 Years</div>
-                    <div class="aging-description">Rich, earthy-mineral complexity. Deeper body. Aging effects pronounced. Complex layering in the cup.</div>
+                    <div class="aging-period">2–3 Years — Checkpoint 4</div>
+                    <div class="aging-description"><strong>Hypothesis:</strong> richer, more earthy or mineral complexity and deeper body may emerge, with more pronounced aging effects than at 12 months. <strong>To check:</strong> by this point you'll have your own multi-year trend from this estate &mdash; compare against it as much as against this hypothesis.</div>
                 </div>
                 <div class="aging-stage">
-                    <div class="aging-period">5+ Years</div>
-                    <div class="aging-description">Fully matured, smooth, profound but with loss of brightness. Reserve expression with significant aging depth.</div>
+                    <div class="aging-period">5+ Years — Checkpoint 5</div>
+                    <div class="aging-description"><strong>Hypothesis:</strong> a fully matured, smooth, profound character, possibly with some loss of brightness relative to earlier checkpoints. <strong>To check:</strong> at this point, the most valuable record is simply: what changed since the 2&ndash;3 year checkpoint, and was the trajectory worth the storage time and risk?</div>
                 </div>
             </div>
             
             <h3>Safety Notes</h3>
             <ul class="steps-list">
-                <li>Always ensure leaves are fully dried before long-term storage (snap test is critical)</li>
+                <li>Always ensure leaves are fully dried before long-term storage (snap test is critical &mdash; Paper II, Section 15)</li>
                 <li>Cakes must be crisp and papery, not pliable</li>
                 <li>Use breathable wraps (paper, cotton) — avoid airtight plastic</li>
                 <li>Discard any cakes showing visible mold or musty odor</li>
@@ -530,53 +695,60 @@
         <!-- POSITIONING -->
         <section>
             <h2>Citane Expression: From Core to Reserve</h2>
-            <p>The protocols and pathways outlined above form a ladder of expression for Citane:</p>
-            <p><strong>Core Styles:</strong> Non-fermented, fermented, and mild acidity protocols. These are the foundational expressions—accessible, consistent, straightforward.</p>
-            <p><strong>Premium Expressions:</strong> Single-target flavor pathways (honey-sweet, floral, citrus-fresh, etc.). These require more technical control and ingredient specification but deliver distinct sensory experiences.</p>
-            <p><strong>Experimental Reserves:</strong> Sheng-style aged Citane, smoked variants, koji-fermented, yeast-fermented. These push the boundaries of what Citane can be. They require investment in aging infrastructure and specialized techniques.</p>
-            <p>Each pathway can be developed into a unique product story—each with its own positioning, target consumer, and price point.</p>
+            <p>The protocols and pathways above form a ladder of expression for Citane &mdash; not a ladder of certainty, but a rough guide to how much exploration each tier represents:</p>
+            <p><strong>Core Styles:</strong> The non-fermented control and its direct comparisons (Protocols 1&ndash;3). These are the most accessible starting points &mdash; closest to Paper II's core pathways, and the place to begin if your equipment or leaf is new to you.</p>
+            <p><strong>Premium Directions:</strong> The six sensory directions (the Citane Compass) and Protocols 4&ndash;5. These require more technical attention and comparison work, and the relationship between process and outcome is less established &mdash; expect more calibration batches before results stabilise.</p>
+            <p><strong>Experimental Reserves:</strong> Aged (Sheng-style), smoked, koji-fermented, and yeast-fermented directions. These represent the least-mapped territory in this document &mdash; in the aged case, by design, results may not be visible for months or years.</p>
+            <p>Each direction that proves interesting can be developed into its own product story &mdash; but "proves interesting" means tasted, compared, and recorded, not assumed from this document alone.</p>
         </section>
         
         <!-- NEXT STEPS -->
         <section>
-            <h2>Using These Protocols</h2>
-            <p>These protocols are designed for:</p>
-            <p><strong>Estate producers</strong> wanting to systematically develop Citane products from their leaves.</p>
-            <p><strong>Home practitioners</strong> experimenting with different processing approaches.</p>
-            <p><strong>Commercial operations</strong> seeking standardized, reproducible methods.</p>
-            <p>For each protocol:</p>
-            <p><strong>Start with the non-fermented control.</strong> This gives you a baseline understanding of your leaf material and equipment.</p>
-            <p><strong>Then try the fermented version.</strong> Compare them side-by-side. Notice the differences in flavor, body, and aroma.</p>
-            <p><strong>Target one specific flavor outcome.</strong> Use the Citane Process Compass to choose a target (e.g., honey-sweetness) and follow that specific pathway.</p>
-            <p><strong>Document everything.</strong> Record leaf age, harvest date, fermentation time and temperature, drying time and temperature, tasting notes. Patterns will emerge.</p>
-            <p><strong>Iterate.</strong> Each batch teaches you something. Refine your technique based on results.</p>
-            <p>Through this systematic approach, you move from following recipes to understanding the principles. That understanding allows you to adapt protocols to your specific conditions, leaf material, equipment, and desired outcomes.</p>
+            <h2>Using This Workbook</h2>
+            <p>This workbook is for estate producers, home practitioners, and anyone exploring Citane processing who wants a broader set of starting points than Paper II's seven core pathways &mdash; with the understanding that "broader" means "less validated," not "more advanced."</p>
+            <p><strong>Start with Protocol 1 (the non-fermented control).</strong> This gives you a baseline understanding of your leaf material and equipment, and a reference point for everything else in this document.</p>
+            <p><strong>Then run a paired comparison.</strong> Protocol 2 against Protocol 1, or Protocol 4 against Protocol 5 &mdash; same leaf source, one variable changed. The difference between two cups, tasted side by side, is more informative than either cup alone.</p>
+            <p><strong>Pick a sensory direction from the Compass, not a guaranteed outcome.</strong> Use the Citane Compass to choose a direction you're curious about (e.g., toward honey-like sweetness), follow the illustrative sequence as a first attempt, and taste for what's described under "what to look for" &mdash; treating its absence as useful information, not a failed batch.</p>
+            <p><strong>Document everything.</strong> Leaf age and position, harvest date, every processing step with duration and temperature, drying method, brewing parameters, and tasting notes &mdash; using the batch sheet in Paper II, Part 8. Patterns will emerge from records, not from memory.</p>
+            <p><strong>Observe combinations, not just single pathways.</strong> Many of the most interesting Citane expressions may come from combining transformations rather than following one pathway in isolation &mdash; an oxidative pathway carried into aging, a fermentation finished with light roasting, a sensory direction pursued via two different routes and compared. Per Paper II, Part 9, the interaction between two steps can be as informative as either step alone. When you try a combination, record it as its own entry &mdash; not as a variant of whichever single pathway it most resembles.</p>
+            <p><strong>Iterate.</strong> Each batch teaches you something, whether or not it matches the hypothesis you started with. Refine your next attempt based on what you actually found.</p>
+            <p>The aim is not to arrive at a fixed set of "finished" Citane products, but to build, batch by batch, an understanding of how this leaf, at this estate, responds &mdash; and a record specific enough that useful results can be repeated, and surprising ones can be followed up.</p>
         </section>
         
     </div>
     
     <footer>
         <p style="margin-bottom: 20px;"><a href="index.html" style="color: var(--accent); text-decoration: none; font-weight: 600; border-bottom: 1px solid var(--accent);">&larr; Back to BUNA Library</a></p>
-        <p><strong>Citane: Processing & Protocols</strong></p>
+        <p><strong>Citane: Experimental Pathways</strong> &middot; Paper III</p>
         <p>From <em>The Foliage of Buna</em> — A comprehensive monograph on coffee leaf history, science, and practice</p>
-        <p>Compiled by Thomas Thumpassery, KoffyKraft | May 2026</p>
+        <p>Compiled by Thomas Thumpassery, KoffyKraft | Version 2.0</p>
         
         <p style="margin-top: 25px; font-size: 0.85em; border-top: 1px solid var(--subtle); padding-top: 15px;">
-            <strong>Source Separation:</strong>
+            <strong>Source Separation</strong> &mdash; the four labels used throughout this document:
         </p>
         
         <p style="font-size: 0.85em; color: var(--gray); margin-top: 10px;">
-            <strong>Peer-Reviewed Research (Referenced):</strong><br>
-            ICC 2023 Study (Coffee Leaf Infusion Protocols) | Biomedical Studies (2023-2024) | Processing method research and volatile compound analysis
+            <span class="src-label src-research">Documented Research Protocol</span><br>
+            Brewing parameters and volatile-compound associations adapted from published coffee leaf and analogous-plant research (ICC 2023 Coffee Leaf Infusion Protocols; 2023&ndash;2024 biomedical and volatile-compound studies; see also Paper II, Section 22 for brewing-research sources).
         </p>
         
         <p style="font-size: 0.85em; color: var(--gray); margin-top: 10px;">
-            <strong>Theorized & AI-Generated Frameworks:</strong><br>
-            8 Core Processing Pathways | Citane Process Compass (6 flavor target mapping) | Sheng-Style Citane Aging Protocol | Mild Acidity Bridging Method | Complete protocol standardization
+            <span class="src-label src-tradition">Traditional Practice</span><br>
+            Referenced as inspiration, not instruction &mdash; the Sheng pu'erh aging tradition underlying the Aged Citane protocol. As elsewhere in this library, the process is borrowed; the outcome on coffee leaf is not assumed to follow.
         </p>
         
         <p style="font-size: 0.85em; color: var(--gray); margin-top: 10px;">
-            <strong>Note:</strong> Processing pathways and Sheng-style aging protocol are theorized frameworks based on published research principles and traditional methods, not independently validated through peer-reviewed research. Protocols provided for experimental use and documentation purposes.
+            <span class="src-label src-citane">Experimental Citane Protocol</span><br>
+            The broader pathway catalogue and the five comparative protocols &mdash; Citane-specific procedures, structured for comparison, not independently validated through peer-reviewed research or Thumpassery batch records yet.
+        </p>
+
+        <p style="font-size: 0.85em; color: var(--gray); margin-top: 10px;">
+            <span class="src-label src-exploratory">Exploratory Concept</span><br>
+            The Citane Compass's six sensory directions, the Aged Citane hypothesis schedule, smoked and fire-kissed pathways, and the freeze-thaw disruption method. These are the least-grounded ideas in this document &mdash; included as starting points for exploration, with their open questions stated explicitly throughout.
+        </p>
+        
+        <p style="font-size: 0.85em; color: var(--gray); margin-top: 10px;">
+            <strong>Note:</strong> This document is a workbook of structured experiments, not a set of validated specifications. Where a pathway, direction, or timeline makes a specific prediction, that prediction is a starting hypothesis for comparison and recording (Paper II, Part 8) &mdash; not a guaranteed outcome. See Paper I for the underlying framework and Paper II for the core manual and observation philosophy this document extends.
         </p>
     </footer>
     
