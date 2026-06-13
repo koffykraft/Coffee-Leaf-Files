@@ -988,6 +988,100 @@
         }
         .box-estate .box-label { background: #5a7a8c; color: white; }
 
+        /* ====================================================
+           BATCH SHEET FORM (Part 8)
+           ==================================================== */
+        .batch-form {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 24px;
+            margin: 16px 0;
+        }
+        .bsf-title {
+            font-size: 0.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--dark);
+        }
+        .bsf-section-title {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+            margin: 18px 0 6px;
+        }
+        .bsf-row {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 12px;
+            padding: 7px 0;
+            border-bottom: 1px dotted var(--subtle);
+            font-size: 0.92em;
+        }
+        .bsf-row .bsf-label { font-weight: 600; color: var(--dark); }
+        .bsf-row .bsf-field {
+            border-bottom: 1px solid var(--subtle);
+            min-height: 1.2em;
+        }
+        @media (max-width: 600px) {
+            .bsf-row { grid-template-columns: 1fr; gap: 2px; }
+        }
+
+        /* ====================================================
+           TROUBLESHOOTING ITEMS (Part 9)
+           ==================================================== */
+        .trouble-item {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin: 14px 0;
+        }
+        .trouble-item > div { padding: 4px 0; font-size: 0.92em; }
+        .trouble-symptom {
+            font-weight: 700;
+            color: var(--dark);
+            border-bottom: 1px solid var(--subtle);
+            padding-bottom: 8px;
+            margin-bottom: 6px !important;
+        }
+        .trouble-symptom::before {
+            content: "Symptom — ";
+            color: var(--caution);
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .trouble-cause::before {
+            content: "Likely Cause";
+            color: var(--accent);
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .trouble-fix::before {
+            content: "What to Try";
+            color: var(--recipe);
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 2px;
+        }
+
     </style>
 <body>
 
@@ -2101,10 +2195,193 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- PART 8 — PLACEHOLDER -->
+        <!-- PART 8 -->
         <!-- ============================================ -->
-        <!-- TO BE CONTINUED: Part 8 Records (s24-s26), Part 9 Troubleshooting (s27),
-             Part 10 Reference (s28-s30) -->
+        <div class="part-divider" id="part8">
+            <div class="part-label">Part 8</div>
+            <h2 class="part-title">Recording and Route Maps</h2>
+            <p class="part-intro">If Citane is genuinely exploratory, then record-keeping is not an appendix &mdash; it is part of the process itself. This section is as central to the manual as any processing pathway.</p>
+        </div>
+
+        <section id="s24">
+            <div class="section-num">Section 24</div>
+            <h2>Why Records Are <em>Part of the Process</em></h2>
+            <p>A batch without a record is an experience. A batch with a record is data. The difference matters enormously over time: ten batches without records are ten isolated experiences, each fading from memory. Ten batches with records are the beginning of a body of knowledge specific to your leaf, your estate, your equipment, and your hands.</p>
+            <p>The batch sheet below takes under three minutes to complete for a simple pathway, and perhaps five for an experimental one. This is a small cost for what it returns: the ability to repeat success, diagnose failure, and notice patterns that would otherwise be invisible.</p>
+
+            <div class="box box-note">
+                <span class="box-label">Observation as Process</span>
+                <p>Processing decisions rarely operate in isolation. Withering affects drying. Drying affects oxidation. Oxidation affects extraction. Fermentation affects multiple systems simultaneously. A batch sheet that records only the intended outcome misses most of what is actually happening.</p>
+                <p>When recording a batch, it is worth observing &mdash; and writing down &mdash; more than just "did it work":</p>
+                <p><strong>Single interventions:</strong> what did this one step do, on its own, this time? <strong>Combined interventions:</strong> did this step behave differently because of what came before it? <strong>Sequence effects:</strong> would the same step in a different order have done something different? <strong>Unexpected outcomes:</strong> anything that didn't fit the plan &mdash; especially if it doesn't seem to matter at the time. It often does, later.</p>
+                <p>The framework in Paper I exists to improve observation, not to replace it. A detailed, honest record of something that didn't go as planned is worth more than a tidy record of something that confirmed what was already expected. (See also Paper I, Section 39, "Observation as the Central Activity.")</p>
+            </div>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s25">
+            <div class="section-num">Section 25</div>
+            <h2>The Citane <em>Batch Sheet</em></h2>
+            <p>Photocopy this template, or recreate it in a notebook. One sheet per batch.</p>
+
+            <div class="batch-form">
+                <div class="bsf-title">Citane Batch Sheet</div>
+                <div class="bsf-row"><div class="bsf-label">Batch ID</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Date</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Weather / Season</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Pathway</div><div class="bsf-field"></div></div>
+
+                <div class="bsf-section-title">Leaf</div>
+                <div class="bsf-row"><div class="bsf-label">Age / position</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Quantity (fresh wt)</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Condition notes</div><div class="bsf-field"></div></div>
+
+                <div class="bsf-section-title">Processing Sequence</div>
+                <div class="bsf-row"><div class="bsf-label">Step 1</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Step 2</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Step 3</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Step 4</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Step 5</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Final dry weight</div><div class="bsf-field"></div></div>
+
+                <div class="bsf-section-title">Brewing</div>
+                <div class="bsf-row"><div class="bsf-label">Ratio / Method</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Temperature / Time</div><div class="bsf-field"></div></div>
+
+                <div class="bsf-section-title">Evaluation</div>
+                <div class="bsf-row"><div class="bsf-label">Liquor colour</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Aroma</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Taste</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Body / Finish</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Closest State (&alpha;&ndash;&epsilon;)</div><div class="bsf-field"></div></div>
+
+                <div class="bsf-section-title">Notes &amp; Next Steps</div>
+                <div class="bsf-row"><div class="bsf-label">What worked</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">What to change</div><div class="bsf-field"></div></div>
+                <div class="bsf-row"><div class="bsf-label">Repeat? Y/N</div><div class="bsf-field"></div></div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <section id="s26">
+            <div class="section-num">Section 26</div>
+            <h2>Three Worked <em>Examples</em></h2>
+            <p>These show different levels of completeness &mdash; from a quick note to a fully detailed experimental record. All three are useful. More detail is always better, but a quick note is far better than nothing.</p>
+
+            <div class="box-estate">
+                <span class="box-label">Thumpassery Observation — Example Batches</span>
+                <p>The three records below are illustrative formats showing how a batch sheet can be filled in &mdash; they demonstrate the level of detail this manual recommends. Where they describe specific outcomes (e.g. "gold-amber, floral/honey aroma"), treat these as example entries in the style records should take, not as a catalogue of confirmed Thumpassery results. As your own batch sheets accumulate, replace or supplement these examples with your own.</p>
+            </div>
+
+            <div class="route-map">
+                <div class="route-title">Example 1 — Quick Note (Pathway 1, Green Citane)</div>
+                <div class="route-step first">Batch G-014 &middot; 12 June &middot; Dry season</div>
+                <div class="route-step">Young flush, L1&ndash;L2, 500g fresh &rarr; 110g dry</div>
+                <div class="route-step">Steamed 2.5 min, oven dried 70&deg;C/4hrs</div>
+                <div class="route-step">Brewed 1:80, 80&deg;C, 4 min</div>
+                <div class="route-outcome">Pale green-gold, fresh grassy, clean. Good &mdash; repeat as standard Green Citane.</div>
+            </div>
+
+            <div class="route-map">
+                <div class="route-title">Example 2 — Standard Detail (Pathway 3, Oolong-Style)</div>
+                <div class="route-step first">Batch O-027 &middot; 3 July &middot; Post-monsoon, humid</div>
+                <div class="route-step">Mature L2-L4, mid-branch, 1.2kg fresh &rarr; 280g dry</div>
+                <div class="route-step">Withered 16hrs, 24&deg;C, 68% RH, weight loss 22%</div>
+                <div class="route-step">Rolled lightly 4 min &mdash; edges darkened, centre green</div>
+                <div class="route-step">Oxidised 3.5hrs at 25&deg;C &mdash; checked at 1.5/2.5/3.5hr marks</div>
+                <div class="route-annotation">&#8627; 3.5hr: amber edges, light green-gold centre, honey aroma &mdash; stopped here</div>
+                <div class="route-step">Pan-fired 6 min medium heat, oven 70&deg;C/1hr to finish</div>
+                <div class="route-step">Brewed 1:80, 88&deg;C, 5 min, no agitation</div>
+                <div class="route-outcome">Gold-amber, floral/honey aroma, smooth, light astringency. Closest to State Beta (light). Worth repeating &mdash; note humidity was higher than usual, oxidation seemed to proceed slightly faster than the 4hr Pathway 3 default. Try checking at 1hr intervals in humid conditions.</div>
+            </div>
+
+            <div class="route-map">
+                <div class="route-title">Example 3 — Full Experimental Record (Pathway 6, Koji-Assisted)</div>
+                <div class="route-step first">Batch K-003 &middot; 18 August &middot; Dry season &middot; Comparative trial</div>
+                <div class="route-step">Mature L2-L4, single source tree, split into two equal lots (A and B), 600g fresh each</div>
+                <div class="route-step">Both lots withered 12hrs, 22&deg;C, 65% RH</div>
+                <div class="route-step">LOT A: Koji water (1:3 Koji rice:water, strained), misted, 30&deg;C/70%RH chamber, 60hrs</div>
+                <div class="route-annotation">&#8627; 60hr: sweet, mild fungal aroma &mdash; normal, no off-smells</div>
+                <div class="route-step">LOT B: no Koji &mdash; withered lot continued at ambient 22&deg;C for equivalent 60hrs</div>
+                <div class="route-step">Both lots dried 70&deg;C/4.5hrs &rarr; A: 135g dry, B: 142g dry</div>
+                <div class="route-step">Both lots roasted identically: 135&deg;C, 11 min, pan, continuous stir</div>
+                <div class="route-step">Brewed identically: 1:80, 90&deg;C, 5 min</div>
+                <div class="route-outcome">LOT A (Koji): noticeably deeper Maillard character &mdash; more pronounced caramel/nutty notes than B, plus a subtle floral top-note not present in B. LOT B (control): standard light roast profile, clean but less complex. Possible network journey: wither activated E partially &rarr; Koji amplified D and I substantially (60hr contact) &rarr; roast converted enriched D&times;I via Maillard more intensely than B's baseline pool &mdash; broadly consistent with Paper I's hybrid domain discussion, though this single comparison does not confirm the mechanism. Floral note in A may indicate K (terpene) release during Koji step &mdash; not present in B; this remains a hypothesis pending repetition. Suggested follow-up: repeat with longer Koji contact (72&ndash;96hrs) to test if floral note intensifies, and with shorter Koji (24hrs) to find minimum effective contact time.</div>
+            </div>
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART 9 -->
+        <!-- ============================================ -->
+        <div class="part-divider" id="part9">
+            <div class="part-label">Part 9</div>
+            <h2 class="part-title">Troubleshooting</h2>
+            <p class="part-intro">Quick-reference problems and solutions that don't fit neatly into the sensory diagnostic table &mdash; process-level issues encountered before the cup.</p>
+        </div>
+
+        <section id="s27">
+            <div class="section-num">Section 27</div>
+            <h2>Process-Level <em>Troubleshooting</em></h2>
+
+            <div class="trouble-item">
+                <div class="trouble-symptom">Leaf browned during heat-fixing (Green Citane) when it shouldn't have</div>
+                <div class="trouble-cause">Pan-firing at too high a temperature, or leaf had already begun oxidising before heat-fix (delay between harvest/handling and heat-fix was too long).</div>
+                <div class="trouble-fix">Switch to steaming for Green Citane &mdash; more forgiving. Reduce time between harvest and processing to under 2 hours.</div>
+            </div>
+
+            <div class="trouble-item">
+                <div class="trouble-symptom">Withering leaf developed mould before oxidation was complete</div>
+                <div class="trouble-cause">Humidity too high, airflow insufficient, or temperature too warm for the duration attempted.</div>
+                <div class="trouble-fix">Increase airflow &mdash; raise the rack, use a fan if available. Reduce withering duration. If humidity is consistently high in your season, consider a shorter wither (8&ndash;10 hrs) and compensate with a longer oxidation rest instead.</div>
+            </div>
+
+            <div class="trouble-item">
+                <div class="trouble-symptom">Oxidation seems to proceed at very different speeds between batches</div>
+                <div class="trouble-cause">Ambient temperature varies day to day &mdash; PPO activity is temperature-sensitive. Leaf age/position also varies between batches if not controlled.</div>
+                <div class="trouble-fix">Always check colour, not just clock time &mdash; colour is the true indicator. Record ambient temperature for every batch; over time you'll build a temperature-adjusted timing chart for your own conditions.</div>
+            </div>
+
+            <div class="trouble-item">
+                <div class="trouble-symptom">Dried leaf reabsorbed moisture in storage and developed mould</div>
+                <div class="trouble-cause">Storage container not airtight, or leaf was not fully dry (above 8% moisture) before sealing.</div>
+                <div class="trouble-fix">Verify dryness with the snap test before sealing &mdash; every batch, every time. Use airtight containers with desiccant if your storage area is humid. Check stored batches periodically in the first weeks.</div>
+            </div>
+
+            <div class="trouble-item">
+                <div class="trouble-symptom">Roast developed unevenly &mdash; some pieces dark, others pale</div>
+                <div class="trouble-cause">Leaf pieces of inconsistent size, or insufficient stirring, or pan has hot spots.</div>
+                <div class="trouble-fix">Aim for consistent leaf piece size before roasting (relevant for ground/cut material). Stir more frequently &mdash; every 30&ndash;45 seconds for uneven pans. Consider oven roasting for more even heat distribution.</div>
+            </div>
+
+            <div class="trouble-item">
+                <div class="trouble-symptom">Koji batch developed an unexpected smell partway through</div>
+                <div class="trouble-cause">Possible contamination by competing mould, or temperature drifted outside the 28&ndash;32&deg;C range allowing different organisms to dominate.</div>
+                <div class="trouble-fix">If smell is sour/ammonia/off &mdash; discard immediately, do not proceed to roasting. Check chamber temperature stability. Improve sanitation of all surfaces and containers for next attempt.</div>
+            </div>
+
+            <div class="trouble-item">
+                <div class="trouble-symptom">Same pathway, same parameters, but the cup tastes noticeably different from last time</div>
+                <div class="trouble-cause">This is normal and expected. Leaf chemistry varies with season, exact harvest timing, and even day-to-day weather. Citane is an agricultural product, not a manufactured one.</div>
+                <div class="trouble-fix">Record the variation rather than treating it as an error. Over many batches, you'll begin to see which variables (season, leaf age, ambient humidity) drive the most variation &mdash; and can plan around them.</div>
+            </div>
+
+            <div class="box box-note">
+                <span class="box-label">Beyond Single Steps — Interactions Between Tools</span>
+                <p>Most of the troubleshooting items above describe a single tool behaving unexpectedly. But many of the most useful things to notice happen at the <em>junctions</em> between tools &mdash; where the output of one step becomes the input to the next, and the combination behaves differently than either step would on its own.</p>
+                <p>A few junctions worth watching deliberately: <strong>withering &times; oxidation</strong> &mdash; a longer or more humid wither changes how fast oxidation proceeds afterward, not just how the leaf looks going in. <strong>oxidation &times; roasting</strong> &mdash; the degree of oxidation reached before heat-fixing changes what the leaf brings into the Maillard reaction during a later roast. <strong>fermentation &times; drying</strong> &mdash; how quickly and at what temperature a fermented batch is dried may shape which fermentation byproducts remain perceptible in the cup. <strong>Koji &times; thermal development</strong> &mdash; this is the pairing Pathway 6 is built around, and is itself an example of the principle.</p>
+                <p>None of these interactions are fully mapped. The troubleshooting table above will help you fix a single step that misbehaved. But the more valuable long-term records may be the ones that note: "I changed step 2, and step 4 behaved differently than it usually does" &mdash; even when step 4 itself was done exactly as before. The interaction may be as informative as either step alone.</p>
+            </div>
+
+            <a class="back-toc" href="#toc">&uarr; Contents</a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PART 10 — PLACEHOLDER -->
+        <!-- ============================================ -->
+        <!-- TO BE CONTINUED: Part 10 Reference (s28-s30) — includes Engere Question,
+             Future Discoveries, Observation framework closing statement, Attribution -->
 
     </div>
 
