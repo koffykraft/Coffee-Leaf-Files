@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Begin With A Cup — The Buna Coffee Leaf Library</title>
+    <title>Begin With a Cup — The Buna Coffee Leaf Library</title>
     <style>
         * {
             margin: 0;
@@ -293,6 +293,37 @@
            ==================================================== */
 
         /* ====================================================
+           SIMPLE PAGE — prose sections
+           ==================================================== */
+        .simple-section {
+            max-width: 640px;
+            margin: 0 auto 36px;
+        }
+        .simple-section h2 {
+            font-size: 1.3em;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .simple-section p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .taste-words {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .taste-words span {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 0.92em;
+            color: var(--accent);
+        }
+        /* ====================================================
            LOUNGE — WELCOME + DOORS
            ==================================================== */
         .lounge-welcome {
@@ -391,40 +422,60 @@
         }
 
     </style>
-
 <body>
     <header style="padding-bottom: 10px;">
         <h1 style="margin-bottom: 8px;">Begin With a Cup</h1>
-        <div class="subtitle" style="margin-bottom: 0;">The Buna Coffee Leaf Library</div>
+        <div class="subtitle" style="margin-bottom: 0;">A gentle introduction to coffee leaf</div>
     </header>
 
     <div class="container" style="padding-top: 40px;">
 
-        <div class="lounge-welcome">
-            <p class="lounge-tagline">Coffee is one part of the plant.<br>This library explores another.</p>
-            <p>Across coffee-growing regions, people have boiled, dried, smoked, fermented, and shared the leaves of the coffee plant &mdash; alongside the bean, in households, for a very long time.</p>
-            <p>Some of these traditions are documented. Some are being studied. Some are still being explored &mdash; including by us, at Thumpassery Estate.</p>
-            <p class="lounge-prompt">Choose a door.</p>
+        <div class="simple-section">
+            <h2>What is coffee leaf?</h2>
+            <p>Coffee is not only a bean. The same plant also has leaves &mdash; and in several places where coffee grows, those leaves have been dried, boiled, smoked, or brewed and shared as their own beverage, separate from the bean entirely.</p>
         </div>
 
-        <div class="door-grid">
+        <div class="simple-section">
+            <h2>Where has it been used?</h2>
+            <p>Coffee originates in the highlands of Ethiopia, where the plant still grows wild in forest understory. Leaf preparations such as Engere, Kuti, and Chemo are documented there. A similar tradition, Kawa Daun, exists in the highlands of West Sumatra, Indonesia.</p>
+            <p>These aren't the only places, and they aren't presented here as a list to memorise &mdash; just as a few starting points, each with its own page if you'd like to read further.</p>
+        </div>
 
-            <div class="door-card">
-                <div class="door-number">Door One</div>
-                <h3>Just Curious?</h3>
-                <div class="door-subtitle">The Balcony</div>
-                <div class="door-question">What is coffee leaf? What does it taste like? Why do people drink it? &mdash; a gentle look, no commitment required.</div>
-                <ul>
-                    <li><a href="begin-with-a-cup.html">Begin With a Cup</a></li>
-                    <li><a href="sensory-landscape-of-coffee-leaf.html">The Sensory Landscape of Coffee Leaf</a></li>
-                </ul>
+        <div class="simple-section">
+            <h2>What does it taste like?</h2>
+            <p>It depends on the leaf and how it's prepared &mdash; but some words that come up often:</p>
+            <div class="taste-words">
+                <span>green</span>
+                <span>herbal</span>
+                <span>sweetish</span>
+                <span>honey-like</span>
+                <span>floral</span>
+                <span>fruity</span>
+                <span>roasted</span>
+                <span>smoky</span>
+                <span>earthy</span>
             </div>
+            <p>If you'd like to know more about why &mdash; which compounds, which processing choices &mdash; <a href="sensory-landscape-of-coffee-leaf.html">The Sensory Landscape of Coffee Leaf</a> goes into this in more detail.</p>
+        </div>
 
+        <div class="simple-section">
+            <h2>How is it different from coffee and tea?</h2>
+            <p>It isn't coffee without the beans, and it isn't tea from the tea plant (<em>Camellia sinensis</em>) either. It's a different part of the coffee plant, with its own character &mdash; sometimes closer to one, sometimes closer to the other, and sometimes its own thing entirely.</p>
+        </div>
+
+        <div class="simple-section">
+            <h2>Why are we studying it?</h2>
+            <p>Because traditional use exists and is documented, scientific interest in coffee leaf is growing, and &mdash; compared to the bean, which has been processed and studied for centuries &mdash; the leaf's processing possibilities remain comparatively unexplored. That combination seemed worth taking seriously.</p>
+        </div>
+
+        <div class="simple-section">
+            <h2>Where should I go next?</h2>
+            <p>Wherever you're curious about. A few directions:</p>
+        </div>
+
+        <div class="door-grid" style="grid-template-columns: 1fr 1fr 1fr; max-width: 900px; margin: 0 auto 50px;">
             <div class="door-card">
-                <div class="door-number">Door Two</div>
-                <h3>Follow the Traditions</h3>
-                <div class="door-subtitle">The Cultural Wing</div>
-                <div class="door-question">How have different communities prepared and used coffee leaves?</div>
+                <div class="door-subtitle">Cultural Explorer</div>
                 <ul>
                     <li><a href="the-foliage-of-buna.html">The Foliage of Buna</a></li>
                     <li><a href="engere.html">Engere</a></li>
@@ -433,37 +484,24 @@
                     <li><a href="kawa-daun.html">Kawa Daun</a></li>
                 </ul>
             </div>
-
             <div class="door-card">
-                <div class="door-number">Door Three</div>
-                <h3>Explore the Workshop</h3>
-                <div class="door-subtitle">Where Observation Becomes Experiment</div>
-                <div class="door-question">How does processing change flavour &mdash; and how is that explored at Thumpassery?</div>
+                <div class="door-subtitle">Sensory Explorer</div>
                 <ul>
-                    <li><a href="citane-processing-manual.html">Paper II &mdash; From Leaf to Cup</a></li>
-                    <li><a href="citane-processing-protocols.html">Paper III &mdash; Experimental Pathways</a></li>
-                    <li><a href="citane-hack-grill-wilted-leaves.html">Citane Hack: Grill-Wilted Leaves</a></li>
-                    <li><a href="citane-hack-gas-flame-roasted-leaf.html">Citane Hack: Gas-Flame Roasted Leaf</a></li>
+                    <li><a href="sensory-landscape-of-coffee-leaf.html">The Sensory Landscape of Coffee Leaf</a></li>
                 </ul>
             </div>
-
             <div class="door-card">
-                <div class="door-number">Door Four</div>
-                <h3>Enter the Archives</h3>
-                <div class="door-subtitle">The Deepest Part of the Library</div>
-                <div class="door-question">The framework, the chemistry, and how this library decides what it's willing to claim.</div>
+                <div class="door-subtitle">Processor / Researcher</div>
                 <ul>
                     <li><a href="citane-reactive-landscape.html">Paper I &mdash; The Reactive Landscape</a></li>
-                    <li><a href="sensory-landscape-of-coffee-leaf.html">The Sensory Landscape of Coffee Leaf</a></li>
-                    <li><a href="the-foliage-of-buna.html#evidence">How We Treat Evidence</a></li>
+                    <li><a href="citane-processing-manual.html">Paper II &mdash; From Leaf to Cup</a></li>
+                    <li><a href="citane-processing-protocols.html">Paper III &mdash; Experimental Pathways</a></li>
                 </ul>
             </div>
-
         </div>
 
         <div class="lounge-footer-note">
-            <p>A visitor can spend three minutes here and leave satisfied. A researcher can spend three days here and still have more to explore. Both are welcome.</p>
-            <p style="margin-top: 20px;"><a href="index.html" style="color: var(--accent);">Enter the full library (Catalogue) &rarr;</a></p>
+            <p><a href="visitor-lounge.html" style="color: var(--accent);">&larr; Back to the lounge</a> &middot; <a href="index.html" style="color: var(--accent);">Enter the full library (Catalogue) &rarr;</a></p>
         </div>
 
     </div>
