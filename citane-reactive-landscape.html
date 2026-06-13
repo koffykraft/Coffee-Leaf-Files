@@ -634,6 +634,14 @@
             color: var(--accent);
             margin-bottom: 12px;
         }
+        .route-illustrative {
+            font-size: 0.85em;
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--subtle);
+        }
         .route-step {
             font-weight: 700;
             padding: 6px 0;
@@ -944,6 +952,13 @@
                 <p>This web of connections — with its <strong>cascades</strong> (A triggers B triggers C) and <strong>feedback loops</strong> (C changes the rate of A) — is what makes extended processing genuinely complex, and genuinely rewarding to explore. The full paper maps these connections. The route map is how you record where your particular journey went.</p>
             </div>
 
+            <div class="box box-note">
+                <span class="box-label">How the Four Vocabularies Relate</span>
+                <p>This document uses four classification systems — Reservoirs (A&ndash;K), Activation Events (A&ndash;F), Process Domains (1&ndash;6), and Emergent States (&alpha;&ndash;&epsilon;). They are not four separate models. They describe the same underlying process from four different angles:</p>
+                <p><strong>Reservoirs = what is present</strong> in the leaf &middot; <strong>Events = what activates change</strong> &middot; <strong>Domains = common combinations of events</strong> &middot; <strong>States = typical destinations or outcomes</strong>.</p>
+                <p>The relationships between them are not one-to-one — a single Domain can lead to different States depending on duration and depth, and a single Event can activate several Reservoirs at once. Holding all four in mind for any single processing step is not necessary. It is enough to ask, at each step: what is being activated, by what, and roughly where it tends to lead.</p>
+            </div>
+
             <p>The five Emergent States are the possible flavour territories your Citane can arrive at:</p>
 
             <div class="glossary-grid">
@@ -1149,8 +1164,9 @@
             </div>
 
             <div class="box box-caution">
-                <span class="box-label">On Variability</span>
+                <span class="box-label">On Variability — A Scope Note</span>
                 <p>These figures come from a high-altitude Colombian Castillo variety. Thumpassery Estate's Chandragiri Arabica, grown at approximately 130m under rubber shade, will present a different phytochemical profile. The concentrations above are indicative starting points — not fixed parameters for Citane specifically. Altitude, shade, leaf age, season, and variety all influence the compound profile significantly.</p>
+                <p>More broadly: every concentration figure in this document is a <strong>reference value</strong> drawn from available published literature, not a measurement of Thumpassery leaf. Beyond the variety/altitude/shade differences noted above, leaf-to-leaf, harvest-to-harvest, and season-to-season variation within a single estate is itself substantial and is not separately modelled here. This document treats reservoir contents as fixed reference points for the purpose of explaining <em>mechanisms</em> &mdash; how compounds tend to behave, relative to each other &mdash; not as a prediction of the exact starting composition of any given batch of leaf. Practical guidance on leaf selection and the sources of batch-to-batch variation is addressed separately in Paper II.</p>
             </div>
 
             <a class="back-toc" href="#toc">&uarr; Contents</a>
@@ -1232,7 +1248,7 @@
                         <li><strong>&rarr; Reservoir C</strong> (Catechin): CGA quinones couple with catechin oxidation products to form brown pigments — the two pools interact during oxidation, not separately</li>
                         <li><strong>&rarr; Reservoir D</strong> (Amino acids): CGA quinones couple with free amino acids under heat or oxidation &rarr; brown pigments, flavour compounds</li>
                         <li><strong>&rarr; Reservoir I</strong> (Sugar): Quinic acid released from CGA hydrolysis enters the sugar pool &rarr; available for fermentation or Maillard</li>
-                        <li><strong>&larr; Reservoir B</strong> (Mangiferin): Mangiferin buffers the oxidative environment, modifying how fast and how far CGA oxidation proceeds</li>
+                        <li><strong>&larr; Reservoir B</strong> (Mangiferin): possible antioxidant buffering effect on CGA oxidation — see Reservoir B, unconfirmed hypothesis</li>
                     </ul>
                     <h4>Theoretical Behaviour Under Processing</h4>
                     <ul class="outcome-list">
@@ -1267,8 +1283,7 @@
                     </ul>
                     <h4>Connects to Other Reservoirs</h4>
                     <ul class="outcome-list">
-                        <li><strong>&harr; Reservoir A</strong> (Chlorogenic acids): Mangiferin's antioxidant capacity buffers CGA oxidation — the two pools do not transform independently during oxidation</li>
-                        <li><strong>&harr; Reservoir C</strong> (Catechins): Same buffering relationship — mangiferin may slow the catechin oxidation cascade, producing a gentler, more extended oxidative state</li>
+                        <li><strong>&harr; Reservoir A</strong> (Chlorogenic acids) <strong>&amp; &harr; Reservoir C</strong> (Catechins): <em>Buffering hypothesis (unconfirmed)</em> — mangiferin's antioxidant capacity may compete for oxidative potential with the CGA and catechin pools, potentially slowing or moderating their oxidation. Antioxidant competition of this kind is a known phenomenon in mixed polyphenol systems generally, but this specific relationship — at these concentrations, in this leaf — has not been measured. This hypothesis recurs at several points in this document (Reservoirs A and C, Section 23, Section 24, Section 34, and the network map in Section 31); each of those references points back to this paragraph rather than restating it.</li>
                         <li><strong>&rarr; Reservoir E</strong> (Glycosides): Iriflophenone 3-C-glucoside is itself a glycoside within this reservoir — subject to the same glycosidase unlocking as other glycoside compounds</li>
                     </ul>
                     <h4>Theoretical Behaviour Under Processing</h4>
@@ -1306,7 +1321,7 @@
                     <h4>Connects to Other Reservoirs</h4>
                     <ul class="outcome-list">
                         <li><strong>&harr; Reservoir A</strong> (Chlorogenic acids): Both pools activate under the same PPO-driven oxidation event — their products interact and co-polymerise. The combined result is different from either pool acting alone</li>
-                        <li><strong>&larr; Reservoir B</strong> (Mangiferin): Mangiferin buffers the oxidation rate — reducing mangiferin concentration (if it is consumed) may accelerate catechin oxidation</li>
+                        <li><strong>&larr; Reservoir B</strong> (Mangiferin): possible buffering effect on oxidation rate — see Reservoir B, unconfirmed hypothesis</li>
                         <li><strong>&rarr; Reservoir D</strong> (Amino acids): Catechin quinones couple with amino acids to form brown pigments — this is a cross-reservoir coupling reaction</li>
                         <li><strong>&larr; Reservoir I</strong> (Sugar): Sugars released into the medium by glycoside hydrolysis can participate in Maillard coupling with catechin-derived products under heat</li>
                     </ul>
@@ -1840,7 +1855,7 @@
 
             <div class="box box-evidence">
                 <span class="box-label">How Energy Systems Interact With Each Other</span>
-                <p>Energy systems do not operate in isolation — they govern each other. <strong>Water activity</strong> is the gatekeeper: if the leaf is too dry, enzymatic catalysis and microbial metabolism cannot operate regardless of how much enzyme or how many microbes are present. <strong>Temperature</strong> determines which energy system dominates: below ~70&deg;C, enzymatic catalysis is possible; above it, thermal energy takes over and enzymes are denatured. <strong>Oxidative potential</strong> is modulated by the antioxidant content of the leaf — a high-mangiferin leaf will have a different oxidative environment than a low-mangiferin leaf, even under identical atmospheric conditions.</p>
+                <p>Energy systems do not operate in isolation — they govern each other. <strong>Water activity</strong> is the gatekeeper: if the leaf is too dry, enzymatic catalysis and microbial metabolism cannot operate regardless of how much enzyme or how many microbes are present. <strong>Temperature</strong> determines which energy system dominates: below ~70&deg;C, enzymatic catalysis is possible; above it, thermal energy takes over and enzymes are denatured. <strong>Oxidative potential</strong> is modulated by the antioxidant content of the leaf — a high-mangiferin leaf may have a different oxidative environment than a low-mangiferin leaf (see Reservoir B, buffering hypothesis), even under identical atmospheric conditions.</p>
                 <p>This means that a processing decision which changes one energy system almost always affects others. Drying the leaf (reducing water activity) does not just stop microbial activity — it also stops enzymatic hydrolysis of glycosides, preventing Reservoir E from unlocking further. A decision about moisture level is simultaneously a decision about which energy systems remain operative.</p>
             </div>
 
@@ -1862,10 +1877,11 @@
             <div class="domain-card">
                 <div class="domain-title">Primary drivers: Oxygen &middot; PPO &middot; Mechanical disruption &middot; Time</div>
                 <p>Entered when the leaf is physically disrupted and exposed to air below the PPO denaturation threshold (~70&deg;C). The classical analogue is oolong or black tea manufacture. The Oxidative Domain converts catechins and CGAs into polymeric oxidation products. Colour shifts from green toward amber and brown. Grassy notes diminish. Tea-like, honeyed, and sometimes floral notes emerge.</p>
-                <p>For coffee leaf, the xanthone pool (Reservoir B) coexists with the catechin system throughout this domain — potentially buffering oxidative reactions in ways that have no direct tea analogy.</p>
+                <p>For coffee leaf, the xanthone pool (Reservoir B) coexists with the catechin system throughout this domain — see Reservoir B's buffering hypothesis for a possible (unconfirmed) interaction with no direct tea analogy.</p>
             </div>
             <div class="route-map">
                 <div class="route-title">Oxidative Domain — Conceptual Route</div>
+                <div class="route-illustrative">Illustrative route. This pathway is a conceptual example showing how the framework may describe a sequence of transformations. It is not a record of a completed batch unless specifically stated.</div>
                 <div class="route-step first">Fresh leaf harvest</div>
                 <div class="route-step">Wither (12&ndash;48 hrs, ambient) &mdash; moisture loss, initial enzyme priming</div>
                 <div class="route-annotation">&#8627; Chlorophyll: green &rarr; yellow-green &middot; CGA pool: stable &middot; Lipoxygenase: possible C6 aldehyde formation</div>
@@ -1890,6 +1906,7 @@
             </div>
             <div class="route-map">
                 <div class="route-title">Thermal Domain — Conceptual Route</div>
+                <div class="route-illustrative">Illustrative route. This pathway is a conceptual example showing how the framework may describe a sequence of transformations. It is not a record of a completed batch unless specifically stated.</div>
                 <div class="route-step first">Fresh or partially dried leaf (moisture content: 10&ndash;15%)</div>
                 <div class="route-step">Pre-dry at 50&ndash;70&deg;C &mdash; stabilise, reduce moisture to ~5%</div>
                 <div class="route-step">Roast in small batches (130&ndash;160&deg;C, 8&ndash;20 min depending on target depth)</div>
@@ -1912,6 +1929,7 @@
             </div>
             <div class="route-map">
                 <div class="route-title">Enzymatic Domain — Conceptual Route</div>
+                <div class="route-illustrative">Illustrative route. This pathway is a conceptual example showing how the framework may describe a sequence of transformations. It is not a record of a completed batch unless specifically stated.</div>
                 <div class="route-step first">Fresh leaf, intact (no mechanical disruption)</div>
                 <div class="route-step">Long wither, no disruption (24&ndash;72 hrs, controlled humidity 60&ndash;75%, 18&ndash;24&deg;C)</div>
                 <div class="route-annotation">&#8627; Endogenous glycosidases active at low rate &middot; glycoside reservoir gradually unlocked</div>
@@ -1933,6 +1951,7 @@
             </div>
             <div class="route-map">
                 <div class="route-title">Koji Domain — Conceptual Route</div>
+                <div class="route-illustrative">Illustrative route. This pathway is a conceptual example showing how the framework may describe a sequence of transformations. It is not a record of a completed batch unless specifically stated.</div>
                 <div class="route-step first">Fresh or lightly withered leaf</div>
                 <div class="route-step">Koji water contact or Koji inoculation (28&ndash;32&deg;C, 48&ndash;96 hrs, humidity controlled)</div>
                 <div class="route-annotation">&#8627; &beta;-Glucosidase: O-glycoside bonds cleaved &rarr; aglycones released (E)</div>
@@ -1954,6 +1973,7 @@
             </div>
             <div class="route-map">
                 <div class="route-title">Microbial Domain — Conceptual Route</div>
+                <div class="route-illustrative">Illustrative route. This pathway is a conceptual example showing how the framework may describe a sequence of transformations. It is not a record of a completed batch unless specifically stated.</div>
                 <div class="route-step first">Fresh leaf, possibly moistened to raise water activity</div>
                 <div class="route-step">Native microbiome activation or selected inoculation (yeast / LAB)</div>
                 <div class="route-step">Fermentation (24&ndash;120 hrs depending on organism, temperature, oxygen regime)</div>
@@ -1976,6 +1996,7 @@
             </div>
             <div class="route-map">
                 <div class="route-title">Hybrid Domain — A Theoretical Sequence</div>
+                <div class="route-illustrative">Illustrative route. This pathway is a conceptual example showing how the framework may describe a sequence of transformations. It is not a record of a completed batch unless specifically stated.</div>
                 <div class="route-step first">Wither (Enzymatic Domain, 24 hrs, 20&deg;C, 70% RH)</div>
                 <div class="route-annotation">&#8627; Glycosides partially unlocked &middot; leaf softened &middot; terpene potential begins</div>
                 <div class="route-step">Wring lightly (Oxidative Domain entry, 2 hrs at 22&deg;C)</div>
@@ -2065,8 +2086,8 @@ CHLOROGENIC ACIDS (A) ──[PPO]──&gt; CGA QUINONES ──&gt; COLOUR &midd
 
 TRIGONELLINE (F) ──[Heat &gt; 160&deg;C]──&gt; PYRIDINES &middot; NICOTINIC ACID ──&gt; ROAST NOTES
 
-MANGIFERIN (B) ──────&gt; ANTIOXIDANT BUFFERING ──&gt; slows / buffers rate of CGA (A) and Catechin (C) oxidation
-      │                ^ [feedback: as A and C oxidise, oxidative potential drops; B buffers this]
+MANGIFERIN (B) ──────&gt; [Buffering hypothesis, unconfirmed — see Reservoir B] ──&gt; possible moderation of CGA (A) / Catechin (C) oxidation rate
+      │
       └──[Unknown]──&gt; POSSIBLE SENSORY CONTRIBUTION (not yet characterised)
 
 LIPIDS (J) ──[Lipoxygenase / Mechanical]──&gt; C6 ALDEHYDES ──&gt; GREEN &middot; GRASSY &middot; FRESH NOTES
@@ -2151,7 +2172,7 @@ CHLOROPHYLL (G) ──[Withering]──&gt; PHEOPHYTIN ──&gt; COLOUR SHIFT (
                 <div>
                     <div class="state-name">State Beta / Amber — The Oxidised Leaf</div>
                     <p>Oxidised catechin products dominate the sensory profile. This is the most "tea-like" state available to Citane. Accessed by partial to full oxidation pathways, stopped before fermentation or deep thermal conversion.</p>
-                    <p><strong>Sensory tendency:</strong> Rounded, tea-like, honeyed, possibly floral. Amber to deep amber liquor. Moderate to full body. Smooth acidity from modified CGA pool. The xanthone pool (mangiferin, Reservoir B) may contribute an antioxidant buffering that makes the cup feel stable and clean rather than harsh — a character specific to coffee leaf and absent from tea.</p>
+                    <p><strong>Sensory tendency:</strong> Rounded, tea-like, honeyed, possibly floral. Amber to deep amber liquor. Moderate to full body. Smooth acidity from modified CGA pool. The xanthone pool (mangiferin, Reservoir B) may contribute to this stability via the antioxidant buffering hypothesis (see Reservoir B) — a character that, if confirmed, would be specific to coffee leaf and absent from tea.</p>
                     <ul class="compound-list">
                         <li>Dominant: Oxidised catechin polymers &middot; Modified CGAs &middot; Mangiferin (relatively stable)</li>
                         <li>Possible: Glycoside-released aroma compounds if enzymatic domain preceded oxidation</li>
@@ -2244,19 +2265,33 @@ CHLOROPHYLL (G) ──[Withering]──&gt; PHEOPHYTIN ──&gt; COLOUR SHIFT (
 
         <section id="s39">
             <div class="section-num">Section 39</div>
-            <h2>The Most Unexplored <em>Territory</em></h2>
-            <p>After surveying the full model — eleven reservoirs, six activation events, five energy systems, six process domains, five emergent states, and the precursor network — one intersection stands out as the most theoretically rich and practically accessible unexplored territory in Citane chemistry.</p>
+            <h2>A Frontier Worth <em>Prioritising</em></h2>
+            <p>After surveying the full model — eleven reservoirs, six activation events, five energy systems, six process domains, five emergent states, and the precursor network — several intersections stand out as theoretically rich and currently unexplored. The Reservoir B buffering hypothesis (mangiferin's possible role in moderating oxidation) is one. The volatile precursor pool (Reservoir K) is another. The one below is not presented as the unique conclusion the chemistry points to — rather, it is the candidate that is most <em>practically accessible</em>, because it sits closest to processing steps already in use.</p>
             <p>It is not the trigonelline thermal pathway. That is well-understood in the context of coffee bean roasting and can be extrapolated with reasonable confidence.</p>
             <p>It is not the oxidative domain. That has analogues in a century of tea processing science.</p>
-            <p>The most unexplored Citane territory is:</p>
+            <p>The candidate prioritised here is:</p>
 
             <div class="box box-evidence">
-                <span class="box-label">The Frontier</span>
+                <span class="box-label">A Frontier — Prioritised for Practical Accessibility</span>
                 <p style="font-size: 1.1em; font-weight: 700;">Glycosides (E) + Amino Acids (D) + Microbial Enzymes + Mild Heat</p>
                 <p>The convergence of enzymatic glycoside unlocking, microbial and Koji-driven amplification of the amino acid pool, and low-temperature thermal development of the resulting substrates.</p>
                 <p>This intersection sits directly at the centre of existing Citane experimental practice: withering, wringing, Koji water treatment, resting, drying, and gentle roasting. Each of these steps makes sense individually. What the network model reveals is that they are not independent — they are a cascade. Each step modifies the substrate that the next step works on. The Koji treatment does not simply add flavour. It rebuilds the chemical landscape that the roasting step encounters.</p>
                 <p>A direct-roast coffee leaf and a Koji-treated-then-roasted coffee leaf begin with the same starting material. They do not end in the same place — because the energy systems acting on the Koji-treated leaf operate on an enriched and partially transformed precursor network. The outcome is structurally different, not merely flavour-different.</p>
-                <p>This is the shortest route toward genuinely new coffee-leaf flavour territory — flavour that is not a version of tea, not a version of roasted coffee, and not a version of fermented fruit, but something that emerges from the specific chemistry of this leaf, processed with these tools, in this sequence.</p>
+                <p>If this hypothesis holds, it may represent a comparatively direct route toward genuinely new coffee-leaf flavour territory — flavour that is not a version of tea, not a version of roasted coffee, and not a version of fermented fruit, but something that emerges from the specific chemistry of this leaf, processed with these tools, in this sequence. Other routes, including those above, may prove equally or more significant; this one is highlighted because it is the easiest to begin testing now.</p>
+            </div>
+
+            <div class="box box-note">
+                <span class="box-label">Observation as the Central Activity</span>
+                <p>The framework is not intended to reduce coffee leaf processing to fixed pathways. It exists to make observation more precise. Every processing decision alters multiple variables simultaneously, and combinations often behave differently from individual interventions taken in isolation.</p>
+                <p>Readers are therefore encouraged to observe both <strong>isolated transformations</strong> (what does this one step do, on its own?) and <strong>combinatory transformations</strong> (what does this step do when it follows that one?) — recording not only intended outcomes but unexpected behaviour. New understanding is likely to emerge from the interaction between pathways as much as from the pathways themselves.</p>
+            </div>
+
+            <div class="box box-tradition">
+                <span class="box-label">An Open Question — The Engere Comparison (Speculative)</span>
+                <p>The traditional Engere pathway (Ethiopia) appears to occupy an interesting position within this framework, and is raised here as a question for future investigation, not a conclusion.</p>
+                <p>Engere achieves substantial extraction, sweetness, body, and sensory persistence using a preparation method that is, by the standards of this document's process domains, relatively simple — closer to a single sustained Aqueous/Thermal exposure than to a multi-step sequence moving through several domains.</p>
+                <p>This raises an open question: are some of the most distinctive outcomes in coffee leaf beverages the product of <em>increasing process complexity</em> (more domains, more steps, more sequence) &mdash; or of <em>increasing extraction and transformation depth within a comparatively simple pathway</em> (the same domain, sustained longer or more thoroughly)?</p>
+                <p>This is not intended to elevate Engere above other pathways, nor to suggest that complexity is unnecessary. It is intended to encourage comparison between isolated interventions, combinatory interventions, and traditional long-duration extraction systems &mdash; and to suggest that the framework may ultimately prove most useful when these are viewed as different points within the same landscape, rather than as competing approaches.</p>
             </div>
 
             <div class="box box-note">
