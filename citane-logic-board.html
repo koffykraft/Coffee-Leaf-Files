@@ -270,6 +270,10 @@ nav { background: var(--ink); padding: 13px 18px; display: flex; align-items: ce
       <div class="choice-box" data-val="smoke">Smoke-dried (Kawa Daun)</div>
       <div class="choice-box" data-val="roast">Flat-pan roast (Kuti)</div>
       <div class="choice-box" data-val="decoction">Decoction (Engere / Chemo)</div>
+      <div class="choice-box" data-val="shade">Shade wither</div>
+      <div class="choice-box" data-val="koji_soak">Koji soak ○</div>
+      <div class="choice-box" data-val="koji_mist">Koji mist ○</div>
+      <div class="choice-box" data-val="water_soak">Water soak activation ○</div>
     </div>
   </div>
 
@@ -413,9 +417,9 @@ const STATE = {
 
 // Compatibility matrix: which processes work with which leaf ages
 const LEAF_PROCESS_COMPAT = {
-  young:  ['steamed','panfired','white','oolong','yeast','wild'],
-  mixed:  ['steamed','panfired','white','oolong','black','yeast','wild','smoke','decoction'],
-  mature: ['black','smoke','roast','decoction','panfired','oolong']
+  young:  ['steamed','panfired','white','oolong','yeast','wild','shade','koji_mist','water_soak'],
+  mixed:  ['steamed','panfired','white','oolong','black','yeast','wild','smoke','decoction','shade','koji_soak','koji_mist','water_soak'],
+  mature: ['black','smoke','roast','decoction','panfired','oolong','koji_soak','shade']
 };
 
 // Which descriptors each process can produce
@@ -429,7 +433,11 @@ const PROCESS_DESCRIPTOR_MAP = {
   wild:      ['sweet','fruity','mineral'],
   smoke:     ['smoky','woody','bitter'],
   roast:     ['smoky','woody','bitter'],
-  decoction: ['mineral','green','bitter']
+  decoction:  ['mineral','green','bitter'],
+  shade:      ['sweet','floral','green'],
+  koji_soak:  ['sweet','fruity','mineral'],
+  koji_mist:  ['floral','sweet','fruity'],
+  water_soak: ['green','bitter','mineral']
 };
 
 // Which brew methods suit which processes
@@ -443,7 +451,11 @@ const PROCESS_BREW_COMPAT = {
   wild:      ['infusion','decoction'],
   smoke:     ['decoction'],
   roast:     ['decoction'],
-  decoction: ['decoction']
+  decoction:  ['decoction'],
+  shade:      ['infusion','cold'],
+  koji_soak:  ['infusion','cold'],
+  koji_mist:  ['infusion','cold'],
+  water_soak: ['infusion','decoction']
 };
 
 // Descriptor → descriptor of target
@@ -687,6 +699,53 @@ const DESCRIPTOR_OUTPUTS = {
     ]
   },
 
+  shade: {
+    brew: "Shade withering produces a slower, more controlled oxidation than sun withering. Without direct UV exposure, carotenoid conversion proceeds at a gentler pace, generating β-ionone and α-ionone precursors without the UV-driven carotenoid degradation that can produce off-notes. At Thumpassery Estate, the rubber canopy provides natural diffused light at ambient 22–28°C — an ideal shade wither environment.",
+    logic: "The principle is controlling the rate of enzymatic oxidation rather than its direction. Shade wither is most useful when targeting oolong or white-style profiles where ionone development is desired but the aggressive sun-wither pace risks overshooting the target window. It extends the usable wither window by 30–50% compared to direct sun.",
+    steps: ["Select young or mixed-age leaves","Spread in single layer under diffused light — rubber or tree canopy ideal","Wither 14–28h at 22–26°C ambient — longer than sun wither for same outcome","Monitor: leaves should be pliable, slightly darkened at edges, fragrant","Proceed to drying or rolling depending on target profile"],
+    mandatory: ["No direct sun — defeats the purpose","Single layer — stacking creates uneven oxidation zones","Monitor temperature if ambient rises above 28°C — shade wither can still overshoot at high ambient temp"],
+    pitfalls: [
+      {stage:"Light exposure",text:"Even brief periods of direct sun during shade wither significantly accelerate the process. Consistent shade is the entire basis of this method."},
+      {stage:"Duration",text:"Shade wither is slower — do not treat it as a shorter alternative to sun wither. It requires more time, not less, to reach the same oxidation state."},
+      {stage:"Humidity",text:"High humidity during shade wither (Kerala monsoon season) risks surface fermentation before target oxidation is reached. Ensure airflow even in shade."}
+    ],
+    links: [{label:"Flavour Landscape",url:"clt-flavour-wheel.html"},{label:"Process Compass",url:"citane-process-compass.html"}]
+  },
+  koji_soak: {
+    brew: "Koji soak (○ Citane Adaptation — unpublished) involves briefly immersing withered leaves in a dilute Aspergillus oryzae spore suspension, then allowing the Koji enzymes to work on the leaf surface before drying. Koji enzymes (amylase, protease, lipase) break down leaf starches and proteins into fermentable sugars and free amino acids — potentially amplifying sweetness, umami-adjacent character, and fruity ester potential. This is a theoretical pathway not yet formally documented for CLT.",
+    logic: "The hypothesis draws from Koji's documented application in Japanese food fermentation (sake, miso, amazake) where it transforms complex carbohydrates and proteins into simpler, more flavourful compounds. Applied to coffee leaf, the amylase activity could convert leaf starches to sugars (sweetness), protease activity could release amino acids (savoury, umami), and the resulting substrate could then support more complex yeast fermentation if desired.",
+    steps: ["○ Prepare Koji starter: dissolve dried Aspergillus oryzae spores in cool water (ratio 1g per 500mL)","○ Wither leaves 12h before Koji contact — partial oxidation primes the substrate","○ Soak leaves in Koji suspension 15–30 min at ambient temperature","○ Remove and drain. Do not rinse — Koji enzymes remain on leaf surface","○ Hold at 25–28°C, 70–80% humidity, 12–24h for enzyme activity","○ Dry at 70°C / 4h to arrest enzyme activity and stabilise leaf","Brew by infusion 78°C or cold brew — lower temps preserve delicate Koji-derived compounds"],
+    mandatory: ["○ All steps are experimental — document each batch carefully","○ Temperature during Koji hold must stay below 35°C — above this Aspergillus activity ceases","○ Humidity control is critical — too dry stops enzyme activity; too wet risks mould other than Koji"],
+    pitfalls: [
+      {stage:"Spore viability",text:"○ Koji spores must be fresh and properly stored. Degraded spores produce no enzyme activity. Source from reputable supplier; check viability before use."},
+      {stage:"Contamination",text:"○ Koji soak creates conditions that also favour other moulds and bacteria. Any off-smell (acrid, putrid, strongly sour) indicates contamination — discard the batch."},
+      {stage:"Leaf condition",text:"○ Damaged or bruised leaves from harvest allow uncontrolled Koji penetration into leaf tissue. Use only clean, intact leaves for this pathway."}
+    ],
+    links: [{label:"Process Compass",url:"citane-process-compass.html"},{label:"ε Epsilon Board — theoretical extension",url:"citane-epsilon-board.html"}]
+  },
+  koji_mist: {
+    brew: "Koji mist (○ Citane Adaptation — unpublished) applies a light spray of Koji spore suspension to the leaf surface during withering rather than full immersion. This limits enzyme contact to the surface and cut-point areas, producing a more controlled and subtle transformation than full Koji soak. The theoretical outcome is surface-level amino acid and sugar release that amplifies floral and fruity character without the deeper structural transformation of a full soak.",
+    logic: "The mist approach is more conservative than soak — it inoculates the surface while leaving the majority of the leaf's internal chemistry undisturbed. This makes it more compatible with oolong or white-style processing where internal enzyme activity (oxidation) is already proceeding on its intended path. Koji mist would theoretically add a surface flavour layer rather than redirecting the whole-leaf chemistry.",
+    steps: ["○ Prepare dilute Koji suspension (0.5g spores per 500mL cool water)","○ Begin standard wither (12h for oolong target)","○ At hour 6 of wither, apply light mist to leaf surfaces — do not saturate","○ Continue wither for remaining 6–12h at ambient temperature","○ Proceed to drying without additional hold — surface Koji activity is brief","○ Dry at 70°C / 4h"],
+    mandatory: ["○ Mist must be light — saturation shifts this toward Koji soak territory","○ Apply mid-wither, not at start — allows partial leaf enzyme activity before Koji contact","○ Document spray volume and timing per batch for any repeatability"],
+    pitfalls: [
+      {stage:"Spray distribution",text:"○ Uneven misting creates uneven flavour development across the batch. Use a fine mist sprayer and apply from above in a sweeping motion across a single-layer spread."},
+      {stage:"Timing",text:"○ Applying Koji mist too early in the wither window (hour 0–2) risks Koji enzyme activity competing with and disrupting the intended leaf oxidation pathway."}
+    ],
+    links: [{label:"Process Compass",url:"citane-process-compass.html"},{label:"ε Epsilon Board",url:"citane-epsilon-board.html"}]
+  },
+  water_soak: {
+    brew: "Water soak activation (○ Citane Adaptation — unpublished) is a controlled brief soak (15–30 min, ambient temperature) designed to activate surface enzymes through osmotic stress, followed by immediate enzyme arrest (steaming or oven heat). The hypothesis is that the osmotic pressure of water contact triggers a controlled enzyme release that can be captured and locked in before it progresses to unwanted oxidation. This is distinct from the destructive soaking that damages green volatile compounds — the key is the immediate arrest after a defined brief window.",
+    logic: "This pathway is speculative and requires careful testing. The controlled window hypothesis is: brief water contact activates surface polyphenol oxidase in a way that, when immediately arrested, produces a different flavour profile than either pure green processing or standard withering. If confirmed, it could produce an intermediate character with both green freshness and mild oxidative complexity.",
+    steps: ["○ Select young to mid-maturity leaves only","○ Soak in clean ambient-temperature water: exactly 15 min (start with shortest time)","○ Remove and drain immediately","○ Steam within 5 min of drain — do not allow ambient oxidation to proceed","○ Oven dry at 70°C / 4h","○ Brew at 74–78°C and compare carefully with non-soaked equivalent batch"],
+    mandatory: ["○ Timing precision is the entire basis of this method — set a timer","○ Steam within 5 min of drain — longer gap defeats the purpose of controlled arrest","○ Run parallel control batch (identical leaf, no soak) to isolate the effect"],
+    pitfalls: [
+      {stage:"Soak duration",text:"○ Beyond 30 min, this ceases to be a controlled activation and becomes a destructive soak. Green volatile compounds (hexanal, (E,Z)-2,6-nonadienal) are lost. The controlled window is narrow."},
+      {stage:"Water temperature",text:"○ Warm water (above 30°C) accelerates enzyme activity too fast for the window to be controlled. Use cool water only."},
+      {stage:"Arrest delay",text:"○ Any delay between drain and steaming allows rapid surface oxidation. At Kerala ambient temperatures (28–32°C), this progresses within minutes."}
+    ],
+    links: [{label:"Process Compass",url:"citane-process-compass.html"},{label:"ε Epsilon Board",url:"citane-epsilon-board.html"}]
+  },
   bitter: {
     brew: "Bitterness in CLT comes from caffeine, chlorogenic acids, and tannins. Coffee leaves contain caffeine at lower levels than the bean but the concentration in brew is significant. Fibrianto et al. (2024) documented that high-altitude arabica CLT at 95°C/5min produced the most balanced bitterness-sweetness ratio — the only sample to reach JAR (Just About Right) on all four attributes. Fibrianto et al. (2025) found a paradox: high bitterness in black CLT actually reduced perceived relaxation even though bioactive content was highest — confirming bitterness management is a sensory priority.",
     logic: "Bitterness is not eliminated — it is managed. The goal is bitterness-sweetness balance, not bitterness absence. The key levers are: leaf age (young leaves have lower tannin), brewing temperature (lower temps reduce tannin extraction), brewing duration (shorter times reduce chlorogenic acid extraction), and serving temperature (cold serving suppresses bitterness perception).",
