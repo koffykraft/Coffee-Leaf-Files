@@ -752,6 +752,7 @@ function showSectionsForEntry(entry) {
   (sectionMap[entry] || []).forEach(id => {
     document.getElementById(id).classList.add('visible');
   });
+  // No scroll — sections appear in place, user scrolls naturally
 }
 
 // Choice selection with cascade
@@ -853,7 +854,7 @@ function cascadeFromDescriptor(desc) {
 
 function tryGenerateOutput() {
   // Need at least descriptor or (leaf + process)
-  const hasEnough = STATE.descriptor || (STATE.leaf && STATE.process) || STATE.process;
+  const hasEnough = STATE.descriptor || (STATE.leaf && STATE.process) || (STATE.process && STATE.brew);
   if (!hasEnough) return;
 
   // Determine which descriptor to use
@@ -920,9 +921,6 @@ function tryGenerateOutput() {
   });
 
   document.getElementById('output-card').classList.add('show');
-  setTimeout(() => {
-    document.getElementById('output-card').scrollIntoView({behavior:'smooth', block:'start'});
-  }, 80);
 
   // Prime epsilon
   primeEpsilon(desc, data);
