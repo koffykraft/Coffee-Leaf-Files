@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Citane Process Compass</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --leaf: #3d5a3e;
+  --leaf-lt: #5c7a5d;
+  --leaf-pale: #e8f0e8;
+  --parchment: #f7f4ef;
+  --cream: #fdfbf8;
+  --ruled: #d8d2c8;
+  --accent: #8b6f47;
+  --accent-lt: #c4a882;
+  --muted: #6b6560;
+  --warn: #8b3a2a;
+  --warn-bg: #fdf0ed;
+  --info-bg: #e8f0e8;
+  --note-bg: #f7f4ef;
+
+  --s1: #3d5a3e;
+  --s2: #5c7a5d;
+  --s3: #7a9a5a;
+  --s4: #c8a84b;
+  --s5: #d4784a;
+  --s6: #8b6f47;
+  --s7: #5888a0;
+  --s8: #7a7a50;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Georgia, serif;
+  background: var(--parchment);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+/* NAV */
+nav {
+  background: var(--ink);
+  padding: 12px 18px;
+  display: flex; align-items: center; gap: 10px;
+  position: sticky; top: 0; z-index: 100;
+}
+.brand { color: #fff; font-size: .9rem; letter-spacing: .13em; text-transform: uppercase; }
+.sep { color: #555; }
+.page-t { color: #999; font-size: .75rem; }
+.back { margin-left: auto; color: #888; font-size: .7rem; text-decoration: none; }
+.back:hover { color: #fff; }
+
+/* HERO */
+.hero {
+  background: var(--leaf);
+  color: #fff;
+  padding: 32px 18px 26px;
+  text-align: center;
+}
+.hero .eye {
+  font-size: .62rem; letter-spacing: .2em;
+  text-transform: uppercase; opacity: .55; margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: normal; line-height: 1.2; margin-bottom: 10px;
+}
+.hero p {
+  font-size: .82rem; opacity: .78;
+  max-width: 500px; margin: 0 auto; line-height: 1.65;
+}
+
+/* CONTENTS */
+.contents {
+  max-width: 720px; margin: 24px auto 0; padding: 0 16px;
+  background: var(--cream); border: 1px solid var(--ruled);
+  border-radius: 4px; padding: 16px 18px;
+}
+.contents h3 {
+  font-size: .65rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 10px;
+}
+.contents ol {
+  list-style: none; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4px 16px;
+}
+@media(max-width:480px) { .contents ol { grid-template-columns: 1fr; } }
+.contents li a {
+  font-size: .8rem; color: var(--ink); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 0; border-bottom: 1px solid var(--ruled);
+}
+.contents li a:hover { color: var(--leaf); }
+.stage-dot {
+  width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;
+}
+
+/* EVIDENCE LEGEND */
+.ev-legend {
+  max-width: 720px; margin: 14px auto 0; padding: 0 16px;
+}
+.ev-legend-inner {
+  background: var(--note-bg); border-left: 3px solid var(--ruled);
+  border-radius: 0 4px 4px 0; padding: 10px 14px;
+  display: flex; flex-wrap: wrap; gap: 14px;
+}
+.ev-item { font-size: .72rem; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+.ev-mark { font-weight: bold; color: var(--leaf); }
+
+/* MAIN */
+main { max-width: 720px; margin: 0 auto; padding: 20px 16px 60px; }
+
+/* STAGE SECTION */
+.stage {
+  margin-bottom: 40px;
+  scroll-margin-top: 60px;
+}
+.stage-header {
+  display: flex; align-items: stretch; gap: 0;
+  margin-bottom: 14px;
+}
+.stage-num {
+  min-width: 36px; display: flex; align-items: center;
+  justify-content: center; border-radius: 3px 0 0 3px;
+  font-size: 1rem; font-weight: bold; color: #fff;
+  padding: 0 4px;
+}
+.stage-title-wrap {
+  flex: 1; padding: 10px 14px;
+  background: var(--cream); border: 1px solid var(--ruled);
+  border-left: none; border-radius: 0 3px 3px 0;
+}
+.stage-title-wrap h2 {
+  font-size: 1.05rem; font-weight: normal; margin-bottom: 2px;
+}
+.stage-subtitle {
+  font-size: .7rem; color: var(--muted); letter-spacing: .05em;
+}
+
+/* SECTION LABEL */
+.s-label {
+  font-size: .62rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--accent);
+  margin: 14px 0 7px; padding-bottom: 5px;
+  border-bottom: 1px solid var(--ruled);
+}
+
+/* BODY TEXT */
+p.body-p { font-size: .85rem; line-height: 1.75; margin-bottom: 10px; color: var(--ink); }
+
+/* BULLETS */
+.bullet-list { list-style: none; margin-bottom: 12px; }
+.bullet-list li {
+  font-size: .82rem; line-height: 1.65;
+  padding: 5px 0 5px 16px;
+  border-bottom: 1px solid var(--ruled);
+  position: relative;
+}
+.bullet-list li:last-child { border-bottom: none; }
+.bullet-list li::before {
+  content: attr(data-mark);
+  position: absolute; left: 0;
+  color: var(--leaf); font-weight: bold; font-size: .75rem;
+}
+
+/* PARAM TABLE */
+.param-table {
+  width: 100%; border-collapse: collapse;
+  font-size: .78rem; margin-bottom: 14px;
+}
+.param-table th {
+  background: var(--leaf); color: #fff;
+  padding: 7px 10px; text-align: left;
+  font-weight: normal; font-size: .65rem;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.param-table td {
+  padding: 8px 10px; border-bottom: 1px solid var(--ruled);
+  vertical-align: top; line-height: 1.55;
+}
+.param-table tr:nth-child(even) td { background: var(--cream); }
+.param-table .col-a { color: var(--leaf); font-style: italic; font-weight: bold; }
+.param-table .col-b { color: var(--accent); }
+
+/* DECISION TABLE */
+.decision-table {
+  width: 100%; border-collapse: collapse;
+  font-size: .78rem; margin-bottom: 14px;
+}
+.decision-table th {
+  background: var(--ink); color: #fff;
+  padding: 6px 10px; text-align: left;
+  font-weight: normal; font-size: .65rem;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.decision-table td {
+  padding: 8px 10px; border-bottom: 1px solid var(--ruled);
+  vertical-align: top; line-height: 1.55;
+}
+.decision-table tr:nth-child(even) td { background: var(--cream); }
+.decision-table .if-col { color: var(--ink); font-style: italic; }
+.decision-table .then-col { color: var(--leaf); }
+
+/* BOX COMPONENTS */
+.warn-box {
+  background: var(--warn-bg);
+  border-left: 3px solid var(--warn);
+  border-radius: 0 3px 3px 0;
+  padding: 10px 13px; margin-bottom: 12px;
+  font-size: .78rem; line-height: 1.65; color: var(--ink);
+}
+.warn-box strong { color: var(--warn); }
+
+.info-box {
+  background: var(--info-bg);
+  border-left: 3px solid var(--leaf);
+  border-radius: 0 3px 3px 0;
+  padding: 10px 13px; margin-bottom: 12px;
+  font-size: .78rem; line-height: 1.65; color: var(--ink);
+}
+.info-box strong { color: var(--leaf); }
+
+.note-box {
+  background: var(--note-bg);
+  border-left: 3px solid var(--ruled);
+  border-radius: 0 3px 3px 0;
+  padding: 10px 13px; margin-bottom: 12px;
+  font-size: .76rem; line-height: 1.65;
+  color: var(--muted); font-style: italic;
+}
+
+/* DIVIDER */
+hr.ruled { border: none; border-top: 1px solid var(--ruled); margin: 18px 0; }
+
+/* FOOTER */
+.doc-footer {
+  font-size: .68rem; color: var(--muted);
+  line-height: 1.65; text-align: center;
+  padding-top: 16px; border-top: 1px solid var(--ruled);
+}
+
+/* MOBILE TABLE SCROLL */
+.table-wrap { overflow-x: auto; margin-bottom: 14px; }
+.table-wrap table { min-width: 480px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Citane</span>
+  <span class="sep">/</span>
+  <span class="page-t">Process Compass</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="hero">
+  <div class="eye">KoffyKraft · Thumpassery Estate</div>
+  <h1>The Citane Process Compass</h1>
+  <p>A stage-by-stage field guide to coffee leaf processing — from harvest to final moisture reduction. Each stage documents the key parameters, decision points, pitfalls, and the reasoning behind each choice.</p>
+</div>
+
+<!-- CONTENTS -->
+<div class="contents" style="margin-top:20px;max-width:720px;margin-left:auto;margin-right:auto;padding:16px 18px;">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#s1"><span class="stage-dot" style="background:var(--s1)"></span>1 · Harvest</a></li>
+    <li><a href="#s2"><span class="stage-dot" style="background:var(--s2)"></span>2 · Transfer and Holding</a></li>
+    <li><a href="#s3"><span class="stage-dot" style="background:var(--s3)"></span>3 · Surface Preparation</a></li>
+    <li><a href="#s4"><span class="stage-dot" style="background:var(--s4)"></span>4 · Wither</a></li>
+    <li><a href="#s5"><span class="stage-dot" style="background:var(--s5)"></span>5 · Manipulation</a></li>
+    <li><a href="#s6"><span class="stage-dot" style="background:var(--s6)"></span>6 · Reaction Window</a></li>
+    <li><a href="#s7"><span class="stage-dot" style="background:var(--s7)"></span>7 · Moisture Reduction</a></li>
+    <li><a href="#s8"><span class="stage-dot" style="background:var(--s8)"></span>8 · QC Checkpoints</a></li>
+  </ol>
+</div>
+
+<!-- EVIDENCE LEGEND -->
+<div class="ev-legend">
+  <div class="ev-legend-inner">
+    <div class="ev-item"><span class="ev-mark">●</span> Published Research — peer-reviewed, cited</div>
+    <div class="ev-item"><span class="ev-mark">◐</span> Traditional Practice — documented, not formally validated</div>
+    <div class="ev-item"><span class="ev-mark">○</span> Citane Adaptation — unpublished, estate observation</div>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════════════
+     STAGE 1: HARVEST
+═══════════════════════════════════ -->
+<div class="stage" id="s1">
+  <div class="stage-header">
+    <div class="stage-num" style="background:var(--s1)">1</div>
+    <div class="stage-title-wrap">
+      <h2>Harvest</h2>
+      <div class="stage-subtitle">Timing · Maturity · Handling</div>
+    </div>
+  </div>
+
+  <p class="body-p">Leaf maturity at harvest is the single most consequential decision in the entire process. It determines which volatile compounds are available, which enzymes are active, and which processing pathways are possible downstream.</p>
+
+  <div class="s-label">Maturity Reference</div>
+  <div class="table-wrap">
+  <table class="param-table">
+    <thead><tr><th>Maturity</th><th>Key Compounds</th><th>Suitable Pathways</th></tr></thead>
+    <tbody>
+      <tr><td class="col-a">Young flush (1–3 months)</td><td class="col-b">Highest mangiferin · hexanal · (E,Z)-2,6-nonadienal · Low tannin</td><td>Green · Refreshing · Floral · Oolong</td></tr>
+      <tr><td class="col-a">Mid-maturity (3–5 months)</td><td class="col-b">Balanced chlorogenic acids · Moderate β-ionone precursors</td><td>Widest range — Oolong · White · Yeast ferment · Floral</td></tr>
+      <tr><td class="col-a">Mature (5–7 months)</td><td class="col-b">High tannin · High lipid · Low green volatiles</td><td>Black · Roast · Smoke · Decoction</td></tr>
+      <tr><td class="col-a">Post-mature / yellow</td><td class="col-b">Degraded chlorophyll · Elevated β-carotene breakdown products</td><td>Honey-ionone pathway only · Not suitable for green</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="s-label">Harvest Protocol</div>
+  <div class="info-box"><strong>Harvest in early morning</strong> — leaf temperature is lower, enzyme activity slower, reduced risk of field oxidation before processing begins.</div>
+  <ul class="bullet-list">
+    <li data-mark="●">Pick individual leaves or small clusters — avoid stripping branches which bruises retained leaves</li>
+    <li data-mark="●">Count from branch tip: 1st–3rd leaf = young flush (highest volatile potential); 5th–7th = mature</li>
+    <li data-mark="●">Handle cut surface upward where possible — exposed cell wall begins oxidising immediately</li>
+    <li data-mark="●">Do not stack harvested leaves in deep piles in the field — compression bruising initiates enzyme cascade</li>
+    <li data-mark="○">KoffyKraft observation: leaves from rubber-shaded Chandragiri Arabica at 130m show slower enzyme activation post-harvest than open-canopy leaves — likely due to lower ambient leaf temperature</li>
+  </ul>
+  <div class="warn-box"><strong>Do not harvest wet leaves</strong> (after rain or heavy dew) for green or oolong style — surface moisture accelerates unwanted fermentation before enzyme arrest can be achieved.</div>
+</div>
+
+<hr class="ruled">
+
+<!-- ═══════════════════════════════════
+     STAGE 2: TRANSFER
+═══════════════════════════════════ -->
+<div class="stage" id="s2">
+  <div class="stage-header">
+    <div class="stage-num" style="background:var(--s2)">2</div>
+    <div class="stage-title-wrap">
+      <h2>Transfer and Holding</h2>
+      <div class="stage-subtitle">Container · Atmosphere · Time window</div>
+    </div>
+  </div>
+
+  <p class="body-p">The transfer window — time between harvest and first processing step — is an active period. Enzymes begin working the moment the leaf is cut. Managing this window determines whether you arrive at the next stage with the chemistry you intended.</p>
+
+  <div class="s-label">Time Window Decisions</div>
+  <div class="table-wrap">
+  <table class="decision-table">
+    <thead><tr><th>If your target is</th><th>Then</th></tr></thead>
+    <tbody>
+      <tr><td class="if-col">Green / Refreshing profile</td><td class="then-col">Process within 30 min of harvest. No holding. Steaming must begin immediately.</td></tr>
+      <tr><td class="if-col">Oolong / Floral / Sweet</td><td class="then-col">Allow 0–2h ambient hold. This is the beginning of the wither window.</td></tr>
+      <tr><td class="if-col">Black / Woody / Decoction</td><td class="then-col">Hold up to 4h acceptable. Mature leaves are more tolerant.</td></tr>
+      <tr><td class="if-col">Unavoidable delay (&gt;2h for green target)</td><td class="then-col">Refrigerate at 4–8°C. Cold holds enzyme activity. Resume within 6h.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="s-label">Container Requirements</div>
+  <ul class="bullet-list">
+    <li data-mark="●">Breathable containers (bamboo baskets, open crates) — prevents CO₂ and heat build-up from enzymatic activity</li>
+    <li data-mark="●">Avoid sealed plastic bags for holding &gt;30 min — anaerobic atmosphere initiates unwanted fermentation</li>
+    <li data-mark="●">Single layer preferred for young flush — stacking causes compression bruising and uneven enzyme activation</li>
+    <li data-mark="●">For longer holding (oolong / black target): loose layer in shallow trays at ambient temperature is acceptable</li>
+    <li data-mark="◐">Traditional Engere practice: leaves pounded then immediately decocted — zero transfer window (Yohannis et al. 2026)</li>
+  </ul>
+  <div class="warn-box"><strong>Sealed containers + warm ambient temperature</strong> (Kerala 28–32°C) = uncontrolled fermentation within 1–2h. If fermentation is not the intended process, this is a critical quality loss point.</div>
+</div>
+
+<hr class="ruled">
+
+<!-- ═══════════════════════════════════
+     STAGE 3: SURFACE PREPARATION
+═══════════════════════════════════ -->
+<div class="stage" id="s3">
+  <div class="stage-header">
+    <div class="stage-num" style="background:var(--s3)">3</div>
+    <div class="stage-title-wrap">
+      <h2>Surface Preparation</h2>
+      <div class="stage-subtitle">Wash decision · Contamination · Compound integrity</div>
+    </div>
+  </div>
+
+  <p class="body-p">Whether to wash — and how — is a genuine decision with compound-level consequences. Water contact initiates cell surface reactions. The correct protocol depends on what comes next.</p>
+
+  <div class="s-label">Wash Decision</div>
+  <div class="table-wrap">
+  <table class="decision-table">
+    <thead><tr><th>Situation</th><th>Protocol</th></tr></thead>
+    <tbody>
+      <tr><td class="if-col">Light field dust only, green target</td><td class="then-col">Light brush or dry wipe only. No water.</td></tr>
+      <tr><td class="if-col">Moderate contamination, green target</td><td class="then-col">Brief mist rinse (spray bottle). Pat dry immediately. Do not soak.</td></tr>
+      <tr><td class="if-col">Oolong / black / ferment target</td><td class="then-col">Quick rinse acceptable. Remove excess moisture before wither.</td></tr>
+      <tr><td class="if-col">Decoction target (Engere / Chemo style)</td><td class="then-col">Rinse acceptable — compounds extracted in brew water; surface moisture not critical.</td></tr>
+      <tr><td class="if-col">Heavily contaminated leaves</td><td class="then-col">Redirect to secondary batch for decoction profile. Do not use for green or oolong.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="warn-box"><strong>Never soak leaves destined for green or refreshing profiles.</strong> Soaking causes rapid intracellular damage through osmotic pressure. Green volatile compounds (hexanal, (E,Z)-2,6-nonadienal) are destroyed before processing begins. ● Steger et al. 2022 confirmed soaking as a quality loss pathway.</div>
+</div>
+
+<hr class="ruled">
+
+<!-- ═══════════════════════════════════
+     STAGE 4: WITHER
+═══════════════════════════════════ -->
+<div class="stage" id="s4">
+  <div class="stage-header">
+    <div class="stage-num" style="background:var(--s4)">4</div>
+    <div class="stage-title-wrap">
+      <h2>Wither</h2>
+      <div class="stage-subtitle">Time · Temperature · Atmosphere · Profile commitment</div>
+    </div>
+  </div>
+
+  <p class="body-p">Withering is the first intentional transformation stage. It controls the extent of enzymatic oxidation before any heat treatment. Duration and temperature together determine which volatile families develop. This is where process style is committed.</p>
+
+  <div class="s-label">Wither Parameters by Target Profile</div>
+  <div class="table-wrap">
+  <table class="param-table">
+    <thead><tr><th>Style</th><th>Duration / Temp</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td class="col-a">Green (JGTP / CGTP)</td><td class="col-b">0h — immediate enzyme arrest</td><td>No withering at all. Preserves hexanal, (E,Z)-2,6-nonadienal intact.</td></tr>
+      <tr><td class="col-a">White / Sun-dried (WTP)</td><td class="col-b">12–24h, ambient, sun or shade</td><td>Slow enzymatic conversion. β-ionone and α-ionone precursors develop. Floral, sweet potential.</td></tr>
+      <tr><td class="col-a">Oolong (OTP)</td><td class="col-b">12–24h, 22–25°C, shade or indoor</td><td>Partial oxidation window. OCLT-exclusive compounds develop (limonene, diphenyl sulfone). Optimal: 24h. ● Fibrianto et al. 2025</td></tr>
+      <tr><td class="col-a">Black (BTP)</td><td class="col-b">24h, ambient</td><td>Full oxidation commitment. Tannin polymerisation proceeds. Woody, earthy character emerges.</td></tr>
+      <tr><td class="col-a">Yeast fermentation path</td><td class="col-b">12–18h before inoculation</td><td>Primes leaf substrate. Partial enzyme activation before anaerobic switch.</td></tr>
+      <tr><td class="col-a">Shade wither ○ Citane</td><td class="col-b">12–24h, low light, 22–25°C</td><td>Slower than sun wither. More controlled ionone development without UV-driven carotenoid degradation.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="s-label">Wither Atmosphere</div>
+  <ul class="bullet-list">
+    <li data-mark="●">Indoor shade wither: most controllable — consistent temp, no direct UV, manageable humidity</li>
+    <li data-mark="●">Sun wither: accelerates carotenoid conversion (→ β-ionone). Higher sweet potential but harder to control. Stop before leaves become crisp.</li>
+    <li data-mark="○">Shade wither at Thumpassery: rubber canopy provides natural diffused light. Ambient 22–28°C. Slower but consistent.</li>
+    <li data-mark="●">Avoid wither in sealed or low-ventilation spaces — CO₂ from leaf respiration can trigger unintended anaerobic conditions</li>
+    <li data-mark="●">Target moisture loss: approximately 20–30% of fresh weight. Leaves should be pliable but not brittle.</li>
+  </ul>
+  <div class="warn-box"><strong>Withering above 30°C</strong> accelerates oxidation past the intended window — oolong-target leaves can enter black-style oxidation within 6–8h instead of 24h. Monitor ambient temperature, especially in Kerala monsoon season when night temperatures remain high.</div>
+</div>
+
+<hr class="ruled">
+
+<!-- ═══════════════════════════════════
+     STAGE 5: MANIPULATION
+═══════════════════════════════════ -->
+<div class="stage" id="s5">
+  <div class="stage-header">
+    <div class="stage-num" style="background:var(--s5)">5</div>
+    <div class="stage-title-wrap">
+      <h2>Manipulation</h2>
+      <div class="stage-subtitle">Rolling · Wring · Cell rupture · Post-wring hold</div>
+    </div>
+  </div>
+
+  <p class="body-p">Mechanical manipulation controls cell wall rupture — the release of intracellular compounds into contact with oxygen and each other. Too little and the substrate is not primed; too much and the oxidative cascade runs ahead of the intended profile.</p>
+
+  <div class="s-label">Manipulation Type by Target</div>
+  <div class="table-wrap">
+  <table class="param-table">
+    <thead><tr><th>Manipulation</th><th>Target Profile</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td class="col-a">No manipulation</td><td class="col-b">White / Sun-dried / Decoction</td><td>Whole leaf drying. Minimal intracellular disruption. Flavour through surface chemistry only.</td></tr>
+      <tr><td class="col-a">Blend / cut</td><td class="col-b">Green / Refreshing</td><td>Hexanal and 4-heptenal released. Immediately followed by enzyme arrest (steam or oven).</td></tr>
+      <tr><td class="col-a">Light roll (~10–15% rupture)</td><td class="col-b">Oolong / Floral / Fruity</td><td>Releases ionone precursors without full oxidative cascade. Moisture gradient created.</td></tr>
+      <tr><td class="col-a">Medium wring (~30–40% rupture)</td><td class="col-b">Black / Woody</td><td>Significant tannin-enzyme contact. Full oxidation proceeding. Commit to black profile.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="s-label">Wring Hold and Post-Wring Temperature</div>
+  <p class="body-p">Wringing generates a small but measurable temperature increase in the leaf mass from mechanical energy. This post-wring temperature rise accelerates enzyme activity — intentionally or not.</p>
+  <ul class="bullet-list">
+    <li data-mark="○">Observe post-wring leaf temperature before committing to hold time. A 2–3°C rise is normal.</li>
+    <li data-mark="○">If post-wring temp exceeds 28°C in ambient conditions: shorten hold or move to cooler space to slow cascade.</li>
+    <li data-mark="○">Wring hold (leaves held in wrung position): 15–30 min allows oxidative reaction to develop from rupture points while limiting how far it progresses.</li>
+    <li data-mark="○">Releasing and spreading after hold: resumes normal surface oxidation at slower rate. Use to fine-tune before next step.</li>
+    <li data-mark="●">The wring-to-hold-to-release sequence mirrors oolong tea processing principles. ● Chen &amp; Kitts 2018</li>
+  </ul>
+  <div class="note-box">Wring/roll intensity descriptions are observational field estimates, not validated measurements. % cell rupture requires microscopy to quantify. Label all wring-related protocols as Citane Adaptation (unpublished) until formally documented.</div>
+</div>
+
+<hr class="ruled">
+
+<!-- ═══════════════════════════════════
+     STAGE 6: REACTION WINDOW
+═══════════════════════════════════ -->
+<div class="stage" id="s6">
+  <div class="stage-header">
+    <div class="stage-num" style="background:var(--s6)">6</div>
+    <div class="stage-title-wrap">
+      <h2>Reaction Window</h2>
+      <div class="stage-subtitle">Let run · Stall · Stop · Fermentation cascades</div>
+    </div>
+  </div>
+
+  <p class="body-p">After manipulation, the leaf is in an active reactive state. The question is not whether reactions are happening — they always are — but whether to let them run, stall them at a chosen point, or stop them entirely.</p>
+
+  <div class="s-label">Reaction Control Decisions</div>
+  <div class="table-wrap">
+  <table class="decision-table">
+    <thead><tr><th>Intent</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td class="if-col">Stop — Green target</td><td class="then-col">Steam at 100°C, 2–3 min. Full enzyme arrest. Locks green volatile profile.</td></tr>
+      <tr><td class="if-col">Stall — Oolong target</td><td class="then-col">Monitor colour (green → yellow-green edge). Dry at 70°C when target reached.</td></tr>
+      <tr><td class="if-col">Let run — Black target</td><td class="then-col">Allow full 24h wither without interruption. Oven dry when leaves are copper-red.</td></tr>
+      <tr><td class="if-col">Yeast fermentation ●</td><td class="then-col">Apply Saccharomyces cerevisiae starter (40mL per batch). Anaerobic, 25°C, 12h. Then dry. ● Steger et al. 2022</td></tr>
+      <tr><td class="if-col">Wild fermentation ●</td><td class="then-col">No starter. Anaerobic hold, 25°C, 12h. Variable outcomes — document each batch. ● Steger et al. 2022</td></tr>
+      <tr><td class="if-col">Koji fermentation ○</td><td class="then-col">Aspergillus oryzae inoculation. Humidity-controlled environment. Enzymatic pathway distinct from yeast. Theoretical — not yet formally documented for CLT.</td></tr>
+      <tr><td class="if-col">Koji mist ○</td><td class="then-col">Light spray of Koji spore suspension on leaf surface. Partial surface inoculation. Theoretical.</td></tr>
+      <tr><td class="if-col">Water soak activation ○</td><td class="then-col">Brief controlled soak (15–30 min, ambient) to activate surface enzymes then immediate arrest. Theoretical — requires testing.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="s-label">Enzyme Temperature Reference</div>
+  <div class="table-wrap">
+  <table class="param-table">
+    <thead><tr><th>Enzyme</th><th>Active / Inactivated</th><th>Relevance</th></tr></thead>
+    <tbody>
+      <tr><td class="col-a">Polyphenol oxidase (PPO)</td><td class="col-b">Active 15–35°C · Inactivated &gt;70°C</td><td>Primary oxidation enzyme. Controls green → black conversion.</td></tr>
+      <tr><td class="col-a">Peroxidase</td><td class="col-b">Active 20–40°C · Inactivated &gt;80°C</td><td>Secondary oxidation. More heat-resistant than PPO.</td></tr>
+      <tr><td class="col-a">Lipoxygenase</td><td class="col-b">Active 15–30°C · Inactivated &gt;60°C</td><td>Produces green aldehydes (hexanal, etc). Steaming is effective arrest.</td></tr>
+      <tr><td class="col-a">Protease / amylase</td><td class="col-b">Active 20–50°C</td><td>Amino acid and sugar release. Active during fermentation window.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<hr class="ruled">
+
+<!-- ═══════════════════════════════════
+     STAGE 7: MOISTURE REDUCTION
+═══════════════════════════════════ -->
+<div class="stage" id="s7">
+  <div class="stage-header">
+    <div class="stage-num" style="background:var(--s7)">7</div>
+    <div class="stage-title-wrap">
+      <h2>Moisture Reduction</h2>
+      <div class="stage-subtitle">Method · Temperature · Duration · Target moisture</div>
+    </div>
+  </div>
+
+  <p class="body-p">Moisture reduction arrests remaining enzyme activity through heat or desiccation, and stabilises the leaf for storage and brewing. The method affects volatile retention — high heat drives off aromatic compounds faster than low heat.</p>
+
+  <div class="s-label">Drying Methods</div>
+  <div class="table-wrap">
+  <table class="param-table">
+    <thead><tr><th>Method</th><th>Parameters</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td class="col-a">Oven dry</td><td class="col-b">70°C / 4h</td><td>Standard for green, oolong, black. ● Fibrianto et al. 2025 and Steger et al. 2022. Reliable enzyme arrest without excessive volatile loss.</td></tr>
+      <tr><td class="col-a">Sun dry</td><td class="col-b">≥48h ambient</td><td>White style and traditional pathways. Slow moisture loss preserves floral ionones. Weather-dependent — humidity risk.</td></tr>
+      <tr><td class="col-a">Flat-pan roast (Kuti)</td><td class="col-b">High heat, 15–20 min</td><td>Simultaneous drying and roast character development. Mature leaves only. Pyrazines and guaiacol formed. ◐ Klingel et al. 2020</td></tr>
+      <tr><td class="col-a">Smoke-dry (Kawa Daun)</td><td class="col-b">2–4h, closed furnace, cassia wood</td><td>Simultaneous drying and smoke infusion. Cinnamomum burmannii volatile oils absorbed into leaf. ◐ Novita et al. 2018</td></tr>
+      <tr><td class="col-a">Air dry (low humidity)</td><td class="col-b">24–48h at 25°C with airflow</td><td>Gentler than oven. Suitable for wild fermentation outcomes where high heat may destroy fermentation-derived esters.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="s-label">Target Moisture</div>
+  <ul class="bullet-list">
+    <li data-mark="●">Target moisture content for storage: 5–8% (crisp, not powder). Leaves should snap cleanly, not bend.</li>
+    <li data-mark="●">Over-drying (&gt;4h at 70°C): volatile compounds continue to evaporate. Aromatic intensity decreases.</li>
+    <li data-mark="●">Under-drying: residual moisture enables mould growth in storage within days.</li>
+    <li data-mark="○">No formal moisture measurement equipment required at small scale — snap test and visual assessment sufficient for field use.</li>
+  </ul>
+</div>
+
+<hr class="ruled">
+
+<!-- ═══════════════════════════════════
+     STAGE 8: QC CHECKPOINTS
+═══════════════════════════════════ -->
+<div class="stage" id="s8">
+  <div class="stage-header">
+    <div class="stage-num" style="background:var(--s8)">8</div>
+    <div class="stage-title-wrap">
+      <h2>QC Checkpoints</h2>
+      <div class="stage-subtitle">Brix · pH · Sensory · Documentation</div>
+    </div>
+  </div>
+
+  <p class="body-p">Optional measurement points that help track process consistency across batches. None are mandatory at small scale — sensory assessment is the primary tool. Introduce instruments only where they add information that sensory cannot provide.</p>
+
+  <div class="s-label">Measurement Reference</div>
+  <div class="table-wrap">
+  <table class="param-table">
+    <thead><tr><th>Checkpoint</th><th>When</th><th>What it tells you</th></tr></thead>
+    <tbody>
+      <tr><td class="col-a">Brix (refractometer)</td><td class="col-b">After wither, before drying</td><td>Tracks sugar concentration increase from moisture loss. Useful for wither consistency across batches. ○ Target Brix change: +2–4° over 24h wither (Citane estimate — not formally documented for CLT).</td></tr>
+      <tr><td class="col-a">pH (meter or strips)</td><td class="col-b">After fermentation · After brew</td><td>Fermentation lowers pH as organic acids develop. Brew pH affects mouthfeel. CLT brew pH documented at 5.57–7.06 depending on altitude and variety. ● Fibrianto et al. 2024</td></tr>
+      <tr><td class="col-a">Sensory — colour</td><td class="col-b">After wither · After drying</td><td>Most reliable visual process marker. Green → yellow-green (oolong window) → copper-red (black) → dark brown (roast).</td></tr>
+      <tr><td class="col-a">Sensory — aroma</td><td class="col-b">After wither · After drying · After brew</td><td>Primary quality signal. Green aldehydes for green target. Floral-sweet for oolong. Off-notes: sour, musty, acrid = process failure.</td></tr>
+      <tr><td class="col-a">Batch documentation</td><td class="col-b">All stages</td><td>Harvest date/time, leaf maturity, wither start/end time and temp, manipulation type, fermentation duration, drying method and duration, final sensory notes. Repeat success requires documentation.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note-box">The single most important QC tool is a batch log. Without it, a successful batch cannot be reliably repeated and a failed batch cannot be diagnosed. A simple handwritten card per batch is sufficient.</div>
+</div>
+
+<hr class="ruled">
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <p>The Citane Process Compass · KoffyKraft / Thumpassery Estate · Karavaloor, Kollam, Kerala, India</p>
+  <p style="margin-top:4px;">Compiled and editorially structured by Citane / KoffyKraft. Source research belongs to original authors. Traditional knowledge belongs to communities of origin. Unpublished adaptations (○) are field observations not yet formally validated.</p>
+  <p style="margin-top:8px;"><a href="visitor-lounge.html" style="color:var(--accent);text-decoration:none;">← Return to the Library</a> &nbsp;·&nbsp; <a href="citane-logic-board.html" style="color:var(--accent);text-decoration:none;">Flavour Logic Board →</a></p>
+</div>
+
+</main>
+</body>
+</html>
