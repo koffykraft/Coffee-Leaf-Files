@@ -72,15 +72,29 @@ main { max-width: 760px; margin: 0 auto; padding: 16px 14px 60px; }
   #print-header img { height: 36px; width: auto; }
   #print-header .print-title { font-family: Georgia, serif; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #3d5a3e; }
   #print-header .print-estate { font-family: Georgia, serif; font-size: .65rem; color: #6b6560; }
-  body { background: #fff; }
-  #output { display: block !important; background: #fff !important; color: #000 !important; border: none; border-radius: 0; margin: 0; }
+  body { background: #fff; margin: 0; }
+  #output {
+    display: block !important; background: #fff !important; color: #000 !important;
+    border: none; border-radius: 0; margin: 0;
+    height: auto !important; max-height: none !important; overflow: visible !important;
+  }
   .out-head { padding: 0 0 16px; border-bottom: 2px solid #2a3a5a; }
   .eps-tag { background: #2a3a5a !important; color: #fff !important; }
   .out-head h3 { color: #2a3a5a !important; font-size: 1.1rem; }
-  .out-body { padding: 16px 0; }
-  .sec { border-bottom: 1px solid #d8d2c8 !important; padding-bottom: 14px; margin-bottom: 14px; }
+  .out-body {
+    padding: 16px 0;
+    height: auto !important; max-height: none !important; overflow: visible !important;
+  }
+  .sec {
+    border-bottom: 1px solid #d8d2c8 !important; padding-bottom: 14px; margin-bottom: 14px;
+    page-break-inside: avoid;
+    height: auto !important; overflow: visible !important;
+  }
   .sec-title { color: #8b6f47 !important; }
-  .sec-content { color: #1a1a1a !important; font-size: .85rem; }
+  .sec-content {
+    color: #1a1a1a !important; font-size: .85rem;
+    height: auto !important; max-height: none !important; overflow: visible !important;
+  }
   .out-foot { color: #999 !important; border-top: 1px solid #d8d2c8 !important; }
   #pdf-selections { display: block !important; }
 }
@@ -352,6 +366,26 @@ function showError(msg) {
   document.getElementById('output').style.display = 'none';
 }
 
+function cleanMarkdown(text) {
+  return text
+    // Remove horizontal rules
+    .replace(/^---+$/gm, '')
+    // Remove ## headings markers but keep the text
+    .replace(/^#{1,4}\s*/gm, '')
+    // Convert **bold** to <strong>
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    // Convert *italic* to <em>
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    // Clean up leading "- •" bullets
+    .replace(/^[-–]\s*[•·]\s*/gm, '• ')
+    // Clean up "- " bullets
+    .replace(/^[-–]\s+/gm, '• ')
+    // Convert line breaks to <br>
+    .replace(/\n{2,}/g, '<br><br>')
+    .replace(/\n/g, '<br>')
+    .trim();
+}
+
 function renderOutput(text) {
   const headings = [
     { key: 'EPSILON HYPOTHESIS', label: 'Epsilon Hypothesis' },
@@ -371,9 +405,9 @@ function renderOutput(text) {
     const contentStart = text.indexOf('\n', start) + 1;
     const end = nextRe ? text.search(nextRe) : text.length;
     const content = text.slice(contentStart, end > 0 ? end : text.length).trim();
-    sections.push({ label: h.label, content: content });
+    sections.push({ label: h.label, content: cleanMarkdown(content) });
   });
-  if (!sections.length) sections.push({ label: 'Generated Pathway', content: text });
+  if (!sections.length) sections.push({ label: 'Generated Pathway', content: cleanMarkdown(text) });
 
   document.getElementById('out-body').innerHTML = sections.map(function(sec) {
     return '<div class="sec"><div class="sec-title">' + sec.label +
