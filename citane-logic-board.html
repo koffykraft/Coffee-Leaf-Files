@@ -781,6 +781,7 @@ function handleChoice(grid, val) {
     if (type === 'leaf') cascadeFromLeaf(val);
     if (type === 'process') cascadeFromProcess(val);
     if (type === 'descriptor') cascadeFromDescriptor(val);
+    if (type === 'brew') cascadeFromBrew(val);
     tryGenerateOutput();
   });
 });
@@ -831,6 +832,52 @@ function cascadeFromProcess(proc) {
   if (proc === 'steamed' || proc === 'panfired' || proc === 'white') {
     const b = tempGrid.querySelector('[data-val="boiling"]');
     if (b) { b.classList.add('inactive'); if (STATE.temp==='boiling'){STATE.temp=null;b.classList.remove('selected');} }
+  }
+}
+
+function cascadeFromBrew(brew) {
+  const tempGrid = document.getElementById('grid-temp');
+  const durGrid  = document.getElementById('grid-duration');
+
+  // Reset all first
+  tempGrid.querySelectorAll('.choice-box').forEach(b => {
+    b.classList.remove('inactive');
+    const w = b.querySelector('.why'); if(w) w.remove();
+  });
+  durGrid.querySelectorAll('.choice-box').forEach(b => {
+    b.classList.remove('inactive');
+    const w = b.querySelector('.why'); if(w) w.remove();
+  });
+
+  function inactivate(grid, vals, reason) {
+    vals.forEach(v => {
+      const b = grid.querySelector('[data-val="' + v + '"]');
+      if (!b) return;
+      b.classList.add('inactive');
+      if (!b.querySelector('.why')) {
+        const why = document.createElement('span');
+        why.className = 'why';
+        why.textContent = reason;
+        b.appendChild(why);
+      }
+      if (STATE.temp === v)     { STATE.temp = null;     b.classList.remove('selected'); }
+      if (STATE.duration === v) { STATE.duration = null; b.classList.remove('selected'); }
+    });
+  }
+
+  if (brew === 'cold') {
+    // Cold brew: only cold temp, only extended cold duration
+    inactivate(tempGrid, ['low','medium','high','boiling'], 'Not compatible with cold brew');
+    inactivate(durGrid,  ['short','medium','long'],         'Cold brew requires extended time');
+  } else if (brew === 'infusion') {
+    // Infusion: no boiling (that is decoction), no extended cold
+    inactivate(tempGrid, ['boiling'], 'Boiling temperature is decoction, not infusion');
+    inactivate(tempGrid, ['cold'],    'Cold is cold brew, not infusion');
+    inactivate(durGrid,  ['cold'],    'Extended cold is for cold brew only');
+  } else if (brew === 'decoction') {
+    // Decoction: only high or boiling temp, only long duration
+    inactivate(tempGrid, ['cold','low','medium'], 'Decoction requires high heat');
+    inactivate(durGrid,  ['short','cold'],        'Decoction requires extended brew time');
   }
 }
 
