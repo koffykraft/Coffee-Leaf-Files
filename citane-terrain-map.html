@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citane · Terrain Map</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --parchment: #f7f4ef;
+  --cream: #fdfbf8;
+  --ruled: #d8d2c8;
+  --muted: #6b6560;
+  --accent: #8b6f47;
+
+  /* Zone colours */
+  --field:    #3d5a3e;
+  --harvest:  #7a9a5a;
+  --inhand:   #c8a84b;
+  --transform:#d4784a;
+  --brew:     #5888a0;
+  --cup:      #8b6f47;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: Georgia, serif;
+  background: var(--ink);
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(10,10,10,.92);
+  padding: 10px 14px;
+  display: flex; align-items: center; gap: 10px;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.brand { color: #fff; font-size: .85rem; letter-spacing: .13em; text-transform: uppercase; }
+.sep { color: #444; }
+.page-t { color: #888; font-size: .72rem; }
+.back { margin-left: auto; color: #666; font-size: .68rem; text-decoration: none; }
+.back:hover { color: #aaa; }
+.help-btn {
+  background: rgba(255,255,255,.08); border: none; border-radius: 50%;
+  width: 22px; height: 22px; color: #888; font-size: .7rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+
+/* CANVAS */
+#map-canvas {
+  position: fixed;
+  top: 42px; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  cursor: grab;
+}
+#map-canvas.dragging { cursor: grabbing; }
+
+/* ZONE LABELS — painted on canvas bg */
+.zone-label {
+  position: absolute;
+  font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  font-family: Georgia, serif;
+  pointer-events: none;
+  opacity: .22;
+  font-weight: bold;
+}
+
+/* SVG CONNECTIONS */
+svg#edges {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* NODES */
+.node {
+  position: absolute;
+  border-radius: 4px;
+  padding: 7px 11px;
+  cursor: grab;
+  z-index: 5;
+  min-width: 70px;
+  text-align: center;
+  transition: box-shadow .15s;
+  touch-action: none;
+}
+.node:active { cursor: grabbing; }
+.node h4 { font-size: .72rem; font-weight: bold; line-height: 1.2; margin-bottom: 2px; }
+.node p  { font-size: .58rem; opacity: .7; line-height: 1.2; }
+
+.node.active {
+  z-index: 20;
+  box-shadow: 0 0 0 2px #fff, 0 4px 20px rgba(0,0,0,.6) !important;
+}
+.node.connected-to {
+  z-index: 10;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.4), 0 2px 12px rgba(0,0,0,.4) !important;
+}
+
+/* DETAIL PANEL */
+#detail {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(10,10,10,.96);
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 14px 16px 20px;
+  z-index: 150;
+  transform: translateY(100%);
+  transition: transform .25s ease;
+  max-height: 55vh;
+  overflow-y: auto;
+  backdrop-filter: blur(12px);
+}
+#detail.show { transform: translateY(0); }
+
+.det-zone {
+  font-size: .58rem; letter-spacing: .16em; text-transform: uppercase;
+  opacity: .4; margin-bottom: 5px;
+}
+.det-name { font-size: 1rem; font-weight: normal; margin-bottom: 8px; }
+.det-body { font-size: .8rem; line-height: 1.72; opacity: .82; margin-bottom: 10px; }
+.det-connects { margin-top: 8px; }
+.det-connects-title { font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; opacity: .35; margin-bottom: 6px; }
+.det-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.det-tag {
+  font-size: .68rem; padding: 3px 9px; border-radius: 2px;
+  background: rgba(255,255,255,.08);
+  cursor: pointer;
+}
+.det-tag:hover { background: rgba(255,255,255,.18); }
+.det-tag.upstream { background: rgba(100,180,100,.15); }
+.det-tag.downstream { background: rgba(180,120,80,.15); }
+
+.det-close {
+  position: absolute; top: 10px; right: 12px;
+  background: none; border: none; color: rgba(255,255,255,.3);
+  font-size: 1.1rem; cursor: pointer;
+}
+
+/* FUZZY INDICATORS */
+.fuzz-tag {
+  display: inline-block; font-size: .58rem; padding: 1px 6px;
+  border-radius: 2px; margin-left: 5px; vertical-align: middle;
+}
+.fuzz-high   { background: rgba(200,80,80,.3);  color: #f4a0a0; }
+.fuzz-medium { background: rgba(200,160,60,.3); color: #f4d080; }
+.fuzz-low    { background: rgba(80,160,80,.3);  color: #a0d4a0; }
+
+/* LEGEND */
+#legend-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.88);
+  z-index: 300;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+#legend-overlay.show { display: block; }
+.leg-inner { max-width: 480px; margin: 0 auto; }
+.leg-inner h3 { font-size: .9rem; font-weight: normal; margin-bottom: 16px; opacity: .7; }
+.leg-zone { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: .78rem; opacity: .8; }
+.leg-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+.leg-close { display: block; margin-top: 20px; background: none; border: 1px solid rgba(255,255,255,.2); color: #aaa; padding: 8px 18px; font-family: Georgia, serif; font-size: .78rem; cursor: pointer; border-radius: 2px; }
+.leg-note { font-size: .72rem; opacity: .4; margin-top: 14px; line-height: 1.65; font-style: italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Citane</span>
+  <span class="sep">/</span>
+  <span class="page-t">Terrain Map — Plant to Sip</span>
+  <button class="help-btn" id="help-btn">?</button>
+  <a class="back" href="index.html">← Library</a>
+</nav>
+
+<div id="map-canvas">
+
+  <!-- Zone labels -->
+  <div class="zone-label" style="color:var(--field);left:3%;top:12%">Field</div>
+  <div class="zone-label" style="color:var(--harvest);left:22%;top:8%">Harvest</div>
+  <div class="zone-label" style="color:var(--inhand);left:42%;top:5%">In Hand</div>
+  <div class="zone-label" style="color:var(--transform);left:60%;top:8%">Transform</div>
+  <div class="zone-label" style="color:var(--brew);left:78%;top:12%">Brew</div>
+  <div class="zone-label" style="color:var(--cup);left:88%;top:40%">Cup</div>
+
+  <!-- SVG edges -->
+  <svg id="edges" viewBox="0 0 1400 800" preserveAspectRatio="none"></svg>
+
+  <!-- ═══ FIELD ZONE ═══ -->
+  <div class="node" id="n-canopy"
+    style="left:3%;top:20%;background:rgba(61,90,62,.35);border:1.5px solid var(--field);color:#c8e8c8;"
+    data-zone="Field" data-color="var(--field)"
+    data-connects-to="n-light,n-temp-field,n-leaf-age"
+    data-desc="The canopy above the leaf determines what light reaches it — quality, quantity, duration. Rubber shade at Thumpassery at 130m creates diffused light. This directly shapes the carotenoid and chlorogenic acid profile of the leaf before harvest even begins."
+    data-fuzz="low"
+    data-fuzz-note="Well documented. Light quality → compound profile is established chemistry.">
+    <h4>Canopy</h4><p>Shade · Cover</p>
+  </div>
+
+  <div class="node" id="n-light"
+    style="left:3%;top:38%;background:rgba(61,90,62,.35);border:1.5px solid var(--field);color:#c8e8c8;"
+    data-zone="Field" data-color="var(--field)"
+    data-connects-to="n-canopy,n-leaf-age,n-harvest-time"
+    data-desc="Light intensity and spectrum drive ROS production, carotenoid accumulation, and chlorogenic acid synthesis. Young leaves under rubber canopy at 130m receive PAR ~30-60% of full sun. This lower PAR correlates with higher mangiferin and altered ionone precursor pools compared to open-canopy leaves. The leaf is already accumulating its flavour chemistry before it is touched."
+    data-fuzz="medium"
+    data-fuzz-note="Light effects on compound profiles are documented generally. Estate-specific PAR data for Thumpassery rubber canopy not formally measured.">
+    <h4>Light</h4><p>PAR · Spectrum · Duration</p>
+  </div>
+
+  <div class="node" id="n-season"
+    style="left:3%;top:56%;background:rgba(61,90,62,.35);border:1.5px solid var(--field);color:#c8e8c8;"
+    data-zone="Field" data-color="var(--field)"
+    data-connects-to="n-humidity-field,n-temp-field,n-harvest-time"
+    data-desc="Kerala has three distinct seasons that change the leaf chemistry and the processing window. Southwest monsoon (Jun–Sep): high humidity, lower light, slower enzyme activity post-harvest. Post-monsoon (Oct–Nov): optimal conditions, moderate humidity. Summer (Feb–May): high temperature accelerates all enzyme activity — transfer and processing windows shrink."
+    data-fuzz="medium"
+    data-fuzz-note="Seasonal effects on CLT compound profiles not formally studied at Thumpassery. Inferred from general plant physiology and regional climate data.">
+    <h4>Season</h4><p>Monsoon · Dry · Transition</p>
+  </div>
+
+  <div class="node" id="n-leaf-age"
+    style="left:12%;top:28%;background:rgba(61,90,62,.35);border:1.5px solid var(--field);color:#c8e8c8;"
+    data-zone="Field" data-color="var(--field)"
+    data-connects-to="n-canopy,n-light,n-pluck-method,n-harvest-time"
+    data-desc="Leaf position on branch determines chemistry. 1st–3rd from tip: young flush, highest mangiferin, hexanal, (E,Z)-2,6-nonadienal, α-ionone precursors, low tannin. 5th–7th: mature, higher tannin, lower green volatiles, higher lipid, more structurally robust. Beyond 7th: post-mature, degrading chlorophyll, elevated β-carotene breakdown. The position decision is made before anything else."
+    data-fuzz="low"
+    data-fuzz-note="Documented. Acidri et al. 2020, Fibrianto et al. 2024, Yohannis et al. 2026 all specify leaf position effects on compound profiles.">
+    <h4>Leaf Position</h4><p>1st–3rd · 5th–7th · Beyond</p>
+  </div>
+
+  <div class="node" id="n-temp-field"
+    style="left:12%;top:48%;background:rgba(61,90,62,.35);border:1.5px solid var(--field);color:#c8e8c8;"
+    data-zone="Field" data-color="var(--field)"
+    data-connects-to="n-season,n-harvest-time,n-enzyme-clock"
+    data-desc="Leaf surface temperature at harvest is not ambient temperature. In full sun at midday, leaf surface temperature at Karavaloor can be 5–8°C above ambient. This matters because enzyme activity in the leaf begins the moment the stem is cut. Higher leaf temperature = faster enzyme clock from the first second."
+    data-fuzz="high"
+    data-fuzz-note="Leaf surface temperature at Thumpassery not formally measured. General physiology well understood; estate-specific data absent.">
+    <h4>Field Temp</h4><p>Ambient · Leaf surface</p>
+  </div>
+
+  <div class="node" id="n-humidity-field"
+    style="left:5%;top:70%;background:rgba(61,90,62,.35);border:1.5px solid var(--field);color:#c8e8c8;"
+    data-zone="Field" data-color="var(--field)"
+    data-connects-to="n-season,n-surface-moisture"
+    data-desc="Field humidity affects surface moisture on the leaf at harvest, which in turn affects surface enzyme activity and susceptibility to contamination. Monsoon season: surface moisture high even without rain — dewpoint stays elevated. Wet leaves at harvest are a contamination risk for green and oolong targets."
+    data-fuzz="medium"
+    data-fuzz-note="General principle documented. Specific RH threshold for Thumpassery harvest decision not formally established.">
+    <h4>Field Humidity</h4><p>RH · Dew · Rain</p>
+  </div>
+
+  <!-- ═══ HARVEST ZONE ═══ -->
+  <div class="node" id="n-harvest-time"
+    style="left:24%;top:15%;background:rgba(122,154,90,.25);border:1.5px solid var(--harvest);color:#d8ecc8;"
+    data-zone="Harvest" data-color="var(--harvest)"
+    data-connects-to="n-leaf-age,n-temp-field,n-enzyme-clock,n-pluck-method"
+    data-desc="Time of harvest is the first controllable decision. Early morning (5–7 AM): leaf temperature lowest, enzyme activity slowest, longest window before first processing step must begin. Midday (11 AM–3 PM): not recommended — leaf temperature high, enzyme clock accelerated from first second. Late afternoon (4–6 PM): intermediate, acceptable. Traditional Engere practice and the Citane Trial Protocol both favour early morning."
+    data-fuzz="low"
+    data-fuzz-note="Well supported. Citane Trial Protocol Phase 1 tests 5 harvest times explicitly. Early morning recommendation consistent with general tea harvest practice.">
+    <h4>Harvest Time</h4><p>5 AM · Midday · Evening</p>
+  </div>
+
+  <div class="node" id="n-pluck-method"
+    style="left:24%;top:33%;background:rgba(122,154,90,.25);border:1.5px solid var(--harvest);color:#d8ecc8;"
+    data-zone="Harvest" data-color="var(--harvest)"
+    data-connects-to="n-leaf-age,n-harvest-time,n-surface-damage,n-enzyme-clock"
+    data-desc="How the leaf is separated from the plant matters. Clean snap at stem: minimal cell damage at cut point. Tearing: more cell wall disruption at cut, faster enzyme activation at wound site. Strip picking (multiple leaves in one motion): higher speed but risks compression bruising on retained leaves. Single-leaf picking is slower but creates less field damage to the batch."
+    data-fuzz="medium"
+    data-fuzz-note="Principle of wound-site enzyme activation well documented. Specific comparison of plucking methods for CLT not formally studied.">
+    <h4>Pluck Method</h4><p>Snap · Tear · Strip</p>
+  </div>
+
+  <div class="node" id="n-enzyme-clock"
+    style="left:22%;top:52%;background:rgba(122,154,90,.25);border:1.5px solid var(--harvest);color:#d8ecc8;"
+    data-zone="Harvest" data-color="var(--harvest)"
+    data-connects-to="n-harvest-time,n-pluck-method,n-temp-field,n-transport,n-wither"
+    data-desc="The enzyme clock starts at cut. Polyphenol oxidase, peroxidase, lipoxygenase all activate at wound sites. The clock runs faster at higher temperatures. It cannot be paused — only slowed (cold) or stopped (heat). Every minute between harvest and enzyme arrest is the leaf changing. For green target: clock must be stopped within 30 min. For oolong: clock is deliberately allowed to run 12–24h. For black: 24h."
+    data-fuzz="low"
+    data-fuzz-note="Enzyme activation at wound site is well-documented plant physiology. Temperature-activity relationships documented in processing literature.">
+    <h4>Enzyme Clock</h4><p>Starts at cut · Temp-dependent</p>
+  </div>
+
+  <div class="node" id="n-field-hold"
+    style="left:34%;top:22%;background:rgba(122,154,90,.25);border:1.5px solid var(--harvest);color:#d8ecc8;"
+    data-zone="Harvest" data-color="var(--harvest)"
+    data-connects-to="n-pluck-method,n-transport,n-container,n-enzyme-clock"
+    data-desc="Time in the field between picking and leaving for processing. Even 20 minutes in field conditions can matter. Key variables: sun exposure of the collection container, stacking depth, airflow. A single-layer bamboo basket in shade is very different from a plastic sack in direct sun. The field hold is often invisible in protocols but is where the first quality differentials emerge."
+    data-fuzz="high"
+    data-fuzz-note="Field hold effects specific to Thumpassery conditions not formally documented. General principles of post-harvest enzyme activity apply.">
+    <h4>Field Hold</h4><p>Container · Sun · Stack depth</p>
+  </div>
+
+  <!-- ═══ IN-HAND ZONE ═══ -->
+  <div class="node" id="n-container"
+    style="left:42%;top:12%;background:rgba(200,168,75,.2);border:1.5px solid var(--inhand);color:#f0e0a0;"
+    data-zone="In Hand" data-color="var(--inhand)"
+    data-connects-to="n-field-hold,n-transport,n-surface-moisture"
+    data-desc="Container type determines the microenvironment around the leaf during field hold and transport. Bamboo basket: breathable, allows CO₂ escape, prevents anaerobic build-up. Plastic bag sealed: CO₂ accumulates, anaerobic conditions within 1–2h at 28°C — unintended fermentation begins. Open tray: good airflow but surface drying begins. The container is a processing variable, not just packaging."
+    data-fuzz="low"
+    data-fuzz-note="CO₂ accumulation in sealed containers and resulting anaerobic conditions are well-understood principles. CLT-specific studies not available but the chemistry is not in question.">
+    <h4>Container</h4><p>Bamboo · Plastic · Tray</p>
+  </div>
+
+  <div class="node" id="n-transport"
+    style="left:43%;top:28%;background:rgba(200,168,75,.2);border:1.5px solid var(--inhand);color:#f0e0a0;"
+    data-zone="In Hand" data-color="var(--inhand)"
+    data-connects-to="n-container,n-field-hold,n-enzyme-clock,n-surface-damage,n-pre-process"
+    data-desc="Transport from field to processing. Duration, shading, and agitation are the three variables. Duration: target under 2h, absolute maximum 4h. Shading: shaded transport maintains lower leaf temperature. Agitation: uneven roads cause compression and bruising — each bump is a pluck-point stress event on the leaf mass. Single-layer transport is ideal; practically, loose arrangement in shallow containers is the achievable standard."
+    data-fuzz="medium"
+    data-fuzz-note="Documented in citaneharvestpreprocessoperations.pdf. Transport time limits established from general post-harvest physiology.">
+    <h4>Transport</h4><p>Duration · Shade · Agitation</p>
+  </div>
+
+  <div class="node" id="n-surface-damage"
+    style="left:52%;top:18%;background:rgba(200,168,75,.2);border:1.5px solid var(--inhand);color:#f0e0a0;"
+    data-zone="In Hand" data-color="var(--inhand)"
+    data-connects-to="n-pluck-method,n-transport,n-surface-moisture,n-pre-process"
+    data-desc="Physical damage to the leaf surface before intentional processing begins. Sources: compression bruising during field hold or transport, insect damage present at harvest, mechanical abrasion during handling. Each damage point is an enzyme activation site — uncontrolled, unintended, unpredictable. Degree of surface damage on arrival is the first quality checkpoint and determines how much adjustment is needed in all subsequent stages."
+    data-fuzz="medium"
+    data-fuzz-note="Wound-site enzyme activation is documented. Assessment of damage degree at Thumpassery is currently observational.">
+    <h4>Surface Damage</h4><p>Bruise · Abrasion · Insect</p>
+  </div>
+
+  <div class="node" id="n-surface-moisture"
+    style="left:44%;top:45%;background:rgba(200,168,75,.2);border:1.5px solid var(--inhand);color:#f0e0a0;"
+    data-zone="In Hand" data-color="var(--inhand)"
+    data-connects-to="n-humidity-field,n-container,n-pre-process,n-wither"
+    data-desc="Surface moisture on the leaf at the start of processing. Sources: field humidity (dew, rain), wash decision, condensation in transport container. Relevance: surface moisture changes the enzyme environment. For green target: surface moisture accelerates unwanted surface fermentation before enzyme arrest. For decoction: irrelevant. The wash decision (or no-wash decision) lives here."
+    data-fuzz="low"
+    data-fuzz-note="Surface moisture effects on enzyme activity are well understood. Wash decision protocols documented in Process Compass and citaneharvestpreprocessoperations.pdf.">
+    <h4>Surface Moisture</h4><p>Dew · Rain · Wash decision</p>
+  </div>
+
+  <div class="node" id="n-pre-process"
+    style="left:54%;top:35%;background:rgba(200,168,75,.2);border:1.5px solid var(--inhand);color:#f0e0a0;"
+    data-zone="In Hand" data-color="var(--inhand)"
+    data-connects-to="n-transport,n-surface-damage,n-surface-moisture,n-wither,n-enzyme-clock"
+    data-desc="The assessment and preparation step at the facility. Visual inspection (damage, disease, off-odour check), batch assignment, cleaning decision, weight recording. This is also a holding period — facility temperature and ventilation matter. Pre-process holding at Kerala ambient (28–32°C) with no ventilation in a sealed space can add 1–2h of unintended enzyme activity before processing begins."
+    data-fuzz="medium"
+    data-fuzz-note="Framework documented in citaneharvestpreprocessoperations.pdf. Facility-specific conditions at Thumpassery not yet formally characterised.">
+    <h4>Pre-Process</h4><p>Inspection · Holding · Assignment</p>
+  </div>
+
+  <!-- ═══ TRANSFORM ZONE ═══ -->
+  <div class="node" id="n-wither"
+    style="left:62%;top:10%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-enzyme-clock,n-pre-process,n-surface-moisture,n-wither-env,n-manipulation"
+    data-desc="The first intentional transformation stage. Duration and temperature together determine how far enzymatic oxidation proceeds before the next intervention. 0h = green style (no wither). 12–24h = oolong window (partial oxidation, ionone development). 24h+ = black style (full oxidation commitment). The wither is not passive — it is an active enzymatic process being allowed to proceed at a chosen rate."
+    data-fuzz="low"
+    data-fuzz-note="Wither duration effects on compound profiles documented. Fibrianto et al. 2025 specifies 12h/24h protocols for oolong and black CLT.">
+    <h4>Wither</h4><p>Duration · Rate · Endpoint</p>
+  </div>
+
+  <div class="node" id="n-wither-env"
+    style="left:62%;top:27%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-wither,n-manipulation"
+    data-desc="The environment during withering shapes the rate and character of the enzymatic process. Temperature: above 30°C accelerates oxidation — oolong target can shift to black profile within 6–8h. Humidity: below 50% desiccates leaf surface, slowing enzyme activity but risking brittle leaves. Airflow: too much air dries surface faster than bulk. Light: UV accelerates carotenoid conversion. Shade wither gives a slower, more controlled window."
+    data-fuzz="medium"
+    data-fuzz-note="General wither environment effects documented from tea processing literature and CLT papers. Specific Thumpassery conditions not formally characterised.">
+    <h4>Wither Environment</h4><p>Temp · Humidity · Light · Air</p>
+  </div>
+
+  <div class="node" id="n-manipulation"
+    style="left:72%;top:15%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-wither,n-cell-rupture,n-wring-hold,n-reaction"
+    data-desc="Mechanical intervention on the leaf — rolling, wringing, cutting, bruising. Controls the degree of cell wall rupture, which determines how aggressively intracellular compounds contact oxygen and enzymes. The cotton tourniquet wring at Thumpassery is a specific technique: the leaf mass is wrapped and twisted to a target tension, producing both surface and internal rupture. Intensity and uniformity are the key variables."
+    data-fuzz="high"
+    data-fuzz-note="Manipulation effects on oxidation rate are understood in principle. The specific cotton tourniquet method at Thumpassery is an estate practice not yet formally documented.">
+    <h4>Manipulation</h4><p>Roll · Wring · Cut · Bruise</p>
+  </div>
+
+  <div class="node" id="n-cell-rupture"
+    style="left:72%;top:32%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-manipulation,n-reaction,n-wring-hold"
+    data-desc="The degree of physical cell wall disruption from manipulation. Light roll: ~10–15% rupture estimate — surface disruption, enzymes partially exposed. Medium wring: ~30–40% — significant internal disruption. Heavy crush: maximum disruption, used for decoction. Degree of rupture sets the speed of the subsequent reaction: more rupture = faster oxidation cascade. The same wring at 22°C and at 30°C produces different outcomes because enzyme activity rate changes."
+    data-fuzz="high"
+    data-fuzz-note="Cell rupture % is an observational estimate. Formal measurement requires microscopy. All intensity descriptions are field approximations — Citane Adaptation, unpublished.">
+    <h4>Cell Rupture</h4><p>Degree · Uniformity · Rate</p>
+  </div>
+
+  <div class="node" id="n-wring-hold"
+    style="left:62%;top:46%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-manipulation,n-cell-rupture,n-hold-treatment,n-post-wring-temp,n-reaction"
+    data-desc="The period during which the leaf mass is held in the wrung/twisted position. This is where Thumpassery practice diverges most from documented processing. Duration: 30 min to overnight. During hold, the compressed leaf mass has reduced oxygen access at the centre — creating a gradient: outer layers oxidise faster, inner layers slower. The tension itself is a continuous mechanical stress that may affect enzyme distribution."
+    data-fuzz="high"
+    data-fuzz-note="Wring hold as a deliberate technique is a Citane estate practice. Not formally documented in CLT literature. Mechanistic reasoning drawn from general enzyme chemistry and compression physiology.">
+    <h4>Wring Hold</h4><p>Duration · Tension · Position</p>
+  </div>
+
+  <div class="node" id="n-post-wring-temp"
+    style="left:74%;top:47%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-wring-hold,n-reaction,n-manipulation"
+    data-desc="Wringing generates heat through mechanical energy. The leaf mass temperature rises 2–3°C above ambient during and immediately after wringing. This post-wring temperature spike accelerates enzyme activity in the critical window just after cell rupture — when enzymes and substrates first contact each other. Monitoring post-wring temperature and adjusting hold duration or environment accordingly is an important control point."
+    data-fuzz="high"
+    data-fuzz-note="Mechanical heat generation in leaf rolling is a known phenomenon in tea processing. Specific measurements at Thumpassery not yet made. Field observation only.">
+    <h4>Post-Wring Temp</h4><p>+2–3°C · Duration of spike</p>
+  </div>
+
+  <div class="node" id="n-hold-treatment"
+    style="left:63%;top:63%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-wring-hold,n-reaction,n-koji-contact"
+    data-desc="What is done to the wrung leaf mass during the hold period. Options: dry hold (nothing added), plain water contact (towel or spray), Koji water soak (Koji spore suspension applied to the wrapped leaf mass), Koji mist (light surface application). Each treatment changes the enzyme and microbial environment during the hold. Water introduces osmotic effects. Koji introduces Aspergillus oryzae enzymatic activity."
+    data-fuzz="high"
+    data-fuzz-note="All hold treatment variations beyond dry hold are Citane Adaptation — unpublished. Mechanistic reasoning grounded in Koji fermentation science and enzyme chemistry.">
+    <h4>Hold Treatment</h4><p>Dry · Water · Koji · Mist</p>
+  </div>
+
+  <div class="node" id="n-koji-contact"
+    style="left:52%;top:65%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-hold-treatment,n-reaction"
+    data-desc="If Koji (Aspergillus oryzae) is introduced during hold or as a separate step, its amylase, protease, and lipase enzymes act on the leaf substrate. Amylase converts leaf starches to simple sugars (sweetness potential). Protease releases amino acids (umami, savoury potential, also Maillard precursors for drying stage). Lipase acts on leaf lipids (potential ester development during subsequent drying)."
+    data-fuzz="high"
+    data-fuzz-note="All Koji-CLT combinations are Citane Adaptation — unpublished theoretical pathways. Koji enzyme activities in food systems are well documented. Application to CLT is speculative.">
+    <h4>Koji Contact</h4><p>Amylase · Protease · Lipase</p>
+  </div>
+
+  <div class="node" id="n-reaction"
+    style="left:75%;top:60%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-cell-rupture,n-wring-hold,n-hold-treatment,n-drying,n-ferment"
+    data-desc="The active enzymatic and microbial reaction window. Decision: let run (continue oxidation toward target), stall (monitor and intervene at chosen oxidation state), stop (immediate heat arrest). Observable signals: colour change (green → yellow-green → copper-red → dark brown), aroma shift (grassy → floral/fruity → woody/earthy), texture change (firm → soft → collapsing)."
+    data-fuzz="low"
+    data-fuzz-note="Observable endpoint signals and decision tree documented in citaneprocessingvariablesmindmap.pdf. Enzyme temperature ranges documented in literature.">
+    <h4>Reaction Window</h4><p>Let run · Stall · Stop</p>
+  </div>
+
+  <div class="node" id="n-ferment"
+    style="left:63%;top:78%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-reaction,n-drying"
+    data-desc="If fermentation is the chosen pathway: yeast (Saccharomyces cerevisiae, 12h, 25°C, anaerobic) or wild fermentation (no starter, same conditions, variable outcomes). Yeast fermentation produces ethyl esters and amplifies floral/fruity character. Wild fermentation is less predictable. Both pathways documented in Steger et al. 2022 — top 2 ranked teas were yeast-fermented."
+    data-fuzz="low"
+    data-fuzz-note="Yeast and wild fermentation documented in Steger et al. 2022. Specific starter quantities and protocols also in Process Compass.">
+    <h4>Fermentation</h4><p>Yeast · Wild · Duration</p>
+  </div>
+
+  <div class="node" id="n-drying"
+    style="left:78%;top:35%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-reaction,n-ferment,n-storage"
+    data-desc="Moisture reduction and enzyme arrest. Method determines volatile retention. Oven (70°C, 4h): standard, reliable. Sun (48h+): slow, preserves floral ionones but weather-dependent. Flat-pan roast (Kuti): high heat, creates pyrazines and guaiacol simultaneously. Smoke-dry (Kawa Daun): cassia wood volatile oils absorbed into leaf during drying. Temperature too high drives off aromatic volatiles before they stabilise."
+    data-fuzz="low"
+    data-fuzz-note="Drying parameters documented in Fibrianto et al. 2025, Steger et al. 2022, and Process Compass.">
+    <h4>Drying</h4><p>Method · Temp · Duration</p>
+  </div>
+
+  <div class="node" id="n-storage"
+    style="left:80%;top:52%;background:rgba(212,120,74,.25);border:1.5px solid var(--transform);color:#f4c8a0;"
+    data-zone="Transform" data-color="var(--transform)"
+    data-connects-to="n-drying,n-brew-leaf"
+    data-desc="Post-drying holding before brew. Container (airtight vs breathable), temperature, humidity, and duration all matter. Airtight at 15–25°C: estimated 6–12 months. Breathable: 1–3 months. Warm/humid: accelerated oxidation of remaining volatiles. Optional resting period (3–7 days) allows aroma integration — some profiles benefit from this. The leaf is still changing slowly even after drying."
+    data-fuzz="medium"
+    data-fuzz-note="Storage parameters from citaneprocessingvariablesmindmap.pdf. CLT-specific shelf life data limited. Estimates extrapolated from tea storage literature.">
+    <h4>Storage</h4><p>Container · Temp · Duration</p>
+  </div>
+
+  <!-- ═══ BREW ZONE ═══ -->
+  <div class="node" id="n-brew-leaf"
+    style="left:82%;top:15%;background:rgba(88,136,160,.25);border:1.5px solid var(--brew);color:#a8d0e8;"
+    data-zone="Brew" data-color="var(--brew)"
+    data-connects-to="n-storage,n-brew-water,n-brew-method"
+    data-desc="The leaf as it enters the brew. Its entire history — variety, harvest time, wither, manipulation, reaction window, drying, storage duration — is present in its current chemical state. Leaf-to-water ratio is the first brew decision: 1g:100ml (Fibrianto et al. 2024 documented ratio); 2g:200ml (Steger et al. 2022 standard). Ratio affects extraction intensity."
+    data-fuzz="low"
+    data-fuzz-note="Leaf-to-water ratios documented in multiple papers. Compound concentrations in brew well studied.">
+    <h4>Leaf at Brew</h4><p>Ratio · State · History</p>
+  </div>
+
+  <div class="node" id="n-brew-water"
+    style="left:82%;top:30%;background:rgba(88,136,160,.25);border:1.5px solid var(--brew);color:#a8d0e8;"
+    data-zone="Brew" data-color="var(--brew)"
+    data-connects-to="n-brew-leaf,n-brew-temp,n-brew-method"
+    data-desc="Water quality affects extraction and taste. Mineral content (hardness) changes how compounds bind and dissolve. Karavaloor water source not formally characterised. pH affects chlorogenic acid extraction rate and stability — Fibrianto et al. 2024 documents brew pH range 5.57–7.06 across varieties and altitudes. Filtered vs unfiltered, hard vs soft — each changes what the brew contains."
+    data-fuzz="high"
+    data-fuzz-note="Water effects on tea extraction are documented generally. Specific characterisation of Karavaloor water not available.">
+    <h4>Brew Water</h4><p>Mineral · pH · Source</p>
+  </div>
+
+  <div class="node" id="n-brew-method"
+    style="left:82%;top:46%;background:rgba(88,136,160,.25);border:1.5px solid var(--brew);color:#a8d0e8;"
+    data-zone="Brew" data-color="var(--brew)"
+    data-connects-to="n-brew-leaf,n-brew-water,n-brew-temp,n-brew-time,n-additions"
+    data-desc="Infusion (steep, no boil): gentler extraction, volatile compounds preserved. Decoction (boil): more aggressive extraction, higher mineral and structural compound release, some volatile loss. Cold brew (24h, ambient): very different extraction profile — lower caffeine, different acid balance, higher sweetness perception. Method changes not just what comes out but the ratio of what comes out."
+    data-fuzz="low"
+    data-fuzz-note="Brew method effects documented in Fibrianto et al. 2024, Yohannis et al. 2026, Steger et al. 2022.">
+    <h4>Brew Method</h4><p>Infusion · Decoction · Cold</p>
+  </div>
+
+  <div class="node" id="n-brew-temp"
+    style="left:88%;top:22%;background:rgba(88,136,160,.25);border:1.5px solid var(--brew);color:#a8d0e8;"
+    data-zone="Brew" data-color="var(--brew)"
+    data-connects-to="n-brew-method,n-brew-time,n-cup"
+    data-desc="Water temperature at point of contact with leaf. RSM-optimised temperatures: 78°C for oolong CLT (Fibrianto et al. 2025); 95°C for 5 min for JAR-optimal decoction (Fibrianto et al. 2024). Higher temperature extracts more chlorogenic acids and tannins — increases bitterness. Lower temperature preserves volatile aromatic compounds but reduces phenolic extraction. Temperature is the primary bitterness lever."
+    data-fuzz="low"
+    data-fuzz-note="Documented. Multiple papers provide specific temperature optima for different CLT styles.">
+    <h4>Brew Temp</h4><p>74–78°C · 89–95°C · 100°C</p>
+  </div>
+
+  <div class="node" id="n-brew-time"
+    style="left:88%;top:38%;background:rgba(88,136,160,.25);border:1.5px solid var(--brew);color:#a8d0e8;"
+    data-zone="Brew" data-color="var(--brew)"
+    data-connects-to="n-brew-method,n-brew-temp,n-additions,n-cup"
+    data-desc="Duration of extraction. RSM-optimised: 8.5 min for oolong CLT at 78°C (Fibrianto et al. 2025); 5 min for decoction at 95°C (Fibrianto et al. 2024). Over-steeping selectively over-extracts bitter phenolics — the aromatics have already been released, only the harsh compounds remain. Under-steeping produces dilute, incomplete flavour profile."
+    data-fuzz="low"
+    data-fuzz-note="Documented with specific optima from RSM studies. Fibrianto et al. 2024 and 2025 provide the primary data.">
+    <h4>Brew Time</h4><p>5 min · 8.5 min · 24h cold</p>
+  </div>
+
+  <div class="node" id="n-additions"
+    style="left:86%;top:55%;background:rgba(88,136,160,.25);border:1.5px solid var(--brew);color:#a8d0e8;"
+    data-zone="Brew" data-color="var(--brew)"
+    data-connects-to="n-brew-method,n-brew-time,n-cup"
+    data-desc="Additions change the cup fundamentally. Salt (Engere tradition): suppresses bitterness, amplifies umami, changes mineral character. Milk (Engere): binds tannins, softens astringency, creates completely different mouthfeel and flavour profile at 10% ratio. Spices (Engere/Chemo variants): add complexity but mask delicate green and floral notes. Each addition is a decision about what you want to preserve and what you are willing to change."
+    data-fuzz="low"
+    data-fuzz-note="Salt and milk effects in Engere documented in Yohannis et al. 2026, Awoke et al. 2026. Spice combinations in Chemo documented in Awoke et al. 2026.">
+    <h4>Additions</h4><p>Salt · Milk · Spice · None</p>
+  </div>
+
+  <!-- ═══ CUP ZONE ═══ -->
+  <div class="node" id="n-cup"
+    style="left:91%;top:65%;background:rgba(139,111,71,.3);border:1.5px solid var(--cup);color:#e8d0b0;"
+    data-zone="Cup" data-color="var(--cup)"
+    data-connects-to="n-brew-temp,n-brew-time,n-additions,n-serve-temp,n-sensory"
+    data-desc="The brew, before serving. At this point the chemistry is fixed — extraction is complete. What changes between here and the sip is serving temperature and serving vessel. Colour, aroma, and initial clarity are observable at this point and are the first quality signals."
+    data-fuzz="low"
+    data-fuzz-note="Observable at this point. No measurement required — sensory assessment.">
+    <h4>The Brew</h4><p>Colour · Clarity · Aroma</p>
+  </div>
+
+  <div class="node" id="n-serve-temp"
+    style="left:84%;top:72%;background:rgba(139,111,71,.3);border:1.5px solid var(--cup);color:#e8d0b0;"
+    data-zone="Cup" data-color="var(--cup)"
+    data-connects-to="n-cup,n-sensory"
+    data-desc="Serving temperature is the single most underestimated variable in the entire chain. Cold serving (10°C): dramatically amplifies sweetness perception, suppresses bitterness and astringency. Fibrianto et al. 2024 confirms this with their panel. Hot serving (60–70°C): amplifies bitterness, reduces sweetness perception. The same brew served hot and cold can taste like different products."
+    data-fuzz="low"
+    data-fuzz-note="Serving temperature effects on taste perception well documented. CLT-specific confirmation in Fibrianto et al. 2024.">
+    <h4>Serve Temp</h4><p>10°C · Warm · Hot</p>
+  </div>
+
+  <div class="node" id="n-sensory"
+    style="left:91%;top:78%;background:rgba(139,111,71,.3);border:1.5px solid var(--cup);color:#e8d0b0;"
+    data-zone="Cup" data-color="var(--cup)"
+    data-connects-to="n-cup,n-serve-temp"
+    data-desc="The final experience. Colour (visual). Aroma (orthonasal). First taste (immediate flavour). Aftertaste (retronasal, persistence). Body (mouthfeel, weight). Astringency (tannin-protein binding in mouth). Finish (how long the character persists and what remains). Each of these signals traces back through the entire chain — everything that happened to the leaf from plant to sip is present in this moment."
+    data-fuzz="low"
+    data-fuzz-note="Sensory evaluation frameworks documented across multiple papers. Fibrianto et al. 2025 uses ETI (Emotional Time Intensity) and FER for comprehensive sensory assessment.">
+    <h4>The Sip</h4><p>Colour · Aroma · Taste · Body · Finish</p>
+  </div>
+
+</div><!-- end map-canvas -->
+
+<!-- DETAIL PANEL -->
+<div id="detail">
+  <button class="det-close" id="det-close">×</button>
+  <div class="det-zone" id="det-zone"></div>
+  <div class="det-name" id="det-name"></div>
+  <div class="det-body" id="det-body"></div>
+  <div class="det-connects">
+    <div class="det-connects-title">Connects to</div>
+    <div class="det-tags" id="det-tags"></div>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div id="legend-overlay">
+  <div class="leg-inner">
+    <h3>Reading the terrain map</h3>
+    <div class="leg-zone"><div class="leg-dot" style="background:var(--field)"></div>Field — what shapes the leaf before harvest</div>
+    <div class="leg-zone"><div class="leg-dot" style="background:var(--harvest)"></div>Harvest — the act and its immediate consequences</div>
+    <div class="leg-zone"><div class="leg-dot" style="background:var(--inhand)"></div>In Hand — transport, holding, assessment</div>
+    <div class="leg-zone"><div class="leg-dot" style="background:var(--transform)"></div>Transform — wither, manipulation, reaction, drying</div>
+    <div class="leg-zone"><div class="leg-dot" style="background:var(--brew)"></div>Brew — extraction and addition decisions</div>
+    <div class="leg-zone"><div class="leg-dot" style="background:var(--cup)"></div>Cup — serving and sensory</div>
+    <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);">
+      <div style="font-size:.72rem;opacity:.5;margin-bottom:8px;">Evidence fuzz indicators</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:.7rem;">
+        <span><span class="fuzz-tag fuzz-low">low fuzz</span> — well documented</span>
+        <span><span class="fuzz-tag fuzz-medium">medium fuzz</span> — partially documented</span>
+        <span><span class="fuzz-tag fuzz-high">high fuzz</span> — field observation / theoretical</span>
+      </div>
+    </div>
+    <p class="leg-note">Tap any node to understand what it is and what it connects to. Drag nodes to reposition within their zone. The map is a scouting tool — not a fixed structure. It will change as understanding deepens.</p>
+    <button class="leg-close" id="leg-close">Close</button>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('map-canvas');
+const svg = document.getElementById('edges');
+const detail = document.getElementById('detail');
+let activeId = null;
+
+// ── NODE DATA ─────────────────────────────────────────────────────
+const nodes = document.querySelectorAll('.node');
+const NODE_MAP = {};
+nodes.forEach(n => { NODE_MAP[n.id] = n; });
+
+// ── CONNECTIONS ───────────────────────────────────────────────────
+function nodeCenter(el) {
+  const cr = canvas.getBoundingClientRect();
+  const er = el.getBoundingClientRect();
+  return {
+    x: ((er.left + er.width/2  - cr.left) / cr.width)  * 100,
+    y: ((er.top  + er.height/2 - cr.top)  / cr.height) * 100
+  };
+}
+
+function drawEdges(id) {
+  svg.innerHTML = '';
+  if (!id) return;
+  const src = NODE_MAP[id];
+  if (!src) return;
+  const connects = (src.dataset.connectsTo || '').split(',').map(s => s.trim()).filter(Boolean);
+  connects.forEach(tid => {
+    const tel = NODE_MAP[tid];
+    if (!tel) return;
+    const a = nodeCenter(src), b = nodeCenter(tel);
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', a.x+'%'); line.setAttribute('y1', a.y+'%');
+    line.setAttribute('x2', b.x+'%'); line.setAttribute('y2', b.y+'%');
+    line.setAttribute('stroke', 'rgba(255,255,255,0.18)');
+    line.setAttribute('stroke-width', '0.3');
+    svg.appendChild(line);
+  });
+}
+
+// ── DETAIL PANEL ──────────────────────────────────────────────────
+function showDetail(node) {
+  const d = node.dataset;
+  document.getElementById('det-zone').textContent = d.zone || '';
+  document.getElementById('det-name').innerHTML =
+    (d.name || node.querySelector('h4').textContent) +
+    (d.fuzz ? `<span class="fuzz-tag fuzz-${d.fuzz}" style="margin-left:8px;">${d.fuzz} fuzz</span>` : '');
+  document.getElementById('det-body').textContent = d.desc || '';
+
+  const connects = (d.connectsTo || '').split(',').map(s=>s.trim()).filter(Boolean);
+  const tagsEl = document.getElementById('det-tags');
+  tagsEl.innerHTML = '';
+  connects.forEach(tid => {
+    const tel = NODE_MAP[tid];
+    if (!tel) return;
+    const tag = document.createElement('span');
+    tag.className = 'det-tag';
+    tag.textContent = tel.querySelector('h4').textContent;
+    tag.style.borderLeft = `3px solid ${tel.dataset.color || '#888'}`;
+    tag.addEventListener('click', () => activateNode(tel));
+    tag.addEventListener('touchend', e => { e.preventDefault(); activateNode(tel); }, {passive:false});
+    tagsEl.appendChild(tag);
+  });
+
+  detail.classList.add('show');
+}
+
+function activateNode(node) {
+  nodes.forEach(n => n.classList.remove('active','connected-to'));
+  node.classList.add('active');
+  activeId = node.id;
+
+  const connects = (node.dataset.connectsTo||'').split(',').map(s=>s.trim()).filter(Boolean);
+  connects.forEach(tid => {
+    const t = NODE_MAP[tid]; if(t) t.classList.add('connected-to');
+  });
+
+  drawEdges(node.id);
+  showDetail(node);
+}
+
+// ── DRAG ─────────────────────────────────────────────────────────
+function makeDraggable(node) {
+  let dragging = false, moved = false;
+  let sx, sy, ox, oy;
+
+  function start(e) {
+    const t = e.touches ? e.touches[0] : e;
+    dragging = true; moved = false;
+    const cr = canvas.getBoundingClientRect();
+    const nr = node.getBoundingClientRect();
+    sx = t.clientX; sy = t.clientY;
+    ox = nr.left - cr.left; oy = nr.top - cr.top;
+    node.style.right = 'auto'; node.style.bottom = 'auto';
+    node.style.left = ox+'px'; node.style.top = oy+'px';
+    node.style.zIndex = 30;
+    e.preventDefault();
+  }
+
+  function move(e) {
+    if (!dragging) return;
+    const t = e.touches ? e.touches[0] : e;
+    const dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) moved = true;
+    if (!moved) return;
+    const cr = canvas.getBoundingClientRect();
+    const nr = node.getBoundingClientRect();
+    const nl = Math.max(0, Math.min(cr.width  - nr.width,  ox + dx));
+    const nt = Math.max(0, Math.min(cr.height - nr.height, oy + dy));
+    node.style.left = nl+'px'; node.style.top = nt+'px';
+    if (activeId === node.id) drawEdges(node.id);
+    e.preventDefault();
+  }
+
+  function end() {
+    if (!dragging) return;
+    dragging = false;
+    node.style.zIndex = activeId === node.id ? 20 : 5;
+    if (!moved) activateNode(node);
+    else if (activeId) drawEdges(activeId);
+  }
+
+  node.addEventListener('touchstart', start, {passive:false});
+  node.addEventListener('touchmove',  move,  {passive:false});
+  node.addEventListener('touchend',   end,   {passive:false});
+  node.addEventListener('mousedown',  start);
+  window.addEventListener('mousemove', e => { if(dragging) move(e); });
+  window.addEventListener('mouseup',   ()  => { if(dragging) end(); });
+}
+
+nodes.forEach(makeDraggable);
+
+// ── CLOSE DETAIL ─────────────────────────────────────────────────
+document.getElementById('det-close').addEventListener('click', () => {
+  detail.classList.remove('show');
+  nodes.forEach(n => n.classList.remove('active','connected-to'));
+  svg.innerHTML = '';
+  activeId = null;
+});
+
+// ── CANVAS PAN ────────────────────────────────────────────────────
+// Allow canvas itself to pan when dragging empty space
+let panDragging = false, panSx, panSy, panScrollX = 0, panScrollY = 0;
+canvas.addEventListener('mousedown', e => {
+  if (e.target === canvas || e.target.tagName === 'svg' || e.target.classList.contains('zone-label')) {
+    panDragging = true;
+    panSx = e.clientX; panSy = e.clientY;
+    canvas.classList.add('dragging');
+  }
+});
+window.addEventListener('mousemove', e => {
+  if (!panDragging) return;
+  // future: implement canvas pan
+});
+window.addEventListener('mouseup', () => {
+  panDragging = false;
+  canvas.classList.remove('dragging');
+});
+
+// ── HELP / LEGEND ────────────────────────────────────────────────
+document.getElementById('help-btn').addEventListener('click', () => {
+  document.getElementById('legend-overlay').classList.add('show');
+});
+document.getElementById('leg-close').addEventListener('click', () => {
+  document.getElementById('legend-overlay').classList.remove('show');
+});
+</script>
+</body>
+</html>
