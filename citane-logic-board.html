@@ -187,7 +187,7 @@ nav { background: var(--ink); padding: 13px 18px; display: flex; align-items: ce
   <span class="brand">Citane</span>
   <span class="sep">/</span>
   <span class="page-t">Flavour Logic Board</span>
-  <a class="back-link" href="catalogue.html" target="_blank">↩ Library</a>
+  <a class="back-link" href="index.html" target="_blank">↩ Library</a>
 </nav>
 
 <div class="hero">
@@ -901,7 +901,7 @@ function cascadeFromDescriptor(desc) {
 
 function tryGenerateOutput() {
   // Need at least descriptor or (leaf + process)
-  const hasEnough = STATE.descriptor || (STATE.leaf && STATE.process) || (STATE.process && STATE.brew);
+  const hasEnough = STATE.descriptor || STATE.process || STATE.brew || STATE.leaf;
   if (!hasEnough) return;
 
   // Determine which descriptor to use
@@ -909,6 +909,25 @@ function tryGenerateOutput() {
   if (!desc && STATE.process) {
     const possible = PROCESS_DESCRIPTOR_MAP[STATE.process] || [];
     desc = possible[0];
+  }
+
+  // If no descriptor resolved yet, guide the user to make one more selection
+  if (!desc) {
+    const card = document.getElementById('output-card');
+    document.getElementById('out-heading-text').textContent =
+      STATE.leaf ? 'You have a ' + STATE.leaf + ' leaf — now choose a process or descriptor' :
+      STATE.brew ? 'You have a brew method — now choose a descriptor or process' :
+      'Make one more selection to generate a pathway';
+    document.getElementById('out-seeking-label').textContent = 'To continue';
+    document.getElementById('out-brew-text').textContent =
+      'Select a target descriptor or a processing method to see what pathway this leads to.';
+    document.getElementById('out-logic-text').textContent = '';
+    document.getElementById('out-steps-list').innerHTML = '';
+    document.getElementById('out-mandatory-list').innerHTML = '';
+    document.getElementById('out-pitfalls-list').innerHTML = '';
+    document.getElementById('out-links-list').innerHTML = '';
+    card.classList.add('show');
+    return;
   }
 
   const data = DESCRIPTOR_OUTPUTS[desc];
