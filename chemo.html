@@ -1,1117 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chemo: Traditional Ethiopian Coffee Leaf Beverage - Complete Recipe Collection</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: #333;
-            padding: 20px;
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
-            color: white;
-            padding: 50px 30px;
-            text-align: center;
-        }
-        
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        
-        header .tagline {
-            font-size: 1.3em;
-            opacity: 0.95;
-            margin-bottom: 10px;
-        }
-        
-        header .location {
-            font-size: 1.1em;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-        
-        .source-attribution {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px 20px;
-            border-radius: 6px;
-            margin-top: 20px;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-        
-        .source-attribution strong {
-            display: block;
-            margin-bottom: 8px;
-        }
-        
-        .source-citation {
-            font-style: italic;
-            opacity: 0.95;
-        }
-        
-        .controls {
-            background: #f0f0f0;
-            padding: 20px 30px;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .nav-tabs {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .nav-tabs button {
-            padding: 10px 20px;
-            border: 2px solid #8B4513;
-            background: white;
-            color: #8B4513;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.95em;
-            transition: all 0.3s;
-        }
-        
-        .nav-tabs button:hover {
-            background: #8B4513;
-            color: white;
-        }
-        
-        .nav-tabs button.active {
-            background: #8B4513;
-            color: white;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .action-buttons button {
-            padding: 10px 18px;
-            border: none;
-            background: #A0522D;
-            color: white;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9em;
-            transition: background 0.3s;
-        }
-        
-        .action-buttons button:hover {
-            background: #8B4513;
-        }
-        
-        .content {
-            padding: 40px 30px;
-            min-height: 600px;
-        }
-        
-        .recipe-section {
-            display: none;
-        }
-        
-        .recipe-section.active {
-            display: block;
-        }
-        
-        .introduction {
-            background: #FFF8DC;
-            padding: 30px;
-            border-radius: 8px;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-        
-        .introduction h2 {
-            color: #8B4513;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-        
-        .introduction p {
-            color: #555;
-            margin-bottom: 12px;
-            font-size: 1.05em;
-        }
-        
-        .recipe-header {
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .recipe-header h2 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        
-        .recipe-header .subtitle {
-            font-size: 1.1em;
-            opacity: 0.95;
-        }
-        
-        .recipe-header .description {
-            margin-top: 15px;
-            font-size: 0.95em;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-        
-        .method-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin-top: 10px;
-        }
-        
-        .recipe-meta {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .meta-item {
-            text-align: center;
-        }
-        
-        .meta-item span {
-            display: block;
-            font-size: 0.85em;
-            opacity: 0.9;
-        }
-        
-        .meta-item strong {
-            display: block;
-            font-size: 1.2em;
-            margin-top: 5px;
-        }
-        
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        h3 {
-            color: #8B4513;
-            font-size: 1.6em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #D2B48C;
-        }
-        
-        .ingredients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-        }
-        
-        .ingredient {
-            background: #f8f8f8;
-            padding: 12px;
-            border-radius: 6px;
-            border-left: 4px solid #A0522D;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .ingredient-name {
-            flex: 1;
-        }
-        
-        .ingredient-name strong {
-            display: block;
-            color: #8B4513;
-            margin-bottom: 3px;
-            font-size: 0.95em;
-        }
-        
-        .ingredient-name small {
-            color: #666;
-            font-size: 0.85em;
-        }
-        
-        .ingredient-amount {
-            margin-left: 15px;
-            white-space: nowrap;
-            font-weight: 700;
-            color: #A0522D;
-            text-align: right;
-        }
-        
-        .steps {
-            counter-reset: step-counter;
-        }
-        
-        .step {
-            background: #f8f8f8;
-            padding: 18px;
-            margin-bottom: 12px;
-            border-radius: 6px;
-            border-left: 5px solid #A0522D;
-            position: relative;
-            counter-increment: step-counter;
-        }
-        
-        .step::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: -12px;
-            top: 18px;
-            background: #A0522D;
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1em;
-        }
-        
-        .step-title {
-            color: #8B4513;
-            font-weight: 700;
-            font-size: 1em;
-            margin-bottom: 8px;
-            margin-left: 25px;
-        }
-        
-        .step-content {
-            color: #555;
-            line-height: 1.6;
-            margin-left: 25px;
-            font-size: 0.95em;
-        }
-        
-        .step-timer {
-            display: inline-block;
-            background: #D2B48C;
-            color: #333;
-            padding: 3px 8px;
-            border-radius: 16px;
-            font-size: 0.8em;
-            margin-top: 8px;
-            margin-left: 25px;
-            font-weight: 600;
-        }
-        
-        .notes {
-            background: #FFF8DC;
-            border-left: 5px solid #DAA520;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-        }
-        
-        .notes h4 {
-            color: #8B4513;
-            margin-bottom: 12px;
-            font-size: 1.05em;
-        }
-        
-        .notes p {
-            color: #555;
-            line-height: 1.7;
-            font-size: 0.95em;
-            margin-bottom: 10px;
-        }
-        
-        .disclaimer {
-            background: #FFF3CD;
-            border: 2px solid #FFD700;
-            border-radius: 6px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .disclaimer h4 {
-            color: #856404;
-            margin-bottom: 10px;
-        }
-        
-        .disclaimer p {
-            color: #856404;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-        
-        footer {
-            background: #f0f0f0;
-            padding: 25px 30px;
-            text-align: center;
-            color: #666;
-            font-size: 0.9em;
-            border-top: 1px solid #ddd;
-            line-height: 1.8;
-        }
-        
-        .servings-control {
-            background: #f0f0f0;
-            padding: 15px 20px;
-            border-radius: 6px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        
-        .servings-control label {
-            font-weight: 600;
-            color: #8B4513;
-        }
-        
-        .servings-control input {
-            width: 70px;
-            padding: 6px;
-            border: 2px solid #A0522D;
-            border-radius: 4px;
-            text-align: center;
-        }
-        
-        .servings-control button {
-            background: #A0522D;
-            color: white;
-            border: none;
-            padding: 6px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        .servings-control button:hover {
-            background: #8B4513;
-        }
-        
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .container {
-                box-shadow: none;
-            }
-            .controls {
-                display: none;
-            }
-            .recipe-section {
-                display: block !important;
-                page-break-after: always;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 12px;
-            }
-            
-            header {
-                padding: 30px 20px;
-            }
-            
-            header h1 {
-                font-size: 1.8em;
-            }
-            
-            header .tagline {
-                font-size: 1.1em;
-            }
-            
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 12px;
-                padding: 15px 20px;
-            }
-            
-            .nav-tabs {
-                width: 100%;
-                justify-content: stretch;
-                gap: 8px;
-            }
-            
-            .nav-tabs button {
-                flex: 1;
-                padding: 12px 16px;
-                font-size: 0.9em;
-            }
-            
-            .action-buttons {
-                width: 100%;
-                gap: 8px;
-            }
-            
-            .action-buttons button {
-                flex: 1;
-                padding: 12px 16px;
-                font-size: 0.9em;
-            }
-            
-            .content {
-                padding: 20px 15px;
-                min-height: auto;
-            }
-            
-            .introduction {
-                padding: 20px;
-            }
-            
-            .ingredients-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .recipe-meta {
-                gap: 15px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 8px;
-            }
-            
-            header {
-                padding: 20px 15px;
-            }
-            
-            header h1 {
-                font-size: 1.5em;
-                margin-bottom: 12px;
-            }
-            
-            header .tagline {
-                font-size: 1em;
-                margin-bottom: 8px;
-            }
-            
-            header .location {
-                font-size: 0.95em;
-                margin-bottom: 15px;
-            }
-            
-            .source-attribution {
-                font-size: 0.9em;
-                padding: 12px 15px;
-                margin-top: 15px;
-            }
-            
-            .controls {
-                gap: 10px;
-                padding: 12px 15px;
-                flex-direction: column;
-            }
-            
-            .nav-tabs {
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .nav-tabs button {
-                padding: 11px 14px;
-                font-size: 0.85em;
-                flex: none;
-                width: 100%;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-                gap: 8px;
-                width: 100%;
-            }
-            
-            .action-buttons button {
-                padding: 11px 14px;
-                font-size: 0.85em;
-                width: 100%;
-            }
-            
-            .content {
-                padding: 15px 12px;
-                min-height: auto;
-            }
-            
-            .introduction {
-                padding: 15px;
-            }
-            
-            .introduction h2 {
-                font-size: 1.3em;
-                margin-bottom: 12px;
-            }
-            
-            .recipe-header {
-                padding: 15px 0;
-            }
-            
-            .recipe-header h2 {
-                font-size: 1.3em;
-            }
-            
-            .subtitle {
-                font-size: 0.95em;
-            }
-            
-            .method-badge {
-                font-size: 0.85em;
-                padding: 6px 10px;
-            }
-            
-            .servings-control {
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            
-            .servings-control label {
-                width: 100%;
-            }
-            
-            .servings-control input {
-                width: 60px;
-                padding: 8px;
-                font-size: 1em;
-            }
-            
-            .servings-control button {
-                padding: 8px 12px;
-                font-size: 0.85em;
-            }
-            
-            .ingredients {
-                gap: 10px;
-            }
-            
-            .ingredient {
-                padding: 12px 15px;
-            }
-            
-            .step {
-                padding: 12px 15px;
-                margin-bottom: 12px;
-            }
-            
-            .step-title {
-                font-size: 1em;
-                margin-bottom: 8px;
-            }
-            
-            .step-content {
-                font-size: 0.9em;
-                line-height: 1.6;
-            }
-            
-            .step-timer {
-                font-size: 0.85em;
-                margin-top: 8px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemo · What's Fascinating</title>
+<style>
+:root {
+  --ink:    #1e1a14;
+  --ember:  #8b4a1a;
+  --ember-lt:#c4784a;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f7f0e4;
+  --ruled:  #e0d4c0;
+  --muted:  #7a6a54;
+  --dark:   #1a1410;
+  --sage:   #5a7a5a;
+  --sage-pale:#edf3ed;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:19px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ember); }
+.sep   { color:var(--ruled); }
+.page-t{ font-size:.8rem; color:var(--muted); }
+.back  { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--ember); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--ember); border-bottom-color:var(--ember); }
+.tab:hover { color:var(--ink); }
+
+/* OPENING */
+.opening-band { padding:56px 24px 48px; text-align:center; border-bottom:1px solid var(--ruled); }
+.opening-band .label { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.opening-band h1 { font-size:clamp(1.8rem,5vw,2.8rem); font-weight:normal; color:var(--ink); line-height:1.2; margin-bottom:14px; max-width:560px; margin-left:auto; margin-right:auto; }
+.opening-band p  { font-size:1.05rem; color:var(--muted); max-width:500px; margin:0 auto; line-height:1.8; }
+
+/* ROAST SCIENCE */
+.roast-science { background:var(--dark); color:#fff; padding:56px 24px; }
+.roast-inner { max-width:640px; margin:0 auto; }
+.roast-inner .label { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; opacity:.4; margin-bottom:20px; }
+.roast-inner h2 { font-size:clamp(1.5rem,4vw,2.2rem); font-weight:normal; line-height:1.25; margin-bottom:20px; }
+.roast-inner p { font-size:1rem; opacity:.8; line-height:1.85; margin-bottom:18px; }
+.roast-inner p:last-child { margin-bottom:0; }
+.roast-inner .aside { background:rgba(255,255,255,.07); border-radius:6px; padding:18px 20px; margin-top:20px; font-size:.92rem; opacity:.75; line-height:1.75; font-style:italic; }
+.roast-inner .aside strong { color:var(--ember-lt); font-style:normal; }
+
+/* DISCOVERIES */
+.discoveries { max-width:680px; margin:0 auto; padding:56px 24px; }
+.discoveries h2 { font-size:1rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:normal; margin-bottom:40px; }
+
+.discovery { margin-bottom:48px; padding-bottom:48px; border-bottom:1px solid var(--ruled); }
+.discovery:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.discovery-header { display:flex; align-items:flex-start; gap:20px; margin-bottom:18px; }
+.discovery-icon { width:48px; height:48px; flex-shrink:0; background:var(--pale); border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:4px; }
+.discovery h3 { font-size:1.3rem; font-weight:normal; color:var(--ink); line-height:1.3; }
+.discovery p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:16px; }
+.discovery p:last-child { margin-bottom:0; }
+.discovery .aside { background:var(--pale); border-radius:4px; padding:16px 20px; margin-top:14px; font-size:.92rem; color:var(--muted); line-height:1.75; font-style:italic; }
+.discovery .aside strong { color:var(--ember); font-style:normal; }
+
+/* SPICE SECTION */
+.spice-section { background:var(--pale); padding:56px 24px; border-top:1px solid var(--ruled); border-bottom:1px solid var(--ruled); }
+.spice-inner { max-width:680px; margin:0 auto; }
+.spice-inner h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:8px; }
+.spice-inner .sub { font-size:.95rem; color:var(--muted); margin-bottom:28px; font-style:italic; }
+.spice-inner p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:20px; }
+
+.spice-categories { display:grid; grid-template-columns:1fr; gap:12px; margin:24px 0; }
+.spice-cat { background:var(--cream); border-radius:6px; padding:0; overflow:hidden; }
+.spice-cat-header { display:flex; align-items:center; gap:14px; padding:18px 20px; cursor:pointer; }
+.spice-cat-header h3 { font-size:1.05rem; font-weight:normal; color:var(--ink); margin:0; }
+.spice-cat-icon { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.spice-cat-arrow { margin-left:auto; color:var(--ember); transition:transform .2s; font-size:1.2rem; }
+.spice-cat-header.open .spice-cat-arrow { transform:rotate(90deg); }
+.spice-cat-body { display:none; padding:0 20px 20px; border-top:1px solid var(--ruled); }
+.spice-cat-body.show { display:block; }
+.spice-item { padding:12px 0; border-bottom:1px solid var(--ruled); font-size:.95rem; line-height:1.65; }
+.spice-item:last-child { border-bottom:none; }
+.spice-item .s-name { font-weight:bold; color:var(--ember); }
+.spice-item .s-local { color:var(--muted); font-style:italic; font-size:.85rem; }
+.spice-item .s-amt  { color:var(--gold); font-size:.88rem; }
+
+/* GENDER + KNOWLEDGE */
+.knowledge-section { max-width:680px; margin:0 auto; padding:56px 24px; }
+.knowledge-section h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:18px; }
+.knowledge-section p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:18px; }
+.knowledge-section .pull { font-size:1.3rem; line-height:1.65; color:var(--ember); font-style:italic; border-left:3px solid var(--ember); padding-left:24px; margin:28px 0; }
+
+/* COFFEE ECONOMY */
+.economy-band { background:var(--dark); color:#fff; padding:48px 24px; }
+.economy-inner { max-width:640px; margin:0 auto; }
+.economy-inner h2 { font-size:1.4rem; font-weight:normal; margin-bottom:16px; line-height:1.3; }
+.economy-inner p  { font-size:1rem; opacity:.8; line-height:1.85; margin-bottom:18px; }
+.economy-inner p:last-child { margin-bottom:0; }
+.economy-inner .highlight { background:rgba(255,255,255,.07); border-radius:4px; padding:18px 20px; font-size:.95rem; opacity:.85; line-height:1.75; margin-top:20px; font-style:italic; }
+
+/* NEXT */
+.next-section { max-width:640px; margin:0 auto; padding:56px 24px 40px; text-align:center; }
+.next-section p { font-size:1.05rem; color:var(--muted); line-height:1.85; margin-bottom:28px; }
+.next-link  { display:inline-block; padding:18px 36px; background:var(--ember); color:#fff; text-decoration:none; font-size:1rem; border-radius:3px; }
+.next-link:hover { background:var(--ink); }
+.prev-link  { display:block; margin-top:14px; font-size:.88rem; color:var(--muted); text-decoration:none; }
+.prev-link:hover { color:var(--ember); }
+
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Chemo</h1>
-            <p class="tagline">Traditional Ethiopian Coffee Leaf Beverage</p>
-            <p class="location">Tepi Town, Southwestern Ethiopia</p>
-            <div class="source-attribution">
-                <strong>Research Source:</strong>
-                <span class="source-citation">"Traditional preparation and cultural significance of chemo, an indigenous coffee-leaf beverage in Southwestern Ethiopia"</span>
-                <div style="margin-top: 8px;">
-                    Awoke, Ashebir; Gizaw, Mathewos; and Tilahun, Abebe
-                </div>
-                <div style="margin-top: 6px;">
-                    <strong>Published:</strong> Journal of Ethnobiology and Ethnomedicine, Vol. 22, Article 25 (2026)
-                </div>
-                <div style="margin-top: 6px;">
-                    <strong>DOI:</strong> https://doi.org/10.1186/s13002-026-00863-y
-                </div>
-            </div>
-        </header>
-        
-        <div class="controls">
-            <div class="nav-tabs">
-                <button class="tab-btn active" onclick="showRecipe('intro')">Introduction</button>
-                <button class="tab-btn" onclick="showRecipe('method1')">Method 1: Roasted</button>
-                <button class="tab-btn" onclick="showRecipe('method2')">Method 2: Heated</button>
-                <button class="tab-btn" onclick="showRecipe('method3')">Method 3: Majang</button>
-                <button class="tab-btn" onclick="showRecipe('minimal')">Hypothetical: Minimal</button>
-            </div>
-            <div class="action-buttons">
-                <button onclick="printRecipe()">🖨️ Print</button>
-                <button onclick="downloadPDF()">📄 PDF</button>
-            </div>
-        </div>
-        
-        <div class="content">
-            
-            <!-- INTRODUCTION -->
-            <div id="intro" class="recipe-section active">
-                <div class="introduction">
-                    <h2>Understanding Chemo</h2>
-                    <p>
-                        Chemo is an indigenous hot beverage prepared from coffee leaves and traditionally consumed in Tepi Town, southwestern Ethiopia. Although widely embedded in everyday life and local food traditions, it has remained largely undocumented in academic literature until now.
-                    </p>
-                    <p>
-                        <strong>Core Preparation:</strong> Coffee leaves from Coffea arabica are roasted, heated, or boiled and combined with locally available aromatic herbs and spices including Ocimum basilicum, Lippia adoensis, Zingiber officinale, and Capsicum frutescens. The leaves themselves are tough and fibrous and are strained out before serving. The result is a dark, semi-solid infusion served hot, often accompanied by starchy foods.
-                    </p>
-                    <p>
-                        <strong>Cultural Significance:</strong> Chemo serves as a key expression of hospitality, shared during communal activities, religious ceremonies, and daily social interactions. Women are the primary custodians of preparation knowledge, transmitting skills through observation and practice across generations. The beverage reflects locally adapted strategies of resource use—by utilizing renewable coffee leaves rather than beans, it does not compete with market-oriented coffee production.
-                    </p>
-                    <p>
-                        <strong>Three Documented Methods:</strong> The ethnobotanical research identified three main preparation methods practiced in Tepi Town, each producing distinct sensory characteristics. This compendium presents all three documented methods, plus a hypothetical minimal version for reference.
-                    </p>
-                </div>
-                
-                <div style="background: #f8f8f8; padding: 25px; border-radius: 8px; margin-top: 25px;">
-                    <h3 style="border: none; color: #555; font-size: 1.3em; margin-bottom: 15px;">About This Research</h3>
-                    <p style="color: #555; line-height: 1.7; font-size: 0.95em;">
-                        This recipe compendium is based on a mixed-methods ethnobotanical study conducted from August to October 2025 in Tepi Town, Sheka Zone. Data were collected from 64 households and 16 key informants using semi-structured interviews, participant observation, focus group discussions, and botanical specimen collection. All participants provided informed consent, and ethical approval was obtained from the Tepi Town Administration.
-                    </p>
-                    <p style="color: #555; line-height: 1.7; font-size: 0.95em; margin-top: 12px;">
-                        The study documents traditional preparation methods, ingredient composition, cultural significance, gender roles in knowledge transmission, and challenges related to ingredient availability and market access. It provides ethnographic evidence of Chemo's continued relevance while acknowledging that further research integrating chemical analysis, standardized socio-economic data, and comparative perspectives is needed.
-                    </p>
-                </div>
-            </div>
-            
-            <!-- METHOD 1: ROASTED -->
-            <div id="method1" class="recipe-section">
-                <div class="recipe-header">
-                    <h2>Method 1: Roasted Leaf Preparation</h2>
-                    <p class="subtitle">Most Widely Practiced in Tepi Town</p>
-                    <div class="method-badge">Documented Method</div>
-                    <div class="recipe-meta">
-                        <div class="meta-item">
-                            <span>Servings</span>
-                            <strong id="servings1">4</strong>
-                        </div>
-                        <div class="meta-item">
-                            <span>Total Time</span>
-                            <strong>~1 hour</strong>
-                        </div>
-                        <div class="meta-item">
-                            <span>Leaf Treatment</span>
-                            <strong>Roasted</strong>
-                        </div>
-                    </div>
-                    <p class="description">Light roasting of coffee leaves produces a sweeter, more balanced flavor. This method was described as "widely adopted" by participants and is the most common preparation approach documented in households across all eight study sites.</p>
-                </div>
-                
-                <div class="servings-control">
-                    <label for="servings-input1">Adjust servings:</label>
-                    <input type="number" id="servings-input1" value="4" min="1" max="16">
-                    <button onclick="updateServings('method1')">Update</button>
-                </div>
-                
-                <div class="section">
-                    <h3>Ingredients</h3>
-                    <div class="ingredients-grid" id="ingredients1"></div>
-                </div>
-                
-                <div class="section">
-                    <h3>Preparation Steps</h3>
-                    <div class="steps" id="steps1"></div>
-                </div>
-                
-                <div class="notes">
-                    <h4>📌 Method Notes</h4>
-                    <p>This recipe reflects the most widely practiced method documented in Tepi Town. The proportions are based on the study's measured averages for one liter of water. Participants frequently described this method as producing "a sweeter and more balanced flavor," which may explain its widespread adoption.</p>
-                    <p>Ingredient proportions can be adjusted based on local availability and household taste preference—there is flexibility within the tradition. The coffee leaves are tough and fibrous; they are strained out before serving and not consumed.</p>
-                </div>
-            </div>
-            
-            <!-- METHOD 2: HEATED -->
-            <div id="method2" class="recipe-section">
-                <div class="recipe-header">
-                    <h2>Method 2: Heated Leaf Preparation</h2>
-                    <p class="subtitle">Milder, More Delicate Approach</p>
-                    <div class="method-badge">Documented Method</div>
-                    <div class="recipe-meta">
-                        <div class="meta-item">
-                            <span>Servings</span>
-                            <strong id="servings2">4</strong>
-                        </div>
-                        <div class="meta-item">
-                            <span>Total Time</span>
-                            <strong>~1 hour</strong>
-                        </div>
-                        <div class="meta-item">
-                            <span>Leaf Treatment</span>
-                            <strong>Heated (Not Roasted)</strong>
-                        </div>
-                    </div>
-                    <p class="description">Coffee leaves are briefly heated (not roasted) for approximately 5 minutes while kept moist. This produces a milder taste and lighter aroma compared to the roasted method, preferred by those seeking a more subtle, refreshing beverage.</p>
-                </div>
-                
-                <div class="servings-control">
-                    <label for="servings-input2">Adjust servings:</label>
-                    <input type="number" id="servings-input2" value="4" min="1" max="16">
-                    <button onclick="updateServings('method2')">Update</button>
-                </div>
-                
-                <div class="section">
-                    <h3>Ingredients</h3>
-                    <div class="ingredients-grid" id="ingredients2"></div>
-                </div>
-                
-                <div class="section">
-                    <h3>Preparation Steps</h3>
-                    <div class="steps" id="steps2"></div>
-                </div>
-                
-                <div class="notes">
-                    <h4>📌 Method Notes</h4>
-                    <p><strong>Critical Difference:</strong> Instead of roasting, the coffee leaves are briefly heated over fire for approximately 5 minutes and crushed while still moist. This is a deliberate and subtle distinction that produces noticeably different sensory characteristics.</p>
-                    <p>The paper notes that this approach produces "a milder taste and a lighter aroma compared to the roasted-leaf method." All other ingredients and proportions remain consistent with Method 1.</p>
-                </div>
-            </div>
-            
-            <!-- METHOD 3: MAJANG -->
-            <div id="method3" class="recipe-section">
-                <div class="recipe-header">
-                    <h2>Method 3: Majang Ethnic Tradition</h2>
-                    <p class="subtitle">Separate Preparation with Customizable Chili</p>
-                    <div class="method-badge">Documented Method — Majang Practice</div>
-                    <div class="recipe-meta">
-                        <div class="meta-item">
-                            <span>Servings</span>
-                            <strong id="servings3">4</strong>
-                        </div>
-                        <div class="meta-item">
-                            <span>Total Time</span>
-                            <strong>~1.5 hours</strong>
-                        </div>
-                        <div class="meta-item">
-                            <span>Key Feature</span>
-                            <strong>Customizable at Table</strong>
-                        </div>
-                    </div>
-                    <p class="description">Practiced primarily among the Majang ethnic group, this method involves boiling coffee leaves and chili separately, then combining them at serving time. This allows individual customization of heat and medicinal potency based on personal preference and perceived need.</p>
-                </div>
-                
-                <div class="servings-control">
-                    <label for="servings-input3">Adjust servings:</label>
-                    <input type="number" id="servings-input3" value="4" min="1" max="16">
-                    <button onclick="updateServings('method3')">Update</button>
-                </div>
-                
-                <div class="section">
-                    <h3>Ingredients</h3>
-                    <div class="ingredients-grid" id="ingredients3"></div>
-                </div>
-                
-                <div class="section">
-                    <h3>Preparation Steps</h3>
-                    <div class="steps" id="steps3"></div>
-                </div>
-                
-                <div class="notes">
-                    <h4>📌 Method Notes</h4>
-                    <p><strong>Medicinal Customization:</strong> The paper notes that "larger quantities of chili are often added for individuals experiencing colds or respiratory discomfort, reflecting locally perceived medicinal properties rather than standardized therapeutic dosing."</p>
-                    <p>This method uniquely allows adjustment at serving time, making it responsive to individual health needs and preferences. It reflects an adaptive, individualized approach characteristic of traditional knowledge systems where therapy is context-dependent rather than formulaic.</p>
-                </div>
-            </div>
-            
-            <!-- HYPOTHETICAL: MINIMAL -->
-            <div id="minimal" class="recipe-section">
-                <div class="recipe-header">
-                    <h2>Hypothetical Minimal Method</h2>
-                    <p class="subtitle">Extrapolation (Not Documented in Research)</p>
-                    <div class="method-badge" style="background: #FFD700; color: #333;">⚠️ Undocumented</div>
-                    <div class="recipe-meta">
-                        <div class="meta-item">
-                            <span>Servings</span>
-                            <strong id="servings4">4</strong>
-                        </div>
-                        <div class="meta-item">
-                            <span>Total Time</span>
-                            <strong>~40 minutes</strong>
-                        </div>
-                        <div class="meta-item">
-                            <span>Status</span>
-                            <strong>Theoretical</strong>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="disclaimer">
-                    <h4>⚠️ Important Disclaimer</h4>
-                    <p><strong>This recipe is NOT documented in the ethnobotanical research.</strong> It represents a hypothetical extrapolation based on core ingredients present across all documented methods. The research does not describe any household in Tepi Town preparing Chemo without aromatic herbs and spices.</p>
-                    <p style="margin-top: 10px;">All 64 households surveyed added "a range of locally available herbs and spices." This minimal version is presented for informational purposes only, to illustrate what an absolute baseline preparation might theoretically be if aromatic ingredients became unavailable. <strong>It should not be considered an authentic or traditional Chemo preparation.</strong></p>
-                </div>
-                
-                <div class="servings-control">
-                    <label for="servings-input4">Adjust servings:</label>
-                    <input type="number" id="servings-input4" value="4" min="1" max="16">
-                    <button onclick="updateServings('method4')">Update</button>
-                </div>
-                
-                <div class="section">
-                    <h3>Ingredients</h3>
-                    <div class="ingredients-grid" id="ingredients4"></div>
-                </div>
-                
-                <div class="section">
-                    <h3>Preparation Steps</h3>
-                    <div class="steps" id="steps4"></div>
-                </div>
-                
-                <div class="notes">
-                    <h4>📌 Research Reality</h4>
-                    <p>The study explicitly states: "The selection and combination of these plants varied across households and sites, reflecting local taste preferences and cultural practices." The variation documented is in proportions and leaf treatment, never in the presence or absence of aromatic herbs and spices.</p>
-                    <p style="margin-top: 10px;">For authentic, documented Chemo preparations, refer to Methods 1, 2, or 3.</p>
-                </div>
-            </div>
-        </div>
-        
-        <footer>
-            <strong>Complete Research Citation:</strong>
-            <div style="margin-top: 12px;">
-                Awoke, A., Gizaw, M., & Tilahun, A. (2026). Traditional preparation and cultural significance of chemo, an indigenous coffee-leaf beverage in Southwestern Ethiopia. <em>Journal of Ethnobiology and Ethnomedicine</em>, 22, 25. https://doi.org/10.1186/s13002-026-00863-y
-            </div>
-            <div style="margin-top: 15px; border-top: 1px solid #ccc; padding-top: 15px; font-size: 0.85em;">
-                <strong>Research Conduct:</strong> Ethics approval obtained from Tepi Town Administration. All participants provided informed consent. Study period: August–October 2025. Study sites: Eight locations in Tepi Town, Yeki District, Sheka Zone, southwestern Ethiopia.
-            </div>
-        </footer>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Chemo</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab" href="chemo-intro.html">What is this?</a>
+  <a class="tab active" href="chemo.html">What's fascinating</a>
+  <a class="tab" href="chemo-deep.html">Go deeper</a>
+</div>
+
+<div class="opening-band">
+  <div class="label">What makes Chemo worth knowing about</div>
+  <h1>Fire. Spice. Community. And a piece of the coffee plant that gets left behind everywhere else.</h1>
+  <p>A coffee leaf beverage that begins with roasting the leaves over an open fire — and has been doing so, quietly, in Southwestern Ethiopia, long before researchers came to document it.</p>
+</div>
+
+<!-- ROAST SCIENCE -->
+<div class="roast-science">
+  <div class="roast-inner">
+    <div class="label">The chemistry of the defining step</div>
+    <h2>Why roasting the leaf first changes everything</h2>
+    <p>When a coffee leaf is held over fire and roasted until golden-brown, a cascade of chemical reactions begins. The heat drives off moisture, concentrates volatile aromatic compounds, and initiates the Maillard reaction — the same reaction that creates the distinctive flavour of roasted coffee beans, bread crust, and caramelised onions.</p>
+    <p>New flavour compounds form that do not exist in the raw leaf. The chlorophyll breaks down. The proteins and sugars interact at high temperature. The result is a deeper, sweeter, more complex flavour substrate than any fresh or dried leaf can produce.</p>
+    <p>When this roasted leaf is then crushed while still warm — releasing the newly formed aromatic compounds — and boiled with spices, the brew that results is genuinely different from any other coffee leaf beverage. Not better or worse. Different in a way that is chemically specific.</p>
+    <div class="aside"><strong>What the research records:</strong> 55.8% of Tepi Town households use this roasted method as their standard preparation. The families who use it describe it as producing "a sweeter and more balanced flavour" compared to unroasted methods — which aligns precisely with what the Maillard reaction does to leaf chemistry.</div>
+  </div>
+</div>
+
+<!-- DISCOVERIES -->
+<div class="discoveries">
+  <h2>Four things worth knowing</h2>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="#8b4a1a" stroke-width="1.5"/>
+          <path d="M11 7v4l3 2.5" stroke="#8b4a1a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>The spice blend is not optional — it defines the drink</h3>
     </div>
-    
-    <script>
-        const recipes = {
-            method1: {
-                servings: 4,
-                ingredients: [
-                    { name: "Coffee leaves (fresh or dried)", amount: 164, unit: "g" },
-                    { name: "Ocimum basilicum (sweet basil) leaves", amount: 24, unit: "g" },
-                    { name: "Lippia adoensis (koseret) leaves", amount: 19, unit: "g" },
-                    { name: "Zingiber officinale (ginger) rhizome, sliced", amount: 24, unit: "g" },
-                    { name: "Cymbopogon citratus (lemongrass) leaves", amount: 22, unit: "g" },
-                    { name: "Foeniculum vulgare (fennel) leaves", amount: 15, unit: "g" },
-                    { name: "Allium sativum (garlic) cloves, sliced", amount: 21, unit: "g" },
-                    { name: "Water", amount: 1000, unit: "ml" },
-                    { name: "Butter (niter kibbeh)", amount: 40, unit: "g" },
-                    { name: "Salt", amount: 32, unit: "g" }
-                ],
-                steps: [
-                    { title: "Select and clean ingredients", content: "Thoroughly wash the basil, koseret, lemongrass, and fennel leaves to remove soil and debris. Peel and slice the ginger and garlic.", time: 300 },
-                    { title: "Roast coffee leaves", content: "If using fresh coffee leaves, roast them lightly over fire or in a pan until aromatic. If already dried, skip this step. Crush the roasted or dried leaves to release flavor.", time: 600 },
-                    { title: "Grind aromatic mixture", content: "Grind or pound the washed and prepared basil, koseret, lemongrass, fennel, ginger, and garlic together into a coarse paste.", time: 900 },
-                    { title: "Blend with butter", content: "Mix the ground paste with butter. This helps release aromatic compounds and improves mouthfeel.", time: 300 },
-                    { title: "Boil water", content: "Bring water to a boil in a pot.", time: 600 },
-                    { title: "Add coffee leaves", content: "Gradually add the crushed roasted coffee leaves to the boiling water while stirring continuously to ensure uniform mixing and prevent scorching.", time: 900 },
-                    { title: "Strain coffee leaves", content: "Strain the coffee leaf infusion through a fine sieve or cloth to remove the spent leaves. The leaves are tough and fibrous and are discarded. Set aside the clear infusion.", time: 300 },
-                    { title: "Add spice mixture", content: "Add the butter-blended spice and herb mixture to the strained coffee infusion. Stir well.", time: 300 },
-                    { title: "Season and simmer", content: "Add salt in small amounts to balance bitterness. Simmer under controlled heat for 25–30 minutes until the mixture reaches a semi-solid consistency.", time: 1800 },
-                    { title: "Rest and serve", content: "Allow to rest briefly before serving. Serve hot in cups. The beverage should have a dark infusion with rich aroma.", time: 300 }
-                ]
-            },
-            method2: {
-                servings: 4,
-                ingredients: [
-                    { name: "Coffee leaves (fresh)", amount: 164, unit: "g" },
-                    { name: "Ocimum basilicum (sweet basil) leaves", amount: 24, unit: "g" },
-                    { name: "Lippia adoensis (koseret) leaves", amount: 19, unit: "g" },
-                    { name: "Zingiber officinale (ginger) rhizome, sliced", amount: 24, unit: "g" },
-                    { name: "Cymbopogon citratus (lemongrass) leaves", amount: 22, unit: "g" },
-                    { name: "Foeniculum vulgare (fennel) leaves", amount: 15, unit: "g" },
-                    { name: "Allium sativum (garlic) cloves, sliced", amount: 21, unit: "g" },
-                    { name: "Water", amount: 1000, unit: "ml" },
-                    { name: "Butter (niter kibbeh)", amount: 40, unit: "g" },
-                    { name: "Salt", amount: 32, unit: "g" }
-                ],
-                steps: [
-                    { title: "Select and clean ingredients", content: "Thoroughly wash the basil, koseret, lemongrass, and fennel leaves to remove soil and debris. Peel and slice the ginger and garlic.", time: 300 },
-                    { title: "Heat (not roast) coffee leaves", content: "Heat fresh coffee leaves over fire or low heat for approximately 5 minutes. Do NOT roast—keep them moist. Crush the heated leaves to release flavor while still warm.", time: 300 },
-                    { title: "Grind aromatic mixture", content: "Grind or pound the washed and prepared basil, koseret, lemongrass, fennel, ginger, and garlic together into a coarse paste.", time: 900 },
-                    { title: "Blend with butter", content: "Mix the ground paste with butter. This helps release aromatic compounds and improves mouthfeel.", time: 300 },
-                    { title: "Boil water", content: "Bring water to a boil in a pot.", time: 600 },
-                    { title: "Add coffee leaves", content: "Gradually add the heated and crushed coffee leaves to the boiling water while stirring continuously to ensure uniform mixing and prevent scorching.", time: 900 },
-                    { title: "Strain coffee leaves", content: "Strain the coffee leaf infusion through a fine sieve or cloth to remove the spent leaves. The leaves are tough and fibrous and are discarded. Set aside the clear infusion.", time: 300 },
-                    { title: "Add spice mixture", content: "Add the butter-blended spice and herb mixture to the strained coffee infusion. Stir well.", time: 300 },
-                    { title: "Season and simmer", content: "Add salt in small amounts to balance bitterness. Simmer under controlled heat for 25–30 minutes until the mixture reaches a semi-solid consistency.", time: 1800 },
-                    { title: "Rest and serve", content: "Allow to rest briefly before serving. Serve hot in cups. This version should have a lighter color and more delicate aroma compared to the roasted method.", time: 300 }
-                ]
-            },
-            method3: {
-                servings: 4,
-                ingredients: [
-                    { name: "Coffee leaves (fresh or dried)", amount: 164, unit: "g" },
-                    { name: "Ocimum basilicum (sweet basil) leaves", amount: 24, unit: "g" },
-                    { name: "Lippia adoensis (koseret) leaves", amount: 19, unit: "g" },
-                    { name: "Zingiber officinale (ginger) rhizome, sliced", amount: 24, unit: "g" },
-                    { name: "Cymbopogon citratus (lemongrass) leaves", amount: 22, unit: "g" },
-                    { name: "Foeniculum vulgare (fennel) leaves", amount: 15, unit: "g" },
-                    { name: "Allium sativum (garlic) cloves, sliced", amount: 21, unit: "g" },
-                    { name: "Water", amount: 1000, unit: "ml" },
-                    { name: "Butter (niter kibbeh)", amount: 40, unit: "g" },
-                    { name: "Salt", amount: 32, unit: "g" },
-                    { name: "Capsicum frutescens (chili pepper)", amount: 10, unit: "g" }
-                ],
-                steps: [
-                    { title: "Select and clean aromatic ingredients", content: "Thoroughly wash the basil, koseret, lemongrass, and fennel leaves. Peel and slice the ginger and garlic.", time: 300 },
-                    { title: "Prepare coffee leaves", content: "If using fresh leaves, roast them lightly until aromatic. If dried, skip this step. Crush the leaves to release flavor.", time: 600 },
-                    { title: "Boil coffee leaves separately", content: "In a separate pot, bring 500 ml water to boil. Add crushed coffee leaves and boil for 15 minutes, stirring occasionally. This creates concentrated infusion.", time: 900 },
-                    { title: "Strain coffee infusion", content: "Strain the infusion through fine sieve or cloth to remove spent leaves. Set aside the clear infusion.", time: 300 },
-                    { title: "Grind aromatic mixture", content: "Grind or pound the washed and prepared basil, koseret, lemongrass, fennel, ginger, and garlic into a coarse paste.", time: 900 },
-                    { title: "Blend aromatics with butter", content: "Mix the ground paste with butter. This helps release aromatic compounds and improves mouthfeel.", time: 300 },
-                    { title: "Boil water for spice base", content: "Bring the remaining 500 ml water to boil in the main pot.", time: 600 },
-                    { title: "Simmer spice base", content: "Add butter-blended spice and herb mixture. Stir well. Add salt to balance bitterness. Simmer 15-20 minutes to infuse flavors.", time: 1200 },
-                    { title: "Boil chili separately", content: "Boil chili in separate pot with 200 ml water for 10 minutes to extract flavor and heat. This creates chili infusion for table-side addition.", time: 600 },
-                    { title: "Combine infusions", content: "Pour the strained coffee leaf infusion into the spiced water base. Stir to combine thoroughly.", time: 300 },
-                    { title: "Serve with customizable chili", content: "Serve hot in cups. At the table, allow each person to add chili infusion according to their preference and heat tolerance. Larger quantities are traditionally added for those experiencing colds or respiratory discomfort.", time: 300 }
-                ]
-            },
-            method4: {
-                servings: 4,
-                ingredients: [
-                    { name: "Coffee leaves (fresh or dried)", amount: 164, unit: "g" },
-                    { name: "Water", amount: 1000, unit: "ml" },
-                    { name: "Butter (niter kibbeh)", amount: 40, unit: "g" },
-                    { name: "Salt", amount: 32, unit: "g" }
-                ],
-                steps: [
-                    { title: "Prepare coffee leaves", content: "If using fresh coffee leaves, roast them lightly until aromatic. If already dried, skip this step. Crush the leaves to release flavor.", time: 600 },
-                    { title: "Boil water", content: "Bring water to a boil in a pot.", time: 600 },
-                    { title: "Add coffee leaves", content: "Gradually add the crushed coffee leaves to the boiling water while stirring continuously to ensure uniform mixing and prevent scorching.", time: 900 },
-                    { title: "Strain coffee leaves", content: "Strain the coffee leaf infusion through a fine sieve or cloth to remove the spent leaves. The leaves are tough and fibrous and are discarded. Set aside the clear infusion.", time: 300 },
-                    { title: "Add butter", content: "Add butter to the strained coffee infusion. Stir well.", time: 300 },
-                    { title: "Season and simmer", content: "Add salt in small amounts to balance bitterness. Simmer under controlled heat for 25–30 minutes until the mixture reaches a semi-solid consistency.", time: 1800 },
-                    { title: "Rest and serve", content: "Allow to rest briefly before serving. Serve hot in cups. Without aromatic additions, this version will have pronounced coffee bitterness that depends on salt for balance.", time: 300 }
-                ]
-            }
-        };
-        
-        function getScaledAmount(baseAmount, baseServings, targetServings) {
-            const multiplier = targetServings / baseServings;
-            const scaled = baseAmount * multiplier;
-            if (scaled < 1) return scaled.toFixed(1);
-            if (scaled < 10) return Math.round(scaled * 10) / 10;
-            return Math.round(scaled);
-        }
-        
-        function formatTime(seconds) {
-            if (seconds < 60) return seconds + 's';
-            const minutes = Math.round(seconds / 60);
-            return minutes + ' min';
-        }
-        
-        function renderRecipe(methodKey, servings) {
-            const recipe = recipes[methodKey];
-            
-            // Render ingredients
-            const ingredientsId = `ingredients${methodKey === 'method1' ? '1' : methodKey === 'method2' ? '2' : methodKey === 'method3' ? '3' : '4'}`;
-            const ingredientsContainer = document.getElementById(ingredientsId);
-            if (ingredientsContainer) {
-                ingredientsContainer.innerHTML = recipe.ingredients.map(ing => {
-                    const scaledAmount = getScaledAmount(ing.amount, recipe.servings, servings);
-                    return `
-                        <div class="ingredient">
-                            <div class="ingredient-name">
-                                <strong>${ing.name}</strong>
-                            </div>
-                            <div class="ingredient-amount">
-                                ${scaledAmount} ${ing.unit}
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            }
-            
-            // Render steps
-            const stepsId = `steps${methodKey === 'method1' ? '1' : methodKey === 'method2' ? '2' : methodKey === 'method3' ? '3' : '4'}`;
-            const stepsContainer = document.getElementById(stepsId);
-            if (stepsContainer) {
-                stepsContainer.innerHTML = recipe.steps.map(step => `
-                    <div class="step">
-                        <div class="step-title">${step.title}</div>
-                        <div class="step-content">${step.content}</div>
-                        <div class="step-timer">⏱ ${formatTime(step.time)}</div>
-                    </div>
-                `).join('');
-            }
-        }
-        
-        function showRecipe(id) {
-            // Hide all sections
-            document.querySelectorAll('.recipe-section').forEach(el => el.classList.remove('active'));
-            // Show selected section
-            document.getElementById(id).classList.add('active');
-            // Update button states
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-        
-        function updateServings(methodKey) {
-            const inputId = `servings-input${methodKey === 'method1' ? '1' : methodKey === 'method2' ? '2' : methodKey === 'method3' ? '3' : '4'}`;
-            const servingsId = `servings${methodKey === 'method1' ? '1' : methodKey === 'method2' ? '2' : methodKey === 'method3' ? '3' : '4'}`;
-            
-            const input = document.getElementById(inputId);
-            const newServings = parseInt(input.value) || 4;
-            document.getElementById(servingsId).textContent = newServings;
-            renderRecipe(methodKey, newServings);
-        }
-        
-        function printRecipe() {
-            window.print();
-        }
-        
-        function downloadPDF() {
-            const element = document.querySelector('.container');
-            const opt = {
-                margin: 10,
-                filename: 'Chemo_Recipes_Complete.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
-            };
-            html2pdf().set(opt).from(element).save();
-        }
-        
-        // Initialize all recipes on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            renderRecipe('method1', 4);
-            renderRecipe('method2', 4);
-            renderRecipe('method3', 4);
-            renderRecipe('method4', 4);
-        });
-    </script>
+    <p>In the Awoke et al. 2026 study of 64 Tepi Town households, not one household made Chemo without spices. Not one. The spice blend is not a flavour enhancement added to a base recipe — it is structurally inseparable from what Chemo is.</p>
+    <p>The core spices appear across virtually all households: basil, Koseret (a distinctive Ethiopian herb), lemongrass, ginger, and black pepper. Additional ingredients vary. But the principle — that Chemo requires a botanical blend alongside the leaf — does not.</p>
+    <div class="aside"><strong>Why this matters:</strong> If you make a plain coffee leaf brew without spices and call it Chemo, you have made something else. The community whose tradition this is would not recognise it as their drink.</div>
+  </div>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M11 2L4 6v5c0 5 3.5 9.5 7 11 3.5-1.5 7-6 7-11V6L11 2z" stroke="#8b4a1a" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>It is always served with food — and this is deliberate</h3>
+    </div>
+    <p>Chemo is never served alone. The research documents consistent pairing with starchy foods — injera, bread, root vegetables, boiled grains. This is not incidental. Community understanding is that Chemo and food together are a complete offering. One without the other is incomplete.</p>
+    <p>The practical logic is clear: the starch moderates the intensity of the brew and extends the drinking experience. The brew adds warmth and aromatic complexity to a starchy meal. But the combination is also social logic — sharing food and sharing drink together is the fuller expression of hospitality than either alone.</p>
+    <div class="aside"><strong>Practical implication:</strong> Anyone serving Chemo outside its original context — in a café, at a tasting, as a beverage product — is implicitly making a decision to separate the drink from this pairing. That is a legitimate adaptation, but it changes what is being offered.</div>
+  </div>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#8b4a1a" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="9" cy="7" r="4" stroke="#8b4a1a" stroke-width="1.5"/>
+          <path d="M21 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#8b4a1a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>The knowledge lives in women, passed down without being written</h3>
+    </div>
+    <p>In Tepi Town, Chemo is made primarily by women. The knowledge of how to make it — which spices, in what proportions, how long to roast, when the colour is right, how long to boil — is transmitted through observation and practice. A daughter learns by watching her mother. No recipe is written down. No standardised instruction exists.</p>
+    <p>This transmission pattern means the knowledge is robust in one sense — it has survived without institutional support — and fragile in another. If the practice stops being performed regularly, the experiential knowledge that maintains it begins to erode. Written documentation is a supplement to that knowledge, not a replacement for it.</p>
+    <div class="aside"><strong>The research notes:</strong> Younger generations and urban residents are among those with diminishing access to Chemo-making knowledge. The ethnobotanical record is partly a response to that concern — to document before the opportunity is lost.</div>
+  </div>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="#8b4a1a" stroke-width="1.5"/>
+          <path d="M11 6v5l4 4" stroke="#8b4a1a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Three methods exist, and they trace different communities</h3>
+    </div>
+    <p>The three leaf preparation methods documented in Tepi Town are not simply variations in flavour preference — they reflect different communities and different relationships to the coffee plant.</p>
+    <p>The roasted method is the dominant Tepi Town practice. The fresh-leaf method is documented as the Majang people's preferred approach — a different ethnic community with a different relationship to the forest and the plants within it. The lightly heated method sits between the two, used by households who prefer less intensity than roasting produces but more warmth than the fresh method offers.</p>
+    <div class="aside"><strong>What this tells us:</strong> Even within a small study area, coffee leaf beverage preparation encodes community identity, not just individual taste. The method chosen is partly a statement of who you are and where your knowledge comes from.</div>
+  </div>
+
+</div>
+
+<!-- SPICE SECTION -->
+<div class="spice-section">
+  <div class="spice-inner">
+    <h2>The botanical dimension of Chemo</h2>
+    <p class="sub">Tap a category to explore the documented ingredients</p>
+    <p>The spice blend in Chemo represents household botanical knowledge accumulated over generations. Ten ingredients are documented across Tepi Town households. The research categorises them in three groups: aromatic leafy herbs, root and bark spices, and flavour modifiers. Each plays a distinct role.</p>
+
+    <div class="spice-categories">
+
+      <div class="spice-cat">
+        <div class="spice-cat-header" onclick="toggleSpiceCat(this)">
+          <div class="spice-cat-icon" style="background:#e8f5e8;">🌿</div>
+          <h3>Aromatic leafy herbs</h3>
+          <span class="spice-cat-arrow">›</span>
+        </div>
+        <div class="spice-cat-body">
+          <div class="spice-item">
+            <div class="s-name">Basil <span class="s-local">· Besobila · Ocimum basilicum</span></div>
+            <span class="s-amt">~24g per litre</span><br>
+            Sweet, herbal, garden-fresh. Used as fresh leaves. One of the most consistently present herbs across all households.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Koseret <span class="s-local">· Lippia adoensis</span></div>
+            <span class="s-amt">~19g per litre</span><br>
+            The signature herb of Ethiopian beverages. A distinctive herbal aroma unlike any common Western spice. Native to Ethiopia. If one ingredient makes Chemo unmistakably Ethiopian, this is it.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Lemongrass <span class="s-local">· Tejisar · Cymbopogon citratus</span></div>
+            <span class="s-amt">~22g per litre</span><br>
+            Bright citrus and floral aroma. Adds freshness that lifts the heavier roasted and spiced base notes.
+          </div>
+        </div>
+      </div>
+
+      <div class="spice-cat">
+        <div class="spice-cat-header" onclick="toggleSpiceCat(this)">
+          <div class="spice-cat-icon" style="background:#fdf5e8;">🫚</div>
+          <h3>Root, seed and bark spices</h3>
+          <span class="spice-cat-arrow">›</span>
+        </div>
+        <div class="spice-cat-body">
+          <div class="spice-item">
+            <div class="s-name">Ginger <span class="s-local">· Jingibil · Zingiber officinale</span></div>
+            <span class="s-amt">~18g per litre</span><br>
+            Warmth and heat. Fresh or dried. The spice most associated with recovery and digestion across Ethiopian traditional preparations.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Ethiopian cardamom <span class="s-local">· Korerima · Aframomum corrorima</span></div>
+            Earthier and more complex than green cardamom. Native to Ethiopia. Adds depth and a characteristic warmth distinct from any imported spice substitute.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Cinnamon bark <span class="s-local">· Qerfa · Cinnamomum verum</span></div>
+            Sweet-warm, slightly woody. Used as bark rather than ground powder. Adds a sustained background warmth to the brew.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Clove <span class="s-local">· Qerenfud · Syzygium aromaticum</span></div>
+            Intense and aromatic. Used in small quantities. One of the few spices in the blend that can dominate if overused.
+          </div>
+        </div>
+      </div>
+
+      <div class="spice-cat">
+        <div class="spice-cat-header" onclick="toggleSpiceCat(this)">
+          <div class="spice-cat-icon" style="background:#fdf0f0;">🌶</div>
+          <h3>Flavour modifiers</h3>
+          <span class="spice-cat-arrow">›</span>
+        </div>
+        <div class="spice-cat-body">
+          <div class="spice-item">
+            <div class="s-name">Black pepper <span class="s-local">· Kundo berbere · Piper nigrum</span></div>
+            Heat and bite. Present in most documented households. Adds sharpness that cuts through the richness of the leaf brew and dairy-adjacent mouthfeel of a well-made Chemo.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Bird's eye chilli <span class="s-local">· Mitmita · Capsicum frutescens</span></div>
+            A smaller quantity than the black pepper. The combination of the two produces layered heat — immediate sharpness from the pepper, sustained warmth from the chilli.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Salt <span class="s-local">· Chew</span></div>
+            <span class="s-amt">~8g per litre</span><br>
+            As in Engere, salt is documented in Chemo. Suppresses bitterness, amplifies aromatic compounds, rounds the overall flavour. Its presence is consistent with traditional leaf beverage preparations across multiple cultures.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- GENDER AND KNOWLEDGE -->
+<div class="knowledge-section">
+  <h2>Knowledge that lives in practice</h2>
+  <p>The research notes something that statistics cannot fully capture: in Tepi Town, the knowledge of how to make Chemo has never been written down. It exists in the hands of women who learned by watching their mothers, who learned by watching theirs.</p>
+  <div class="pull">A recipe on paper can tell you what to add. It cannot tell you what the leaves smell like when they have been roasted long enough, or what the colour looks like when the brew is ready to strain.</div>
+  <p>The study also notes that this knowledge is under pressure. Younger generations and urban residents have less regular exposure to Chemo preparation. Ingredient availability is changing — some traditional herbs are harder to find near towns than they were in the villages where Chemo originated.</p>
+  <p>Ethnobotanical documentation — the kind this study represents — is a form of conservation. Not of the practice itself, which can only be maintained through regular performance, but of the knowledge that makes the practice possible if someone decides to revive it.</p>
+</div>
+
+<!-- COFFEE ECONOMY -->
+<div class="economy-band">
+  <div class="economy-inner">
+    <h2>The leaf that doesn't compete with the bean</h2>
+    <p>One of the most practically significant aspects of Chemo — and of all coffee leaf traditions — is documented in a single sentence of the Awoke et al. research:</p>
+    <p style="font-size:1.05rem; font-style:italic; opacity:.85; border-left:3px solid var(--ember); padding-left:20px; margin:20px 0;">"The beverage reflects locally adapted strategies of resource use — by utilising renewable coffee leaves rather than beans, it does not compete with market-oriented coffee production."</p>
+    <p>The Tepi Town communities who make Chemo are also coffee producers. The beans they grow go to market. The leaves they use for Chemo stay local. The two are not in competition — they are two different relationships with the same plant, operating in two different economies simultaneously.</p>
+    <div class="highlight">This is precisely the kind of whole-plant thinking that Citane / KoffyKraft is exploring with the Arabica Chandragiri coffee plants at Thumpassery Estate. The Tepi Town model offers a documented precedent: coffee leaf use does not require reducing bean production. It uses what would otherwise be unused.</div>
+  </div>
+</div>
+
+<!-- NEXT -->
+<div class="next-section">
+  <p>If you want the full ethnobotanical record — the complete ingredient documentation, the evidence framework, what the research establishes and what it does not — the deep page has all of it.</p>
+  <a class="next-link" href="chemo-deep.html">Go deeper into Chemo →</a>
+  <a class="prev-link" href="chemo-intro.html">← Back to: What is this?</a>
+</div>
+
+<div class="page-source">
+  Source: Awoke et al. 2026 · Journal of Ethnobiology and Ethnomedicine · Vol. 22, Art. 25 · DOI 10.1186/s13002-026-00863-y
+</div>
+
+<script>
+function toggleSpiceCat(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('show');
+  body.classList.toggle('show', !isOpen);
+  header.classList.toggle('open', !isOpen);
+}
+</script>
+
 </body>
 </html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemo · Recipes & Mechanics</title>
+<style>
+:root {
+  --ink:    #1e1a14;
+  --ember:  #8b4a1a;
+  --ember-lt:#c4784a;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f7f0e4;
+  --ruled:  #e0d4c0;
+  --muted:  #7a6a54;
+  --dark:   #1a1410;
+  --sage:   #5a7a5a;
+  --sage-pale:#edf3ed;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:18px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ember); }
+.sep { color:var(--ruled); }
+.page-t { font-size:.8rem; color:var(--muted); }
+.back { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--ember); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--ember); border-bottom-color:var(--ember); }
+.tab:hover { color:var(--ink); }
+
+.hero { background:var(--dark); color:#fff; padding:40px 24px 36px; text-align:center; }
+.hero .tradition { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; opacity:.45; margin-bottom:10px; }
+.hero h1 { font-size:clamp(1.8rem,5vw,2.6rem); font-weight:normal; margin-bottom:8px; }
+.hero .subtitle { font-size:1rem; opacity:.65; font-style:italic; max-width:440px; margin:0 auto; line-height:1.7; }
+
+/* SCALER */
+.scaler-wrap { background:var(--ember); color:#fff; padding:20px 24px; text-align:center; }
+.scaler-wrap p { font-size:.85rem; opacity:.8; margin-bottom:12px; line-height:1.5; }
+.scaler-controls { display:flex; align-items:center; justify-content:center; gap:16px; }
+.scaler-btn { width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.2); border:none; color:#fff; font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.scaler-btn:hover { background:rgba(255,255,255,.35); }
+.scaler-count { font-size:1.5rem; font-weight:bold; min-width:40px; text-align:center; }
+.scaler-label { font-size:.82rem; opacity:.75; }
+
+/* BEFORE START */
+.before-start { max-width:680px; margin:28px auto 0; padding:0 24px; }
+.before-start-inner { background:var(--pale); border:1px solid var(--ruled); border-radius:6px; padding:20px 24px; }
+.before-start-inner h3 { font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ember); margin-bottom:14px; }
+.before-rule { display:flex; align-items:flex-start; gap:14px; padding:10px 0; border-bottom:1px solid var(--ruled); font-size:.95rem; line-height:1.7; }
+.before-rule:last-child { border-bottom:none; }
+.before-rule .dot { width:8px; height:8px; border-radius:50%; background:var(--ember); flex-shrink:0; margin-top:8px; }
+
+main { max-width:680px; margin:0 auto; padding:40px 24px 60px; }
+
+.s-label { font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ember); display:block; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--ruled); }
+h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:18px; line-height:1.3; }
+p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:16px; }
+hr.divider { border:none; border-top:1px solid var(--ruled); margin:44px 0; }
+
+/* METHOD SELECTOR */
+.method-selector { display:flex; gap:8px; margin-bottom:28px; flex-wrap:wrap; }
+.ms-btn { padding:12px 16px; border:1.5px solid var(--ruled); border-radius:4px; background:var(--cream); color:var(--muted); font-family:Georgia,serif; font-size:.9rem; cursor:pointer; transition:all .15s; flex:1; min-width:100px; text-align:center; }
+.ms-btn.active { background:var(--ember); color:#fff; border-color:var(--ember); }
+
+.recipe-panel { display:none; }
+.recipe-panel.show { display:block; }
+
+.recipe-header { background:var(--pale); border-radius:6px 6px 0 0; padding:20px 24px; border-bottom:2px solid var(--ember); }
+.recipe-name-row { display:flex; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap; }
+.recipe-name { font-size:1.25rem; color:var(--ink); font-weight:normal; }
+.recipe-badge { font-size:.75rem; background:var(--ember); color:#fff; padding:2px 10px; border-radius:3px; }
+.recipe-desc { font-size:.95rem; color:var(--muted); line-height:1.65; font-style:italic; }
+
+.ing-table { width:100%; border-collapse:collapse; margin:20px 0; font-size:.92rem; }
+.ing-table th { background:var(--dark); color:#fff; padding:10px 14px; text-align:left; font-weight:normal; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+.ing-table td { padding:12px 14px; border-bottom:1px solid var(--ruled); vertical-align:top; line-height:1.55; }
+.ing-table tr:nth-child(even) td { background:var(--pale); }
+.ing-table .local { font-size:.8rem; color:var(--muted); font-style:italic; }
+.ing-table .amount { font-weight:bold; color:var(--ember); }
+.ing-group td { background:var(--pale) !important; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); padding:8px 14px; }
+
+.steps-list { list-style:none; margin:20px 0; }
+.steps-list li { display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--ruled); font-size:1rem; line-height:1.8; }
+.steps-list li:last-child { border-bottom:none; }
+.step-num { min-width:36px; height:36px; border-radius:50%; background:var(--ember); color:#fff; display:flex; align-items:center; justify-content:center; font-size:.9rem; font-weight:bold; flex-shrink:0; margin-top:2px; }
+.step-content h4 { font-size:1rem; font-weight:bold; color:var(--ink); margin-bottom:4px; }
+.step-content p { font-size:.95rem; margin:0; color:var(--ink); line-height:1.75; }
+.step-note { background:var(--pale); border-radius:4px; padding:8px 12px; margin-top:8px; font-size:.85rem; color:var(--muted); font-style:italic; line-height:1.6; }
+
+.yield-box { background:var(--ember); color:#fff; border-radius:0 0 6px 6px; padding:16px 24px; display:flex; gap:24px; flex-wrap:wrap; }
+.yield-item { text-align:center; }
+.yield-num { font-size:1.4rem; font-weight:bold; display:block; }
+.yield-label { font-size:.75rem; opacity:.75; }
+
+.note-box { background:var(--sage-pale); border-left:3px solid var(--sage); border-radius:0 4px 4px 0; padding:16px 20px; margin:18px 0; font-size:.92rem; line-height:1.75; }
+.note-box .note-title { font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); margin-bottom:6px; }
+.warn-box { background:#fef9f0; border-left:3px solid #c8902a; border-radius:0 4px 4px 0; padding:16px 20px; margin:18px 0; font-size:.92rem; line-height:1.75; }
+.warn-box strong { color:#8b6020; }
+
+/* QUALITY */
+.quality-list { list-style:none; margin:16px 0; }
+.quality-list li { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--ruled); font-size:.95rem; line-height:1.65; }
+.quality-list li:last-child { border-bottom:none; }
+.q-mark { font-size:1rem; flex-shrink:0; margin-top:2px; }
+
+/* SERVING */
+.serving-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:20px 0; }
+.serving-card { background:var(--pale); border-radius:6px; padding:16px; text-align:center; }
+.sv-num { font-size:1.6rem; color:var(--ember); font-weight:bold; display:block; margin-bottom:4px; }
+.sv-label { font-size:.82rem; color:var(--muted); line-height:1.4; }
+
+.page-nav { max-width:680px; margin:0 auto; padding:24px 24px 48px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--ruled); }
+.page-nav a { color:var(--ember); text-decoration:none; font-size:.95rem; }
+.page-nav a:hover { color:var(--ink); }
+
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Chemo · Recipes</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab" href="chemo-intro.html">What is this?</a>
+  <a class="tab" href="chemo.html">What's fascinating</a>
+  <a class="tab" href="chemo-deep.html">Go deeper</a>
+  <a class="tab active" href="#">Recipes & Mechanics</a>
+</div>
+
+<div class="hero">
+  <div class="tradition">Tepi Town · Sheka Zone · Southwestern Ethiopia</div>
+  <h1>Chemo — Recipes & Mechanics</h1>
+  <p class="subtitle">Three preparation methods with full ingredients, step-by-step instructions, and quality guidance.</p>
+</div>
+
+<div class="scaler-wrap">
+  <p>All quantities adjust to your serving size</p>
+  <div class="scaler-controls">
+    <button class="scaler-btn" onclick="changeServings(-1)">−</button>
+    <div>
+      <div class="scaler-count" id="serving-count">4</div>
+      <div class="scaler-label">servings (~250ml each)</div>
+    </div>
+    <button class="scaler-btn" onclick="changeServings(1)">+</button>
+  </div>
+</div>
+
+<div class="before-start">
+  <div class="before-start-inner">
+    <h3>Before any method — read this first</h3>
+    <div class="before-rule"><div class="dot"></div>Choose your leaf preparation method first — roasted, lightly heated, or fresh. The method is decided before water is boiled.</div>
+    <div class="before-rule"><div class="dot"></div>All spices go in every time. There are no optional spices in Chemo — the spice blend is what makes it Chemo.</div>
+    <div class="before-rule"><div class="dot"></div>Always strain completely. Coffee leaves are tough and fibrous and are never consumed. Any leaf material in the cup means the strain was incomplete.</div>
+    <div class="before-rule"><div class="dot"></div>Always serve with food. This is documented as a consistent cultural practice — not a preference. Starchy food alongside Chemo moderates the intensity of the brew.</div>
+    <div class="before-rule"><div class="dot"></div>Serve hot immediately. Chemo is not stored or reheated.</div>
+  </div>
+</div>
+
+<main>
+
+<span class="s-label">Choose your method</span>
+
+<div class="method-selector">
+  <button class="ms-btn active" onclick="showRecipe('roasted', this)">Roasted</button>
+  <button class="ms-btn" onclick="showRecipe('heated', this)">Lightly Heated</button>
+  <button class="ms-btn" onclick="showRecipe('fresh', this)">Fresh / Majang</button>
+</div>
+
+<!-- METHOD 1: ROASTED -->
+<div class="recipe-panel show" id="recipe-roasted">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Roasted Leaf Chemo</span>
+      <span class="recipe-badge">55.8% of households · most common</span>
+    </div>
+    <p class="recipe-desc">Leaves roasted over fire until golden-brown, crushed warm, boiled with a full spice blend. The deepest, sweetest, most complex form. The dominant household preparation in Tepi Town.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Local name</th><th>Amount (base 4 servings)</th></tr></thead>
+    <tbody>
+      <tr class="ing-group"><td colspan="3">Leaves</td></tr>
+      <tr><td>Coffee leaves, young tips, fresh</td><td class="local">Buna Kitel</td><td class="amount scaled" data-base="164">164g</td></tr>
+      <tr class="ing-group"><td colspan="3">Water</td></tr>
+      <tr><td>Clean water</td><td class="local">Woha</td><td class="amount scaled" data-base="1000">1000ml</td></tr>
+      <tr class="ing-group"><td colspan="3">Aromatic leafy herbs</td></tr>
+      <tr><td>Basil (fresh leaves)</td><td class="local">Besobila</td><td class="amount scaled" data-base="24">24g</td></tr>
+      <tr><td>Koseret</td><td class="local">Lippia adoensis</td><td class="amount scaled" data-base="19">19g</td></tr>
+      <tr><td>Lemongrass</td><td class="local">Tejisar</td><td class="amount scaled" data-base="22">22g</td></tr>
+      <tr class="ing-group"><td colspan="3">Root, seed and bark spices</td></tr>
+      <tr><td>Ginger</td><td class="local">Jingibil</td><td class="amount scaled" data-base="18">18g</td></tr>
+      <tr><td>Ethiopian cardamom</td><td class="local">Korerima</td><td class="amount">to taste</td></tr>
+      <tr><td>Cinnamon bark</td><td class="local">Qerfa</td><td class="amount">1 small piece</td></tr>
+      <tr><td>Clove</td><td class="local">Qerenfud</td><td class="amount">2–3 whole</td></tr>
+      <tr class="ing-group"><td colspan="3">Flavour modifiers</td></tr>
+      <tr><td>Black pepper</td><td class="local">Kundo berbere</td><td class="amount">6–8 whole</td></tr>
+      <tr><td>Bird's eye chilli</td><td class="local">Mitmita</td><td class="amount">1–2 dried</td></tr>
+      <tr><td>Salt</td><td class="local">Chew</td><td class="amount scaled" data-base="8">8g</td></tr>
+    </tbody>
+  </table>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Pick and clean leaves</h4>
+        <p>Select young tender tips — the newest, brightest green leaves from the branch tips. Wash gently in clean water. Pat dry.</p>
+        <div class="step-note">Early morning is the traditional harvest time. Aromatic oils are at their peak and the leaves are at their crispest before the day's heat.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Roast over medium heat</h4>
+        <p>Place leaves in a dry pan or over direct low-medium fire. Roast 5–10 minutes, stirring or turning constantly. Stop when leaves are golden-brown. Not dark brown — not black.</p>
+        <div class="step-note">Watch carefully. The window between golden-brown and over-roasted is narrow. Golden-brown = Maillard sweetness. Dark brown or black = bitter and harsh. If in doubt, err lighter.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Crush while warm</h4>
+        <p>Immediately transfer hot roasted leaves to a mortar and pestle. Crush into rough pieces — not powder, just broken. Work quickly while they are still warm and fragrant.</p>
+        <div class="step-note">Crushing while warm releases the volatile aromatic compounds created by roasting. If the leaves cool before crushing, some of that character is lost.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Boil with water and all spices</h4>
+        <p>Bring <span class="scaled" data-base="1000">1000</span>ml water to a full boil. Add crushed leaves and all spice ingredients simultaneously. Reduce to a simmer. Cover and brew 15–30 minutes.</p>
+        <div class="step-note">All spices go in together. There is no sequential addition in the documented method. Shorter brew (15 min) = lighter intensity. Longer (30 min) = darker, more aromatic, more bitter. Taste at 15 minutes and decide.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Strain completely</h4>
+        <p>Pour through fine cloth or fine mesh into a clean pot. All leaf and spice material must be removed. The brew should run clear and dark amber.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <h4>Serve hot alongside food</h4>
+        <p>Pour into cups immediately while hot. Serve with starchy food — injera, bread, boiled grains, root vegetables. This is not optional presentation — it is how Chemo is meant to be consumed.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="900">900</span><span class="yield-label">ml approximate yield</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">Hot</span><span class="yield-label">serve immediately with food</span></div>
+  </div>
+</div>
+
+<!-- METHOD 2: HEATED -->
+<div class="recipe-panel" id="recipe-heated">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Lightly Heated Leaf Chemo</span>
+      <span class="recipe-badge">Less common · more delicate</span>
+    </div>
+    <p class="recipe-desc">Leaves heated gently without browning — warm but not roasted. A more delicate, lighter character than the roasted method. Same spice blend, different leaf preparation.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Local name</th><th>Amount (base 4 servings)</th></tr></thead>
+    <tbody>
+      <tr class="ing-group"><td colspan="3">Leaves</td></tr>
+      <tr><td>Coffee leaves, young tips, fresh</td><td class="local">Buna Kitel</td><td class="amount scaled" data-base="164">164g</td></tr>
+      <tr class="ing-group"><td colspan="3">Water and spices — identical to Roasted method</td></tr>
+      <tr><td>Clean water</td><td class="local">Woha</td><td class="amount scaled" data-base="1000">1000ml</td></tr>
+      <tr><td>Basil · Koseret · Lemongrass · Ginger · Cardamom · Cinnamon · Clove · Pepper · Chilli · Salt</td><td class="local">See Roasted method for quantities</td><td class="amount">same as Roasted</td></tr>
+    </tbody>
+  </table>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Pick and clean leaves</h4>
+        <p>Young tender tips, washed. Keep them slightly damp — gentle moisture helps with the light heating step.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Heat gently — do not roast</h4>
+        <p>Place leaves in a pan over low heat for 5 minutes only. You want them warm and slightly softened — not browned, not crisp. Remove as soon as they are warm to the touch and smell fragrant.</p>
+        <div class="step-note">This is about warming rather than roasting. The Maillard reaction does not begin significantly until leaf surfaces reach approximately 140°C. Low heat over 5 minutes keeps the temperature below this threshold.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Crush while warm</h4>
+        <p>Crush warm leaves in mortar and pestle into rough pieces. The warmth helps the cells rupture more completely.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Boil with water and all spices</h4>
+        <p>Same as Roasted method. All spices added together. Simmer 15–30 minutes covered. The resulting brew will be lighter in colour and more delicate in character than roasted leaf Chemo.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Strain and serve</h4>
+        <p>Strain completely through fine cloth or mesh. Serve hot immediately alongside food.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="900">900</span><span class="yield-label">ml approximate yield</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">Hot</span><span class="yield-label">serve immediately with food</span></div>
+  </div>
+</div>
+
+<!-- METHOD 3: FRESH -->
+<div class="recipe-panel" id="recipe-fresh">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Fresh Leaf Chemo</span>
+      <span class="recipe-badge">Majang community preference · brightest character</span>
+    </div>
+    <p class="recipe-desc">No heat applied to leaves. Crushed fresh and brewed directly. The brightest, most immediate expression of the leaf. The preparation associated with the Majang people of the Tepi Town region.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Local name</th><th>Amount (base 4 servings)</th></tr></thead>
+    <tbody>
+      <tr class="ing-group"><td colspan="3">Leaves</td></tr>
+      <tr><td>Coffee leaves, young tips, very fresh</td><td class="local">Buna Kitel</td><td class="amount scaled" data-base="164">164g</td></tr>
+      <tr class="ing-group"><td colspan="3">Water and spices</td></tr>
+      <tr><td>Clean water</td><td class="local">Woha</td><td class="amount scaled" data-base="1000">1000ml</td></tr>
+      <tr><td>Full spice blend</td><td class="local">See Roasted method</td><td class="amount">same quantities</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <div class="note-title">Freshness is critical here</div>
+    The fresh method has no roasting step to create new flavour compounds. All character comes from the raw leaf. The leaves must be harvested on the day of preparation — ideally within hours. Older leaves will produce a flat, dull brew.
+  </div>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Pick the freshest possible leaves</h4>
+        <p>Young tender tips harvested on the morning of preparation. Wash gently in clean water to remove dust and debris.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Crush immediately</h4>
+        <p>Do not delay. Crush fresh leaves in mortar and pestle into rough pieces immediately after washing. The aromatic oils in fresh leaves begin to dissipate quickly once the cell walls are ruptured.</p>
+        <div class="step-note">Speed matters here more than in any other method. The fresh leaf's volatile compounds are at their peak in the first few minutes after crushing.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Boil with water and all spices</h4>
+        <p>Add crushed fresh leaves and all spices to boiling water simultaneously. Simmer 15–20 minutes — slightly shorter than roasted method as there is no roasted crust to soften. Cover.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Strain and serve</h4>
+        <p>Strain completely. The brew will be lighter in colour than roasted — green-tinged amber rather than dark amber-brown. Serve hot immediately with food.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="900">900</span><span class="yield-label">ml approximate yield</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">Hot</span><span class="yield-label">serve immediately with food</span></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- QUALITY -->
+<span class="s-label">Quality checks</span>
+<h2>What good Chemo looks, smells and tastes like</h2>
+
+<ul class="quality-list">
+  <li><div class="q-mark">✓</div><div><strong>Colour:</strong> Dark amber to brown. Roasted method produces the darkest colour. Fresh method produces a lighter, slightly green-tinged amber. All should be clear — not cloudy.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Aroma:</strong> Complex, spiced, warm. The herbs and spices should be immediately detectable. Roasted method carries an additional warm, toasty background note. Fresh method is greener and more immediate.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Taste:</strong> Full-bodied, warming, aromatic. Bitter but balanced — the spices moderate the leaf's natural bitterness. There should be detectable heat from the pepper and chilli.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Texture:</strong> Smooth. No grittiness. Any grittiness means leaf or spice material remains in the brew.</div></li>
+  <li><div class="q-mark">✗</div><div><strong>Pale colour:</strong> Usually means too few leaves, too short a brew time, or leaves that were too old at harvest.</div></li>
+  <li><div class="q-mark">✗</div><div><strong>Flat, dull aroma:</strong> Usually means the spices were insufficient, the herbs were old, or the brew time was too short.</div></li>
+  <li><div class="q-mark">✗</div><div><strong>Acrid or harsh bitterness:</strong> Usually means leaves were over-roasted (dark brown or black rather than golden-brown).</div></li>
+</ul>
+
+<hr class="divider">
+
+<!-- SERVING -->
+<span class="s-label">Serving</span>
+<h2>How Chemo is served</h2>
+
+<div class="serving-grid">
+  <div class="serving-card"><span class="sv-num">Hot</span><span class="sv-label">Always served hot. Never cold or warm.</span></div>
+  <div class="serving-card"><span class="sv-num">With food</span><span class="sv-label">Always accompanied by starchy food. Never alone.</span></div>
+  <div class="serving-card"><span class="sv-num">Fresh</span><span class="sv-label">Prepared for the session. Not stored or reheated.</span></div>
+  <div class="serving-card"><span class="sv-num">Shared</span><span class="sv-label">Made when people are present. A hospitality drink.</span></div>
+</div>
+
+<div class="warn-box">
+  <strong>Always with food.</strong> This is the most culturally specific serving requirement for Chemo — more so than temperature or vessel. The food pairing is documented as a consistent practice across all 64 households. Serving Chemo without food is an adaptation, not a traditional practice.
+</div>
+
+</main>
+
+<div class="page-nav">
+  <a href="chemo-deep.html">← Go Deeper</a>
+  <a href="visitor-lounge.html">Library →</a>
+</div>
+
+<div class="page-source">
+  Source: Awoke et al. 2026 · Journal of Ethnobiology and Ethnomedicine · Vol. 22, Art. 25 · DOI 10.1186/s13002-026-00863-y
+</div>
+
+<script>
+let servings = 4;
+const BASE = 4;
+function changeServings(delta) {
+  servings = Math.max(1, Math.min(20, servings + delta));
+  document.getElementById('serving-count').textContent = servings;
+  const ratio = servings / BASE;
+  document.querySelectorAll('.scaled').forEach(el => {
+    const base = parseFloat(el.dataset.base);
+    if (isNaN(base)) return;
+    const val = base * ratio;
+    el.textContent = Number.isInteger(val) ? val : Math.round(val * 10) / 10;
+  });
+}
+function showRecipe(id, btn) {
+  document.querySelectorAll('.recipe-panel').forEach(p => p.classList.remove('show'));
+  document.querySelectorAll('.ms-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('recipe-' + id).classList.add('show');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
