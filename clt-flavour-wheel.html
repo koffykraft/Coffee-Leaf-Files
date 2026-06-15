@@ -6,242 +6,259 @@
 <title>Citane · CLT Flavour Landscape</title>
 <style>
 :root {
-  --ink:#1a1a1a; --leaf:#3d5a3e; --parchment:#f7f4ef; --cream:#fdfbf8;
-  --ruled:#d8d2c8; --accent:#8b6f47; --muted:#6b6560;
-  --epsilon:#2a3a5a; --warn:#8b3a2a;
+  --ink: #1a1a1a;
+  --leaf: #3d5a3e;
+  --parchment: #f7f4ef;
+  --cream: #fdfbf8;
+  --ruled: #d8d2c8;
+  --accent: #8b6f47;
+  --muted: #6b6560;
+  --pale: #f0ece5;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:Georgia,serif;background:var(--parchment);color:var(--ink);}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: Georgia, serif;
+  background: var(--parchment);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
 /* NAV */
-nav{background:var(--ink);padding:12px 16px;display:flex;align-items:center;gap:8px;}
-.brand{color:#fff;font-size:.95rem;letter-spacing:.13em;text-transform:uppercase;}
-.sep{color:#555;}
-.page-t{color:#999;font-size:.75rem;}
-.back{margin-left:auto;color:#888;font-size:.7rem;text-decoration:none;}
-.back:hover{color:#fff;}
+nav {
+  background: var(--ink);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.brand { color: #fff; font-size: 1rem; letter-spacing: .14em; text-transform: uppercase; }
+.sep { color: #555; }
+.page-t { color: #999; font-size: .82rem; }
+.back { margin-left: auto; color: #888; font-size: .78rem; text-decoration: none; }
+.back:hover { color: #fff; }
 
-/* HERO — minimal */
-.hero{background:var(--leaf);color:#fff;padding:20px 16px 16px;text-align:center;}
-.hero h1{font-size:1.2rem;font-weight:normal;letter-spacing:.02em;}
-.hero p{font-size:.75rem;opacity:.6;margin-top:4px;}
+/* HERO */
+.hero {
+  background: var(--leaf);
+  color: #fff;
+  padding: 22px 18px 18px;
+  text-align: center;
+}
+.hero h1 { font-size: 1.3rem; font-weight: normal; margin-bottom: 4px; }
+.hero p { font-size: .82rem; opacity: .62; }
 
-/* AXIS ROW */
-.axis-row{max-width:700px;margin:14px auto 3px;padding:0 16px;
-  display:flex;justify-content:space-between;}
-.ax-h{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink);opacity:.65;font-weight:bold;}
-
-/* LANDSCAPE */
-.landscape-wrap{max-width:700px;margin:0 auto;padding:0 16px;}
-.landscape{
-  position:relative;background:var(--cream);
-  border:1px solid var(--ruled);border-radius:6px;
-  height:500px;overflow:hidden;touch-action:none;
+/* INTRO HINT */
+.intro-hint {
+  text-align: center;
+  padding: 16px 18px 10px;
+  font-size: .84rem;
+  color: var(--muted);
+  font-style: italic;
 }
 
-/* Quadrant shading */
-.q{position:absolute;width:50%;height:50%;pointer-events:none;}
-.q-tl{top:0;left:0;background:rgba(90,154,90,.04);}
-.q-tr{top:0;right:0;background:rgba(200,168,75,.04);}
-.q-bl{bottom:0;left:0;background:rgba(88,136,160,.04);}
-.q-br{bottom:0;right:0;background:rgba(90,64,48,.05);}
-
-/* Axis lines */
-.ax-v{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--ruled);opacity:.5;pointer-events:none;}
-.ax-h-line{position:absolute;top:50%;left:0;right:0;height:1px;background:var(--ruled);opacity:.5;pointer-events:none;}
-
-/* Axis labels inside */
-.ax-in{
-  position:absolute;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink);opacity:.6;pointer-events:none;font-weight:bold;
-  background:rgba(253,251,248,.9);padding:2px 7px;border-radius:2px;
-}
-.ax-top   {top:5px;left:50%;transform:translateX(-50%);}
-.ax-bot   {bottom:5px;left:50%;transform:translateX(-50%);}
-.ax-left  {left:4px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;rotate:180deg;}
-.ax-right {right:4px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;}
-
-/* ? help button */
-.help-btn{
-  position:absolute;bottom:8px;right:8px;
-  width:22px;height:22px;border-radius:50%;
-  background:rgba(107,101,96,.15);border:none;
-  font-family:Georgia,serif;font-size:.75rem;color:var(--muted);
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  z-index:50;
-}
-.help-btn:hover{background:rgba(107,101,96,.28);}
-
-/* Legend overlay */
-.legend-overlay{
-  display:none;position:absolute;inset:0;
-  background:rgba(253,251,248,.96);border-radius:6px;
-  z-index:100;padding:24px 20px;
-}
-.legend-overlay.show{display:block;}
-.legend-overlay h4{font-size:.8rem;font-weight:normal;margin-bottom:14px;color:var(--accent);letter-spacing:.05em;}
-.leg-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:.75rem;color:var(--muted);}
-.leg-dot{width:12px;height:12px;border-radius:2px;flex-shrink:0;}
-.leg-line{width:24px;height:0;flex-shrink:0;}
-.leg-close{position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.2rem;color:var(--muted);cursor:pointer;}
-
-/* SVG */
-svg.conn{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
-
-/* NODES */
-.node{
-  position:absolute;border-radius:5px;padding:8px 11px;
-  cursor:grab;text-align:center;min-width:82px;z-index:5;
-  transition:box-shadow .18s;-webkit-user-select:none;user-select:none;
-}
-.node:active{cursor:grabbing;}
-.node h4{font-size:.76rem;font-weight:bold;margin-bottom:1px;}
-.node p{font-size:.6rem;line-height:1.3;opacity:.8;}
-
-.node.active{z-index:20;box-shadow:0 0 0 3px var(--ink),0 4px 18px rgba(0,0,0,.22);}
-.node.aligned{z-index:10;box-shadow:0 0 0 3px #5a9a5a,0 2px 12px rgba(90,154,90,.3);animation:pg .9s ease-in-out 2;}
-.node.opposed{z-index:10;box-shadow:0 0 0 2px #a03030,0 2px 10px rgba(160,48,48,.2);animation:pr .9s ease-in-out 2;}
-.node.compare-b{z-index:20;box-shadow:0 0 0 3px var(--accent),0 4px 18px rgba(139,111,71,.25);}
-
-@keyframes pg{0%,100%{box-shadow:0 0 0 3px #5a9a5a,0 2px 10px rgba(90,154,90,.3);}50%{box-shadow:0 0 0 7px #5a9a5a,0 2px 20px rgba(90,154,90,.5);}}
-@keyframes pr{0%,100%{box-shadow:0 0 0 2px #a03030,0 2px 8px rgba(160,48,48,.2);}50%{box-shadow:0 0 0 6px #a03030,0 2px 16px rgba(160,48,48,.4);}}
-
-/* DETAIL — appears below, no scroll */
-.detail-wrap{max-width:700px;margin:0 auto;padding:0 16px;}
-
-.detail{display:none;background:var(--ink);color:#fff;border-radius:0 0 4px 4px;
-  padding:18px;border-top:3px solid transparent;}
-.detail.show{display:block;}
-
-/* Compare hint — single quiet line */
-.compare-hint{
-  display:none;font-size:.72rem;color:rgba(255,255,255,.38);
-  font-style:italic;margin-top:12px;padding-top:10px;
-  border-top:1px solid rgba(255,255,255,.08);
-}
-.compare-hint.show{display:block;}
-
-/* Clear button — only after comparison */
-.clear-btn{
-  display:none;margin-top:12px;background:none;
-  border:1px solid rgba(255,255,255,.18);border-radius:2px;
-  padding:5px 14px;font-family:Georgia,serif;font-size:.72rem;
-  color:rgba(255,255,255,.45);cursor:pointer;
-}
-.clear-btn:hover{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.4);}
-.clear-btn.show{display:inline-block;}
-
-/* Single detail view */
-.single-view{display:block;}
-.single-view .det-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
-.swatch{width:14px;height:14px;border-radius:2px;flex-shrink:0;margin-top:4px;}
-.single-view h3{font-size:1rem;font-weight:normal;color:#fff;margin-bottom:2px;}
-.sub-label{font-size:.62rem;opacity:.38;letter-spacing:.1em;text-transform:uppercase;}
-.det-desc{font-size:.8rem;line-height:1.75;opacity:.85;margin-bottom:12px;}
-
-.det-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
-@media(max-width:460px){.det-grid{grid-template-columns:1fr;}}
-.dbox{background:rgba(255,255,255,.07);border-radius:3px;padding:8px 10px;}
-.dbox-t{font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;opacity:.38;margin-bottom:5px;}
-.tags{display:flex;flex-wrap:wrap;gap:3px;}
-.tag{background:rgba(255,255,255,.1);border-radius:2px;padding:2px 7px;font-size:.68rem;}
-.tag.a{background:rgba(90,180,90,.18);}
-.tag.o{background:rgba(200,80,80,.15);}
-
-.pathway-link{
-  display:block;margin-top:14px;padding-top:10px;
-  border-top:1px solid rgba(255,255,255,.08);
-  font-size:.73rem;color:rgba(255,255,255,.45);text-decoration:none;
-  font-style:italic;
-}
-.pathway-link:hover{color:rgba(255,255,255,.8);}
-
-/* COMPARE VIEW */
-.compare-view{display:none;}
-.compare-view.show{display:block;}
-.compare-header{
-  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
-  opacity:.4;margin-bottom:14px;
-}
-.compare-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media(max-width:460px){.compare-cols{grid-template-columns:1fr;}}
-.col-head{display:flex;align-items:center;gap:7px;margin-bottom:8px;}
-.col-swatch{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
-.col-name{font-size:.82rem;font-weight:bold;color:#fff;}
-.col-row{margin-bottom:8px;}
-.col-row-t{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;opacity:.35;margin-bottom:4px;}
-.col-row-v{font-size:.74rem;opacity:.82;line-height:1.55;}
-
-.compare-shared{
-  margin-top:14px;padding-top:12px;
-  border-top:1px solid rgba(255,255,255,.1);
-}
-.compare-shared-t{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;opacity:.35;margin-bottom:7px;}
-.shared-tags{display:flex;flex-wrap:wrap;gap:4px;}
-.shared-tag{background:rgba(255,255,255,.12);border-radius:2px;padding:3px 9px;font-size:.72rem;}
-.shared-tag.yes{background:rgba(90,180,90,.2);}
-.shared-tag.no{background:rgba(200,80,80,.12);}
-
-/* NODE HINT */
-.node-hint {
-  position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
-  background:var(--ink);color:#fff;font-size:.62rem;padding:4px 9px;
-  border-radius:3px;white-space:nowrap;pointer-events:none;
-  font-family:Georgia,serif;font-style:italic;
-  transition:opacity .4s;z-index:100;
-}
-.node-hint::after {
-  content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
-  border:4px solid transparent;border-top-color:var(--ink);
+/* ═══════════════════════════════════
+   CONSTELLATION STAGE
+═══════════════════════════════════ */
+.stage-wrap {
+  position: relative;
+  width: calc(100% - 32px);
+  max-width: 500px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1.45;
+  border: 1px solid var(--ruled);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--cream);
 }
 
-/* GUIDE BUTTON */
-.guide-btn {
-  position:absolute;bottom:8px;left:8px;
-  background:rgba(107,101,96,.15);border:none;border-radius:3px;
-  font-family:Georgia,serif;font-size:.62rem;color:var(--muted);
-  padding:4px 10px;cursor:pointer;letter-spacing:.05em;z-index:50;
-}
-.guide-btn:hover{background:rgba(107,101,96,.28);}
-
-/* GUIDE OVERLAY */
-.guide-overlay {
-  display:none;position:fixed;inset:0;
-  background:rgba(247,244,239,.97);z-index:200;
-  overflow-y:auto;padding:24px 20px 40px;
-}
-.guide-overlay.show{display:block;}
-.guide-inner{max-width:500px;margin:0 auto;}
-.guide-overlay h4 {
-  font-size:.95rem;font-weight:normal;color:var(--leaf);
-  margin-bottom:20px;padding-bottom:10px;
-  border-bottom:1px solid var(--ruled);
-}
-.guide-step {
-  display:flex;gap:14px;margin-bottom:18px;align-items:flex-start;
-  font-size:.8rem;line-height:1.7;color:var(--ink);
-}
-.guide-num {
-  min-width:24px;height:24px;border-radius:50%;
-  background:var(--leaf);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.72rem;flex-shrink:0;margin-top:2px;
+canvas#constellation {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* SOURCES — collapsed at bottom */
-.sources-wrap{max-width:700px;margin:0 auto;padding:16px 16px 50px;}
-.sources-toggle{
-  background:none;border:none;font-family:Georgia,serif;
-  font-size:.75rem;color:var(--muted);cursor:pointer;
-  padding:0;letter-spacing:.04em;
+/* Reset hint */
+.reset-hint {
+  text-align: center;
+  font-size: .76rem;
+  color: var(--muted);
+  padding: 6px 18px 2px;
+  display: none;
+  font-style: italic;
 }
-.sources-toggle:hover{color:var(--ink);}
-.sources-body{display:none;margin-top:12px;}
-.sources-body.show{display:block;}
-.sources-body ol{padding-left:16px;}
-.sources-body li{font-size:.73rem;color:var(--muted);line-height:1.7;margin-bottom:4px;}
-.sources-body .doi{color:var(--accent);font-size:.68rem;}
+.reset-hint.show { display: block; }
+
+/* ═══════════════════════════════════
+   DETAIL PANEL
+═══════════════════════════════════ */
+.detail-panel {
+  max-width: 500px;
+  margin: 16px auto 0;
+  padding: 0 16px 60px;
+  display: none;
+}
+.detail-panel.show { display: block; }
+
+/* Header */
+.dp-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ruled);
+}
+.dp-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dp-name {
+  font-size: 1.2rem;
+  font-weight: normal;
+  line-height: 1.2;
+}
+.dp-sub {
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Description */
+.dp-desc {
+  font-size: .94rem;
+  line-height: 1.78;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+/* Info blocks */
+.dp-block {
+  background: var(--cream);
+  border: 1px solid var(--ruled);
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.dp-block-title {
+  font-size: .66rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.dp-block p {
+  font-size: .9rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+/* Tags */
+.tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag {
+  background: var(--pale);
+  border: 1px solid var(--ruled);
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: .82rem;
+  color: var(--ink);
+}
+
+/* Relationship summary */
+.dp-rels {
+  margin-bottom: 16px;
+}
+.dp-rel-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.dp-rel-label {
+  font-size: .66rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  min-width: 70px;
+  padding-top: 6px;
+}
+.rel-bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+}
+.rel-dot {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .72rem;
+  font-weight: bold;
+  color: #fff;
+  transition: transform .15s;
+}
+.rel-dot:hover { transform: scale(1.12); }
+.rel-name {
+  font-size: .7rem;
+  color: var(--muted);
+  text-align: center;
+  max-width: 52px;
+  line-height: 1.3;
+}
+
+/* Pathway link */
+.pathway-link {
+  display: block;
+  margin-top: 18px;
+  padding: 13px 16px;
+  background: var(--leaf);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: .88rem;
+  text-align: center;
+  letter-spacing: .03em;
+  touch-action: manipulation;
+}
+.pathway-link:hover { background: #4e6e4f; }
+
+/* Sources */
+.sources-wrap {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+}
+.sources-toggle {
+  background: none;
+  border: none;
+  font-family: Georgia, serif;
+  font-size: .82rem;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 12px 0;
+  text-decoration: underline;
+}
+.sources-body {
+  display: none;
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.7;
+  padding-top: 10px;
+}
+.sources-body.show { display: block; }
+.sources-body ol { padding-left: 18px; }
+.sources-body li { margin-bottom: 8px; }
+.doi { font-style: italic; }
 </style>
 </head>
 <body>
@@ -250,7 +267,7 @@ svg.conn{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-
   <span class="brand">Citane</span>
   <span class="sep">/</span>
   <span class="page-t">CLT Flavour Landscape</span>
-  <a class="back" href="index.html">← Library</a>
+  <a class="back" href="visitor-lounge.html">← Library</a>
 </nav>
 
 <div class="hero">
@@ -258,306 +275,61 @@ svg.conn{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-
   <p>KoffyKraft · Thumpassery Estate</p>
 </div>
 
-<div class="axis-row">
-  <span class="ax-h">← Process-light</span>
-  <span class="ax-h">Process-intensive →</span>
+<div class="intro-hint" id="intro-hint">Tap any flavour to explore its relationships</div>
+
+<div class="stage-wrap">
+  <canvas id="constellation"></canvas>
 </div>
 
-<div class="landscape-wrap">
-<div class="landscape" id="landscape">
+<div class="reset-hint" id="reset-hint">Tap the selected flavour again to reset · Tap any other to switch</div>
 
-  <div class="q q-tl"></div>
-  <div class="q q-tr"></div>
-  <div class="q q-bl"></div>
-  <div class="q q-br"></div>
-  <div class="ax-v"></div>
-  <div class="ax-h-line"></div>
-  <div class="ax-in ax-top">Volatile · Aromatic</div>
-  <div class="ax-in ax-bot">Structural · Extracted</div>
-  <div class="ax-in ax-left">Young leaf</div>
-  <div class="ax-in ax-right">Mature leaf</div>
+<div class="detail-panel" id="detail-panel">
 
-  <svg class="conn" id="conn-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
-
-  <button class="help-btn" id="help-btn">?</button>
-  <button class="guide-btn" id="guide-btn">Guide</button>
-
-  <div class="legend-overlay" id="legend">
-    <button class="leg-close" id="leg-close">×</button>
-    <h4>Reading the landscape</h4>
-    <div class="leg-item"><div class="leg-dot" style="background:#e8f5e8;border:2px solid #5a9a5a;"></div>Solid border — panel-validated evidence</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#eaf0f5;border:2px dashed #5888a0;"></div>Dashed border — at edge of current evidence</div>
-    <div class="leg-item"><div class="leg-line" style="border-top:2px solid #5a9a5a;"></div>Green line — aligned descriptors (shared chemistry or process)</div>
-    <div class="leg-item"><div class="leg-line" style="border-top:2px dashed #a03030;"></div>Red dashed — opposing descriptors (incompatible pathways)</div>
-    <div class="leg-item" style="margin-top:8px;font-size:.72rem;color:var(--muted);font-style:italic;">Tap any territory to explore it. Tap a second to compare. Drag to reposition.</div>
-  </div>
-
-  <!-- HELP GUIDE OVERLAY -->
-  <div class="guide-overlay" id="guide">
-    <button class="leg-close" id="guide-close">×</button>
-    <div class="guide-inner">
-      <h4>How to use this landscape</h4>
-
-      <div class="guide-step">
-        <div class="guide-num">1</div>
-        <div>
-          <strong>Tap any territory</strong> to open it. You will see its chemical drivers, which process produces it, what leaf it needs, and how to brew for it. Lines appear connecting it to related territories.
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-num">2</div>
-        <div>
-          <strong>Green lines</strong> connect aligned territories — descriptors that share chemistry or can come from the same process pathway.
-          <br><strong>Red dashed lines</strong> connect opposing territories — descriptors that require incompatible processes.
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-num">3</div>
-        <div>
-          <strong>Tap a second territory</strong> to compare the two side by side — process, leaf, brew requirements and their relationship to each other.
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-num">4</div>
-        <div>
-          <strong>Drag any territory</strong> to reposition it within its domain area on the map. Connection lines redraw as you move. Territories stay within their quadrant.
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-num">5</div>
-        <div>
-          <strong>Tap the active territory again</strong> to deselect and return to a clean view.
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-num">6</div>
-        <div>
-          <strong>→ Build a pathway</strong> — the link at the bottom of any territory detail takes you to the Flavour Logic Board with that descriptor pre-selected.
-        </div>
-      </div>
-
-      <div class="guide-step">
-        <div class="guide-num">7</div>
-        <div>
-          <strong>Dashed border</strong> on a territory means it sits at the edge of current evidence — observed in traditional practice but not yet formally panel-validated.
-        </div>
-      </div>
-
-      <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--ruled);font-size:.72rem;color:var(--muted);font-style:italic;">
-        Research basis: tap "+ Research basis" at the bottom of the page.
-      </div>
+  <div class="dp-head">
+    <div class="dp-swatch" id="dp-swatch"></div>
+    <div>
+      <div class="dp-name" id="dp-name"></div>
+      <div class="dp-sub">Flavour Territory</div>
     </div>
   </div>
 
-  <!-- NODES -->
-  <div class="node" id="n-green" data-quad="tl"
-    style="left:5%;top:8%;background:#e8f5e8;border:2px solid #5a9a5a;color:#1a4a1a;"
-    data-aligns="n-refreshing"
-    data-opposes="n-smoky,n-woody"
-    data-name="Green / Herbal" data-short="Green"
-    data-desc="The dominant character of minimally processed young CLT. Hexanal and 4-heptenal — classic green aldehydes — released by cutting or steaming. Most directly expresses the raw leaf identity."
-    data-compounds="Hexanal OAV 1–10 · 4-heptenal OAV 1–9 · Mangiferin · Chlorogenic acids"
-    data-process="Steamed (JGTP) · Pan-fired (CGTP)"
-    data-leaf="Young / Flush (1–3 months)"
-    data-brew="Infusion 74–78°C / 5–8 min · Serve warm or chilled"
-    data-color="#5a9a5a">
-    <h4>Green</h4><p>Herbal · Grassy</p>
+  <p class="dp-desc" id="dp-desc"></p>
+
+  <div class="dp-rels" id="dp-rels"></div>
+
+  <div class="dp-block">
+    <div class="dp-block-title">Key Compounds</div>
+    <div class="tags" id="dp-compounds"></div>
   </div>
 
-  <div class="node" id="n-refreshing" data-quad="tl"
-    style="left:26%;top:4%;background:#e5f2f8;border:2px solid #4a9ab8;color:#0a3a50;"
-    data-aligns="n-green,n-floral"
-    data-opposes="n-smoky,n-bitter"
-    data-name="Refreshing" data-short="Refreshing"
-    data-desc="(E,Z)-2,6-nonadienal — cucumber aldehyde — with OAV 18–256, among the highest in the CLT volatile profile. Cold serving at 10°C is the critical activation — this character is temperature-dependent."
-    data-compounds="(E,Z)-2,6-nonadienal OAV 18–256 · (E)-2-nonenal OAV 1–11"
-    data-process="Steamed (JGTP) · Sun-dried (WTP)"
-    data-leaf="Young / Flush"
-    data-brew="Infusion 74–78°C · Serve chilled 10°C — critical"
-    data-color="#4a9ab8">
-    <h4>Refreshing</h4><p>Cucumber · Clean</p>
+  <div class="dp-block">
+    <div class="dp-block-title">Process</div>
+    <div class="tags" id="dp-process"></div>
   </div>
 
-  <div class="node" id="n-floral" data-quad="tr"
-    style="left:48%;top:7%;background:#f2ecf8;border:2px solid #b088c0;color:#3a1050;"
-    data-aligns="n-sweet,n-fruity,n-refreshing"
-    data-opposes="n-smoky,n-mineral"
-    data-name="Floral / Perfumed" data-short="Floral"
-    data-desc="α-ionone and decanal develop during partial oxidation or yeast fermentation — not from the raw leaf but through enzymatic transformation. Steger et al. 2022 confirmed floral in top-ranked yeast-fermented samples."
-    data-compounds="α-ionone OAV 30–100 · Decanal OAV 14–301 · Linalool"
-    data-process="Oolong (OTP) · Yeast fermentation · Sun-dried (WTP)"
-    data-leaf="Young / Mixed"
-    data-brew="Infusion 78°C / 8–8.5 min · Serve warm 40–55°C"
-    data-color="#b088c0">
-    <h4>Floral</h4><p>Perfumed · Rose</p>
+  <div class="dp-block">
+    <div class="dp-block-title">Leaf Maturity</div>
+    <div class="tags" id="dp-leaf"></div>
   </div>
 
-  <div class="node" id="n-sweet" data-quad="tr"
-    style="right:4%;top:10%;background:#f8f2d8;border:2px solid #c8a84b;color:#4a3808;"
-    data-aligns="n-floral,n-fruity"
-    data-opposes="n-bitter,n-smoky"
-    data-name="Sweet / Honey-like" data-short="Sweet"
-    data-desc="β-ionone (OAV 132–927) is the primary sweet driver — one of the highest OAV compounds in CLT. Develops during 12–24h withering. Highest consumer preference ranking in conjoint analysis (Fibrianto et al. 2021, utility 1.872)."
-    data-compounds="β-ionone OAV 132–927 · L-proline · L-threonine · Glucose · Fructose"
-    data-process="Oolong (OTP) · Yeast fermentation · Sun-dried (WTP)"
-    data-leaf="Young / Mixed"
-    data-brew="Infusion 78°C / 8.5 min · Serve chilled — cold amplifies sweetness"
-    data-color="#c8a84b">
-    <h4>Sweet</h4><p>Honey · Peach</p>
+  <div class="dp-block">
+    <div class="dp-block-title">Brew</div>
+    <div class="tags" id="dp-brew"></div>
   </div>
 
-  <div class="node" id="n-fruity" data-quad="tr"
-    style="right:3%;top:40%;background:#fae8d8;border:2px solid #d4784a;color:#4a1805;"
-    data-aligns="n-sweet,n-floral"
-    data-opposes="n-bitter,n-woody"
-    data-name="Fruity / Melon" data-short="Fruity"
-    data-desc="Octanal and 2,4-nonadienal produce melon character. Limonene is OCLT-exclusive (Fibrianto et al. 2025). Rolling leaves before withering enhances fruity aldehyde release through cell wall rupture."
-    data-compounds="Octanal OAV 7–23 · 2,4-nonadienal OAV 2–18 · Limonene · Phenyl-methylene heptanoate"
-    data-process="Oolong (OTP) · Yeast fermentation · Wild fermentation"
-    data-leaf="Young / Mixed"
-    data-brew="Infusion 78°C · Serve warm or chilled"
-    data-color="#d4784a">
-    <h4>Fruity</h4><p>Melon · Citrus</p>
-  </div>
-
-  <div class="node" id="n-mineral" data-quad="bl"
-    style="left:4%;top:50%;background:#eaf0f5;border:2px dashed #5888a0;color:#1a3a50;"
-    data-aligns=""
-    data-opposes="n-floral,n-sweet"
-    data-name="Mineral / Savoury" data-short="Mineral"
-    data-desc="Observed in Engere and Chemo decoction traditions — amino acids, mineral salts, glutamic acid derivatives extracted by long high-heat brewing. Traditional observation, not yet formally panel-validated. Dashed border marks this evidence status."
-    data-compounds="Amino acids · Mineral salts · Glutamic acid derivatives · NaCl (added)"
-    data-process="Decoction (Engere · Chemo)"
-    data-leaf="Mixed"
-    data-brew="Decoction 95–100°C / 20–30 min · Serve warm"
-    data-color="#5888a0">
-    <h4>Mineral</h4><p>Savoury · Umami</p>
-  </div>
-
-  <div class="node" id="n-bitter" data-quad="bl"
-    style="left:34%;bottom:8%;background:#f0f0e0;border:2px solid #7a7a50;color:#2a2a10;"
-    data-aligns="n-woody"
-    data-opposes="n-sweet,n-refreshing"
-    data-name="Bitter / Astringent" data-short="Bitter"
-    data-desc="Caffeine, chlorogenic acids, and tannins are present in all CLT. Not eliminated — managed. Key finding: high bitterness paradoxically reduces perceived relaxation even when bioactive content is highest (Fibrianto et al. 2025). Primary management lever is serve temperature."
-    data-compounds="Caffeine · Chlorogenic acids · Tannins · Oxalic acid · Catechins"
-    data-process="All processes — modulated by brew temp and serve temp"
-    data-leaf="Mature > Young"
-    data-brew="Primary lever: chilled serving (10°C) reduces bitterness significantly"
-    data-color="#7a7a50">
-    <h4>Bitter</h4><p>Astringent · Tannin</p>
-  </div>
-
-  <div class="node" id="n-woody" data-quad="br"
-    style="right:16%;bottom:12%;background:#ede0ce;border:2px solid #8a6840;color:#2a1808;"
-    data-aligns="n-smoky,n-bitter"
-    data-opposes="n-green,n-refreshing,n-floral"
-    data-name="Woody / Earthy" data-short="Woody"
-    data-desc="Diphenyl sulfone, guaiacol, and tannins characterise mature leaves under full oxidation (24h). Food Research International 2023 identified Woody as one of three primary CLT sensory descriptors — a defining character, not a defect."
-    data-compounds="Diphenyl sulfone · Guaiacol · Tannins · Pyrazines (if roasted)"
-    data-process="Black tea style (BTP) · Kuti · Kawa Daun"
-    data-leaf="Mature (3–6 months)"
-    data-brew="Infusion or decoction · 78–85°C"
-    data-color="#8a6840">
-    <h4>Woody</h4><p>Earthy · Resinous</p>
-  </div>
-
-  <div class="node" id="n-smoky" data-quad="br"
-    style="right:3%;bottom:26%;background:#3a2a1e;border:2px solid #8a6050;color:#f5ede0;"
-    data-aligns="n-woody"
-    data-opposes="n-green,n-refreshing,n-sweet,n-floral"
-    data-name="Smoky / Roasty" data-short="Smoky"
-    data-desc="Guaiacol, furfural, and pyrazines — thermal pyrolysis compounds. Only detectable in roasted or smoked samples. Kuti flat-pan roast and Kawa Daun cassia-wood smoke are the two documented pathways. Mature leaves only."
-    data-compounds="Guaiacol · Furfural · Pyrazines · Cresol"
-    data-process="Kuti (flat-pan roast) · Kawa Daun (closed furnace smoke)"
-    data-leaf="Mature (3–6 months) only"
-    data-brew="Decoction only · 95–100°C · Small serving volumes"
-    data-color="#8a6050">
-    <h4>Smoky</h4><p>Roasty · Charred</p>
-  </div>
-
-</div><!-- end landscape -->
-</div><!-- end wrap -->
-
-<!-- Detail panel — appears below, no scroll -->
-<div class="detail-wrap">
-<div class="detail" id="detail">
-
-  <!-- Single view -->
-  <div class="single-view" id="single-view">
-    <div class="det-head">
-      <div class="swatch" id="sw-a"></div>
-      <div>
-        <h3 id="name-a"></h3>
-        <div class="sub-label">Flavour Territory</div>
-      </div>
-    </div>
-    <p class="det-desc" id="desc-a"></p>
-    <div class="det-grid">
-      <div class="dbox"><div class="dbox-t">Key Compounds</div><div class="tags" id="compounds-a"></div></div>
-      <div class="dbox"><div class="dbox-t">Process</div><div class="tags" id="process-a"></div></div>
-      <div class="dbox"><div class="dbox-t">Leaf</div><div class="tags" id="leaf-a"></div></div>
-      <div class="dbox"><div class="dbox-t">Brew</div><div class="tags" id="brew-a"></div></div>
-    </div>
-    <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:16px;flex-wrap:wrap;">
-      <div style="flex:1;min-width:100px;">
-        <div class="dbox-t" style="margin-bottom:5px;">Aligned with</div>
-        <div class="tags" id="aligns-a"></div>
-      </div>
-      <div style="flex:1;min-width:100px;">
-        <div class="dbox-t" style="margin-bottom:5px;">Opposes</div>
-        <div class="tags" id="opposes-a"></div>
-      </div>
-    </div>
-    <a class="pathway-link" id="pathway-link" href="citane-logic-board.html">→ Build a pathway from this descriptor</a>
-    <div class="compare-hint" id="compare-hint">Tap another territory to compare</div>
-  </div>
-
-  <!-- Compare view -->
-  <div class="compare-view" id="compare-view">
-    <div class="compare-header">Comparing two territories</div>
-    <div class="compare-cols">
-      <div>
-        <div class="col-head"><div class="col-swatch" id="sw-cmp-a"></div><div class="col-name" id="cname-a"></div></div>
-        <div class="col-row"><div class="col-row-t">Process</div><div class="col-row-v" id="cproc-a"></div></div>
-        <div class="col-row"><div class="col-row-t">Leaf</div><div class="col-row-v" id="cleaf-a"></div></div>
-        <div class="col-row"><div class="col-row-t">Brew</div><div class="col-row-v" id="cbrew-a"></div></div>
-      </div>
-      <div>
-        <div class="col-head"><div class="col-swatch" id="sw-cmp-b"></div><div class="col-name" id="cname-b"></div></div>
-        <div class="col-row"><div class="col-row-t">Process</div><div class="col-row-v" id="cproc-b"></div></div>
-        <div class="col-row"><div class="col-row-t">Leaf</div><div class="col-row-v" id="cleaf-b"></div></div>
-        <div class="col-row"><div class="col-row-t">Brew</div><div class="col-row-v" id="cbrew-b"></div></div>
-      </div>
-    </div>
-    <div class="compare-shared">
-      <div class="compare-shared-t">Relationship</div>
-      <div class="shared-tags" id="relationship-tags"></div>
-    </div>
-    <a class="pathway-link" href="citane-logic-board.html" style="margin-top:14px;display:block;">→ Build a pathway from these descriptors</a>
-  </div>
-
-  <button class="clear-btn" id="clear-btn">Clear</button>
-
+  <a class="pathway-link" id="dp-pathway" href="citane-logic-board.html">→ Build a pathway from this descriptor</a>
 
 </div>
-</div>
 
-<!-- Sources — silent until tapped -->
 <div class="sources-wrap">
   <button class="sources-toggle" id="src-toggle">+ Research basis</button>
   <div class="sources-body" id="src-body">
     <ol>
-      <li>Fibrianto, K., Muthifalyza, R. & Yuwono, S.S. (2021). Consumer study of Indonesian coffee leaves tea. <span class="doi">IOP Conf. Ser. 924, 012030</span></li>
-      <li>Fibrianto, K., Sholihah, N. & Bimo, I.A. (2024). Consumer perception of decocted CLT from different altitude. <span class="doi">IOP Conf. Ser. 1302, 012097</span></li>
-      <li>Fibrianto, K., Bimo, I.A. et al. (2025). Functional and relaxing properties of coffee leaf tea. <span class="doi">Applied Food Research 5, 101141</span></li>
-      <li>Steger, M.C., Rigling, M. et al. (2022). Coffee Leaf Tea from El Salvador: influences of processing on chemical composition. <span class="doi">Foods 11(17):2553</span></li>
-      <li>Rigling, M., Steger, M.C. et al. (2023). Sensorial and aroma profiles of coffee by-products. <span class="doi">Proceedings 2023, 89, 5</span></li>
+      <li>Fibrianto, K., et al. (2021). Consumer study of Indonesian coffee leaves tea. <span class="doi">IOP Conf. Ser. 924, 012030</span></li>
+      <li>Fibrianto, K., et al. (2024). Consumer perception of decocted CLT from different altitude. <span class="doi">IOP Conf. Ser. 1302, 012097</span></li>
+      <li>Fibrianto, K., et al. (2025). Functional and relaxing properties of coffee leaf tea. <span class="doi">Applied Food Research 5, 101141</span></li>
+      <li>Steger, M.C., et al. (2022). CLT from El Salvador: influences of processing on chemical composition. <span class="doi">Foods 11(17):2553</span></li>
+      <li>Rigling, M., et al. (2023). Sensorial and aroma profiles of coffee by-products. <span class="doi">Proceedings 2023, 89, 5</span></li>
       <li>Yohannis et al. (2026). Ethiopian Engere traditional practices. <span class="doi">Discover Food 6, Art. 214</span></li>
       <li>Awoke et al. (2026). Coffee leaf beverage ethnobotany. <span class="doi">J. Ethnobiol. Ethnomed. 22, Art. 25</span></li>
     </ol>
@@ -565,309 +337,712 @@ svg.conn{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-
 </div>
 
 <script>
-// ── STATE ──────────────────────────────────────────────────────────
-let nodeA = null; // first tapped
-let nodeB = null; // second tapped
-let hasCompared = false;
+// ═══════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════
 
-const nodes = document.querySelectorAll('.node');
-const ALIGNS = {}, OPPOSES = {};
-nodes.forEach(n => {
-  ALIGNS[n.id]  = (n.dataset.aligns||'').split(',').map(s=>s.trim()).filter(Boolean);
-  OPPOSES[n.id] = (n.dataset.opposes||'').split(',').map(s=>s.trim()).filter(Boolean);
-});
-
-// ── CONNECTIONS ────────────────────────────────────────────────────
-function center(el) {
-  const lr = landscape.getBoundingClientRect();
-  const er = el.getBoundingClientRect();
-  return {
-    x:((er.left+er.width/2 -lr.left)/lr.width)*100,
-    y:((er.top +er.height/2-lr.top )/lr.height)*100
-  };
-}
-
-function drawLines(id) {
-  const svg = document.getElementById('conn-svg');
-  svg.innerHTML='';
-  if (!id) return;
-  const src = document.getElementById(id);
-  function makeLine(tid, stroke, dash) {
-    const tel = document.getElementById(tid); if(!tel) return;
-    const a=center(src), b=center(tel);
-    const l = document.createElementNS('http://www.w3.org/2000/svg','line');
-    l.setAttribute('x1',a.x); l.setAttribute('y1',a.y);
-    l.setAttribute('x2',b.x); l.setAttribute('y2',b.y);
-    l.setAttribute('stroke',stroke); l.setAttribute('stroke-width','0.5');
-    l.setAttribute('stroke-opacity','0.7');
-    if(dash) l.setAttribute('stroke-dasharray','1.5,1.5');
-    svg.appendChild(l);
+const NODES = {
+  green: {
+    name: 'Green / Herbal',
+    short: 'Green',
+    sub: 'Herbal · Grassy',
+    color: '#5a8a5a',
+    desc: 'The dominant character of minimally processed young CLT. Hexanal and 4-heptenal — classic green aldehydes — released by cutting or steaming. Most directly expresses the raw leaf identity.',
+    compounds: ['Hexanal OAV 1–10', '4-heptenal OAV 1–9', 'Mangiferin', 'Chlorogenic acids'],
+    process: ['Steamed (JGTP)', 'Pan-fired (CGTP)'],
+    leaf: ['Young / Flush (1–3 months)'],
+    brew: ['Infusion 74–78°C / 5–8 min', 'Serve warm or chilled'],
+    desc_key: 'green',
+    // strength: positive = aligned, negative = opposed, absent = neutral/not shown
+    relations: {
+      refreshing: { strength: 82, type: 'align' },
+      smoky:      { strength: 0,  type: 'oppose' },
+      woody:      { strength: 15, type: 'oppose' },
+    }
+  },
+  refreshing: {
+    name: 'Refreshing',
+    short: 'Refreshing',
+    sub: 'Cucumber · Clean',
+    color: '#4a8aaa',
+    desc: '(E,Z)-2,6-nonadienal — cucumber aldehyde — OAV 18–256, among the highest in CLT. Cold serving at 10°C is the critical activation. This character is temperature-dependent; hot serving eliminates it.',
+    compounds: ['(E,Z)-2,6-nonadienal OAV 18–256', '(E)-2-nonenal OAV 1–11'],
+    process: ['Steamed (JGTP)', 'Sun-dried (WTP)'],
+    leaf: ['Young / Flush'],
+    brew: ['Infusion 74–78°C', 'Serve chilled 10°C — critical'],
+    desc_key: 'refreshing',
+    relations: {
+      green:  { strength: 82, type: 'align' },
+      floral: { strength: 45, type: 'align' },
+      smoky:  { strength: 0,  type: 'oppose' },
+      bitter: { strength: 20, type: 'oppose' },
+    }
+  },
+  floral: {
+    name: 'Floral / Perfumed',
+    short: 'Floral',
+    sub: 'Perfumed · Rose',
+    color: '#9060aa',
+    desc: 'α-ionone and decanal develop during partial oxidation or yeast fermentation — not from the raw leaf but through enzymatic transformation. Steger et al. 2022 confirmed floral in top-ranked yeast-fermented samples.',
+    compounds: ['α-ionone OAV 30–100', 'Decanal OAV 14–301', 'Linalool'],
+    process: ['Oolong (OTP)', 'Yeast fermentation', 'Sun-dried (WTP)'],
+    leaf: ['Young / Mixed'],
+    brew: ['Infusion 78°C / 8–8.5 min', 'Serve warm 40–55°C'],
+    desc_key: 'floral',
+    relations: {
+      sweet:      { strength: 88, type: 'align' },
+      fruity:     { strength: 72, type: 'align' },
+      refreshing: { strength: 45, type: 'align' },
+      smoky:      { strength: 0,  type: 'oppose' },
+      mineral:    { strength: 10, type: 'oppose' },
+    }
+  },
+  sweet: {
+    name: 'Sweet / Honey-like',
+    short: 'Sweet',
+    sub: 'Honey · Peach',
+    color: '#b89030',
+    desc: 'β-ionone (OAV 132–927) is the primary sweet driver — one of the highest OAV compounds in CLT. Develops during 12–24h withering. Highest consumer preference ranking in conjoint analysis (Fibrianto et al. 2021, utility 1.872).',
+    compounds: ['β-ionone OAV 132–927', 'L-proline', 'L-threonine', 'Glucose', 'Fructose'],
+    process: ['Oolong (OTP)', 'Yeast fermentation', 'Sun-dried (WTP)'],
+    leaf: ['Young / Mixed'],
+    brew: ['Infusion 78°C / 8.5 min', 'Serve chilled — cold amplifies sweetness'],
+    desc_key: 'sweet',
+    relations: {
+      floral: { strength: 88, type: 'align' },
+      fruity: { strength: 68, type: 'align' },
+      bitter: { strength: 5,  type: 'oppose' },
+      smoky:  { strength: 0,  type: 'oppose' },
+    }
+  },
+  fruity: {
+    name: 'Fruity / Melon',
+    short: 'Fruity',
+    sub: 'Melon · Citrus',
+    color: '#c06030',
+    desc: 'Octanal and 2,4-nonadienal produce melon character. Limonene is OCLT-exclusive (Fibrianto et al. 2025). Rolling leaves before withering enhances fruity aldehyde release through cell wall rupture.',
+    compounds: ['Octanal OAV 7–23', '2,4-nonadienal OAV 2–18', 'Limonene', 'Phenyl-methylene heptanoate'],
+    process: ['Oolong (OTP)', 'Yeast fermentation', 'Wild fermentation'],
+    leaf: ['Young / Mixed'],
+    brew: ['Infusion 78°C', 'Serve warm or chilled'],
+    desc_key: 'fruity',
+    relations: {
+      sweet:  { strength: 68, type: 'align' },
+      floral: { strength: 72, type: 'align' },
+      bitter: { strength: 8,  type: 'oppose' },
+      woody:  { strength: 12, type: 'oppose' },
+    }
+  },
+  mineral: {
+    name: 'Mineral / Savoury',
+    short: 'Mineral',
+    sub: 'Savoury · Umami',
+    color: '#4878a0',
+    dashed: true,
+    desc: 'Observed in Engere and Chemo decoction traditions — amino acids, mineral salts, glutamic acid derivatives extracted by long high-heat brewing. Traditional observation, not yet formally panel-validated.',
+    compounds: ['Amino acids', 'Mineral salts', 'Glutamic acid derivatives', 'NaCl (added)'],
+    process: ['Decoction (Engere)', 'Decoction (Chemo)'],
+    leaf: ['Mixed'],
+    brew: ['Decoction 95–100°C / 20–30 min', 'Serve warm'],
+    desc_key: 'mineral',
+    relations: {
+      floral: { strength: 10, type: 'oppose' },
+      sweet:  { strength: 10, type: 'oppose' },
+    }
+  },
+  bitter: {
+    name: 'Bitter / Astringent',
+    short: 'Bitter',
+    sub: 'Astringent · Tannin',
+    color: '#707050',
+    desc: 'Caffeine, chlorogenic acids, and tannins are present in all CLT. Not eliminated — managed. Key finding: high bitterness paradoxically reduces perceived relaxation even when bioactive content is highest (Fibrianto et al. 2025).',
+    compounds: ['Caffeine', 'Chlorogenic acids', 'Tannins', 'Oxalic acid', 'Catechins'],
+    process: ['All processes — modulated by brew temp and serve temp'],
+    leaf: ['Mature > Young'],
+    brew: ['Primary lever: chilled serving (10°C) reduces bitterness significantly'],
+    desc_key: 'bitter',
+    relations: {
+      woody:      { strength: 62, type: 'align' },
+      sweet:      { strength: 5,  type: 'oppose' },
+      refreshing: { strength: 20, type: 'oppose' },
+    }
+  },
+  woody: {
+    name: 'Woody / Earthy',
+    short: 'Woody',
+    sub: 'Earthy · Resinous',
+    color: '#7a5830',
+    desc: 'Diphenyl sulfone, guaiacol, and tannins characterise mature leaves under full oxidation (24h). Food Research International 2023 identified Woody as one of three primary CLT sensory descriptors — a defining character, not a defect.',
+    compounds: ['Diphenyl sulfone', 'Guaiacol', 'Tannins', 'Pyrazines (if roasted)'],
+    process: ['Black tea style (BTP)', 'Kuti', 'Kawa Daun'],
+    leaf: ['Mature (3–6 months)'],
+    brew: ['Infusion or decoction', '78–85°C'],
+    desc_key: 'woody',
+    relations: {
+      smoky:  { strength: 75, type: 'align' },
+      bitter: { strength: 62, type: 'align' },
+      green:  { strength: 15, type: 'oppose' },
+      floral: { strength: 5,  type: 'oppose' },
+    }
+  },
+  smoky: {
+    name: 'Smoky / Roasty',
+    short: 'Smoky',
+    sub: 'Roasty · Charred',
+    color: '#6a4030',
+    desc: 'Guaiacol, furfural, and pyrazines — thermal pyrolysis compounds. Only detectable in roasted or smoked samples. Kuti flat-pan roast and Kawa Daun cassia-wood smoke are the two documented pathways. Mature leaves only.',
+    compounds: ['Guaiacol', 'Furfural', 'Pyrazines', 'Cresol'],
+    process: ['Kuti (flat-pan roast)', 'Kawa Daun (closed furnace smoke)'],
+    leaf: ['Mature (3–6 months) only'],
+    brew: ['Decoction only', '95–100°C', 'Small serving volumes'],
+    desc_key: 'smoky',
+    relations: {
+      woody:      { strength: 75, type: 'align' },
+      green:      { strength: 0,  type: 'oppose' },
+      refreshing: { strength: 0,  type: 'oppose' },
+      sweet:      { strength: 0,  type: 'oppose' },
+      floral:     { strength: 0,  type: 'oppose' },
+    }
   }
-  (ALIGNS[id]||[]).forEach(t=>makeLine(t,'#5a9a5a',false));
-  (OPPOSES[id]||[]).forEach(t=>makeLine(t,'#a03030',true));
+};
+
+const NODE_KEYS = Object.keys(NODES);
+
+// ═══════════════════════════════════════════════════════
+// CANVAS SETUP
+// ═══════════════════════════════════════════════════════
+
+const canvas = document.getElementById('constellation');
+const ctx = canvas.getContext('2d');
+let W, H, DPR;
+let selected = null;   // currently active key
+let animFrame = null;
+let bubbles = {};      // computed positions per node key
+let animT = 0;        // animation progress 0→1
+
+// Resting positions (normalized 0–1, will scale to canvas)
+// Arranged so volatile/aromatic cluster top, structural bottom
+const REST_POS = {
+  green:     { x: 0.18, y: 0.22 },
+  refreshing:{ x: 0.42, y: 0.14 },
+  floral:    { x: 0.70, y: 0.18 },
+  sweet:     { x: 0.82, y: 0.38 },
+  fruity:    { x: 0.72, y: 0.55 },
+  mineral:   { x: 0.18, y: 0.62 },
+  bitter:    { x: 0.42, y: 0.80 },
+  woody:     { x: 0.65, y: 0.78 },
+  smoky:     { x: 0.84, y: 0.65 },
+};
+
+// Base radius when at rest (normalized)
+const BASE_R = 0.092;
+
+function resize() {
+  DPR = window.devicePixelRatio || 1;
+  const wrap = canvas.parentElement;
+  W = wrap.offsetWidth;
+  H = wrap.offsetHeight;
+  canvas.width  = W * DPR;
+  canvas.height = H * DPR;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.scale(DPR, DPR);
+  computeBubbles();
+  draw();
 }
 
-// ── TAGS ──────────────────────────────────────────────────────────
-function makeTags(el, text, cls) {
-  el.innerHTML='';
-  (text||'').split(' · ').filter(Boolean).forEach(t=>{
-    const s=document.createElement('span');
-    s.className='tag'+(cls?' '+cls:'');
-    s.textContent=t.trim();
-    el.appendChild(s);
+function computeBubbles() {
+  // When nothing selected: all at rest positions, all same radius
+  // When selected: selected goes to centre, others orbit by strength
+  NODE_KEYS.forEach(key => {
+    const node = NODES[key];
+    const rel = selected ? NODES[selected].relations[key] : null;
+    const isSelf = key === selected;
+
+    let tx, ty, tr, talpha, tscale;
+
+    if (!selected) {
+      // Resting state
+      tx = REST_POS[key].x * W;
+      ty = REST_POS[key].y * H;
+      tr = BASE_R * Math.min(W, H);
+      talpha = 1;
+      tscale = 1;
+    } else if (isSelf) {
+      // Selected: move to centre, grow slightly
+      tx = W * 0.5;
+      ty = H * 0.42;
+      tr = BASE_R * Math.min(W, H) * 1.28;
+      talpha = 1;
+      tscale = 1;
+    } else if (rel) {
+      // Has a relationship with selected
+      const strength = rel.strength;
+      const isOppose = rel.type === 'oppose';
+
+      if (strength === 0) {
+        // Complete opposite — push to far edge, very faint
+        const angle = restAngleFrom(key, selected);
+        const dist = 0.38 * Math.min(W, H);
+        tx = W * 0.5 + Math.cos(angle) * dist;
+        ty = H * 0.42 + Math.sin(angle) * dist;
+        tr = BASE_R * Math.min(W, H) * 0.5;
+        talpha = 0.18;
+        tscale = 0.6;
+      } else if (isOppose) {
+        // Weak opposition — present but pushed back, muted
+        const angle = restAngleFrom(key, selected);
+        const dist = (0.28 + (1 - strength / 100) * 0.12) * Math.min(W, H);
+        tx = W * 0.5 + Math.cos(angle) * dist;
+        ty = H * 0.42 + Math.sin(angle) * dist;
+        tr = BASE_R * Math.min(W, H) * (0.55 + strength / 100 * 0.2);
+        talpha = 0.3 + strength / 100 * 0.15;
+        tscale = 0.7;
+      } else {
+        // Aligned — orbit close, size and proximity by strength
+        const angle = restAngleFrom(key, selected);
+        // Strong = closer to centre, weak = further
+        const minDist = 0.16 * Math.min(W, H);
+        const maxDist = 0.32 * Math.min(W, H);
+        const dist = maxDist - (strength / 100) * (maxDist - minDist);
+        tx = W * 0.5 + Math.cos(angle) * dist;
+        ty = H * 0.42 + Math.sin(angle) * dist;
+        tr = BASE_R * Math.min(W, H) * (0.65 + (strength / 100) * 0.45);
+        talpha = 0.45 + (strength / 100) * 0.55;
+        tscale = 0.75 + (strength / 100) * 0.4;
+      }
+    } else {
+      // No relationship — fade to edge
+      const angle = restAngleFrom(key, selected);
+      const dist = 0.4 * Math.min(W, H);
+      tx = W * 0.5 + Math.cos(angle) * dist;
+      ty = H * 0.42 + Math.sin(angle) * dist;
+      tr = BASE_R * Math.min(W, H) * 0.45;
+      talpha = 0.14;
+      tscale = 0.55;
+    }
+
+    if (!bubbles[key]) {
+      bubbles[key] = { x: tx, y: ty, r: tr, alpha: talpha, scale: tscale,
+                       fx: tx, fy: ty, fr: tr, falpha: talpha, fscale: tscale,
+                       sx: tx, sy: ty, sr: tr, salpha: talpha, sscale: tscale };
+    } else {
+      // Store start and target for animation
+      bubbles[key].sx = bubbles[key].x;
+      bubbles[key].sy = bubbles[key].y;
+      bubbles[key].sr = bubbles[key].r;
+      bubbles[key].salpha = bubbles[key].alpha;
+      bubbles[key].fx = tx;
+      bubbles[key].fy = ty;
+      bubbles[key].fr = tr;
+      bubbles[key].falpha = talpha;
+    }
   });
 }
 
-function nameFromId(id) {
-  const n=document.getElementById(id);
-  return n ? (n.dataset.short||n.dataset.name.split('/')[0].trim()) : '';
+function restAngleFrom(key, fromKey) {
+  // Compute angle from centre towards this node's rest position
+  // relative to the selected node's rest position
+  const cx = W * 0.5, cy = H * 0.42;
+  const nx = REST_POS[key].x * W - cx;
+  const ny = REST_POS[key].y * H - cy;
+  return Math.atan2(ny, nx);
 }
 
-// ── SINGLE VIEW ───────────────────────────────────────────────────
-function showSingle(node) {
-  const d=node.dataset;
-  document.getElementById('sw-a').style.background=d.color;
-  document.getElementById('name-a').textContent=d.name;
-  document.getElementById('desc-a').textContent=d.desc;
-  makeTags(document.getElementById('compounds-a'),d.compounds);
-  makeTags(document.getElementById('process-a'),d.process);
-  makeTags(document.getElementById('leaf-a'),d.leaf);
-  makeTags(document.getElementById('brew-a'),d.brew);
-
-  const alignNames=(ALIGNS[node.id]||[]).map(nameFromId).join(' · ');
-  const opposeNames=(OPPOSES[node.id]||[]).map(nameFromId).join(' · ');
-  makeTags(document.getElementById('aligns-a'),alignNames,'a');
-  makeTags(document.getElementById('opposes-a'),opposeNames,'o');
-
-  // Pathway link — pre-select descriptor in logic board
-  const descMap={
-    'n-green':'green','n-refreshing':'refreshing','n-floral':'floral',
-    'n-sweet':'sweet','n-fruity':'fruity','n-mineral':'mineral',
-    'n-bitter':'bitter','n-woody':'woody','n-smoky':'smoky'
-  };
-  const desc=descMap[node.id]||'';
-  document.getElementById('pathway-link').href=
-    'citane-logic-board.html'+(desc?'#desc='+desc:'');
-
-  document.getElementById('single-view').style.display='block';
-  document.getElementById('compare-view').classList.remove('show');
-  document.getElementById('detail').style.borderTopColor=d.color;
-  document.getElementById('detail').classList.add('show');
-
-  // Show compare hint only if not yet compared
-  const hint=document.getElementById('compare-hint');
-  hint.classList.toggle('show', !hasCompared);
+function easeInOut(t) {
+  return t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
 }
 
-// ── COMPARE VIEW ─────────────────────────────────────────────────
-function showCompare(a, b) {
-  hasCompared=true;
-  document.getElementById('compare-hint').classList.remove('show');
-  document.getElementById('clear-btn').classList.add('show');
+// ═══════════════════════════════════════════════════════
+// DRAW
+// ═══════════════════════════════════════════════════════
 
-  const da=a.dataset, db=b.dataset;
+function draw() {
+  ctx.clearRect(0, 0, W, H);
 
-  document.getElementById('sw-cmp-a').style.background=da.color;
-  document.getElementById('sw-cmp-b').style.background=db.color;
-  document.getElementById('cname-a').textContent=da.short||da.name;
-  document.getElementById('cname-b').textContent=db.short||db.name;
-  document.getElementById('cproc-a').textContent=da.process;
-  document.getElementById('cproc-b').textContent=db.process;
-  document.getElementById('cleaf-a').textContent=da.leaf;
-  document.getElementById('cleaf-b').textContent=db.leaf;
-  document.getElementById('cbrew-a').textContent=da.brew;
-  document.getElementById('cbrew-b').textContent=db.brew;
+  // Draw connection lines first (behind bubbles)
+  if (selected) {
+    NODE_KEYS.forEach(key => {
+      if (key === selected) return;
+      const rel = NODES[selected].relations[key];
+      if (!rel || rel.strength === 0) return;
+      const b = bubbles[key];
+      const bs = bubbles[selected];
+      if (!b || !bs) return;
 
-  // Relationship tags
-  const rel=document.getElementById('relationship-tags');
-  rel.innerHTML='';
-  const isAligned=(ALIGNS[a.id]||[]).includes(b.id)||(ALIGNS[b.id]||[]).includes(a.id);
-  const isOpposed=(OPPOSES[a.id]||[]).includes(b.id)||(OPPOSES[b.id]||[]).includes(a.id);
-
-  function addTag(txt,cls){
-    const s=document.createElement('span');
-    s.className='shared-tag'+(cls?' '+cls:'');
-    s.textContent=txt; rel.appendChild(s);
+      ctx.save();
+      ctx.globalAlpha = b.alpha * 0.35;
+      ctx.strokeStyle = rel.type === 'align' ? NODES[selected].color : '#aa4040';
+      ctx.lineWidth = rel.type === 'align' ? 1.2 : 0.8;
+      if (rel.type === 'oppose') {
+        ctx.setLineDash([4, 4]);
+      }
+      ctx.beginPath();
+      ctx.moveTo(bs.x, bs.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+    });
   }
 
-  if(isAligned) addTag('Aligned — shared chemistry or process pathway','yes');
-  if(isOpposed) addTag('Opposing — incompatible process requirements','no');
-  if(!isAligned&&!isOpposed) addTag('No direct documented relationship','');
+  // Draw bubbles
+  NODE_KEYS.forEach(key => {
+    const node = NODES[key];
+    const b = bubbles[key];
+    if (!b) return;
 
-  // Shared compounds check (simple keyword match)
-  const ca=(da.compounds||'').toLowerCase();
-  const cb=(db.compounds||'').toLowerCase();
-  const ionone=ca.includes('ionone')&&cb.includes('ionone');
-  if(ionone) addTag('Both involve ionone compounds','yes');
+    const isSel = key === selected;
+    const color = node.color;
 
-  // Same leaf?
-  if(da.leaf===db.leaf) addTag('Same leaf maturity','yes');
+    ctx.save();
+    ctx.globalAlpha = b.alpha;
 
-  document.getElementById('single-view').style.display='none';
-  document.getElementById('compare-view').classList.add('show');
-  document.getElementById('detail').style.borderTopColor='var(--accent)';
-  document.getElementById('detail').classList.add('show');
+    // Shadow for selected
+    if (isSel) {
+      ctx.shadowColor = color + '55';
+      ctx.shadowBlur = 18;
+    }
+
+    // Circle fill
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+
+    if (node.dashed && !isSel) {
+      // Mineral — dashed border, lighter fill
+      ctx.fillStyle = color + '22';
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    } else {
+      // Solid fill with alpha from relationship
+      const fillAlpha = isSel ? 'ee' : Math.round(b.alpha * 200).toString(16).padStart(2, '0');
+      ctx.fillStyle = color + (isSel ? 'ee' : '');
+      ctx.globalAlpha = b.alpha;
+      ctx.fill();
+      // Border
+      ctx.strokeStyle = isSel ? color : color + 'aa';
+      ctx.lineWidth = isSel ? 2 : 1;
+      ctx.stroke();
+    }
+
+    ctx.shadowBlur = 0;
+
+    // Text
+    ctx.globalAlpha = b.alpha;
+
+    // Strength % for related non-selected bubbles
+    if (selected && !isSel) {
+      const rel = NODES[selected].relations[key];
+      if (rel && rel.strength > 0) {
+        // Draw % inside bubble
+        const pct = rel.strength + '%';
+        ctx.fillStyle = '#fff';
+        ctx.font = `bold ${Math.max(9, b.r * 0.42)}px Georgia, serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(pct, b.x, b.y - b.r * 0.15);
+
+        // Name below % 
+        ctx.font = `${Math.max(8, b.r * 0.32)}px Georgia, serif`;
+        ctx.fillStyle = '#fff';
+        ctx.fillText(node.short, b.x, b.y + b.r * 0.32);
+      } else if (rel && rel.strength === 0) {
+        // Opposed — just name
+        ctx.fillStyle = '#ffffff88';
+        ctx.font = `${Math.max(7, b.r * 0.36)}px Georgia, serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(node.short, b.x, b.y);
+      } else {
+        // No relationship — faint name
+        ctx.fillStyle = '#ffffff66';
+        ctx.font = `${Math.max(7, b.r * 0.36)}px Georgia, serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(node.short, b.x, b.y);
+      }
+    } else {
+      // Resting or selected: show name + sub
+      const fontSize = isSel ? Math.max(13, b.r * 0.36) : Math.max(10, b.r * 0.38);
+      ctx.fillStyle = '#fff';
+      ctx.font = `${isSel ? 'bold ' : ''}${fontSize}px Georgia, serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(node.short, b.x, b.y - (isSel ? b.r * 0.14 : 0));
+      if (!selected || isSel) {
+        ctx.font = `${Math.max(8, fontSize * 0.72)}px Georgia, serif`;
+        ctx.fillStyle = '#ffffffbb';
+        const sub = node.sub.split(' · ')[0];
+        ctx.fillText(sub, b.x, b.y + (isSel ? b.r * 0.26 : b.r * 0.34));
+      }
+    }
+
+    ctx.restore();
+  });
 }
 
-// ── NODE HINT ─────────────────────────────────────────────────────
-let hintTimer = null;
-function showNodeHint(node, text) {
-  // Remove any existing hint
-  document.querySelectorAll('.node-hint').forEach(h => h.remove());
-  clearTimeout(hintTimer);
-  const hint = document.createElement('div');
-  hint.className = 'node-hint';
-  hint.textContent = text;
-  node.appendChild(hint);
-  hintTimer = setTimeout(() => {
-    hint.style.opacity = '0';
-    setTimeout(() => hint.remove(), 400);
-  }, 2200);
-}
+// ═══════════════════════════════════════════════════════
+// ANIMATION
+// ═══════════════════════════════════════════════════════
 
-// ── ACTIVATE ─────────────────────────────────────────────────────
-function activate(node) {
-  if (node === nodeA) {
-    // Tapping the active node again — deselect
-    clearAll(); return;
-  }
+function animate() {
+  animT += 0.045;
+  const t = Math.min(1, animT);
+  const et = easeInOut(t);
 
-  if (!nodeA) {
-    // First tap
-    nodeA = node;
-    nodes.forEach(n=>n.classList.remove('active','aligned','opposed','compare-b'));
-    node.classList.add('active');
-    (ALIGNS[node.id]||[]).forEach(id=>{
-      const t=document.getElementById(id); if(t) t.classList.add('aligned');
-    });
-    (OPPOSES[node.id]||[]).forEach(id=>{
-      const t=document.getElementById(id); if(t) t.classList.add('opposed');
-    });
-    drawLines(node.id);
-    showSingle(node);
-    // Show tap-exit hint on the active node
-    showNodeHint(node, 'Tap again to deselect');
+  NODE_KEYS.forEach(key => {
+    const b = bubbles[key];
+    b.x = b.sx + (b.fx - b.sx) * et;
+    b.y = b.sy + (b.fy - b.sy) * et;
+    b.r = b.sr + (b.fr - b.sr) * et;
+    b.alpha = b.salpha + (b.falpha - b.salpha) * et;
+  });
+
+  draw();
+
+  if (t < 1) {
+    animFrame = requestAnimationFrame(animate);
   } else {
-    // Second tap — compare
-    nodeB = node;
-    nodes.forEach(n=>n.classList.remove('active','aligned','opposed','compare-b'));
-    nodeA.classList.add('active');
-    nodeB.classList.add('compare-b');
-    drawLines(nodeA.id);
-    showCompare(nodeA, nodeB);
+    // Snap to final
+    NODE_KEYS.forEach(key => {
+      const b = bubbles[key];
+      b.x = b.fx; b.y = b.fy; b.r = b.fr; b.alpha = b.falpha;
+    });
+    draw();
+    animFrame = null;
   }
 }
 
-// ── CLEAR ─────────────────────────────────────────────────────────
-function clearAll() {
-  nodeA=null; nodeB=null;
-  nodes.forEach(n=>n.classList.remove('active','aligned','opposed','compare-b'));
-  document.getElementById('conn-svg').innerHTML='';
-  document.getElementById('detail').classList.remove('show');
-  document.getElementById('single-view').style.display='block';
-  document.getElementById('compare-view').classList.remove('show');
-  document.getElementById('clear-btn').classList.remove('show');
-}
-document.getElementById('clear-btn').addEventListener('click',clearAll);
-
-
-
-// ── DRAG ─────────────────────────────────────────────────────────
-const landscape = document.getElementById('landscape');
-
-function makeDraggable(node) {
-  let dragging=false, moved=false;
-  let sx,sy,ox,oy;
-
-  function start(e) {
-    const t=e.touches?e.touches[0]:e;
-    dragging=true; moved=false;
-    const lr=landscape.getBoundingClientRect();
-    const nr=node.getBoundingClientRect();
-    sx=t.clientX; sy=t.clientY;
-    // Compute pixel offset from landscape top-left
-    ox=nr.left-lr.left; oy=nr.top-lr.top;
-    // Convert right/bottom positioning to left/top so drag math works
-    node.style.right='auto'; node.style.bottom='auto';
-    node.style.left=ox+'px'; node.style.top=oy+'px';
-    node.style.zIndex=30;
-    e.preventDefault();
-  }
-
-  function move(e) {
-    if(!dragging) return;
-    const t=e.touches?e.touches[0]:e;
-    const dx=t.clientX-sx, dy=t.clientY-sy;
-    if(Math.abs(dx)>5||Math.abs(dy)>5) moved=true;
-    if(!moved) return;
-    const lr=landscape.getBoundingClientRect();
-    const nr=node.getBoundingClientRect();
-    const quad = node.dataset.quad || 'tl';
-    const hw = lr.width/2, hh = lr.height/2;
-    // Quadrant bounds
-    const minX = (quad==='tr'||quad==='br') ? hw : 0;
-    const maxX = (quad==='tl'||quad==='bl') ? hw - nr.width : lr.width - nr.width;
-    const minY = (quad==='bl'||quad==='br') ? hh : 0;
-    const maxY = (quad==='tl'||quad==='tr') ? hh - nr.height : lr.height - nr.height;
-    let nl = Math.max(minX, Math.min(maxX, ox+dx));
-    let nt = Math.max(minY, Math.min(maxY, oy+dy));
-    node.style.left=nl+'px'; node.style.top=nt+'px';
-    if(nodeA&&(node===nodeA||node===nodeB)) drawLines(nodeA.id);
-    e.preventDefault();
-  }
-
-  function end() {
-    if(!dragging) return;
-    dragging=false;
-    node.style.zIndex = (node===nodeA||node===nodeB) ? 20 : 5;
-    if(!moved) activate(node);
-    else if(nodeA) drawLines(nodeA.id);
-  }
-
-  node.addEventListener('touchstart',start,{passive:false});
-  node.addEventListener('touchmove', move, {passive:false});
-  node.addEventListener('touchend',  end,  {passive:false});
-  node.addEventListener('mousedown', start);
-  window.addEventListener('mousemove', e=>{if(dragging)move(e);});
-  window.addEventListener('mouseup',   ()=>{if(dragging)end();});
+function startAnimation() {
+  if (animFrame) cancelAnimationFrame(animFrame);
+  animT = 0;
+  animFrame = requestAnimationFrame(animate);
 }
 
-nodes.forEach(makeDraggable);
+// ═══════════════════════════════════════════════════════
+// INTERACTION
+// ═══════════════════════════════════════════════════════
 
-// ── HELP / LEGEND ────────────────────────────────────────────────
-document.getElementById('help-btn').addEventListener('click', ()=>{
-  document.getElementById('legend').classList.add('show');
-});
-document.getElementById('leg-close').addEventListener('click', ()=>{
-  document.getElementById('legend').classList.remove('show');
-});
+function hitTest(px, py) {
+  // Find which bubble was tapped
+  let hit = null;
+  let minDist = Infinity;
+  NODE_KEYS.forEach(key => {
+    const b = bubbles[key];
+    if (!b) return;
+    const dx = px - b.x, dy = py - b.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    // Give a touch target slightly larger than drawn radius
+    const target = Math.max(b.r * 1.2, 28);
+    if (dist < target && dist < minDist) {
+      minDist = dist;
+      hit = key;
+    }
+  });
+  return hit;
+}
 
-// ── GUIDE ────────────────────────────────────────────────────────
-document.getElementById('guide-btn').addEventListener('click', ()=>{
-  document.getElementById('guide').classList.add('show');
-});
-document.getElementById('guide-close').addEventListener('click', ()=>{
-  document.getElementById('guide').classList.remove('show');
-});
+function getCanvasPoint(e) {
+  const rect = canvas.getBoundingClientRect();
+  const t = e.touches ? e.touches[0] : e;
+  return {
+    x: (t.clientX - rect.left),
+    y: (t.clientY - rect.top)
+  };
+}
 
-// ── SOURCES ──────────────────────────────────────────────────────
-document.getElementById('src-toggle').addEventListener('click', function(){
-  const body=document.getElementById('src-body');
+function onTap(e) {
+  e.preventDefault();
+  const pt = getCanvasPoint(e);
+  const key = hitTest(pt.x, pt.y);
+  if (!key) {
+    if (selected) clearSelection();
+    return;
+  }
+  if (key === selected) { clearSelection(); return; }
+  selectNode(key);
+}
+
+function selectNode(key) {
+  selected = key;
+  computeBubbles();
+  startAnimation();
+  showDetail(key);
+  document.getElementById('intro-hint').style.display = 'none';
+  document.getElementById('reset-hint').classList.add('show');
+}
+
+function clearSelection() {
+  selected = null;
+  computeBubbles();
+  startAnimation();
+  hideDetail();
+  document.getElementById('intro-hint').style.display = 'block';
+  document.getElementById('reset-hint').classList.remove('show');
+}
+
+// Touch: distinguish tap from scroll — only act if finger barely moved
+let _tx = 0, _ty = 0;
+canvas.addEventListener('touchstart', function(e) {
+  _tx = e.touches[0].clientX;
+  _ty = e.touches[0].clientY;
+}, { passive: true });
+
+canvas.addEventListener('touchend', function(e) {
+  const t = e.changedTouches[0];
+  const dx = Math.abs(t.clientX - _tx);
+  const dy = Math.abs(t.clientY - _ty);
+  if (dx < 10 && dy < 10) {
+    const rect = canvas.getBoundingClientRect();
+    const pt = { x: t.clientX - rect.left, y: t.clientY - rect.top };
+    const key = hitTest(pt.x, pt.y);
+    if (key) {
+      e.preventDefault();
+      if (key === selected) clearSelection(); else selectNode(key);
+    }
+  }
+}, { passive: false });
+
+canvas.addEventListener('click', onTap);
+
+// ═══════════════════════════════════════════════════════
+// DETAIL PANEL
+// ═══════════════════════════════════════════════════════
+
+const DESC_MAP = {
+  green:'green', refreshing:'refreshing', floral:'floral', sweet:'sweet',
+  fruity:'fruity', mineral:'mineral', bitter:'bitter', woody:'woody', smoky:'smoky'
+};
+
+function showDetail(key) {
+  const node = NODES[key];
+  const panel = document.getElementById('detail-panel');
+
+  document.getElementById('dp-swatch').style.background = node.color;
+  document.getElementById('dp-name').textContent = node.name;
+  document.getElementById('dp-desc').textContent = node.desc;
+
+  // Tags
+  function makeTags(elId, arr) {
+    const el = document.getElementById(elId);
+    el.innerHTML = '';
+    arr.forEach(t => {
+      const s = document.createElement('span');
+      s.className = 'tag';
+      s.textContent = t;
+      el.appendChild(s);
+    });
+  }
+  makeTags('dp-compounds', node.compounds);
+  makeTags('dp-process', node.process);
+  makeTags('dp-leaf', node.leaf);
+  makeTags('dp-brew', node.brew);
+
+  // Relationship bubbles in detail
+  const relsEl = document.getElementById('dp-rels');
+  relsEl.innerHTML = '';
+
+  const aligned = [], opposed = [];
+  Object.entries(node.relations).forEach(([rkey, rel]) => {
+    if (rel.type === 'align' && rel.strength > 0) aligned.push({ key: rkey, ...rel });
+    else if (rel.type === 'oppose') opposed.push({ key: rkey, ...rel });
+  });
+
+  aligned.sort((a, b) => b.strength - a.strength);
+  opposed.sort((a, b) => b.strength - a.strength);
+
+  if (aligned.length) {
+    const row = document.createElement('div');
+    row.className = 'dp-rel-row';
+    const label = document.createElement('div');
+    label.className = 'dp-rel-label';
+    label.textContent = 'Aligned';
+    row.appendChild(label);
+
+    aligned.forEach(rel => {
+      const rnode = NODES[rel.key];
+      const size = 34 + (rel.strength / 100) * 22;
+      const bubble = document.createElement('div');
+      bubble.className = 'rel-bubble';
+      bubble.innerHTML = `
+        <div class="rel-dot" style="width:${size}px;height:${size}px;background:${rnode.color};font-size:${Math.max(9,size*0.28)}px;">
+          ${rel.strength}%
+        </div>
+        <div class="rel-name">${rnode.short}</div>`;
+      bubble.addEventListener('click', () => selectNode(rel.key));
+      bubble.style.cursor = 'pointer';
+      row.appendChild(bubble);
+    });
+    relsEl.appendChild(row);
+  }
+
+  if (opposed.filter(r => r.strength > 0).length) {
+    const row = document.createElement('div');
+    row.className = 'dp-rel-row';
+    const label = document.createElement('div');
+    label.className = 'dp-rel-label';
+    label.textContent = 'Opposes';
+    row.appendChild(label);
+
+    opposed.filter(r => r.strength > 0).forEach(rel => {
+      const rnode = NODES[rel.key];
+      const size = 28 + (rel.strength / 100) * 14;
+      const bubble = document.createElement('div');
+      bubble.className = 'rel-bubble';
+      bubble.innerHTML = `
+        <div class="rel-dot" style="width:${size}px;height:${size}px;background:${rnode.color};opacity:0.6;font-size:${Math.max(8,size*0.28)}px;">
+          ${rel.strength}%
+        </div>
+        <div class="rel-name" style="color:#aa5050">${rnode.short}</div>`;
+      bubble.addEventListener('click', () => selectNode(rel.key));
+      row.appendChild(bubble);
+    });
+    relsEl.appendChild(row);
+  }
+
+  // Pathway link
+  document.getElementById('dp-pathway').href =
+    'citane-logic-board.html#desc=' + (DESC_MAP[key] || '');
+
+  panel.classList.add('show');
+}
+
+function hideDetail() {
+  document.getElementById('detail-panel').classList.remove('show');
+}
+
+// ═══════════════════════════════════════════════════════
+// SOURCES
+// ═══════════════════════════════════════════════════════
+
+document.getElementById('src-toggle').addEventListener('click', function() {
+  const body = document.getElementById('src-body');
   body.classList.toggle('show');
   this.textContent = body.classList.contains('show') ? '− Research basis' : '+ Research basis';
 });
 
-// ── URL PRE-SELECT (from Logic Board link) ───────────────────────
-window.addEventListener('load', ()=>{
-  const hash=window.location.hash;
-  if(hash.startsWith('#desc=')) {
-    const desc=hash.replace('#desc=','');
-    const map={green:'n-green',refreshing:'n-refreshing',floral:'n-floral',
-      sweet:'n-sweet',fruity:'n-fruity',mineral:'n-mineral',
-      bitter:'n-bitter',woody:'n-woody',smoky:'n-smoky'};
-    const id=map[desc];
-    if(id) { const n=document.getElementById(id); if(n) activate(n); }
+// ═══════════════════════════════════════════════════════
+// URL PRE-SELECT
+// ═══════════════════════════════════════════════════════
+
+window.addEventListener('load', () => {
+  resize();
+  const hash = window.location.hash;
+  if (hash.startsWith('#desc=')) {
+    const desc = hash.replace('#desc=', '');
+    if (NODES[desc]) {
+      setTimeout(() => selectNode(desc), 200);
+    }
   }
+});
+
+window.addEventListener('resize', () => {
+  resize();
 });
 </script>
 </body>

@@ -26,27 +26,27 @@
   --inactive-bg: #f0ede8;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Georgia, serif; background: var(--parchment); color: var(--ink); line-height: 1.6; }
+body { font-family: Georgia, serif; background: var(--parchment); color: var(--ink); line-height: 1.65; font-size: 16px; }
 
 /* NAV */
-nav { background: var(--ink); padding: 13px 18px; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 200; }
+nav { background: var(--ink); padding: 14px 18px; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 200; }
 .brand { font-size: 1rem; color: #fff; letter-spacing: .14em; text-transform: uppercase; }
 .sep { color: #555; }
-.page-t { font-size: .78rem; color: #999; }
-.back-link { margin-left: auto; font-size: .72rem; color: #aaa; text-decoration: none; letter-spacing: .05em; }
+.page-t { font-size: .84rem; color: #999; }
+.back-link { margin-left: auto; font-size: .8rem; color: #aaa; text-decoration: none; letter-spacing: .04em; }
 .back-link:hover { color: #fff; }
 
 /* HERO */
 .hero { background: var(--leaf); color: #fff; padding: 32px 18px 26px; text-align: center; }
-.hero .eye { font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; opacity: .55; margin-bottom: 8px; }
-.hero h1 { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: normal; line-height: 1.2; margin-bottom: 10px; }
-.hero p { font-size: .82rem; opacity: .78; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+.hero .eye { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; opacity: .55; margin-bottom: 8px; }
+.hero h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: normal; line-height: 1.2; margin-bottom: 10px; }
+.hero p { font-size: .92rem; opacity: .78; max-width: 480px; margin: 0 auto; line-height: 1.65; }
 
 /* MODE TOGGLE */
 .mode-bar { background: var(--cream); border-bottom: 1px solid var(--ruled); display: flex; padding: 0; }
 .mode-btn { flex: 1; background: none; border: none; border-bottom: 3px solid transparent;
-  padding: 13px 8px; font-family: Georgia, serif; font-size: .78rem; color: var(--muted);
-  cursor: pointer; letter-spacing: .04em; transition: all .2s; }
+  padding: 15px 8px; font-family: Georgia, serif; font-size: .88rem; color: var(--muted);
+  cursor: pointer; letter-spacing: .04em; transition: all .2s; touch-action: manipulation; }
 .mode-btn.active { color: var(--leaf); border-bottom-color: var(--leaf); }
 .mode-btn.epsilon-btn.active { color: var(--epsilon); border-bottom-color: var(--epsilon-lt); }
 
@@ -54,37 +54,39 @@ nav { background: var(--ink); padding: 13px 18px; display: flex; align-items: ce
 .board-wrap { max-width: 860px; margin: 0 auto; padding: 20px 14px 60px; }
 
 /* SECTION LABELS */
-.s-label { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent);
+.s-label { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent);
   margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--ruled); }
 
 /* ENTRY POINT SELECTOR */
 .entry-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 24px; }
 @media (max-width: 500px) { .entry-row { grid-template-columns: repeat(2, 1fr); } }
 .entry-btn { background: var(--cream); border: 2px solid var(--ruled); border-radius: 4px;
-  padding: 14px 8px; text-align: center; cursor: pointer; transition: all .2s; font-family: Georgia, serif; }
+  padding: 16px 8px; text-align: center; cursor: pointer; transition: all .2s; font-family: Georgia, serif;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .entry-btn:hover { border-color: var(--leaf-lt); background: var(--leaf-pale); }
 .entry-btn.active { border-color: var(--leaf); background: var(--leaf-pale); }
-.entry-btn .icon { font-size: 1.4rem; display: block; margin-bottom: 5px; }
-.entry-btn .label { font-size: .72rem; color: var(--muted); letter-spacing: .04em; display: block; }
+.entry-btn .icon { font-size: 1.5rem; display: block; margin-bottom: 6px; }
+.entry-btn .label { font-size: .8rem; color: var(--muted); letter-spacing: .03em; display: block; }
 .entry-btn.active .label { color: var(--leaf); }
 
 /* CHOICE SECTIONS */
-.choice-section { margin-bottom: 22px; display: none; }
+.choice-section { margin-bottom: 24px; display: none; }
 .choice-section.visible { display: block; }
-.choice-title { font-size: .82rem; color: var(--ink); margin-bottom: 10px; font-style: italic; }
+.choice-title { font-size: .9rem; color: var(--ink); margin-bottom: 12px; font-style: italic; }
 
 /* CHOICE BOXES */
-.choice-grid { display: flex; flex-wrap: wrap; gap: 7px; }
-.choice-box { background: var(--cream); border: 1.5px solid var(--ruled); border-radius: 3px;
-  padding: 8px 13px; font-size: .76rem; cursor: pointer; transition: all .18s;
-  font-family: Georgia, serif; color: var(--ink); position: relative; }
+.choice-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.choice-box { background: var(--cream); border: 1.5px solid var(--ruled); border-radius: 4px;
+  padding: 10px 14px; font-size: .88rem; cursor: pointer; transition: all .18s;
+  font-family: Georgia, serif; color: var(--ink); position: relative;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .choice-box:hover:not(.inactive) { border-color: var(--leaf-lt); background: var(--leaf-pale); }
 .choice-box.selected { border-color: var(--leaf); background: var(--leaf-pale); color: var(--leaf); font-weight: bold; }
 .choice-box.inactive { background: var(--inactive-bg); color: var(--inactive); border-color: var(--inactive);
   cursor: not-allowed; text-decoration: line-through; }
 .choice-box .why { display: none; position: absolute; bottom: calc(100% + 6px); left: 0;
-  background: var(--ink); color: #fff; font-size: .68rem; padding: 5px 9px; border-radius: 3px;
-  white-space: nowrap; z-index: 10; pointer-events: none; }
+  background: var(--ink); color: #fff; font-size: .72rem; padding: 6px 10px; border-radius: 3px;
+  white-space: nowrap; z-index: 10; pointer-events: none; max-width: 220px; white-space: normal; line-height: 1.4; }
 .choice-box.inactive:hover .why { display: block; }
 
 /* DIVIDER */
@@ -95,89 +97,83 @@ nav { background: var(--ink); padding: 13px 18px; display: flex; align-items: ce
 #output-card.show { display: block; }
 
 .out-heading { background: var(--leaf); color: #fff; border-radius: 4px 4px 0 0;
-  padding: 18px 20px; margin-bottom: 0; }
-.out-heading .seeking { font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; opacity: .6; margin-bottom: 4px; }
-.out-heading h2 { font-size: 1.1rem; font-weight: normal; line-height: 1.3; }
+  padding: 20px 20px; margin-bottom: 0; }
+.out-heading .seeking { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; opacity: .6; margin-bottom: 5px; }
+.out-heading h2 { font-size: 1.15rem; font-weight: normal; line-height: 1.3; }
 
 .out-body { background: var(--cream); border: 1px solid var(--ruled); border-top: none;
   border-radius: 0 0 4px 4px; padding: 0; margin-bottom: 20px; overflow: hidden; }
 
-.out-block { padding: 16px 18px; border-bottom: 1px solid var(--ruled); }
+.out-block { padding: 18px 20px; border-bottom: 1px solid var(--ruled); }
 .out-block:last-child { border-bottom: none; }
-.out-block-title { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 8px; }
-.out-block p { font-size: .82rem; line-height: 1.7; color: var(--ink); }
+.out-block-title { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px; }
+.out-block p { font-size: .92rem; line-height: 1.75; color: var(--ink); }
 
 /* STEPS */
 .steps { list-style: none; }
-.steps li { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--ruled); font-size: .8rem; line-height: 1.6; }
+.steps li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--ruled); font-size: .9rem; line-height: 1.65; }
 .steps li:last-child { border-bottom: none; }
-.step-num { background: var(--leaf); color: #fff; border-radius: 2px; min-width: 22px; height: 22px;
-  display: flex; align-items: center; justify-content: center; font-size: .7rem; flex-shrink: 0; margin-top: 2px; }
+.step-num { background: var(--leaf); color: #fff; border-radius: 2px; min-width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center; font-size: .74rem; flex-shrink: 0; margin-top: 2px; }
 
 /* PITFALLS */
 .pitfall-list { list-style: none; }
 .pitfall-item { background: var(--warn-bg); border-left: 3px solid var(--warn);
-  border-radius: 0 3px 3px 0; padding: 10px 12px; margin-bottom: 7px; }
+  border-radius: 0 3px 3px 0; padding: 12px 14px; margin-bottom: 8px; }
 .pitfall-item:last-child { margin-bottom: 0; }
-.pitfall-stage { font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--warn); margin-bottom: 3px; }
-.pitfall-item p { font-size: .78rem; line-height: 1.6; color: var(--ink); }
+.pitfall-stage { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--warn); margin-bottom: 4px; }
+.pitfall-item p { font-size: .88rem; line-height: 1.65; color: var(--ink); }
 
 /* MANDATORY BOX */
 .mandatory { background: var(--ink); color: #fff; border-radius: 3px; padding: 14px 16px; margin-bottom: 0; }
-.mandatory .m-title { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; opacity: .5; margin-bottom: 8px; }
+.mandatory .m-title { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; opacity: .5; margin-bottom: 8px; }
 .mandatory ul { list-style: none; }
-.mandatory ul li { font-size: .8rem; line-height: 1.6; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,.08); opacity: .88; }
+.mandatory ul li { font-size: .9rem; line-height: 1.65; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.08); opacity: .88; }
 .mandatory ul li:last-child { border-bottom: none; }
 .mandatory ul li::before { content: "→ "; opacity: .4; }
 
 /* LINKS TO TRADITION PAGES */
-.tradition-links { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 6px; }
+.tradition-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
 .t-link { display: inline-flex; align-items: center; gap: 5px; background: var(--tag-bg);
-  border: 1px solid var(--ruled); border-radius: 3px; padding: 6px 11px;
-  font-size: .74rem; color: var(--accent); text-decoration: none; }
+  border: 1px solid var(--ruled); border-radius: 3px; padding: 8px 13px;
+  font-size: .84rem; color: var(--accent); text-decoration: none; touch-action: manipulation; }
 .t-link:hover { background: var(--leaf-pale); color: var(--leaf); border-color: var(--leaf-lt); }
 
 /* RESET BTN */
 .reset-btn { background: none; border: 1px solid var(--ruled); border-radius: 3px;
-  padding: 8px 18px; font-family: Georgia, serif; font-size: .76rem; color: var(--muted);
-  cursor: pointer; margin-top: 12px; }
+  padding: 10px 20px; font-family: Georgia, serif; font-size: .86rem; color: var(--muted);
+  cursor: pointer; margin-top: 14px; touch-action: manipulation; }
 .reset-btn:hover { color: var(--ink); border-color: var(--ink); }
 
 /* EPSILON BOARD */
 #epsilon-board { display: none; }
 #epsilon-board.show { display: block; }
 .epsilon-notice { background: var(--epsilon-bg); border: 1.5px solid var(--epsilon-lt);
-  border-radius: 4px; padding: 14px 16px; margin-bottom: 18px; }
-.epsilon-notice .e-title { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--epsilon-lt); margin-bottom: 5px; }
-.epsilon-notice p { font-size: .78rem; color: var(--epsilon); line-height: 1.6; }
+  border-radius: 4px; padding: 14px 16px; margin-bottom: 20px; }
+.epsilon-notice .e-title { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--epsilon-lt); margin-bottom: 6px; }
+.epsilon-notice p { font-size: .88rem; color: var(--epsilon); line-height: 1.65; }
 
-.api-key-row { display: flex; gap: 8px; margin-bottom: 16px; }
-.api-key-row input { flex: 1; border: 1.5px solid var(--ruled); border-radius: 3px;
-  padding: 9px 12px; font-family: Georgia, serif; font-size: .78rem; background: var(--cream); }
-.api-key-row input:focus { outline: none; border-color: var(--epsilon-lt); }
-.api-key-row button { background: var(--epsilon); color: #fff; border: none; border-radius: 3px;
-  padding: 9px 16px; font-family: Georgia, serif; font-size: .76rem; cursor: pointer; white-space: nowrap; }
-
-.gen-btn { width: 100%; background: var(--epsilon); color: #fff; border: none; border-radius: 3px;
-  padding: 13px; font-family: Georgia, serif; font-size: .84rem; cursor: pointer;
-  letter-spacing: .05em; margin-bottom: 16px; }
-.gen-btn:hover { background: var(--epsilon-lt); }
+.gen-btn { width: 100%; background: var(--epsilon); color: #fff; border: none; border-radius: 4px;
+  padding: 16px; font-family: Georgia, serif; font-size: .95rem; cursor: pointer;
+  letter-spacing: .04em; margin-bottom: 16px; touch-action: manipulation; transition: background .15s; }
+.gen-btn:hover:not(:disabled) { background: var(--epsilon-lt); }
 .gen-btn:disabled { opacity: .4; cursor: not-allowed; }
 
-#epsilon-output { display: none; background: var(--cream); border: 1.5px solid var(--epsilon-lt);
-  border-radius: 4px; padding: 18px; }
+#epsilon-output { display: none; background: var(--epsilon); border-radius: 6px; overflow: hidden; }
 #epsilon-output.show { display: block; }
 .eps-tag { display: inline-block; background: var(--epsilon-lt); color: #fff; border-radius: 2px;
-  padding: 2px 8px; font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
-#epsilon-output h3 { font-size: .95rem; font-weight: normal; color: var(--epsilon); margin-bottom: 10px; }
-#epsilon-text { font-size: .82rem; line-height: 1.75; color: var(--ink); white-space: pre-wrap; }
-.eps-loading { font-size: .8rem; color: var(--epsilon-lt); font-style: italic; }
+  padding: 3px 10px; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+#epsilon-output h3 { font-size: 1rem; font-weight: normal; color: #fff; margin-bottom: 0; padding: 0 20px 16px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.eps-head { padding: 18px 20px 0; }
+#epsilon-text { padding: 16px 20px 20px; font-size: .92rem; line-height: 1.78; color: rgba(255,255,255,.88); white-space: pre-wrap; }
+.eps-loading { font-size: .9rem; color: rgba(255,255,255,.55); font-style: italic; }
+.eps-foot { padding: 10px 20px; border-top: 1px solid rgba(255,255,255,.08); font-size: .72rem; color: rgba(255,255,255,.3); font-style: italic; }
 
 /* NOTE */
 .note { background: var(--tag-bg); border-left: 3px solid var(--accent-lt); border-radius: 0 3px 3px 0;
-  padding: 10px 13px; font-size: .76rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+  padding: 12px 14px; font-size: .88rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
 .note strong { color: var(--accent); }
 </style>
 </head>
@@ -374,25 +370,22 @@ nav { background: var(--ink); padding: 13px 18px; display: flex; align-items: ce
 
   <div class="epsilon-notice">
     <div class="e-title">ε Epsilon Board — Theoretical Territory</div>
-    <p>What follows is AI-generated speculation grounded in known CLT chemistry and processing principles. It is <strong>not validated research</strong> and should not be treated as likely outcomes. It is a creative extension of the Citane landscape — a theoretical space for exploration and hypothesis generation.</p>
+    <p>What follows is AI-generated speculation grounded in known CLT chemistry. It is <strong>not validated research</strong>. A creative extension of the Citane landscape — for exploration and hypothesis, not instruction.</p>
   </div>
 
   <div class="note">
-    <strong>How it works:</strong> The Epsilon board reads your selections from the Research Board plus the full CLT research context, and generates a theoretical flavour pathway extending beyond what the papers directly document. Enter your API key to activate.
+    <strong>How it works:</strong> Make your selections on the Research Board, then come here and generate. The Epsilon Board reads your choices and builds a speculative pathway beyond what the papers directly document.
   </div>
 
-  <div class="api-key-row">
-    <input type="password" id="api-key-input" placeholder="Paste your Anthropic API key here">
-    <button id="api-key-save">Activate</button>
-  </div>
-  <div id="api-key-status" style="font-size:.72rem;color:var(--muted);margin-bottom:14px;display:none"></div>
-
-  <button class="gen-btn" id="gen-epsilon-btn" disabled>Generate Epsilon Pathway</button>
+  <button class="gen-btn" id="gen-epsilon-btn" disabled>ε Generate Epsilon Pathway</button>
 
   <div id="epsilon-output">
-    <span class="eps-tag">ε Theoretical — Not Research-Validated</span>
-    <h3 id="eps-heading"></h3>
+    <div class="eps-head">
+      <span class="eps-tag">ε Theoretical — Not Research-Validated</span>
+      <h3 id="eps-heading">Epsilon Pathway</h3>
+    </div>
     <div id="epsilon-text"></div>
+    <div class="eps-foot">Generated by Claude · Citane ε · KoffyKraft, Thumpassery Estate</div>
   </div>
 
 </div>
@@ -410,9 +403,7 @@ const STATE = {
   brew: null,
   temp: null,
   duration: null,
-  serve: null,
-  apiKey: null,
-  apiActivated: false
+  serve: null
 };
 
 // Compatibility matrix: which processes work with which leaf ages
@@ -1084,90 +1075,135 @@ function resetSelections() {
 let epsilonContext = '';
 
 function primeEpsilon(desc, data) {
-  epsilonContext = `
-The user is exploring CLT (Coffee Leaf Tea) using the Citane Flavour Logic Board.
+  epsilonContext = `You are the Citane Epsilon Board — speculative CLT flavour exploration for KoffyKraft, Thumpassery Estate, Kerala. Arabica Chandragiri leaves grown under rubber shade at ~130m altitude.
 
-Target descriptor: ${desc}
-Entry point: ${STATE.entry}
-Leaf maturity selected: ${STATE.leaf || 'not specified'}
-Process selected: ${STATE.process || 'not specified'}
-Brew method selected: ${STATE.brew || 'not specified'}
-Brew temperature selected: ${STATE.temp || 'not specified'}
-Brew duration selected: ${STATE.duration || 'not specified'}
-Serving temperature selected: ${STATE.serve || 'not specified'}
+User selections from the Research Board:
+- Target descriptor: ${desc}
+- Entry point: ${STATE.entry}
+- Leaf maturity: ${STATE.leaf || 'not specified'}
+- Process: ${STATE.process || 'not specified'}
+- Brew method: ${STATE.brew || 'not specified'}
+- Brew temperature: ${STATE.temp || 'not specified'}
+- Brew duration: ${STATE.duration || 'not specified'}
+- Serving temperature: ${STATE.serve || 'not specified'}
 
-Research-grounded output summary:
-- Brew compounds: ${data.brew.substring(0,200)}
-- Core logic: ${data.logic.substring(0,200)}
+Research-grounded context summary:
+- ${data.brew.substring(0, 200)}
+- ${data.logic.substring(0, 200)}
 
-Your task: Generate an Epsilon theoretical pathway — a speculative but chemically coherent extension beyond what the peer-reviewed papers directly document. 
+CLT chemistry reference:
+- Sweet: β-ionone OAV 132–927, oolong 12–24h wither optimal (Fibrianto 2025)
+- Green: hexanal OAV 1–10, mangiferin (young only), steam arrest
+- Refreshing: (E,Z)-2,6-nonadienal OAV 18–256, cold serve critical
+- Floral: α-ionone, decanal OAV 14–301, partial oxidation or yeast
+- Fruity: octanal OAV 7–23, limonene (OCLT-exclusive), rolling enhances
+- Woody: diphenyl sulfone, guaiacol, mature leaves, full oxidation 24h
+- Koji (Citane experimental): Aspergillus oryzae enzymes theoretically convert leaf starches to sugars and release amino acids — not formally documented for CLT
+- Four universal compounds: (E,E)-3,5-octadien-2-one, (E,Z)-2,6-nonadienal, α-ionone, β-ionone
 
-Format your response as follows:
-1. EPSILON HYPOTHESIS: One clear speculative proposition (2-3 sentences)
-2. THEORETICAL PATHWAY: Step-by-step speculative process modifications (bullet points)
-3. COMPOUND LANDSCAPE: Which compounds might be activated, suppressed, or transformed in this theoretical pathway
-4. CITANE LANDSCAPE POSITION: Where does this sit in the leaf / process / brew landscape
-5. RISKS & UNKNOWNS: What could go wrong in theory
-6. HYPOTHESIS TESTABILITY: How could this be tested with simple equipment
+Generate a short, accessible speculative pathway. Write for both a curious beginner and a serious practitioner. Mark everything as theoretical.
 
-Keep response grounded in real CLT chemistry but clearly labelled as theoretical speculation. Do not present anything as validated research.`;
+Format exactly as:
 
-  document.getElementById('gen-epsilon-btn').disabled = !STATE.apiActivated;
-  document.getElementById('eps-heading').textContent = 'Epsilon Pathway: ' + (DESCRIPTOR_LABELS[desc] || desc);
+1. HYPOTHESIS
+[2–3 sentences. A clear proposition, not a conclusion.]
+
+2. WHAT MIGHT HAPPEN
+[4–6 bullet points starting with •. The probable sequence in the leaf chemistry.]
+
+3. WATCH OUT FOR
+[3–4 bullet points starting with •. Main risks and unknowns. Practical, not academic.]
+
+4. TRY IT
+[3–5 bullet points starting with •. Concrete steps someone could attempt at a small estate or home setup.]`;
+
+  document.getElementById('gen-epsilon-btn').disabled = !epsilonContext;
+  document.getElementById('eps-heading').textContent = 'ε Pathway: ' + (DESCRIPTOR_LABELS[desc] || desc);
 }
 
-// API key
-document.getElementById('api-key-save').addEventListener('click', function() {
-  const key = document.getElementById('api-key-input').value.trim();
-  if (!key || !key.startsWith('sk-')) {
-    document.getElementById('api-key-status').textContent = 'Key format looks incorrect. Should start with sk-';
-    document.getElementById('api-key-status').style.display = 'block';
-    return;
-  }
-  STATE.apiKey = key;
-  STATE.apiActivated = true;
-  document.getElementById('api-key-status').textContent = '✓ Key saved. Epsilon board active.';
-  document.getElementById('api-key-status').style.color = 'var(--leaf)';
-  document.getElementById('api-key-status').style.display = 'block';
-  document.getElementById('gen-epsilon-btn').disabled = !epsilonContext;
-});
-
-// Generate epsilon
+// Generate epsilon via Netlify function
 document.getElementById('gen-epsilon-btn').addEventListener('click', async function() {
-  if (!STATE.apiKey || !epsilonContext) return;
+  if (!epsilonContext) return;
   const btn = this;
   btn.disabled = true;
-  btn.textContent = 'Generating...';
+  btn.textContent = 'Generating…';
 
   const outputEl = document.getElementById('epsilon-output');
   const textEl = document.getElementById('epsilon-text');
   outputEl.classList.add('show');
-  textEl.innerHTML = '<span class="eps-loading">Generating theoretical pathway from CLT research context...</span>';
+  textEl.innerHTML = '<span class="eps-loading">Reading the leaf chemistry…</span>';
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/.netlify/functions/epsilon', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': STATE.apiKey, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: epsilonContext }]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: [{ role: 'user', content: epsilonContext }] })
     });
     const data = await res.json();
     if (data.error) {
-      textEl.textContent = 'API error: ' + data.error.message;
+      textEl.textContent = 'API error: ' + (data.error.message || JSON.stringify(data.error));
     } else {
-      textEl.textContent = data.content[0].text;
+      const text = data.content
+        ? data.content.filter(b => b.type === 'text').map(b => b.text).join('\n')
+        : '';
+      textEl.innerHTML = text ? renderEpsilonSections(text) : 'No response returned. Please try again.';
     }
   } catch(err) {
     textEl.textContent = 'Connection error: ' + err.message;
   }
 
   btn.disabled = false;
-  btn.textContent = 'Generate Epsilon Pathway';
-  outputEl.scrollIntoView({behavior:'smooth', block:'start'});
+  btn.textContent = 'ε Generate Epsilon Pathway';
+  outputEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
+
+function cleanEpsilonText(text) {
+  return text
+    .replace(/^---+$/gm, '')
+    .replace(/^#{1,4}\s*/gm, '')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/^[-–]\s*[•·]\s*/gm, '• ')
+    .replace(/^[-–]\s+/gm, '• ')
+    .replace(/\n{2,}/g, '<br><br>')
+    .replace(/\n/g, '<br>')
+    .trim();
+}
+
+function renderEpsilonSections(text) {
+  const headings = [
+    { key: 'HYPOTHESIS',        label: 'Hypothesis' },
+    { key: 'WHAT MIGHT HAPPEN', label: 'What Might Happen' },
+    { key: 'WATCH OUT FOR',     label: 'Watch Out For' },
+    { key: 'TRY IT',            label: 'Try It' }
+  ];
+  const sections = [];
+  headings.forEach(function(h, i) {
+    const re = new RegExp(
+      (i + 1) + '\\.\\s*' + h.key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ':?', 'i'
+    );
+    const nextRe = i < headings.length - 1
+      ? new RegExp(
+          (i + 2) + '\\.\\s*' + headings[i + 1].key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ':?', 'i'
+        )
+      : null;
+    const start = text.search(re);
+    if (start === -1) return;
+    const contentStart = text.indexOf('\n', start) + 1;
+    const end = nextRe ? text.search(nextRe) : text.length;
+    const content = text.slice(contentStart, end > 0 ? end : text.length).trim();
+    sections.push({ label: h.label, content: cleanEpsilonText(content) });
+  });
+  if (!sections.length) {
+    return '<div style="padding:4px 0">' + cleanEpsilonText(text) + '</div>';
+  }
+  return sections.map(function(sec) {
+    return '<div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1)">' +
+      '<div style="font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:8px">' + sec.label + '</div>' +
+      '<div style="font-size:.92rem;line-height:1.78;color:rgba(255,255,255,.88)">' + sec.content + '</div>' +
+      '</div>';
+  }).join('') + '<div style="height:2px"></div>';
+}
 </script>
 </body>
 </html>
