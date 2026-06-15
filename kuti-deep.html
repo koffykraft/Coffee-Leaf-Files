@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuti · Go Deeper</title>
+<style>
+:root {
+  --ink:    #1a1612;
+  --amber:  #8b6a2a;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f7f2e8;
+  --ruled:  #e0d8c8;
+  --muted:  #7a7060;
+  --dark:   #16130e;
+  --sage:   #5a7a5a;
+  --sage-pale:#edf3ed;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:18px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); }
+.sep { color:var(--ruled); }
+.page-t { font-size:.8rem; color:var(--muted); }
+.back { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--amber); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--amber); border-bottom-color:var(--amber); }
+.tab:hover { color:var(--ink); }
+
+.opening { padding:56px 24px 40px; max-width:680px; margin:0 auto; border-bottom:1px solid var(--ruled); }
+.opening .label { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.opening h1 { font-size:clamp(1.6rem,4vw,2.4rem); font-weight:normal; color:var(--ink); line-height:1.25; margin-bottom:18px; }
+.opening p { font-size:1rem; line-height:1.85; color:var(--muted); margin-bottom:0; }
+
+.contents-wrap { max-width:680px; margin:28px auto 0; padding:0 24px; }
+.contents { background:var(--pale); border:1px solid var(--ruled); border-radius:6px; padding:20px 24px; }
+.contents h3 { font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; }
+.contents ul { list-style:none; }
+.contents li { border-bottom:1px solid var(--ruled); }
+.contents li:last-child { border-bottom:none; }
+.contents a { display:block; padding:10px 0; color:var(--ink); text-decoration:none; font-size:.95rem; }
+.contents a:hover { color:var(--amber); }
+
+main { max-width:680px; margin:0 auto; padding:48px 24px 60px; }
+.s-label { font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); display:block; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--ruled); scroll-margin-top:70px; }
+h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:18px; line-height:1.3; scroll-margin-top:70px; }
+h3 { font-size:1.05rem; font-weight:normal; color:var(--ink); margin-bottom:10px; margin-top:28px; }
+p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:18px; }
+p:last-child { margin-bottom:0; }
+hr.divider { border:none; border-top:1px solid var(--ruled); margin:48px 0; }
+
+.pull { font-size:1.2rem; line-height:1.65; color:var(--amber); font-style:italic; border-left:3px solid var(--amber); padding-left:22px; margin:28px 0; }
+.highlight { background:var(--pale); border-left:3px solid var(--gold); border-radius:0 4px 4px 0; padding:18px 20px; margin:24px 0; font-size:.98rem; line-height:1.8; }
+.highlight strong { color:var(--amber); }
+.evidence { background:var(--sage-pale); border-left:3px solid var(--sage); border-radius:0 4px 4px 0; padding:18px 20px; margin:24px 0; font-size:.92rem; line-height:1.8; }
+.evidence .ev-label { font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); margin-bottom:8px; }
+.warn { background:#fef9f0; border-left:3px solid #c8902a; border-radius:0 4px 4px 0; padding:18px 20px; margin:24px 0; font-size:.92rem; line-height:1.8; }
+.warn strong { color:#8b6020; }
+.unknown { background:#f8f0ff; border-left:3px solid #8060a0; border-radius:0 4px 4px 0; padding:18px 20px; margin:24px 0; font-size:.92rem; line-height:1.8; }
+.unknown .u-label { font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:#8060a0; margin-bottom:8px; }
+
+.prep-table { width:100%; border-collapse:collapse; margin:24px 0; font-size:.92rem; }
+.prep-table th { background:var(--dark); color:#fff; padding:10px 14px; text-align:left; font-weight:normal; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+.prep-table td { padding:12px 14px; border-bottom:1px solid var(--ruled); vertical-align:top; line-height:1.6; }
+.prep-table tr:nth-child(even) td { background:var(--pale); }
+
+.ev-table { width:100%; border-collapse:collapse; margin:24px 0; font-size:.92rem; }
+.ev-table th { background:var(--dark); color:#fff; padding:10px 14px; text-align:left; font-weight:normal; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+.ev-table td { padding:12px 14px; border-bottom:1px solid var(--ruled); vertical-align:top; line-height:1.6; }
+.ev-table tr:nth-child(even) td { background:var(--pale); }
+.status-yes { color:var(--sage); font-weight:bold; }
+.status-soft { color:var(--gold); }
+.status-open { color:#8060a0; }
+.status-no { color:#c84040; text-decoration:line-through; opacity:.7; }
+
+.recipes-banner { background:var(--amber); color:#fff; padding:32px 24px; text-align:center; margin:48px 0; border-radius:6px; }
+.recipes-banner h3 { font-size:1.15rem; font-weight:normal; margin-bottom:8px; }
+.recipes-banner p { font-size:.92rem; opacity:.8; margin-bottom:18px; }
+.recipes-banner a { display:inline-block; padding:14px 28px; background:#fff; color:var(--amber); text-decoration:none; font-size:.95rem; border-radius:3px; }
+.recipes-banner a:hover { background:var(--pale); }
+
+.source-block { background:var(--pale); border-radius:6px; padding:22px; margin:20px 0; font-size:.92rem; line-height:1.8; }
+.source-block h4 { font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin-bottom:10px; }
+
+.page-nav { max-width:680px; margin:0 auto; padding:24px 24px 48px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--ruled); }
+.page-nav a { color:var(--amber); text-decoration:none; font-size:.95rem; }
+.page-nav a:hover { color:var(--ink); }
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Kuti · Deep Reference</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab" href="kuti-intro.html">What is this?</a>
+  <a class="tab" href="kuti.html">What's fascinating</a>
+  <a class="tab active" href="kuti-deep.html">Go deeper</a>
+</div>
+
+<div class="opening">
+  <div class="label">For serious inquiry</div>
+  <h1>The historical context, preparation documentation, evidence framework, and open questions for Kuti</h1>
+  <p>This page is for anyone who wants to understand Kuti properly — its place within Harari coffee culture, the historical sources that document it, its preparation in full, the chemistry of the fallen leaf, and an honest accounting of what is established, what is proposed, and what remains genuinely unknown.</p>
+</div>
+
+<div class="contents-wrap">
+  <div class="contents">
+    <h3>On this page</h3>
+    <ul>
+      <li><a href="#harar">Harar — the city and its coffee culture</a></li>
+      <li><a href="#whole-plant">Whole-plant coffee use in Harari tradition</a></li>
+      <li><a href="#women">Women, farms, and household knowledge</a></li>
+      <li><a href="#preparation">Full preparation documentation</a></li>
+      <li><a href="#chemistry">The chemistry of the fallen leaf</a></li>
+      <li><a href="#unknowns">The unknowns — Amartasa, Sirriwabun, research gaps</a></li>
+      <li><a href="#evidence-check">Evidence check</a></li>
+      <li><a href="#source">Sources</a></li>
+    </ul>
+  </div>
+</div>
+
+<main>
+
+<span class="s-label" id="harar">Harar — the city and its coffee culture</span>
+<h2>Not a coffee village — an Islamic scholarly and trading city</h2>
+
+<p>Harar is the walled city of eastern Ethiopia — known as Jugol — and one of the four holiest cities of Islam. It was connected by caravan routes to the Red Sea ports of Zeila and Berbera, and through them to Arabia, India, and wider Indian Ocean commerce. It was a city of scholars, merchants, manuscript traditions, and sophisticated agricultural knowledge — not a monoculture coffee plantation economy.</p>
+
+<p>The History of Harar and the Hararis documents a diversified agricultural system surrounding the city: three concentric zones of land use, with the innermost zone containing city gardens (market gardening, fruit trees, coffee, chat, condiment plants), the intermediate zone containing irrigated and rain-fed crop fields, and the outer zone dedicated to cereal cultivation. Sorghum was the staple crop. Coffee was one of multiple commercial crops alongside chat, cotton, and tobacco.</p>
+
+<div class="highlight">
+  <strong>Harar coffee in international context:</strong> Richard Burton, visiting in the 1850s, noted that Harar coffee was well-known in European markets. Paulitschke, writing in 1888, confirmed that Harar produced 200–300 tonnes of coffee annually for export — a significant commercial quantity. Coffee's international commercial value and Kuti's domestic household use coexisted in the same city, serving different economies simultaneously.
+</div>
+
+<p>This context matters for understanding Kuti. The drink did not emerge from poverty or from exclusion from the bean economy. It emerged from a sophisticated agricultural civilisation with deep knowledge of the coffee plant in all its aspects — a knowledge the History of Harar explicitly frames as expertise.</p>
+
+<hr class="divider">
+
+<span class="s-label" id="whole-plant">Whole-plant coffee use in Harari tradition</span>
+<h2>The leaf, the husk, and the sandwich — three byproducts of Harari coffee knowledge</h2>
+
+<p>The key passage in the History of Harar and the Hararis reads:</p>
+
+<div class="highlight">
+  "The technical knowledge of coffee cultivation could not be mastered unless practised for many years. Harari must have had long years of experience in cultivating coffee as their know how exceeds, to the extent of using its two bi-products, i.e., the leaf (qutti) and the thrush (hasher) as well as in a variety of way, Sirriwabun, making the Harari the only society eating coffee as a sandwich crunching."
+</div>
+
+<p>This passage presents three distinct non-bean uses of the coffee plant:</p>
+
+<h3>Qutti (the leaf) — Kuti</h3>
+<p>The leaf of the coffee plant, used to make a brewed beverage. Documented in multiple sources. The central subject of this library section. Prepared from fallen, yellowed leaves that are dried, ground or roasted, and brewed with water and salt. Also prepared as Kuti Shai — with spices and milk — for special occasions.</p>
+
+<h3>Hasher (the thrush/husk)</h3>
+<p>The dried fruit skin of the coffee cherry — what is known elsewhere as Qishr (Yemen) or Cascara. Used in Harar to make Hasher-Qahwa, a husk-based beverage. Well documented externally as an Ethiopian and Yemeni tradition. Distinct from Kuti — a separate byproduct tradition using a different part of the plant.</p>
+
+<h3>Sirriwabun</h3>
+<p>A food preparation described as "eating coffee as a sandwich crunching." No further description is given in the source. No external references exist. It appears to be a form where coffee material is consumed as food rather than brewed as a beverage. Its nature, preparation, and ingredients remain unknown.</p>
+
+<div class="unknown">
+  <div class="u-label">Open question</div>
+  Sirriwabun is recorded in one source, attributed to oral informants, with no preparation description and no external confirmation. It cannot be described, reconstructed, or claimed. It is documented here as an existing term whose meaning requires further research with Harari linguistic and cultural specialists.
+</div>
+
+<hr class="divider">
+
+<span class="s-label" id="women">Women, farms, and household knowledge</span>
+<h2>The domestic economy of Harari coffee</h2>
+
+<p>The History of Harar and the Hararis places its documentation of Qutti and Amartasa immediately adjacent to this statement:</p>
+
+<div class="highlight">
+  "The coffee farms, surrounding the town of Harar, were mostly owned by Harari women. They had inherited the coffee farms from their fathers and acquired from their husbands as dowry. By owning these farms the Harari women liberated themselves from their economic dependence to their husbands."
+</div>
+
+<p>The proximity of these two pieces of information — leaf use and female farm ownership — in the same passage is significant. The people who owned the coffee plants were, in many cases, the same people who processed the leaves into Kuti, stored the dried leaves in household rooms, and prepared the drink for their families.</p>
+
+<p>This positions Kuti within a broader picture of Harari women's economic agency. They were not passive recipients of a male-dominated coffee trade — they were property owners with land inherited across generations, who simultaneously managed the commercial bean economy (or its benefit) and the domestic leaf knowledge.</p>
+
+<div class="evidence">
+  <div class="ev-label">Documentation note</div>
+  The connection between female farm ownership and Kuti production is an interpretive connection, not a directly documented causal one. The source places them on the same page without explicitly linking them. The inference that female farm owners were the primary Kuti producers is historically coherent but should not be stated as established fact.
+</div>
+
+<hr class="divider">
+
+<span class="s-label" id="preparation">Full preparation documentation</span>
+<h2>Four documented preparation methods</h2>
+
+<p>Multiple sources document Kuti preparation. The methods vary in leaf treatment before brewing. All use fallen or mature yellowed leaves as the raw material. All involve salt as a standard seasoning. The quantities below are from the existing Kuti compendium, drawing on the Slow Food Ark of Taste documentation and secondary sources.</p>
+
+<table class="prep-table">
+  <thead><tr><th>Method</th><th>Leaf treatment</th><th>Brew process</th><th>Character</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Kouttee — Plain</strong></td>
+      <td>Dried in sun, ground to fine powder</td>
+      <td>Powder dissolved in hot water with pinch of salt</td>
+      <td>Lightest, most immediate. The foundational preparation. Light green to yellow colour.</td>
+    </tr>
+    <tr>
+      <td><strong>Kuti — Boiled traditional</strong></td>
+      <td>Dried whole leaves</td>
+      <td>Leaves boiled 30+ minutes with salt. Strained. Sugar added at serving.</td>
+      <td>Darker amber colour. Sweeter with longer boiling — the traditional preparation principle.</td>
+    </tr>
+    <tr>
+      <td><strong>Kuti — Pan-roasted</strong></td>
+      <td>Dried leaves pan-roasted until dark and tarry</td>
+      <td>Roasted leaves crumbled and brewed over low heat with water, sugar, and salt. ~10 minutes.</td>
+      <td>Deeper, richer, smoky-caramelised character. Described as amber-coloured with a gelatinous texture. Comparable to lapsang souchong but more complex.</td>
+    </tr>
+    <tr>
+      <td><strong>Kuti Shai — Spiced with milk</strong></td>
+      <td>Dry-fried whole leaves until fragrant (~3 min)</td>
+      <td>Boiled with water and whole spices (cinnamon, cardamom, cloves) 20–30 min. Strained and served with warm milk.</td>
+      <td>The special occasion version. Trade route spices add warmth and complexity. Served with milk in the qahwa tradition.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="evidence">
+  <div class="ev-label">Note on leaf selection</div>
+  The Slow Food Ark of Taste documentation specifies that Kouttee preparation must use yellowed leaves that have naturally fallen from the coffee tree. This is not an aesthetic preference — it is the condition that ensures the low caffeine content that makes the drink safe for children and appropriate for nursing mothers. Using green picked leaves would produce a significantly higher caffeine brew with different chemistry.
+</div>
+
+<h3>Standard preparation ratios</h3>
+<p>Documented preparation uses approximately 20g of dried fallen leaves per litre of water. The caffeine content at this ratio is approximately 10mg/L — derived from Klingel et al. 2020. Salt is added before brewing; sugar is added at serving to taste. Proportions are household-variable and have not been standardised in any source.</p>
+
+<hr class="divider">
+
+<span class="s-label" id="chemistry">The chemistry of the fallen leaf</span>
+<h2>Why the fallen leaf is different from the picked leaf</h2>
+
+<p>Coffee leaves at different stages of maturity carry significantly different compound profiles. The distinction between young green leaves and fallen yellowed leaves is not merely aesthetic — it reflects a genuine chemical change in the leaf's composition as it ages.</p>
+
+<h3>Caffeine</h3>
+<p>Young coffee leaves contain approximately 1.8–3.2mg caffeine per gram of fresh weight. As the leaf matures and senesces, caffeine levels decline as the compound is redistributed back to the plant's growing tissues. Fallen leaves prepared at traditional Kuti ratios (20g/L) produce approximately 10mg caffeine per litre — a fraction of green tea's caffeine content.</p>
+
+<h3>Mangiferin</h3>
+<p>The xanthone compound most distinctive to coffee leaves — absent from the roasted bean — is highest in young leaves and significantly reduced in mature and fallen leaves. Kuti's raw material (fallen leaves) is therefore lower in mangiferin than young-leaf preparations. This is relevant for any claims about mangiferin's functional properties — those claims apply more accurately to young-leaf preparations than to traditional Kuti.</p>
+
+<h3>Chlorogenic acids</h3>
+<p>The primary bitterness and antioxidant contributors in coffee leaves are also higher in young leaves. The mellower bitterness of Kuti compared to green-leaf preparations is consistent with this reduction in mature leaves.</p>
+
+<div class="warn">
+  <strong>Important for accurate claims:</strong> Research on coffee leaf bioactives often uses young green leaves as the study material. The results — high mangiferin, high chlorogenic acids, significant caffeine — may not accurately represent the compound profile of Kuti, which uses fallen mature leaves. Claims about coffee leaf bioactives should specify which leaf material the research used before being applied to Kuti.
+</div>
+
+<hr class="divider">
+
+<span class="s-label" id="unknowns">The unknowns</span>
+<h2>What remains unresolved and why it matters</h2>
+
+<div class="unknown">
+  <div class="u-label">Amartasa — genuinely unknown</div>
+  Referenced in the History of Harar as "also coffee leaves used for making qahwa a hot beverage taken with milk" alongside Qutti. Source: oral informants only. No other source — Ethiopian, academic, food culture, or linguistic — contains this term. It cannot be assumed to be a synonym for Kuti, a preparation variant, a leaf variety, or anything else. It exists in one source with one line of description. Further research with Harari language and oral history specialists is the only path to resolution.
+</div>
+
+<div class="unknown">
+  <div class="u-label">Sirriwabun — genuinely unknown</div>
+  Referenced as a food preparation in which coffee is eaten "as a sandwich crunching." No preparation description, no ingredient list, no external references. Distinct from any beverage preparation. No further claims can be made.
+</div>
+
+<div class="unknown">
+  <div class="u-label">The qahwa connection</div>
+  The History of Harar references qutti and amartasa being used to make "qahwa a hot beverage taken with milk." Qahwa in Harar may refer to a specific local preparation tradition distinct from Arabian qahwa (green bean coffee with cardamom) and from general coffee. The Harari qahwa tradition — its relationship to Kuti, to the milk addition, to the Kuti Shai preparation — deserves specific investigation as a documented but under-explored area.
+</div>
+
+<hr class="divider">
+
+<span class="s-label" id="evidence-check">Evidence check</span>
+<h2>What is established, what is proposed, what is unknown</h2>
+
+<table class="ev-table">
+  <thead><tr><th>Claim</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>Kuti is a coffee leaf beverage made from fallen yellowed leaves, consumed in Harar and surrounding areas</td><td class="status-yes">✓ Documented — multiple sources</td></tr>
+    <tr><td>Kuti is documented in the Slow Food Ark of Taste as unique to Oromiya and Harari regions</td><td class="status-yes">✓ Documented</td></tr>
+    <tr><td>Preparation uses yellowed leaves gathered from the ground, not picked from branches</td><td class="status-yes">✓ Documented — Slow Food</td></tr>
+    <tr><td>Kuti has been consumed by children, nursing mothers, and the sick in Harar</td><td class="status-yes">✓ Documented — multiple sources</td></tr>
+    <tr><td>Caffeine content approximately 10mg/L at traditional preparation ratios</td><td class="status-yes">✓ Documented — Klingel et al. 2020</td></tr>
+    <tr><td>Coffee farms in Harar were mostly owned by Harari women as inherited or dowry property</td><td class="status-yes">✓ Documented — History of Harar</td></tr>
+    <tr><td>The History of Harar presents leaf use as evidence of expertise, not poverty substitution</td><td class="status-yes">✓ Documented — direct quotation</td></tr>
+    <tr><td>Longer boiling produces a sweeter, less bitter brew</td><td class="status-yes">✓ Documented — multiple sources</td></tr>
+    <tr><td>Fallen leaves are lower in caffeine than young green leaves</td><td class="status-yes">✓ Consistent with plant biology — supported by Klingel et al.</td></tr>
+    <tr><td>Kuti was drunk because coffee beans were unavailable or unaffordable</td><td class="status-soft">⚠ Partial — this may be true for some periods but the Harar evidence suggests coexistence rather than substitution</td></tr>
+    <tr><td>Mangiferin health properties apply to Kuti specifically</td><td class="status-soft">⚠ Caution — research uses young leaves; fallen leaves have significantly lower mangiferin</td></tr>
+    <tr><td>Amartasa meaning or preparation</td><td class="status-open">? Unknown — one source, oral informants only, no external references</td></tr>
+    <tr><td>Sirriwabun preparation or ingredients</td><td class="status-open">? Unknown — one source, no description, no external references</td></tr>
+    <tr><td>Kuti has a documented multi-century history with specific dates</td><td class="status-soft">⚠ "Hundreds of years" is stated but no specific historical timeline is documented</td></tr>
+    <tr><td>Kuti proves specific health benefits</td><td class="status-no">✗ Not established — no clinical studies of Kuti specifically</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<div class="recipes-banner">
+  <h3>Looking for the recipes?</h3>
+  <p>All four preparation methods with full instructions, brewing guidance, and quality checks.</p>
+  <a href="kuti-recipe.html">Recipes & Mechanics →</a>
+</div>
+
+<span class="s-label" id="source">Sources</span>
+<h2>Research and documentation basis</h2>
+
+<div class="source-block">
+  <h4>Primary historical source</h4>
+  Ahmed, Wehib M. (2015). <em>History of Harar and the Hararis.</em> Refined Version. Harari People Regional State Culture, Heritage and Tourism Bureau. Harar. October 2015/2008 EC. Pages 187–188 contain the key passages on Qutti, Amartasa, Sirriwabun, Hasher, and female farm ownership. Source attributed to Burton (1956), Mukhtar (1877), Paulitschke (1888), and oral informants.
+</div>
+
+<div class="source-block">
+  <h4>Ethnographic documentation</h4>
+  Slow Food Foundation. Kouttee Tea — Arca del Gusto. Fondazione Slow Food per la Biodiversità. Documents Kouttee as unique to Oromiya and Harari regions; specifies use of yellowed naturally-fallen leaves; ground to powder; seasoned with salt; consumed primarily in the home.
+</div>
+
+<div class="source-block">
+  <h4>Caffeine data</h4>
+  Klingel, S.L., et al. (2020). Caffeine and health. Referenced in context of Kuti caffeine content (~10mg/L at 20g/L dried fallen leaves). EFSA Scientific Opinion on caffeine safety (2015) provides comparative reference levels.
+</div>
+
+<div class="source-block">
+  <h4>Secondary documentation</h4>
+  Perfect Daily Grind · SBS Food · Barista Magazine · Modern Farmer · Guardian Farm · Ethiopian Food · Sweet Maria's Coffee Library. These sources provide consistent secondary documentation of Kuti as a Harari daily beverage with low caffeine, given to children and nursing mothers, prepared by extended boiling.
+</div>
+
+<div class="source-block">
+  <h4>Attribution</h4>
+  All Kuti content in this library is compiled and editorially structured by Citane / KoffyKraft. The source knowledge belongs to the Harari people, to the original researchers and historians who documented it, and to the community members whose oral knowledge informed the historical record. Citane claims no ownership of any of this.
+</div>
+
+</main>
+
+<div class="page-nav">
+  <a href="kuti.html">← What's fascinating</a>
+  <a href="kuti-recipe.html">Recipes & Mechanics →</a>
+</div>
+
+<div class="page-source">
+  Sources: History of Harar and the Hararis (2015) · Slow Food Ark of Taste · Klingel et al. 2020 · Multiple secondary sources
+</div>
+
+</body>
+</html>

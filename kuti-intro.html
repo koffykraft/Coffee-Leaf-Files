@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuti · What Is This?</title>
+<style>
+:root {
+  --ink:    #1a1612;
+  --amber:  #8b6a2a;
+  --amber-lt:#c4a050;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f7f2e8;
+  --ruled:  #e0d8c8;
+  --muted:  #7a7060;
+  --dark:   #16130e;
+  --sage:   #5a7a5a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:19px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); }
+.sep { color:var(--ruled); }
+.page-t { font-size:.8rem; color:var(--muted); }
+.back { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--amber); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--amber); border-bottom-color:var(--amber); }
+.tab:hover { color:var(--ink); }
+
+/* HERO */
+.hero { min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:60px 24px 40px; }
+.leaf-illustration { width:72px; height:72px; margin:0 auto 28px; }
+.hero-origin { font-size:.75rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.hero h1 { font-size:clamp(3rem,10vw,5rem); font-weight:normal; color:var(--ink); line-height:1; margin-bottom:18px; }
+.hero-line { width:40px; height:2px; background:var(--amber); margin:0 auto 18px; }
+.hero-what { font-size:clamp(1.05rem,3vw,1.3rem); color:var(--muted); font-style:italic; max-width:440px; line-height:1.7; margin-bottom:40px; }
+.scroll-hint { font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ruled); display:flex; flex-direction:column; align-items:center; gap:8px; }
+.scroll-hint::after { content:'↓'; font-size:1.2rem; color:var(--amber); opacity:.6; }
+
+/* OPENING */
+.opening { max-width:640px; margin:0 auto; padding:60px 24px; }
+.opening p { font-size:1.1rem; line-height:1.9; margin-bottom:26px; }
+.opening p.large { font-size:1.35rem; line-height:1.8; }
+.opening .pull { font-size:1.4rem; line-height:1.6; color:var(--amber); font-style:italic; border-left:3px solid var(--amber); padding-left:24px; margin:36px 0; }
+
+/* THE CITY BAND */
+.city-band { background:var(--dark); color:#fff; padding:48px 24px; }
+.city-inner { max-width:580px; margin:0 auto; }
+.city-inner .label { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; opacity:.4; margin-bottom:16px; }
+.city-inner h2 { font-size:clamp(1.3rem,4vw,1.9rem); font-weight:normal; line-height:1.3; margin-bottom:16px; }
+.city-inner p { font-size:1rem; opacity:.75; line-height:1.8; margin-bottom:16px; }
+.city-inner p:last-child { margin-bottom:0; }
+
+/* THREE FACTS */
+.three-facts { background:var(--pale); padding:56px 24px; border-top:1px solid var(--ruled); border-bottom:1px solid var(--ruled); }
+.three-facts-inner { max-width:640px; margin:0 auto; }
+.three-facts h2 { font-size:1rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:40px; font-weight:normal; }
+.fact { display:flex; gap:22px; align-items:flex-start; margin-bottom:40px; padding-bottom:40px; border-bottom:1px solid var(--ruled); }
+.fact:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.fact-num { font-size:2.5rem; color:var(--amber); font-weight:bold; line-height:1; flex-shrink:0; width:48px; text-align:center; padding-top:4px; }
+.fact-body h3 { font-size:1.2rem; font-weight:normal; color:var(--ink); margin-bottom:10px; line-height:1.3; }
+.fact-body p { font-size:1rem; color:var(--muted); line-height:1.8; margin:0; }
+
+/* LEAF LOGIC */
+.leaf-logic { max-width:640px; margin:0 auto; padding:56px 24px; }
+.leaf-logic h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:18px; }
+.leaf-logic p { font-size:1.05rem; line-height:1.85; margin-bottom:20px; }
+.leaf-logic .pull { font-size:1.3rem; line-height:1.65; color:var(--amber); font-style:italic; border-left:3px solid var(--amber); padding-left:22px; margin:28px 0; }
+
+/* LEAF COMPARE */
+.leaf-compare { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:24px 0; }
+.leaf-card { border-radius:6px; padding:20px; text-align:center; }
+.leaf-card.young { background:#e8f5e8; border-top:3px solid var(--sage); }
+.leaf-card.fallen { background:var(--pale); border-top:3px solid var(--amber); }
+.leaf-emoji { font-size:2.2rem; display:block; margin-bottom:10px; }
+.leaf-card h3 { font-size:1rem; font-weight:normal; margin-bottom:8px; color:var(--ink); }
+.leaf-card p { font-size:.88rem; color:var(--muted); line-height:1.6; margin:0; }
+
+/* FORMULA */
+.formula { background:var(--dark); color:#fff; padding:48px 24px; }
+.formula-inner { max-width:500px; margin:0 auto; text-align:center; }
+.formula h3 { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; opacity:.4; margin-bottom:28px; font-weight:normal; }
+.f-step { padding:16px 0; border-bottom:1px solid rgba(255,255,255,.1); display:flex; align-items:center; gap:16px; text-align:left; }
+.f-step:last-child { border-bottom:none; }
+.f-num { width:32px; height:32px; border-radius:50%; background:var(--amber); color:var(--ink); display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:bold; flex-shrink:0; }
+.f-text { font-size:1rem; line-height:1.5; opacity:.9; }
+.f-note { font-size:.8rem; opacity:.45; display:block; margin-top:2px; }
+
+/* INVITATION */
+.invitation { max-width:640px; margin:0 auto; padding:56px 24px 40px; text-align:center; }
+.invitation p { font-size:1.05rem; color:var(--muted); line-height:1.85; margin-bottom:24px; }
+.next-link { display:inline-block; padding:18px 36px; background:var(--amber); color:#fff; text-decoration:none; font-size:1rem; border-radius:3px; }
+.next-link:hover { background:var(--ink); }
+
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Kuti</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab active" href="kuti-intro.html">What is this?</a>
+  <a class="tab" href="kuti.html">What's fascinating</a>
+  <a class="tab" href="kuti-deep.html">Go deeper</a>
+</div>
+
+<div class="hero">
+  <svg class="leaf-illustration" viewBox="0 0 72 72" fill="none">
+    <!-- Fallen yellowed leaf -->
+    <path d="M12 58 Q18 30 36 14 Q54 30 60 58 Q48 52 36 56 Q24 52 12 58 Z" fill="#f7f0d0" stroke="#b8892a" stroke-width="1.5"/>
+    <line x1="36" y1="14" x2="36" y2="56" stroke="#b8892a" stroke-width="1.2"/>
+    <line x1="36" y1="28" x2="22" y2="22" stroke="#b8892a" stroke-width="1" opacity=".6"/>
+    <line x1="36" y1="36" x2="18" y2="32" stroke="#b8892a" stroke-width="1" opacity=".6"/>
+    <line x1="36" y1="44" x2="20" y2="42" stroke="#b8892a" stroke-width="1" opacity=".6"/>
+    <line x1="36" y1="28" x2="50" y2="22" stroke="#b8892a" stroke-width="1" opacity=".6"/>
+    <line x1="36" y1="36" x2="54" y2="32" stroke="#b8892a" stroke-width="1" opacity=".6"/>
+    <line x1="36" y1="44" x2="52" y2="42" stroke="#b8892a" stroke-width="1" opacity=".6"/>
+    <!-- Ground shadow -->
+    <ellipse cx="36" cy="62" rx="20" ry="3" fill="#b8892a" opacity=".15"/>
+  </svg>
+
+  <div class="hero-origin">Harar · Eastern Ethiopia · Walled City · Islamic Trading Tradition</div>
+  <h1>Kuti</h1>
+  <div class="hero-line"></div>
+  <p class="hero-what">A coffee leaf brew made from fallen, yellowed leaves. Not a substitute for coffee. Something the people of Harar made alongside coffee — from the same plant, for different purposes.</p>
+  <div class="scroll-hint">read on</div>
+</div>
+
+<!-- OPENING -->
+<div class="opening">
+  <p class="large">In the walled city of Harar, when the coffee leaves yellowed and fell from the trees, they were gathered from the ground, dried in the sun, and brewed into a drink that the city had been making for longer than anyone can precisely say.</p>
+  <p>This is Kuti. Not a tea. Not coffee. Not a replacement for anything. It is what whole-plant knowledge of coffee looks like in practice — the understanding that the leaf is as useful as the bean, that every part of the plant offers something different.</p>
+  <div class="pull">In Harar, the bean went to market. The leaf stayed home.</div>
+  <p>Children drank it. Nursing mothers drank it. The sick drank it to recover. It was low in caffeine by nature — not by intention, but because the fallen leaf had already returned most of its caffeine to the tree. The people of Harar understood this through centuries of observation, long before any laboratory measured it.</p>
+</div>
+
+<!-- CITY BAND -->
+<div class="city-band">
+  <div class="city-inner">
+    <div class="label">The city that made Kuti</div>
+    <h2>Harar was not a coffee village. It was an Islamic scholarly and trading city.</h2>
+    <p>Connected to Zeila and Berbera on the Red Sea coast, to Arabia and the Indian Ocean trade networks, Harar was one of the great cities of the Horn of Africa — walled, layered, Islamic in character, sophisticated in its agricultural and commercial knowledge.</p>
+    <p>Coffee was part of a diversified agricultural system that included sorghum, barley, wheat, chat, cotton, tobacco, fruits, and condiments. The city had three distinct agricultural zones surrounding its walls. Coffee was cultivated in the intermediate ring — the city gardens — often owned by women who had inherited the farms from their fathers or received them as dowry.</p>
+    <p>Kuti belongs to this world: a beverage of household knowledge, not a poverty substitute. The History of Harar and the Hararis presents leaf use not as hardship but as expertise — evidence that the Hararis knew their coffee plant so completely that they used everything it offered.</p>
+  </div>
+</div>
+
+<!-- THREE FACTS -->
+<div class="three-facts">
+  <div class="three-facts-inner">
+    <h2>Three things to know right now</h2>
+    <div class="fact">
+      <div class="fact-num">1</div>
+      <div class="fact-body">
+        <h3>It is made from fallen leaves — not picked ones</h3>
+        <p>Kuti uses mature or yellowed leaves that have fallen naturally from the coffee tree. Farmers gather them from the ground. This is not incidental — it is the defining characteristic. The fallen leaf has a different chemistry from the fresh leaf: lower in caffeine, lower in the bitter compounds that make young leaves astringent. This is why children can drink it.</p>
+      </div>
+    </div>
+    <div class="fact">
+      <div class="fact-num">2</div>
+      <div class="fact-body">
+        <h3>It contains almost no caffeine — by nature, not by processing</h3>
+        <p>A cup of Kuti brewed at traditional ratios contains approximately 10mg of caffeine per litre — compared to 150–300mg in green tea and 400–800mg in brewed coffee. This is not the result of decaffeination. It is the natural chemistry of the fallen leaf, which has returned most of its caffeine to the tree before falling.</p>
+      </div>
+    </div>
+    <div class="fact">
+      <div class="fact-num">3</div>
+      <div class="fact-body">
+        <h3>The bean and the leaf coexisted — they were not in competition</h3>
+        <p>The standard narrative presents Kuti as something people drank instead of coffee because the beans went to trade. The Harar evidence suggests something more interesting: Hararis used the bean for export and ceremony, and the leaf for household daily life. Two relationships with the same plant, serving different purposes simultaneously. Not a compromise — a complete system.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEAF LOGIC -->
+<div class="leaf-logic">
+  <h2>Why the fallen leaf is the right leaf</h2>
+  <p>The logic of Kuti is the logic of the leaf's life. A coffee leaf begins young — bright green, working hard in the sun, manufacturing energy for the plant. In that young state it carries high concentrations of caffeine, chlorogenic acids, and other compounds that make it potent and somewhat bitter.</p>
+  <p>As the leaf matures, the tree gradually reclaims what it invested. Nutrients and compounds move back toward the branches and roots. By the time the leaf yellows and falls — completing its natural cycle — much of the caffeine has returned to the plant. What remains is gentler, more mellow, lower in the compounds that make high-intensity brews challenging for certain people.</p>
+
+  <div class="leaf-compare">
+    <div class="leaf-card young">
+      <span class="leaf-emoji">🌿</span>
+      <h3>Young green leaf</h3>
+      <p>High caffeine · High in chlorogenic acids · Astringent · Potent · Not for Kuti</p>
+    </div>
+    <div class="leaf-card fallen">
+      <span class="leaf-emoji">🍂</span>
+      <h3>Fallen yellowed leaf</h3>
+      <p>Low caffeine · Mellower chemistry · Gentle · Safe for children · This is Kuti</p>
+    </div>
+  </div>
+
+  <div class="pull">The people of Harar never had a laboratory. But they observed for centuries, and what they built — a tradition of giving this drink to children and nursing mothers and the sick — tells you that their observation was accurate.</div>
+
+  <p>The Slow Food Ark of Taste, which documents Kuti as a product unique to the Oromiya and Harari regions, notes that preparation is done specifically with yellowed leaves that have naturally fallen from the tree. This is not an arbitrary specification. It is the accumulated knowledge of generations encoded as instruction.</p>
+</div>
+
+<!-- FORMULA -->
+<div class="formula">
+  <div class="formula-inner">
+    <h3>The structure of Kuti</h3>
+    <div class="f-step">
+      <div class="f-num">1</div>
+      <div class="f-text">Gather fallen yellowed leaves<span class="f-note">From the ground beneath the coffee tree — not picked from branches</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">2</div>
+      <div class="f-text">Dry in the sun for several days<span class="f-note">Until crisp — single layer, turned daily</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">3</div>
+      <div class="f-text">Grind to powder — or roast and crumble<span class="f-note">Plain Kuti uses powder · Richer Kuti pan-roasts first</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">4</div>
+      <div class="f-text">Brew in hot water with salt<span class="f-note">Boiled 30+ minutes · salt suppresses bitterness</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">5</div>
+      <div class="f-text">Strain and serve<span class="f-note">Sugar added to taste at serving · some versions add spices</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- INVITATION -->
+<div class="invitation">
+  <p>That is Kuti in its essential form — what it is, where it comes from, and the logic that makes the fallen leaf the right leaf. For the history of Harar's whole-plant coffee culture, the open questions this tradition raises, and what remains genuinely unknown, continue to the next page.</p>
+  <a class="next-link" href="kuti.html">What's fascinating about Kuti →</a>
+</div>
+
+<div class="page-source">
+  Sources: History of Harar and the Hararis (Wehib M. Ahmed, 2015) · Slow Food Ark of Taste · Klingel et al. 2020 · Barista Magazine · Perfect Daily Grind
+</div>
+
+</body>
+</html>

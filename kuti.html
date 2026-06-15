@@ -3,1260 +3,306 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuti — Coffee Leaf Beverage of Harar, Ethiopia</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<title>Kuti · What's Fascinating</title>
 <style>
-  :root {
-    --ink: #1a1208;
-    --parchment: #f5efe3;
-    --amber: #b5651d;
-    --smoke: #6b5e4e;
-    --ash: #3d3028;
-    --gold: #c8922a;
-    --pale: #ede6d8;
-    --cream: #faf6ef;
-    --dark-smoke: #2a2018;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 18px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-
-  header {
-    background: var(--ash);
-    color: var(--parchment);
-    padding: 60px 40px 50px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 20% 50%, rgba(181,101,29,0.15) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(200,146,42,0.08) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
-
-  .header-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .header-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-
-  header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 7vw, 72px);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
-  }
-
-  header h1 em {
-    font-style: italic;
-    font-weight: 400;
-    color: rgba(245,239,227,0.7);
-    display: block;
-    font-size: 0.55em;
-    letter-spacing: 0.05em;
-  }
-
-  .header-sub {
-    font-size: 16px;
-    color: rgba(245,239,227,0.6);
-    font-style: italic;
-    margin-top: 14px;
-    border-left: 2px solid var(--gold);
-    padding-left: 16px;
-    max-width: 560px;
-  }
-
-  nav {
-    background: var(--dark-smoke);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(200,146,42,0.2);
-  }
-
-  .nav-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .nav-inner::-webkit-scrollbar { display: none; }
-
-  .tab-btn {
-    background: none;
-    border: none;
-    color: rgba(245,239,227,0.45);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 18px 24px;
-    cursor: pointer;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
-  }
-
-  .tab-btn:hover { color: rgba(245,239,227,0.8); }
-  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
-
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .tab-panel { display: none; padding: 48px 0 80px; }
-  .tab-panel.active { display: block; }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 10px;
-  }
-
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 38px);
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--ash);
-    margin-bottom: 24px;
-  }
-
-  h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--ash);
-    margin-bottom: 12px;
-  }
-
-  p { margin-bottom: 16px; color: var(--smoke); }
-
-  .recipe-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
-  }
-
-  .recipe-card {
-    background: var(--parchment);
-    border: 1px solid rgba(181,101,29,0.15);
-    border-radius: 2px;
-    padding: 28px 24px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .recipe-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: var(--amber);
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform 0.25s ease;
-  }
-
-  .recipe-card:hover::before,
-  .recipe-card.selected::before { transform: scaleY(1); }
-
-  .recipe-card:hover,
-  .recipe-card.selected {
-    border-color: var(--amber);
-    box-shadow: 4px 4px 0 rgba(181,101,29,0.1);
-    transform: translate(-1px, -1px);
-  }
-
-  .card-number {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--gold);
-    letter-spacing: 0.15em;
-    margin-bottom: 10px;
-  }
-
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--ash);
-    margin-bottom: 6px;
-  }
-
-  .card-subtitle { font-size: 13px; color: var(--smoke); font-style: italic; }
-
-  .card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 14px;
-  }
-
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    background: rgba(181,101,29,0.08);
-    color: var(--amber);
-    border-radius: 1px;
-  }
-
-  .recipe-detail {
-    background: var(--parchment);
-    border: 1px solid rgba(181,101,29,0.2);
-    border-radius: 2px;
-    padding: 40px;
-    margin-top: 8px;
-    display: none;
-    animation: fadeUp 0.3s ease;
-  }
-
-  .recipe-detail.visible { display: block; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .detail-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 32px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid rgba(181,101,29,0.15);
-  }
-
-  .detail-meta { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 10px; }
-
-  .meta-item { text-align: center; }
-
-  .meta-value {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--amber);
-    display: block;
-    line-height: 1;
-  }
-
-  .meta-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--smoke);
-    display: block;
-    margin-top: 4px;
-  }
-
-  .steps-list { list-style: none; }
-
-  .step {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(181,101,29,0.08);
-  }
-
-  .step:last-child { border-bottom: none; }
-
-  .step-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 800;
-    color: rgba(181,101,29,0.2);
-    line-height: 1;
-    min-width: 36px;
-    padding-top: 2px;
-  }
-
-  .step-text { color: var(--smoke); font-size: 16px; line-height: 1.65; }
-
-  .step-note {
-    font-size: 13px;
-    font-style: italic;
-    color: var(--amber);
-    margin-top: 6px;
-  }
-
-  .variants-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
-    margin-top: 20px;
-  }
-
-  .variant {
-    padding: 16px;
-    background: rgba(181,101,29,0.05);
-    border: 1px solid rgba(181,101,29,0.1);
-    border-radius: 2px;
-  }
-
-  .variant-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ash);
-    margin-bottom: 4px;
-  }
-
-  .variant-desc { font-size: 13px; color: var(--smoke); line-height: 1.5; }
-
-  .protocol-block {
-    background: var(--ash);
-    color: var(--parchment);
-    padding: 36px;
-    border-radius: 2px;
-    margin-bottom: 28px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .protocol-block::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 3px;
-    background: linear-gradient(90deg, var(--gold), transparent);
-  }
-
-  .protocol-block h3 { color: var(--gold); margin-bottom: 20px; }
-  .protocol-block p { color: rgba(245,239,227,0.7); }
-
-  .spec-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 15px;
-  }
-
-  .spec-table th {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    padding: 8px 16px 8px 0;
-    text-align: left;
-    border-bottom: 1px solid rgba(200,146,42,0.2);
-  }
-
-  .spec-table td {
-    padding: 10px 16px 10px 0;
-    border-bottom: 1px solid rgba(245,239,227,0.06);
-    color: rgba(245,239,227,0.75);
-    vertical-align: top;
-  }
-
-  .spec-table td:first-child {
-    color: rgba(245,239,227,0.45);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    white-space: nowrap;
-    padding-right: 24px;
-  }
-
-  .gap-note {
-    background: rgba(200,146,42,0.08);
-    border-left: 3px solid var(--gold);
-    padding: 14px 18px;
-    margin: 20px 0;
-    font-size: 14px;
-    font-style: italic;
-    color: rgba(245,239,227,0.6);
-    border-radius: 0 2px 2px 0;
-  }
-
-  .about-lede {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(20px, 3vw, 26px);
-    font-weight: 400;
-    font-style: italic;
-    color: var(--ash);
-    line-height: 1.5;
-    margin-bottom: 32px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid rgba(181,101,29,0.15);
-  }
-
-  .history-block {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 20px 28px;
-    margin-bottom: 36px;
-  }
-
-  .history-year {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--amber);
-    white-space: nowrap;
-    padding-top: 3px;
-  }
-
-  .history-text {
-    font-size: 16px;
-    color: var(--smoke);
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(181,101,29,0.08);
-  }
-
-  .compounds-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 12px;
-    margin: 20px 0;
-  }
-
-  .compound {
-    padding: 14px 16px;
-    background: var(--parchment);
-    border: 1px solid rgba(181,101,29,0.12);
-    border-radius: 2px;
-  }
-
-  .compound-name {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.05em;
-    color: var(--amber);
-    margin-bottom: 4px;
-  }
-
-  .compound-note { font-size: 13px; color: var(--smoke); line-height: 1.4; }
-
-  .sources-list { list-style: none; }
-
-  .source-item {
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(181,101,29,0.1);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 16px;
-    align-items: start;
-  }
-
-  .source-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--gold);
-    padding-top: 4px;
-  }
-
-  .source-cite { font-size: 15px; color: var(--smoke); line-height: 1.55; }
-  .source-cite strong { color: var(--ash); font-style: italic; font-weight: 400; }
-
-  .source-journal {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--amber);
-    margin-top: 4px;
-    display: block;
-  }
-
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(181,101,29,0.3), transparent);
-    margin: 36px 0;
-  }
-
-  .footnote {
-    font-size: 13px;
-    font-style: italic;
-    color: rgba(107,94,78,0.6);
-    border-top: 1px solid rgba(181,101,29,0.1);
-    padding-top: 16px;
-    margin-top: 20px;
-  }
-
-  .spice-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 12px;
-    margin: 20px 0 28px;
-  }
-
-  .spice-card {
-    padding: 16px;
-    background: var(--parchment);
-    border: 1px solid rgba(181,101,29,0.12);
-    border-radius: 2px;
-  }
-
-  .spice-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ash);
-    margin-bottom: 2px;
-  }
-
-  .spice-local {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--amber);
-    letter-spacing: 0.05em;
-    margin-bottom: 6px;
-  }
-
-  .spice-note { font-size: 13px; color: var(--smoke); line-height: 1.4; }
-
-  .caffeine-bar-wrap {
-    margin: 28px 0;
-  }
-
-  .caffeine-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 12px;
-  }
-
-  .caffeine-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--smoke);
-    min-width: 140px;
-  }
-
-  .caffeine-bar-bg {
-    flex: 1;
-    background: rgba(181,101,29,0.08);
-    border-radius: 1px;
-    height: 10px;
-    overflow: hidden;
-  }
-
-  .caffeine-bar {
-    height: 100%;
-    background: var(--amber);
-    border-radius: 1px;
-    transition: width 0.6s ease;
-  }
-
-  .caffeine-val {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--amber);
-    min-width: 80px;
-    text-align: right;
-  }
-
-  @media (max-width: 600px) {
-    header { padding: 40px 24px 36px; }
-    .recipe-detail { padding: 24px; }
-    .protocol-block { padding: 24px; }
-    .tab-btn { padding: 14px 16px; font-size: 10px; }
-    .detail-header { flex-direction: column; }
-    .history-block { grid-template-columns: 1fr; gap: 4px 0; }
-    .history-year { padding-bottom: 0; }
-  }
+:root {
+  --ink:    #1a1612;
+  --amber:  #8b6a2a;
+  --amber-lt:#c4a050;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f7f2e8;
+  --ruled:  #e0d8c8;
+  --muted:  #7a7060;
+  --dark:   #16130e;
+  --sage:   #5a7a5a;
+  --sage-pale:#edf3ed;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:19px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); }
+.sep { color:var(--ruled); }
+.page-t { font-size:.8rem; color:var(--muted); }
+.back { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--amber); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--amber); border-bottom-color:var(--amber); }
+.tab:hover { color:var(--ink); }
+
+.opening-band { padding:56px 24px 48px; text-align:center; border-bottom:1px solid var(--ruled); }
+.opening-band .label { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.opening-band h1 { font-size:clamp(1.8rem,5vw,2.8rem); font-weight:normal; color:var(--ink); line-height:1.2; margin-bottom:14px; max-width:560px; margin-left:auto; margin-right:auto; }
+.opening-band p { font-size:1.05rem; color:var(--muted); max-width:500px; margin:0 auto; line-height:1.8; }
+
+/* DISCOVERIES */
+.discoveries { max-width:680px; margin:0 auto; padding:56px 24px; }
+.discoveries h2 { font-size:1rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:normal; margin-bottom:40px; }
+.discovery { margin-bottom:48px; padding-bottom:48px; border-bottom:1px solid var(--ruled); }
+.discovery:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.discovery-header { display:flex; align-items:flex-start; gap:20px; margin-bottom:18px; }
+.discovery-icon { width:48px; height:48px; flex-shrink:0; background:var(--pale); border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:4px; }
+.discovery h3 { font-size:1.3rem; font-weight:normal; color:var(--ink); line-height:1.3; }
+.discovery p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:16px; }
+.discovery p:last-child { margin-bottom:0; }
+.discovery .aside { background:var(--pale); border-radius:4px; padding:16px 20px; margin-top:14px; font-size:.92rem; color:var(--muted); line-height:1.75; font-style:italic; }
+.discovery .aside strong { color:var(--amber); font-style:normal; }
+
+/* CAFFEINE VISUAL */
+.caffeine-visual { background:var(--dark); color:#fff; padding:56px 24px; }
+.caffeine-inner { max-width:580px; margin:0 auto; }
+.caffeine-inner .label { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; opacity:.4; margin-bottom:24px; }
+.caffeine-inner h2 { font-size:clamp(1.4rem,4vw,2rem); font-weight:normal; line-height:1.3; margin-bottom:20px; }
+.caffeine-inner p { font-size:1rem; opacity:.75; line-height:1.8; margin-bottom:16px; }
+.caffeine-bar-group { margin:28px 0; }
+.caffeine-row { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.caffeine-label { font-size:.8rem; opacity:.7; min-width:110px; flex-shrink:0; }
+.caffeine-bar-wrap { flex:1; background:rgba(255,255,255,.1); border-radius:3px; height:20px; overflow:hidden; }
+.caffeine-bar { height:100%; border-radius:3px; display:flex; align-items:center; padding-left:8px; }
+.caffeine-amt { font-size:.72rem; opacity:.8; white-space:nowrap; }
+
+/* OPEN QUESTIONS */
+.open-questions { background:var(--pale); padding:56px 24px; border-top:1px solid var(--ruled); border-bottom:1px solid var(--ruled); }
+.oq-inner { max-width:680px; margin:0 auto; }
+.oq-inner h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:8px; }
+.oq-inner .sub { font-size:.95rem; color:var(--muted); margin-bottom:28px; font-style:italic; }
+.oq-inner p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:18px; }
+
+.question-card { background:var(--cream); border-radius:6px; border-left:3px solid var(--amber); padding:20px 22px; margin-bottom:12px; }
+.question-card .q-term { font-size:1.05rem; color:var(--amber); margin-bottom:6px; font-style:italic; }
+.question-card p { font-size:.95rem; color:var(--ink); line-height:1.75; margin:0; }
+
+/* WOMEN AND FARMS */
+.women-section { max-width:680px; margin:0 auto; padding:56px 24px; }
+.women-section h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:18px; }
+.women-section p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:18px; }
+.women-section .pull { font-size:1.3rem; line-height:1.65; color:var(--amber); font-style:italic; border-left:3px solid var(--amber); padding-left:22px; margin:28px 0; }
+
+/* HARARI HOUSE */
+.house-band { background:var(--dark); color:#fff; padding:48px 24px; }
+.house-inner { max-width:640px; margin:0 auto; }
+.house-inner h2 { font-size:1.4rem; font-weight:normal; margin-bottom:16px; line-height:1.3; }
+.house-inner p { font-size:1rem; opacity:.8; line-height:1.85; margin-bottom:16px; }
+.house-inner p:last-child { margin-bottom:0; }
+.house-inner .quote { font-size:1rem; opacity:.75; font-style:italic; border-left:3px solid var(--amber); padding-left:18px; margin:20px 0; line-height:1.75; }
+
+/* NEXT */
+.next-section { max-width:640px; margin:0 auto; padding:56px 24px 40px; text-align:center; }
+.next-section p { font-size:1.05rem; color:var(--muted); line-height:1.85; margin-bottom:28px; }
+.next-link { display:inline-block; padding:18px 36px; background:var(--amber); color:#fff; text-decoration:none; font-size:1rem; border-radius:3px; }
+.next-link:hover { background:var(--ink); }
+.prev-link { display:block; margin-top:14px; font-size:.88rem; color:var(--muted); text-decoration:none; }
+.prev-link:hover { color:var(--amber); }
+
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="header-eyebrow">Coffee Leaf Beverage Compendium · Vol. III</div>
-    <h1>Kuti<em>Harar, Ethiopia</em></h1>
-    <p class="header-sub">A sun-dried or pan-roasted Arabica leaf tea from the walled city of Harar — seasoned with salt, spiced with cardamom and cloves, consumed daily since before the coffee ceremony existed.</p>
-  </div>
-</header>
-
 <nav>
-  <div class="nav-inner">
-    <button class="tab-btn active" onclick="switchTab('about', this)">About</button>
-    <button class="tab-btn" onclick="switchTab('recipes', this)">Recipes</button>
-    <button class="tab-btn" onclick="switchTab('process', this)">Process</button>
-    <button class="tab-btn" onclick="switchTab('history', this)">History</button>
-    <button class="tab-btn" onclick="switchTab('sources', this)">Sources</button>
-  </div>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Kuti</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
 </nav>
 
-<main>
+<div class="tabs">
+  <a class="tab" href="kuti-intro.html">What is this?</a>
+  <a class="tab active" href="kuti.html">What's fascinating</a>
+  <a class="tab" href="kuti-deep.html">Go deeper</a>
+</div>
 
-<!-- ═══════════════════════════════════════════════
-     TAB 1: ABOUT
-═══════════════════════════════════════════════ -->
-<div id="tab-about" class="tab-panel active">
+<div class="opening-band">
+  <div class="label">What makes Kuti worth knowing about</div>
+  <h1>A drink for children, for mothers, for the sick — and for the city that understood the whole coffee plant</h1>
+  <p>Not a substitute. Not a poverty drink. Something more considered than either of those framings allows.</p>
+</div>
 
-  <p class="about-lede">In Harar, the oldest walled city in Africa, the leaf was the original coffee. Long before roasted beans became a trade commodity, families prepared kuti from fallen yellowed leaves — sun-dried, sometimes pan-roasted, boiled with salt and spice. Children drank it. Labourers drank it before the harvest. It was given to the sick. It still is.</p>
+<!-- DISCOVERIES -->
+<div class="discoveries">
+  <h2>Five things worth knowing</h2>
 
-  <div class="section-label">Identity</div>
-  <h2>What Kuti Is</h2>
-  <p>Kuti is a decoction made from the mature or senesced leaves of <em>Coffea arabica</em>. It is prepared and consumed daily in Harar and the surrounding Harari Region of eastern Ethiopia, as well as in parts of the Somali Region and among Harari diaspora communities. It is known variously as <em>kuti</em>, <em>jeno</em>, <em>jenuai</em>, or <em>kouttee</em> — regional and linguistic variants of the same tradition. In Yemen, across the Red Sea trade corridor, an equivalent beverage made from dried coffee leaves and husks is called <em>gisher</em> or <em>qishr</em>.</p>
-  <p>The defining characteristic of kuti is its caffeine content. Brewed at a standard preparation ratio, kuti contains approximately 10 mg/L of caffeine — compared to 150–300 mg/L in green tea and 400–800 mg/L in brewed coffee. This is not incidental. It is why children drink it, why nursing mothers drink it, and why it sits in a fundamentally different physiological category from any other caffeine-containing beverage.</p>
-
-  <div class="divider"></div>
-
-  <div class="section-label">Caffeine Context</div>
-  <h2>A Genuinely Low-Caffeine Beverage</h2>
-  <p>The low caffeine content of kuti is the result of three converging factors: the use of mature or fallen leaves (which contain significantly less caffeine than young leaves), the decoction method (extended boiling does not increase caffeine proportionally), and the leaf-to-water ratio used in traditional preparation.</p>
-
-  <div class="caffeine-bar-wrap">
-    <div class="caffeine-row">
-      <div class="caffeine-label">Kuti (traditional)</div>
-      <div class="caffeine-bar-bg"><div class="caffeine-bar" style="width:3.4%"></div></div>
-      <div class="caffeine-val">~10 mg/L</div>
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M11 2C6 2 2 6 2 11s4 9 9 9 9-4 9-9-4-9-9-9z" stroke="#8b6a2a" stroke-width="1.5"/>
+          <path d="M11 7v4l3 3" stroke="#8b6a2a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>The whole-plant framing changes what Kuti means</h3>
     </div>
-    <div class="caffeine-row">
-      <div class="caffeine-label">Green tea</div>
-      <div class="caffeine-bar-bg"><div class="caffeine-bar" style="width:75%"></div></div>
-      <div class="caffeine-val">150–300 mg/L</div>
-    </div>
-    <div class="caffeine-row">
-      <div class="caffeine-label">Black tea</div>
-      <div class="caffeine-bar-bg"><div class="caffeine-bar" style="width:60%"></div></div>
-      <div class="caffeine-val">~200 mg/L</div>
-    </div>
-    <div class="caffeine-row">
-      <div class="caffeine-label">Brewed coffee</div>
-      <div class="caffeine-bar-bg"><div class="caffeine-bar" style="width:100%"></div></div>
-      <div class="caffeine-val">400–800 mg/L</div>
-    </div>
-    <div class="caffeine-row">
-      <div class="caffeine-label">EFSA safe upper limit</div>
-      <div class="caffeine-bar-bg"><div class="caffeine-bar" style="width:26.7%; background: rgba(181,101,29,0.3);"></div></div>
-      <div class="caffeine-val">80 mg/L</div>
-    </div>
+    <p>The most common account of Kuti presents it as what people drank instead of coffee because the beans went to market. There is some truth in this — the beans were commercially valuable and the leaves were not. But the History of Harar and the Hararis frames it differently.</p>
+    <p>The authors present the leaf use as evidence of expertise: <em>"Harari must have had long years of experience in cultivating coffee as their know how exceeds, to the extent of using its two bi-products, i.e., the leaf (qutti) and the thrush (hasher)."</em> This is mastery, not substitution. The Hararis understood their coffee plant comprehensively enough to use everything it produced — and each part for a different purpose.</p>
+    <div class="aside"><strong>The reframing matters:</strong> A substitute narrative suggests the leaf is an inferior version of something better. A whole-plant narrative suggests the leaf offers something the bean cannot — specifically its low caffeine content and its particular chemistry of fallen maturity.</div>
   </div>
-  <p class="footnote">Caffeine data: Klingel et al. (2020), citing EFSA Scientific Opinion on caffeine safety (2015). Kuti prepared from 20 g/L dried leaves. EFSA safe reference level for acute caffeine intake applies to single-serving beverages.</p>
 
-  <div class="divider"></div>
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M11 3C7 3 4 6 4 10c0 5 7 9 7 9s7-4 7-9c0-4-3-7-7-7z" stroke="#8b6a2a" stroke-width="1.5" fill="none"/>
+          <circle cx="11" cy="10" r="2.5" stroke="#8b6a2a" stroke-width="1.3"/>
+        </svg>
+      </div>
+      <h3>It is almost completely caffeine-free — and this was understood</h3>
+    </div>
+    <p>Kuti brewed at traditional ratios contains approximately 10mg of caffeine per litre. Green tea contains 150–300mg. Brewed coffee contains 400–800mg. This is not a slight difference — it is a completely different category of beverage.</p>
+    <p>The communities who gave Kuti to children under twelve, to nursing mothers, to the sick and recovering, were operating on an accurate understanding of this difference. They did not have laboratory measurements. They had generations of observed experience. That experience told them: this drink is safe for those who need something gentle.</p>
+    <div class="aside"><strong>Why the fallen leaf is low in caffeine:</strong> As a coffee leaf matures, the plant gradually reclaims the compounds it invested in the leaf. By the time the leaf yellows and falls, much of the caffeine has returned to the branches and roots. The fallen leaf's mellow chemistry is not an accident — it is the natural end of a leaf's life cycle.</div>
+  </div>
 
-  <div class="section-label">Bioactive Compounds</div>
-  <h2>What Is in the Leaf</h2>
-  <p>Arabica coffee leaves contain a distinct compound profile from the bean. Several compounds are either absent from the bean or present in higher concentrations in the leaf.</p>
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect x="3" y="3" width="16" height="16" rx="2" stroke="#8b6a2a" stroke-width="1.5"/>
+          <path d="M8 11l3 3 5-5" stroke="#8b6a2a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Some households dedicated entire rooms to coffee leaf storage</h3>
+    </div>
+    <p>One documented account of Harari Kuti culture notes that some households dedicated specific rooms in their homes to the storage of dried coffee leaves. This is not the behaviour of people who drink the leaf because they have nothing else — it is the behaviour of people who value what they are storing.</p>
+    <p>The Harari house is a structured, layered domestic space with specific rooms for specific purposes. The inclusion of a coffee leaf storage room in some households places Kuti firmly within the household economy — something worth space, worth planning for, worth keeping in quantity.</p>
+    <div class="aside"><strong>The domestic world of Harar:</strong> Visitors to Harar's walled city have noted that an aromatic herbal fragrance emanates from its residential houses — from herbs like kusar, talatam, rahan, kammun and tosign grown in almost every home. Kuti belongs to this world of household botanical knowledge, not to the marketplace.</div>
+  </div>
 
-  <div class="compounds-grid">
-    <div class="compound">
-      <div class="compound-name">Chlorogenic Acids</div>
-      <div class="compound-note">5-CQA is dominant. Young leaves: 35–80 mg/g dry matter. Mature and senesced leaves (Kuti's raw material): substantially lower. Primary antioxidant and bitterness contributor.</div>
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M3 12h4l3-8 4 14 3-8 3 4h2" stroke="#8b6a2a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>The longer it is brewed, the sweeter it becomes</h3>
     </div>
-    <div class="compound">
-      <div class="compound-name">Mangiferin</div>
-      <div class="compound-note">Xanthone found in Arabica leaves and mango leaves — absent from coffee beans. High in young leaves; significantly reduced in mature and fallen leaves. Anti-inflammatory and antioxidant activity.</div>
+    <p>Traditional Kuti preparation calls for boiling the dried leaves for at least 30 minutes, with the understanding that the longer the brew time, the less bitter and more sweet the resulting drink becomes. This counter-intuitive property — that extended boiling mellows rather than intensifies the bitterness — is documented consistently across multiple sources.</p>
+    <p>The chemistry behind this is plausible: prolonged heat can degrade bitter phenolic compounds while allowing the natural sweetness of the leaf's remaining sugars and certain amino acids to become more perceptible. The community understanding — boil longer for a gentler cup — reflects an accurate observation about how this particular leaf behaves in water.</p>
+    <div class="aside"><strong>Not true of all brewed beverages:</strong> Green tea, for example, becomes more bitter with longer steeping as tannins increase. Kuti's different behaviour under extended brewing is one of the characteristics that makes it distinct — and that communities with long experience of it would have noticed and codified.</div>
+  </div>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="8" r="4" stroke="#8b6a2a" stroke-width="1.5"/>
+          <path d="M4 20c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="#8b6a2a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Qutti and Amartasa — two names, one of which remains unknown</h3>
     </div>
-    <div class="compound">
-      <div class="compound-name">Caffeine</div>
-      <div class="compound-note">1.8–3.2 mg/g fresh weight in mature leaves. Fallen, senesced leaves are at the lower end of this range. Brewed kuti: ~10 mg/L — below EFSA's safe upper limit for single servings.</div>
-    </div>
-    <div class="compound">
-      <div class="compound-name">Trigonelline</div>
-      <div class="compound-note">Pyridine alkaloid, relatively stable with aging (12–24% decline from young to mature). Present in all coffee species' leaves. Considered a novel phytoestrogen.</div>
-    </div>
-    <div class="compound">
-      <div class="compound-name">Theobromine</div>
-      <div class="compound-note">Purine alkaloid. Significantly reduced in mature Arabica leaves compared to young (up to 94% decline in C. arabica). Minor component in kuti at traditional preparation ratios.</div>
-    </div>
-    <div class="compound">
-      <div class="compound-name">Rutin / Quercetin</div>
-      <div class="compound-note">Flavonoid glycosides reported in coffee leaf extracts. Contribute to antioxidant activity. Quantity varies with leaf maturity and extraction method.</div>
-    </div>
+    <p>The History of Harar and the Hararis records: <em>"Qutti and amartasa are also coffee leaves used for making qahwa a hot beverage taken with milk."</em> The source is oral informants. Qutti is Kuti — well documented. But Amartasa appears nowhere else in any searchable record.</p>
+    <p>It may be a preparation variant, a leaf variety, a regional name, or a term specific to a particular community or time period. The word exists in this single source and is presented alongside Qutti as a separate entity. It cannot be assumed to mean the same thing as Qutti, nor can its preparation be inferred.</p>
+    <div class="aside"><strong>What this means for the library:</strong> Amartasa is recorded as existing. Its nature is genuinely unknown. This library names it as an open question rather than a solved one — which is the correct epistemic position when a single oral informant source is all that exists.</div>
   </div>
 
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     TAB 2: RECIPES
-═══════════════════════════════════════════════ -->
-<div id="tab-recipes" class="tab-panel">
-
-  <div class="section-label">Preparations</div>
-  <h2>Four Documented Forms</h2>
-  <p>All four preparations share the same raw material — dried coffee leaves — and the same brewing method: boiling. The differences lie in the pre-processing of the leaf, the seasoning, and the additions at serve. Select a preparation to see its full protocol.</p>
-
-  <div class="recipe-grid">
-
-    <div class="recipe-card" onclick="showRecipe('plain')">
-      <div class="card-number">Preparation 01</div>
-      <div class="card-title">Kouttee — Plain</div>
-      <div class="card-subtitle">The foundational preparation. Fallen leaves, sun-dried, ground, salted.</div>
-      <div class="card-tags">
-        <span class="tag">Traditional</span>
-        <span class="tag">Salt</span>
-        <span class="tag">No roast</span>
+<!-- CAFFEINE VISUAL -->
+<div class="caffeine-visual">
+  <div class="caffeine-inner">
+    <div class="label">Caffeine content — a genuinely different category</div>
+    <h2>Why Kuti sits in its own physiological register</h2>
+    <p>The caffeine difference between Kuti and other common beverages is not marginal. It places Kuti in a fundamentally different category — one that explains why it was given to children and nursing mothers without concern.</p>
+    <div class="caffeine-bar-group">
+      <div class="caffeine-row">
+        <span class="caffeine-label">Kuti (traditional)</span>
+        <div class="caffeine-bar-wrap">
+          <div class="caffeine-bar" style="width:1.3%;background:#b8892a;">
+            <span class="caffeine-amt">~10 mg/L</span>
+          </div>
+        </div>
+      </div>
+      <div class="caffeine-row">
+        <span class="caffeine-label">Green tea</span>
+        <div class="caffeine-bar-wrap">
+          <div class="caffeine-bar" style="width:28%;background:var(--sage);">
+            <span class="caffeine-amt">150–300 mg/L</span>
+          </div>
+        </div>
+      </div>
+      <div class="caffeine-row">
+        <span class="caffeine-label">Black tea</span>
+        <div class="caffeine-bar-wrap">
+          <div class="caffeine-bar" style="width:26%;background:rgba(255,255,255,.3);">
+            <span class="caffeine-amt">~200 mg/L</span>
+          </div>
+        </div>
+      </div>
+      <div class="caffeine-row">
+        <span class="caffeine-label">Brewed coffee</span>
+        <div class="caffeine-bar-wrap">
+          <div class="caffeine-bar" style="width:75%;background:rgba(255,255,255,.2);">
+            <span class="caffeine-amt">400–800 mg/L</span>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="recipe-card" onclick="showRecipe('boiled')">
-      <div class="card-number">Preparation 02</div>
-      <div class="card-title">Kuti — Boiled Traditional</div>
-      <div class="card-subtitle">Dried leaves boiled long and slow. Salt before boiling, sugar at serve.</div>
-      <div class="card-tags">
-        <span class="tag">Traditional</span>
-        <span class="tag">30+ min boil</span>
-        <span class="tag">Salt + sugar</span>
-      </div>
-    </div>
-
-    <div class="recipe-card" onclick="showRecipe('roasted')">
-      <div class="card-number">Preparation 03</div>
-      <div class="card-title">Kuti — Pan-Roasted</div>
-      <div class="card-subtitle">Leaves roasted flat on a pan until dark and tarry, then boiled.</div>
-      <div class="card-tags">
-        <span class="tag">Roasted</span>
-        <span class="tag">Flat pan</span>
-        <span class="tag">Deeper flavour</span>
-      </div>
-    </div>
-
-    <div class="recipe-card" onclick="showRecipe('shai')">
-      <div class="card-number">Preparation 04</div>
-      <div class="card-title">Kuti Shai — Spiced with Milk</div>
-      <div class="card-subtitle">Dry-fried leaves, boiled with whole spices, served with hot milk.</div>
-      <div class="card-tags">
-        <span class="tag">Spiced</span>
-        <span class="tag">Milk</span>
-        <span class="tag">Cardamom · Cloves</span>
-      </div>
-    </div>
-
+    <p style="font-size:.82rem;opacity:.5;font-style:italic;">Caffeine data: Klingel et al. 2020, citing EFSA Scientific Opinion on caffeine safety (2015). Kuti prepared from 20g/L dried fallen leaves at traditional brew ratios.</p>
   </div>
-
-  <!-- RECIPE DETAILS -->
-
-  <div class="recipe-detail" id="recipe-plain">
-    <div class="detail-header">
-      <div>
-        <div class="section-label">Preparation 01</div>
-        <h3>Kouttee — Plain</h3>
-        <p style="margin:0; font-style:italic; font-size:15px;">The Slow Food Ark of Taste preparation. Fallen yellowed leaves reduced to a ground powder, added to hot water, seasoned with salt only.</p>
-      </div>
-      <div class="detail-meta">
-        <div class="meta-item">
-          <span class="meta-value">Fallen</span>
-          <span class="meta-label">Leaf source</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">Sun</span>
-          <span class="meta-label">Drying method</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">Salt</span>
-          <span class="meta-label">Only addition</span>
-        </div>
-      </div>
-    </div>
-
-    <h3>Method</h3>
-    <ul class="steps-list">
-      <li class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">Collect fallen, yellowed leaves from beneath the coffee tree. Select undamaged leaves only — fallen at natural senescence, not damaged by disease or insects.
-          <div class="step-note">The use of fallen leaves is specific to Harar tradition and distinguishes kuti from all other documented coffee leaf preparations.</div>
-        </div>
-      </li>
-      <li class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">Sun-dry in a single layer on a flat surface until fully desiccated. Duration varies with climate — typically several days in Harar's dry season. Leaf should be brittle and break cleanly.</div>
-      </li>
-      <li class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">Grind dried leaves to a coarse powder using a mortar and pestle or traditional grinder. No sieving required — the ground material is added directly to water.</div>
-      </li>
-      <li class="step">
-        <div class="step-num">4</div>
-        <div class="step-text">Add ground leaf powder to hot water. Proportion not formally standardised — traditional preparation uses approximately 20 g dried leaf per litre of water as a reference point.
-          <div class="step-note">This ratio yields approximately 10 mg/L caffeine in the brewed beverage (EFSA data via Klingel et al. 2020).</div>
-        </div>
-      </li>
-      <li class="step">
-        <div class="step-num">5</div>
-        <div class="step-text">Season with a pinch of salt before or during brewing. Serve warm. Salt is the only addition in this foundational preparation.</div>
-      </li>
-    </ul>
-
-    <h3 style="margin-top:24px;">Colour & Character</h3>
-    <p>Light green to pale yellow liquid. Mild, earthy, slightly sweet. Lower caffeine than any commercially available tea. The colour and flavour intensity deepen with roasting or longer boiling.</p>
-  </div>
-
-  <div class="recipe-detail" id="recipe-boiled">
-    <div class="detail-header">
-      <div>
-        <div class="section-label">Preparation 02</div>
-        <h3>Kuti — Boiled Traditional</h3>
-        <p style="margin:0; font-style:italic; font-size:15px;">Dried leaves boiled for a minimum of 30 minutes. The extended boil is the method — the longer it goes, the less bitter the result.</p>
-      </div>
-      <div class="detail-meta">
-        <div class="meta-item">
-          <span class="meta-value">30+</span>
-          <span class="meta-label">Minutes boil</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">Salt</span>
-          <span class="meta-label">Before boiling</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">Sugar</span>
-          <span class="meta-label">At serve</span>
-        </div>
-      </div>
-    </div>
-
-    <h3>Method</h3>
-    <ul class="steps-list">
-      <li class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">Use sun-dried mature or fallen leaves. Whole dried leaves or coarsely crushed — not ground to powder. Rinse briefly if dusty.</div>
-      </li>
-      <li class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">Place leaves in cold water in a pot. Add a pinch of salt before heat is applied.
-          <div class="step-note">Salt added before boiling rather than at serve — a consistent feature of this preparation that distinguishes it from Preparation 01.</div>
-        </div>
-      </li>
-      <li class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">Bring to a full boil, then maintain at a rolling simmer for a minimum of 30 minutes. The practitioner instruction is explicit: the longer the boil, the less bitter the brew.
-          <div class="step-note">Extended boiling degrades chlorogenic acids and tannins responsible for astringency and bitterness — the same mechanism observed in Kawa Daun's 15–30 minute decoction and Engere's 7–15 minute simmer.</div>
-        </div>
-      </li>
-      <li class="step">
-        <div class="step-num">4</div>
-        <div class="step-text">Strain through a cloth or fine sieve. Serve warm. Sugar is added at serve according to individual preference — not incorporated during brewing.</div>
-      </li>
-    </ul>
-
-    <h3 style="margin-top:24px;">Serving Variants</h3>
-    <div class="variants-grid">
-      <div class="variant">
-        <div class="variant-name">Plain</div>
-        <div class="variant-desc">Salt only. The traditional form.</div>
-      </div>
-      <div class="variant">
-        <div class="variant-name">Sweetened</div>
-        <div class="variant-desc">Sugar added at serve. Common modern adaptation.</div>
-      </div>
-      <div class="variant">
-        <div class="variant-name">With Milk</div>
-        <div class="variant-desc">Hot fresh milk added at serve. Lighter colour, smoother body.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="recipe-detail" id="recipe-roasted">
-    <div class="detail-header">
-      <div>
-        <div class="section-label">Preparation 03</div>
-        <h3>Kuti — Pan-Roasted</h3>
-        <p style="margin:0; font-style:italic; font-size:15px;">Dried leaves dry-roasted on a flat pan until dark and tarry, then crumbled and brewed. The roast creates Maillard-derived flavour compounds absent from unroasted preparations.</p>
-      </div>
-      <div class="detail-meta">
-        <div class="meta-item">
-          <span class="meta-value">Flat</span>
-          <span class="meta-label">Pan type</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">Dark</span>
-          <span class="meta-label">Roast endpoint</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">Low heat</span>
-          <span class="meta-label">Brew method</span>
-        </div>
-      </div>
-    </div>
-
-    <h3>Method</h3>
-    <ul class="steps-list">
-      <li class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">Begin with fully sun-dried leaves — brittle, fully desiccated. Moisture content must be minimal before roasting or leaves will steam rather than roast.</div>
-      </li>
-      <li class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">Heat a flat iron pan or clay griddle (<em>makeshela</em>) over medium heat. Lay leaves in a single layer flat against the surface.
-          <div class="step-note">The traditional Ethiopian coffee roasting pan is used — the same flat surface used for green coffee ceremony roasting. This is a surface-contact dry roast, not a stirred roast. Leaves are flipped rather than stirred, in the manner of flatbread.</div>
-        </div>
-      </li>
-      <li class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">Roast until leaves are dark, brittle, and slightly tarry in texture. Surface browning indicates Maillard reaction activity. Do not take to the point of burning or charring — the endpoint is dark and aromatic, not acrid.</div>
-      </li>
-      <li class="step">
-        <div class="step-num">4</div>
-        <div class="step-text">Allow to cool briefly, then crumble the roasted leaves between the hands or crush coarsely in a mortar.</div>
-      </li>
-      <li class="step">
-        <div class="step-num">5</div>
-        <div class="step-text">Brew over low heat with water and a pinch of salt. Add sugar to serve. The darker roast produces a richer, more complex cup — earthier and less vegetal than unroasted preparations.</div>
-      </li>
-    </ul>
-
-    <p class="footnote">The flat-pan roasting technique is documented in practitioner accounts (Stewart Lee Allen, <em>The Devil's Cup</em>) and consistent with the traditional <em>makeshela</em> roasting practice of Harar described in Davis et al., <em>The Coffee Atlas of Ethiopia</em>. Academic description of the roasting process specifically awaits further ethnobotanical study.</p>
-  </div>
-
-  <div class="recipe-detail" id="recipe-shai">
-    <div class="detail-header">
-      <div>
-        <div class="section-label">Preparation 04</div>
-        <h3>Kuti Shai — Spiced with Milk</h3>
-        <p style="margin:0; font-style:italic; font-size:15px;">The spiced variant of kuti. Leaves dry-fried until fragrant, boiled with whole spices — cinnamon, cardamom, cloves — then served with hot milk. The name combines kuti with <em>shai</em>, the Arabic and Amharic word for tea.</p>
-      </div>
-      <div class="detail-meta">
-        <div class="meta-item">
-          <span class="meta-value">3 min</span>
-          <span class="meta-label">Dry-fry</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">3 spices</span>
-          <span class="meta-label">Whole spice set</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">Hot milk</span>
-          <span class="meta-label">At serve</span>
-        </div>
-      </div>
-    </div>
-
-    <h3>Method</h3>
-    <ul class="steps-list">
-      <li class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">Dry-fry whole dried leaves in a skillet over medium heat for approximately 3 minutes, until fragrant. This is a shorter, lighter application of heat than the full pan-roast — the goal is aromatic activation, not browning.
-          <div class="step-note">Fragrance development indicates volatile compound activation. The same sensory cue used in spice toasting across Ethiopian and Arab culinary traditions.</div>
-        </div>
-      </li>
-      <li class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">Transfer to a pot of water. Add whole spices: a cinnamon stick, green cardamom pods (lightly crushed), and whole cloves. Proportions are by preference — the spice set is consistent, the intensity varies by household.
-          <div class="step-note">The spice set connects Kuti Shai to the Red Sea and Indian Ocean trade routes through which Harar received cinnamon (Sri Lanka / Malabar), cardamom (Gujarat / Malabar), and cloves (Maluku Islands) for centuries.</div>
-        </div>
-      </li>
-      <li class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">Bring to a boil, then simmer for the required duration. Remove from heat and allow to stand for 5 minutes covered — this step is documented specifically for Kuti Shai and retains volatile aromatics from the spices.</div>
-      </li>
-      <li class="step">
-        <div class="step-num">4</div>
-        <div class="step-text">Strain and serve with hot fresh milk added at the cup. The milk lightens both colour and body and softens any residual bitterness from the leaf.</div>
-      </li>
-    </ul>
-
-    <h3 style="margin-top:24px;">The Spice Set</h3>
-    <div class="spice-grid">
-      <div class="spice-card">
-        <div class="spice-name">Cinnamon</div>
-        <div class="spice-local">Qarfa · قرفة</div>
-        <div class="spice-note">Whole stick. Sweet, warm, aromatic. Traded from Sri Lanka and Malabar through Arab merchants to Harar.</div>
-      </div>
-      <div class="spice-card">
-        <div class="spice-name">Cardamom</div>
-        <div class="spice-local">Heil · هيل</div>
-        <div class="spice-note">Green pods, lightly crushed. Floral, camphoraceous. From the Malabar coast and Gujarat — a primary commodity of the Indian Ocean trade.</div>
-      </div>
-      <div class="spice-card">
-        <div class="spice-name">Cloves</div>
-        <div class="spice-local">Qurumful · قرنفل</div>
-        <div class="spice-note">Whole. Intensely aromatic. From the Maluku Islands (Indonesia) — reached Harar via Arab and Indian merchant networks across the Indian Ocean.</div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     TAB 3: PROCESS
-═══════════════════════════════════════════════ -->
-<div id="tab-process" class="tab-panel">
+<!-- OPEN QUESTIONS -->
+<div class="open-questions">
+  <div class="oq-inner">
+    <h2>What remains genuinely unknown</h2>
+    <p class="sub">Three terms from the historical record that have not been resolved</p>
+    <p>The History of Harar and the Hararis references three terms alongside Qutti that appear nowhere else in any searchable source. This library records them honestly — as open questions, not claimed meanings.</p>
 
-  <div class="section-label">Raw Material</div>
-  <h2>The Leaf Before Brewing</h2>
+    <div class="question-card">
+      <div class="q-term">Amartasa</div>
+      <p>Described alongside Qutti as "also coffee leaves used for making qahwa a hot beverage taken with milk." Source: oral informants. No external references found. Whether this refers to a different leaf preparation, a leaf variety, a regional term, or something else entirely — unknown. Do not assume.</p>
+    </div>
 
-  <div class="protocol-block">
-    <h3>What Makes Kuti's Raw Material Unique</h3>
-    <p>Every other documented coffee leaf tradition uses harvested leaves — pruned or picked from the plant. Kuti uses fallen, senesced leaves — collected from beneath the tree after natural abscission. This is the defining distinction of the Harari tradition and has direct implications for the chemistry of the beverage.</p>
-    <div class="gap-note">A senesced fallen leaf has undergone natural nutrient reallocation. Caffeine, chlorogenic acids, and mangiferin all decrease substantially during leaf aging. A fallen leaf represents the endpoint of that process — lowest caffeine, lowest bitterness precursors, mildest flavour profile of any coffee leaf material.</div>
-    <table class="spec-table">
-      <tr><th>Parameter</th><th>Specification</th></tr>
-      <tr><td>Leaf source</td><td>Fallen from the tree at natural senescence; or mature leaves (large green/yellow) harvested from branch tips when fallen leaves are unavailable</td></tr>
-      <tr><td>Leaf condition</td><td>Undamaged; not diseased, insect-damaged, or moulded</td></tr>
-      <tr><td>Colour at collection</td><td>Yellow to yellow-green; fully expanded; senesced but not decomposing</td></tr>
-      <tr><td>Species</td><td><em>Coffea arabica</em> — Harar is an Arabica-growing region</td></tr>
-    </table>
+    <div class="question-card">
+      <div class="q-term">Sirriwabun</div>
+      <p>Described in the context of the Hararis "eating coffee as a sandwich crunching." This appears to be a food preparation — coffee material consumed rather than brewed. No further description, no preparation method, no external references. Distinct from Kuti. Not a beverage.</p>
+    </div>
+
+    <div class="question-card">
+      <div class="q-term">Hasher</div>
+      <p>The coffee "thrush" — the husk or dried fruit skin of the coffee cherry. Used to make Hasher-Qahwa, which is well documented as a husk-based beverage (comparable to Cascara or Qishr from Yemen). This is NOT a leaf preparation — it is a separate byproduct tradition. Documented, but distinct from Kuti.</p>
+    </div>
+
+    <p>These three terms represent areas where further research — particularly with Harari linguistic and oral history specialists — could meaningfully advance the record. Until that research exists, they remain named but unresolved.</p>
   </div>
-
-  <div class="section-label">Pre-Processing</div>
-  <h2>Drying</h2>
-  <p>All four kuti preparations begin with sun-drying. This is non-negotiable — the leaf must reach a fully desiccated state before any further processing. Wet or partially dried leaves will not roast cleanly and produce an off-flavour in brew.</p>
-
-  <div class="protocol-block">
-    <h3>Sun-Drying Protocol</h3>
-    <table class="spec-table">
-      <tr><th>Parameter</th><th>Specification</th></tr>
-      <tr><td>Surface</td><td>Flat tray or clean mat in open sunlight</td></tr>
-      <tr><td>Arrangement</td><td>Single layer — leaves must not overlap</td></tr>
-      <tr><td>Duration</td><td>Several days in dry season; longer in humid conditions</td></tr>
-      <tr><td>Endpoint</td><td>Leaf is brittle and breaks cleanly with no flex — zero residual moisture</td></tr>
-      <tr><td>Storage</td><td>Once dry, leaves store well in a sealed container away from moisture</td></tr>
-    </table>
-  </div>
-
-  <div class="section-label">Optional Step</div>
-  <h2>Pan Roasting</h2>
-  <p>Preparations 03 and 04 include a dry-roast step after sun-drying. This is optional — Preparations 01 and 02 go directly from dried leaf to brewing. The roast creates Maillard-derived compounds that alter the flavour character from mild and vegetal to richer and more complex.</p>
-
-  <div class="protocol-block">
-    <h3>Pan Roasting — Technical Notes</h3>
-    <p>The pan used is the same flat iron pan or clay griddle (<em>makeshela</em>) used in the Ethiopian coffee ceremony for roasting green beans. The roasting technique is surface-contact and flip-based — not stirred. This creates even surface browning without charring the underside.</p>
-    <table class="spec-table">
-      <tr><th>Parameter</th><th>Full Roast (Prep 03)</th><th>Light Fry (Prep 04 — Kuti Shai)</th></tr>
-      <tr><td>Duration</td><td>Until dark and tarry — no fixed time</td><td>~3 minutes</td></tr>
-      <tr><td>Visual endpoint</td><td>Dark brown, slightly tarry surface</td><td>Leaves fragrant, colour just beginning to change</td></tr>
-      <tr><td>Aroma endpoint</td><td>Rich, roasted, earthy</td><td>Fragrant — volatile activation without browning</td></tr>
-      <tr><td>Heat level</td><td>Medium</td><td>Medium</td></tr>
-      <tr><td>Technique</td><td>Lay flat, flip — not stir</td><td>Lay flat, flip — not stir</td></tr>
-      <tr><td>Post-roast</td><td>Cool briefly, crumble by hand or mortar</td><td>Transfer directly to brewing water</td></tr>
-    </table>
-  </div>
-
-  <div class="section-label">Brewing</div>
-  <h2>Decoction</h2>
-  <p>All kuti preparations are brewed by decoction — the leaf material is placed in cold or hot water and brought to a boil, then held at temperature. This is consistent across all four preparations and across the equivalent traditions in Yemen (gisher/qishr) and Ethiopia's southwest.</p>
-
-  <div class="protocol-block">
-    <h3>Brewing Specifications</h3>
-    <table class="spec-table">
-      <tr><th>Parameter</th><th>Traditional Range</th></tr>
-      <tr><td>Method</td><td>Decoction — full boil with leaf material in water</td></tr>
-      <tr><td>Leaf ratio</td><td>~20 g dried leaf per litre water (reference ratio per EFSA data)</td></tr>
-      <tr><td>Boiling duration</td><td>Minimum 30 minutes (Prep 02); shorter for roasted preparations</td></tr>
-      <tr><td>Key principle</td><td>Longer boil = less bitter. Extended decoction degrades astringency compounds.</td></tr>
-      <tr><td>Straining</td><td>Cloth or fine sieve</td></tr>
-      <tr><td>Serve temperature</td><td>Warm — not hot. Consumed throughout the day.</td></tr>
-      <tr><td>Salt</td><td>Added before or during boiling in Preps 01–03. Not in Prep 04 (Kuti Shai).</td></tr>
-    </table>
-    <div class="gap-note">The "longer boil, less bitter" principle is documented in practitioner accounts and is chemically coherent. Extended boiling at high temperature degrades chlorogenic acids and their degradation products, reducing astringency. The same principle is documented in Kawa Daun (15–30 min decoction) and Engere (7–15 min simmer at 85–100°C).</div>
-  </div>
-
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     TAB 4: HISTORY
-═══════════════════════════════════════════════ -->
-<div id="tab-history" class="tab-panel">
-
-  <div class="section-label">Origin</div>
-  <h2>Harar and the First Coffee</h2>
-
-  <p class="about-lede">The walled city of Harar — Jugol — is one of the oldest continuously inhabited cities in Africa and one of the holiest cities in Islam. It sits at 1,885 metres above sea level in eastern Ethiopia, at the intersection of highland Arabica coffee cultivation and the ancient trade routes that connected sub-Saharan Africa to the Arabian Peninsula, India, and beyond. Kuti is not a variant of coffee. It is what coffee was before the bean became a commodity.</p>
-
-  <div class="history-block">
-    <div class="history-year">Pre-15th c.</div>
-    <div class="history-text">Coffee plants grow wild and cultivated in the Ethiopian highlands. The earliest use of the coffee plant is almost certainly as a leaf preparation — the bean as a roasted, brewed beverage develops later. Kuti represents the pre-commodity layer of coffee consumption: a daily beverage made from what the tree sheds, not what it produces for trade.</div>
-
-    <div class="history-year">15th century</div>
-    <div class="history-text">Harar emerges as a major Islamic city-state and regional trading centre. The city controls the trade routes between the Ethiopian interior and the Red Sea port of Zeila. Coffee begins to flow outward through these routes — first as a raw material to Yemen, where it is processed and re-exported, then as a cultivated crop in Yemen itself. The beans become valuable. In Harar, the leaves remain the daily drink.</div>
-
-    <div class="history-year">16th–18th c.</div>
-    <div class="history-text">The Red Sea and Indian Ocean trade networks are at their height. Arab, Indian, and later European merchants move through Harar. The spices in Kuti Shai — cinnamon from Sri Lanka, cardamom from Malabar, cloves from the Maluku Islands — arrive via these routes, carried by the same merchant networks that carry coffee outward. Harar absorbs the spice vocabulary of the Indian Ocean into its daily food and beverage culture. Kuti Shai is a product of this exchange.</div>
-
-    <div class="history-year">19th century</div>
-    <div class="history-text">Harar is ruled by Egyptian forces (1875–1885), then annexed by the Ethiopian Emperor Menelik II (1887). The city's status as an independent emirate ends. Coffee production intensifies in the surrounding region. The beans increasingly leave the region. In parallel, kuti continues as an uninterrupted household practice — documented by travellers and merchants passing through Harar throughout this period.</div>
-
-    <div class="history-year">20th century</div>
-    <div class="history-text">Harar coffee (Harari longberry arabica) becomes one of the most prized and expensive arabica varieties in the world market. Kuti remains the local daily beverage — structurally separate from the export economy. The fallen leaf, by definition outside the commodity chain, sustains a tradition that the bean trade cannot displace.</div>
-
-    <div class="history-year">2010s–present</div>
-    <div class="history-text">Kuti is inscribed in the Slow Food Ark of Taste under the name <em>Kouttee</em>, recognising it as an endangered traditional food product. International research on coffee leaf beverages accelerates following the EU's 2020 novel food approval. Kuti is cited in peer-reviewed literature alongside Kawa Daun and the Ethiopian decoction traditions as one of the world's documented coffee leaf beverage systems.</div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="section-label">The Trade Routes</div>
-  <h2>How the Spices Arrived</h2>
-  <p>The spice set of Kuti Shai — cinnamon, cardamom, cloves — is not Ethiopian in origin. Each ingredient arrived in Harar through the trade networks that made the city a crossroads. Understanding the spice routes is understanding why Kuti Shai tastes the way it does.</p>
-
-  <div class="spice-grid" style="margin-top:20px;">
-    <div class="spice-card">
-      <div class="spice-name">Cinnamon</div>
-      <div class="spice-local">Origin: Sri Lanka / Malabar Coast</div>
-      <div class="spice-note">Reached the Arab world via Indian Ocean dhow trade. Arab merchants controlled the route to the Mediterranean and East Africa. Harar received it through Zeila and the Gulf of Aden corridor.</div>
-    </div>
-    <div class="spice-card">
-      <div class="spice-name">Cardamom</div>
-      <div class="spice-local">Origin: Western Ghats, India</div>
-      <div class="spice-note">The "Queen of Spices." Central to Gulf Arab coffee (gahwa) and tea traditions. Moved through Aden, Mocha, and Zeila into the Ethiopian interior. Ethiopia now also grows its own cardamom (Aframomum corrorima) — a different plant, same culinary role.</div>
-    </div>
-    <div class="spice-card">
-      <div class="spice-name">Cloves</div>
-      <div class="spice-local">Origin: Maluku Islands, Indonesia</div>
-      <div class="spice-note">The longest trade route of the three. Cloves moved from eastern Indonesia through the Strait of Malacca, across the Indian Ocean, through Arab and Indian middlemen, to the Red Sea and on to Harar. The same trade route that brought Indonesian commodities to East Africa for over a millennium.</div>
-    </div>
-    <div class="spice-card">
-      <div class="spice-name">Ruta chalepensis</div>
-      <div class="spice-local">Tena Adam — local Ethiopian</div>
-      <div class="spice-note">Common rue. Native to Ethiopia and the Mediterranean. Used as a flavouring in coffee leaf preparations across Ethiopian traditions including kuti. Documented in Amsalu et al. (2025) as part of the Ethiopian spice repertoire used in indigenous beverages.</div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="section-label">The Yemen Parallel</div>
-  <h2>Gisher — The Other Side of the Red Sea</h2>
-  <p>Across the Red Sea from Harar, Yemeni coffee-growing communities developed an equivalent tradition. <em>Gisher</em> (also spelled <em>qishr</em>) is a beverage prepared from dried coffee husks (the fruit skin) and sometimes coffee leaves, brewed with ginger and spices. It predates the widespread adoption of roasted bean coffee in Yemen and remains the traditional daily beverage in many Yemeni communities where the beans are grown for export.</p>
-  <p>The parallel is structurally exact: in both Harar and Yemen, the coffee plant's non-bean material — leaf or husk — became the local drink, while the bean itself moved outward through trade. The leaf and the husk are what remained when the commodity left.</p>
-
-  <div class="divider"></div>
-
-  <div class="section-label">Children and Kuti</div>
-  <h2>A Beverage Appropriate for Children</h2>
-  <p>The practice of giving kuti to children under twelve is documented in Harar and represents an accurate, if intuitive, pharmacological understanding of the beverage's caffeine content. Brewed kuti at standard preparation ratios contains approximately 10 mg/L of caffeine — well below the EFSA safety reference level of 80 mg/L for acute caffeine intake, and a fraction of the caffeine content of green tea (150–300 mg/L) or black tea (~200 mg/L).</p>
-  <p>This is not cultural tolerance of a stimulant. It is recognition — accumulated over generations of daily use — that kuti sits in a different physiological category from other caffeine-containing beverages. The fallen, senesced leaf at the end of its natural lifecycle contains the least caffeine of any coffee plant material. Harar practitioners arrived at the same conclusion that EFSA's quantitative analysis confirms.</p>
-
+<!-- WOMEN AND FARMS -->
+<div class="women-section">
+  <h2>The coffee farms were women's property</h2>
+  <p>The History of Harar and the Hararis places a remarkable statement immediately after its documentation of Qutti and Amartasa:</p>
+  <p style="font-style:italic;color:var(--muted);font-size:1rem;border-left:3px solid var(--amber);padding-left:20px;margin:24px 0;line-height:1.8;">"The coffee farms, surrounding the town of Harar, were mostly owned by Harari women. They had inherited the coffee farms from their fathers and acquired from their husbands as dowry. By owning these farms the Harari women liberated themselves from their economic dependence to their husbands."</p>
+  <p>This is not incidental context — it may be the most important frame for understanding Kuti. The people who owned the coffee farms are the same people who processed the leaves, stored them in household rooms, and prepared Kuti for their families. The beverage belongs to the domestic economy of Harari women, who were simultaneously property-owning farmers and the custodians of whole-plant coffee knowledge.</p>
+  <div class="pull">Coffee farms were inherited property. Dowry property. Female wealth. The leaf that stayed home may have belonged to the same women who watched the beans leave for market.</div>
+  <p>The link between female farm ownership, household botanical knowledge, and Kuti preparation is not documented as causal in any source — but it is a historically coherent connection that warrants further research.</p>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     TAB 5: SOURCES
-═══════════════════════════════════════════════ -->
-<div id="tab-sources" class="tab-panel">
-
-  <div class="section-label">Research Basis</div>
-  <h2>Sources & Citations</h2>
-  <p>This compendium entry is based on peer-reviewed research, rigorous botanical scholarship, and curated cultural documentation. All chemical data and formal ethnobotanical observations are drawn from the sources below. Where a specific aspect of kuti preparation (such as the flat-pan roasting technique or the fallen-leaf sourcing practice) has not yet been the subject of formal academic study, this is noted explicitly.</p>
-
-  <ul class="sources-list">
-
-    <li class="source-item">
-      <span class="source-num">01</span>
-      <div class="source-cite">
-        Klingel, T., Kremer, J.I., Gottstein, V., de Rezende, T.R., Schwarz, S., & Lachenmeier, D.W. (2020). <strong>A review of coffee by-products including leaf, flower, cherry, husk, silver skin, and spent grounds as novel foods within the European Union.</strong> Foods, 9(5), 665.
-        <span class="source-journal">doi: 10.3390/foods9050665</span>
-        Primary source for caffeine data: kuti brewed at 20 g/L yields 9.9–10.9 mg/L caffeine (EFSA figures). Confirms kuti, jeno, jenuai as documented names. Confirms Yemen parallel (gisher). Documents EFSA safe upper limit of 80 mg/L.
-      </div>
-    </li>
-
-    <li class="source-item">
-      <span class="source-num">02</span>
-      <div class="source-cite">
-        Yohannis, E., Teka, T.A., Tola, Y.B., Urugo, M.M., Hossain, A., & Astatkie, T. (2024). <strong>Phytochemical constituents, ethnomedicinal uses, and applications of coffee (<em>Coffea arabica</em>) leaves in functional beverages.</strong> Journal of Food Composition and Analysis, 135, 106570.
-        <span class="source-journal">doi: 10.1016/j.jfca.2024.106570</span>
-        Peer-reviewed review of Ethiopian coffee leaf traditions including kuti. Covers phytochemical profiles, ethnomedicinal uses across Ethiopia, South Sudan, Indonesia, Jamaica, and India. Contextualises kuti within the broader coffee leaf beverage literature.
-      </div>
-    </li>
-
-    <li class="source-item">
-      <span class="source-num">03</span>
-      <div class="source-cite">
-        Amsalu, G., Birhanu, Z., & Awoke, W. (2025). <strong>Ethnobotanical study of spices and condiments used in traditional food systems in Ethiopia.</strong> Journal of Ethnic Foods, 12.
-        <span class="source-journal">Springer Open Access</span>
-        Peer-reviewed ethnobotanical survey. Confirms <em>Ruta chalepensis</em> (rue / Tena Adam) as a traditional flavouring in kuti and related Ethiopian leaf infusions. Confirms Ethiopia's historical participation in Red Sea and Indian Ocean trade networks as both a commodity source and a receiving culture for imported spices.
-      </div>
-    </li>
-
-    <li class="source-item">
-      <span class="source-num">04</span>
-      <div class="source-cite">
-        Davis, A.P., Gole, T.W., Baena, S., & Moat, J. (2012). <strong>The impact of climate change on indigenous arabica coffee (<em>Coffea arabica</em>): Predicting future trends and identifying priorities.</strong> PLoS ONE, 7(11), e47981. [See also: Davis et al., <em>The Coffee Atlas of Ethiopia.</em> Royal Botanic Gardens, Kew, 2018.]
-        <span class="source-journal">Kew Royal Botanic Gardens — rigorous botanical scholarship</span>
-        Describes traditional <em>coti</em> preparations in Kaffa and Maji regions: leaves roasted and powdered, seasoned with chilli, ginger, garlic, salt, local basil, and rue. Photographs coffee leaf tea, coffee husks, and traditional dried coffee materials in Harar. Primary botanical reference for Ethiopian coffee leaf beverage diversity.
-      </div>
-    </li>
-
-    <li class="source-item">
-      <span class="source-num">05</span>
-      <div class="source-cite">
-        Monteiro, Â., Colomban, S., Azinheira, H.G., Guerra-Guimarães, L., Silva, M.D.C., Navarini, L., & Resmini, M. (2020). <strong>Dietary antioxidants in coffee leaves: Impact of botanical origin and maturity on chlorogenic acids and xanthones.</strong> Antioxidants, 9(1), 6.
-        <span class="source-journal">doi: 10.3390/antiox9010006</span>
-        Source for maturity-dependent compound data: chlorogenic acids, caffeine, mangiferin, trigonelline changes from young to mature leaves. Provides the quantitative basis for understanding why fallen/mature leaves produce a lower-caffeine, lower-bitterness beverage.
-      </div>
-    </li>
-
-    <li class="source-item">
-      <span class="source-num">06</span>
-      <div class="source-cite">
-        Slow Food Foundation for Biodiversity. <strong>Kouttee.</strong> Ark of Taste entry.
-        <span class="source-journal">slowfood.com/ark-of-taste — curated cultural documentation, not peer-reviewed</span>
-        Documents the traditional plain preparation: fallen yellowed leaves, sun-dried, ground to powder, added to hot water, seasoned with salt. Light green to yellow colour. Cited here for the raw material description and traditional preparation method, with the acknowledgement that Ark of Taste entries are curated cultural records rather than academic sources.
-      </div>
-    </li>
-
-  </ul>
-
-  <p class="footnote">The flat-pan roasting technique of Preparation 03 and the children-under-twelve practice are documented in practitioner accounts (Hiwot Peters, Eteaopia; Stewart Lee Allen, <em>The Devil's Cup</em>, 1999) but have not yet been the subject of formal ethnobotanical or food science study. These aspects are included here with appropriate attribution and await academic confirmation. The caffeine data (10 mg/L) explaining child-appropriateness is peer-reviewed (Klingel et al. 2020 via EFSA) and provides the physiological basis for the practice even in the absence of a dedicated study of children's consumption specifically.</p>
-
+<!-- HARARI HOUSE -->
+<div class="house-band">
+  <div class="house-inner">
+    <h2>Kuti and the Harari house</h2>
+    <p>The Harari house is a specifically structured domestic space — layered, hierarchical, designed for hospitality and household life. Visitors to Harar have consistently noted its herbal character. The History of Harar notes:</p>
+    <div class="quote">"An attractive herbal odour emanates from the City's residential houses, redolent from kusar, talatam, rahan, kammun and tosign etc., herbs grown in almost every house large or small lending an inner beauty to the environment."</div>
+    <p>Kuti belongs to this botanical domestic world. Not to the marketplace, not to the trade economy, not to the coffee ceremony that became Harar's public-facing coffee culture. Kuti is a household drink — made privately, consumed by the household's most vulnerable members, stored in dedicated rooms, maintained by generations of women's knowledge.</p>
+    <p>Understanding Kuti through the lens of Harari domestic architecture and household life — rather than through the lens of international coffee trade — changes what the beverage means. It was not a commodity. It was a practice of care.</p>
+  </div>
 </div>
 
-</main>
+<!-- NEXT -->
+<div class="next-section">
+  <p>For the full historical documentation, the complete preparation record, the evidence framework, and an honest accounting of what is and is not established about Kuti — the deep page has all of it.</p>
+  <a class="next-link" href="kuti-deep.html">Go deeper into Kuti →</a>
+  <a class="prev-link" href="kuti-intro.html">← Back to: What is this?</a>
+</div>
 
-<script>
-function switchTab(id, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  btn.classList.add('active');
-  document.querySelectorAll('.recipe-detail').forEach(d => d.classList.remove('visible'));
-  document.querySelectorAll('.recipe-card').forEach(c => c.classList.remove('selected'));
-}
-
-function showRecipe(id) {
-  const detail = document.getElementById('recipe-' + id);
-  const card = event.currentTarget;
-  const isOpen = detail.classList.contains('visible');
-  document.querySelectorAll('.recipe-detail').forEach(d => d.classList.remove('visible'));
-  document.querySelectorAll('.recipe-card').forEach(c => c.classList.remove('selected'));
-  if (!isOpen) {
-    detail.classList.add('visible');
-    card.classList.add('selected');
-    setTimeout(() => {
-      detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 50);
-  }
-}
-</script>
+<div class="page-source">
+  Sources: History of Harar and the Hararis (Wehib M. Ahmed, 2015) · Slow Food Ark of Taste · Klingel et al. 2020 · SBS Food · Barista Magazine · Perfect Daily Grind
+</div>
 
 </body>
 </html>

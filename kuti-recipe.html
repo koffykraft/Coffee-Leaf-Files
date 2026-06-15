@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuti · Recipes & Mechanics</title>
+<style>
+:root {
+  --ink:    #1a1612;
+  --amber:  #8b6a2a;
+  --amber-lt:#c4a050;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f7f2e8;
+  --ruled:  #e0d8c8;
+  --muted:  #7a7060;
+  --dark:   #16130e;
+  --sage:   #5a7a5a;
+  --sage-pale:#edf3ed;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:18px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); }
+.sep { color:var(--ruled); }
+.page-t { font-size:.8rem; color:var(--muted); }
+.back { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--amber); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--amber); border-bottom-color:var(--amber); }
+.tab:hover { color:var(--ink); }
+
+.hero { background:var(--dark); color:#fff; padding:40px 24px 36px; text-align:center; }
+.hero .tradition { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; opacity:.45; margin-bottom:10px; }
+.hero h1 { font-size:clamp(1.8rem,5vw,2.6rem); font-weight:normal; margin-bottom:8px; }
+.hero .subtitle { font-size:1rem; opacity:.65; font-style:italic; max-width:440px; margin:0 auto; line-height:1.7; }
+
+/* SCALER */
+.scaler-wrap { background:var(--amber); color:#fff; padding:20px 24px; text-align:center; }
+.scaler-wrap p { font-size:.85rem; opacity:.8; margin-bottom:12px; }
+.scaler-controls { display:flex; align-items:center; justify-content:center; gap:16px; }
+.scaler-btn { width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.2); border:none; color:#fff; font-size:1.4rem; cursor:pointer; font-family:Georgia,serif; }
+.scaler-btn:hover { background:rgba(255,255,255,.35); }
+.scaler-count { font-size:1.5rem; font-weight:bold; min-width:40px; text-align:center; }
+.scaler-label { font-size:.82rem; opacity:.75; }
+
+/* BEFORE START */
+.before-start { max-width:680px; margin:28px auto 0; padding:0 24px; }
+.before-inner { background:var(--pale); border:1px solid var(--ruled); border-radius:6px; padding:20px 24px; }
+.before-inner h3 { font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; }
+.before-rule { display:flex; align-items:flex-start; gap:14px; padding:10px 0; border-bottom:1px solid var(--ruled); font-size:.95rem; line-height:1.7; }
+.before-rule:last-child { border-bottom:none; }
+.before-rule .dot { width:8px; height:8px; border-radius:50%; background:var(--amber); flex-shrink:0; margin-top:8px; }
+
+/* LEAF PREP SECTION */
+.leaf-prep { max-width:680px; margin:32px auto 0; padding:0 24px; }
+.leaf-prep h2 { font-size:1.2rem; font-weight:normal; color:var(--ink); margin-bottom:16px; }
+.leaf-prep-steps { background:var(--pale); border-radius:6px; padding:20px 24px; }
+.leaf-prep-step { display:flex; gap:16px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--ruled); font-size:.95rem; line-height:1.7; }
+.leaf-prep-step:last-child { border-bottom:none; }
+.lp-num { min-width:28px; height:28px; border-radius:50%; background:var(--amber); color:#fff; display:flex; align-items:center; justify-content:center; font-size:.82rem; font-weight:bold; flex-shrink:0; margin-top:2px; }
+
+main { max-width:680px; margin:0 auto; padding:40px 24px 60px; }
+
+.s-label { font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); display:block; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--ruled); }
+h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:18px; }
+p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:16px; }
+hr.divider { border:none; border-top:1px solid var(--ruled); margin:44px 0; }
+
+/* METHOD SELECTOR */
+.method-selector { display:flex; gap:8px; margin-bottom:28px; flex-wrap:wrap; }
+.ms-btn { padding:10px 14px; border:1.5px solid var(--ruled); border-radius:4px; background:var(--cream); color:var(--muted); font-family:Georgia,serif; font-size:.88rem; cursor:pointer; transition:all .15s; flex:1; min-width:100px; text-align:center; }
+.ms-btn.active { background:var(--amber); color:#fff; border-color:var(--amber); }
+
+.recipe-panel { display:none; }
+.recipe-panel.show { display:block; }
+
+.recipe-header { background:var(--pale); border-radius:6px 6px 0 0; padding:20px 24px; border-bottom:2px solid var(--amber); }
+.recipe-name-row { display:flex; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap; }
+.recipe-name { font-size:1.25rem; color:var(--ink); font-weight:normal; }
+.recipe-badge { font-size:.75rem; background:var(--amber); color:#fff; padding:2px 10px; border-radius:3px; }
+.recipe-desc { font-size:.95rem; color:var(--muted); line-height:1.65; font-style:italic; }
+
+.ing-table { width:100%; border-collapse:collapse; margin:20px 0; font-size:.92rem; }
+.ing-table th { background:var(--dark); color:#fff; padding:10px 14px; text-align:left; font-weight:normal; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+.ing-table td { padding:12px 14px; border-bottom:1px solid var(--ruled); vertical-align:top; line-height:1.55; }
+.ing-table tr:nth-child(even) td { background:var(--pale); }
+.ing-table .amount { font-weight:bold; color:var(--amber); }
+.ing-table .note-cell { font-size:.82rem; color:var(--muted); font-style:italic; }
+.ing-group td { background:var(--pale) !important; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); padding:8px 14px; }
+
+.steps-list { list-style:none; margin:20px 0; }
+.steps-list li { display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--ruled); font-size:1rem; line-height:1.8; }
+.steps-list li:last-child { border-bottom:none; }
+.step-num { min-width:36px; height:36px; border-radius:50%; background:var(--amber); color:#fff; display:flex; align-items:center; justify-content:center; font-size:.9rem; font-weight:bold; flex-shrink:0; margin-top:2px; }
+.step-content h4 { font-size:1rem; font-weight:bold; color:var(--ink); margin-bottom:4px; }
+.step-content p { font-size:.95rem; margin:0; color:var(--ink); line-height:1.75; }
+.step-note { background:var(--pale); border-radius:4px; padding:8px 12px; margin-top:8px; font-size:.85rem; color:var(--muted); font-style:italic; line-height:1.6; }
+
+.yield-box { background:var(--amber); color:#fff; border-radius:0 0 6px 6px; padding:16px 24px; display:flex; gap:24px; flex-wrap:wrap; }
+.yield-item { text-align:center; }
+.yield-num { font-size:1.4rem; font-weight:bold; display:block; }
+.yield-label { font-size:.75rem; opacity:.75; }
+
+.note-box { background:var(--sage-pale); border-left:3px solid var(--sage); border-radius:0 4px 4px 0; padding:16px 20px; margin:18px 0; font-size:.92rem; line-height:1.75; }
+.note-box .note-title { font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); margin-bottom:6px; }
+.warn-box { background:#fef9f0; border-left:3px solid #c8902a; border-radius:0 4px 4px 0; padding:16px 20px; margin:18px 0; font-size:.92rem; line-height:1.75; }
+.warn-box strong { color:#8b6020; }
+
+/* SPICE CARDS */
+.spice-cards { display:grid; grid-template-columns:1fr; gap:10px; margin:20px 0; }
+.spice-card { background:var(--pale); border-radius:6px; padding:16px 20px; display:flex; gap:16px; align-items:flex-start; }
+.spice-card .spice-icon { font-size:1.6rem; flex-shrink:0; }
+.spice-card .spice-name { font-size:1rem; color:var(--amber); margin-bottom:2px; }
+.spice-card .spice-local { font-size:.78rem; color:var(--muted); font-style:italic; }
+.spice-card p { font-size:.9rem; color:var(--ink); line-height:1.65; margin:6px 0 0; }
+
+/* QUALITY */
+.quality-list { list-style:none; margin:16px 0; }
+.quality-list li { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--ruled); font-size:.95rem; line-height:1.65; }
+.quality-list li:last-child { border-bottom:none; }
+.q-mark { font-size:1rem; flex-shrink:0; margin-top:2px; }
+
+/* SERVING */
+.serving-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:20px 0; }
+.serving-card { background:var(--pale); border-radius:6px; padding:16px; text-align:center; }
+.sv-num { font-size:1.5rem; color:var(--amber); font-weight:bold; display:block; margin-bottom:4px; }
+.sv-label { font-size:.82rem; color:var(--muted); line-height:1.4; }
+
+.page-nav { max-width:680px; margin:0 auto; padding:24px 24px 48px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--ruled); }
+.page-nav a { color:var(--amber); text-decoration:none; font-size:.95rem; }
+.page-nav a:hover { color:var(--ink); }
+
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Kuti · Recipes</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab" href="kuti-intro.html">What is this?</a>
+  <a class="tab" href="kuti.html">What's fascinating</a>
+  <a class="tab" href="kuti-deep.html">Go deeper</a>
+  <a class="tab active" href="#">Recipes & Mechanics</a>
+</div>
+
+<div class="hero">
+  <div class="tradition">Harar · Eastern Ethiopia · Walled City Tradition</div>
+  <h1>Kuti — Recipes & Mechanics</h1>
+  <p class="subtitle">Four preparation methods from the plain foundational brew to the spiced Kuti Shai with milk.</p>
+</div>
+
+<div class="scaler-wrap">
+  <p>All quantities adjust to your serving size</p>
+  <div class="scaler-controls">
+    <button class="scaler-btn" onclick="changeServings(-1)">−</button>
+    <div>
+      <div class="scaler-count" id="serving-count">4</div>
+      <div class="scaler-label">servings (~250ml each)</div>
+    </div>
+    <button class="scaler-btn" onclick="changeServings(1)">+</button>
+  </div>
+</div>
+
+<div class="before-start">
+  <div class="before-inner">
+    <h3>Before any method — the leaf comes first</h3>
+    <div class="before-rule"><div class="dot"></div>All Kuti methods begin with the same raw material: fallen, yellowed coffee leaves gathered from the ground — not picked from branches. This is not optional. Picked green leaves have a different chemistry and significantly higher caffeine content.</div>
+    <div class="before-rule"><div class="dot"></div>Dry the leaves in the sun for several days before use. They are ready when crisp and papery — they should break easily in your fingers.</div>
+    <div class="before-rule"><div class="dot"></div>Salt goes in before brewing in most methods. It suppresses bitterness and brings out the leaf's natural sweetness.</div>
+    <div class="before-rule"><div class="dot"></div>Sugar is added at serving, not during brewing — this allows each person to adjust to taste.</div>
+    <div class="before-rule"><div class="dot"></div>The longer Kuti is boiled, the gentler and less bitter it becomes. This is the opposite of most teas. Do not rush the boiling time.</div>
+  </div>
+</div>
+
+<!-- LEAF PREPARATION -->
+<div class="leaf-prep">
+  <h2 style="margin-top:28px;">Preparing the leaves — the foundation step</h2>
+  <div class="leaf-prep-steps">
+    <div class="leaf-prep-step">
+      <div class="lp-num">1</div>
+      <div>Walk beneath the coffee trees in the early morning and gather yellowed leaves that have fallen naturally. Choose whole, undamaged leaves. Leave behind any that look diseased or insect-damaged.</div>
+    </div>
+    <div class="leaf-prep-step">
+      <div class="lp-num">2</div>
+      <div>Spread gathered leaves on a clean cloth or mat in a single layer in the sun. Turn once daily. Bring inside if it rains. Dry for several days — in good sun, 3–5 days is usually sufficient.</div>
+    </div>
+    <div class="leaf-prep-step">
+      <div class="lp-num">3</div>
+      <div>Leaves are ready when they feel crisp and papery and break easily. They will be light brown to golden in colour.</div>
+    </div>
+    <div class="leaf-prep-step">
+      <div class="lp-num">4</div>
+      <div>Store dried leaves in a cloth bag or sealed container in a cool, dry place. Stored well, they keep for many months. Some households in Harar dedicated rooms specifically to dried coffee leaf storage.</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<span class="s-label">Choose your method</span>
+
+<div style="margin-bottom:8px;font-size:.88rem;color:var(--muted);font-style:italic;">These preparations are documented from Harari tradition via the Slow Food Ark of Taste, Barista Magazine, and secondary sources. Quantities are approximate household-scale guidance, not standardised measurements.</div>
+
+<div class="method-selector">
+  <button class="ms-btn active" onclick="showRecipe('plain', this)">Kouttee — Plain</button>
+  <button class="ms-btn" onclick="showRecipe('boiled', this)">Boiled Traditional</button>
+  <button class="ms-btn" onclick="showRecipe('roasted', this)">Pan-Roasted</button>
+  <button class="ms-btn" onclick="showRecipe('shai', this)">Kuti Shai</button>
+</div>
+
+<!-- METHOD 1: KOUTTEE PLAIN -->
+<div class="recipe-panel show" id="recipe-plain">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Kouttee — Plain</span>
+      <span class="recipe-badge">The foundational preparation</span>
+    </div>
+    <p class="recipe-desc">Ground dried leaf powder dissolved in hot water with salt only. The most minimal form of Kuti — just leaf and water. Light green to yellow in colour. The preparation documented by the Slow Food Ark of Taste.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Amount (base 4 servings)</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Dried fallen coffee leaves, ground to powder</td><td class="amount scaled" data-base="20">20g</td><td class="note-cell">Fallen yellowed leaves, sun-dried, ground in mortar. Coarse powder is fine — it does not need to be fine flour.</td></tr>
+      <tr><td>Water</td><td class="amount scaled" data-base="1000">1000ml</td><td class="note-cell">Clean water. Can start cold or hot.</td></tr>
+      <tr><td>Salt</td><td class="amount">small pinch</td><td class="note-cell">Added to the water. Start with less — you can add more after tasting.</td></tr>
+    </tbody>
+  </table>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Grind dried leaves to powder</h4>
+        <p>Take <span class="scaled" data-base="20">20</span>g of dried fallen leaves and grind in a mortar and pestle until broken down to a coarse powder. It does not need to be fine — rough pieces are acceptable.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Bring water to a boil</h4>
+        <p>Bring <span class="scaled" data-base="1000">1000</span>ml of clean water to a full boil in a pot.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Add powder and salt</h4>
+        <p>Add the ground leaf powder and a small pinch of salt to the boiling water. Stir to combine.</p>
+        <div class="step-note">Salt before anything else. It interacts with the leaf compounds from the start of brewing.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Simmer briefly and serve</h4>
+        <p>Simmer 5–10 minutes. Pour through a fine cloth or strainer into cups. Add sugar to taste at serving.</p>
+        <div class="step-note">Kouttee is the quickest method. It produces a lighter, more immediate brew than the longer-boiled methods.</div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="900">900</span><span class="yield-label">ml yield</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">~10mg/L</span><span class="yield-label">caffeine content</span></div>
+  </div>
+</div>
+
+<!-- METHOD 2: BOILED TRADITIONAL -->
+<div class="recipe-panel" id="recipe-boiled">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Kuti — Boiled Traditional</span>
+      <span class="recipe-badge">The everyday Harari preparation</span>
+    </div>
+    <p class="recipe-desc">Dried leaves boiled for 30 minutes or more. The longer the boil, the gentler and sweeter the result. This is the preparation that children drink, that nursing mothers drink, that is given to the sick. Patience is the technique.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Amount (base 4 servings)</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Dried fallen coffee leaves, whole or roughly broken</td><td class="amount scaled" data-base="20">20g</td><td class="note-cell">No grinding needed for this method. Whole dried leaves work well.</td></tr>
+      <tr><td>Cold water</td><td class="amount scaled" data-base="1000">1000ml</td><td class="note-cell">Start cold — leaves go in with the cold water before heating.</td></tr>
+      <tr><td>Salt</td><td class="amount">small pinch</td><td class="note-cell">Added to cold water before heating begins.</td></tr>
+      <tr><td>Sugar</td><td class="amount">to taste</td><td class="note-cell">Added at serving only — not during brewing.</td></tr>
+    </tbody>
+  </table>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Add leaves and salt to cold water</h4>
+        <p>Place <span class="scaled" data-base="20">20</span>g of dried leaves into a pot with <span class="scaled" data-base="1000">1000</span>ml of cold water. Add a pinch of salt. Starting in cold water allows slow, even extraction.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Bring to boil, then reduce to simmer</h4>
+        <p>Bring to a full boil over medium heat, then reduce to a gentle simmer. Cover with a lid to retain both heat and volatile aromatics.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Simmer 30 minutes minimum</h4>
+        <p>Maintain a steady gentle simmer for at least 30 minutes. The longer you go — up to an hour — the sweeter and less bitter the result. This is the counter-intuitive principle of Kuti: time mellows rather than intensifies.</p>
+        <div class="step-note">Check occasionally and add a splash of water if the level drops significantly. Keep a gentle simmer, not a rolling boil — vigorous boiling drives off the aromatics you want in the cup.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Strain completely and serve</h4>
+        <p>Pour through fine cloth or a fine mesh strainer into cups. Discard the leaf material. Add sugar to taste. Serve warm.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="800">800</span><span class="yield-label">ml yield</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">30–60 min</span><span class="yield-label">brew time</span></div>
+  </div>
+</div>
+
+<!-- METHOD 3: PAN ROASTED -->
+<div class="recipe-panel" id="recipe-roasted">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Kuti — Pan-Roasted</span>
+      <span class="recipe-badge">Deeper, richer character</span>
+    </div>
+    <p class="recipe-desc">Dried leaves roasted on a flat pan until dark and tarry, then crumbled and brewed. The resulting brew is amber-coloured with a caramelised, smoky character — described as comparable to lapsang souchong but more complex, both sweet and salty, with a gelatinous texture.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Amount (base 4 servings)</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Dried fallen coffee leaves, whole</td><td class="amount scaled" data-base="20">20g</td><td class="note-cell">For roasting — whole leaves work better than powdered ones here.</td></tr>
+      <tr><td>Water</td><td class="amount scaled" data-base="1000">1000ml</td><td class="note-cell">Cold or room temperature to start.</td></tr>
+      <tr><td>Salt</td><td class="amount">small pinch</td><td class="note-cell">Added to the brewing water.</td></tr>
+      <tr><td>Sugar</td><td class="amount">to taste</td><td class="note-cell">At serving.</td></tr>
+    </tbody>
+  </table>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Pan-roast the dried leaves</h4>
+        <p>Place dried leaves in a dry flat-bottomed pan over medium-low heat. Roast, stirring or turning continuously, until leaves become dark brown and develop a tarry, glossy appearance. This takes 8–12 minutes. The colour should be deep brown — not black.</p>
+        <div class="step-note">Watch carefully. The transition from perfectly roasted to burnt happens quickly. You are looking for a deep toasted aroma and a dark brown colour. The leaves will become brittle.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Cool and crumble</h4>
+        <p>Remove from heat immediately. Allow to cool for 2–3 minutes. Crumble the roasted leaves into rough pieces with your fingers or a mortar and pestle. The roasted material breaks easily.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Brew over low heat</h4>
+        <p>Add crumbled roasted leaves to <span class="scaled" data-base="1000">1000</span>ml of water with a pinch of salt. Bring to a gentle boil, then simmer over low heat for 10–15 minutes.</p>
+        <div class="step-note">Lower heat and shorter brewing time than the plain boiled method — the roasting has already extracted and transformed much of the leaf's compounds. Extended boiling at this stage can make the brew overly concentrated.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Strain and serve</h4>
+        <p>Strain through fine cloth. Add sugar to taste. The brew will be a rich amber to dark amber colour. Serve warm.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="850">850</span><span class="yield-label">ml yield</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">Rich amber</span><span class="yield-label">colour and texture</span></div>
+  </div>
+</div>
+
+<!-- METHOD 4: KUTI SHAI -->
+<div class="recipe-panel" id="recipe-shai">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Kuti Shai — Spiced with Milk</span>
+      <span class="recipe-badge">Special occasion · Trade route spices</span>
+    </div>
+    <p class="recipe-desc">Dry-fried leaves boiled with cinnamon, cardamom, and cloves — the three trade route spices that arrived in Harar via Indian Ocean commerce — then served with warm milk. The preparation closest to the qahwa tradition documented in the Harar history sources.</p>
+  </div>
+
+  <div class="note-box">
+    <div class="note-title">The three trade route spices</div>
+    These spices appear only in Kuti Shai. They are not everyday Kuti ingredients. They arrived in Harar from Sri Lanka, Kerala, and the Maluku Islands — carried by the same merchant networks that connected Harar to Arabia and the Indian Ocean. When you use them in Kuti, you are using ingredients that defined Harar's place in a global trade world.
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Amount (base 4 servings)</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="ing-group"><td colspan="3">Leaves</td></tr>
+      <tr><td>Dried fallen coffee leaves</td><td class="amount scaled" data-base="20">20g</td><td class="note-cell">Whole dried leaves for this method.</td></tr>
+      <tr class="ing-group"><td colspan="3">Brewing water</td></tr>
+      <tr><td>Water</td><td class="amount scaled" data-base="1000">1000ml</td><td></td></tr>
+      <tr class="ing-group"><td colspan="3">Trade route spices</td></tr>
+      <tr><td>Cinnamon stick · Qarfa</td><td class="amount">1 small stick</td><td class="note-cell">From Sri Lanka and Malabar coast. Sweet-warm. Use bark, not ground powder.</td></tr>
+      <tr><td>Cardamom pods · Heil</td><td class="amount">3–4 pods</td><td class="note-cell">Green cardamom. Lightly crushed to open. From Kerala, India.</td></tr>
+      <tr><td>Cloves · Qurumful</td><td class="amount">2–3 whole</td><td class="note-cell">Intensely aromatic. From the Maluku Islands. Use sparingly.</td></tr>
+      <tr class="ing-group"><td colspan="3">To serve</td></tr>
+      <tr><td>Fresh warm milk</td><td class="amount scaled" data-base="300">300ml</td><td class="note-cell">Warmed separately. Added to the strained brew at serving.</td></tr>
+      <tr><td>Sugar or honey</td><td class="amount">to taste</td><td class="note-cell">Optional. Added at serving.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="spice-cards">
+    <div class="spice-card">
+      <div class="spice-icon">🤎</div>
+      <div>
+        <div class="spice-name">Cinnamon · <span class="spice-local">Qarfa · قرفة</span></div>
+        <p>Sweet-warm, slow-release. Use a piece of bark — it releases more gently than ground powder and won't overpower. From Sri Lanka and the Malabar coast, it arrived in Harar via Red Sea trade.</p>
+      </div>
+    </div>
+    <div class="spice-card">
+      <div class="spice-icon">💚</div>
+      <div>
+        <div class="spice-name">Cardamom · <span class="spice-local">Heil · هيل</span></div>
+        <p>Complex, floral-warm. Lightly crush the pods to crack them open before adding — this releases the aromatic seeds inside. From Kerala on the Malabar coast of India.</p>
+      </div>
+    </div>
+    <div class="spice-card">
+      <div class="spice-icon">❤️</div>
+      <div>
+        <div class="spice-name">Cloves · <span class="spice-local">Qurumful · قرنفل</span></div>
+        <p>Intensely aromatic. Use only 2–3 whole cloves — they are powerful and can dominate if overused. From the Maluku Islands of Indonesia, carried across the Indian Ocean by spice traders.</p>
+      </div>
+    </div>
+  </div>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Dry-fry the leaves until fragrant</h4>
+        <p>Place dried leaves in a dry pan over low-medium heat. Stir continuously for 3 minutes until fragrant and slightly darkened. Do not roast dark — this is a gentle aromatic step, not the full pan-roast method.</p>
+        <div class="step-note">The dry-frying releases volatile aromatic compounds and slightly opens the leaf structure for better spice integration during brewing.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Add water and all spices</h4>
+        <p>Transfer dry-fried leaves to a pot with <span class="scaled" data-base="1000">1000</span>ml water. Add the cinnamon stick, lightly crushed cardamom pods, and whole cloves. Bring to a boil.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Simmer 20–30 minutes</h4>
+        <p>Reduce to a gentle simmer and brew covered for 20–30 minutes. The spices need time to release their character into the brew. Taste at 20 minutes — if spice intensity is right, proceed to straining.</p>
+        <div class="step-note">The cinnamon and cardamom build slowly. Cloves are immediate. If the clove character is too strong at 20 minutes, remove them and continue simmering for the remaining time without them.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Strain completely</h4>
+        <p>Strain through fine cloth into a clean pot or pitcher. Remove all leaf material and spices. The brew should be a rich amber to golden-brown colour.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Warm the milk and combine at serving</h4>
+        <p>Warm <span class="scaled" data-base="300">300</span>ml of milk separately — not boiled, just warm. Pour the strained Kuti Shai into cups first, then add warm milk to taste. Add sugar or honey if desired.</p>
+        <div class="step-note">The milk ratio is a matter of preference. Starting with roughly 3 parts brew to 1 part milk is a gentle starting point. Adjust from there.</div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="1100">1100</span><span class="yield-label">ml total with milk</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">Warm</span><span class="yield-label">serve immediately</span></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- QUALITY -->
+<span class="s-label">Quality checks</span>
+<h2>What good Kuti looks, smells and tastes like</h2>
+
+<ul class="quality-list">
+  <li><div class="q-mark">✓</div><div><strong>Colour:</strong> Kouttee — light green to pale yellow. Boiled Traditional — amber. Pan-Roasted — deep amber to dark amber. Kuti Shai — warm golden with milk. All should be clear after straining.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Aroma:</strong> Earthy, slightly sweet, leaf-forward. Pan-Roasted version has a caramelised, smoky note. Kuti Shai carries the warmth of cinnamon and cardamom over a leaf base.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Taste:</strong> Gentle bitterness that mellows with brewing time. Natural sweetness from the fallen leaf's residual sugars. Salt in the background — present but not detectable as saltiness. Kuti Shai adds spice warmth and milk creaminess.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Texture:</strong> The pan-roasted version is documented as having a gelatinous, slightly viscous quality. Plain and boiled versions are lighter-bodied.</div></li>
+  <li><div class="q-mark">✗</div><div><strong>Sharp persistent bitterness:</strong> Usually means green leaves were used rather than fallen yellowed ones — or brewing time was too short. Fallen leaves and longer boiling both reduce bitterness.</div></li>
+  <li><div class="q-mark">✗</div><div><strong>Grittiness:</strong> Incomplete straining. All leaf material must be removed through fine cloth. Run through the strainer again if any remains.</div></li>
+  <li><div class="q-mark">✗</div><div><strong>Burnt or acrid note:</strong> Pan-roasted leaves were taken too dark. For the pan-roasted method, stop at dark brown — before any black appears.</div></li>
+</ul>
+
+<hr class="divider">
+
+<!-- SERVING -->
+<span class="s-label">Serving</span>
+<h2>How Kuti is traditionally consumed</h2>
+
+<div class="serving-grid">
+  <div class="serving-card"><span class="sv-num">Warm</span><span class="sv-label">Served warm, not scalding hot</span></div>
+  <div class="serving-card"><span class="sv-num">Any time</span><span class="sv-label">Morning, during the day — not restricted to mealtimes</span></div>
+  <div class="serving-card"><span class="sv-num">All ages</span><span class="sv-label">Including children under twelve and nursing mothers</span></div>
+  <div class="serving-card"><span class="sv-num">Daily</span><span class="sv-label">Documented as an everyday household drink in Harar</span></div>
+</div>
+
+<div class="warn-box">
+  <strong>Note on caffeine:</strong> These recipes use fallen yellowed leaves at approximately 20g per litre — producing approximately 10mg caffeine per litre of brew. If you use green picked leaves, the caffeine content will be significantly higher and the chemistry different. The suitability for children and nursing mothers documented in Harari tradition applies specifically to the fallen leaf preparation.
+</div>
+
+</main>
+
+<div class="page-nav">
+  <a href="kuti-deep.html">← Go Deeper</a>
+  <a href="visitor-lounge.html">Library →</a>
+</div>
+
+<div class="page-source">
+  Sources: Slow Food Ark of Taste · Barista Magazine · Perfect Daily Grind · SBS Food · Klingel et al. 2020
+</div>
+
+<script>
+let servings = 4;
+const BASE = 4;
+function changeServings(delta) {
+  servings = Math.max(1, Math.min(20, servings + delta));
+  document.getElementById('serving-count').textContent = servings;
+  const ratio = servings / BASE;
+  document.querySelectorAll('.scaled').forEach(el => {
+    const base = parseFloat(el.dataset.base);
+    if (isNaN(base)) return;
+    const val = base * ratio;
+    el.textContent = Number.isInteger(val) ? val : Math.round(val * 10) / 10;
+  });
+}
+function showRecipe(id, btn) {
+  document.querySelectorAll('.recipe-panel').forEach(p => p.classList.remove('show'));
+  document.querySelectorAll('.ms-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('recipe-' + id).classList.add('show');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
