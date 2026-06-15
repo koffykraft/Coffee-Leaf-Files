@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engere · Go Deeper</title>
+<style>
+:root {
+  --ink:     #222018;
+  --gold:    #b8892a;
+  --sage:    #5a7a5a;
+  --cream:   #fdfaf4;
+  --pale:    #f7f2e8;
+  --ruled:   #e0d8c8;
+  --muted:   #7a7260;
+  --dark:    #1a1814;
+  --sage-pale:#edf3ed;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(253,250,244,.96);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--ruled);
+  padding:12px 24px;
+  display:flex; align-items:center; gap:10px;
+}
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+.sep   { color:var(--ruled); }
+.page-t{ font-size:.8rem; color:var(--muted); }
+.back  { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--gold); }
+
+.tabs {
+  background:var(--pale); border-bottom:1px solid var(--ruled);
+  display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px;
+}
+.tab {
+  padding:14px 20px; font-size:.88rem; color:var(--muted);
+  text-decoration:none; white-space:nowrap; flex-shrink:0;
+  border-bottom:2px solid transparent;
+}
+.tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+.tab:hover { color:var(--ink); }
+
+/* OPENING */
+.opening {
+  padding:56px 24px 40px;
+  max-width:680px; margin:0 auto;
+  border-bottom:1px solid var(--ruled);
+}
+.opening .label {
+  font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:16px;
+}
+.opening h1 {
+  font-size:clamp(1.6rem,4vw,2.4rem); font-weight:normal;
+  color:var(--ink); line-height:1.25; margin-bottom:20px;
+}
+.opening p {
+  font-size:1rem; line-height:1.85; color:var(--muted); margin-bottom:0;
+}
+
+/* CONTENTS */
+.contents-wrap {
+  max-width:680px; margin:32px auto 0; padding:0 24px;
+}
+.contents {
+  background:var(--pale); border:1px solid var(--ruled);
+  border-radius:6px; padding:20px 24px;
+}
+.contents h3 {
+  font-size:.68rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:14px;
+}
+.contents ul { list-style:none; }
+.contents li { border-bottom:1px solid var(--ruled); }
+.contents li:last-child { border-bottom:none; }
+.contents a {
+  display:block; padding:10px 0;
+  color:var(--ink); text-decoration:none; font-size:.95rem;
+}
+.contents a:hover { color:var(--gold); }
+
+/* MAIN */
+main { max-width:680px; margin:0 auto; padding:48px 24px 60px; }
+
+.s-label {
+  font-size:.68rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--gold); display:block;
+  margin-bottom:10px; padding-bottom:10px;
+  border-bottom:1px solid var(--ruled);
+  scroll-margin-top:70px;
+}
+h2 { font-size:1.45rem; font-weight:normal; color:var(--ink); margin-bottom:18px; line-height:1.3; scroll-margin-top:70px; }
+h3 { font-size:1.1rem; font-weight:normal; color:var(--ink); margin-bottom:10px; margin-top:28px; }
+p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:18px; }
+p:last-child { margin-bottom:0; }
+hr.divider { border:none; border-top:1px solid var(--ruled); margin:48px 0; }
+
+/* PULL QUOTE */
+.pull {
+  font-size:1.25rem; line-height:1.65;
+  color:var(--gold); font-style:italic;
+  border-left:3px solid var(--gold);
+  padding-left:24px; margin:28px 0;
+}
+
+/* HIGHLIGHT */
+.highlight {
+  background:var(--pale); border-left:3px solid var(--gold);
+  border-radius:0 4px 4px 0;
+  padding:18px 20px; margin:24px 0;
+  font-size:.98rem; line-height:1.8;
+}
+.highlight strong { color:var(--gold); }
+
+/* EVIDENCE */
+.evidence {
+  background:var(--sage-pale); border-left:3px solid var(--sage);
+  border-radius:0 4px 4px 0;
+  padding:18px 20px; margin:24px 0;
+  font-size:.92rem; line-height:1.8;
+}
+.evidence .ev-label {
+  font-size:.65rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--sage); margin-bottom:8px;
+}
+
+/* WARN */
+.warn {
+  background:#fef9f0; border-left:3px solid #c8902a;
+  border-radius:0 4px 4px 0;
+  padding:18px 20px; margin:24px 0;
+  font-size:.92rem; line-height:1.8;
+}
+.warn strong { color:#8b6020; }
+
+/* FULL INGREDIENT TABLE */
+.ing-table {
+  width:100%; border-collapse:collapse; margin:24px 0; font-size:.92rem;
+}
+.ing-table th {
+  background:var(--dark); color:#fff;
+  padding:10px 14px; text-align:left;
+  font-weight:normal; font-size:.72rem;
+  letter-spacing:.08em; text-transform:uppercase;
+}
+.ing-table td {
+  padding:12px 14px; border-bottom:1px solid var(--ruled);
+  vertical-align:top; line-height:1.6;
+}
+.ing-table tr:nth-child(even) td { background:var(--pale); }
+.ing-table .local { font-size:.8rem; color:var(--muted); font-style:italic; display:block; }
+.ing-table .sci { font-size:.78rem; color:var(--sage); font-style:italic; display:block; }
+.ing-group td {
+  background:var(--pale) !important;
+  font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted); padding:8px 14px;
+}
+
+/* EVIDENCE CHECK */
+.ev-table {
+  width:100%; border-collapse:collapse; margin:24px 0; font-size:.92rem;
+}
+.ev-table th {
+  background:var(--dark); color:#fff;
+  padding:10px 14px; text-align:left;
+  font-weight:normal; font-size:.72rem;
+  letter-spacing:.08em; text-transform:uppercase;
+}
+.ev-table td {
+  padding:12px 14px; border-bottom:1px solid var(--ruled);
+  vertical-align:top; line-height:1.6;
+}
+.ev-table tr:nth-child(even) td { background:var(--pale); }
+.status-yes  { color:var(--sage); font-weight:bold; }
+.status-soft { color:#b8892a; }
+.status-no   { color:#c84040; text-decoration:line-through; opacity:.7; }
+
+/* METHODS REFERENCE */
+.methods-ref {
+  display:grid; grid-template-columns:1fr; gap:12px; margin:24px 0;
+}
+.method-ref-card {
+  background:var(--pale); border-radius:6px;
+  padding:20px 22px;
+  border-left:3px solid var(--gold);
+}
+.method-ref-card .method-pct {
+  font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:6px;
+}
+.method-ref-card h3 { margin-top:0; font-size:1.05rem; color:var(--ink); margin-bottom:8px; }
+.method-ref-card p { font-size:.92rem; color:var(--muted); margin:0; line-height:1.7; }
+
+/* RECIPES LINK */
+.recipes-banner {
+  background:var(--gold); color:var(--ink);
+  padding:32px 24px; text-align:center;
+  margin:48px 0;
+}
+.recipes-banner h3 { font-size:1.2rem; font-weight:normal; margin-bottom:8px; }
+.recipes-banner p { font-size:.92rem; opacity:.75; margin-bottom:20px; }
+.recipes-banner a {
+  display:inline-block; padding:14px 32px;
+  background:var(--ink); color:#fff;
+  text-decoration:none; font-size:.95rem; border-radius:3px;
+}
+.recipes-banner a:hover { background:var(--dark); }
+
+/* SOURCE BLOCK */
+.source-block {
+  background:var(--pale); border-radius:6px;
+  padding:24px; margin:24px 0;
+  font-size:.92rem; line-height:1.8;
+}
+.source-block h4 {
+  font-size:.7rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:12px;
+}
+
+/* PAGE NAV */
+.page-nav {
+  max-width:680px; margin:0 auto;
+  padding:24px 24px 48px;
+  display:flex; justify-content:space-between; align-items:center;
+  border-top:1px solid var(--ruled);
+}
+.page-nav a {
+  color:var(--gold); text-decoration:none; font-size:.95rem;
+}
+.page-nav a:hover { color:var(--ink); }
+
+.page-source {
+  border-top:1px solid var(--ruled);
+  padding:20px 24px; text-align:center;
+  font-size:.78rem; color:var(--muted); font-style:italic;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Citane</span>
+  <span class="sep">/</span>
+  <span class="page-t">Engere · Deep Reference</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab" href="engere-intro.html">What is this?</a>
+  <a class="tab" href="engere.html">What's fascinating</a>
+  <a class="tab active" href="engere-deep.html">Go deeper</a>
+</div>
+
+<div class="opening">
+  <div class="label">For serious inquiry</div>
+  <h1>The ethnobotany, the evidence framework, and the full documentation of Engere</h1>
+  <p>This page is for people who want to understand Engere properly — its place within Ethiopian food culture, the community and livelihood landscape it comes from, the full botanical record, and an honest accounting of what the research establishes and what it does not.</p>
+</div>
+
+<div class="contents-wrap">
+  <div class="contents">
+    <h3>On this page</h3>
+    <ul>
+      <li><a href="#plant-people">The plant-people relationship</a></li>
+      <li><a href="#ethnobotany">Ethnobotanical context</a></li>
+      <li><a href="#community">Community and livelihood landscape</a></li>
+      <li><a href="#methods-full">Full method documentation</a></li>
+      <li><a href="#ingredients-full">Complete ingredient record</a></li>
+      <li><a href="#evidence-check">Evidence check — what is established</a></li>
+      <li><a href="#what-not-to-claim">What should not be claimed</a></li>
+      <li><a href="#source">Source and research basis</a></li>
+    </ul>
+  </div>
+</div>
+
+<main>
+
+<!-- PLANT PEOPLE -->
+<span class="s-label" id="plant-people">The plant-people relationship</span>
+<h2>Coffee as a whole plant in Ethiopian food culture</h2>
+
+<p>The global coffee industry concerns itself almost entirely with one part of the coffee plant: the seed inside the fruit. Everything else — the fruit pulp, the husk, the leaves — is residue in the industrial view. Agricultural waste to be managed.</p>
+
+<p>This view is culturally specific. It reflects how coffee is understood in consuming countries, not in producing ones. In parts of Ethiopia — the crop's evolutionary homeland — the plant is understood differently. The fruit is processed for export. The leaves stay local. They become Engere.</p>
+
+<div class="pull">The communities who cultivate coffee for global markets are also the communities who drink the leaves. Two completely different relationships with the same plant, coexisting in the same household.</div>
+
+<p>This is not a nostalgic tradition clinging on despite modernisation. The Yohannis et al. 2026 study found that more than half of surveyed households prepare Engere regularly. It persists because it serves needs that the commercial coffee economy does not address — specifically the nourishment and care needs of the household itself.</p>
+
+<div class="evidence">
+  <div class="ev-label">Ethnobotanical significance</div>
+  The use of the leaves of a crop plant as a beverage ingredient in the region of that plant's origin represents an instance of what ethnobotanists call complete utilisation knowledge — the accumulated understanding of how to use all available parts of a plant rather than only the economically valued ones. Such knowledge is often the oldest, most locally adapted, and most practically refined knowledge a community holds about a plant.
+</div>
+
+<hr class="divider">
+
+<!-- ETHNOBOTANY -->
+<span class="s-label" id="ethnobotany">Ethnobotanical context</span>
+<h2>Coffea arabica as a leaf beverage source</h2>
+
+<p>Coffea arabica is native to the highland forests of Ethiopia and South Sudan. Its leaves have been used as a beverage ingredient in parts of Ethiopia and neighbouring regions — as well as in Indonesia and Yemen — across a timeframe that predates the global spread of coffee as a bean commodity.</p>
+
+<p>The leaf of Coffea arabica has a distinct phytochemical profile. It contains mangiferin — a xanthone compound not found in the bean — alongside chlorogenic acids, caffeine (at lower concentrations than the bean), and a range of volatile compounds that give it its herbal, slightly grassy aromatic character. The specific compound profile changes with leaf maturity: young leaves carry higher mangiferin and lower tannins; mature leaves carry more tannins and higher lipid content.</p>
+
+<div class="highlight">
+  <strong>Mangiferin</strong> is the compound most distinctive to the coffee leaf. It is absent from the roasted bean. It is the subject of research interest for its antioxidant activity. It is highest in the youngest leaves and decreases with maturity. Communities selecting mature leaves for Engere are not selecting for mangiferin — they are selecting for structural robustness, which produces a better brew. The mangiferin, where present, is a consequence of the leaf rather than the objective.
+</div>
+
+<p>The Indonesian tradition of Kawa Daun and the Ethiopian traditions of Engere and Chemo represent independent developments of coffee leaf beverage culture in different parts of the world. They arrived at different preparations, different flavour profiles, and different cultural meanings — but from the same raw material. This convergence is itself significant ethnobotanically: it suggests that the coffee leaf's beverage potential is discoverable by communities close enough to the living plant to experiment with it.</p>
+
+<hr class="divider">
+
+<!-- COMMUNITY -->
+<span class="s-label" id="community">Community and livelihood landscape</span>
+<h2>Who makes Engere and what their lives look like</h2>
+
+<p>The study area — Gofa Zone, South Ethiopia — encompasses highland and midland farming communities and lower-lying agro-pastoral households. The dominant livelihood pattern combines crop cultivation with livestock keeping. Crops documented in the region include maize, enset, sweet potato, taro, teff, and yams. Coffee plants are part of this agricultural landscape — grown not as a monoculture but as one plant among many in a mixed household food system.</p>
+
+<p>This mixed system is the precondition for Engere. The drink requires two things that come from different parts of the household economy: leaves from the coffee plant (the farming side) and fresh milk from livestock (the pastoralism side). A beverage that combines both belongs to a community that bridges those two worlds.</p>
+
+<p>Women are the primary preparers of Engere in documented household practice. This is consistent with broader patterns in Ethiopian household food preparation. The knowledge of how to make Engere — which spices, which ratios, which method, for which person — is transmitted primarily through women, from generation to generation within households.</p>
+
+<div class="highlight">
+  <strong>The 385 households</strong> in the Yohannis et al. 2026 study were surveyed in Demba Gofa, Zala, and Uba Debretsehay Districts. Focus group discussions supplemented the household surveys. The study used structured interviews. The research period was January to March 2024.
+</div>
+
+<p>The study records that Engere consumers are not a subset of households — they are embedded within communities that also use Chemo and other traditional beverages. The two drinks coexist and serve different purposes. This co-presence is important: Engere has not replaced Chemo; they perform different functions in the same household on the same day.</p>
+
+<hr class="divider">
+
+<!-- METHODS FULL -->
+<span class="s-label" id="methods-full">Full method documentation</span>
+<h2>The three preparation types — complete record</h2>
+
+<p>Three preparation types are documented in the Gofa Zone study. The percentages below represent the proportion of households that use each method as their primary preparation.</p>
+
+<div class="methods-ref">
+  <div class="method-ref-card">
+    <div class="method-pct">Method 1 · 19.7% of households</div>
+    <h3>Simple Engere — Coffee leaf brew + fresh cow's milk</h3>
+    <p>The structurally minimal form. All character comes from the leaf quality and the milk freshness. Preparation time approximately 15–20 minutes. Leaf-to-water ratio: 200–250g fresh leaves per litre. Milk ratio: 1/3 to 1/2 litre per litre of brew. Traditionally given to lactating mothers and those with sensitive digestion. Documented as the preferred form where simplicity, speed, and gentleness are priorities.</p>
+  </div>
+  <div class="method-ref-card">
+    <div class="method-pct">Method 2 · 22.6% of households</div>
+    <h3>Sweetened Engere — Brew + milk + honey or sugar</h3>
+    <p>Simple Engere with sweetener added to the hot strained brew before the milk is introduced. Quantity: 30–45g per litre. Honey is the traditional sweetener; sugar is accepted as a substitute. Documented as appropriate for children and for those encountering Engere for the first time. Sweetener dissolves into the hot brew first — before milk — to ensure full integration.</p>
+  </div>
+  <div class="method-ref-card">
+    <div class="method-pct">Method 3 · 37.7% of households — the most common</div>
+    <h3>Spiced Engere — Brew + milk + spice-herb blend + sweetener</h3>
+    <p>Two sub-methods exist. Single-pot: spices added to the leaf brew for the last 3–8 minutes of steeping, then strained together. Double-pot: leaves and spices brewed separately and combined before a final brief boil and second strain. The double-pot method gives more control over spice intensity. Both are documented as traditional practice. Neither is superior — the choice depends on household preference and available vessels.</p>
+  </div>
+</div>
+
+<div class="evidence">
+  <div class="ev-label">Documentation note</div>
+  The percentages above do not sum to 100% because the remaining 45.2% of surveyed households do not prepare Engere in any form. Of the 54.8% who do, some households may use more than one method depending on context. The percentages reflect primary habitual method.
+</div>
+
+<hr class="divider">
+
+<!-- INGREDIENTS FULL -->
+<span class="s-label" id="ingredients-full">Complete ingredient record</span>
+<h2>Full botanical documentation of Engere ingredients</h2>
+
+<p>All ingredients below are documented in Yohannis et al. 2026. Quantities are from the same source. Scientific names are provided where documented. Local names are in the primary local language of the study area.</p>
+
+<table class="ing-table">
+  <thead>
+    <tr><th>Ingredient</th><th>Quantity per litre of brew</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr class="ing-group"><td colspan="3">Base — all methods</td></tr>
+    <tr>
+      <td>
+        Coffee leaves, mature, fresh
+        <span class="local">Buna Kitel</span>
+        <span class="sci">Coffea arabica L.</span>
+      </td>
+      <td>200–250g fresh · 75–150g dried</td>
+      <td>Mature leaves from terminal tips. Crushed before brewing. Fully strained — never consumed.</td>
+    </tr>
+    <tr>
+      <td>Water<span class="local">Woha</span></td>
+      <td>1000 ml (base) · 1500 ml (spiced methods)</td>
+      <td>Clean water. Boiled to full rolling boil before leaves added. Steeping time 7–15 minutes.</td>
+    </tr>
+    <tr>
+      <td>Fresh cow's milk<span class="local">Yelam Wotet</span></td>
+      <td>333–500 ml per litre of brew</td>
+      <td>Fresh, unpasteurised preferred. Added to hot strained brew. Never pre-boiled separately. Never reheated.</td>
+    </tr>
+    <tr class="ing-group"><td colspan="3">Method 2 addition</td></tr>
+    <tr>
+      <td>Honey or sugar<span class="local">Mar / Sukkar</span></td>
+      <td>30–45g</td>
+      <td>Honey is traditional. Sugar is accepted substitute. Added to hot brew before milk to ensure full dissolution.</td>
+    </tr>
+    <tr class="ing-group"><td colspan="3">Method 3 spice blend — Gofa Zone documented range</td></tr>
+    <tr>
+      <td>Ginger<span class="local">Jingibil</span><span class="sci">Zingiber officinale Roscoe</span></td>
+      <td>10–15g</td>
+      <td>Core trio ingredient. Fresh or dried. Crushed or sliced before adding to brew.</td>
+    </tr>
+    <tr>
+      <td>Coriander seed<span class="local">Dimbilal fruit</span><span class="sci">Coriandrum sativum L.</span></td>
+      <td>2.5–4.5g</td>
+      <td>Core trio ingredient. Seed, not leaf. Lightly cracked before brewing.</td>
+    </tr>
+    <tr>
+      <td>Ethiopian cardamom<span class="local">Korerima</span><span class="sci">Aframomum corrorima (Braun) Jansen</span></td>
+      <td>1.5–2.5g</td>
+      <td>Core trio ingredient. Native to Ethiopia and East Africa. Distinct from green cardamom (Elettaria). Earthier, camphor-adjacent character.</td>
+    </tr>
+    <tr>
+      <td>Sacred basil<span class="local">Besobila</span><span class="sci">Ocimum basilicum L.</span></td>
+      <td>1.5–2g</td>
+      <td>Fresh or dried. Associated with wellbeing in Ethiopian herbal tradition.</td>
+    </tr>
+    <tr>
+      <td>Lemongrass<span class="local">Tejisar</span><span class="sci">Cymbopogon citratus (DC.) Stapf</span></td>
+      <td>5–8g</td>
+      <td>Fresh stalks or dried. Citrus and floral aromatic contribution.</td>
+    </tr>
+    <tr>
+      <td>Rue herb<span class="local">Tena Adam</span><span class="sci">Ruta chalepensis L.</span></td>
+      <td>1.5–2.5g</td>
+      <td>One of the most widely used medicinal herbs in Ethiopian tradition. Name translates approximately as "health of Adam."</td>
+    </tr>
+    <tr>
+      <td>Garlic leaf<span class="local">Nechi Shinkurt</span><span class="sci">Allium sativum L.</span></td>
+      <td>5–10g</td>
+      <td>The leaf, not the bulb. Associated in the region with strength and recovery.</td>
+    </tr>
+    <tr>
+      <td>Fennel<span class="local">Ensilal</span><span class="sci">Anethum foeniculum L.</span></td>
+      <td>1–1.5g</td>
+      <td>Smallest quantity in the documented blend. Anise-adjacent character softens the overall spice profile.</td>
+    </tr>
+    <tr>
+      <td>Bird's eye chilli<span class="local">Mitmita</span><span class="sci">Capsicum frutescens L.</span></td>
+      <td>0.5–1.5g</td>
+      <td>The heat element. Small quantity — warmth without dominance.</td>
+    </tr>
+    <tr>
+      <td>Salt<span class="local">Chew</span><span class="sci">Sodium chloride</span></td>
+      <td>5–10g</td>
+      <td>Suppresses bitterness. Amplifies other flavour compounds. Consistent with salt use in traditional leaf beverage traditions globally.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="evidence">
+  <div class="ev-label">Important note on the spice record</div>
+  Not all households use all ten spices. Each household combination reflects local availability, preference, and transmitted knowledge. The table above documents the range found across all surveyed households — not a single standardised recipe. The core trio (ginger, coriander, Ethiopian cardamom) appears most consistently across households.
+</div>
+
+<hr class="divider">
+
+<!-- EVIDENCE CHECK -->
+<span class="s-label" id="evidence-check">Evidence check</span>
+<h2>What the research establishes and what it does not</h2>
+
+<p>This library applies a consistent standard: documented findings are stated as documented; proposed mechanisms are labelled as proposed; unverified claims are removed. The table below applies that standard to Engere.</p>
+
+<table class="ev-table">
+  <thead><tr><th>Claim</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>Engere is a coffee leaf brew combined with fresh cow's milk, consumed in Gofa Zone, South Ethiopia</td><td class="status-yes">✓ Directly documented</td></tr>
+    <tr><td>Three preparation types documented: simple, sweetened, spiced</td><td class="status-yes">✓ Directly documented</td></tr>
+    <tr><td>54.8% of 385 surveyed households prepare Engere in some form</td><td class="status-yes">✓ Directly documented</td></tr>
+    <tr><td>100% of Engere consumers in the study reported zero adverse health events</td><td class="status-yes">✓ Directly documented — self-reported</td></tr>
+    <tr><td>Associated with lactating mothers, returning labourers, children, recovery</td><td class="status-yes">✓ Documented reported associations</td></tr>
+    <tr><td>Ten spice and herb ingredients documented in Spiced Engere across Gofa Zone households</td><td class="status-yes">✓ Directly documented with quantities</td></tr>
+    <tr><td>Consumed once daily; Chemo consumed twice daily</td><td class="status-yes">✓ Directly documented</td></tr>
+    <tr><td>Milk clinically neutralises adverse effects of coffee leaf brew</td><td class="status-soft">⚠ Proposed mechanism, not clinically proven — the study is a household survey, not a controlled trial</td></tr>
+    <tr><td>Engere clinically improves stamina, lactation, or recovery</td><td class="status-soft">⚠ Not established — reported household association only</td></tr>
+    <tr><td>Engere is an ancient tradition with documented multi-century history</td><td class="status-soft">⚠ Temporal depth not established — study is contemporary; no historical timeline documented</td></tr>
+    <tr><td>Engere is the oldest coffee leaf beverage tradition</td><td class="status-no">✗ Removed — overclaim not supported by any source</td></tr>
+    <tr><td>Coffee leaf bioactives prove measurable health effects in Engere consumers</td><td class="status-no">✗ Removed — no clinical measurement conducted on this population</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<!-- WHAT NOT TO CLAIM -->
+<span class="s-label" id="what-not-to-claim">What should not be claimed</span>
+<h2>The limits of what this library will assert</h2>
+
+<div class="warn">
+  <strong>Do not claim</strong> that Engere is clinically proven to improve stamina, support lactation, or treat any condition. The study documents reported household experience — not measured physiological outcomes. The association is real and consistent. The causal mechanism is not established.
+</div>
+
+<div class="warn">
+  <strong>Do not claim</strong> that milk scientifically neutralises all risks from coffee leaf brew. The study reports a dramatically better self-reported safety profile when milk is included. The proposed buffering mechanism is plausible. It is not proven in controlled conditions.
+</div>
+
+<div class="warn">
+  <strong>Do not claim</strong> a centuries-old history. The study is contemporary. It documents that the practice exists and is embedded in household life. It does not establish when it began.
+</div>
+
+<div class="warn">
+  <strong>Do not claim</strong> that all ten spices are always used, or that there is a single correct Engere recipe. The study documents what appears across households. Variation is the norm, not the exception.
+</div>
+
+<div class="evidence">
+  <div class="ev-label">The correct framing</div>
+  Engere is a coffee leaf and milk beverage consumed regularly in 54.8% of surveyed Gofa Zone households. In a 385-household study, not one Engere consumer reported an adverse health event — compared to 35.6% of plain coffee leaf brew consumers. Communities associate it with lactation, recovery, and the care of vulnerable household members. The three documented preparation types reflect a living tradition with household-level variation. All of this is established. The mechanisms, the history, and the clinical effects are not.
+</div>
+
+<hr class="divider">
+
+<!-- RECIPES LINK -->
+<div class="recipes-banner">
+  <h3>Looking for the actual recipes?</h3>
+  <p>Complete ingredient lists, step-by-step instructions, serving scaler, equipment guidance, and quality checks — on the dedicated recipe page.</p>
+  <a href="engere-recipe.html">Recipes & Mechanics →</a>
+</div>
+
+<!-- SOURCE -->
+<span class="s-label" id="source">Source and research basis</span>
+<h2>Primary source</h2>
+
+<div class="source-block">
+  <h4>Primary source</h4>
+  Yohannis, E., Teka, T. A., Tola, Y. B., and Teferra, T. F. (2026). Indigenous coffee leaf brew and Engere brewing practices, and consumption patterns in South Ethiopia. <em>Discover Food,</em> Vol. 6, Art. 214. DOI: 10.1007/s44187-026-00927-8.<br><br>
+  Study period: January to March 2024. Location: Gofa Zone, South Ethiopia — Demba Gofa, Zala, and Uba Debretsehay Districts. Participants: 385 households and 3 focus groups. Method: structured household surveys and focus group discussions.
+</div>
+
+<div class="source-block">
+  <h4>Supporting context</h4>
+  Regional livelihood context draws on general ethnographic literature describing Gamo, Gofa, and neighbouring zones in South Ethiopia. This context is used as interpretive background only — not as direct evidence for Engere-specific claims. Where context is interpretive rather than sourced, it is presented as such throughout this library.
+</div>
+
+<div class="source-block">
+  <h4>Attribution</h4>
+  All Engere content in this library is compiled and editorially structured by Citane / KoffyKraft. The source knowledge belongs to the original researchers and to the communities of Gofa Zone whose practices the study documents. Citane claims no ownership of either.
+</div>
+
+</main>
+
+<div class="page-nav">
+  <a href="engere.html">← What's fascinating</a>
+  <a href="engere-recipe.html">Recipes & Mechanics →</a>
+</div>
+
+<div class="page-source">
+  Source: Yohannis et al. 2026 · Discover Food · DOI 10.1007/s44187-026-00927-8
+</div>
+
+</body>
+</html>

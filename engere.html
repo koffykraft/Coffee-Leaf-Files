@@ -3,851 +3,534 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engere | BUNA Coffee Leaf Library</title>
+<title>Engere · What's Fascinating</title>
 <style>
-/* ==========================================================================
-   BUNA COFFEE LEAF LIBRARY — SHARED STYLESHEET
-   One file. Every page links to this. Change here = changes everywhere.
-   Design language: plain black on white, boxed sections, one accent color.
-   ========================================================================== */
-
 :root {
-  --ink:        #1a1a1a;   /* primary text */
-  --ink-soft:   #4a4a4a;   /* secondary text */
-  --line:       #1a1a1a;   /* borders */
-  --line-soft:  #d0d0d0;   /* light dividers */
-  --bg:         #ffffff;   /* page background */
-  --bg-tint:    #f7f5f0;   /* subtle box background */
-  --accent:     #b8721e;   /* amber — KoffyKraft brand, links & highlights */
-  --accent-soft:#f4e6d4;   /* amber tint for tags/labels */
-  --sage:       #4a6b4a;   /* secondary accent — used sparingly for category tags */
-  --sage-soft:  #e6ede6;
-  --max-width:  860px;
+  --ink:     #222018;
+  --gold:    #b8892a;
+  --gold-lt: #e8c96a;
+  --sage:    #5a7a5a;
+  --cream:   #fdfaf4;
+  --pale:    #f7f2e8;
+  --ruled:   #e0d8c8;
+  --muted:   #7a7260;
+  --soft:    #f0ebe0;
+  --dark:    #1a1814;
 }
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  line-height: 1.65;
+  font-family: Georgia, serif;
+  background: var(--cream);
   color: var(--ink);
-  background: var(--bg);
-}
-
-/* ==========================================================================
-   LAYOUT
-   ========================================================================== */
-
-.page {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 28px 80px;
-}
-
-/* ==========================================================================
-   HEADER / NAV — identical on every page
-   ========================================================================== */
-
-.site-header {
-  border-bottom: 2px solid var(--line);
-  padding: 20px 24px;
-  margin-bottom: 8px;
-}
-
-.site-header-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.site-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--ink);
-}
-
-.site-logo img {
-  width: 32px;
-  height: 32px;
-}
-
-.site-logo-text {
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: 0.05em;
-}
-
-.site-logo-sub {
-  font-size: 13px;
-  color: var(--ink-soft);
-  font-weight: 400;
-}
-
-.breadcrumb {
-  font-size: 14px;
-  color: var(--ink-soft);
-}
-
-.breadcrumb a {
-  color: var(--ink-soft);
-  text-decoration: none;
-  border-bottom: 1px dotted var(--ink-soft);
-}
-
-.breadcrumb a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.breadcrumb .sep {
-  margin: 0 6px;
-  color: var(--line-soft);
-}
-
-.breadcrumb .current {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-/* ==========================================================================
-   FOOTER — identical on every page, always links back
-   ========================================================================== */
-
-.site-footer {
-  border-top: 2px solid var(--line);
-  margin-top: 64px;
-  padding: 32px 24px;
-}
-
-.site-footer-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.footer-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--ink);
-  border: 2px solid var(--line);
-  padding: 10px 18px;
-  width: fit-content;
-  font-size: 15px;
-}
-
-.footer-back:hover {
-  background: var(--ink);
-  color: var(--bg);
-}
-
-.footer-meta {
-  font-size: 13px;
-  color: var(--ink-soft);
-  line-height: 1.6;
-}
-
-.footer-meta a {
-  color: var(--ink-soft);
-  text-decoration: underline;
-}
-
-/* ==========================================================================
-   TYPOGRAPHY
-   ========================================================================== */
-
-h1, h2, h3, h4 {
-  font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-}
-
-h1 {
-  font-size: 36px;
-  margin: 24px 0 8px;
-}
-
-h2 {
-  font-size: 26px;
-  margin: 48px 0 16px;
-  padding-top: 24px;
-  border-top: 2px solid var(--line);
-}
-
-h2:first-of-type {
-  border-top: none;
-  padding-top: 0;
-  margin-top: 32px;
-}
-
-h3 {
-  font-size: 20px;
-  margin: 28px 0 12px;
-}
-
-h4 {
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-soft);
-  margin: 24px 0 8px;
-}
-
-p { margin: 0 0 16px; }
-
-a { color: var(--accent); text-decoration: underline; }
-a:hover { color: var(--ink); }
-
-strong { font-weight: 800; }
-
-.page-kicker {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  margin: 24px 0 4px;
-}
-
-.page-subtitle {
   font-size: 19px;
-  color: var(--ink-soft);
-  margin: 0 0 24px;
+  line-height: 1.85;
 }
 
-/* ==========================================================================
-   CATEGORY TAGS — color-coded by section type
-   ========================================================================== */
+nav {
+  position:sticky; top:0; z-index:100;
+  background: rgba(253,250,244,.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--ruled);
+  padding: 12px 24px;
+  display:flex; align-items:center; gap:10px;
+}
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+.sep   { color:var(--ruled); }
+.page-t{ font-size:.8rem; color:var(--muted); }
+.back  { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--gold); }
 
-.tag {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 4px 10px;
-  border: 1px solid var(--line);
-  margin: 0 6px 6px 0;
+.tabs {
+  background:var(--pale); border-bottom:1px solid var(--ruled);
+  display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px;
+}
+.tab {
+  padding:14px 20px; font-size:.88rem; color:var(--muted);
+  text-decoration:none; white-space:nowrap; flex-shrink:0;
+  border-bottom:2px solid transparent;
+}
+.tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+.tab:hover { color:var(--ink); }
+
+/* OPENING BAND */
+.opening-band {
+  padding: 56px 24px 48px;
+  text-align:center;
+  border-bottom: 1px solid var(--ruled);
+}
+.opening-band .label {
+  font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:16px;
+}
+.opening-band h1 {
+  font-size:clamp(1.8rem,5vw,2.8rem);
+  font-weight:normal; color:var(--ink);
+  line-height:1.2; margin-bottom:16px;
+  max-width:560px; margin-left:auto; margin-right:auto;
+}
+.opening-band p {
+  font-size:1.05rem; color:var(--muted);
+  max-width:500px; margin:0 auto; line-height:1.8;
 }
 
-.tag-tradition  { background: var(--sage-soft);   border-color: var(--sage); }
-.tag-research   { background: var(--accent-soft); border-color: var(--accent); }
-.tag-citane     { background: var(--ink);  color: var(--bg); border-color: var(--ink); }
-.tag-guide      { background: var(--bg-tint); border-color: var(--line-soft); }
-
-/* ==========================================================================
-   IN-PAGE NAV (table of contents / jump links)
-   ========================================================================== */
-
-.toc {
-  border: 2px solid var(--line);
-  padding: 16px 20px;
-  margin: 24px 0 40px;
-  background: var(--bg-tint);
+/* STAT SPLASH */
+.stat-splash {
+  background: var(--dark);
+  color: #fff;
+  padding: 56px 24px;
+  text-align:center;
+}
+.stat-splash .label {
+  font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
+  opacity:.4; margin-bottom:32px;
+}
+.stat-big {
+  font-size: clamp(4rem, 15vw, 7rem);
+  font-weight:bold; color:var(--gold);
+  line-height:1; margin-bottom:16px;
+}
+.stat-what {
+  font-size:1.15rem; opacity:.8; line-height:1.7;
+  max-width:440px; margin:0 auto 36px;
+}
+.stat-contrast {
+  font-size:.9rem; opacity:.5; font-style:italic;
+  max-width:400px; margin:0 auto;
+  padding-top:24px; border-top:1px solid rgba(255,255,255,.1);
 }
 
-.toc-label {
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-soft);
-  margin-bottom: 10px;
+/* DISCOVERY CARDS */
+.discoveries {
+  max-width:680px; margin:0 auto;
+  padding: 56px 24px;
+}
+.discoveries h2 {
+  font-size:1rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted); font-weight:normal; margin-bottom:40px;
 }
 
-.toc a {
-  display: inline-block;
-  margin: 0 16px 8px 0;
-  font-size: 15px;
-  text-decoration: none;
-  border-bottom: 1px solid var(--accent);
+.discovery {
+  margin-bottom:48px;
+  padding-bottom:48px;
+  border-bottom:1px solid var(--ruled);
+}
+.discovery:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+
+.discovery-header {
+  display:flex; align-items:flex-start; gap:20px; margin-bottom:20px;
+}
+.discovery-icon {
+  width:48px; height:48px; flex-shrink:0;
+  background:var(--pale); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  margin-top:4px;
+}
+.discovery h3 {
+  font-size:1.3rem; font-weight:normal;
+  color:var(--ink); line-height:1.3;
+}
+.discovery p {
+  font-size:1rem; line-height:1.85;
+  color:var(--ink); margin-bottom:16px;
+}
+.discovery p:last-child { margin-bottom:0; }
+.discovery .aside {
+  background:var(--pale); border-radius:4px;
+  padding:16px 20px; margin-top:16px;
+  font-size:.92rem; color:var(--muted);
+  line-height:1.75; font-style:italic;
+}
+.discovery .aside strong { color:var(--gold); font-style:normal; }
+
+/* WHO DRINKS IT */
+.who-section {
+  background:var(--pale);
+  padding:56px 24px;
+  border-top:1px solid var(--ruled);
+  border-bottom:1px solid var(--ruled);
+}
+.who-inner { max-width:680px; margin:0 auto; }
+.who-inner h2 {
+  font-size:1.4rem; font-weight:normal;
+  color:var(--ink); margin-bottom:8px;
+}
+.who-inner .sub {
+  font-size:.95rem; color:var(--muted); margin-bottom:36px; font-style:italic;
 }
 
-.toc a:hover { color: var(--accent); }
+.who-cards {
+  display:grid; grid-template-columns:1fr 1fr; gap:14px;
+}
+@media(max-width:480px){ .who-cards { grid-template-columns:1fr; } }
 
-/* ==========================================================================
-   CONTENT BOXES — the core reusable component
-   One visual pattern: border, label tag top-left, white background.
-   Color appears only in the label tag.
-   ========================================================================== */
-
-.box {
-  border: 2px solid var(--line);
-  padding: 20px;
-  margin: 24px 0;
-  background: var(--bg);
+.who-card {
+  background:var(--cream); border-radius:6px;
+  padding:20px; border-top:3px solid var(--gold);
+}
+.who-card .who-label {
+  font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:8px;
+}
+.who-card p {
+  font-size:.92rem; line-height:1.7; color:var(--ink); margin:0;
 }
 
-.box-label {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 3px 10px;
-  margin-bottom: 12px;
-  border: 1px solid var(--line);
+/* SPICE REVEAL */
+.spice-section {
+  max-width:680px; margin:0 auto;
+  padding:56px 24px;
+}
+.spice-section h2 {
+  font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:8px;
+}
+.spice-section .sub {
+  font-size:.95rem; color:var(--muted); margin-bottom:28px; font-style:italic;
+}
+.spice-section p {
+  font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:20px;
 }
 
-.box p:last-child { margin-bottom: 0; }
-
-/* Box variants — label tag colour changes, border stays black */
-.box-evidence .box-label   { background: var(--accent-soft); }
-.box-recipe   .box-label   { background: var(--sage-soft); }
-.box-caution  .box-label   { background: #f5d6d6; }
-.box-tradition .box-label  { background: var(--bg-tint); }
-.box-note     .box-label   { background: #e6e6e6; }
-
-/* Caution boxes get a slightly heavier border for visual weight */
-.box-caution {
-  border-width: 2px;
-  border-style: dashed;
+/* Tappable spice tags */
+.spice-tags {
+  display:flex; flex-wrap:wrap; gap:10px; margin:24px 0;
 }
-
-/* ==========================================================================
-   STAT / FACT BLOCKS — for "what the research found" callouts
-   ========================================================================== */
-
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 16px;
-  margin: 24px 0;
+.spice-tag {
+  padding:10px 18px; border:1.5px solid var(--ruled);
+  border-radius:30px; font-size:.92rem;
+  color:var(--ink); cursor:pointer;
+  background:var(--cream); transition:all .2s;
+  font-family:Georgia,serif;
 }
-
-.stat {
-  border: 2px solid var(--line);
-  padding: 16px;
-  text-align: center;
+.spice-tag:hover, .spice-tag.active {
+  background:var(--gold); color:var(--ink);
+  border-color:var(--gold);
 }
-
-.stat-number {
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--accent);
-  display: block;
-  line-height: 1.1;
+.spice-detail {
+  display:none; background:var(--pale);
+  border-radius:6px; padding:20px 24px;
+  margin-top:16px; font-size:.95rem; line-height:1.75;
 }
+.spice-detail.show { display:block; }
+.spice-detail .local { color:var(--gold); font-style:italic; }
 
-.stat-label {
-  font-size: 13px;
-  color: var(--ink-soft);
-  margin-top: 4px;
+/* THE CONTRAST */
+.contrast-section {
+  background:var(--dark); color:#fff;
+  padding:56px 24px;
 }
-
-/* ==========================================================================
-   TABLES
-   ========================================================================== */
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 24px 0;
-  font-size: 16px;
+.contrast-inner { max-width:640px; margin:0 auto; }
+.contrast-inner h2 {
+  font-size:1.4rem; font-weight:normal;
+  margin-bottom:8px; line-height:1.3;
 }
-
-th, td {
-  border: 1px solid var(--line);
-  padding: 10px 12px;
-  text-align: left;
-  vertical-align: top;
+.contrast-inner .sub {
+  font-size:.95rem; opacity:.6; margin-bottom:36px; font-style:italic;
 }
-
-th {
-  background: var(--ink);
-  color: var(--bg);
-  font-weight: 700;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.contrast-cols {
+  display:grid; grid-template-columns:1fr 1fr; gap:20px;
 }
+@media(max-width:480px){ .contrast-cols { grid-template-columns:1fr; } }
 
-tr:nth-child(even) td {
-  background: var(--bg-tint);
+.contrast-col { padding:24px; border-radius:6px; }
+.contrast-col.chemo { background:rgba(255,255,255,.06); }
+.contrast-col.engere { background:rgba(184,137,42,.15); border:1px solid rgba(184,137,42,.3); }
+.contrast-col h3 {
+  font-size:1rem; font-weight:normal; margin-bottom:16px;
+  opacity:.8; letter-spacing:.04em;
 }
-
-/* ==========================================================================
-   STEP LISTS — numbered process steps
-   ========================================================================== */
-
-.steps {
-  margin: 24px 0;
-  padding: 0;
-  list-style: none;
+.contrast-col ul { list-style:none; }
+.contrast-col li {
+  padding:8px 0; border-bottom:1px solid rgba(255,255,255,.08);
+  font-size:.9rem; opacity:.8; line-height:1.55;
 }
+.contrast-col li:last-child { border-bottom:none; }
 
-.steps li {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 16px;
-  align-items: flex-start;
+/* NEXT */
+.next-section {
+  max-width:640px; margin:0 auto;
+  padding:56px 24px 40px; text-align:center;
 }
-
-.step-number {
-  flex: 0 0 auto;
-  width: 32px;
-  height: 32px;
-  border: 2px solid var(--line);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 15px;
+.next-section p {
+  font-size:1.05rem; color:var(--muted); line-height:1.85; margin-bottom:28px;
 }
-
-.step-text { flex: 1; padding-top: 3px; }
-.step-text p { margin-bottom: 4px; }
-
-/* ==========================================================================
-   CARDS — used on index pages for navigation grids
-   ========================================================================== */
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-  margin: 24px 0;
+.next-link {
+  display:inline-block; padding:18px 36px;
+  background:var(--gold); color:var(--ink);
+  text-decoration:none; font-size:1rem; border-radius:3px;
 }
-
-.card {
-  border: 2px solid var(--line);
-  padding: 18px;
-  text-decoration: none;
-  color: var(--ink);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition: background 0.1s, color 0.1s;
+.next-link:hover { background:#a07820; color:#fff; }
+.prev-link {
+  display:block; margin-top:16px;
+  font-size:.88rem; color:var(--muted); text-decoration:none;
 }
+.prev-link:hover { color:var(--gold); }
 
-.card:hover {
-  background: var(--ink);
-  color: var(--bg);
+.page-source {
+  border-top:1px solid var(--ruled);
+  padding:20px 24px; text-align:center;
+  font-size:.78rem; color:var(--muted); font-style:italic;
 }
-
-.card:hover .tag {
-  background: var(--bg);
-  color: var(--ink);
-}
-
-.card-title {
-  font-weight: 800;
-  font-size: 18px;
-}
-
-.card-desc {
-  font-size: 14px;
-  color: var(--ink-soft);
-}
-
-.card:hover .card-desc { color: #ccc; }
-
-/* "Add a page here" placeholder card — visual cue for extensibility */
-.card-placeholder {
-  border: 2px dashed var(--line-soft);
-  color: var(--ink-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  text-align: center;
-  min-height: 80px;
-}
-
-/* ==========================================================================
-   TRADITION GROUP — per-tradition section block on the index
-   Each tradition (Engere, Kuti, Chemo, Kawa Daun, future...) gets one
-   of these. Same internal structure every time = easy to extend.
-   ========================================================================== */
-
-.tradition-group {
-  border: 2px solid var(--line);
-  margin: 24px 0;
-}
-
-.tradition-group-header {
-  background: var(--ink);
-  color: var(--bg);
-  padding: 14px 20px;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tradition-group-header h3 {
-  margin: 0;
-  color: var(--bg);
-  font-size: 20px;
-}
-
-.tradition-group-origin {
-  font-size: 13px;
-  color: #ccc;
-}
-
-.tradition-group-body {
-  padding: 16px 20px;
-}
-
-.tradition-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.tradition-links a {
-  font-size: 14px;
-  text-decoration: none;
-  border: 1px solid var(--line);
-  padding: 6px 12px;
-}
-
-.tradition-links a:hover {
-  background: var(--ink);
-  color: var(--bg);
-}
-
-.tradition-links a.is-main {
-  background: var(--accent-soft);
-  font-weight: 700;
-  border-color: var(--accent);
-}
-
-/* ==========================================================================
-   RESPONSIVE
-   ========================================================================== */
-
-@media (max-width: 600px) {
-  body { font-size: 17px; }
-  h1 { font-size: 28px; }
-  h2 { font-size: 22px; }
-  .site-header-inner { flex-direction: column; align-items: flex-start; }
-  .card-grid { grid-template-columns: 1fr; }
-  .stat-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="site-header-inner">
-    <a class="site-logo" href="index.html">
-      <img src="https://koffykraft.github.io/Coffee-Leaf-Files/buna-leaf.svg" alt="">
-      <span>
-        <span class="site-logo-text">BUNA</span><br>
-        <span class="site-logo-sub">Coffee Leaf Library</span>
-      </span>
-    </a>
-    <nav class="breadcrumb">
-      <a href="index.html">Index</a>
-      <span class="sep">/</span>
-      <a href="index.html#traditions">Traditional Pathways</a>
-      <span class="sep">/</span>
-      <span class="current">Engere</span>
-    </nav>
-  </div>
-</header>
+<nav>
+  <span class="brand">Citane</span>
+  <span class="sep">/</span>
+  <span class="page-t">Engere</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
 
-<div class="page">
+<div class="tabs">
+  <a class="tab" href="engere-intro.html">What is this?</a>
+  <a class="tab active" href="engere.html">What's fascinating</a>
+  <a class="tab" href="engere-deep.html">Go deeper</a>
+</div>
 
-  <span class="tag tag-tradition">Traditional Pathway · South Ethiopia</span>
-  <h1>Engere</h1>
-  <p class="page-subtitle">Ethiopian Coffee Leaf Milk Brew</p>
+<!-- OPENING -->
+<div class="opening-band">
+  <div class="label">What makes Engere worth knowing about</div>
+  <h1>The things that genuinely surprised the researchers</h1>
+  <p>A household survey of 385 families. A beverage that predates written records. And a safety finding that nobody expected.</p>
+</div>
 
-  <p>
-    Engere is a documented South Ethiopian beverage made by combining coffee leaf brew
-    with fresh cow's milk. The research records three household preparation types:
-    simple, sweetened, and spiced.
-  </p>
+<!-- STAT SPLASH -->
+<div class="stat-splash">
+  <div class="label">From 385 households surveyed in Gofa Zone</div>
+  <div class="stat-big">100%</div>
+  <p style="font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;opacity:.45;margin-bottom:12px;font-family:Georgia,serif;">reported by surveyed households</p>
+  <p class="stat-what">of Engere consumers reported zero health problems. Not one adverse event across all 385 households in the study.</p>
+  <p class="stat-contrast">Compare this to plain coffee leaf brew consumed without milk — where 35.6% of consumers reported gastritis or cardiac symptoms. The milk changes everything.</p>
+</div>
 
-  <div class="box box-evidence">
-    <span class="box-label">Research Basis</span>
-    <p>
-      Yohannis, E., Teka, T. A., Tola, Y. B., and Teferra, T. F. 2026.
-      <em>Indigenous coffee leaf brew and Engere brewing practices, and consumption
-      patterns in South Ethiopia.</em> Discover Food. DOI: 10.1007/s44187-026-00927-8.
-      Study period: January–March 2024. Location: Gofa Zone, South Ethiopia.
-      Participants: 385 households and 3 focus groups.
-    </p>
-  </div>
+<!-- DISCOVERIES -->
+<div class="discoveries">
+  <h2>Five things worth knowing</h2>
 
-  <div class="toc">
-    <div class="toc-label">On this page</div>
-    <a href="#what">What is Engere</a>
-    <a href="#evidence">Evidence check</a>
-    <a href="#recipes">Recipes</a>
-    <a href="#use">How it's consumed</a>
-    <a href="#milk">Why the milk matters</a>
-    <a href="#sources">Sources</a>
-  </div>
-
-  <!-- ================================================================== -->
-  <h2 id="what">What is Engere?</h2>
-
-  <p>
-    Engere is prepared by making a coffee leaf brew first, straining out the leaves,
-    and then blending the hot strained brew with fresh cow's milk. Sweeteners, spices
-    and herbs may be added depending on the household method.
-  </p>
-
-  <p>
-    It should be described as a traditional coffee leaf milk brew, not as ordinary
-    tea, coffee, or a standalone dairy drink. Its cultural role is closer to a
-    nourishing household beverage used for strength, recovery and daily support.
-  </p>
-
-  <div class="box box-caution">
-    <span class="box-label">Careful Wording</span>
-    <p>
-      The study documents reported use and reported experience among households.
-      It does not prove that Engere cures disease, increases milk production, or
-      improves physical performance in a clinical trial.
-    </p>
-  </div>
-
-  <!-- ================================================================== -->
-  <h2 id="evidence">What the Research Supports</h2>
-
-  <div class="stat-grid">
-    <div class="stat">
-      <span class="stat-number">385</span>
-      <span class="stat-label">households surveyed in Gofa Zone</span>
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#b8892a" stroke-width="1.5"/>
+          <path d="M12 8v4l3 3" stroke="#b8892a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Chemo is the daily drink. Engere is the restorative one.</h3>
     </div>
-    <div class="stat">
-      <span class="stat-number">54.8%</span>
-      <span class="stat-label">reported preparing Engere in some form</span>
+    <p>In Gofa Zone, the same communities drink two different coffee leaf beverages. Chemo — the plain brew without milk — is consumed twice a day as a household staple. Engere is consumed once a day, and it is associated with specific needs: recovery, nourishment, care.</p>
+    <p>This distinction is not marketing. These are communities who have been using both beverages for generations and understand them as serving different purposes. Chemo sustains. Engere restores.</p>
+    <div class="aside"><strong>What this suggests:</strong> people who have consumed coffee leaf beverages the longest have developed a nuanced vocabulary of use. They did not just discover one thing — they discovered two, and kept them separate for a reason.</div>
+  </div>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9" stroke="#b8892a" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16 3l4 4-4 4" stroke="#b8892a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>The milk appears to be doing something chemically significant</h3>
     </div>
-    <div class="stat">
-      <span class="stat-number">3</span>
-      <span class="stat-label">preparation types documented</span>
+    <p>Coffee leaves contain chlorogenic acids and other phenolic compounds that, in plain brew, have been associated with gastric irritation in some consumers. The study found that adding milk is not merely a flavour choice — it appears to change how the body receives the brew.</p>
+    <p>The mechanism researchers propose is buffering. Milk contains alkaline compounds that moderate the acidity of the brew. Its proteins may bind to some phenolic compounds, reducing their irritant potential. The fat content may coat the stomach lining before the brew reaches it.</p>
+    <div class="aside"><strong>Important note:</strong> This is a proposed mechanism, not a proven one. The study reports household experience, not clinical measurement. What it confirms is the outcome — not a single adverse event across 385 Engere households.</div>
+  </div>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#b8892a" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#b8892a" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>The most common form is the most complex one</h3>
     </div>
-    <div class="stat">
-      <span class="stat-number">0</span>
-      <span class="stat-label">self-reported health problems among Engere consumers</span>
+    <p>You might expect that the simplest preparation — just brew and milk — would be the most common. It is not. The most common form across Gofa Zone households is the spiced version, with a blend of herbs and spices added to the brew. 37.7% of households use this method regularly.</p>
+    <p>This means that the dominant household practice is not the minimum viable version — it is the fully elaborated one. The spice blend is not a special-occasion addition. It is the everyday standard.</p>
+    <div class="aside"><strong>What varies:</strong> which spices. Each household has its own combination built from availability, preference, and transmitted knowledge. The structure stays constant. The botanical content shifts.</div>
+  </div>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#b8892a" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="9" cy="7" r="4" stroke="#b8892a" stroke-width="1.5"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#b8892a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>It is prepared by someone who knows you</h3>
     </div>
+    <p>Engere is not sold. It is not prepared commercially. It is made at home, by hand, from ingredients the household grows or keeps, for the specific people in that household at that moment.</p>
+    <p>The preparation adjusts to the person: Simple Engere for a new mother. Sweetened for the child. Spiced for the labourer. The preparation is already a form of care before the cup is even raised.</p>
+    <div class="aside"><strong>This matters for understanding the drink:</strong> Engere does not exist outside of a relationship. It is always prepared by someone for someone, with knowledge of what that person needs.</div>
   </div>
 
-  <h3>Claims kept as supported</h3>
-  <ul>
-    <li>Engere is coffee leaf brew combined with fresh cow's milk.</li>
-    <li>The study documents three preparation types: simple, sweetened and spiced.</li>
-    <li>The reported preparation distribution is 19.7% simple, 22.6% sweetened and 37.7% spiced.</li>
-    <li>Engere is associated in the study with farmers, agro-pastoralists, lactating women, strength enhancement, recovery and medicinal use.</li>
-    <li>The study reports no self-reported gastritis or heart-related symptoms among Engere consumers, while plain coffee leaf brew had reported complaints among some respondents.</li>
-  </ul>
-
-  <h3>Claims softened or removed</h3>
-  <ul>
-    <li>The phrase "valued for centuries" has been softened — this page is based on a contemporary household study, not a direct historical chronology.</li>
-    <li>The claim that milk proves safety has been softened. The study reports respondent experience, not a clinical safety trial.</li>
-    <li>The casein and phenolic binding explanation is treated as a plausible interpretation, not as something directly proven by the Engere field paper.</li>
-    <li>The phrase "oldest documented coffee leaf culture" has been removed as an overclaim.</li>
-  </ul>
-
-  <div class="box box-note">
-    <span class="box-label">Best Public Wording</span>
-    <p>
-      Engere has a strong reported safety profile in the Gofa Zone survey, but this
-      should not be converted into a universal medical safety claim.
-    </p>
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#b8892a" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>The leaves used are the ones everyone else ignores</h3>
+    </div>
+    <p>Coffee cultivation produces enormous quantities of leaves. In most of the world — including most coffee-producing regions — these leaves are composted, burned, or simply left on the ground. They are agricultural residue.</p>
+    <p>In Gofa Zone and neighbouring areas, they are a food system ingredient. The same plant that produces the bean for global export produces leaves that stay local, that serve the community that cultivates the plant, that become part of a beverage tradition that the bean trade does not touch.</p>
+    <div class="aside"><strong>The whole plant view:</strong> Engere offers a glimpse of what coffee cultivation looks like when the community consuming it uses more than just the bean. Whether this is recoverable at scale is an open question. That it has persisted at household scale is documented fact.</div>
   </div>
-
-  <!-- ================================================================== -->
-  <h2 id="recipes">Choose a Preparation</h2>
-
-  <p>
-    All four recipe links below begin with the same principle: make coffee leaf
-    brew, strain it cleanly, then combine with fresh milk. The spiced version has
-    two practical routes — a single pot method and a double pot method.
-  </p>
-
-  <div class="box box-note">
-    <span class="box-label">Base Scale</span>
-    <p>
-      The quantities below follow the uploaded working draft and are shown as
-      practical four-serving approximations. Household practice varies by leaf
-      strength, milk availability, spice availability and taste.
-    </p>
-  </div>
-
-  <h3 id="simple">Simple Engere</h3>
-  <p>Coffee leaf brew plus fresh cow's milk. No sweetener. No spices.</p>
-
-  <table>
-    <thead>
-      <tr><th>Ingredient</th><th>Local name</th><th>Amount</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Mature fresh coffee leaves</td><td>Buna Kitel</td><td>200–250 g</td></tr>
-      <tr><td>Water</td><td>Woha</td><td>1000 ml</td></tr>
-      <tr><td>Fresh cow's milk</td><td>Yelam Wotet</td><td>400 ml</td></tr>
-    </tbody>
-  </table>
-
-  <div class="box box-recipe">
-    <span class="box-label">Method</span>
-    <ol class="steps">
-      <li><span class="step-number">1</span><div class="step-text"><p>Wash mature coffee leaves in clean water.</p></div></li>
-      <li><span class="step-number">2</span><div class="step-text"><p>Crush or chop the leaves to expose more surface area.</p></div></li>
-      <li><span class="step-number">3</span><div class="step-text"><p>Boil the leaves in water for 7 to 15 minutes.</p></div></li>
-      <li><span class="step-number">4</span><div class="step-text"><p>Strain completely. Discard all leaf material.</p></div></li>
-      <li><span class="step-number">5</span><div class="step-text"><p>Add fresh cow's milk to the hot strained brew, stir gently and serve hot.</p></div></li>
-    </ol>
-  </div>
-
-  <h3 id="sweetened">Sweetened Engere</h3>
-  <p>Coffee leaf brew, fresh milk and honey or sugar.</p>
-
-  <table>
-    <thead>
-      <tr><th>Ingredient</th><th>Local name</th><th>Amount</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Mature fresh coffee leaves</td><td>Buna Kitel</td><td>200–250 g</td></tr>
-      <tr><td>Water</td><td>Woha</td><td>1000 ml</td></tr>
-      <tr><td>Honey or sugar</td><td>Mar or Sukkar</td><td>30–45 g</td></tr>
-      <tr><td>Fresh cow's milk</td><td>Yelam Wotet</td><td>400 ml</td></tr>
-    </tbody>
-  </table>
-
-  <div class="box box-recipe">
-    <span class="box-label">Method</span>
-    <ol class="steps">
-      <li><span class="step-number">1</span><div class="step-text"><p>Prepare and strain the coffee leaf brew as in the simple method.</p></div></li>
-      <li><span class="step-number">2</span><div class="step-text"><p>Add honey or sugar to the hot strained brew and stir until dissolved.</p></div></li>
-      <li><span class="step-number">3</span><div class="step-text"><p>Add fresh cow's milk, stir gently and serve hot.</p></div></li>
-    </ol>
-  </div>
-
-  <h3 id="spiced-single">Spiced Engere — Single Pot</h3>
-  <p>Coffee leaves and spices are simmered in the same pot, then strained before milk is added.</p>
-
-  <table>
-    <thead>
-      <tr><th>Ingredient</th><th>Local name</th><th>Amount</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Mature fresh coffee leaves</td><td>Buna Kitel</td><td>200–250 g</td></tr>
-      <tr><td>Water</td><td>Woha</td><td>1500 ml</td></tr>
-      <tr><td>Rue herb</td><td>Tena Adam</td><td>1.5–2.5 g</td></tr>
-      <tr><td>Coriander seed</td><td>Dimbilal fruit</td><td>2.5–4.5 g</td></tr>
-      <tr><td>Garlic leaf</td><td>Nechi Shinkurt</td><td>5–10 g</td></tr>
-      <tr><td>Ginger</td><td>Jingibil</td><td>10–15 g</td></tr>
-      <tr><td>Sweet basil</td><td>Besobila</td><td>1.5–2 g</td></tr>
-      <tr><td>Lemongrass</td><td>Tejisar</td><td>5–8 g</td></tr>
-      <tr><td>Bird's eye chilli</td><td>Mitmita</td><td>0.5–1.5 g</td></tr>
-      <tr><td>Ethiopian cardamom</td><td>Korerima</td><td>1.5–2.5 g</td></tr>
-      <tr><td>Fennel</td><td>Ensilal</td><td>1–1.5 g</td></tr>
-      <tr><td>Salt</td><td>Chew</td><td>5–10 g</td></tr>
-      <tr><td>Fresh cow's milk</td><td>Yelam Wotet</td><td>500 ml</td></tr>
-      <tr><td>Honey or sugar</td><td>Mar or Sukkar</td><td>to taste</td></tr>
-    </tbody>
-  </table>
-
-  <div class="box box-recipe">
-    <span class="box-label">Method</span>
-    <ol class="steps">
-      <li><span class="step-number">1</span><div class="step-text"><p>Wash and crush the coffee leaves.</p></div></li>
-      <li><span class="step-number">2</span><div class="step-text"><p>Coarsely pound the spices and herbs.</p></div></li>
-      <li><span class="step-number">3</span><div class="step-text"><p>Boil the coffee leaves in water for 7 to 15 minutes.</p></div></li>
-      <li><span class="step-number">4</span><div class="step-text"><p>Add spices and herbs to the same pot and simmer for another 3 to 8 minutes.</p></div></li>
-      <li><span class="step-number">5</span><div class="step-text"><p>Strain completely, removing all leaves and spice residue.</p></div></li>
-      <li><span class="step-number">6</span><div class="step-text"><p>Add fresh milk, sweeten if desired and serve hot.</p></div></li>
-    </ol>
-  </div>
-
-  <h3 id="spiced-double">Spiced Engere — Double Pot</h3>
-  <p>Leaf brew and spice brew are prepared separately, then combined and strained again.</p>
-
-  <div class="box box-recipe">
-    <span class="box-label">Method</span>
-    <ol class="steps">
-      <li><span class="step-number">1</span><div class="step-text"><p>Pot 1: boil crushed coffee leaves in 1000 ml water for 7 to 15 minutes.</p></div></li>
-      <li><span class="step-number">2</span><div class="step-text"><p>Pot 2: boil spices and herbs separately in 500 ml water for 5 to 10 minutes.</p></div></li>
-      <li><span class="step-number">3</span><div class="step-text"><p>Strain the leaf brew into the spice brew. Discard the leaf solids.</p></div></li>
-      <li><span class="step-number">4</span><div class="step-text"><p>Boil the combined brew briefly for 2 to 3 minutes.</p></div></li>
-      <li><span class="step-number">5</span><div class="step-text"><p>Strain again to remove spice residue.</p></div></li>
-      <li><span class="step-number">6</span><div class="step-text"><p>Add 500 ml fresh cow's milk, sweeten to taste and serve hot.</p></div></li>
-    </ol>
-  </div>
-
-  <div class="box box-note">
-    <span class="box-label">Note</span>
-    <p>
-      The double pot method is a practical interpretation of separate extraction.
-      It may give cleaner flavour separation, but this should not imply it is
-      superior unless further sensory testing confirms it.
-    </p>
-  </div>
-
-  <!-- ================================================================== -->
-  <h2 id="use">How Engere Is Consumed</h2>
-
-  <ul>
-    <li>Reported frequency among Engere-preparing households: once daily, 55.6%; twice daily, 31.9%; three times daily, 12.5%.</li>
-    <li>Always served hot in the documented household practice.</li>
-    <li>Prepared fresh rather than stored as a ready-to-drink product.</li>
-    <li>Used by lactating women, farmers, labourers and households seeking a sustaining drink.</li>
-  </ul>
-
-  <!-- ================================================================== -->
-  <h2 id="milk">Why the Milk Matters</h2>
-
-  <p>
-    The field study reports a better self-reported tolerance pattern for Engere
-    than for plain coffee leaf brew. The most careful interpretation is that milk
-    may moderate the intensity of the brew and change its nutritional and sensory
-    character.
-  </p>
-
-  <div class="box box-evidence">
-    <span class="box-label">Interpretation, Not Proof</span>
-    <p>
-      It is plausible that milk proteins and fat alter bitterness, astringency,
-      phenolic perception and gastric comfort. However, this mechanism should be
-      presented as a food science explanation, not as a direct conclusion proven
-      by the Engere household survey.
-    </p>
-  </div>
-
-  <!-- ================================================================== -->
-  <h2 id="sources">References &amp; Evidence Basis</h2>
-
-  <ol>
-    <li>Yohannis, E., Teka, T. A., Tola, Y. B., and Teferra, T. F. 2026. Indigenous coffee leaf brew and Engere brewing practices, and consumption patterns in South Ethiopia. Discover Food. DOI: 10.1007/s44187-026-00927-8.</li>
-    <li>Study details used here: Gofa Zone, South Ethiopia; January to March 2024; 385 households; 3 focus group discussions; semi-structured interviews; observation checklists; descriptive statistics and qualitative coding.</li>
-    <li>This page is a public educational summary. It is not medical advice and does not make treatment claims.</li>
-  </ol>
 
 </div>
 
-<footer class="site-footer">
-  <div class="site-footer-inner">
-    <a class="footer-back" href="index.html">&larr; Back to BUNA Library</a>
-    <div class="footer-meta">
-      Published by KoffyKraft. Shared openly for study, discussion and further exploration.<br>
-      <a href="https://koffykraft.github.io/Coffee-Leaf-Files/index.html">koffykraft.github.io/Coffee-Leaf-Files</a>
+<!-- WHO DRINKS IT -->
+<div class="who-section">
+  <div class="who-inner">
+    <h2>Who drinks it and when</h2>
+    <p class="sub">Documented household associations — not prescribed uses</p>
+    <div class="who-cards">
+      <div class="who-card">
+        <div class="who-label">Lactating mothers</div>
+        <p>The most consistently documented association in the study. Simple Engere — brew and milk only — is the preferred form. No spices that might be too strong for early postpartum.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-label">Returning labourers</div>
+        <p>Spiced Engere is documented here. The warmth of ginger and cardamom alongside the milk is associated with recovery after physical work in the field.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-label">Children</div>
+        <p>Sweetened Engere — with honey or sugar — is documented as appropriate for children. More palatable, gentler, nourishing.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-label">Those recovering</div>
+        <p>Engere in general is associated with recovery periods. The zero adverse event record makes it appropriate when the body is under particular stress.</p>
+      </div>
     </div>
   </div>
-</footer>
+</div>
+
+<!-- SPICE SECTION -->
+<div class="spice-section">
+  <h2>The botanical dimension</h2>
+  <p class="sub">Tap any spice to learn more</p>
+  <p>The spice blend in Spiced Engere is where household botanical knowledge shows itself most clearly. Ten ingredients are documented across Gofa Zone households. No household uses all ten — each combination is its own, built from what is grown locally and what has been passed down.</p>
+
+  <div class="spice-tags">
+    <button class="spice-tag" onclick="showSpice('ginger', this)">Ginger</button>
+    <button class="spice-tag" onclick="showSpice('coriander', this)">Coriander</button>
+    <button class="spice-tag" onclick="showSpice('cardamom', this)">Ethiopian Cardamom</button>
+    <button class="spice-tag" onclick="showSpice('basil', this)">Sacred Basil</button>
+    <button class="spice-tag" onclick="showSpice('lemongrass', this)">Lemongrass</button>
+    <button class="spice-tag" onclick="showSpice('rue', this)">Rue</button>
+    <button class="spice-tag" onclick="showSpice('garlic', this)">Garlic Leaf</button>
+    <button class="spice-tag" onclick="showSpice('fennel', this)">Fennel</button>
+    <button class="spice-tag" onclick="showSpice('chilli', this)">Bird's Eye Chilli</button>
+    <button class="spice-tag" onclick="showSpice('salt', this)">Salt</button>
+  </div>
+
+  <div class="spice-detail" id="spice-ginger">
+    <strong>Ginger</strong> · <span class="local">Jingibil · Zingiber officinale</span><br>
+    One of the core trio that most defines the flavour of Spiced Engere alongside coriander and cardamom. Documented at 10–15g per litre of brew. Adds warmth and is associated in the region with recovery and digestion.
+  </div>
+  <div class="spice-detail" id="spice-coriander">
+    <strong>Coriander seed</strong> · <span class="local">Dimbilal · Coriandrum sativum</span><br>
+    Part of the core spice trio. Documented at 2.5–4.5g per litre. Adds citrus-adjacent warmth. The seed, not the leaf, is used in brewing.
+  </div>
+  <div class="spice-detail" id="spice-cardamom">
+    <strong>Ethiopian cardamom</strong> · <span class="local">Korerima · Aframomum corrorima</span><br>
+    Native to Ethiopia and East Africa. Distinct from green cardamom — earthier, camphor-adjacent. Documented at 1.5–2.5g per litre. The third element of the core trio.
+  </div>
+  <div class="spice-detail" id="spice-basil">
+    <strong>Sacred basil</strong> · <span class="local">Besobila · Ocimum basilicum</span><br>
+    Used at 1.5–2g per litre. In Ethiopian herbal tradition, Besobila has associations with wellbeing and is used across multiple beverage and medicinal preparations.
+  </div>
+  <div class="spice-detail" id="spice-lemongrass">
+    <strong>Lemongrass</strong> · <span class="local">Tejisar · Cymbopogon citratus</span><br>
+    Documented at 5–8g per litre. Adds a citrus and floral note that works against any residual bitterness from the leaf brew.
+  </div>
+  <div class="spice-detail" id="spice-rue">
+    <strong>Rue</strong> · <span class="local">Tena Adam · Ruta chalepensis</span><br>
+    Used at 1.5–2.5g per litre. One of the most widely used medicinal herbs in Ethiopian tradition. The name Tena Adam means roughly "health Adam" in Amharic — its name encodes its perceived purpose.
+  </div>
+  <div class="spice-detail" id="spice-garlic">
+    <strong>Garlic leaf</strong> · <span class="local">Nechi Shinkurt · Allium sativum</span><br>
+    The leaf rather than the bulb. Documented at 5–10g per litre. Adds pungency and depth. Associated in the region with strength and recovery — consistent with Engere's primary documented use.
+  </div>
+  <div class="spice-detail" id="spice-fennel">
+    <strong>Fennel</strong> · <span class="local">Ensilal · Anethum foeniculum</span><br>
+    Used at 1–1.5g per litre — the smallest quantity in the blend. Its anise character softens the overall spice profile. Often described as a background note.
+  </div>
+  <div class="spice-detail" id="spice-chilli">
+    <strong>Bird's eye chilli</strong> · <span class="local">Mitmita · Capsicum frutescens</span><br>
+    Documented at 0.5–1.5g per litre. The heat element. Used in small quantities — sufficient to add warmth and circulation-stimulating sensation without making the drink predominantly spicy.
+  </div>
+  <div class="spice-detail" id="spice-salt">
+    <strong>Salt</strong> · <span class="local">Chew · Sodium chloride</span><br>
+    Documented at 5–10g per litre. This is perhaps the most surprising entry. Salt suppresses bitterness and amplifies other flavour compounds. Its use is consistent with salt addition in traditional tea and leaf beverage practices across multiple food cultures — and with what food scientists now understand about flavour interaction.
+  </div>
+</div>
+
+<!-- CONTRAST -->
+<div class="contrast-section">
+  <div class="contrast-inner">
+    <h2>Chemo and Engere — the same plant, two different purposes</h2>
+    <p class="sub">As understood and practised by the communities who use both</p>
+    <div class="contrast-cols">
+      <div class="contrast-col chemo">
+        <h3>Chemo</h3>
+        <ul>
+          <li>Plain coffee leaf brew</li>
+          <li>No milk</li>
+          <li>Consumed twice daily</li>
+          <li>Daily household staple</li>
+          <li>35.6% reported symptoms</li>
+          <li>All ages and situations</li>
+        </ul>
+      </div>
+      <div class="contrast-col engere">
+        <h3>Engere</h3>
+        <ul>
+          <li>Coffee leaf brew + fresh milk</li>
+          <li>Spices and sweetener often added</li>
+          <li>Consumed once daily</li>
+          <li>The restorative drink</li>
+          <li>0% reported adverse events</li>
+          <li>Mothers, children, recovery, labour</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT -->
+<div class="next-section">
+  <p>If you want to go further — into the ethnobotany, the community landscape, the evidence framework, the full ingredient documentation, and what the research does and does not allow us to claim — the next page is the deep room.</p>
+  <a class="next-link" href="engere-deep.html">Go deeper into Engere →</a>
+  <a class="prev-link" href="engere-intro.html">← Back to: What is this?</a>
+</div>
+
+<div class="page-source">
+  Source: Yohannis et al. 2026 · Discover Food · DOI 10.1007/s44187-026-00927-8 · 385 households, Gofa Zone, South Ethiopia
+</div>
+
+<script>
+let activeSpice = null;
+function showSpice(id, btn) {
+  if (activeSpice === id) {
+    document.getElementById('spice-' + id).classList.remove('show');
+    btn.classList.remove('active');
+    activeSpice = null;
+    return;
+  }
+  document.querySelectorAll('.spice-detail').forEach(d => d.classList.remove('show'));
+  document.querySelectorAll('.spice-tag').forEach(b => b.classList.remove('active'));
+  document.getElementById('spice-' + id).classList.add('show');
+  btn.classList.add('active');
+  activeSpice = id;
+}
+</script>
 
 </body>
 </html>

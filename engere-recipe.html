@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engere · Recipes & Mechanics</title>
+<style>
+:root {
+  --ink:        #1a1a1a;
+  --warm:       #5a3e28;
+  --terracotta: #8b4a2a;
+  --terra-lt:   #c4795a;
+  --cream:      #faf6f0;
+  --pale:       #f5ede0;
+  --ruled:      #ddd0c0;
+  --muted:      #7a6a58;
+  --leaf:       #3d5a3e;
+  --leaf-pale:  #e8f0e8;
+  --warn-bg:    #fdf5e8;
+  --warn-border:#c8902a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+nav {
+  background: var(--warm);
+  padding: 14px 20px;
+  display: flex; align-items: center; gap: 10px;
+  position: sticky; top: 0; z-index: 100;
+}
+.brand { color:#fff; font-size:1rem; letter-spacing:.13em; text-transform:uppercase; }
+.sep   { color:rgba(255,255,255,.35); }
+.page-t{ color:rgba(255,255,255,.7); font-size:.82rem; }
+.back  { margin-left:auto; color:rgba(255,255,255,.6); font-size:.78rem; text-decoration:none; }
+.back:hover { color:#fff; }
+
+.hero {
+  background: var(--warm);
+  color: #fff;
+  padding: 36px 24px 32px;
+  text-align: center;
+}
+.hero .tradition { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; opacity:.55; margin-bottom:10px; }
+.hero h1 { font-size:clamp(1.8rem,6vw,2.6rem); font-weight:normal; margin-bottom:8px; }
+.hero .subtitle { font-size:1rem; opacity:.72; font-style:italic; max-width:440px; margin:0 auto; line-height:1.7; }
+
+.page-tabs {
+  background: var(--pale);
+  border-bottom: 1px solid var(--ruled);
+  display: flex; overflow-x:auto; -webkit-overflow-scrolling:touch;
+}
+.page-tab {
+  padding:14px 20px; font-size:.88rem; color:var(--muted);
+  text-decoration:none; white-space:nowrap;
+  border-bottom:3px solid transparent; flex-shrink:0;
+}
+.page-tab.active { color:var(--terracotta); border-bottom-color:var(--terracotta); font-weight:bold; }
+.page-tab:hover { color:var(--warm); }
+
+/* SCALER */
+.scaler-wrap {
+  background: var(--terracotta);
+  color: #fff;
+  padding: 20px 24px;
+  text-align: center;
+}
+.scaler-wrap p {
+  font-size:.85rem; opacity:.8; margin-bottom:12px; line-height:1.5;
+}
+.scaler-controls {
+  display: flex; align-items:center; justify-content:center; gap:16px;
+}
+.scaler-btn {
+  width:44px; height:44px; border-radius:50%;
+  background:rgba(255,255,255,.2); border:none;
+  color:#fff; font-size:1.4rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  font-family:Georgia,serif;
+}
+.scaler-btn:hover { background:rgba(255,255,255,.35); }
+.scaler-count {
+  font-size:1.5rem; font-weight:bold; min-width:40px; text-align:center;
+}
+.scaler-label { font-size:.82rem; opacity:.75; }
+
+/* BEFORE YOU START */
+.before-start {
+  max-width:680px; margin:32px auto 0; padding:0 24px;
+  background:var(--pale); border:1px solid var(--ruled);
+  border-radius:6px; padding:20px 24px;
+}
+.before-start h3 {
+  font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--terracotta); margin-bottom:14px;
+}
+.before-rule {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:10px 0; border-bottom:1px solid var(--ruled);
+  font-size:.95rem; line-height:1.7;
+}
+.before-rule:last-child { border-bottom:none; }
+.before-rule .dot {
+  width:8px; height:8px; border-radius:50%;
+  background:var(--terracotta); flex-shrink:0; margin-top:8px;
+}
+
+/* MAIN */
+main { max-width:680px; margin:0 auto; padding:40px 24px 60px; }
+
+.section-label {
+  font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--terracotta); margin-bottom:12px; padding-bottom:10px;
+  border-bottom:1px solid var(--ruled); display:block;
+  scroll-margin-top:70px;
+}
+h2 { font-size:1.55rem; font-weight:normal; color:var(--warm); margin-bottom:18px; line-height:1.3; scroll-margin-top:70px; }
+h3 { font-size:1.15rem; font-weight:normal; color:var(--warm); margin-bottom:10px; margin-top:24px; }
+p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:16px; }
+p:last-child { margin-bottom:0; }
+hr.section-rule { border:none; border-top:1px solid var(--ruled); margin:44px 0; }
+
+/* METHOD SELECTOR */
+.method-selector {
+  display:flex; gap:8px; margin-bottom:28px; flex-wrap:wrap;
+}
+.ms-btn {
+  padding:12px 20px; border:1.5px solid var(--ruled);
+  border-radius:4px; background:var(--cream);
+  color:var(--muted); font-family:Georgia,serif;
+  font-size:.95rem; cursor:pointer; transition:all .15s;
+  flex:1; min-width:120px; text-align:center;
+}
+.ms-btn.active {
+  background:var(--terracotta); color:#fff; border-color:var(--terracotta);
+}
+
+.recipe-panel { display:none; }
+.recipe-panel.show { display:block; }
+
+/* RECIPE BLOCK */
+.recipe-header {
+  background:var(--pale); border-radius:6px 6px 0 0;
+  padding:20px 24px; border-bottom:2px solid var(--terracotta);
+}
+.recipe-name-row { display:flex; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap; }
+.recipe-name { font-size:1.3rem; color:var(--warm); font-weight:normal; }
+.recipe-pct { font-size:.78rem; background:var(--terracotta); color:#fff; padding:2px 10px; border-radius:3px; }
+.recipe-desc { font-size:.95rem; color:var(--muted); line-height:1.65; font-style:italic; }
+
+/* INGREDIENTS TABLE */
+.ing-table {
+  width:100%; border-collapse:collapse; margin:20px 0; font-size:.95rem;
+}
+.ing-table th {
+  background:var(--warm); color:#fff;
+  padding:10px 14px; text-align:left;
+  font-weight:normal; font-size:.75rem;
+  letter-spacing:.06em; text-transform:uppercase;
+}
+.ing-table td {
+  padding:12px 14px; border-bottom:1px solid var(--ruled);
+  vertical-align:top; line-height:1.55;
+}
+.ing-table tr:nth-child(even) td { background:var(--pale); }
+.ing-table .local { font-size:.8rem; color:var(--muted); font-style:italic; }
+.ing-table .amount { font-weight:bold; color:var(--warm); }
+.ing-table .scaled { color:var(--terracotta); }
+.ing-group-head td {
+  background:var(--pale) !important;
+  font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted); padding:8px 14px; border-bottom:1px solid var(--ruled);
+}
+
+/* STEPS */
+.steps-list { list-style:none; margin:20px 0; }
+.steps-list li {
+  display:flex; gap:16px; align-items:flex-start;
+  padding:16px 0; border-bottom:1px solid var(--ruled);
+  font-size:1rem; line-height:1.8;
+}
+.steps-list li:last-child { border-bottom:none; }
+.step-num {
+  min-width:36px; height:36px; border-radius:50%;
+  background:var(--terracotta); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.9rem; font-weight:bold; flex-shrink:0;
+  margin-top:2px;
+}
+.step-content h4 {
+  font-size:1rem; font-weight:bold; color:var(--warm);
+  margin-bottom:4px;
+}
+.step-content p { font-size:.95rem; margin:0; color:var(--ink); line-height:1.75; }
+.step-note {
+  background:var(--pale); border-radius:4px;
+  padding:8px 12px; margin-top:8px;
+  font-size:.85rem; color:var(--muted); font-style:italic;
+  line-height:1.6;
+}
+
+/* YIELD BOX */
+.yield-box {
+  background:var(--terracotta); color:#fff;
+  border-radius:0 0 6px 6px;
+  padding:16px 24px;
+  display:flex; gap:24px; flex-wrap:wrap;
+}
+.yield-item { text-align:center; }
+.yield-num { font-size:1.4rem; font-weight:bold; display:block; }
+.yield-label { font-size:.75rem; opacity:.75; }
+
+/* NOTES */
+.note-box {
+  background:var(--leaf-pale);
+  border-left:4px solid var(--leaf);
+  border-radius:0 6px 6px 0;
+  padding:16px 20px; margin:20px 0;
+  font-size:.92rem; line-height:1.75;
+}
+.note-box .note-title {
+  font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--leaf); margin-bottom:6px;
+}
+
+.warn-box {
+  background:var(--warn-bg);
+  border-left:4px solid var(--warn-border);
+  border-radius:0 6px 6px 0;
+  padding:16px 20px; margin:20px 0;
+  font-size:.92rem; line-height:1.75;
+}
+.warn-box strong { color:#7a5010; }
+
+/* EQUIPMENT */
+.equip-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0; }
+.equip-card {
+  background:var(--pale); border-radius:6px; padding:16px;
+  font-size:.92rem; line-height:1.65;
+}
+.equip-card .equip-type {
+  font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--terracotta); margin-bottom:6px;
+}
+.equip-card .equip-name { font-size:1rem; color:var(--warm); margin-bottom:4px; }
+
+/* MILK GUIDE */
+.milk-options { display:grid; grid-template-columns:1fr; gap:8px; margin:20px 0; }
+.milk-opt {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:14px 16px; border-radius:6px;
+  font-size:.95rem; line-height:1.65;
+}
+.milk-opt.preferred { background:#e8f5e8; border-left:4px solid var(--leaf); }
+.milk-opt.acceptable { background:var(--warn-bg); border-left:4px solid var(--warn-border); }
+.milk-opt.avoid { background:#fdf0f0; border-left:4px solid #c84040; }
+.milk-icon { font-size:1.2rem; flex-shrink:0; margin-top:2px; }
+.milk-name { font-weight:bold; display:block; margin-bottom:2px; }
+.milk-note { font-size:.85rem; color:var(--muted); }
+
+/* QUALITY */
+.quality-list { list-style:none; margin:16px 0; }
+.quality-list li {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:12px 0; border-bottom:1px solid var(--ruled);
+  font-size:.95rem; line-height:1.65;
+}
+.quality-list li:last-child { border-bottom:none; }
+.q-mark { font-size:1rem; flex-shrink:0; margin-top:2px; }
+
+/* SERVING RULES */
+.serving-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:20px 0; }
+.serving-card {
+  background:var(--pale); border-radius:6px; padding:16px;
+  text-align:center;
+}
+.serving-card .sv-num { font-size:1.6rem; color:var(--terracotta); font-weight:bold; display:block; margin-bottom:4px; }
+.serving-card .sv-label { font-size:.82rem; color:var(--muted); line-height:1.4; }
+
+/* PAGE NAV */
+.page-nav {
+  max-width:680px; margin:0 auto;
+  padding:24px 24px 48px;
+  display:flex; justify-content:space-between; align-items:center;
+  border-top:1px solid var(--ruled);
+}
+.page-nav a {
+  color:var(--terracotta); text-decoration:none;
+  font-size:1rem; display:flex; align-items:center; gap:8px;
+}
+.page-nav a:hover { color:var(--warm); }
+.page-nav .prev {
+  border:1.5px solid var(--terracotta);
+  padding:12px 20px; border-radius:4px; font-size:.95rem;
+}
+
+.source-note {
+  max-width:680px; margin:0 auto;
+  padding:0 24px 40px;
+  font-size:.82rem; color:var(--muted);
+  line-height:1.7; font-style:italic;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Citane</span>
+  <span class="sep">/</span>
+  <span class="page-t">Engere · Recipes & Mechanics</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="hero">
+  <div class="tradition">Ethiopian Coffee Leaf Tradition · Gofa Zone, South Ethiopia</div>
+  <h1>Engere — Recipes & Mechanics</h1>
+  <p class="subtitle">All four preparation methods with full ingredients, step-by-step instructions, equipment guidance, and quality checks.</p>
+</div>
+
+<div class="page-tabs">
+  <a class="page-tab" href="engere-intro.html">What is this?</a>
+  <a class="page-tab" href="engere.html">What's fascinating</a>
+  <a class="page-tab" href="engere-deep.html">Go deeper</a>
+  <a class="page-tab active" href="#">Recipes & Mechanics</a>
+</div>
+
+<!-- SCALER -->
+<div class="scaler-wrap">
+  <p>All quantities below adjust to your serving size</p>
+  <div class="scaler-controls">
+    <button class="scaler-btn" onclick="changeServings(-1)">−</button>
+    <div>
+      <div class="scaler-count" id="serving-count">4</div>
+      <div class="scaler-label">servings (~300ml each)</div>
+    </div>
+    <button class="scaler-btn" onclick="changeServings(1)">+</button>
+  </div>
+</div>
+
+<!-- BEFORE YOU START -->
+<div class="before-start" style="max-width:680px;margin:28px auto 0;padding:20px 24px;">
+  <h3>Before any method — read this first</h3>
+  <div class="before-rule">
+    <div class="dot"></div>
+    All three methods begin with making coffee leaf brew. The base is identical — it is what gets added afterwards that differs.
+  </div>
+  <div class="before-rule">
+    <div class="dot"></div>
+    The brew is always fully strained before milk is added. Leaves are never served in the cup. A clean strain is not optional.
+  </div>
+  <div class="before-rule">
+    <div class="dot"></div>
+    Milk is never pre-boiled separately. It goes into the hot strained brew at the end.
+  </div>
+  <div class="before-rule">
+    <div class="dot"></div>
+    Always serve hot immediately after preparation. Do not store. Do not reheat.
+  </div>
+  <div class="before-rule">
+    <div class="dot"></div>
+    If the finished drink has any grittiness, the strain was incomplete. That batch is compromised — the texture cannot be recovered.
+  </div>
+</div>
+
+<main>
+
+<!-- METHOD SELECTOR -->
+<span class="section-label">Choose your method</span>
+
+<div class="method-selector">
+  <button class="ms-btn active" onclick="showRecipe('simple', this)">Simple</button>
+  <button class="ms-btn" onclick="showRecipe('sweetened', this)">Sweetened</button>
+  <button class="ms-btn" onclick="showRecipe('spiced-a', this)">Spiced — Single Pot</button>
+  <button class="ms-btn" onclick="showRecipe('spiced-b', this)">Spiced — Double Pot</button>
+</div>
+
+<!-- ═══ METHOD 1: SIMPLE ═══ -->
+<div class="recipe-panel show" id="recipe-simple">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Simple Engere</span>
+      <span class="recipe-pct">19.7% of households</span>
+    </div>
+    <p class="recipe-desc">Coffee leaf brew and fresh cow's milk. Nothing else. All character comes from the quality of the leaf and the freshness of the milk. Traditionally given to lactating mothers and those with sensitive digestion.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Local name</th><th>Amount (base 4 servings)</th></tr></thead>
+    <tbody>
+      <tr class="ing-group-head"><td colspan="3">Coffee Leaf Brew</td></tr>
+      <tr>
+        <td>Mature coffee leaves, fresh</td>
+        <td class="local">Buna Kitel</td>
+        <td class="amount scaled" data-base="225">225 g</td>
+      </tr>
+      <tr>
+        <td>Water</td>
+        <td class="local">Woha</td>
+        <td class="amount scaled" data-base="1000">1000 ml</td>
+      </tr>
+      <tr class="ing-group-head"><td colspan="3">To Add After Straining</td></tr>
+      <tr>
+        <td>Fresh cow's milk</td>
+        <td class="local">Yelam Wotet</td>
+        <td class="amount scaled" data-base="400">400 ml</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <div class="note-title">Dried leaves</div>
+    If using dried leaves instead of fresh: use 75–150g per litre of water. Dried leaves are more concentrated — start at the lower end.
+  </div>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Harvest and wash leaves</h4>
+        <p>Handpick mature leaves from the terminal tips of the coffee plant. Large green or slightly yellowing leaves are correct — avoid very young unfurled leaves. Wash in clean water in a flat tray.</p>
+        <div class="step-note">The research documents that leaves are harvested fresh for each brewing session. Pre-harvested stored leaves are a substitution, not the traditional practice.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Crush the leaves</h4>
+        <p>Pound or crush leaves into small pieces using a traditional wooden mortar and pestle, or chop coarsely with a knife. Crushing exposes more surface area and improves extraction.</p>
+        <div class="step-note">This step is consistent across all three methods. Do not skip it — whole leaves extract poorly.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Boil and steep</h4>
+        <p>Bring <span class="scaled" data-base="1000">1000</span> ml of clean water to a full rolling boil (100°C) in a clay pot (Jabena) or metal pot. Add crushed leaves. Cover to retain heat and aromas. Simmer 7–15 minutes.</p>
+        <div class="step-note">Longer steeping produces a darker, more astringent brew. For a milder result, keep to 7–9 minutes. Taste at 7 minutes and decide.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Strain completely</h4>
+        <p>Pour through fine cloth or a fine mesh strainer. Discard all leaf material. Do not press or squeeze — just drain. The brew should be clear amber-to-brown. Pour into a clean pot.</p>
+        <div class="step-note">This is the most critical step. Coffee leaves are fibrous and never consumed. Any residue makes the drink gritty and harsh. A clean strain is the difference between a good Engere and a failed one.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Add milk and serve</h4>
+        <p>Add <span class="scaled" data-base="400">400</span> ml of fresh cow's milk to the hot strained brew. Stir gently. Serve immediately while hot.</p>
+        <div class="step-note">The ratio of milk to brew is 1/3 to 1/2 litre per litre of brew. Adjust to taste — more milk gives a creamier, gentler drink; less milk gives a stronger, more leaf-forward character.</div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="1400">1400</span><span class="yield-label">ml total yield</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">Hot</span><span class="yield-label">serve immediately</span></div>
+  </div>
+</div>
+
+<!-- ═══ METHOD 2: SWEETENED ═══ -->
+<div class="recipe-panel" id="recipe-sweetened">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Sweetened Engere</span>
+      <span class="recipe-pct">22.6% of households</span>
+    </div>
+    <p class="recipe-desc">Coffee leaf brew, fresh cow's milk, and honey or sugar. A gentler, more approachable version. Documented as the preferred form for children and for first-time drinkers.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Local name</th><th>Amount (base 4 servings)</th></tr></thead>
+    <tbody>
+      <tr class="ing-group-head"><td colspan="3">Coffee Leaf Brew</td></tr>
+      <tr><td>Mature coffee leaves, fresh</td><td class="local">Buna Kitel</td><td class="amount scaled" data-base="225">225 g</td></tr>
+      <tr><td>Water</td><td class="local">Woha</td><td class="amount scaled" data-base="1000">1000 ml</td></tr>
+      <tr class="ing-group-head"><td colspan="3">To Add After Straining</td></tr>
+      <tr><td>Honey or sugar</td><td class="local">Mar / Sukkar</td><td class="amount scaled" data-base="38">30–45 g</td></tr>
+      <tr><td>Fresh cow's milk</td><td class="local">Yelam Wotet</td><td class="amount scaled" data-base="400">400 ml</td></tr>
+    </tbody>
+  </table>
+
+  <ol class="steps-list">
+    <li><div class="step-num">1</div><div class="step-content"><h4>Harvest, wash, crush leaves</h4><p>Follow Steps 1 and 2 from Simple Engere. Identical base preparation.</p></div></li>
+    <li><div class="step-num">2</div><div class="step-content"><h4>Boil and steep</h4><p>Bring <span class="scaled" data-base="1000">1000</span> ml water to boil. Add crushed leaves. Simmer 7–15 minutes covered. Strain fully.</p></div></li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Dissolve sweetener in hot brew</h4>
+        <p>Add <span class="scaled" data-base="38">30–45</span> g honey or sugar to the hot strained brew. Stir until fully dissolved. Taste — the sweetness should be gentle, not dominant.</p>
+        <div class="step-note">Add sweetener before milk so it dissolves fully in the hot liquid. Honey is the traditional choice where available. Sugar is an accepted practical substitute.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Add milk and serve</h4>
+        <p>Add <span class="scaled" data-base="400">400</span> ml fresh cow's milk. Stir gently. Serve hot immediately.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="1400">1400</span><span class="yield-label">ml total yield</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">Hot</span><span class="yield-label">serve immediately</span></div>
+  </div>
+</div>
+
+<!-- ═══ METHOD 3A: SPICED SINGLE POT ═══ -->
+<div class="recipe-panel" id="recipe-spiced-a">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Spiced Engere — Single Pot</span>
+      <span class="recipe-pct">37.7% combined — most common</span>
+    </div>
+    <p class="recipe-desc">Leaves and spices brewed together in one pot. Quicker, fewer vessels. The spice flavour integrates more deeply with the leaf brew. Add spices in the last 3–8 minutes of steeping.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Local name / Scientific</th><th>Amount (base 4 servings)</th></tr></thead>
+    <tbody>
+      <tr class="ing-group-head"><td colspan="3">Coffee Leaf Brew Base</td></tr>
+      <tr><td>Mature coffee leaves, fresh</td><td class="local">Buna Kitel · Coffea arabica</td><td class="amount scaled" data-base="225">225 g</td></tr>
+      <tr><td>Water</td><td class="local">Woha</td><td class="amount scaled" data-base="1500">1500 ml</td></tr>
+      <tr class="ing-group-head"><td colspan="3">Spices & Herbs (add last 3–8 min)</td></tr>
+      <tr><td>Ginger</td><td class="local">Jingibil · Zingiber officinale</td><td class="amount scaled" data-base="12">10–15 g</td></tr>
+      <tr><td>Coriander seed</td><td class="local">Dimbilal · Coriandrum sativum</td><td class="amount scaled" data-base="3.5">2.5–4.5 g</td></tr>
+      <tr><td>Ethiopian cardamom</td><td class="local">Korerima · Aframomum corrorima</td><td class="amount scaled" data-base="2">1.5–2.5 g</td></tr>
+      <tr><td>Sacred basil</td><td class="local">Besobila · Ocimum basilicum</td><td class="amount scaled" data-base="1.75">1.5–2 g</td></tr>
+      <tr><td>Lemongrass</td><td class="local">Tejisar · Cymbopogon citratus</td><td class="amount scaled" data-base="6.5">5–8 g</td></tr>
+      <tr><td>Rue herb</td><td class="local">Tena Adam · Ruta chalepensis</td><td class="amount scaled" data-base="2">1.5–2.5 g</td></tr>
+      <tr><td>Garlic leaf</td><td class="local">Nechi Shinkurt · Allium sativum</td><td class="amount scaled" data-base="7.5">5–10 g</td></tr>
+      <tr><td>Fennel</td><td class="local">Ensilal · Anethum foeniculum</td><td class="amount scaled" data-base="1.25">1–1.5 g</td></tr>
+      <tr><td>Bird's eye chilli</td><td class="local">Mitmita · Capsicum frutescens</td><td class="amount scaled" data-base="1">0.5–1.5 g</td></tr>
+      <tr><td>Salt</td><td class="local">Chew · Sodium chloride</td><td class="amount scaled" data-base="7.5">5–10 g</td></tr>
+      <tr class="ing-group-head"><td colspan="3">To Add After Straining</td></tr>
+      <tr><td>Fresh cow's milk</td><td class="local">Yelam Wotet</td><td class="amount scaled" data-base="500">500 ml</td></tr>
+      <tr><td>Honey or sugar</td><td class="local">Mar / Sukkar</td><td class="amount scaled" data-base="38">to taste</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <div class="note-title">Not every spice is required</div>
+    Use what is available. The core trio that most defines the flavour is ginger, coriander, and cardamom. Build outward from there. Each household has its own combination — there is no single correct recipe.
+  </div>
+
+  <ol class="steps-list">
+    <li><div class="step-num">1</div><div class="step-content"><h4>Harvest, wash, crush leaves</h4><p>Handpick mature leaves, wash, and pound or chop coarsely. Grind or crack whole spices using mortar and pestle.</p></div></li>
+    <li><div class="step-num">2</div><div class="step-content"><h4>Boil leaves</h4><p>Bring <span class="scaled" data-base="1500">1500</span> ml water to a full rolling boil. Add crushed leaves. Simmer covered for 7–12 minutes.</p></div></li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Add spices</h4>
+        <p>Add the prepared spices and herbs to the same pot for the last 3–8 minutes of steeping. Longer spice contact = more intensity. Shorter = more delicate.</p>
+        <div class="step-note">Start with 3 minutes if you are making this for the first time. Taste and adjust in future batches.</div>
+      </div>
+    </li>
+    <li><div class="step-num">4</div><div class="step-content"><h4>Strain completely</h4><p>Pour through fine cloth or fine mesh. Strain out all leaf and spice material. The brew should run clear. Pour into a clean pot.</p></div></li>
+    <li>
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Add sweetener, then milk</h4>
+        <p>Dissolve honey or sugar in the hot brew first. Then add <span class="scaled" data-base="500">500</span> ml fresh cow's milk. Stir gently. Serve immediately while hot.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="1700">1700</span><span class="yield-label">ml total yield</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">Hot</span><span class="yield-label">serve immediately</span></div>
+  </div>
+</div>
+
+<!-- ═══ METHOD 3B: SPICED DOUBLE POT ═══ -->
+<div class="recipe-panel" id="recipe-spiced-b">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Spiced Engere — Double Pot</span>
+      <span class="recipe-pct">37.7% combined — more controlled</span>
+    </div>
+    <p class="recipe-desc">Leaves and spices brewed separately in two pots, then combined. More control over spice intensity. Cleaner flavour separation. The preferred method when quality and precision matter more than speed.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Ingredient</th><th>Local name / Scientific</th><th>Amount (base 4 servings)</th></tr></thead>
+    <tbody>
+      <tr class="ing-group-head"><td colspan="3">Pot One — Coffee Leaf Brew</td></tr>
+      <tr><td>Mature coffee leaves, fresh</td><td class="local">Buna Kitel</td><td class="amount scaled" data-base="225">225 g</td></tr>
+      <tr><td>Water</td><td class="local">Woha</td><td class="amount scaled" data-base="1000">1000 ml</td></tr>
+      <tr class="ing-group-head"><td colspan="3">Pot Two — Spice Brew</td></tr>
+      <tr><td>Water</td><td class="local">Woha</td><td class="amount scaled" data-base="500">500 ml</td></tr>
+      <tr><td>Ginger</td><td class="local">Jingibil</td><td class="amount scaled" data-base="12">10–15 g</td></tr>
+      <tr><td>Coriander seed</td><td class="local">Dimbilal</td><td class="amount scaled" data-base="3.5">2.5–4.5 g</td></tr>
+      <tr><td>Ethiopian cardamom</td><td class="local">Korerima</td><td class="amount scaled" data-base="2">1.5–2.5 g</td></tr>
+      <tr><td>Sacred basil</td><td class="local">Besobila</td><td class="amount scaled" data-base="1.75">1.5–2 g</td></tr>
+      <tr><td>Lemongrass</td><td class="local">Tejisar</td><td class="amount scaled" data-base="6.5">5–8 g</td></tr>
+      <tr><td>Rue herb</td><td class="local">Tena Adam</td><td class="amount scaled" data-base="2">1.5–2.5 g</td></tr>
+      <tr><td>Garlic leaf</td><td class="local">Nechi Shinkurt</td><td class="amount scaled" data-base="7.5">5–10 g</td></tr>
+      <tr><td>Fennel</td><td class="local">Ensilal</td><td class="amount scaled" data-base="1.25">1–1.5 g</td></tr>
+      <tr><td>Bird's eye chilli</td><td class="local">Mitmita</td><td class="amount scaled" data-base="1">0.5–1.5 g</td></tr>
+      <tr><td>Salt</td><td class="local">Chew</td><td class="amount scaled" data-base="7.5">5–10 g</td></tr>
+      <tr class="ing-group-head"><td colspan="3">To Add After Combining</td></tr>
+      <tr><td>Fresh cow's milk</td><td class="local">Yelam Wotet</td><td class="amount scaled" data-base="500">500 ml</td></tr>
+      <tr><td>Honey or sugar</td><td class="local">Mar / Sukkar</td><td class="amount scaled" data-base="38">to taste</td></tr>
+    </tbody>
+  </table>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Brew leaves — Pot One</h4>
+        <p>Boil <span class="scaled" data-base="1000">1000</span> ml water. Add crushed leaves. Simmer 7–15 minutes covered. Strain completely. Set aside.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Brew spices — Pot Two</h4>
+        <p>Boil <span class="scaled" data-base="500">500</span> ml water. Add ground or cracked spices. Simmer 5–10 minutes. This standalone spice brew allows you to control intensity independently.</p>
+        <div class="step-note">Taste the spice brew before combining. If it is too intense, dilute with a little water. If too mild, simmer a few minutes more.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Combine and briefly boil</h4>
+        <p>Pour the strained leaf brew into the spice pot. Bring to a brief boil together — 2–3 minutes. Strain once more through fine cloth to remove all spice material.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Add sweetener, then milk</h4>
+        <p>Dissolve honey or sugar in the combined hot brew. Add <span class="scaled" data-base="500">500</span> ml fresh cow's milk. Stir gently. Serve immediately.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num scaled" data-base="1700">1700</span><span class="yield-label">ml total yield</span></div>
+    <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+    <div class="yield-item"><span class="yield-num">Hot</span><span class="yield-label">serve immediately</span></div>
+  </div>
+</div>
+
+<hr class="section-rule">
+
+<!-- EQUIPMENT -->
+<span class="section-label" id="equipment">Equipment</span>
+<h2>Traditional and modern</h2>
+
+<p>Traditional Engere preparation uses specific equipment. These are not decorative choices — the materials and design are understood by communities to interact with the beverage in ways that preserve character. Modern substitutes work but represent a practical adaptation, not the traditional standard.</p>
+
+<div class="equip-grid">
+  <div class="equip-card">
+    <div class="equip-type">Traditional · Preferred</div>
+    <div class="equip-name">Clay pot (Jabena)</div>
+    Used for brewing and serving. Retains heat well, believed to interact with compounds differently than metal.
+  </div>
+  <div class="equip-card">
+    <div class="equip-type">Modern · Acceptable</div>
+    <div class="equip-name">Metal or enamel pot</div>
+    Works well functionally. Standard substitute where clay is unavailable.
+  </div>
+  <div class="equip-card">
+    <div class="equip-type">Traditional · Preferred</div>
+    <div class="equip-name">Wooden mortar & pestle</div>
+    For crushing leaves and grinding spices. Wooden tools believed to preserve medicinal properties.
+  </div>
+  <div class="equip-card">
+    <div class="equip-type">Modern · Acceptable</div>
+    <div class="equip-name">Metal mortar or knife</div>
+    Coarse chopping with a knife or metal mortar and pestle are functional substitutes.
+  </div>
+  <div class="equip-card">
+    <div class="equip-type">Traditional · Preferred</div>
+    <div class="equip-name">Fine cloth strainer</div>
+    Tightly woven cloth gives the cleanest strain. The traditional standard.
+  </div>
+  <div class="equip-card">
+    <div class="equip-type">Modern · Acceptable</div>
+    <div class="equip-name">Fine mesh strainer</div>
+    Works well. Use the finest mesh available. Double-strain if any grittiness remains.
+  </div>
+</div>
+
+<hr class="section-rule">
+
+<!-- MILK -->
+<span class="section-label" id="milk">Milk — the critical ingredient</span>
+<h2>Which milk to use</h2>
+
+<p>The milk is not merely an addition — it defines Engere. The type of milk matters to both flavour and to the traditional character of the drink.</p>
+
+<div class="milk-options">
+  <div class="milk-opt preferred">
+    <div class="milk-icon">✓</div>
+    <div>
+      <span class="milk-name">Fresh unpasteurised cow's milk — preferred</span>
+      The traditional standard. Preferred for flavour and for perceived preservation of the milk's natural properties. Use this where available.
+      <div class="milk-note">Ratio: 1/3 to 1/2 litre per litre of brew. More milk = creamier, gentler. Less = stronger leaf character.</div>
+    </div>
+  </div>
+  <div class="milk-opt acceptable">
+    <div class="milk-icon">~</div>
+    <div>
+      <span class="milk-name">Pasteurised cow's milk — acceptable</span>
+      Works functionally. The buffer effect on acidity still applies. Some believe pasteurisation affects the character of the drink. Use if fresh is unavailable.
+    </div>
+  </div>
+  <div class="milk-opt avoid">
+    <div class="milk-icon">✗</div>
+    <div>
+      <span class="milk-name">UHT (long-life) milk — avoid</span>
+      Ultra-high-temperature processing is understood to destroy properties believed to contribute to Engere's character. Not part of the traditional preparation.
+    </div>
+  </div>
+  <div class="milk-opt avoid">
+    <div class="milk-icon">✗</div>
+    <div>
+      <span class="milk-name">Plant-based milks — not applicable</span>
+      Coconut, oat, almond and other plant milks do not provide the same buffer effect and are not part of the documented tradition.
+    </div>
+  </div>
+</div>
+
+<hr class="section-rule">
+
+<!-- QUALITY -->
+<span class="section-label" id="quality">Quality checks</span>
+<h2>What a good Engere looks and tastes like</h2>
+
+<ul class="quality-list">
+  <li><div class="q-mark">✓</div><div><strong>Colour:</strong> Warm amber to golden-brown. Slightly cloudy from the milk integration. Not pale, not black.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Texture:</strong> Smooth. No grittiness whatsoever. Any grittiness means incomplete straining — that batch should be discarded.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Aroma:</strong> Aromatic, coffee-forward, creamy. Spiced versions carry the warmth of whatever herbs were used — ginger and cardamom should be detectable but not overwhelming.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Taste:</strong> Balanced. The leaf brew and milk should integrate — neither dominating. Bitterness should be mild and soft, not sharp. Sweetened versions should taste gently sweet, not sugary.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Temperature:</strong> Serve hot. Not boiling — warm and comforting. Communities describe Engere as a drink that warms from inside.</div></li>
+  <li><div class="q-mark">✗</div><div><strong>Grittiness:</strong> Always a sign of incomplete straining. Not recoverable. Start again if this occurs.</div></li>
+  <li><div class="q-mark">✗</div><div><strong>Separated or curdled:</strong> Milk added to a brew that has cooled too far may not integrate properly. The brew must still be hot when milk is added.</div></li>
+</ul>
+
+<hr class="section-rule">
+
+<!-- SERVING -->
+<span class="section-label" id="serving">Serving rules</span>
+<h2>How Engere is served</h2>
+
+<div class="serving-grid">
+  <div class="serving-card">
+    <span class="sv-num">Hot</span>
+    <span class="sv-label">Always served hot. Never cold, never warm, never reheated.</span>
+  </div>
+  <div class="serving-card">
+    <span class="sv-num">50ml</span>
+    <span class="sv-label">Traditional serving size per cup. Concentrated — not a large-volume drink.</span>
+  </div>
+  <div class="serving-card">
+    <span class="sv-num">Fresh</span>
+    <span class="sv-label">Prepared immediately before consumption. Not stored, not made in advance.</span>
+  </div>
+  <div class="serving-card">
+    <span class="sv-num">6–12h</span>
+    <span class="sv-label">Maximum before discarding. Do not consume Engere after this window.</span>
+  </div>
+</div>
+
+<div class="warn-box">
+  <strong>Never reheat Engere.</strong> Traditional practice is explicit on this point. Reheating damages aromatic compounds and creates bacterial growth risk in a milk-based beverage. Prepare fresh for each session. Discard what is not consumed within 6–12 hours.
+</div>
+
+</main>
+
+<div class="page-nav">
+  <a class="prev" href="engere-deep.html">← Go Deeper</a>
+  <a href="visitor-lounge.html">Library →</a>
+</div>
+
+<div class="source-note">
+  Source: Yohannis et al. 2026 · Discover Food · DOI 10.1007/s44187-026-00927-8 · 385 households, Gofa Zone, South Ethiopia. Recipe quantities from Yohannis et al. 2026 and engere_rebuild_may30 working document.
+</div>
+
+<script>
+// ── SERVING SCALER ─────────────────────────────────────
+let servings = 4;
+const BASE = 4;
+
+function changeServings(delta) {
+  servings = Math.max(1, Math.min(20, servings + delta));
+  document.getElementById('serving-count').textContent = servings;
+  const ratio = servings / BASE;
+  document.querySelectorAll('.scaled').forEach(el => {
+    const base = parseFloat(el.dataset.base);
+    if (isNaN(base)) return;
+    const val = base * ratio;
+    if (Number.isInteger(val)) {
+      el.textContent = val;
+    } else {
+      el.textContent = Math.round(val * 10) / 10;
+    }
+  });
+}
+
+// ── RECIPE SELECTOR ────────────────────────────────────
+function showRecipe(id, btn) {
+  document.querySelectorAll('.recipe-panel').forEach(p => p.classList.remove('show'));
+  document.querySelectorAll('.ms-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('recipe-' + id).classList.add('show');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
