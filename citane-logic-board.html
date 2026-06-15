@@ -1206,23 +1206,22 @@ function renderEpsilonSections(text) {
 }
 
 // ── URL PRE-SELECT (from Flavour Landscape link) ──────────────────
-window.addEventListener('load', function() {
+function applyHashDescriptor() {
   const hash = window.location.hash;
   if (!hash.startsWith('#desc=')) return;
   const desc = hash.replace('#desc=', '');
   const valid = ['green','refreshing','floral','sweet','fruity','mineral','bitter','woody','smoky'];
   if (!valid.includes(desc)) return;
+  // Avoid running twice if already applied
+  if (STATE.descriptor === desc) return;
 
-  // Set entry point to descriptor
   STATE.entry = 'descriptor';
   document.querySelectorAll('.entry-btn').forEach(b => b.classList.remove('active'));
   const entryBtn = document.querySelector('[data-entry="descriptor"]');
   if (entryBtn) entryBtn.classList.add('active');
 
-  // Show sections
   showSectionsForEntry('descriptor');
 
-  // Select descriptor chip
   const grid = document.getElementById('grid-descriptor');
   if (!grid) return;
   grid.querySelectorAll('.choice-box').forEach(b => b.classList.remove('selected'));
@@ -1231,18 +1230,23 @@ window.addEventListener('load', function() {
   box.classList.add('selected');
   STATE.descriptor = desc;
 
-  // Run cascade and generate output
   cascadeFromDescriptor(desc);
   tryGenerateOutput();
 
-  // Scroll to output
   setTimeout(function() {
     const card = document.getElementById('output-card');
     if (card && card.classList.contains('show')) {
       card.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, 150);
+}
+
+window.addEventListener('load', function() {
+  applyHashDescriptor();
+  // Fallback for iOS Safari cross-domain — retry after short delay
+  setTimeout(applyHashDescriptor, 400);
 });
+window.addEventListener('hashchange', applyHashDescriptor);
 </script>
 </body>
 </html>
