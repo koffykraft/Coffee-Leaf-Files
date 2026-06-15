@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kawa Daun · Go Deeper</title>
+<style>
+:root {
+  --ink:    #1a1814;
+  --smoke:  #4a6a5a;
+  --smoke-lt:#6a9a7a;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f2f5f0;
+  --ruled:  #d8e0d4;
+  --muted:  #6a7860;
+  --dark:   #141a12;
+  --amber:  #8b6a2a;
+  --sage-pale:#edf3ed;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:18px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--smoke); }
+.sep { color:var(--ruled); }
+.page-t { font-size:.8rem; color:var(--muted); }
+.back { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--smoke); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--smoke); border-bottom-color:var(--smoke); }
+.tab:hover { color:var(--ink); }
+
+.opening { padding:56px 24px 40px; max-width:680px; margin:0 auto; border-bottom:1px solid var(--ruled); }
+.opening .label { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.opening h1 { font-size:clamp(1.6rem,4vw,2.4rem); font-weight:normal; color:var(--ink); line-height:1.25; margin-bottom:18px; }
+.opening p { font-size:1rem; line-height:1.85; color:var(--muted); }
+
+.contents-wrap { max-width:680px; margin:28px auto 0; padding:0 24px; }
+.contents { background:var(--pale); border:1px solid var(--ruled); border-radius:6px; padding:20px 24px; }
+.contents h3 { font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--smoke); margin-bottom:14px; }
+.contents ul { list-style:none; }
+.contents li { border-bottom:1px solid var(--ruled); }
+.contents li:last-child { border-bottom:none; }
+.contents a { display:block; padding:10px 0; color:var(--ink); text-decoration:none; font-size:.95rem; }
+.contents a:hover { color:var(--smoke); }
+
+main { max-width:680px; margin:0 auto; padding:48px 24px 60px; }
+.s-label { font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--smoke); display:block; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--ruled); scroll-margin-top:70px; }
+h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:18px; line-height:1.3; scroll-margin-top:70px; }
+h3 { font-size:1.05rem; font-weight:normal; color:var(--ink); margin-bottom:10px; margin-top:28px; }
+p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:18px; }
+p:last-child { margin-bottom:0; }
+hr.divider { border:none; border-top:1px solid var(--ruled); margin:48px 0; }
+
+.pull { font-size:1.2rem; line-height:1.65; color:var(--smoke); font-style:italic; border-left:3px solid var(--smoke); padding-left:22px; margin:28px 0; }
+.highlight { background:var(--pale); border-left:3px solid var(--smoke); border-radius:0 4px 4px 0; padding:18px 20px; margin:24px 0; font-size:.98rem; line-height:1.8; }
+.highlight strong { color:var(--smoke); }
+.evidence { background:var(--sage-pale); border-left:3px solid #5a7a5a; border-radius:0 4px 4px 0; padding:18px 20px; margin:24px 0; font-size:.92rem; line-height:1.8; }
+.evidence .ev-label { font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:#5a7a5a; margin-bottom:8px; }
+.warn { background:#fef9f0; border-left:3px solid #c8902a; border-radius:0 4px 4px 0; padding:18px 20px; margin:24px 0; font-size:.92rem; line-height:1.8; }
+.warn strong { color:#8b6020; }
+
+.producer-table { width:100%; border-collapse:collapse; margin:24px 0; font-size:.92rem; }
+.producer-table th { background:var(--dark); color:#fff; padding:10px 14px; text-align:left; font-weight:normal; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+.producer-table td { padding:12px 14px; border-bottom:1px solid var(--ruled); vertical-align:top; line-height:1.6; }
+.producer-table tr:nth-child(even) td { background:var(--pale); }
+
+.proc-table { width:100%; border-collapse:collapse; margin:24px 0; font-size:.92rem; }
+.proc-table th { background:var(--dark); color:#fff; padding:10px 14px; text-align:left; font-weight:normal; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+.proc-table td { padding:12px 14px; border-bottom:1px solid var(--ruled); vertical-align:top; line-height:1.6; }
+.proc-table tr:nth-child(even) td { background:var(--pale); }
+
+.ev-table { width:100%; border-collapse:collapse; margin:24px 0; font-size:.92rem; }
+.ev-table th { background:var(--dark); color:#fff; padding:10px 14px; text-align:left; font-weight:normal; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+.ev-table td { padding:12px 14px; border-bottom:1px solid var(--ruled); vertical-align:top; line-height:1.6; }
+.ev-table tr:nth-child(even) td { background:var(--pale); }
+.status-yes { color:#5a7a5a; font-weight:bold; }
+.status-soft { color:var(--gold); }
+.status-no { color:#c84040; text-decoration:line-through; opacity:.7; }
+
+.recipes-banner { background:var(--smoke); color:#fff; padding:32px 24px; text-align:center; margin:48px 0; border-radius:6px; }
+.recipes-banner h3 { font-size:1.15rem; font-weight:normal; margin-bottom:8px; }
+.recipes-banner p { font-size:.92rem; opacity:.8; margin-bottom:18px; }
+.recipes-banner a { display:inline-block; padding:14px 28px; background:#fff; color:var(--smoke); text-decoration:none; font-size:.95rem; border-radius:3px; }
+.recipes-banner a:hover { background:var(--pale); }
+
+.source-block { background:var(--pale); border-radius:6px; padding:22px; margin:20px 0; font-size:.92rem; line-height:1.8; }
+.source-block h4 { font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--smoke); margin-bottom:10px; }
+
+.page-nav { max-width:680px; margin:0 auto; padding:24px 24px 48px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--ruled); }
+.page-nav a { color:var(--smoke); text-decoration:none; font-size:.95rem; }
+.page-nav a:hover { color:var(--ink); }
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Kawa Daun · Deep Reference</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab" href="kawa-daun-intro.html">What is this?</a>
+  <a class="tab" href="kawa-daun.html">What's fascinating</a>
+  <a class="tab active" href="kawa-daun-deep.html">Go deeper</a>
+</div>
+
+<div class="opening">
+  <div class="label">For serious inquiry</div>
+  <h1>The historical context, processing documentation, producer data, evidence framework, and open questions for Kawa Daun</h1>
+  <p>This page is for anyone who wants to understand Kawa Daun properly — its place in Minangkabau culture, the colonial history in full, the three documented processing techniques, the producer data from the field study, and an honest accounting of what the research establishes and what it does not.</p>
+</div>
+
+<div class="contents-wrap">
+  <div class="contents">
+    <h3>On this page</h3>
+    <ul>
+      <li><a href="#location">Location and study context</a></li>
+      <li><a href="#colonial">The colonial history in full</a></li>
+      <li><a href="#raw-materials">Raw materials — the Robusta leaf</a></li>
+      <li><a href="#processing">Full processing documentation</a></li>
+      <li><a href="#producers">Producer data</a></li>
+      <li><a href="#moisture">Moisture content and yield</a></li>
+      <li><a href="#evidence-check">Evidence check</a></li>
+      <li><a href="#source">Source</a></li>
+    </ul>
+  </div>
+</div>
+
+<main>
+
+<span class="s-label" id="location">Location and study context</span>
+<h2>Minangkabau Highlands, West Sumatra</h2>
+
+<p>Kawa Daun is documented specifically in three districts of West Sumatra — Tanah Datar, Agam, and Lima Puluh Kota — described as the centre of Minangkabau culture and considered representative of the province as a whole. The Minangkabau are the world's largest matrilineal ethnic group, with a social system in which property, clan membership, and land pass through the female line. This cultural context is relevant to understanding why coffee leaf knowledge is transmitted through women.</p>
+
+<p>The Novita et al. research was conducted in April–June 2017. It identified 34 sellers of Kawa Daun across the three districts, then traced them to their producers. Four producers were interviewed and their production methods directly observed. Producer locations: Tabek Patah (Tanah Datar, two producers), Pasir Laweh (Tanah Datar), and Lampasi (Lima Puluh Kota).</p>
+
+<div class="highlight">
+  <strong>The scope of the study:</strong> Four producers, three districts, one province. The research is qualitative and ethnographic — focused on documenting traditional knowledge and production techniques rather than measuring chemistry or testing health claims. It is foundational documentation, not clinical research.
+</div>
+
+<hr class="divider">
+
+<span class="s-label" id="colonial">The colonial history in full</span>
+<h2>Cultuurstelsel and the survival of Kawa Daun</h2>
+
+<p>The cultuurstelsel (forced cultivation system) was imposed by the Dutch colonial administration in the mid-19th century. Minangkabau farmers in West Sumatra were ordered to plant coffee and deposit the harvested beans at Dutch storehouses called pankhuis. Coffee was the Dutch's most important trading commodity in the region at this time. Local people who wished to consume coffee beans had to purchase them back from the pankhuis.</p>
+
+<p>The Novita et al. research documents the Minangkabau response in two parts. First: they had cultivated coffee before the Dutch arrived and had used the leaves to produce kahwa. The leaf tradition was pre-existing. Second: when coffee bean prices rose, Minangkabau merchants were willing to plant more than the Dutch had ordered and sold the surplus themselves to Singapore and Malacca — bypassing the pankhuis system entirely.</p>
+
+<div class="pull">The Minangkabau were not passive under cultuurstelsel. They were strategic. They used the leaves at home and the beans in their own trade networks simultaneously.</div>
+
+<p>The standard narrative presents Kawa Daun as a beverage that emerged because beans were unavailable under colonial rule. The research suggests a more nuanced picture: the leaf tradition predated the colonial period and survived it. The cultuurstelsel may have intensified the cultural significance of Kawa Daun — the leaf as something the Dutch could not claim — but it did not create the tradition.</p>
+
+<div class="evidence">
+  <div class="ev-label">Evidence note</div>
+  The pre-colonial origin of Kawa Daun is stated in the research as community knowledge and oral tradition rather than documented historical record. The study does not provide a specific date or documentary evidence for the pre-colonial use of coffee leaves in the Minangkabau highlands. The claim that it predates Dutch colonisation is reported as community understanding, consistent with the ethnographic nature of the research.
+</div>
+
+<hr class="divider">
+
+<span class="s-label" id="raw-materials">Raw materials — the Robusta leaf</span>
+<h2>Which leaves, from where, at what stage</h2>
+
+<p>The research establishes that Robusta (Coffea canephora) is used — locally called "the old coffee." Robusta leaves are larger and wider than Arabica leaves. The choice of Robusta is not incidental — it reflects what was grown in the Minangkabau highlands and what was available to producers.</p>
+
+<p>Leaves were collected from small private plantations between 8 and 11am and processed without pre-treatment such as washing or sorting. Mature leaves were used. There was no documented preference for specific leaf age beyond maturity — both leaves still attached to branches and individual detached leaves were used.</p>
+
+<div class="highlight">
+  <strong>The pruning source:</strong> Leaf pruning is documented as important in coffee cultivation to maintain long-term productivity. Old, dry, and non-productive branches are removed. Leaves from these prunings can supplement the income of the coffee grower — making Kawa Daun a value-generating use of material that would otherwise be agricultural waste.
+</div>
+
+<p>This is a practical and economically rational use of the plant — not a ceremonial or medicinal tradition primarily, but a productive use of a material that is generated as a byproduct of standard agricultural practice. It shares this characteristic with Chemo (which also uses pruning leaves in Tepi Town) and with the Harari Kuti tradition's use of fallen leaves.</p>
+
+<hr class="divider">
+
+<span class="s-label" id="processing">Full processing documentation</span>
+<h2>Three techniques across the highland districts</h2>
+
+<p>The research identifies three production techniques in use at the time of study, plus a fourth original method now used by only one producer. All techniques involve clamping leaves between bamboo sticks or piercing them with bamboo skewers to facilitate even drying and smoke exposure.</p>
+
+<table class="proc-table">
+  <thead><tr><th>Technique</th><th>Method</th><th>Parameters</th><th>Character</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Smoking</strong><br>Producers 1 & 2</td>
+      <td>Leaves clamped between bamboo sticks and smoked</td>
+      <td>4–15kg batches · high heat · 1–2 hours</td>
+      <td>Complex aromatic from smoke compounds. Moderate PAH content relative to toasted method. The most widely practiced current technique.</td>
+    </tr>
+    <tr>
+      <td><strong>Flame toasting</strong><br>Producer 3</td>
+      <td>Leaves rotated 30–40cm from the flame of a wood fire — preferably cinnamon tree wood</td>
+      <td>Distance maintained from flame · until dry</td>
+      <td>Slightly darker leaf. More pronounced heat-derived character. Higher PAH than smoking method but lower than roasted coffee beans. Cinnamon wood smoke adds aromatic layer.</td>
+    </tr>
+    <tr>
+      <td><strong>Slow kitchen fire</strong><br>Producer 4 (original method)</td>
+      <td>Leaves pierced with bamboo skewers and dried over domestic kitchen fires</td>
+      <td>Low sustained heat · more than 2 weeks</td>
+      <td>The original traditional method. Lowest PAH of all three techniques due to low temperature and long time. Produces variable but traditionally valued flavour. Not scalable for commercial production.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>After smoking or drying, the processed leaves are packaged and stored in bamboo tubes (perian) with ijuk lids. Producers supplied Kawa Daun to outlets across West Sumatra and as far as Riau Province.</p>
+
+<div class="warn">
+  <strong>On PAH and health:</strong> The research notes that PAH compounds in smoked and toasted foods have been considered by some researchers to have a potential negative health impact. The toasted method produces higher PAH than smoking, and both produce lower PAH than roasted coffee beans. The research does not make specific health claims in either direction. Kawa Daun's health efficacy "still requires further research" — the paper's own conclusion.
+</div>
+
+<hr class="divider">
+
+<span class="s-label" id="producers">Producer data</span>
+<h2>The four documented producers</h2>
+
+<table class="producer-table">
+  <thead><tr><th>Description</th><th>Producer 1</th><th>Producer 2</th><th>Producer 3</th><th>Producer 4</th></tr></thead>
+  <tbody>
+    <tr><td>Age (2017)</td><td>50</td><td>58</td><td>35</td><td>45</td></tr>
+    <tr><td>Location</td><td>Tabek Patah, Tanah Datar</td><td>Tabek Patah, Tanah Datar</td><td>Pasir Laweh, Tanah Datar</td><td>Lampasi, Lima Puluh Kota</td></tr>
+    <tr><td>Education</td><td>Junior high school</td><td>Elementary school</td><td>Senior high school</td><td>Senior high school</td></tr>
+    <tr><td>Marital status</td><td>Married</td><td>Widowed</td><td>Married</td><td>Married</td></tr>
+    <tr><td>First production</td><td>2004</td><td>2001</td><td>2006</td><td>2008</td></tr>
+    <tr><td>Source of knowledge</td><td>Mother</td><td>Grandmother</td><td>Mother-in-law</td><td>From Tanah Datar producers</td></tr>
+    <tr><td>Technique used</td><td>Smoking</td><td>Smoking</td><td>Flame toasting</td><td>Original slow kitchen fire</td></tr>
+  </tbody>
+</table>
+
+<div class="evidence">
+  <div class="ev-label">What this data tells us</div>
+  All four producers are women. All four learned from female relatives or from direct observation of female producers in the region. The oldest (Producer 2, 58 years old) learned from her grandmother — placing the knowledge transmission at least two generations back from 2017, i.e., into the early-to-mid 20th century at minimum. The variation in techniques across producers shows that Kawa Daun production is not a single standardised method but a family of related practices held differently by different producers.
+</div>
+
+<hr class="divider">
+
+<span class="s-label" id="moisture">Moisture content and yield</span>
+<h2>Technical production data</h2>
+
+<p>The moisture content of the processed Kawa Daun ranged from 3.6–7.6% (wet basis across all producers and techniques). This falls within the standard moisture range for black tea (&lt;8.0% w/w per Indonesian standard SNI 01-1902-1990), indicating that the traditional processing achieves appropriate preservation conditions.</p>
+
+<p>The yield of Kawa Daun from fresh leaves was in the range of 10–20% — lower than the yield of black tea, which is approximately 23%. This means that producing Kawa Daun requires proportionally more raw leaf material than producing standard tea by weight.</p>
+
+<hr class="divider">
+
+<span class="s-label" id="evidence-check">Evidence check</span>
+<h2>What the research establishes and what it does not</h2>
+
+<table class="ev-table">
+  <thead><tr><th>Claim</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>Kawa Daun is made from Robusta coffee leaves in West Sumatra, Indonesia</td><td class="status-yes">✓ Directly documented</td></tr>
+    <tr><td>Three production techniques documented: smoking, flame toasting, slow kitchen fire</td><td class="status-yes">✓ Directly documented</td></tr>
+    <tr><td>Traditionally served in coconut shell cups stored in bamboo perian tubes</td><td class="status-yes">✓ Directly documented</td></tr>
+    <tr><td>Knowledge transmitted through women — grandmother/mother/mother-in-law to daughter</td><td class="status-yes">✓ Directly documented across all four producers</td></tr>
+    <tr><td>Minangkabau people used coffee leaves before Dutch colonial arrival</td><td class="status-yes">✓ Documented as community oral tradition — consistent with ethnographic evidence</td></tr>
+    <tr><td>Cinnamon wood is the preferred smoking/toasting fuel</td><td class="status-yes">✓ Documented for Producer 3's flame toasting method</td></tr>
+    <tr><td>Moisture content 3.6–7.6%, yield 10–20%</td><td class="status-yes">✓ Measured and documented</td></tr>
+    <tr><td>Mature leaves and pruning leaves are used</td><td class="status-yes">✓ Directly documented</td></tr>
+    <tr><td>The tradition predates Dutch colonialism by a specific documented date</td><td class="status-soft">⚠ Community oral tradition — no documentary evidence of specific pre-colonial date</td></tr>
+    <tr><td>PAH content is within safe limits for regular consumption</td><td class="status-soft">⚠ Not established — the research flags PAH as a consideration without measuring safe limits</td></tr>
+    <tr><td>Kawa Daun provides specific health benefits</td><td class="status-soft">⚠ Locally believed; research says "efficacy requires further investigation"</td></tr>
+    <tr><td>Specific compound profile of the finished brew</td><td class="status-soft">⚠ Not measured in this study — only raw material compounds discussed generally</td></tr>
+    <tr><td>Kawa Daun is safe for daily consumption</td><td class="status-no">✗ Not established — the research explicitly states that further research is needed</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<div class="recipes-banner">
+  <h3>Looking for the recipes?</h3>
+  <p>Full brewing guide for Kawa Daun — the three processing methods explained, brewing instructions, and serving guidance.</p>
+  <a href="kawa-daun-recipe.html">Recipes & Mechanics →</a>
+</div>
+
+<span class="s-label" id="source">Source</span>
+<h2>Research basis</h2>
+
+<div class="source-block">
+  <h4>Primary source</h4>
+  Novita, R., Kasim, A., Anggraini, T., and Putra, D.P. (2018). Kahwa Daun: Traditional Knowledge of a Coffee Leaf Herbal Tea from West Sumatera, Indonesia. <em>Journal of Ethnic Foods,</em> 5, 286–291. DOI: 10.1016/j.jef.2018.11.005.<br><br>
+  Research period: April–June 2017. Location: Tanah Datar, Lima Puluh Kota, and Agam districts, West Sumatra, Indonesia. Participants: 34 sellers and 4 producers. Method: survey, discussion, observation, in-depth interview, documentation, moisture content measurement.
+</div>
+
+<div class="source-block">
+  <h4>Attribution</h4>
+  All Kawa Daun content in this library is compiled and editorially structured by Citane / KoffyKraft. The source knowledge belongs to the original researchers and to the Minangkabau communities of West Sumatra whose practices the study documents. Citane claims no ownership of either.
+</div>
+
+</main>
+
+<div class="page-nav">
+  <a href="kawa-daun.html">← What's fascinating</a>
+  <a href="kawa-daun-recipe.html">Recipes & Mechanics →</a>
+</div>
+
+<div class="page-source">
+  Source: Novita et al. 2018 · Journal of Ethnic Foods · Vol. 5, pp. 286–291 · DOI 10.1016/j.jef.2018.11.005
+</div>
+
+</body>
+</html>
