@@ -206,14 +206,16 @@ hr.section-rule { border:none; border-top:1px solid var(--ruled); margin:44px 0;
 
 /* YIELD BOX */
 .yield-box {
-  background:var(--terracotta); color:#fff;
+  background:var(--pale);
+  border:1px solid var(--ruled);
+  border-top:3px solid var(--terracotta);
   border-radius:0 0 6px 6px;
   padding:16px 24px;
   display:flex; gap:24px; flex-wrap:wrap;
 }
 .yield-item { text-align:center; }
-.yield-num { font-size:1.4rem; font-weight:bold; display:block; }
-.yield-label { font-size:.75rem; opacity:.75; }
+.yield-num { font-size:1.4rem; font-weight:bold; color:var(--terracotta); display:block; }
+.yield-label { font-size:.75rem; color:var(--muted); }
 
 /* NOTES */
 .note-box {

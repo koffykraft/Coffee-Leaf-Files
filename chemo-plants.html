@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemo · Meet the Plants</title>
+<style>
+:root {
+  --ink:    #1e1a14;
+  --ember:  #8b4a1a;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f7f0e4;
+  --ruled:  #e0d4c0;
+  --muted:  #7a6a54;
+  --dark:   #1a1410;
+  --sage:   #5a7a5a;
+  --sage-pale:#edf3ed;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:18px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ember); }
+.sep { color:var(--ruled); }
+.page-t { font-size:.8rem; color:var(--muted); }
+.back { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--ember); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--ember); border-bottom-color:var(--ember); }
+.tab:hover { color:var(--ink); }
+
+/* HERO */
+.hero { padding:48px 24px 36px; text-align:center; border-bottom:1px solid var(--ruled); }
+.hero .label { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+.hero h1 { font-size:clamp(1.8rem,5vw,2.8rem); font-weight:normal; color:var(--ink); line-height:1.2; margin-bottom:12px; }
+.hero p { font-size:1rem; color:var(--muted); max-width:480px; margin:0 auto; line-height:1.8; font-style:italic; }
+
+/* FILTER */
+.filter-wrap { max-width:680px; margin:24px auto 0; padding:0 24px; }
+.filter-row { display:flex; gap:8px; flex-wrap:wrap; }
+.filter-btn { padding:8px 16px; border:1.5px solid var(--ruled); border-radius:20px; background:var(--cream); color:var(--muted); font-family:Georgia,serif; font-size:.88rem; cursor:pointer; transition:all .15s; }
+.filter-btn.active { background:var(--ember); color:#fff; border-color:var(--ember); }
+
+/* PLANT GRID */
+.plant-grid { max-width:680px; margin:24px auto 0; padding:0 24px 60px; display:grid; grid-template-columns:1fr; gap:16px; }
+
+/* PLANT CARD */
+.plant-card { background:var(--cream); border:1px solid var(--ruled); border-radius:8px; overflow:hidden; cursor:pointer; }
+.plant-card-header { display:flex; align-items:stretch; gap:0; }
+.plant-icon { width:90px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--pale); padding:16px; }
+.plant-icon svg { width:54px; height:54px; }
+.plant-header-text { padding:18px 20px; flex:1; }
+.plant-names { margin-bottom:6px; }
+.plant-common { font-size:1.1rem; color:var(--ink); font-weight:normal; }
+.plant-local { font-size:.82rem; color:var(--ember); font-style:italic; margin-left:8px; }
+.plant-sci { font-size:.78rem; color:var(--sage); font-style:italic; display:block; margin-bottom:6px; }
+.plant-role-tag { display:inline-block; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; padding:2px 8px; border-radius:2px; color:#fff; }
+.plant-card-body { display:none; padding:0 20px 20px; border-top:1px solid var(--ruled); }
+.plant-card-body.show { display:block; }
+.plant-body-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }
+@media(max-width:480px) { .plant-body-grid { grid-template-columns:1fr; } }
+.plant-detail-box { background:var(--pale); border-radius:4px; padding:12px 14px; }
+.plant-detail-label { font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+.plant-detail-text { font-size:.88rem; color:var(--ink); line-height:1.6; }
+.plant-expand-arrow { margin-left:auto; color:var(--ember); font-size:1.1rem; transition:transform .2s; flex-shrink:0; padding:18px 16px; display:flex; align-items:center; }
+.plant-card.open .plant-expand-arrow { transform:rotate(90deg); }
+.plant-desc { font-size:.95rem; line-height:1.8; color:var(--ink); margin-top:16px; }
+
+/* LEAF ILLUSTRATIONS - SVG */
+
+/* PAGE NAV */
+.page-nav { max-width:680px; margin:0 auto; padding:24px 24px 48px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--ruled); }
+.page-nav a { color:var(--ember); text-decoration:none; font-size:.95rem; }
+.page-nav a:hover { color:var(--ink); }
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Chemo · The Plants</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab" href="chemo-intro.html">What is this?</a>
+  <a class="tab" href="chemo.html">What's fascinating</a>
+  <a class="tab" href="chemo-deep.html">Go deeper</a>
+  <a class="tab active" href="#">Meet the Plants</a>
+  <a class="tab" href="chemo-recipe.html">Recipes</a>
+</div>
+
+<div class="hero">
+  <div class="label">The botanical cast of Chemo</div>
+  <h1>Meet the Plants</h1>
+  <p>Ten documented ingredients. Each with a role, a name, and a reason for being in the cup. Tap any plant to learn more.</p>
+</div>
+
+<!-- FILTER -->
+<div class="filter-wrap">
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="filterPlants('all', this)">All plants</button>
+    <button class="filter-btn" onclick="filterPlants('leaf', this)">The leaf</button>
+    <button class="filter-btn" onclick="filterPlants('herb', this)">Aromatic herbs</button>
+    <button class="filter-btn" onclick="filterPlants('spice', this)">Spices</button>
+    <button class="filter-btn" onclick="filterPlants('modifier', this)">Modifiers</button>
+  </div>
+</div>
+
+<!-- PLANT GRID -->
+<div class="plant-grid" id="plant-grid">
+
+  <!-- COFFEE LEAF -->
+  <div class="plant-card" data-category="leaf" onclick="togglePlant(this)">
+    <div class="plant-card-header">
+      <div class="plant-icon">
+        <svg viewBox="0 0 54 54" fill="none">
+          <ellipse cx="27" cy="27" rx="14" ry="22" stroke="#5a7a5a" stroke-width="1.5" fill="#edf3ed"/>
+          <line x1="27" y1="6" x2="27" y2="48" stroke="#5a7a5a" stroke-width="1.2"/>
+          <line x1="27" y1="18" x2="18" y2="12" stroke="#5a7a5a" stroke-width="1"/>
+          <line x1="27" y1="24" x2="16" y2="20" stroke="#5a7a5a" stroke-width="1"/>
+          <line x1="27" y1="30" x2="16" y2="28" stroke="#5a7a5a" stroke-width="1"/>
+          <line x1="27" y1="18" x2="36" y2="12" stroke="#5a7a5a" stroke-width="1"/>
+          <line x1="27" y1="24" x2="38" y2="20" stroke="#5a7a5a" stroke-width="1"/>
+          <line x1="27" y1="30" x2="38" y2="28" stroke="#5a7a5a" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="plant-header-text">
+        <div class="plant-names">
+          <span class="plant-common">Coffee Leaf</span>
+          <span class="plant-local">Buna Kitel</span>
+        </div>
+        <span class="plant-sci">Coffea arabica L.</span>
+        <span class="plant-role-tag" style="background:var(--sage);">The base</span>
+      </div>
+      <div class="plant-expand-arrow">›</div>
+    </div>
+    <div class="plant-card-body">
+      <p class="plant-desc">The leaf that makes Chemo possible. Not the bean — the leaf. Young tender tips from the terminal branches of the coffee plant are preferred: brightest green, highest in aromatic oils, most responsive to roasting. Mature leaves work but produce a less vivid brew. The leaf is always fully strained out before serving — it is never consumed.</p>
+      <div class="plant-body-grid">
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Documented quantity</div>
+          <div class="plant-detail-text">164g fresh leaves per litre of water · or 39g dried</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Flavour role</div>
+          <div class="plant-detail-text">The body and bitterness of the brew. The foundation everything else builds on.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Preparation</div>
+          <div class="plant-detail-text">Roasted (most common), lightly heated, or used fresh — chosen before brewing begins.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Key compounds</div>
+          <div class="plant-detail-text">Mangiferin · Chlorogenic acids · Caffeine (lower than bean) · Volatile aldehydes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BASIL -->
+  <div class="plant-card" data-category="herb" onclick="togglePlant(this)">
+    <div class="plant-card-header">
+      <div class="plant-icon">
+        <svg viewBox="0 0 54 54" fill="none">
+          <ellipse cx="27" cy="28" rx="10" ry="14" stroke="#5a7a5a" stroke-width="1.5" fill="#e8f5e8"/>
+          <ellipse cx="17" cy="24" rx="8" ry="11" transform="rotate(-25 17 24)" stroke="#5a7a5a" stroke-width="1.3" fill="#e8f5e8"/>
+          <ellipse cx="37" cy="24" rx="8" ry="11" transform="rotate(25 37 24)" stroke="#5a7a5a" stroke-width="1.3" fill="#e8f5e8"/>
+          <line x1="27" y1="14" x2="27" y2="48" stroke="#5a7a5a" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="plant-header-text">
+        <div class="plant-names">
+          <span class="plant-common">Basil</span>
+          <span class="plant-local">Besobila</span>
+        </div>
+        <span class="plant-sci">Ocimum basilicum L.</span>
+        <span class="plant-role-tag" style="background:#5a9a5a;">Aromatic herb</span>
+      </div>
+      <div class="plant-expand-arrow">›</div>
+    </div>
+    <div class="plant-card-body">
+      <p class="plant-desc">One of the most consistently present herbs across all 64 documented Tepi Town households. Fresh leaves added to the brew during cooking. Sweet and herbal — the kind of aroma that immediately signals the drink is about something more complex than just leaf and water. Used fresh, not dried.</p>
+      <div class="plant-body-grid">
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Documented quantity</div>
+          <div class="plant-detail-text">~24g per litre of brew</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Flavour role</div>
+          <div class="plant-detail-text">Sweet, garden-fresh aromatic top note. One of the first things you smell in a cup of Chemo.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Form used</div>
+          <div class="plant-detail-text">Fresh leaves. Not dried — the volatile aromatics that define Besobila dissipate quickly when dried.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">In Ethiopian tradition</div>
+          <div class="plant-detail-text">Used across multiple Ethiopian beverages and food preparations. Associated with wellbeing in traditional medicine.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KOSERET -->
+  <div class="plant-card" data-category="herb" onclick="togglePlant(this)">
+    <div class="plant-card-header">
+      <div class="plant-icon">
+        <svg viewBox="0 0 54 54" fill="none">
+          <path d="M27 46 L20 30 Q15 20 27 10 Q39 20 34 30 Z" stroke="#5a7a5a" stroke-width="1.5" fill="#e8f5e8"/>
+          <line x1="27" y1="10" x2="27" y2="46" stroke="#5a7a5a" stroke-width="1.2"/>
+          <line x1="27" y1="22" x2="20" y2="18" stroke="#5a7a5a" stroke-width="1"/>
+          <line x1="27" y1="28" x2="19" y2="25" stroke="#5a7a5a" stroke-width="1"/>
+          <line x1="27" y1="22" x2="34" y2="18" stroke="#5a7a5a" stroke-width="1"/>
+          <line x1="27" y1="28" x2="35" y2="25" stroke="#5a7a5a" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="plant-header-text">
+        <div class="plant-names">
+          <span class="plant-common">Koseret</span>
+          <span class="plant-local">ቆሰሪት</span>
+        </div>
+        <span class="plant-sci">Lippia adoensis Hochst. ex Walp.</span>
+        <span class="plant-role-tag" style="background:#5a9a5a;">Aromatic herb · Signature</span>
+      </div>
+      <div class="plant-expand-arrow">›</div>
+    </div>
+    <div class="plant-card-body">
+      <p class="plant-desc">The ingredient that makes Chemo unmistakably Ethiopian. Koseret has a distinctive herbal aroma unlike any common Western spice — slightly medicinal, deeply aromatic, impossible to substitute adequately. Native to Ethiopia and the Horn of Africa. Used across traditional Ethiopian beverages, spiced butter, and medicinal preparations. If one ingredient signals that you are drinking something rooted in a specific cultural place, this is it.</p>
+      <div class="plant-body-grid">
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Documented quantity</div>
+          <div class="plant-detail-text">~19g per litre of brew</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Flavour role</div>
+          <div class="plant-detail-text">The signature aromatic of Ethiopian beverages. Defines the drink's cultural identity as much as its flavour.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Availability note</div>
+          <div class="plant-detail-text">Increasingly difficult to source outside Ethiopia and the Horn of Africa. Its reduced availability near towns is one of the documented pressures on Chemo's continuity.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Substitution</div>
+          <div class="plant-detail-text">No direct substitute. Chemo made without Koseret is Chemo missing its most distinctive character. Use it if you can find it.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEMONGRASS -->
+  <div class="plant-card" data-category="herb" onclick="togglePlant(this)">
+    <div class="plant-card-header">
+      <div class="plant-icon">
+        <svg viewBox="0 0 54 54" fill="none">
+          <path d="M20 48 Q22 30 27 8" stroke="#5a7a5a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M27 48 Q27 30 27 8" stroke="#5a7a5a" stroke-width="1.5" fill="none"/>
+          <path d="M34 48 Q32 30 27 8" stroke="#5a7a5a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="27" cy="48" rx="10" ry="3" fill="#e8f5e8" stroke="#5a7a5a" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="plant-header-text">
+        <div class="plant-names">
+          <span class="plant-common">Lemongrass</span>
+          <span class="plant-local">Tejisar</span>
+        </div>
+        <span class="plant-sci">Cymbopogon citratus (DC.) Stapf</span>
+        <span class="plant-role-tag" style="background:#5a9a5a;">Aromatic herb</span>
+      </div>
+      <div class="plant-expand-arrow">›</div>
+    </div>
+    <div class="plant-card-body">
+      <p class="plant-desc">Bright citrus and floral aroma. Lemongrass lifts the heavier roasted and spiced notes in Chemo — it is the freshness element in a predominantly warm and complex drink. Used at the second-highest quantity of the aromatic herbs, it is a significant flavour presence rather than a background note.</p>
+      <div class="plant-body-grid">
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Documented quantity</div>
+          <div class="plant-detail-text">~22g per litre — the highest of the three aromatic herbs</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Flavour role</div>
+          <div class="plant-detail-text">Citrus-floral freshness. Counterbalances the warmth of ginger, pepper, and roasted leaf.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Form used</div>
+          <div class="plant-detail-text">Fresh or dried stalks. Lower sections of the stalk are bruised or chopped before adding to the brew.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Key compound</div>
+          <div class="plant-detail-text">Citral — the primary volatile responsible for its lemon-like aroma. Stable under moderate heat.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GINGER -->
+  <div class="plant-card" data-category="spice" onclick="togglePlant(this)">
+    <div class="plant-card-header">
+      <div class="plant-icon">
+        <svg viewBox="0 0 54 54" fill="none">
+          <path d="M14 34 Q10 28 16 22 Q20 16 28 20 Q36 14 40 22 Q46 30 38 36 Q32 42 26 38 Q18 44 14 34 Z" stroke="#c8902a" stroke-width="1.5" fill="#fdf5e8"/>
+          <circle cx="20" cy="28" r="2.5" fill="#c8902a" opacity=".4"/>
+          <circle cx="30" cy="24" r="2" fill="#c8902a" opacity=".4"/>
+          <circle cx="36" cy="30" r="2" fill="#c8902a" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="plant-header-text">
+        <div class="plant-names">
+          <span class="plant-common">Ginger</span>
+          <span class="plant-local">Jingibil</span>
+        </div>
+        <span class="plant-sci">Zingiber officinale Roscoe</span>
+        <span class="plant-role-tag" style="background:var(--gold);">Root spice</span>
+      </div>
+      <div class="plant-expand-arrow">›</div>
+    </div>
+    <div class="plant-card-body">
+      <p class="plant-desc">The warming backbone of the spice blend. Ginger is the highest-quantity spice ingredient in the documented Chemo recipe — more than any individual herb. Its heat and depth are immediately present in a well-made Chemo. Associated with digestion and recovery in Ethiopian herbal tradition, consistent with its use across many traditional medicine systems globally.</p>
+      <div class="plant-body-grid">
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Documented quantity</div>
+          <div class="plant-detail-text">~18g per litre — the highest-quantity spice ingredient</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Flavour role</div>
+          <div class="plant-detail-text">Warm, pungent heat. The primary warming spice. Sets the overall warmth register of the drink.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Form used</div>
+          <div class="plant-detail-text">Fresh or dried. Fresh gives sharper heat; dried gives deeper, more sustained warmth.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Key compounds</div>
+          <div class="plant-detail-text">Gingerols (fresh) · Shogaols (dried/heated) — the warming and pungent compounds.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ETHIOPIAN CARDAMOM -->
+  <div class="plant-card" data-category="spice" onclick="togglePlant(this)">
+    <div class="plant-card-header">
+      <div class="plant-icon">
+        <svg viewBox="0 0 54 54" fill="none">
+          <ellipse cx="27" cy="28" rx="11" ry="16" stroke="#c8902a" stroke-width="1.5" fill="#fdf5e8"/>
+          <line x1="27" y1="14" x2="27" y2="42" stroke="#c8902a" stroke-width="1" opacity=".5"/>
+          <line x1="19" y1="22" x2="35" y2="22" stroke="#c8902a" stroke-width="1" opacity=".3"/>
+          <line x1="17" y1="28" x2="37" y2="28" stroke="#c8902a" stroke-width="1" opacity=".3"/>
+          <line x1="19" y1="34" x2="35" y2="34" stroke="#c8902a" stroke-width="1" opacity=".3"/>
+          <path d="M27 12 L27 8 Q30 4 27 2 Q24 4 27 8" fill="#5a7a5a"/>
+        </svg>
+      </div>
+      <div class="plant-header-text">
+        <div class="plant-names">
+          <span class="plant-common">Ethiopian Cardamom</span>
+          <span class="plant-local">Korerima</span>
+        </div>
+        <span class="plant-sci">Aframomum corrorima (Braun) Jansen</span>
+        <span class="plant-role-tag" style="background:var(--gold);">Root spice · Native</span>
+      </div>
+      <div class="plant-expand-arrow">›</div>
+    </div>
+    <div class="plant-card-body">
+      <p class="plant-desc">Not the green cardamom familiar from South Asian cooking — this is a different species entirely, native to Ethiopia and East Africa. Earthier, more complex, with a camphor-adjacent quality that green cardamom lacks. Korerima is one of the spices that most distinguishes Ethiopian beverages from anything made elsewhere. It cannot be substituted directly without changing the character of the drink.</p>
+      <div class="plant-body-grid">
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Flavour role</div>
+          <div class="plant-detail-text">Earthy warmth and complexity. Adds depth that sits below the more immediately vivid spices like ginger and pepper.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Native range</div>
+          <div class="plant-detail-text">Ethiopia and East Africa. Grows in the same highland forest ecosystems as wild Coffea arabica.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Form used</div>
+          <div class="plant-detail-text">Pods — cracked or lightly crushed before adding to brew. The seeds inside carry the primary aroma.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Substitution</div>
+          <div class="plant-detail-text">Green cardamom can be used if Korerima is unavailable — but the character shifts significantly toward a South Asian spice profile rather than Ethiopian.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CINNAMON -->
+  <div class="plant-card" data-category="spice" onclick="togglePlant(this)">
+    <div class="plant-card-header">
+      <div class="plant-icon">
+        <svg viewBox="0 0 54 54" fill="none">
+          <rect x="16" y="12" width="22" height="32" rx="4" stroke="#c8902a" stroke-width="1.5" fill="#fdf5e8"/>
+          <line x1="16" y1="20" x2="38" y2="20" stroke="#c8902a" stroke-width="1" opacity=".4"/>
+          <line x1="16" y1="26" x2="38" y2="26" stroke="#c8902a" stroke-width="1" opacity=".4"/>
+          <line x1="16" y1="32" x2="38" y2="32" stroke="#c8902a" stroke-width="1" opacity=".4"/>
+          <path d="M20 12 Q27 8 34 12" stroke="#c8902a" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <div class="plant-header-text">
+        <div class="plant-names">
+          <span class="plant-common">Cinnamon</span>
+          <span class="plant-local">Qerfa</span>
+        </div>
+        <span class="plant-sci">Cinnamomum verum J.Presl</span>
+        <span class="plant-role-tag" style="background:var(--gold);">Bark spice</span>
+      </div>
+      <div class="plant-expand-arrow">›</div>
+    </div>
+    <div class="plant-card-body">
+      <p class="plant-desc">Used as bark — a small piece added to the brew, not ground powder. Cinnamon contributes a sustained sweet warmth that emerges slowly through the brew time. It is the background sweetness element, softening the edges of the more assertive spices. Its slow-release character means it is better at the end of a cup than at the beginning.</p>
+      <div class="plant-body-grid">
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Flavour role</div>
+          <div class="plant-detail-text">Sweet-warm background. Slow release. Softens and integrates the overall spice profile.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Form used</div>
+          <div class="plant-detail-text">Bark — one small piece per litre. Bark releases flavour more slowly and gently than ground cinnamon.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Key compound</div>
+          <div class="plant-detail-text">Cinnamaldehyde — responsible for the characteristic sweet-spicy aroma. Stable under brewing temperatures.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Note</div>
+          <div class="plant-detail-text">True cinnamon (Ceylon) has a more delicate character than cassia. Either works in this context, though the flavour intensities differ.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLACK PEPPER -->
+  <div class="plant-card" data-category="modifier" onclick="togglePlant(this)">
+    <div class="plant-card-header">
+      <div class="plant-icon">
+        <svg viewBox="0 0 54 54" fill="none">
+          <circle cx="20" cy="20" r="6" stroke="#8b4a1a" stroke-width="1.5" fill="#fdf5e8"/>
+          <circle cx="34" cy="20" r="6" stroke="#8b4a1a" stroke-width="1.5" fill="#fdf5e8"/>
+          <circle cx="27" cy="34" r="6" stroke="#8b4a1a" stroke-width="1.5" fill="#fdf5e8"/>
+          <circle cx="20" cy="20" r="2" fill="#8b4a1a" opacity=".3"/>
+          <circle cx="34" cy="20" r="2" fill="#8b4a1a" opacity=".3"/>
+          <circle cx="27" cy="34" r="2" fill="#8b4a1a" opacity=".3"/>
+        </svg>
+      </div>
+      <div class="plant-header-text">
+        <div class="plant-names">
+          <span class="plant-common">Black Pepper</span>
+          <span class="plant-local">Kundo berbere</span>
+        </div>
+        <span class="plant-sci">Piper nigrum L.</span>
+        <span class="plant-role-tag" style="background:var(--ember);">Flavour modifier</span>
+      </div>
+      <div class="plant-expand-arrow">›</div>
+    </div>
+    <div class="plant-card-body">
+      <p class="plant-desc">Immediate sharpness and bite. Black pepper is the quickest-acting of the heat elements in the Chemo spice blend — its piperine compounds are fast-release in hot water. Used alongside chilli for layered heat: the pepper hits first, the chilli sustains. Present in most documented households. Whole peppercorns lightly cracked rather than ground.</p>
+      <div class="plant-body-grid">
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Flavour role</div>
+          <div class="plant-detail-text">Immediate sharp heat. Cuts through the richness of the brew. The first heat you notice in a cup of Chemo.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Form used</div>
+          <div class="plant-detail-text">Whole peppercorns, lightly cracked. 6–8 per litre documented.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Key compound</div>
+          <div class="plant-detail-text">Piperine — fast-release in hot water. Also enhances absorption of other compounds.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">In the blend</div>
+          <div class="plant-detail-text">Works in combination with chilli — the two create a layered heat experience rather than a single sharp note.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHILLI -->
+  <div class="plant-card" data-category="modifier" onclick="togglePlant(this)">
+    <div class="plant-card-header">
+      <div class="plant-icon">
+        <svg viewBox="0 0 54 54" fill="none">
+          <path d="M27 12 Q22 16 20 28 Q20 40 27 44 Q34 40 34 28 Q32 16 27 12 Z" stroke="#8b4a1a" stroke-width="1.5" fill="#fdf5e8"/>
+          <path d="M27 12 Q30 6 34 4" stroke="#5a7a5a" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <line x1="23" y1="24" x2="31" y2="24" stroke="#8b4a1a" stroke-width="1" opacity=".4"/>
+          <line x1="22" y1="32" x2="32" y2="32" stroke="#8b4a1a" stroke-width="1" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="plant-header-text">
+        <div class="plant-names">
+          <span class="plant-common">Bird's Eye Chilli</span>
+          <span class="plant-local">Mitmita</span>
+        </div>
+        <span class="plant-sci">Capsicum frutescens L.</span>
+        <span class="plant-role-tag" style="background:var(--ember);">Flavour modifier</span>
+      </div>
+      <div class="plant-expand-arrow">›</div>
+    </div>
+    <div class="plant-card-body">
+      <p class="plant-desc">Sustained heat that builds and lingers. Where black pepper hits immediately and dissipates, chilli's capsaicin compounds build slowly and stay. The two used together in Chemo create a heat experience with two distinct phases — immediate sharpness followed by sustained warmth. Used dried, in small quantities — 1–2 per litre is sufficient to be present without dominating.</p>
+      <div class="plant-body-grid">
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Flavour role</div>
+          <div class="plant-detail-text">Sustained warmth. The second phase of heat in combination with black pepper.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Form used</div>
+          <div class="plant-detail-text">Dried. 1–2 whole dried chillies per litre — not ground.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Key compound</div>
+          <div class="plant-detail-text">Capsaicin — binds to heat receptors for sustained effect. Fat-soluble — in the absence of fat, the heat is cleaner and more immediate.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Adjustment</div>
+          <div class="plant-detail-text">1 chilli = present but gentle. 2 chillies = noticeable heat. More than 2 = becomes a defining character of the drink.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SALT -->
+  <div class="plant-card" data-category="modifier" onclick="togglePlant(this)">
+    <div class="plant-card-header">
+      <div class="plant-icon">
+        <svg viewBox="0 0 54 54" fill="none">
+          <rect x="18" y="18" width="8" height="8" rx="1" stroke="#8b4a1a" stroke-width="1.5" fill="#fdf5e8"/>
+          <rect x="30" y="18" width="8" height="8" rx="1" stroke="#8b4a1a" stroke-width="1.5" fill="#fdf5e8"/>
+          <rect x="24" y="28" width="8" height="8" rx="1" stroke="#8b4a1a" stroke-width="1.5" fill="#fdf5e8"/>
+          <rect x="18" y="38" width="8" height="8" rx="1" stroke="#8b4a1a" stroke-width="1.2" fill="none" opacity=".4"/>
+          <rect x="30" y="38" width="8" height="8" rx="1" stroke="#8b4a1a" stroke-width="1.2" fill="none" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="plant-header-text">
+        <div class="plant-names">
+          <span class="plant-common">Salt</span>
+          <span class="plant-local">Chew</span>
+        </div>
+        <span class="plant-sci">Sodium chloride</span>
+        <span class="plant-role-tag" style="background:var(--ember);">Flavour modifier</span>
+      </div>
+      <div class="plant-expand-arrow">›</div>
+    </div>
+    <div class="plant-card-body">
+      <p class="plant-desc">Perhaps the most surprising entry in the Chemo spice list — and yet one of the most scientifically explicable. Salt suppresses bitterness by blocking bitter taste receptors and simultaneously amplifies aromatic and sweet compounds. Its presence in Chemo is consistent with its use in traditional leaf beverage preparations across multiple cultures globally, including Engere, Kuti, and Kawa Daun. 8g per litre is the documented household average.</p>
+      <div class="plant-body-grid">
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Documented quantity</div>
+          <div class="plant-detail-text">~8g per litre of brew</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Flavour role</div>
+          <div class="plant-detail-text">Bitterness suppressor. Aromatic amplifier. Rounds and integrates the overall flavour without being detectably salty.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Why it works</div>
+          <div class="plant-detail-text">Sodium ions block bitter taste receptor signalling. At 8g/litre the effect is flavour-balancing rather than producing a noticeably salty taste.</div>
+        </div>
+        <div class="plant-detail-box">
+          <div class="plant-detail-label">Cross-tradition note</div>
+          <div class="plant-detail-text">Salt is documented in Engere, Chemo, Kuti and Kawa Daun — all four major Ethiopian and Indonesian coffee leaf traditions. An independent convergence on the same flavour tool.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end plant-grid -->
+
+<div class="page-nav">
+  <a href="chemo-deep.html">← Go Deeper</a>
+  <a href="chemo-recipe.html">Recipes →</a>
+</div>
+
+<div class="page-source">
+  Source: Awoke et al. 2026 · Journal of Ethnobiology and Ethnomedicine · Vol. 22, Art. 25 · DOI 10.1186/s13002-026-00863-y
+</div>
+
+<script>
+function togglePlant(card) {
+  const body = card.querySelector('.plant-card-body');
+  const isOpen = body.classList.contains('show');
+  body.classList.toggle('show', !isOpen);
+  card.classList.toggle('open', !isOpen);
+}
+
+function filterPlants(category, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.plant-card').forEach(card => {
+    if (category === 'all' || card.dataset.category === category) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+</body>
+</html>

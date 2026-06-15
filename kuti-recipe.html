@@ -33,7 +33,7 @@ nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); bac
 .tab.active { color:var(--amber); border-bottom-color:var(--amber); }
 .tab:hover { color:var(--ink); }
 
-.hero { background:var(--dark); color:#fff; padding:40px 24px 36px; text-align:center; }
+.hero { background:var(--amber); color:#fff; padding:40px 24px 36px; text-align:center; }
 .hero .tradition { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; opacity:.45; margin-bottom:10px; }
 .hero h1 { font-size:clamp(1.8rem,5vw,2.6rem); font-weight:normal; margin-bottom:8px; }
 .hero .subtitle { font-size:1rem; opacity:.65; font-style:italic; max-width:440px; margin:0 auto; line-height:1.7; }
@@ -85,7 +85,7 @@ hr.divider { border:none; border-top:1px solid var(--ruled); margin:44px 0; }
 .recipe-desc { font-size:.95rem; color:var(--muted); line-height:1.65; font-style:italic; }
 
 .ing-table { width:100%; border-collapse:collapse; margin:20px 0; font-size:.92rem; }
-.ing-table th { background:var(--dark); color:#fff; padding:10px 14px; text-align:left; font-weight:normal; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+.ing-table th { background:var(--ink); color:#fff; padding:10px 14px; text-align:left; font-weight:normal; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
 .ing-table td { padding:12px 14px; border-bottom:1px solid var(--ruled); vertical-align:top; line-height:1.55; }
 .ing-table tr:nth-child(even) td { background:var(--pale); }
 .ing-table .amount { font-weight:bold; color:var(--amber); }
@@ -100,10 +100,10 @@ hr.divider { border:none; border-top:1px solid var(--ruled); margin:44px 0; }
 .step-content p { font-size:.95rem; margin:0; color:var(--ink); line-height:1.75; }
 .step-note { background:var(--pale); border-radius:4px; padding:8px 12px; margin-top:8px; font-size:.85rem; color:var(--muted); font-style:italic; line-height:1.6; }
 
-.yield-box { background:var(--amber); color:#fff; border-radius:0 0 6px 6px; padding:16px 24px; display:flex; gap:24px; flex-wrap:wrap; }
+.yield-box { background:var(--pale); border:1px solid var(--ruled); border-top:3px solid var(--amber); border-radius:0 0 6px 6px; padding:16px 24px; display:flex; gap:24px; flex-wrap:wrap; }
 .yield-item { text-align:center; }
-.yield-num { font-size:1.4rem; font-weight:bold; display:block; }
-.yield-label { font-size:.75rem; opacity:.75; }
+.yield-num { font-size:1.4rem; font-weight:bold; color:var(--amber); display:block; }
+.yield-label { font-size:.75rem; color:var(--muted); }
 
 .note-box { background:var(--sage-pale); border-left:3px solid var(--sage); border-radius:0 4px 4px 0; padding:16px 20px; margin:18px 0; font-size:.92rem; line-height:1.75; }
 .note-box .note-title { font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); margin-bottom:6px; }
