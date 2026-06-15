@@ -1204,6 +1204,48 @@ function renderEpsilonSections(text) {
       '</div>';
   }).join('') + '<div style="height:2px"></div>';
 }
+
+// ── URL PRE-SELECT (from Flavour Landscape link) ──────────────────
+window.addEventListener('load', function() {
+  const hash = window.location.hash;
+  if (hash.startsWith('#desc=')) {
+    const desc = hash.replace('#desc=', '');
+    const descMap = {
+      green:'green', refreshing:'refreshing', floral:'floral', sweet:'sweet',
+      fruity:'fruity', mineral:'mineral', bitter:'bitter', woody:'woody', smoky:'smoky'
+    };
+    if (descMap[desc]) {
+      // Simulate selecting the descriptor entry point
+      STATE.entry = 'descriptor';
+      document.querySelectorAll('.entry-btn').forEach(b => b.classList.remove('active'));
+      const entryBtn = document.querySelector('[data-entry="descriptor"]');
+      if (entryBtn) entryBtn.classList.add('active');
+      // Show relevant sections
+      ['section-descriptor','section-leaf','section-process','section-brew',
+       'section-temp','section-duration','section-serve'].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('visible');
+      });
+      // Select the descriptor chip
+      const grid = document.getElementById('grid-descriptor');
+      if (grid) {
+        const box = grid.querySelector('[data-val="' + desc + '"]');
+        if (box) {
+          grid.querySelectorAll('.choice-box').forEach(b => b.classList.remove('selected'));
+          box.classList.add('selected');
+          STATE.descriptor = desc;
+          cascadeFromDescriptor(desc);
+          tryGenerateOutput();
+          // Scroll output into view
+          setTimeout(function() {
+            const card = document.getElementById('output-card');
+            if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 200);
+        }
+      }
+    }
+  }
+});
 </script>
 </body>
 </html>
