@@ -398,7 +398,17 @@
             .door-grid { grid-template-columns: 1fr; }
         }
 
-        .lounge-footer-note {
+        .lounge-hook {
+            font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+            font-weight: normal;
+            line-height: 1.4;
+            color: var(--dark);
+            text-align: center;
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 48px 20px 44px;
+            letter-spacing: .01em;
+        }
             text-align: center;
             max-width: 600px;
             margin: 0 auto;
@@ -411,17 +421,13 @@
 
 <body>
     <header style="padding-bottom: 10px;">
-        <h1 style="margin-bottom: 8px;">Begin With a Cup</h1>
-        <div class="subtitle" style="margin-bottom: 0;">The Buna Coffee Leaf Library</div>
+        <div class="subtitle" style="margin-bottom: 0; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; opacity: .5;">The Buna Coffee Leaf Library · KoffyKraft</div>
     </header>
 
     <div class="container" style="padding-top: 40px;">
 
         <div class="lounge-welcome">
-            <p class="lounge-tagline">Coffee is one part of the plant.<br>This library explores another.</p>
-            <p>Across coffee-growing regions, people have boiled, dried, smoked, fermented, and shared the leaves of the coffee plant &mdash; alongside the bean, in households, for a very long time.</p>
-            <p>Some of these traditions are documented. Some are being studied. Some are still being explored &mdash; including by us, at Thumpassery Estate.</p>
-            <p class="lounge-prompt">Choose a door.</p>
+            <p class="lounge-hook">Millions of people brew coffee leaves daily.<br>You've probably never heard of it. Why?</p>
         </div>
 
         <div class="scroll-cue">
@@ -434,7 +440,7 @@
                 <div class="door-number">Door One</div>
                 <h3>Just Curious?</h3>
                 <div class="door-subtitle">The Balcony</div>
-                <div class="door-question">What is coffee leaf? What does it taste like? Why do people drink it? &mdash; a gentle look, no commitment required.</div>
+                <div class="door-question">What is it? What does it taste like? Start here.</div>
                 <ul>
                     <li><a href="begin-with-a-cup.html">Begin With a Cup</a></li>
                     <li><a href="sensory-landscape-of-coffee-leaf.html">The Sensory Landscape of Coffee Leaf</a></li>
@@ -459,9 +465,8 @@
                 <div class="door-number">Door Three</div>
                 <h3>Explore the Workshop</h3>
                 <div class="door-subtitle">Where Observation Becomes Experiment</div>
-                <div class="door-question">How does processing change flavour &mdash; and how is that explored at Thumpassery?</div>
+                <div class="door-question">How does processing change flavour &mdash; and how is that explored at Thumpassery? The papers, field guides, and processing notes.</div>
                 <ul>
-                    <li><a href="citane-terrain-map.html">Terrain Map — Plant to Sip</a></li>
                     <li><a href="citane-process-compass.html">The Process Compass</a></li>
                     <li><a href="citane-processing-manual.html">Paper II &mdash; From Leaf to Cup</a></li>
                     <li><a href="citane-processing-protocols.html">Paper III &mdash; Experimental Pathways</a></li>
@@ -486,8 +491,9 @@
                 <div class="door-number" style="color: #4a6a9a;">Door Five</div>
                 <h3>Use the Tools</h3>
                 <div class="door-subtitle" style="color: #4a6a9a;">The Interactive Lab</div>
-                <div class="door-question">Build a flavour pathway, explore what your leaf and process can produce — or let the Epsilon Board generate a theoretical route beyond the papers.</div>
+                <div class="door-question">Walk the terrain from plant to sip, map flavour relationships, build a processing pathway — or let the Epsilon Board generate a speculative route beyond the papers.</div>
                 <ul>
+                    <li><a href="citane-terrain-map.html">Terrain Map — Plant to Sip</a></li>
                     <li><a href="clt-flavour-wheel.html">CLT Flavour Landscape</a></li>
                     <li><a href="citane-logic-board.html">Flavour Logic Board</a></li>
                     <li><a href="citane-epsilon-board.html">ε Epsilon Board — Theoretical Pathways</a></li>
