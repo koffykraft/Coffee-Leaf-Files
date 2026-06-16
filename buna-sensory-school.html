@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Buna Sensory School — Citane · KoffyKraft</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #2a2a2a;
+  background: #fdfaf4;
+}
+
+/* NAV */
+nav {
+  background: #1a1a1a;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand { color: #fff; font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.sep { color: #555; }
+.page-t { color: #999; font-size: .8rem; }
+.back { margin-left: auto; color: #888; font-size: .78rem; text-decoration: none; }
+.back:hover { color: #fff; }
+
+/* HERO */
+.hero {
+  padding: 60px 20px 50px;
+  text-align: center;
+  border-bottom: 1px solid #e8e4dc;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.door-label {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 18px;
+}
+.hero h1 {
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: normal;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  letter-spacing: .01em;
+}
+.hero-sub {
+  font-size: 1rem;
+  color: #6b6560;
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 0 auto 30px;
+}
+.hero-rule {
+  width: 48px;
+  border: none;
+  border-top: 1px solid #c8bfb0;
+  margin: 0 auto;
+}
+
+/* OPENING PASSAGE */
+.opening {
+  max-width: 620px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+.opening p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #3a3a3a;
+  margin-bottom: 1.4em;
+}
+.opening p:first-child::first-letter {
+  font-size: 2.8rem;
+  line-height: .8;
+  float: left;
+  margin-right: 8px;
+  margin-top: 6px;
+  color: #9b7d5a;
+}
+
+/* WHAT THIS IS */
+.what-section {
+  background: #f7f2e8;
+  border-top: 1px solid #e8e4dc;
+  border-bottom: 1px solid #e8e4dc;
+  padding: 40px 20px;
+  margin-bottom: 50px;
+}
+.what-inner {
+  max-width: 620px;
+  margin: 0 auto;
+}
+.what-label {
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 20px;
+}
+.what-inner p {
+  font-size: .95rem;
+  color: #4a4540;
+  line-height: 1.8;
+  margin-bottom: 1em;
+}
+.what-inner p:last-child { margin-bottom: 0; }
+
+/* THREE LAYERS */
+.layers-section {
+  max-width: 620px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+}
+.layers-label {
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 28px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e8e4dc;
+}
+.layer-card {
+  border: 1px solid #e8e4dc;
+  border-radius: 4px;
+  padding: 28px 26px;
+  margin-bottom: 16px;
+  background: #fdfaf4;
+  text-decoration: none;
+  display: block;
+  transition: border-color .2s, background .2s;
+}
+.layer-card:hover {
+  border-color: #c8bfb0;
+  background: #f7f2e8;
+}
+.layer-num {
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #b0a090;
+  margin-bottom: 8px;
+}
+.layer-title {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  font-weight: normal;
+  letter-spacing: .01em;
+}
+.layer-desc {
+  font-size: .88rem;
+  color: #6b6560;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.layer-enter {
+  font-size: .82rem;
+  color: #9b7d5a;
+  letter-spacing: .04em;
+}
+
+/* OBSERVATION */
+.observation {
+  max-width: 620px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+}
+.obs-inner {
+  border-left: 3px solid #d4c4a8;
+  padding: 6px 0 6px 22px;
+}
+.obs-inner p {
+  font-size: .95rem;
+  color: #5a5550;
+  line-height: 1.85;
+  font-style: italic;
+}
+.obs-attr {
+  font-size: .76rem;
+  color: #b0a090;
+  margin-top: 12px;
+  font-style: normal;
+  letter-spacing: .04em;
+}
+
+/* FOOTER NOTE */
+.foot-note {
+  max-width: 620px;
+  margin: 0 auto 80px;
+  padding: 0 20px;
+  text-align: center;
+}
+.foot-note p {
+  font-size: .84rem;
+  color: #9a9590;
+  line-height: 1.75;
+}
+.foot-note a {
+  color: #9b7d5a;
+  text-decoration: none;
+  border-bottom: 1px solid #d4c4a8;
+}
+.foot-note a:hover { border-bottom-color: #9b7d5a; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="visitor-lounge.html">Citane</a>
+  <span class="sep">/</span>
+  <span class="page-t">The Sensory School</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="hero">
+  <div class="door-label">Door Six · The Sensory School</div>
+  <h1>What Buna Offers<br>the Senses</h1>
+  <p class="hero-sub">A walk through the sensory landscape of coffee leaf — from first impression to the chemistry beneath it. No prior knowledge required. No destination required either.</p>
+  <hr class="hero-rule">
+</div>
+
+<div class="opening">
+  <p>Before any research was done on coffee leaf, people were already drinking it. They noticed things — a coolness on the palate, something green that arrived and then softened, a sweetness that didn't come from sugar, a bitterness that was somehow welcome. They built traditions around what they noticed.</p>
+  <p>The research that followed didn't replace those observations. It began to explain them. Compounds were identified. Relationships between process and flavour became clearer. But the experience itself — what arrives when you hold a cup of Buna — that remains prior to all of it.</p>
+  <p>This school begins where the experience begins. With what you notice. Then, for those who want to go further, it offers the language people have developed to describe it. And then, further still, the chemistry that drives it.</p>
+  <p>You can stop at any layer. All three are complete in themselves.</p>
+</div>
+
+<div class="what-section">
+  <div class="what-inner">
+    <div class="what-label">What this is — and what it isn't</div>
+    <p>This is not a course. There are no tests, no correct answers, no sequence you must follow. It is a resource built around the idea that sensory understanding develops through attention — not instruction.</p>
+    <p>The companion you encounter here is not an expert explaining things. It is something closer to a quiet guide who has spent a long time paying attention to this particular leaf, and who distinguishes carefully between what has been observed, what has been measured, and what remains unclear.</p>
+    <p>Where certainty exists, it is offered plainly. Where it doesn't, that is said plainly too.</p>
+  </div>
+</div>
+
+<div class="layers-section">
+  <div class="layers-label">Four ways in</div>
+
+  <a class="layer-card" href="sensory-already.html">
+    <div class="layer-num">Before You Begin</div>
+    <div class="layer-title">You Already Sense</div>
+    <div class="layer-desc">Ten observations from ordinary daily life — things you have almost certainly noticed before, without stopping to name them. Each one is a bridge to something specific in Buna. This is where the school starts.</div>
+    <div class="layer-enter">Begin here →</div>
+  </a>
+
+  <a class="layer-card" href="sensory-encounter.html">
+    <div class="layer-num">Layer One</div>
+    <div class="layer-title">The Encounter</div>
+    <div class="layer-desc">What you notice before you know what to call it. Described in plain terms — warmth, coolness, something green, something that lingers. No compound names. No process codes. Just the experience, as people have reported it.</div>
+    <div class="layer-enter">Enter the Encounter →</div>
+  </a>
+
+  <a class="layer-card" href="sensory-language.html">
+    <div class="layer-num">Layer Two</div>
+    <div class="layer-title">The Language</div>
+    <div class="layer-desc">Once the experience has happened, names become useful. What green means in a cup of Buna. The difference between astringent and bitter, felt rather than defined. What it means when something lingers. The vocabulary specific to this leaf.</div>
+    <div class="layer-enter">Enter the Language →</div>
+  </a>
+
+  <a class="layer-card" href="sensory-chemistry.html">
+    <div class="layer-num">Layer Three</div>
+    <div class="layer-title">The Chemistry</div>
+    <div class="layer-desc">The compounds that drive the sensory experience — what they are, where they come from in the leaf, how processing changes them, and what they translate as in the cup. β-ionone, hexanal, mangiferin, GABA, and others.</div>
+    <div class="layer-enter">Enter the Chemistry →</div>
+  </a>
+
+</div>
+
+<div class="observation">
+  <div class="obs-inner">
+    <p>Many people describe β-ionone as violet-like, floral, honeyed, or softly fruity. It appears in many plants, including coffee. When researchers study aroma, β-ionone is often associated with some of the sweeter floral notes people perceive. Let's see where it appears.</p>
+    <div class="obs-attr">— The kind of sentence the companion uses</div>
+  </div>
+</div>
+
+<div class="foot-note">
+  <p>The Sensory School is part of <a href="catalogue.html">The Buna Coffee Leaf Library</a> — an open resource built by KoffyKraft at Thumpassery Estate, Karavaloor, Kollam, Kerala. Everything here is freely available. The narrative belongs to no one and everyone.</p>
+</div>
+
+</body>
+</html>

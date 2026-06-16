@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Chemistry — Buna Sensory School</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #2a2a2a;
+  background: #fdfaf4;
+}
+nav {
+  background: #1a1a1a;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand { color: #fff; font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.sep { color: #555; }
+.page-t { color: #999; font-size: .8rem; }
+.back { margin-left: auto; color: #888; font-size: .78rem; text-decoration: none; }
+.back:hover { color: #fff; }
+.layer-nav {
+  background: #f7f2e8;
+  border-bottom: 1px solid #e8e4dc;
+  padding: 12px 20px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.layer-btn {
+  font-family: Georgia, serif;
+  font-size: .78rem;
+  color: #9a9590;
+  text-decoration: none;
+  padding: 6px 16px;
+  border-right: 1px solid #e8e4dc;
+  white-space: nowrap;
+  letter-spacing: .04em;
+}
+.layer-btn:first-child { padding-left: 0; }
+.layer-btn.active { color: #9b7d5a; font-weight: bold; }
+.layer-btn:hover { color: #3a3a3a; }
+
+.hero {
+  padding: 50px 20px 40px;
+  border-bottom: 1px solid #e8e4dc;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.layer-label {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  font-weight: normal;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: .95rem;
+  color: #6b6560;
+  line-height: 1.8;
+}
+
+/* COMPOUND INDEX */
+.compound-index {
+  background: #f7f2e8;
+  border-bottom: 1px solid #e8e4dc;
+  padding: 16px 20px;
+  overflow-x: auto;
+}
+.compound-index-inner {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.ci-link {
+  font-size: .76rem;
+  color: #7a7570;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 5px 10px;
+  border: 1px solid #e8e4dc;
+  border-radius: 3px;
+  background: #fdfaf4;
+}
+.ci-link:hover { border-color: #c8bfb0; color: #3a3a3a; }
+
+.content {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* INTRO */
+.intro { margin-top: 44px; margin-bottom: 44px; }
+.intro p {
+  font-size: .97rem;
+  line-height: 1.85;
+  color: #3a3a3a;
+  margin-bottom: 1.2em;
+}
+
+/* COMPOUND PORTRAIT */
+.compound {
+  border: 1px solid #e8e4dc;
+  border-radius: 5px;
+  margin-bottom: 28px;
+  overflow: hidden;
+  scroll-margin-top: 80px;
+}
+.compound-head {
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid #e8e4dc;
+  background: #f7f2e8;
+}
+.compound-name {
+  font-size: 1.15rem;
+  color: #1a1a1a;
+  font-weight: normal;
+  letter-spacing: .01em;
+  margin-bottom: 4px;
+}
+.compound-aka {
+  font-size: .78rem;
+  color: #9a9590;
+  font-style: italic;
+}
+.compound-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.ctag {
+  font-size: .7rem;
+  padding: 3px 9px;
+  border-radius: 2px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.ctag-sensory { background: #ede8df; color: #6b5a40; border: 1px solid #d4c4a8; }
+.ctag-source  { background: #e8edf0; color: #3a5870; border: 1px solid #bccdd8; }
+.ctag-process { background: #e8ede8; color: #3a5a3a; border: 1px solid #b8d0b8; }
+
+.compound-body { padding: 20px 22px; }
+
+.compound-opening {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #3a3a3a;
+  margin-bottom: 18px;
+  font-style: italic;
+}
+
+.compound-section {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f0ece5;
+}
+.compound-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.cs-label {
+  font-size: .68rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 8px;
+}
+.compound-section p {
+  font-size: .9rem;
+  line-height: 1.8;
+  color: #4a4540;
+  margin-bottom: .7em;
+}
+.compound-section p:last-child { margin-bottom: 0; }
+
+/* DATA ROW */
+.data-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.data-item {
+  background: #f7f2e8;
+  border: 1px solid #e8e4dc;
+  border-radius: 3px;
+  padding: 7px 12px;
+  font-size: .8rem;
+}
+.data-key { color: #9a9590; margin-bottom: 2px; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+.data-val { color: #2a2a2a; }
+
+/* NOTE */
+.compound-note {
+  background: #f0f4f8;
+  border-left: 3px solid #8aaac0;
+  padding: 12px 16px;
+  margin-top: 14px;
+  border-radius: 0 3px 3px 0;
+  font-size: .84rem;
+  color: #3a5870;
+  line-height: 1.75;
+}
+.compound-note strong { color: #2a4a60; }
+
+/* WHAT PPO DOES */
+.process-flow {
+  margin: 12px 0;
+}
+.pf-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.pf-num {
+  background: #d4c4a8;
+  color: #4a3a28;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .72rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.pf-step p { font-size: .9rem; color: #4a4540; line-height: 1.75; margin: 0; }
+
+/* FOUR UNIVERSAL */
+.four-universal {
+  background: #f7f2e8;
+  border: 1px solid #e8e4dc;
+  border-radius: 4px;
+  padding: 20px 22px;
+  margin: 24px 0;
+}
+.fu-label {
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 14px;
+}
+.fu-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #e8e4dc;
+  font-size: .9rem;
+  color: #4a4540;
+  line-height: 1.7;
+}
+.fu-item:last-child { border-bottom: none; }
+.fu-name { font-weight: bold; color: #2a2a2a; }
+
+/* JOURNEY */
+.journey {
+  margin-top: 52px;
+  padding-top: 32px;
+  border-top: 1px solid #e8e4dc;
+}
+.journey p { font-size: .9rem; color: #6b6560; line-height: 1.8; margin-bottom: 18px; }
+.next-links { display: flex; flex-direction: column; gap: 10px; }
+.next-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border: 1px solid #e8e4dc;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #fdfaf4;
+  transition: border-color .2s;
+}
+.next-link:hover { border-color: #c8bfb0; background: #f7f2e8; }
+.nl-label { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: #b0a090; }
+.nl-title { font-size: .95rem; color: #1a1a1a; margin-top: 3px; }
+.nl-arrow { color: #9b7d5a; font-size: 1rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="visitor-lounge.html">Citane</a>
+  <span class="sep">/</span>
+  <span class="page-t">Sensory School</span>
+  <a class="back" href="buna-sensory-school.html">← School</a>
+</nav>
+
+<div class="layer-nav">
+  <a class="layer-btn" href="sensory-already.html">Before You Begin</a>
+  <a class="layer-btn" href="sensory-encounter.html">Layer One · The Encounter</a>
+  <a class="layer-btn" href="sensory-language.html">Layer Two · The Language</a>
+  <a class="layer-btn active" href="sensory-chemistry.html">Layer Three · The Chemistry</a>
+</div>
+
+<div class="hero">
+  <div class="layer-label">Layer Three · The Chemistry</div>
+  <h1>Why It Happens</h1>
+  <p>The compounds that drive the sensory experience of Buna — where they come from in the leaf, how processing changes them, and what they translate as in the cup. Each portrait begins with the experience, not the formula.</p>
+</div>
+
+<div class="compound-index">
+  <div class="compound-index-inner">
+    <a class="ci-link" href="#beta-ionone">β-Ionone</a>
+    <a class="ci-link" href="#alpha-ionone">α-Ionone</a>
+    <a class="ci-link" href="#hexanal">Hexanal</a>
+    <a class="ci-link" href="#nonadienal">Nonadienal</a>
+    <a class="ci-link" href="#decanal">Decanal</a>
+    <a class="ci-link" href="#octanal">Octanal</a>
+    <a class="ci-link" href="#mangiferin">Mangiferin</a>
+    <a class="ci-link" href="#gaba">GABA</a>
+    <a class="ci-link" href="#ppo">PPO</a>
+    <a class="ci-link" href="#diphenyl">Diphenyl Sulfone</a>
+    <a class="ci-link" href="#chlorogenic">Chlorogenic Acids</a>
+    <a class="ci-link" href="#universal">The Four Universal</a>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="intro">
+    <p>These compounds were not put here by anyone. They are what the coffee leaf produces — from its genetics, its growing conditions, its age, and what happens to it after harvest. Understanding them is not about memorising names. It is about understanding why the cup tastes the way it does, and what can change it.</p>
+    <p>Where OAV (Odour Activity Value) is given, it represents the concentration of the compound divided by its detection threshold. A value above 1 means the compound is perceptible. The higher the number, the more dominant its contribution to aroma.</p>
+  </div>
+
+  <!-- β-IONONE -->
+  <div class="compound" id="beta-ionone">
+    <div class="compound-head">
+      <div class="compound-name">β-Ionone</div>
+      <div class="compound-aka">Beta-ionone · Rose ketone · Carotenoid-derived norisoprenoid</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Sweet · Floral · Violet · Honey-like</span>
+        <span class="ctag ctag-source">Young to mixed leaf</span>
+        <span class="ctag ctag-process">Withering · Oolong · Yeast fermentation</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">Many people describe β-ionone as violet-like, floral, honeyed, or softly fruity. It appears in many plants, including coffee. When researchers study aroma, β-ionone is often associated with some of the sweeter floral notes people perceive.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">What it is in the leaf</div>
+        <p>β-Ionone is produced when carotenoids — the pigments that give plants their yellow and orange colours — break down. In coffee leaf, this degradation happens naturally during processing, particularly during withering and oxidation. The older the leaf, the more carotenoid breakdown has already occurred in the plant.</p>
+        <p>It has been measured at OAV 132–927 in coffee leaf studies — among the highest recorded for any compound in CLT. At these concentrations, it is one of the primary drivers of the sweet-floral character.</p>
+      </div>
+
+      <div class="compound-section">
+        <div class="cs-label">What changes it</div>
+        <p>Withering duration is the primary lever. A 12–24 hour wither before processing significantly increases β-ionone concentration. This is the basis of the oolong-style pathway, which consistently produces the highest β-ionone and the sweetest cup profile. Yeast fermentation also elevates it through enzymatic carotenoid degradation.</p>
+        <p>Minimal processing — steam-fixing or pan-firing young leaf — largely prevents this development. The compound is present, but at lower concentrations.</p>
+      </div>
+
+      <div class="data-row">
+        <div class="data-item"><div class="data-key">OAV in CLT</div><div class="data-val">132–927</div></div>
+        <div class="data-item"><div class="data-key">Consumer utility rank</div><div class="data-val">Highest (Fibrianto 2021)</div></div>
+        <div class="data-item"><div class="data-key">Optimal process</div><div class="data-val">Oolong · 12–24h wither</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- α-IONONE -->
+  <div class="compound" id="alpha-ionone">
+    <div class="compound-head">
+      <div class="compound-name">α-Ionone</div>
+      <div class="compound-aka">Alpha-ionone · Violet ionone</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Floral · Violet · Powdery · Woody undertone</span>
+        <span class="ctag ctag-source">Young to mixed leaf</span>
+        <span class="ctag ctag-process">Partial oxidation · Yeast fermentation</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">α-Ionone is often described as softer and more powdery than its sibling β-ionone — more violet than honey. It is prized in perfumery for mimicking the scent of orris root and violet flower. In Buna, it contributes to the floral top note that appears in well-processed oolong-style preparations.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">Its relationship with β-ionone</div>
+        <p>The two ionones almost always appear together in CLT — they share the same carotenoid precursor pathway. β-ionone typically registers at higher OAV (132–927), while α-ionone sits at OAV 30–100. Together they define the floral-sweet axis of Buna's sensory profile.</p>
+        <p>The distinction matters: β-ionone reads as sweet and honeyed; α-ionone reads as floral and violet-like. Their ratio influences whether a cup feels more sweet or more perfumed.</p>
+      </div>
+
+      <div class="data-row">
+        <div class="data-item"><div class="data-key">OAV in CLT</div><div class="data-val">30–100</div></div>
+        <div class="data-item"><div class="data-key">Character</div><div class="data-val">Powdery floral · Violet</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEXANAL -->
+  <div class="compound" id="hexanal">
+    <div class="compound-head">
+      <div class="compound-name">Hexanal</div>
+      <div class="compound-aka">Hexyl aldehyde · Green aldehyde C-6</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Green · Grassy · Fresh-cut · Slightly sharp</span>
+        <span class="ctag ctag-source">Young leaf · Highest at flush</span>
+        <span class="ctag ctag-process">Steam arrest · Pan-firing</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">Hexanal is the smell of cut grass, green apples, and freshly sliced cucumber. It is the compound most responsible for what people mean when they say Buna tastes green. It is released when leaf cells are disrupted — by cutting, wilting, or heat.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">Where it comes from</div>
+        <p>Hexanal is produced through the lipoxygenase pathway — an enzymatic process that begins when the leaf is damaged. In the living plant, this is a defence mechanism. After harvest, it develops rapidly and is most concentrated in young, flush leaves that haven't been allowed to oxidise.</p>
+        <p>Steam-fixing and pan-firing — the green tea processing methods — arrest the enzymes that would otherwise modify hexanal into other compounds. This is why steamed preparations smell and taste most green.</p>
+      </div>
+
+      <div class="compound-section">
+        <div class="cs-label">What changes it</div>
+        <p>Withering allows enzymatic conversion of hexanal into other aldehydes — including some of the refreshing and fruity compounds. This is the trade: allow hexanal to decrease, and floral and sweet character develops in its place. Preserve hexanal through steam arrest, and the green character remains dominant.</p>
+      </div>
+
+      <div class="data-row">
+        <div class="data-item"><div class="data-key">OAV in CLT</div><div class="data-val">1–10</div></div>
+        <div class="data-item"><div class="data-key">Highest in</div><div class="data-val">Young / flush leaf</div></div>
+        <div class="data-item"><div class="data-key">Reduced by</div><div class="data-val">Withering · Oxidation</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NONADIENAL -->
+  <div class="compound" id="nonadienal">
+    <div class="compound-head">
+      <div class="compound-name">(E,Z)-2,6-Nonadienal</div>
+      <div class="compound-aka">Cucumber aldehyde · Violet leaf aldehyde</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Refreshing · Cucumber · Cool · Clean</span>
+        <span class="ctag ctag-source">Young leaf · All CLT samples</span>
+        <span class="ctag ctag-process">Any · Most active when served chilled</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">This is the compound responsible for the cooling, cucumber-like quality that surprises people encountering Buna for the first time. It is present in all coffee leaf tea samples studied. The cooling sensation it produces is independent of the temperature of the beverage — it is a compound effect, not a thermal one.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">Why it feels cool</div>
+        <p>Nonadienal activates cold-sensitive receptors in the mouth and throat — the same receptors that respond to menthol, though through a different mechanism. The result is a genuine cooling sensation that does not come from the temperature of the liquid. Served at 10°C, this effect becomes pronounced. Served hot, it is still present but masked by the thermal sensation.</p>
+        <p>This is one of the more unusual properties of coffee leaf tea — a documented refreshing quality that most other beverages do not share.</p>
+      </div>
+
+      <div class="data-row">
+        <div class="data-item"><div class="data-key">OAV in CLT</div><div class="data-val">18–256</div></div>
+        <div class="data-item"><div class="data-key">Present in</div><div class="data-val">All CLT samples studied</div></div>
+        <div class="data-item"><div class="data-key">Best expressed</div><div class="data-val">Chilled · 10°C</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECANAL -->
+  <div class="compound" id="decanal">
+    <div class="compound-head">
+      <div class="compound-name">Decanal</div>
+      <div class="compound-aka">Decyl aldehyde · Aldehyde C-10</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Floral · Citrus-peel · Sweet · Waxy</span>
+        <span class="ctag ctag-source">Mixed to mature leaf</span>
+        <span class="ctag ctag-process">Partial oxidation · Yeast fermentation</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">Decanal is widely used in perfumery for its sweet, citrus-peel quality — described variously as orange blossom, lemongrass, or waxy floral. In CLT it has been measured at OAV 14–301, making it one of the more impactful aroma compounds. It tends to appear alongside α-ionone in floral-dominant preparations.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">In the cup</div>
+        <p>Decanal contributes to the floral top note but with a slightly waxy, citrus character that differentiates it from the pure violet quality of the ionones. Together with α-ionone and β-ionone, it forms the floral-sweet triad that characterises oolong-style and yeast-fermented Buna.</p>
+      </div>
+
+      <div class="data-row">
+        <div class="data-item"><div class="data-key">OAV in CLT</div><div class="data-val">14–301</div></div>
+        <div class="data-item"><div class="data-key">Character</div><div class="data-val">Sweet citrus · Waxy floral</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OCTANAL -->
+  <div class="compound" id="octanal">
+    <div class="compound-head">
+      <div class="compound-name">Octanal</div>
+      <div class="compound-aka">Caprylic aldehyde · Aldehyde C-8</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Fruity · Citrus · Melon · Fresh orange</span>
+        <span class="ctag ctag-source">Young to mixed leaf</span>
+        <span class="ctag ctag-process">Oolong · Yeast fermentation · Rolling</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">Octanal smells of citrus oil, sweet orange, and melon. It is the primary driver of the fruity character in Buna, and it is produced by the same lipid oxidation pathways as hexanal — but from longer-chain fatty acids. Rolling the leaf before withering enhances its development by rupturing cell walls.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">What rolling does</div>
+        <p>Physical manipulation of the leaf — rolling, twisting — breaks cell walls and brings enzymes into contact with their substrates. This accelerates the production of fruity aldehydes including octanal. It is why rolled oolong-style preparations are more fruity than simply witthered flat leaf.</p>
+      </div>
+
+      <div class="data-row">
+        <div class="data-item"><div class="data-key">OAV in CLT</div><div class="data-val">7–23</div></div>
+        <div class="data-item"><div class="data-key">Enhanced by</div><div class="data-val">Rolling before wither</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANGIFERIN -->
+  <div class="compound" id="mangiferin">
+    <div class="compound-head">
+      <div class="compound-name">Mangiferin</div>
+      <div class="compound-aka">C-glucosylxanthone · Young leaf marker</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Bitter · Slightly astringent · Structuring</span>
+        <span class="ctag ctag-source">Young / flush leaf only</span>
+        <span class="ctag ctag-process">All processes — decreases with leaf age</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">Mangiferin is the fingerprint of youth in the coffee leaf. It is present in highest concentrations in young flush leaves and declines as the leaf matures. Its presence tells you something about the age of the leaf in your cup — and it contributes to the mild bitter structure that young-leaf Buna carries.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">As a marker</div>
+        <p>Mangiferin concentration is one of the clearest indicators of leaf age available to researchers. This makes it useful as a reference point — cups prepared from young leaf will carry a mangiferin signature; mature leaf preparations will have much less. This difference is perceptible as a slight change in the bitterness character.</p>
+      </div>
+
+      <div class="compound-note">
+        <strong>Note on research status:</strong> Mangiferin has been studied extensively in other plants (mango leaf, passion flower) and its presence in coffee leaf is documented. Its precise sensory contribution to CLT specifically has not yet been formally panel-tested. The bitter-structuring characterisation above is an informed observation, not a validated claim.
+      </div>
+    </div>
+  </div>
+
+  <!-- GABA -->
+  <div class="compound" id="gaba">
+    <div class="compound-head">
+      <div class="compound-name">GABA</div>
+      <div class="compound-aka">Gamma-aminobutyric acid</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Not a flavour compound — physiological</span>
+        <span class="ctag ctag-source">All coffee leaf · Higher in stressed leaf</span>
+        <span class="ctag ctag-process">Anaerobic conditions increase concentration</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">GABA does not have a taste in the way that bitter or sweet do. It is an amino acid — a neurotransmitter in the human nervous system — and its interest in Buna is physiological rather than sensory. It is mentioned here because it is present in coffee leaf at meaningful concentrations, and because understanding it requires a different kind of attention than understanding a flavour compound.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">What it does in the plant</div>
+        <p>Plants produce GABA in response to stress — physical damage, drought, temperature change. It accumulates in stressed tissue. In coffee leaf, anaerobic processing conditions and certain handling practices increase GABA concentration. This has been the subject of specific Citane research documented in the GABA conversation brief.</p>
+      </div>
+
+      <div class="compound-section">
+        <div class="cs-label">What it does in the cup</div>
+        <p>GABA crosses the blood-brain barrier and interacts with GABA receptors, which are associated with calming and relaxation responses. At what concentrations this becomes physiologically meaningful from a cup of Buna is not yet clearly established. This is an area where the research is active and the claims being made in the broader market often exceed what the evidence currently supports.</p>
+      </div>
+
+      <div class="compound-note">
+        <strong>On GABA claims:</strong> Many products make relaxation claims on the basis of GABA content. The evidence base for these claims at beverage-realistic doses is mixed. Citane treats GABA as a noteworthy compound present in the leaf — not as a functional claim. What has been observed is not the same as what has been proven.
+      </div>
+    </div>
+  </div>
+
+  <!-- PPO -->
+  <div class="compound" id="ppo">
+    <div class="compound-head">
+      <div class="compound-name">Polyphenol Oxidase (PPO)</div>
+      <div class="compound-aka">Browning enzyme · Oxidation catalyst</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Drives astringency · Colour change · Bitterness modulation</span>
+        <span class="ctag ctag-source">Present in all green leaf</span>
+        <span class="ctag ctag-process">Arrested by heat · Active in withering · Key in oxidation</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">PPO is not a flavour compound — it is an enzyme. But it is one of the most important variables in the sensory experience of Buna, because it drives oxidation. Understanding what PPO does is understanding why a green preparation tastes different from an oolong, and why the colour of a brewed cup can tell you something about the processing.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">What PPO does</div>
+        <div class="process-flow">
+          <div class="pf-step">
+            <div class="pf-num">1</div>
+            <p>In the living leaf, PPO is kept separate from its substrates (polyphenols) by cellular compartmentation. The enzyme and the compounds it acts on are in different parts of the cell.</p>
+          </div>
+          <div class="pf-step">
+            <div class="pf-num">2</div>
+            <p>When the leaf is damaged — harvested, wilted, rolled — cells rupture and PPO contacts polyphenols. Oxidation begins. This is visible as browning, the same process as a cut apple turning brown.</p>
+          </div>
+          <div class="pf-step">
+            <div class="pf-num">3</div>
+            <p>PPO converts polyphenols into quinones, which then polymerise into brown pigments and contribute to astringency and bitterness. More PPO activity = darker colour, more astringency.</p>
+          </div>
+          <div class="pf-step">
+            <div class="pf-num">4</div>
+            <p>Heat above approximately 70°C denatures PPO — the enzyme stops working. Steam-fixing and pan-firing arrest PPO quickly. Withering allows it to work before arrest. Full oxidation lets it run its course.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="compound-section">
+        <div class="cs-label">What this means for the cup</div>
+        <p>The colour of a brewed Buna preparation — from pale yellow-green through amber to dark brown — broadly reflects how much PPO activity was allowed before arrest. Green preparations are pale. Full oxidation produces dark amber. Decoctions vary by leaf age and duration.</p>
+        <p>Higher PPO activity correlates with higher phenolic content in the final brew, which in turn correlates with both antioxidant activity and — when excessive — with astringency and bitterness that can reduce sensory acceptance.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIPHENYL SULFONE -->
+  <div class="compound" id="diphenyl">
+    <div class="compound-head">
+      <div class="compound-name">Diphenyl Sulfone</div>
+      <div class="compound-aka">Phenyl sulfone</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Woody · Dry · Structural depth</span>
+        <span class="ctag ctag-source">Mature leaf · Oxidised preparations</span>
+        <span class="ctag ctag-process">Full oxidation · Roasting · Long processing</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">Diphenyl sulfone is described in isolation as odourless or very mildly woody. In the context of a full preparation — alongside guaiacol, tannins, and other mature-leaf compounds — it contributes to the dry, structural quality that characterises woody Buna. It was specifically identified in oolong-style preparations at higher levels than in other CLT types.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">Research note</div>
+        <p>Diphenyl sulfone and phenyl-methylene heptanoate (benzyl heptanoate) were additionally reported as present at higher levels in oolong-style coffee leaf tea — a finding from Steger et al. 2022. Benzyl heptanoate has a mild fruity apricot note with herbal undertones and is used in perfumery as a fixative. Its contribution to the oolong-style sensory profile in CLT is documented but not yet deeply characterised.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHLOROGENIC ACIDS -->
+  <div class="compound" id="chlorogenic">
+    <div class="compound-head">
+      <div class="compound-name">Chlorogenic Acids</div>
+      <div class="compound-aka">CGAs · Phenolic acids · Antioxidant polyphenols</div>
+      <div class="compound-tag-row">
+        <span class="ctag ctag-sensory">Bitter · Astringent · Structuring</span>
+        <span class="ctag ctag-source">All leaf · Higher in mature leaf</span>
+        <span class="ctag ctag-process">Increased by higher brew temperature</span>
+      </div>
+    </div>
+    <div class="compound-body">
+      <div class="compound-opening">Chlorogenic acids are a family of polyphenolic compounds present in all coffee plant material. They are the primary source of bitterness and astringency in CLT, and they are also the compounds most studied for antioxidant activity. The relationship between the two is direct: higher extraction of chlorogenic acids means more antioxidant activity and more bitterness and astringency.</div>
+
+      <div class="compound-section">
+        <div class="cs-label">Temperature and extraction</div>
+        <p>Higher brewing temperatures extract more chlorogenic acids. This is a consistent finding across multiple studies. Brewing at 95°C produces significantly higher phenolic content than brewing at 74–78°C. The practical implication: higher temperature means more antioxidant activity and more bitterness and astringency. Lower temperature means a gentler cup with less of both.</p>
+        <p>Higher phenolic content also correlates with greater sensory acceptance up to a point — and then the relationship reverses as bitterness becomes excessive. The optimal range depends on the preparation and the consumer.</p>
+      </div>
+
+      <div class="compound-section">
+        <div class="cs-label">Stability</div>
+        <p>Chlorogenic acids degrade during processing and storage. Oxidation reduces them. This is one reason why highly oxidised preparations (full black tea style) have different bitterness profiles than green or oolong preparations — not because less chlorogenic acid was present in the leaf, but because more of it has been converted into other compounds during processing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOUR UNIVERSAL -->
+  <div class="section" id="universal">
+    <div class="section-label">A finding worth noting</div>
+    <h2>The four compounds present in every sample</h2>
+    <p>Across the CLT studies reviewed for this library, four aroma compounds appeared in every sample studied — regardless of origin, leaf age, processing method, or brewing approach. They are the consistent signature of the coffee leaf.</p>
+
+    <div class="four-universal">
+      <div class="fu-label">Present in all CLT samples studied</div>
+      <div class="fu-item">
+        <span class="fu-name">(E,E)-3,5-Octadien-2-one</span> — a fruity, slightly herbal ketone. Its consistent presence suggests it is intrinsic to the leaf rather than a product of processing.
+      </div>
+      <div class="fu-item">
+        <span class="fu-name">(E,Z)-2,6-Nonadienal</span> — the cucumber aldehyde described above. Its universal presence explains why some cooling, refreshing quality appears in nearly all CLT preparations.
+      </div>
+      <div class="fu-item">
+        <span class="fu-name">α-Ionone</span> — the softer, powdery floral compound. Present at varying concentrations but never absent.
+      </div>
+      <div class="fu-item">
+        <span class="fu-name">β-Ionone</span> — the primary sweet-floral compound. Present in all samples; concentration varies enormously by processing.
+      </div>
+    </div>
+
+    <p>These four compounds are not the only important ones in Buna. But their universality is significant — they are what coffee leaf reliably offers, regardless of how it is handled. Everything else is variable.</p>
+  </div>
+
+  <div class="journey">
+    <p>The chemistry explains the experience. The language gives it words. The encounter is where it begins.</p>
+    <div class="next-links">
+      <a class="next-link" href="sensory-encounter.html">
+        <div>
+          <div class="nl-label">Layer One</div>
+          <div class="nl-title">The Encounter — back to the experience</div>
+        </div>
+        <div class="nl-arrow">←</div>
+      </a>
+      <a class="next-link" href="sensory-language.html">
+        <div>
+          <div class="nl-label">Layer Two</div>
+          <div class="nl-title">The Language — naming what you notice</div>
+        </div>
+        <div class="nl-arrow">←</div>
+      </a>
+      <a class="next-link" href="clt-flavour-wheel.html">
+        <div>
+          <div class="nl-label">Interactive</div>
+          <div class="nl-title">CLT Flavour Landscape — see the relationships</div>
+        </div>
+        <div class="nl-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

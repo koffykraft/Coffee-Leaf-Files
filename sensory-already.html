@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Already Sense — Buna Sensory School</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #2a2a2a;
+  background: #fdfaf4;
+}
+
+nav {
+  background: #1a1a1a;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand { color: #fff; font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.sep { color: #555; }
+.page-t { color: #999; font-size: .8rem; }
+.back { margin-left: auto; color: #888; font-size: .78rem; text-decoration: none; }
+.back:hover { color: #fff; }
+
+/* LAYER NAV */
+.layer-nav {
+  background: #f7f2e8;
+  border-bottom: 1px solid #e8e4dc;
+  padding: 12px 20px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.layer-btn {
+  font-family: Georgia, serif;
+  font-size: .78rem;
+  color: #9a9590;
+  text-decoration: none;
+  padding: 6px 16px;
+  border-right: 1px solid #e8e4dc;
+  white-space: nowrap;
+  letter-spacing: .04em;
+}
+.layer-btn:first-child { padding-left: 0; }
+.layer-btn.active { color: #9b7d5a; font-weight: bold; }
+.layer-btn:hover { color: #3a3a3a; }
+
+/* HERO */
+.hero {
+  padding: 50px 20px 40px;
+  border-bottom: 1px solid #e8e4dc;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.pre-label {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: normal;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: .97rem;
+  color: #6b6560;
+  line-height: 1.8;
+}
+
+/* REASSURANCE */
+.reassurance {
+  max-width: 640px;
+  margin: 44px auto 0;
+  padding: 0 20px;
+}
+.reassurance p {
+  font-size: 1rem;
+  line-height: 1.88;
+  color: #3a3a3a;
+  margin-bottom: 1.3em;
+}
+.reassurance p:last-child { margin-bottom: 0; }
+
+/* ANCHOR SECTION */
+.anchors {
+  max-width: 640px;
+  margin: 52px auto 0;
+  padding: 0 20px;
+}
+.anchors-label {
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #b0a090;
+  margin-bottom: 28px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e8e4dc;
+}
+
+/* ANCHOR CARD */
+.anchor {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid #f0ece5;
+}
+.anchor:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.anchor-name {
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 12px;
+}
+.anchor-lead {
+  font-size: 1.05rem;
+  line-height: 1.78;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+.anchor-body {
+  font-size: .94rem;
+  line-height: 1.85;
+  color: #4a4540;
+}
+.anchor-bridge {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: #f7f2e8;
+  border-left: 3px solid #d4c4a8;
+  border-radius: 0 3px 3px 0;
+  font-size: .86rem;
+  color: #6b5a40;
+  line-height: 1.75;
+  font-style: italic;
+}
+
+/* SCIENCE NOTE */
+.science-note {
+  background: #f7f2e8;
+  border: 1px solid #e8e4dc;
+  border-radius: 4px;
+  padding: 20px 22px;
+  margin: 44px 20px 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sn-label {
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 10px;
+}
+.science-note p {
+  font-size: .9rem;
+  color: #4a4540;
+  line-height: 1.8;
+  margin-bottom: .8em;
+}
+.science-note p:last-child { margin-bottom: 0; }
+
+/* CLOSING */
+.closing {
+  max-width: 640px;
+  margin: 52px auto 0;
+  padding: 0 20px 80px;
+}
+.closing p {
+  font-size: .97rem;
+  line-height: 1.85;
+  color: #3a3a3a;
+  margin-bottom: 1.3em;
+}
+
+/* NEXT */
+.next-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+}
+.next-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1px solid #e8e4dc;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #fdfaf4;
+  transition: border-color .2s, background .2s;
+}
+.next-link:hover { border-color: #c8bfb0; background: #f7f2e8; }
+.nl-label {
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #b0a090;
+  margin-bottom: 3px;
+}
+.nl-title { font-size: .95rem; color: #1a1a1a; }
+.nl-arrow { color: #9b7d5a; font-size: 1rem; flex-shrink: 0; margin-left: 12px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="visitor-lounge.html">Citane</a>
+  <span class="sep">/</span>
+  <span class="page-t">Sensory School</span>
+  <a class="back" href="buna-sensory-school.html">← School</a>
+</nav>
+
+<div class="layer-nav">
+  <a class="layer-btn active" href="sensory-already.html">Before You Begin</a>
+  <a class="layer-btn" href="sensory-encounter.html">The Encounter</a>
+  <a class="layer-btn" href="sensory-language.html">The Language</a>
+  <a class="layer-btn" href="sensory-chemistry.html">The Chemistry</a>
+</div>
+
+<div class="hero">
+  <div class="pre-label">Before You Begin</div>
+  <h1>You Already Sense</h1>
+  <p>Before we discuss Buna, there is something worth noticing. You have been a sensory observer your entire life. You simply may not have been paying attention to it as a skill.</p>
+</div>
+
+<div class="reassurance">
+  <p>There is no correct way to perceive. There is no test to pass. Sensory experience is not a talent some people have and others lack. It is what the nervous system does — automatically, constantly, in everything you eat and drink and smell and touch.</p>
+  <p>What the Buna Sensory School offers is not a new ability. It offers a reason to slow down and notice what is already happening.</p>
+  <p>The ten observations below are drawn from ordinary daily experience. Each one is something you have almost certainly felt before — perhaps without stopping to examine it. Read them slowly. See which ones you recognise.</p>
+</div>
+
+<div class="anchors">
+  <div class="anchors-label">Ten things you already know</div>
+
+  <!-- 1 -->
+  <div class="anchor">
+    <div class="anchor-name">One · Green</div>
+    <div class="anchor-lead">The smell when you tear a leaf.</div>
+    <div class="anchor-body">Any leaf — an herb from a kitchen garden, a vegetable being prepared, a branch brushed on a walk. That sharp, immediate green arrives before you have thought about it. It is not something you decide to notice. It simply arrives.</div>
+    <div class="anchor-bridge">That smell is caused by a compound called hexanal — released when plant cells are broken. It is one of the most recognised smells in the world, across cultures. You have known it your whole life without knowing its name.</div>
+  </div>
+
+  <!-- 2 -->
+  <div class="anchor">
+    <div class="anchor-name">Two · Cooling without cold</div>
+    <div class="anchor-lead">Mint on the tongue, after the mint is gone.</div>
+    <div class="anchor-body">The temperature in your mouth has not changed. The mint is swallowed. But something continues — a coolness that is not cold, a freshness that lingers. This is not imagined. It is a real physiological response — a compound in the mint activating the same receptors that respond to actual cold temperature.</div>
+    <div class="anchor-bridge">Coffee leaf carries a compound that does something similar — quieter, more subtle, but the same mechanism. The cooling sensation some people notice in Buna is not a flavour. It is a sensation. There is a difference, and you already understand it from mint.</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="anchor">
+    <div class="anchor-name">Three · Bitterness that becomes welcome</div>
+    <div class="anchor-lead">The first coffee. The first dark chocolate. The first beer.</div>
+    <div class="anchor-body">Most people, encountering these for the first time, find them unpleasant. Bitter is one of the tastes the nervous system is most alert to — historically a warning of potential toxins. And yet, most adults who regularly drink coffee actively seek the bitterness. They miss it when it is absent.</div>
+    <div class="anchor-bridge">The taste did not change. The relationship to it did. This is perhaps the most important thing to understand about bitter in Buna — it is manageable, it is variable, and for many people it becomes part of what they look for.</div>
+  </div>
+
+  <!-- 4 -->
+  <div class="anchor">
+    <div class="anchor-name">Four · Sweet without sugar</div>
+    <div class="anchor-lead">A ripe tomato. Corn just picked. A carrot pulled from the ground.</div>
+    <div class="anchor-body">Sweetness that does not come from added sugar. Something in the food itself reads as sweet — not sharp, not cloying, but a rounded, gentle quality that the palate recognises as pleasant without knowing exactly why. This sweetness is compound-driven, not sucrose-driven.</div>
+    <div class="anchor-bridge">The primary sweet character in Buna comes from a compound that develops during processing — not from the raw leaf. It is softer than sugar sweetness. Some people describe it as honey-like. Others as floral. It is one of the most consistently preferred qualities in coffee leaf tea across all consumer studies.</div>
+  </div>
+
+  <!-- 5 -->
+  <div class="anchor">
+    <div class="anchor-name">Five · Astringency</div>
+    <div class="anchor-lead">An unripe fruit — the drying that coats the mouth.</div>
+    <div class="anchor-body">Bite into an unripe banana, a young grape, a persimmon that is not yet ready. Notice what happens to the inside of your cheeks and gums after swallowing. A dryness. A gripping. A sensation that persists for a minute or more. This is astringency — and it is not a taste. It is a tactile sensation caused by compounds binding with proteins in saliva.</div>
+    <div class="anchor-bridge">Most people have felt this many times and never had a word for it. Now you do. Buna carries some astringency — most noticeably at certain brew temperatures and with certain leaf ages. Knowing what astringency is, and where to feel it, makes it easier to notice and to manage.</div>
+  </div>
+
+  <!-- 6 -->
+  <div class="anchor">
+    <div class="anchor-name">Six · The taste without a name</div>
+    <div class="anchor-lead">The depth in a slow-cooked broth. The satisfaction in aged cheese.</div>
+    <div class="anchor-body">There is a quality in certain foods — slow-cooked broths, aged cheese, fermented sauces, dried mushrooms, ripe tomatoes cooked down — that makes them feel complete. Satisfying in a way that is hard to describe. Not sweet, not salty, not sour, not bitter. Something else. Something that makes you want more without knowing why.</div>
+    <div class="anchor-bridge">This quality was experienced by people for thousands of years before it was identified and named in 1908. It is called umami. The reason this matters for the school is simple: you had the experience long before you had the word. The word did not create the sensation. It just helped you find it again. Buna offers several sensations in the same position — real, consistent, waiting to be named.</div>
+  </div>
+
+  <!-- 7 -->
+  <div class="anchor">
+    <div class="anchor-name">Seven · Aroma before taste</div>
+    <div class="anchor-lead">Coffee before the first sip. Bread before the first bite.</div>
+    <div class="anchor-body">The experience begins before anything reaches your tongue. The smell of bread from an oven, coffee brewing, something roasting — these are already part of the meal before eating begins. Much of what we call taste is in fact smell arriving first. The tongue detects five basic qualities. The nose distinguishes thousands.</div>
+    <div class="anchor-bridge">When you bring a cup of Buna close, the experience has already begun. What you notice in the steam — green, floral, earthy, woody — is not decoration. It is information. It often predicts what the palate will find. When it doesn't, that is interesting too.</div>
+  </div>
+
+  <!-- 8 -->
+  <div class="anchor">
+    <div class="anchor-name">Eight · Temperature changing everything</div>
+    <div class="anchor-lead">The same food, hot and cold — completely different.</div>
+    <div class="anchor-body">Cold pizza from the fridge tastes different from hot pizza from the oven. Tea that has cooled tastes different from the same tea served immediately. The chemistry is identical. What changes is how much of it reaches your receptors — some compounds release more volatile aroma at higher temperatures, others become more perceptible when cold.</div>
+    <div class="anchor-bridge">Temperature is one of the most significant variables in Buna. The same preparation served hot, warm, and chilled produces noticeably different experiences. The cooling sensation, the sweetness, the bitterness — all shift. This is not failure of consistency. It is the beverage responding to conditions, the way all natural things do.</div>
+  </div>
+
+  <!-- 9 -->
+  <div class="anchor">
+    <div class="anchor-name">Nine · The finish</div>
+    <div class="anchor-lead">What remains after swallowing.</div>
+    <div class="anchor-body">Most people swallow and move on. But something continues. A warmth. A dryness. A sweetness that arrives late — more noticeable a few seconds after the cup than during it. A cooling that persists. The finish is not an afterthought. In some beverages it is the most interesting part. Paying attention to it simply means extending the moment of noticing by a few seconds.</div>
+    <div class="anchor-bridge">Buna often has a finish worth attending to. Some preparations leave a floral sweetness. Some leave a pleasant dryness. Some leave almost nothing — clean and immediate. All of these are valid. Noticing which one you find is the beginning of a personal sensory vocabulary.</div>
+  </div>
+
+  <!-- 10 -->
+  <div class="anchor">
+    <div class="anchor-name">Ten · Expectation shaping experience</div>
+    <div class="anchor-lead">The brain decides before the tongue does.</div>
+    <div class="anchor-body">You smell something and the brain has already begun interpreting. If the aroma says sweet, the first sip will taste sweeter than it might otherwise. If the colour says dark and strong, the palate finds bitterness it might have missed in something paler. If someone tells you a food is expensive, it often tastes better. This is not deception or error. It is how the sensory system works — constantly using context, memory, and expectation to make sense of incoming signals.</div>
+    <div class="anchor-bridge">Buna is an unfamiliar beverage for most people. The expectation system has little to work with. This is actually an advantage — there is less to override, less to unlearn. The experience arrives more openly than it does with coffee or tea, where decades of association have already built a template. Approach it without a prediction and notice what actually arrives.</div>
+  </div>
+
+</div>
+
+<div class="science-note">
+  <div class="sn-label">A note from the research</div>
+  <p>Food taste scientists at a 1979 American Chemical Society symposium observed that human taste systems are assumed to have developed to function in a natural nutritional ecosystem — and to have changed little as a result of cultural dietary changes over the last ten to twenty thousand years.</p>
+  <p>What this means in practice: the sensing apparatus is ancient and capable. The only variable is familiarity. An unfamiliar food is not a test of ability. It is simply a new input to a system that has been doing this work for a very long time.</p>
+  <p>They also noted that it is often possible for an individual to break a flavour complex down into a variety of distinguishable sensations — and that these sensations are end products of neural processing available to consciousness.</p>
+  <p>You do not have to acquire this ability. You already have it. The school simply offers a reason to use it.</p>
+</div>
+
+<div class="closing">
+  <p>These ten observations are not about Buna. They are about you — about what you already bring to any sensory experience. When you encounter Buna for the first time, or the tenth time, these are the tools you will use. You have been using them your entire life.</p>
+  <p>The next step is the cup itself.</p>
+
+  <div class="next-links">
+    <a class="next-link" href="sensory-encounter.html">
+      <div>
+        <div class="nl-label">Layer One</div>
+        <div class="nl-title">The Encounter — what you notice in the cup</div>
+      </div>
+      <div class="nl-arrow">→</div>
+    </a>
+    <a class="next-link" href="sensory-language.html">
+      <div>
+        <div class="nl-label">Layer Two</div>
+        <div class="nl-title">The Language — naming what you notice</div>
+      </div>
+      <div class="nl-arrow">→</div>
+    </a>
+    <a class="next-link" href="sensory-chemistry.html">
+      <div>
+        <div class="nl-label">Layer Three</div>
+        <div class="nl-title">The Chemistry — why it happens</div>
+      </div>
+      <div class="nl-arrow">→</div>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

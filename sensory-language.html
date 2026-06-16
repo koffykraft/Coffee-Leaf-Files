@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Language — Buna Sensory School</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #2a2a2a;
+  background: #fdfaf4;
+}
+nav {
+  background: #1a1a1a;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand { color: #fff; font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.sep { color: #555; }
+.page-t { color: #999; font-size: .8rem; }
+.back { margin-left: auto; color: #888; font-size: .78rem; text-decoration: none; }
+.back:hover { color: #fff; }
+.layer-nav {
+  background: #f7f2e8;
+  border-bottom: 1px solid #e8e4dc;
+  padding: 12px 20px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.layer-btn {
+  font-family: Georgia, serif;
+  font-size: .78rem;
+  color: #9a9590;
+  text-decoration: none;
+  padding: 6px 16px;
+  border-right: 1px solid #e8e4dc;
+  white-space: nowrap;
+  letter-spacing: .04em;
+}
+.layer-btn:first-child { padding-left: 0; }
+.layer-btn.active { color: #9b7d5a; font-weight: bold; }
+.layer-btn:hover { color: #3a3a3a; }
+
+.hero {
+  padding: 50px 20px 40px;
+  border-bottom: 1px solid #e8e4dc;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.layer-label {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  font-weight: normal;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: .95rem;
+  color: #6b6560;
+  line-height: 1.8;
+}
+
+.content {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+.section { margin-top: 52px; }
+.section-label {
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #b0a090;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e8e4dc;
+}
+.section h2 {
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #1a1a1a;
+  margin-bottom: 18px;
+  line-height: 1.3;
+}
+.section p {
+  font-size: .97rem;
+  line-height: 1.85;
+  color: #3a3a3a;
+  margin-bottom: 1.3em;
+}
+.section p:last-child { margin-bottom: 0; }
+
+/* WORD CARDS */
+.word-set { margin: 28px 0; }
+.word-card {
+  border: 1px solid #e8e4dc;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  background: #fdfaf4;
+}
+.word-head {
+  background: #f7f2e8;
+  padding: 14px 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  border-bottom: 1px solid #e8e4dc;
+}
+.word-term {
+  font-size: 1rem;
+  color: #1a1a1a;
+  font-weight: bold;
+  letter-spacing: .02em;
+}
+.word-also {
+  font-size: .78rem;
+  color: #9a9590;
+  font-style: italic;
+}
+.word-body { padding: 16px 20px; }
+.word-body p {
+  font-size: .9rem;
+  color: #4a4540;
+  line-height: 1.8;
+  margin-bottom: .8em;
+}
+.word-body p:last-child { margin-bottom: 0; }
+.word-feel {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f0ece5;
+  font-size: .82rem;
+  color: #7a7570;
+  line-height: 1.75;
+  font-style: italic;
+}
+
+/* DISTINCTION BOX */
+.distinction {
+  background: #f7f2e8;
+  border: 1px solid #e8e4dc;
+  border-radius: 4px;
+  padding: 22px 22px;
+  margin: 24px 0;
+}
+.distinction-title {
+  font-size: .78rem;
+  font-weight: bold;
+  letter-spacing: .08em;
+  color: #3a3a3a;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.distinction p {
+  font-size: .9rem;
+  color: #4a4540;
+  line-height: 1.8;
+  margin-bottom: .8em;
+}
+.distinction p:last-child { margin-bottom: 0; }
+
+/* PROGRESSION */
+.progression {
+  margin: 24px 0;
+  border-left: 3px solid #d4c4a8;
+  padding-left: 20px;
+}
+.prog-step {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f0ece5;
+}
+.prog-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.prog-label {
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #9b7d5a;
+  margin-bottom: 6px;
+}
+.prog-step p {
+  font-size: .9rem;
+  color: #4a4540;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* JOURNEY */
+.journey {
+  margin-top: 52px;
+  padding-top: 32px;
+  border-top: 1px solid #e8e4dc;
+}
+.journey p {
+  font-size: .9rem;
+  color: #6b6560;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+.next-links { display: flex; flex-direction: column; gap: 10px; }
+.next-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border: 1px solid #e8e4dc;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #fdfaf4;
+  transition: border-color .2s;
+}
+.next-link:hover { border-color: #c8bfb0; background: #f7f2e8; }
+.nl-label { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: #b0a090; }
+.nl-title { font-size: .95rem; color: #1a1a1a; margin-top: 3px; }
+.nl-arrow { color: #9b7d5a; font-size: 1rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="visitor-lounge.html">Citane</a>
+  <span class="sep">/</span>
+  <span class="page-t">Sensory School</span>
+  <a class="back" href="buna-sensory-school.html">← School</a>
+</nav>
+
+<div class="layer-nav">
+  <a class="layer-btn" href="sensory-already.html">Before You Begin</a>
+  <a class="layer-btn" href="sensory-encounter.html">Layer One · The Encounter</a>
+  <a class="layer-btn active" href="sensory-language.html">Layer Two · The Language</a>
+  <a class="layer-btn" href="sensory-chemistry.html">Layer Three · The Chemistry</a>
+</div>
+
+<div class="hero">
+  <div class="layer-label">Layer Two · The Language</div>
+  <h1>Naming What You Notice</h1>
+  <p>Language doesn't replace the experience — it makes it easier to hold, compare, and communicate. These are the words people use when they pay careful attention to Buna. Not borrowed wholesale from coffee or tea, but specific to this leaf.</p>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <div class="section-label">On using borrowed language</div>
+    <p>Most sensory vocabulary for beverages comes from wine. Some comes from tea. A little comes from coffee. When people first taste Buna, they often reach for these borrowed terms — and some of them fit, partially. But Buna does things that don't map cleanly onto any existing vocabulary.</p>
+    <p>What follows is not a glossary of correct terms. It is an account of what people have found useful when describing what this particular leaf produces — and where those descriptions come from.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">The core vocabulary</div>
+    <h2>Words that have earned their place</h2>
+
+    <div class="word-set">
+
+      <div class="word-card">
+        <div class="word-head">
+          <span class="word-term">Green</span>
+          <span class="word-also">also: vegetal, herbaceous, grassy</span>
+        </div>
+        <div class="word-body">
+          <p>In Buna, green is not a defect. It is the most direct expression of the leaf — the character that says: this came from a plant, recently, with minimal interference. It is the dominant note in minimally processed young leaf, and it arrives as a brightness on the palate that is often cooling.</p>
+          <p>Green in Buna is different from green in a badly-prepared cup of another beverage. It is not harsh or raw. It is the smell of something living, expressed in the cup.</p>
+          <div class="word-feel">Where you feel it: tip of the tongue and the front of the palate on arrival. It lifts quickly — rarely stays into the finish.</div>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-head">
+          <span class="word-term">Refreshing</span>
+          <span class="word-also">also: cool, clean, cucumber-like</span>
+        </div>
+        <div class="word-body">
+          <p>This is one of the more distinctive things Buna does, and it is not simply a cold sensation. There is a compound in coffee leaf — most concentrated in young leaves — that produces a genuine cooling quality on the palate, independent of the temperature of the beverage. Served chilled, this effect becomes pronounced.</p>
+          <p>People who encounter it for the first time often look at the cup again, as though checking whether something else was added. Nothing was.</p>
+          <div class="word-feel">Where you feel it: back of the palate and throat, after swallowing. Most noticeable when the cup is chilled to around 10°C.</div>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-head">
+          <span class="word-term">Floral</span>
+          <span class="word-also">also: perfumed, violet-like, rose-adjacent</span>
+        </div>
+        <div class="word-body">
+          <p>Floral in Buna is not heavy or perfumed in the way that word can suggest. It is softer — a quality that some people describe as powdery, others as honey-like, others specifically as violet. It develops through processing, not from the raw leaf, and it is most present in oolong-style and yeast-fermented preparations.</p>
+          <p>It often arrives in the aroma before the taste — something you notice before the cup reaches your lips.</p>
+          <div class="word-feel">Where you feel it: nose primarily, before the palate. On the palate it registers as a softness at the sides of the tongue rather than a sharpness at the front.</div>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-head">
+          <span class="word-term">Sweet</span>
+          <span class="word-also">also: honey-like, peachy, softly fruity</span>
+        </div>
+        <div class="word-body">
+          <p>The sweetness in Buna does not come from sugar, and it is not the same as the sweetness of fruit juice or a sweetened drink. It is something closer to what the word honeyed means — a richness that reads as sweet without being sharp.</p>
+          <p>Researchers have consistently found that consumers rate sweetness as the most desirable quality in Buna. This is also the character most associated with the compound that has been measured at the highest intensity in coffee leaf studies.</p>
+          <div class="word-feel">Where you feel it: mid-palate, after the initial arrival. It tends to be soft in onset and lingers gently into the finish.</div>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-head">
+          <span class="word-term">Bitter</span>
+          <span class="word-also">distinguished from: astringent</span>
+        </div>
+        <div class="word-body">
+          <p>Bitterness in Buna is real and consistent — it is present in all preparations because the compounds that cause it are always present in the leaf. But its prominence is highly variable. Temperature, processing, leaf age, and brew time all affect how much bitterness arrives in the cup.</p>
+          <p>Bitterness is perceived at the back of the tongue. It is a taste — it arrives in the liquid and registers while drinking. This is different from astringency, which is a texture.</p>
+          <div class="word-feel">Where you feel it: back of the tongue, most noticeable on the finish and slightly afterwards.</div>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-head">
+          <span class="word-term">Astringent</span>
+          <span class="word-also">also: drying, gripping, mouth-coating</span>
+        </div>
+        <div class="word-body">
+          <p>Astringency is not a taste. It is a tactile sensation — a drying, contracting feeling in the mouth that comes from compounds binding with proteins in saliva. In Buna it is caused primarily by tannins and chlorogenic acids, both of which are consistently present.</p>
+          <p>At low levels, astringency contributes structure — the quality that makes a beverage feel like it has edges. At high levels it becomes drying and unpleasant. The difference between the two is largely a matter of brew parameters.</p>
+          <div class="word-feel">Where you feel it: the inner surfaces of the cheeks and gums, and the back of the throat. It arrives slightly after swallowing and can persist for a minute or more.</div>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-head">
+          <span class="word-term">Woody / Earthy</span>
+          <span class="word-also">also: resinous, mineral, dry</span>
+        </div>
+        <div class="word-body">
+          <p>Woody character in Buna is not a defect. Research has identified it as one of three primary sensory descriptors for coffee leaf tea — alongside green and sweet. It is most prominent in mature leaf processed by full oxidation, Kuti roast, or Kawa Daun smoke.</p>
+          <p>It is the character that places Buna closest to something ancient — an old forest floor, dry bark, a fire that has been burning a long time. People who encounter it either find it immediately appealing or need a few cups before they do.</p>
+          <div class="word-feel">Where you feel it: the whole palate, but particularly the mid-palate and finish. It has weight — it settles rather than lifts.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">A critical distinction</div>
+    <h2>Bitter and astringent are not the same</h2>
+    <div class="distinction">
+      <div class="distinction-title">How to tell them apart</div>
+      <p>Take a sip of Buna and hold it briefly. The taste you register while the liquid is in your mouth — particularly at the back of the tongue — is bitterness. It is a flavour.</p>
+      <p>After you swallow, notice what happens to the inside of your cheeks and gums. If they feel drier, more contracted, as though something is pulling at the tissue — that is astringency. It is a sensation, not a taste.</p>
+      <p>Both can be present simultaneously. Both can be modified by how the leaf is processed and how the beverage is prepared. They respond to different variables.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">What processing does to language</div>
+    <h2>The same leaf, different words</h2>
+    <p>The same Arabica leaf, processed differently, requires different vocabulary. This is one of the things that makes Buna unusual — the range of sensory experience available from a single source.</p>
+
+    <div class="progression">
+      <div class="prog-step">
+        <div class="prog-label">Young leaf · Steamed or pan-fired</div>
+        <p>Green, refreshing, clean, lightly vegetal. Low bitterness. Short finish. The most direct expression of the leaf itself.</p>
+      </div>
+      <div class="prog-step">
+        <div class="prog-label">Young–mixed leaf · Partial oxidation (oolong)</div>
+        <p>Floral, sweet, honeyed, softly fruity. The transformation compounds — ionones, esters — develop here. This is where sweetness and floral character are most accessible.</p>
+      </div>
+      <div class="prog-step">
+        <div class="prog-label">Mature leaf · Full oxidation</div>
+        <p>Woody, earthy, structured. More tannin. More bitterness. A longer finish. The character of age and patience.</p>
+      </div>
+      <div class="prog-step">
+        <div class="prog-label">Mature leaf · Roasted or smoked</div>
+        <p>Smoky, roasty, charred at the edges. Guaiacol and pyrazines. Traditional preparation in Kuti and Kawa Daun. The furthest the leaf can travel from its raw state.</p>
+      </div>
+      <div class="prog-step">
+        <div class="prog-label">Any leaf · Decoction (Engere / Chemo)</div>
+        <p>Mineral, savoury, occasionally umami-adjacent. Long boiling at high heat extracts amino acids and mineral salts not accessible through shorter infusion. Traditional Ethiopian and Harari practice.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="journey">
+    <p>The language is useful. The chemistry explains why these words fit — where each quality comes from in the leaf, and what changes it.</p>
+    <div class="next-links">
+      <a class="next-link" href="sensory-encounter.html">
+        <div>
+          <div class="nl-label">Layer One</div>
+          <div class="nl-title">The Encounter — back to the experience</div>
+        </div>
+        <div class="nl-arrow">←</div>
+      </a>
+      <a class="next-link" href="sensory-chemistry.html">
+        <div>
+          <div class="nl-label">Layer Three</div>
+          <div class="nl-title">The Chemistry — why it happens</div>
+        </div>
+        <div class="nl-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
