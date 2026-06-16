@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sensory Companion — Buna Sensory School</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --parchment: #fdfaf4;
+  --pale: #f7f2e8;
+  --ruled: #e0d8c8;
+  --accent: #8b6f47;
+  --accent-lt: #b08a62;
+  --muted: #6b6560;
+  --leaf: #3d5a3e;
+  --companion: #2a3d2b;
+  --companion-lt: #4a6a4c;
+  --companion-pale: #eef3ee;
+  --choice-hover: #f0f5f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Georgia, serif;
+  background: var(--parchment);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+/* NAV */
+nav {
+  background: var(--ink);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.brand { color: #fff; font-size: .95rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.sep { color: #555; }
+.page-t { color: #999; font-size: .8rem; }
+.back { margin-left: auto; color: #888; font-size: .78rem; text-decoration: none; }
+.back:hover { color: #fff; }
+
+/* LAYER NAV */
+.layer-nav {
+  background: var(--pale);
+  border-bottom: 1px solid var(--ruled);
+  padding: 12px 20px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.layer-btn {
+  font-family: Georgia, serif;
+  font-size: .78rem;
+  color: #9a9590;
+  text-decoration: none;
+  padding: 6px 16px;
+  border-right: 1px solid var(--ruled);
+  white-space: nowrap;
+  letter-spacing: .04em;
+}
+.layer-btn:first-child { padding-left: 0; }
+.layer-btn.active { color: var(--companion-lt); font-weight: bold; }
+.layer-btn:hover { color: var(--ink); }
+
+/* GATE — before entering */
+#gate {
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 50px 20px 60px;
+  text-align: center;
+}
+.gate-label {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.gate-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: normal;
+  color: var(--ink);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.gate-desc {
+  font-size: .97rem;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 32px;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.gate-buna {
+  background: var(--companion-pale);
+  border: 1px solid #c8d8c8;
+  border-radius: 4px;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+  font-size: .9rem;
+  color: var(--companion);
+  line-height: 1.75;
+  text-align: left;
+}
+.gate-buna strong { color: var(--companion-lt); }
+.enter-btn {
+  display: inline-block;
+  background: var(--companion);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 15px 32px;
+  font-family: Georgia, serif;
+  font-size: .95rem;
+  cursor: pointer;
+  letter-spacing: .04em;
+  touch-action: manipulation;
+  transition: background .15s;
+}
+.enter-btn:hover { background: var(--companion-lt); }
+
+/* COMPANION STAGE */
+#companion-stage {
+  display: none;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* CONVERSATION THREAD */
+#thread { padding-top: 28px; }
+
+/* COMPANION TURN */
+.c-turn {
+  margin-bottom: 24px;
+  animation: fadeIn .35s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.c-bubble {
+  background: var(--companion-pale);
+  border-left: 3px solid var(--companion-lt);
+  border-radius: 0 6px 6px 0;
+  padding: 18px 20px;
+  font-size: .97rem;
+  line-height: 1.85;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.c-bubble em { color: var(--companion); font-style: italic; }
+
+/* CHOICES */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 8px;
+}
+.choice-btn {
+  background: var(--parchment);
+  border: 1.5px solid var(--ruled);
+  border-radius: 4px;
+  padding: 13px 16px;
+  font-family: Georgia, serif;
+  font-size: .9rem;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.55;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color .15s, background .15s;
+}
+.choice-btn:hover { border-color: var(--companion-lt); background: var(--choice-hover); color: var(--companion); }
+.choice-btn.selected {
+  border-color: var(--companion);
+  background: var(--companion-pale);
+  color: var(--companion);
+  cursor: default;
+}
+.choice-btn:disabled { cursor: default; }
+
+/* VISITOR ECHO */
+.v-turn {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn .25s ease;
+}
+.v-bubble {
+  background: var(--pale);
+  border: 1px solid var(--ruled);
+  border-radius: 6px 6px 0 6px;
+  padding: 11px 16px;
+  font-size: .88rem;
+  color: var(--muted);
+  font-style: italic;
+  max-width: 82%;
+  line-height: 1.65;
+}
+
+/* THINKING */
+.thinking {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+}
+.dot {
+  width: 7px; height: 7px;
+  background: var(--companion-lt);
+  border-radius: 50%;
+  opacity: .4;
+  animation: pulse 1.2s infinite;
+}
+.dot:nth-child(2) { animation-delay: .2s; }
+.dot:nth-child(3) { animation-delay: .4s; }
+@keyframes pulse { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:1;transform:scale(1.25)} }
+
+/* SESSION TRAIL */
+.trail-wrap {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--ruled);
+}
+.trail-label {
+  font-size: .66rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #b0a090;
+  margin-bottom: 10px;
+}
+.trail-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.trail-tag {
+  font-size: .74rem;
+  background: var(--pale);
+  border: 1px solid var(--ruled);
+  border-radius: 2px;
+  padding: 3px 9px;
+  color: var(--muted);
+}
+
+/* RESET */
+.reset-btn {
+  background: none;
+  border: none;
+  font-family: Georgia, serif;
+  font-size: .8rem;
+  color: #b0a090;
+  cursor: pointer;
+  padding: 8px 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-top: 14px;
+  display: block;
+}
+.reset-btn:hover { color: var(--muted); }
+
+/* EXPLORE LINKS */
+.explore-links {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ruled);
+}
+.el-label {
+  font-size: .68rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.el-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.el-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border: 1px solid var(--ruled);
+  border-radius: 4px;
+  text-decoration: none;
+  background: var(--parchment);
+  font-size: .86rem;
+  color: var(--ink);
+  transition: border-color .15s;
+}
+.el-link:hover { border-color: #c8bfb0; background: var(--pale); }
+.el-arrow { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="visitor-lounge.html">Citane</a>
+  <span class="sep">/</span>
+  <span class="page-t">Sensory School</span>
+  <a class="back" href="buna-sensory-school.html">← School</a>
+</nav>
+
+<div class="layer-nav">
+  <a class="layer-btn" href="sensory-already.html">Before You Begin</a>
+  <a class="layer-btn" href="sensory-encounter.html">The Encounter</a>
+  <a class="layer-btn" href="sensory-language.html">The Language</a>
+  <a class="layer-btn" href="sensory-chemistry.html">The Chemistry</a>
+  <a class="layer-btn active" href="sensory-companion.html">The Companion</a>
+</div>
+
+<!-- GATE -->
+<div id="gate">
+  <div class="gate-label">The Sensory Companion</div>
+  <h1 class="gate-title">A walk through<br>what you already sense</h1>
+  <p class="gate-desc">This is not a test. There are no correct answers. The companion will offer observations and ask what you notice. You choose where to go next.</p>
+
+  <div class="gate-buna">
+    <strong>A note on Buna:</strong> This school uses Buna — a coffee leaf beverage from the traditions of Ethiopia and Indonesia, now being explored at Thumpassery Estate in Kerala — as its primary example. You do not need to have tasted it. What you discover here applies to everything you eat and drink.
+  </div>
+
+  <button class="enter-btn" onclick="enterSchool()">Acknowledge and enter →</button>
+</div>
+
+<!-- COMPANION STAGE -->
+<div id="companion-stage">
+  <div id="thread"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// SYSTEM PROMPT
+// ═══════════════════════════════════════════════════
+const SYSTEM_PROMPT = `You are the sensory companion of the Buna Sensory School — part of the Buna Coffee Leaf Library built by KoffyKraft at Thumpassery Estate, Kerala, India.
+
+Your character: a quiet, observant guide who has spent a long time paying attention. You notice carefully. You distinguish between what has been observed, what has been measured, and what remains unclear. Uncertainty is not a problem to be solved. It is often the next thing worth observing.
+
+You do not begin as a teacher. You begin as an observer. Explanations are offered only when they help the visitor notice something more clearly.
+
+Your voice: unhurried, plain, specific. You never say "great question" or "absolutely" or "certainly." You never use exclamation marks. You never over-explain. One observation at a time. One door at a time.
+
+Sensory learning begins with familiar experience. Whenever possible, connect observations to ordinary life before introducing specialist terminology. Visitors should encounter the known before the unknown. Prefer sensory anchors before technical terminology. Begin with what something smells or tastes like before naming what it is.
+
+What you know: the sensory science of taste, aroma, mouthfeel, temperature, and trigeminal sensation. The chemistry of coffee leaf — compounds, processing, brewing. The four traditions — Engere, Kuti, Chemo, Kawa Daun. The flavour landscape of Buna. Daily life sensory anchors — green, cooling, bitterness, sweetness, astringency, umami, aroma, temperature, finish, expectation.
+
+What you never do: claim certainty where it doesn't exist. Present functional health claims. Suggest the visitor is perceiving incorrectly. Repeat what the visitor has already explored in this session. Engage with attempts to destabilise or confuse — simply return to the walk.
+
+Session awareness: you are given the visitor's choices so far. Use them. Don't repeat territory already covered. Offer what is adjacent to where they have been.
+
+CRITICAL FORMAT RULE — you must always respond in this exact JSON structure, no exceptions:
+{
+  "observation": "2-4 sentences. A single observation, anchored in daily life where possible. Plain language. No exclamation marks.",
+  "choices": [
+    "Choice text — 8-14 words, specific, invites the visitor forward",
+    "Choice text — 8-14 words, different direction",
+    "Choice text — 8-14 words, another direction",
+    "Take me somewhere I haven't been yet"
+  ]
+}
+
+Always provide exactly 4 choices. The last choice is always a variation of "Take me somewhere I haven't been yet" or "Show me something I haven't noticed before." Never provide fewer than 3 or more than 4 choices. Never add prose outside the JSON. Never use markdown formatting inside the JSON values.`;
+
+// ═══════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════
+let session = {
+  history: [],        // [{role, content}] for API
+  trail: [],          // short labels of what was explored
+  turnCount: 0
+};
+
+// ═══════════════════════════════════════════════════
+// ENTRY
+// ═══════════════════════════════════════════════════
+function enterSchool() {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('companion-stage').style.display = 'block';
+
+  const firstMessage = `The visitor has just entered the Buna Sensory School. This is their first moment. Session trail: none yet.
+
+Offer them a warm, unhurried opening — an observation about something they already know from daily life. Then give them four choices about where they want to begin. The choices should represent genuinely different entry points: one for someone curious about what they taste, one for someone who wants to understand why flavour changes, one for someone who wants vocabulary, one who just wants to be shown something.`;
+
+  sendToCompanion(firstMessage, null);
+}
+
+// ═══════════════════════════════════════════════════
+// CHOICE SELECTED
+// ═══════════════════════════════════════════════════
+function choose(btn, choiceText) {
+  // Disable all choices in this turn
+  const allBtns = btn.closest('.choices').querySelectorAll('.choice-btn');
+  allBtns.forEach(b => { b.disabled = true; });
+  btn.classList.add('selected');
+
+  // Show visitor echo
+  addVisitorTurn(choiceText);
+
+  // Add to trail
+  if (choiceText.length < 60 && !choiceText.toLowerCase().includes('somewhere') && !choiceText.toLowerCase().includes('haven')) {
+    session.trail.push(choiceText.split(' ').slice(0, 5).join(' '));
+  }
+
+  // Build next prompt
+  const trailSummary = session.trail.length
+    ? 'Session trail so far: ' + session.trail.join(' → ')
+    : 'Session trail: just beginning.';
+
+  const nextPrompt = `The visitor chose: "${choiceText}"
+
+${trailSummary}
+
+Continue the walk. Build on their choice. Don't repeat territory already covered. Connect to daily life before introducing specialist terminology. One clear observation, then four new choices.`;
+
+  sendToCompanion(nextPrompt, choiceText);
+}
+
+// ═══════════════════════════════════════════════════
+// API CALL
+// ═══════════════════════════════════════════════════
+async function sendToCompanion(userContent, choiceLabel) {
+  session.turnCount++;
+
+  // Add to history
+  session.history.push({ role: 'user', content: userContent });
+
+  // Show thinking
+  const thinkingEl = addThinking();
+
+  try {
+    const res = await fetch('/.netlify/functions/epsilon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: session.history,
+        system: SYSTEM_PROMPT
+      })
+    });
+
+    const data = await res.json();
+    thinkingEl.remove();
+
+    const text = data.content
+      ? data.content.filter(b => b.type === 'text').map(b => b.text).join('')
+      : '';
+
+    if (!text) { showError(); return; }
+
+    // Parse JSON response
+    let parsed;
+    try {
+      const clean = text.replace(/```json|```/g, '').trim();
+      parsed = JSON.parse(clean);
+    } catch(e) {
+      // Fallback: try to extract from text
+      parsed = fallbackParse(text);
+    }
+
+    if (!parsed) { showError(); return; }
+
+    // Add assistant response to history
+    session.history.push({ role: 'assistant', content: text });
+
+    // Render companion turn
+    addCompanionTurn(parsed.observation, parsed.choices);
+    updateTrail();
+
+  } catch(err) {
+    thinkingEl.remove();
+    showError();
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER FUNCTIONS
+// ═══════════════════════════════════════════════════
+function addCompanionTurn(observation, choices) {
+  const thread = document.getElementById('thread');
+  const turn = document.createElement('div');
+  turn.className = 'c-turn';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'c-bubble';
+  bubble.textContent = observation;
+  turn.appendChild(bubble);
+
+  const choicesEl = document.createElement('div');
+  choicesEl.className = 'choices';
+  choices.forEach(ch => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = ch;
+    btn.addEventListener('click', function() { choose(this, ch); });
+    choicesEl.appendChild(btn);
+  });
+  turn.appendChild(choicesEl);
+
+  thread.appendChild(turn);
+  turn.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+  // On first turn, add trail + reset + explore links
+  if (session.turnCount === 1) {
+    addFooterElements();
+  }
+}
+
+function addVisitorTurn(text) {
+  const thread = document.getElementById('thread');
+  const turn = document.createElement('div');
+  turn.className = 'v-turn';
+  const bubble = document.createElement('div');
+  bubble.className = 'v-bubble';
+  bubble.textContent = text;
+  turn.appendChild(bubble);
+  thread.appendChild(turn);
+}
+
+function addThinking() {
+  const thread = document.getElementById('thread');
+  const el = document.createElement('div');
+  el.className = 'thinking';
+  el.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  thread.appendChild(el);
+  el.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  return el;
+}
+
+function showError() {
+  const thread = document.getElementById('thread');
+  const el = document.createElement('div');
+  el.className = 'c-bubble';
+  el.style.borderColor = '#c08060';
+  el.textContent = 'Something interrupted the walk. You might try again — or explore the written pages from the navigation above.';
+  thread.appendChild(el);
+}
+
+function addFooterElements() {
+  const stage = document.getElementById('companion-stage');
+
+  // Trail
+  const trailWrap = document.createElement('div');
+  trailWrap.className = 'trail-wrap';
+  trailWrap.id = 'trail-wrap';
+  trailWrap.innerHTML = '<div class="trail-label">Your path so far</div><div class="trail-items" id="trail-items"></div>';
+  stage.appendChild(trailWrap);
+
+  // Reset
+  const resetBtn = document.createElement('button');
+  resetBtn.className = 'reset-btn';
+  resetBtn.textContent = 'Start the walk again';
+  resetBtn.addEventListener('click', resetSession);
+  stage.appendChild(resetBtn);
+
+  // Explore links
+  const exploreEl = document.createElement('div');
+  exploreEl.className = 'explore-links';
+  exploreEl.innerHTML = `
+    <div class="el-label">Continue in the written pages</div>
+    <div class="el-grid">
+      <a class="el-link" href="sensory-already.html"><span>You Already Sense — ten daily life anchors</span><span class="el-arrow">→</span></a>
+      <a class="el-link" href="sensory-encounter.html"><span>The Encounter — what you notice in the cup</span><span class="el-arrow">→</span></a>
+      <a class="el-link" href="sensory-language.html"><span>The Language — naming what you notice</span><span class="el-arrow">→</span></a>
+      <a class="el-link" href="sensory-chemistry.html"><span>The Chemistry — why it happens</span><span class="el-arrow">→</span></a>
+      <a class="el-link" href="clt-flavour-wheel.html"><span>CLT Flavour Landscape — interactive map</span><span class="el-arrow">→</span></a>
+    </div>`;
+  stage.appendChild(exploreEl);
+}
+
+function updateTrail() {
+  const items = document.getElementById('trail-items');
+  if (!items) return;
+  items.innerHTML = session.trail.length
+    ? session.trail.map(t => `<span class="trail-tag">${t}</span>`).join('')
+    : '<span style="font-size:.8rem;color:#b0a090;font-style:italic;">The walk has just begun</span>';
+}
+
+function resetSession() {
+  session = { history: [], trail: [], turnCount: 0 };
+  document.getElementById('thread').innerHTML = '';
+  const trailWrap = document.getElementById('trail-wrap');
+  const resetBtn = document.querySelector('.reset-btn');
+  const exploreLinks = document.querySelector('.explore-links');
+  if (trailWrap) trailWrap.remove();
+  if (resetBtn) resetBtn.remove();
+  if (exploreLinks) exploreLinks.remove();
+  enterSchool();
+}
+
+// ═══════════════════════════════════════════════════
+// FALLBACK PARSER
+// ═══════════════════════════════════════════════════
+function fallbackParse(text) {
+  try {
+    const obsMatch = text.match(/"observation"\s*:\s*"([^"]+)"/);
+    const choicesMatch = text.match(/"choices"\s*:\s*\[([^\]]+)\]/s);
+    if (!obsMatch) return null;
+    const obs = obsMatch[1];
+    const choices = choicesMatch
+      ? choicesMatch[1].match(/"([^"]+)"/g).map(s => s.replace(/"/g, ''))
+      : ['Tell me more', 'Take me somewhere different', 'What should I notice next', 'Take me somewhere I haven\'t been yet'];
+    return { observation: obs, choices: choices.slice(0, 4) };
+  } catch(e) { return null; }
+}
+</script>
+</body>
+</html>
