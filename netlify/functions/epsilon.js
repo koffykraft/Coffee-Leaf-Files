@@ -6,6 +6,17 @@ exports.handler = async function(event) {
   try {
     const body = JSON.parse(event.body);
 
+    const payload = {
+      model: 'claude-sonnet-4-6',
+      max_tokens: 4000,
+      messages: body.messages
+    };
+
+    // Accept optional system prompt (used by sensory companion)
+    if (body.system) {
+      payload.system = body.system;
+    }
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -13,11 +24,7 @@ exports.handler = async function(event) {
         'x-api-key': process.env.ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01'
       },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 4000,
-        messages: body.messages
-      })
+      body: JSON.stringify(payload)
     });
 
     const data = await response.json();
