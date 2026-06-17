@@ -3,532 +3,583 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Sensory Landscape of Coffee Leaf — The Foliage of Buna</title>
+    <title>The Sensory Landscape of Coffee Leaf — Buna Library</title>
     <style>
-        * {
+        * { box-sizing: border-box; }
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.85;
+            color: #3a3a3a;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background-color: #fdfaf4;
         }
-
-        :root {
-            --dark: #1a1a1a;
-            --gray: #636e72;
-            --light-gray: #b2bec3;
-            --cream: #f8f9fa;
-            --accent: #5f4a42;
-            --subtle: #d4c5c0;
-
-            --evidence: #5f4a42;
-            --evidence-bg: #f3ece9;
-            --recipe: #6b7d5f;
-            --recipe-bg: #eef2ec;
-            --caution: #a85d4a;
-            --caution-bg: #f7e9e4;
-            --note: #636e72;
-            --note-bg: #eef0f1;
-            --tradition: #8a6d3b;
-            --tradition-bg: #f6efe2;
-
-            --state-alpha: #6b7d5f;
-            --state-beta: #b08968;
-            --state-gamma: #8a6d3b;
-            --state-delta: #a85d4a;
-            --state-epsilon: #5f4a42;
-
-            --primer-bg: #fdfbf9;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--cream);
-            color: var(--dark);
-            line-height: 1.6;
-            font-size: 17px;
-        }
-
-        header {
-            background: white;
-            border-bottom: 2px solid var(--subtle);
-            padding: 40px 30px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 2.2em;
-            font-weight: 300;
-            letter-spacing: -0.5px;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-        header .subtitle {
-            font-size: 1.1em;
-            color: var(--gray);
-            font-weight: 400;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .header-back { margin-bottom: 16px; }
-        .header-back a {
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 0.9em;
-            border-bottom: 1px solid var(--subtle);
-        }
-        .header-meta {
-            margin-top: 18px;
-            font-size: 0.85em;
-            color: var(--light-gray);
+        .top-nav {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 13px 40px;
             display: flex;
-            justify-content: center;
-            gap: 24px;
+            align-items: center;
+            gap: 20px;
             flex-wrap: wrap;
-        }
-
-        /* Sticky in-page nav */
-        nav.subnav {
-            background: rgba(26,26,26,0.72);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
-            z-index: 100;
-            padding: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            z-index: 50;
         }
-        .subnav-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .subnav-inner::-webkit-scrollbar { display: none; }
-        .subnav a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            font-size: 0.85em;
-            font-weight: 600;
-            padding: 14px 20px;
-            white-space: nowrap;
-            border-bottom: 2px solid transparent;
-            transition: all 0.15s;
-        }
-        .subnav a:hover, .subnav a.home {
-            color: white;
-        }
-        .subnav a.home { color: var(--subtle); }
-        .subnav a.to-top {
-            margin-left: auto;
-            color: rgba(255,255,255,0.5);
-        }
-        .subnav a.to-top:hover { color: white; }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 50px 30px;
-        }
-
-        section { margin-bottom: 60px; }
-
-        /* Primer sections get a subtle distinct background */
-        .primer-section {
-            background: var(--primer-bg);
-            border: 1px solid var(--subtle);
-            border-radius: 8px;
-            padding: 32px;
-            margin-bottom: 32px;
-        }
-        .primer-kicker {
-            font-size: 0.75em;
-            font-weight: 700;
+        .top-nav a {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 9pt;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent);
+            letter-spacing: 0.7px;
+            color: #888;
+            text-decoration: none;
+        }
+        .top-nav a:hover { color: #3a3a3a; }
+        .top-nav .sep { color: #ccc; }
+        .top-nav .to-top { margin-left: auto; color: #8a7c5e; }
+        .section-nav {
+            background: #f7f2e8;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 9px 40px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .section-nav a {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #8a7c5e;
+            text-decoration: none;
+            padding: 4px 10px;
+            border: 1px solid #e0d8c8;
+            background: #fdfaf4;
+        }
+        .section-nav a:hover { background: #e0d8c8; color: #2a2a2a; }
+        .hero {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 60px 40px 50px;
+            text-align: center;
+        }
+        .hero-eyebrow {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #8a7c5e;
+            margin-bottom: 18px;
+        }
+        h1 {
+            font-size: 26pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 16px;
+            letter-spacing: 0.5px;
+            line-height: 1.25;
+        }
+        .hero-sub {
+            font-size: 11.5pt;
+            color: #666;
+            font-style: italic;
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .quick-ref-wrap {
+            max-width: 760px;
+            margin: 32px auto 0;
+            padding: 0 40px;
+        }
+        .quick-ref {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            border-left: 4px solid #8a7c5e;
+            padding: 20px 28px;
+        }
+        .qr-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #8a7c5e;
+            margin-bottom: 14px;
+        }
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 16px;
+        }
+        .qr-item-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            color: #aaa;
+            margin-bottom: 3px;
+        }
+        .qr-item-value {
+            font-size: 14pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            line-height: 1.2;
+        }
+        .qr-item-note {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #888;
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+        .qr-footer {
+            margin-top: 14px;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #aaa;
+            border-top: 1px solid #e0d8c8;
+            padding-top: 10px;
+        }
+        .qr-footer a { color: #8a7c5e; text-decoration: none; }
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 52px 40px 80px;
+        }
+        p { margin: 0 0 1.4em; }
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0d8c8;
+            margin: 52px 0;
+        }
+        .section-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            color: #8a7c5e;
+            margin-bottom: 16px;
+        }
+        h2 {
+            font-size: 16pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 22px;
+            line-height: 1.35;
+        }
+        h2 em { font-style: italic; color: #666; }
+        .src-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 3px 10px;
+            margin-bottom: 14px;
+            display: inline-block;
+        }
+        .src-research { background: #f7f2e8; color: #8a7c5e; border: 1px solid #e0d8c8; }
+        .src-exploratory { background: #f5f0e8; color: #9a7a50; border: 1px solid #e0d0b0; }
+        .ev-box {
+            border-left: 3px solid #8a7c5e;
+            background: #f7f2e8;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .ev-box-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
             margin-bottom: 8px;
         }
-
-        h2 {
-            font-size: 1.6em;
-            font-weight: 600;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--subtle);
-        }
-        .primer-section h2 { border-bottom: none; padding-bottom: 0; }
-        h2 em { font-style: italic; font-weight: 400; color: var(--gray); }
-
-        h3 {
-            font-size: 1.2em;
-            font-weight: 600;
-            margin: 28px 0 12px;
-            color: var(--dark);
-        }
-        h4 {
-            font-size: 0.85em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gray);
-            margin: 20px 0 8px;
-        }
-
-        p { margin-bottom: 14px; }
-        a { color: var(--accent); }
-        strong { font-weight: 700; color: var(--dark); }
-
-        /* Part dividers */
-        .part-divider {
-            margin: 60px 0 30px;
-            padding-top: 24px;
-            border-top: 4px solid var(--dark);
-        }
-        .part-label {
-            font-size: 0.75em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent);
-            margin-bottom: 6px;
-        }
-        .part-title {
-            font-size: 1.9em;
-            font-weight: 300;
-            margin-bottom: 10px;
-            border-bottom: none;
-        }
-        .part-intro {
-            color: var(--gray);
-            font-size: 1.05em;
-            max-width: 760px;
-        }
-
-        .section-num {
-            font-size: 0.75em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--light-gray);
-            margin-bottom: 6px;
-        }
-
-        /* ====================================================
-           TABLE OF CONTENTS
-           ==================================================== */
-        .toc {
-            background: white;
-            border: 1px solid var(--subtle);
-            border-radius: 6px;
-            padding: 28px 32px;
-            margin-bottom: 40px;
-        }
-        .toc-track-label {
-            font-size: 0.8em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent);
-            margin: 24px 0 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--subtle);
-        }
-        .toc-track-label:first-child { margin-top: 0; }
-        .toc-part {
-            font-size: 0.85em;
-            font-weight: 700;
-            color: var(--gray);
-            margin: 18px 0 6px;
-        }
-        .toc-entries { list-style: none; columns: 2; gap: 32px; margin-bottom: 4px; }
-        .toc-entries li { margin-bottom: 4px; break-inside: avoid; }
-        .toc-entries a {
-            text-decoration: none;
-            font-size: 0.92em;
-            display: flex;
-            gap: 8px;
-        }
-        .toc-entries a:hover { text-decoration: underline; }
-        .toc-num {
-            color: var(--light-gray);
-            font-weight: 700;
-            min-width: 28px;
-            flex-shrink: 0;
-        }
-        @media (max-width: 700px) {
-            .toc-entries { columns: 1; }
-        }
-
-        /* ====================================================
-           CALLOUT BOXES
-           ==================================================== */
-        .box {
-            border-radius: 6px;
-            padding: 20px 24px;
+        .note-box {
+            border: 1px solid #e0d8c8;
+            border-left: 3px solid #c0b898;
+            background: #fdfaf4;
+            padding: 16px 20px;
             margin: 20px 0;
-            border-left: 4px solid;
         }
-        .box-label {
-            display: inline-block;
-            font-size: 0.75em;
-            font-weight: 700;
+        .note-box-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 10px;
-            padding: 3px 10px;
-            border-radius: 3px;
+            letter-spacing: 1px;
+            color: #9a8a6a;
+            margin-bottom: 8px;
         }
-        .box p:last-child { margin-bottom: 0; }
-
-        .box-evidence { background: var(--evidence-bg); border-left-color: var(--evidence); }
-        .box-evidence .box-label { background: var(--evidence); color: white; }
-
-        .box-recipe { background: var(--recipe-bg); border-left-color: var(--recipe); }
-        .box-recipe .box-label { background: var(--recipe); color: white; }
-
-        .box-caution { background: var(--caution-bg); border-left-color: var(--caution); border-left-style: dashed; }
-        .box-caution .box-label { background: var(--caution); color: white; }
-
-        .box-note { background: var(--note-bg); border-left-color: var(--note); }
-        .box-note .box-label { background: var(--note); color: white; }
-
-        .box-tradition { background: var(--tradition-bg); border-left-color: var(--tradition); }
-        .box-tradition .box-label { background: var(--tradition); color: white; }
-
-        /* ====================================================
-           GLOSSARY / DEFINITION GRID
-           ==================================================== */
-
-        /* Source labels */
-        .src-label {
-            display: inline-block;
-            font-size: 0.7em;
-            font-weight: 700;
+        .caution-box {
+            border-left: 3px solid #b09070;
+            background: #f9f5ef;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .caution-box-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            padding: 3px 10px;
-            border-radius: 3px;
-            color: white;
-            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: #8a6a50;
+            margin-bottom: 8px;
         }
-        .src-research    { background: #2f6f4f; }
-        .src-tradition   { background: #b07a3a; }
-        .src-citane      { background: var(--accent); }
-        .src-exploratory { background: #6c5b9e; }
-
-        /* Evidence table */
-        .ev-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92em; }
-        .ev-table th, .ev-table td {
-            border: 1px solid var(--subtle);
-            padding: 10px 14px;
+        .ev-box p:last-child,
+        .note-box p:last-child,
+        .caution-box p:last-child { margin-bottom: 0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 10pt;
+        }
+        th {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #8a7c5e;
             text-align: left;
-            vertical-align: top;
+            padding: 10px 14px;
+            border-bottom: 2px solid #e0d8c8;
+            background: #f7f2e8;
         }
-        .ev-table th { background: #f5f0ed; font-weight: 700; }
-
-        /* Compound card grid */
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #e8e2d8;
+            vertical-align: top;
+            line-height: 1.65;
+        }
+        tr:last-child td { border-bottom: none; }
         .compound-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin: 16px 0;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2px;
+            margin: 24px 0;
         }
         .compound-card {
-            background: white;
-            border: 1px solid var(--subtle);
-            border-radius: 6px;
-            padding: 16px 18px;
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            padding: 18px 20px;
         }
-        .compound-card .cc-name { font-weight: 700; color: var(--accent); margin-bottom: 2px; }
-        .compound-card .cc-descriptor { font-size: 0.85em; color: var(--light-gray); font-style: italic; margin-bottom: 8px; }
-        .compound-card p { font-size: 0.9em; margin: 0; }
-        @media (max-width: 700px) { .compound-grid { grid-template-columns: 1fr; } }
-
+        .cc-name {
+            font-size: 13pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin-bottom: 4px;
+        }
+        .cc-descriptor {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            color: #8a7c5e;
+            margin-bottom: 10px;
+        }
+        .compound-card p {
+            font-size: 9.5pt;
+            color: #555;
+            line-height: 1.65;
+            margin: 0;
+        }
+        .source-line {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #aaa;
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+        .source-line a { color: #8a7c5e; text-decoration: none; }
+        .cross-links {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            padding: 18px 24px;
+            margin: 32px 0;
+        }
+        .cross-links-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            margin-bottom: 10px;
+        }
+        .cross-links-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .cross-links-row a {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 9pt;
+            color: #8a7c5e;
+            text-decoration: none;
+            border-bottom: 1px solid #e0d8c8;
+            padding-bottom: 1px;
+        }
+        .cross-links-row a:hover { color: #2a2a2a; border-color: #8a7c5e; }
+        .page-nav {
+            background: #f7f2e8;
+            border-top: 1px solid #e0d8c8;
+            padding: 28px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .page-nav a {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #8a7c5e;
+            text-decoration: none;
+        }
+        .page-nav a:hover { color: #3a3a3a; }
+        footer {
+            text-align: center;
+            padding: 28px 40px;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #aaa;
+            border-top: 1px solid #e0d8c8;
+        }
     </style>
-<body>
+</head>
+<body id="top">
 
-    <header id="top">
-        <div class="header-back"><a href="index.html">&larr; Back to BUNA Library</a></div>
-        <h1>The Sensory Landscape of Coffee Leaf</h1>
-        <div class="subtitle">How fermented and non-fermented coffee leaf differ in aroma, taste, and mouthfeel — and the documented compounds behind those differences.</div>
-        <div class="header-meta">
-            <span>BUNA Coffee Leaf Library &middot; Reference</span>
-            <span>KoffyKraft &middot; Thumpassery Estate</span>
-            <span>Version 1.0</span>
+<nav class="top-nav">
+    <a href="index.html">Buna Library</a>
+    <span class="sep">/</span>
+    <a href="catalogue.html">Catalogue</a>
+    <span class="sep">/</span>
+    <a href="sensory-landscape-of-coffee-leaf.html">Sensory Landscape</a>
+    <a href="#top" class="to-top">↑ Top</a>
+</nav>
+
+<nav class="section-nav">
+    <a href="#purpose">Purpose</a>
+    <a href="#quick-ref">Quick Reference</a>
+    <a href="#spectrum">Sensory Spectrum</a>
+    <a href="#compounds">Aroma Compounds</a>
+    <a href="#brewing">Brewing</a>
+    <a href="#evidence">Research Note</a>
+    <a href="#references">Sources</a>
+</nav>
+
+<div class="hero" id="purpose">
+    <div class="hero-eyebrow">Reference &nbsp;·&nbsp; Buna Coffee Leaf Library</div>
+    <h1>The Sensory Landscape of Coffee Leaf</h1>
+    <p class="hero-sub">How fermented and non-fermented coffee leaf differ in aroma, taste, and mouthfeel — and the documented compounds behind those differences.</p>
+</div>
+
+<div class="quick-ref-wrap" id="quick-ref">
+    <div class="quick-ref">
+        <div class="qr-label">Quick Reference — Brewing Parameters &amp; Cup Character</div>
+        <div class="qr-grid">
+            <div>
+                <div class="qr-item-label">Temperature</div>
+                <div class="qr-item-value">95°C</div>
+                <div class="qr-item-note">Consumer panel optimum</div>
+            </div>
+            <div>
+                <div class="qr-item-label">Time</div>
+                <div class="qr-item-value">5 min</div>
+                <div class="qr-item-note">Fibrianto et al. 2024</div>
+            </div>
+            <div>
+                <div class="qr-item-label">Serve</div>
+                <div class="qr-item-value">Chilled</div>
+                <div class="qr-item-note">Reduces bitterness and astringency</div>
+            </div>
+            <div>
+                <div class="qr-item-label">Caffeine</div>
+                <div class="qr-item-value">~10 mg/L</div>
+                <div class="qr-item-note">vs 150–300 mg/L green tea — Klingel et al. 2020</div>
+            </div>
+            <div>
+                <div class="qr-item-label">Cup character</div>
+                <div class="qr-item-value">Low bitter</div>
+                <div class="qr-item-note">Sweetness dominant in oolong-style</div>
+            </div>
         </div>
-    </header>
+        <div class="qr-footer">Full brewing protocols in <a href="citane-processing-manual.html">Paper II — From Leaf to Cup</a>. Sensory compound detail in sections below.</div>
+    </div>
+</div>
 
-    <nav class="subnav">
-        <div class="subnav-inner">
-            <a class="home" href="index.html">Index</a>
-            <a href="#purpose">Purpose</a>
-            <a href="#spectrum">The Sensory Spectrum</a>
-            <a href="#compounds">Aroma Compounds</a>
-            <a href="#brewing">Brewing &amp; Sensory Outcome</a>
-            <a href="#evidence">A Note on the Research</a>
-            <a href="#references">Sources</a>
-            <a href="#top" class="to-top">&uarr; Top</a>
-        </div>
-    </nav>
+<div class="content">
 
-    <div class="container">
+    <p>This page describes how coffee leaf, depending on how it is processed, differs in aroma, taste, and mouthfeel — and what published research has identified about the compounds responsible for those differences.</p>
 
-        <!-- PURPOSE -->
-        <section id="purpose">
-            <div class="section-num">Purpose</div>
-            <h2>What This Page Describes</h2>
-            <p>This page describes how coffee leaf, depending on how it is processed, differs in aroma, taste, and mouthfeel &mdash; and summarises what published research has identified about the compounds responsible for those differences.</p>
-            <p>It is a sensory and chemical reference, written for the same reason Paper III's "Compass" exists: to give a vocabulary for what to taste for, and why. Where Paper III approaches this from the processor's side &mdash; what to do to move toward a sensory direction &mdash; this page approaches it from the drinker's side: what the finished leaf, prepared different ways, tends to taste and smell like, and what is currently known about why.</p>
+    <p>It is a sensory and chemical reference. Where Paper III approaches this from the processor's side — what to do to move toward a sensory direction — this page approaches it from the drinker's side: what the finished leaf, prepared different ways, tends to taste and smell like, and what is currently known about why.</p>
 
-            <div class="box box-note">
-                <span class="box-label">What This Page Is Not</span>
-                <p>This page does not make claims about mood, stress, sleep, focus, or any other physiological or psychological outcome of drinking coffee leaf tea. Some of the research cited here measured such outcomes in specific small studies &mdash; that research is described in "A Note on the Research" below, in the terms the original studies used. It is not generalised here into claims about what a cup of coffee leaf tea will do for a reader. See the Foundation page's Evidence Discipline for why.</p>
-            </div>
-
-            <p style="font-size: 0.85em; color: var(--light-gray);">Companion to: <a href="the-foliage-of-buna.html">The Foliage of Buna</a> (Foundation) &middot; <a href="citane-processing-protocols.html">Citane: Experimental Pathways</a> (Paper III, the Compass)</p>
-        </section>
-
-        <!-- THE SENSORY SPECTRUM -->
-        <section id="spectrum">
-            <div class="section-num">Section One</div>
-            <h2>The Sensory Spectrum: <em>Fermented vs. Non-Fermented</em></h2>
-            <p><span class="src-label src-research">Documented Research</span></p>
-            <p>A 2023 study presented to the International Coffee Convention analysed 24 coffee leaf samples produced under different processing methods, using descriptive sensory analysis and gas chromatography&ndash;mass spectrometry&ndash;olfactometry (GC-MS-O) &mdash; a method that identifies which specific aroma compounds are present and which of them a human panel can actually smell. The clearest finding was a consistent difference between fermented and non-fermented leaf.</p>
-
-            <table class="ev-table">
-                <thead><tr><th>Attribute</th><th>Fermented Leaf</th><th>Non-Fermented Leaf</th></tr></thead>
-                <tbody>
-                    <tr><td><strong>Primary aroma</strong></td><td>Sweetish, fruity, honey-forward</td><td>Intense green, fresh, vegetal</td></tr>
-                    <tr><td><strong>Secondary notes</strong></td><td>Floral undertones, dried-apricot and hay-like complexity</td><td>Citrus-like brightness, herbal clarity</td></tr>
-                    <tr><td><strong>Reported mouthfeel</strong></td><td>Smoother, with lingering warmth</td><td>Crisper, lighter body</td></tr>
-                    <tr><td><strong>Aftertaste</strong></td><td>Honey-like persistence</td><td>Clean, green finish</td></tr>
-                </tbody>
-            </table>
-
-            <div class="box box-evidence">
-                <span class="box-label">Documented</span>
-                <p>Fermented coffee leaf samples showed more sweet and fruity aroma notes; non-fermented samples showed more intense green and vegetable aroma. This pattern is consistent with what Paper I describes mechanistically (Reservoir C, oxidation cascade) and what Paper III's Compass uses as the basis for Directions 1&ndash;2 (toward honey-like/floral) versus Direction 6 (toward grassy/green).</p>
-            </div>
-            <div class="box box-note">
-                <span class="box-label">Interpretation</span>
-                <p>"Sweetish," "honey-forward," and "fruity" describe aroma <em>character</em>, not sweetness in the sense of sugar content or perceived intensity of taste &mdash; the study used descriptive sensory analysis (trained panellists describing what they perceive), not a sweetness-preference test. A leaf may smell "honey-like" without tasting noticeably sweet in the cup.</p>
-            </div>
-
-            <p style="font-size: 0.85em; color: var(--light-gray);">Source: Rigling, Steger, Lachenmeier, Schwarz &amp; Zhang (2023), <em>Sensorial and Aroma Profiles of Coffee By-Products &mdash; Coffee Leaves and Coffee Flowers</em>, Proceedings 2023, 89, 5. CC BY 4.0.</p>
-        </section>
-
-        <!-- AROMA COMPOUNDS -->
-        <section id="compounds">
-            <div class="section-num">Section Two</div>
-            <h2>Aroma Compounds <em>Identified in Coffee Leaf</em></h2>
-            <p><span class="src-label src-research">Documented Research</span></p>
-            <p>The same GC-MS-O analysis identified five compounds as the key contributors to coffee leaf's aroma profile, present across samples in different ratios depending on processing. These are the same compounds Paper III's Compass uses to organise its six "sensory directions" &mdash; here they're described as what's actually been found in the leaf, rather than as a target to process toward.</p>
-
-            <div class="compound-grid">
-                <div class="compound-card">
-                    <div class="cc-name">&beta;-Ionone</div>
-                    <div class="cc-descriptor">Honey-like</div>
-                    <p>Associated with fermented processing. The primary contributor to the "honey-forward" character of fermented leaf described above.</p>
-                </div>
-                <div class="compound-card">
-                    <div class="cc-name">Decanal</div>
-                    <div class="cc-descriptor">Citrus-like, floral</div>
-                    <p>Found across processing types, more pronounced in non-fermented leaf &mdash; contributes to the citrus brightness noted in green leaf aroma.</p>
-                </div>
-                <div class="compound-card">
-                    <div class="cc-name">&alpha;-Ionone</div>
-                    <div class="cc-descriptor">Floral</div>
-                    <p>Related to &beta;-ionone (both are carotenoid breakdown products &mdash; see Paper I, Reservoir K) but with a more floral than honey character.</p>
-                </div>
-                <div class="compound-card">
-                    <div class="cc-name">Octanal</div>
-                    <div class="cc-descriptor">Fruity</div>
-                    <p>Contributes to fruity notes, distributed differently across processing types alongside the compounds above.</p>
-                </div>
-                <div class="compound-card">
-                    <div class="cc-name">Hexanal</div>
-                    <div class="cc-descriptor">Green</div>
-                    <p>The aroma of fresh plant material &mdash; highest in non-fermented leaf, and the main contributor to the "intense green and vegetable" character noted above.</p>
-                </div>
-            </div>
-
-            <div class="box box-evidence">
-                <span class="box-label">Documented</span>
-                <p>All five compounds were identified by GC-MS-O in coffee leaf samples and "distributed in different ratios" depending on processing &mdash; the source study does not give a single fixed concentration for each compound, but reports their relative presence across the fermented/non-fermented spectrum described in Section One.</p>
-            </div>
-            <div class="box box-note">
-                <span class="box-label">Interpretation</span>
-                <p>A second study (Fibrianto et al., 2025 &mdash; see "A Note on the Research" below) additionally reported diphenyl sulfone and phenyl-methylene heptanoate as present at higher levels in oolong-style coffee leaf tea than in other styles tested, including <em>Camellia sinensis</em> teas. Both compounds are reported in that study as occurring in only trace amounts, and their general odour character is not established in the same way as the five compounds above &mdash; they are mentioned here for completeness, not as established contributors to a specific aroma note.</p>
-            </div>
-
-            <p style="font-size: 0.85em; color: var(--light-gray);">Source: Rigling et al. (2023), as above. See also Paper I, Reservoir K (Volatile Precursors) and Paper III, "The Citane Compass," for how these compounds relate to processing choices.</p>
-        </section>
-
-        <!-- BREWING AND SENSORY OUTCOME -->
-        <section id="brewing">
-            <div class="section-num">Section Three</div>
-            <h2>Brewing Parameters <em>and Sensory Outcome</em></h2>
-            <p><span class="src-label src-research">Documented Research</span></p>
-            <p>Beyond which leaf is used, how it is brewed also affects the cup &mdash; both through extraction generally, and specifically through the activity of polyphenol oxidase (PPO), the same enzyme central to Paper I's oxidative domain (Reservoir C).</p>
-            <p>One study found that brewing temperature and time can be adjusted to influence sensory acceptability: higher brewing temperatures were associated with greater phenolic extraction, which in turn affects astringency, bitterness, and overall flavour complexity. In that study, brewing at approximately 95&deg;C for around 5 minutes was associated with favourable consumer perceptions of taste attributes including bitterness and astringency. A related finding was that higher phenolic content in processed leaf correlated with both antioxidant activity (a chemical measurement) and sensory acceptance (a panel's preference) &mdash; though the same research notes that excessive phenolic extraction can tip into undesirable bitterness, so "more phenolics" is not simply "better."</p>
-
-            <div class="box box-evidence">
-                <span class="box-label">Documented</span>
-                <p>Brewing at ~95&deg;C for ~5 minutes was associated with favourable consumer ratings for bitterness/astringency in the cited study. This aligns with Paper II, Section 22's brewing guidance (90&deg;C, 5 minutes as a starting recommendation) &mdash; both point to a similar range, from different sources.</p>
-            </div>
-            <div class="box box-note">
-                <span class="box-label">Interpretation</span>
-                <p>"Higher phenolic content correlates with sensory acceptance, up to a point" is a generalisation from a specific study's panel data. Leaf age, processing, and the brewer's own preferences (per Paper II, Section 22's "starting recommendation" framing) all interact with this &mdash; this page treats it as one data point among the brewing guidance Paper II already provides, not as a separate or competing recommendation.</p>
-            </div>
-
-            <p style="font-size: 0.85em; color: var(--light-gray);">Sources: Fibrianto et al. (2025), as below; Paper II, Section 22 (Brewing Parameters).</p>
-        </section>
-
-        <!-- A NOTE ON THE RESEARCH -->
-        <section id="evidence">
-            <div class="section-num">A Note on the Research</div>
-            <h2>What the Fibrianto 2025 Study <em>Actually Measured</em></h2>
-            <p><span class="src-label src-exploratory">Exploratory Concept</span></p>
-            <p>One of the sources behind this page (Fibrianto, Bimo, Wulandari &amp; Hendrawan, 2025) is a small consumer-panel study comparing oolong-style coffee leaf tea against other coffee leaf and <em>Camellia sinensis</em> tea styles. Because some of this study's findings have previously appeared, in this library and elsewhere, in language about stress relief, mood, and relaxation, this section describes what the study actually did and measured &mdash; in its own terms &mdash; so the difference between "what was measured" and "what it means for a cup of tea" stays visible.</p>
-
-            <div class="box box-caution">
-                <span class="box-label">What the Study Measured</span>
-                <p>Trained panellists drank samples of different coffee leaf and tea preparations under controlled conditions, after a standardised stress-inducing task (a timed arithmetic exercise). The study then measured: salivary and blood cortisol (a hormone used as a stress-physiology marker), self-reported relaxation on a numeric scale over a 45-minute window, GABA content of the brewed tea itself (measured chemically, not in the panellists), total phenolic content, and facial expression analysis via camera and software (Facial Emotion Recognition).</p>
-                <p style="margin-bottom:0;">The oolong-style coffee leaf sample was associated with the largest reduction in measured salivary cortisol among the samples tested, the highest measured GABA and phenolic content among the coffee leaf samples, and self-reported relaxation scores comparable to a 200mg GABA supplement used as a reference sample in the same study.</p>
-            </div>
-
-            <div class="box box-note">
-                <span class="box-label">Why This Page Doesn't Repeat These Findings as Claims</span>
-                <p>This is a single study, with a trained panel of a size typical for sensory research, measuring specific physiological markers under specific controlled conditions (including a standardised stressor immediately beforehand). That is meaningful as a research finding &mdash; it is the kind of result that justifies further research. It is a different kind of statement from "drinking this tea will reduce your stress," which generalises a controlled measurement (cortisol in trained panellists, after a specific stressor, within a 45-minute window) into an everyday claim the study itself doesn't make.</p>
-                <p style="margin-bottom:0;">GABA content <em>of the brewed tea</em> is a chemical measurement and is reported accurately in Section Two above. What GABA in a beverage does once consumed &mdash; whether and how much crosses into measurable physiological effect &mdash; is a separate question that this single study's design (measuring panellists' cortisol and self-report alongside the tea's GABA content) does not, on its own, fully resolve. Both are real findings; they answer different questions, and conflating them is the most common way this kind of research gets overstated.</p>
-            </div>
-
-            <p style="font-size: 0.85em; color: var(--light-gray);">Source: Fibrianto, Bimo, Wulandari &amp; Hendrawan (2025), <em>Functional and relaxing properties of coffee leaf tea: An integrative food cognition approach</em>, Applied Food Research, 5, 101141.</p>
-        </section>
-
-        <!-- REFERENCES -->
-        <section id="references">
-            <div class="section-num">Sources</div>
-            <h2>References</h2>
-            <div class="box box-evidence">
-                <p>Rigling, M., Steger, M. C., Lachenmeier, D. W., Schwarz, S., &amp; Zhang, Y. (2023). <em>Sensorial and Aroma Profiles of Coffee By-Products &mdash; Coffee Leaves and Coffee Flowers.</em> Proceedings 2023, 89, 5. DOI: 10.3390/ICC2023-14837. CC BY 4.0. Used for the fermented/non-fermented sensory spectrum and the five-compound aroma profile (Sections One and Two).</p>
-                <p style="margin-bottom:0;">Fibrianto, K., Bimo, I. A., Wulandari, E. S., &amp; Hendrawan, Y. (2025). <em>Functional and relaxing properties of coffee leaf tea: An integrative food cognition approach.</em> Applied Food Research, 5, 101141. Used for brewing-parameter findings (Section Three) and described directly, in its own terms, in "A Note on the Research."</p>
-            </div>
-
-            <p style="font-size: 0.85em; color: var(--light-gray); margin-top: 20px;">See also: Paper I (The Reactive Landscape) for the chemistry underlying these compounds; Paper II, Section 22, for brewing guidance; Paper III, "The Citane Compass," for these compounds as starting points for processing experiments.</p>
-        </section>
-
+    <div class="note-box">
+        <div class="note-box-label">What This Page Is Not</div>
+        <p>This page does not make claims about mood, stress, sleep, focus, or any other physiological or psychological outcome of drinking coffee leaf tea. Some of the research cited here measured such outcomes in specific small studies — described in the Research Note below, in the terms the original studies used. Not generalised here into claims about what a cup will do for a reader.</p>
     </div>
 
-    <footer>
-        <div class="footer-back"><a href="index.html">&larr; Back to BUNA Library</a></div>
-        <p><strong>The Sensory Landscape of Coffee Leaf</strong> &middot; Reference</p>
-        <p>KoffyKraft / Thumpassery Estate &middot; Karavaloor &middot; Kollam &middot; Kerala &middot; India</p>
-        <div class="source-block">
-            A sensory and chemical reference companion to the Foundation page and the Citane research papers. Findings are described in the terms of their source studies; see "A Note on the Research" for how to read them.
+    <div class="cross-links">
+        <div class="cross-links-label">Companion pages</div>
+        <div class="cross-links-row">
+            <a href="the-foliage-of-buna.html">The Foliage of Buna — Foundation</a>
+            <a href="citane-reactive-landscape.html">Paper I — The Reactive Landscape</a>
+            <a href="citane-processing-protocols.html">Paper III — The Citane Compass</a>
+            <a href="citane-processing-manual.html">Paper II — From Leaf to Cup</a>
         </div>
-    </footer>
+    </div>
+
+    <hr class="section-rule" id="spectrum">
+
+    <div class="section-label">Section One</div>
+    <h2>The Sensory Spectrum: <em>Fermented vs. Non-Fermented</em></h2>
+
+    <p><span class="src-label src-research">Documented Research</span></p>
+
+    <p>A 2023 study presented to the International Coffee Convention analysed 24 coffee leaf samples produced under different processing methods, using descriptive sensory analysis and GC-MS-O — a method that identifies which specific aroma compounds are present and which of them a human panel can actually smell. The clearest finding was a consistent difference between fermented and non-fermented leaf.</p>
+
+    <table>
+        <thead>
+            <tr><th>Attribute</th><th>Fermented Leaf</th><th>Non-Fermented Leaf</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Primary aroma</td><td>Sweetish, fruity, honey-forward</td><td>Intense green, fresh, vegetal</td></tr>
+            <tr><td>Secondary notes</td><td>Floral undertones, dried-apricot and hay-like complexity</td><td>Citrus-like brightness, herbal clarity</td></tr>
+            <tr><td>Reported mouthfeel</td><td>Smoother, with lingering warmth</td><td>Crisper, lighter body</td></tr>
+            <tr><td>Aftertaste</td><td>Honey-like persistence</td><td>Clean, green finish</td></tr>
+        </tbody>
+    </table>
+
+    <div class="ev-box">
+        <div class="ev-box-label">Documented</div>
+        <p>Fermented coffee leaf samples showed more sweet and fruity aroma notes; non-fermented samples showed more intense green and vegetable aroma. This pattern is consistent with what Paper I describes mechanistically (Reservoir C, oxidation cascade) and what Paper III's Compass uses as the basis for Directions 1–2 (toward honey-like/floral) versus Direction 6 (toward grassy/green).</p>
+    </div>
+
+    <div class="note-box">
+        <div class="note-box-label">Interpretation</div>
+        <p>"Sweetish," "honey-forward," and "fruity" describe aroma character, not sweetness in the sense of sugar content — the study used descriptive sensory analysis (trained panellists describing what they perceive), not a sweetness-preference test. A leaf may smell "honey-like" without tasting noticeably sweet in the cup.</p>
+    </div>
+
+    <p class="source-line">Source: Rigling, Steger, Lachenmeier, Schwarz &amp; Zhang (2023), <em>Sensorial and Aroma Profiles of Coffee By-Products — Coffee Leaves and Coffee Flowers</em>, Proceedings 2023, 89, 5. CC BY 4.0.</p>
+
+    <hr class="section-rule" id="compounds">
+
+    <div class="section-label">Section Two</div>
+    <h2>Aroma Compounds <em>Identified in Coffee Leaf</em></h2>
+
+    <p><span class="src-label src-research">Documented Research</span></p>
+
+    <p>The same GC-MS-O analysis identified five compounds as the key contributors to coffee leaf's aroma profile, present across samples in different ratios depending on processing. These are the same compounds Paper III's Compass uses to organise its six sensory directions.</p>
+
+    <div class="compound-grid">
+        <div class="compound-card">
+            <div class="cc-name">β-Ionone</div>
+            <div class="cc-descriptor">Honey-like</div>
+            <p>Associated with fermented processing. The primary contributor to the honey-forward character of fermented leaf.</p>
+        </div>
+        <div class="compound-card">
+            <div class="cc-name">Decanal</div>
+            <div class="cc-descriptor">Citrus-like, floral</div>
+            <p>Found across processing types, more pronounced in non-fermented leaf — contributes to citrus brightness in green leaf aroma.</p>
+        </div>
+        <div class="compound-card">
+            <div class="cc-name">α-Ionone</div>
+            <div class="cc-descriptor">Floral</div>
+            <p>Related to β-ionone (both are carotenoid breakdown products — see Paper I, Reservoir K) but with a more floral than honey character.</p>
+        </div>
+        <div class="compound-card">
+            <div class="cc-name">Octanal</div>
+            <div class="cc-descriptor">Fruity</div>
+            <p>Contributes to fruity notes, distributed differently across processing types alongside the compounds above.</p>
+        </div>
+        <div class="compound-card">
+            <div class="cc-name">Hexanal</div>
+            <div class="cc-descriptor">Green</div>
+            <p>The aroma of fresh plant material — highest in non-fermented leaf, the main contributor to intense green and vegetal character.</p>
+        </div>
+    </div>
+
+    <div class="ev-box">
+        <div class="ev-box-label">Documented</div>
+        <p>All five compounds were identified by GC-MS-O and distributed in different ratios depending on processing — the source study reports their relative presence across the fermented/non-fermented spectrum, not fixed concentrations.</p>
+    </div>
+
+    <div class="note-box">
+        <div class="note-box-label">Interpretation</div>
+        <p>A second study (Fibrianto et al., 2025) additionally reported diphenyl sulfone and phenyl-methylene heptanoate as present at higher levels in oolong-style coffee leaf tea. Both occur in only trace amounts and their odour character is not established in the same way as the five compounds above — mentioned here for completeness, not as established aroma contributors.</p>
+    </div>
+
+    <p class="source-line">Source: Rigling et al. (2023), as above. See also <a href="citane-reactive-landscape.html">Paper I, Reservoir K</a> (Volatile Precursors) and <a href="citane-processing-protocols.html">Paper III, the Citane Compass</a>.</p>
+
+    <hr class="section-rule" id="brewing">
+
+    <div class="section-label">Section Three</div>
+    <h2>Brewing Parameters <em>and Sensory Outcome</em></h2>
+
+    <p><span class="src-label src-research">Documented Research</span></p>
+
+    <p>Beyond which leaf is used, how it is brewed also affects the cup — both through extraction generally, and specifically through the activity of polyphenol oxidase (PPO), the same enzyme central to Paper I's oxidative domain (Reservoir C).</p>
+
+    <p>One study found that brewing temperature and time can be adjusted to influence sensory acceptability: higher temperatures were associated with greater phenolic extraction, affecting astringency, bitterness, and overall flavour complexity. Brewing at approximately 95°C for around 5 minutes was associated with favourable consumer perceptions of taste attributes. A related finding: higher phenolic content correlated with both antioxidant activity (a chemical measurement) and sensory acceptance (a panel's preference) — though excessive phenolic extraction can tip into undesirable bitterness, so more phenolics is not simply better.</p>
+
+    <div class="ev-box">
+        <div class="ev-box-label">Documented</div>
+        <p>Brewing at ~95°C for ~5 minutes was associated with favourable consumer ratings in the cited study. This aligns with Paper II, Section 22's brewing guidance (90°C, 5 minutes as a starting recommendation) — both point to a similar range, from different sources.</p>
+    </div>
+
+    <div class="note-box">
+        <div class="note-box-label">Interpretation</div>
+        <p>Leaf age, processing, and the brewer's own preferences all interact with these parameters — this page treats the research as one data point among the brewing guidance Paper II already provides, not as a separate or competing recommendation.</p>
+    </div>
+
+    <p class="source-line">Sources: Fibrianto et al. (2025), as below; <a href="citane-processing-manual.html">Paper II, Section 22</a> (Brewing Parameters).</p>
+
+    <hr class="section-rule" id="evidence">
+
+    <div class="section-label">A Note on the Research</div>
+    <h2>What the Fibrianto 2025 Study <em>Actually Measured</em></h2>
+
+    <p><span class="src-label src-exploratory">Exploratory — Read Carefully</span></p>
+
+    <p>One of the sources behind this page (Fibrianto, Bimo, Wulandari &amp; Hendrawan, 2025) is a small consumer-panel study comparing oolong-style coffee leaf tea against other coffee leaf and Camellia sinensis tea styles. Because some of this study's findings have previously appeared in language about stress relief, mood, and relaxation, this section describes what the study actually did and measured — in its own terms — so the difference between what was measured and what it means for a cup of tea stays visible.</p>
+
+    <div class="caution-box">
+        <div class="caution-box-label">What the Study Measured</div>
+        <p>Trained panellists drank samples of different coffee leaf and tea preparations under controlled conditions, after a standardised stress-inducing task (a timed arithmetic exercise). The study measured: salivary and blood cortisol, self-reported relaxation over a 45-minute window, GABA content of the brewed tea (measured chemically, not in the panellists), total phenolic content, and facial expression analysis via camera and software.</p>
+        <p>The oolong-style coffee leaf sample was associated with the largest reduction in measured salivary cortisol among the samples tested, the highest measured GABA and phenolic content among the coffee leaf samples, and self-reported relaxation scores comparable to a 200mg GABA supplement used as a reference sample in the same study.</p>
+    </div>
+
+    <div class="note-box">
+        <div class="note-box-label">Why This Page Does Not Repeat These Findings as Claims</div>
+        <p>This is a single study measuring specific physiological markers under specific controlled conditions (including a standardised stressor immediately beforehand). That is meaningful as a research finding — the kind of result that justifies further research. It is a different kind of statement from "drinking this tea will reduce your stress," which generalises a controlled measurement into an everyday claim the study itself doesn't make.</p>
+        <p>GABA content of the brewed tea is a chemical measurement, reported accurately in Section Two above. What GABA in a beverage does once consumed — whether and how much crosses into measurable physiological effect — is a separate question this single study's design does not, on its own, fully resolve. Both are real findings; they answer different questions, and conflating them is the most common way this kind of research gets overstated.</p>
+    </div>
+
+    <p class="source-line">Source: Fibrianto, Bimo, Wulandari &amp; Hendrawan (2025), <em>Functional and relaxing properties of coffee leaf tea: An integrative food cognition approach</em>, Applied Food Research, 5, 101141.</p>
+
+    <hr class="section-rule" id="references">
+
+    <div class="section-label">Sources</div>
+    <h2>References</h2>
+
+    <div class="ev-box">
+        <div class="ev-box-label">Cited in this page</div>
+        <p>Rigling, M., Steger, M. C., Lachenmeier, D. W., Schwarz, S., &amp; Zhang, Y. (2023). <em>Sensorial and Aroma Profiles of Coffee By-Products — Coffee Leaves and Coffee Flowers.</em> Proceedings 2023, 89, 5. DOI: 10.3390/ICC2023-14837. CC BY 4.0.</p>
+        <p>Fibrianto, K., Bimo, I. A., Wulandari, E. S., &amp; Hendrawan, Y. (2025). <em>Functional and relaxing properties of coffee leaf tea: An integrative food cognition approach.</em> Applied Food Research, 5, 101141.</p>
+        <p>Klingel, T. et al. (2020). A review of coffee by-products including leaf, flower, cherry, husk, silver skin, and spent grounds as novel foods within the European Union. Foods, 9(5), 665. Used for caffeine data in the Quick Reference.</p>
+    </div>
+
+    <p class="source-line">See also: <a href="citane-reactive-landscape.html">Paper I</a> for the chemistry underlying these compounds; <a href="citane-processing-manual.html">Paper II, Section 22</a> for brewing guidance; <a href="citane-processing-protocols.html">Paper III, the Citane Compass</a> for these compounds as starting points for processing experiments.</p>
+
+</div>
+
+<div class="page-nav">
+    <a href="catalogue.html">← Catalogue</a>
+    <a href="the-foliage-of-buna.html">Foundation →</a>
+</div>
+
+<footer>
+    Buna Coffee Leaf Library &nbsp;·&nbsp; Reference &nbsp;·&nbsp; KoffyKraft &nbsp;·&nbsp; Thumpassery Estate, Karavaloor, Kollam, Kerala
+</footer>
 
 </body>
 </html>
