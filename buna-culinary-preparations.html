@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buna Culinary — The Preparations</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.85;
+            color: #3a3a3a;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfaf4;
+        }
+
+        .top-nav {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .top-nav a {
+            font-size: 9pt;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .top-nav a:hover { color: #3a3a3a; }
+        .top-nav .sep { color: #ccc; }
+
+        .hero {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 60px 40px 50px;
+            text-align: center;
+        }
+
+        .door-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #8a7c5e;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 28pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 16px 0;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .hero-sub {
+            font-size: 11pt;
+            color: #666;
+            font-style: italic;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* STICKY SECTION NAV */
+        .section-nav {
+            position: sticky;
+            top: 0;
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 10px 40px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            z-index: 50;
+        }
+
+        .section-nav a {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #8a7c5e;
+            text-decoration: none;
+            padding: 4px 10px;
+            border: 1px solid #e0d8c8;
+            background: #f7f2e8;
+        }
+
+        .section-nav a:hover {
+            background: #e0d8c8;
+            color: #2a2a2a;
+        }
+
+        /* LEAF MATERIAL NOTE */
+        .leaf-note {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            border-left: 4px solid #8a7c5e;
+            max-width: 780px;
+            margin: 36px auto;
+            padding: 20px 28px;
+            font-size: 10pt;
+            line-height: 1.75;
+            color: #4a4a4a;
+        }
+
+        .leaf-note strong {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* RATIO TABLE */
+        .ratio-table {
+            max-width: 780px;
+            margin: 0 auto 48px;
+            padding: 0 40px;
+        }
+
+        .ratio-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+
+        .ratio-table th {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            color: #8a7c5e;
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 2px solid #e0d8c8;
+            background: #f7f2e8;
+        }
+
+        .ratio-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #e8e2d8;
+            color: #3a3a3a;
+            vertical-align: top;
+        }
+
+        .ratio-table tr:last-child td { border-bottom: none; }
+
+        /* PART HEADER */
+        .part-header {
+            max-width: 780px;
+            margin: 56px auto 0;
+            padding: 0 40px;
+            border-top: 2px solid #e0d8c8;
+            padding-top: 40px;
+        }
+
+        .part-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            color: #8a7c5e;
+            margin-bottom: 10px;
+        }
+
+        .part-header h2 {
+            font-size: 18pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 10px 0;
+        }
+
+        .part-header p {
+            font-size: 10.5pt;
+            color: #666;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* RECIPE */
+        .recipe {
+            max-width: 780px;
+            margin: 40px auto 0;
+            padding: 0 40px;
+        }
+
+        .recipe-inner {
+            border: 1px solid #e0d8c8;
+            background: #fdfaf4;
+        }
+
+        .recipe-head {
+            padding: 24px 28px 20px;
+            border-bottom: 1px solid #e0d8c8;
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 0 18px;
+            align-items: start;
+        }
+
+        .recipe-num {
+            font-size: 22pt;
+            font-weight: normal;
+            color: #c8bfa8;
+            line-height: 1;
+            padding-top: 4px;
+            font-family: Georgia, serif;
+        }
+
+        .recipe-title-block {}
+
+        .recipe-mode {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1.1px;
+            color: #8a7c5e;
+            margin-bottom: 6px;
+        }
+
+        .recipe-title {
+            font-size: 14pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 6px 0;
+            line-height: 1.3;
+        }
+
+        .recipe-desc {
+            font-size: 10pt;
+            color: #666;
+            font-style: italic;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .recipe-body {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 0;
+        }
+
+        @media (max-width: 580px) {
+            .recipe-body { grid-template-columns: 1fr; }
+            .recipe-ingredients { border-right: none; border-bottom: 1px solid #e0d8c8; }
+        }
+
+        .recipe-ingredients {
+            padding: 22px 24px;
+            border-right: 1px solid #e0d8c8;
+            background: #f7f2e8;
+        }
+
+        .ing-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            margin-bottom: 12px;
+        }
+
+        .ing-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            font-size: 9.5pt;
+            color: #3a3a3a;
+            padding: 6px 0;
+            border-bottom: 1px solid #e8e2d8;
+            line-height: 1.5;
+        }
+
+        .ing-row:last-child { border-bottom: none; }
+
+        .ing-name { color: #3a3a3a; }
+        .ing-qty { color: #8a7c5e; font-family: 'Segoe UI', Helvetica, sans-serif; font-size: 9pt; white-space: nowrap; }
+
+        .recipe-method {
+            padding: 22px 26px;
+        }
+
+        .method-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            margin-bottom: 12px;
+        }
+
+        .method-steps {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 16px 0;
+        }
+
+        .method-steps li {
+            display: grid;
+            grid-template-columns: 22px 1fr;
+            gap: 0 10px;
+            font-size: 10pt;
+            color: #3a3a3a;
+            padding: 5px 0;
+            line-height: 1.65;
+        }
+
+        .step-n {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #c8bfa8;
+            padding-top: 2px;
+        }
+
+        .recipe-notes {
+            padding: 14px 26px 20px;
+            border-top: 1px solid #e0d8c8;
+        }
+
+        .note-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 24px;
+        }
+
+        @media (max-width: 480px) {
+            .note-row { grid-template-columns: 1fr; }
+        }
+
+        .note-item {
+            font-size: 9.5pt;
+            color: #555;
+            line-height: 1.65;
+        }
+
+        .note-item .ni-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            color: #aaa;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* FOOD NOTE — for recipes that need serving context */
+        .food-note {
+            background: #f0ebe0;
+            border-left: 3px solid #8a7c5e;
+            padding: 12px 18px;
+            margin: 14px 0 0;
+            font-size: 9.5pt;
+            color: #4a4a3a;
+            line-height: 1.7;
+            grid-column: 1 / -1;
+        }
+
+        /* PRIORITY MAP */
+        .priority-map {
+            max-width: 780px;
+            margin: 56px auto 0;
+            padding: 0 40px 80px;
+        }
+
+        .priority-map table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+
+        .priority-map th {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            color: #8a7c5e;
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 2px solid #e0d8c8;
+            background: #f7f2e8;
+        }
+
+        .priority-map td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #e8e2d8;
+            vertical-align: top;
+            line-height: 1.65;
+        }
+
+        .priority-map tr:last-child td { border-bottom: none; }
+
+        .closing-line {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 32px 40px 0;
+            font-size: 10.5pt;
+            color: #666;
+            font-style: italic;
+            line-height: 1.8;
+            border-top: 1px solid #e0d8c8;
+        }
+
+        /* PAGE NAV */
+        .page-nav {
+            background: #f7f2e8;
+            border-top: 1px solid #e0d8c8;
+            margin-top: 60px;
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .page-nav a {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #8a7c5e;
+            text-decoration: none;
+        }
+
+        .page-nav a:hover { color: #3a3a3a; }
+
+        footer {
+            text-align: center;
+            padding: 28px 40px;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #aaa;
+            border-top: 1px solid #e0d8c8;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="index.html">Buna Library</a>
+    <span class="sep">/</span>
+    <a href="buna-culinary.html">Buna Culinary</a>
+    <span class="sep">/</span>
+    <a href="buna-culinary-preparations.html">Preparations</a>
+</nav>
+
+<div class="hero">
+    <div class="door-label">Door Seven &nbsp;·&nbsp; Buna Culinary &nbsp;·&nbsp; Page 3</div>
+    <h1>The Preparations</h1>
+    <p class="hero-sub">Seventeen foundational preparations. One variable at a time. Start at the beginning and move only when the previous preparation is understood.</p>
+</div>
+
+<nav class="section-nav">
+    <a href="#primary">Primary</a>
+    <a href="#companions">Companions</a>
+    <a href="#table">Table</a>
+    <a href="#broth">Broth</a>
+    <a href="#roasted">Roasted</a>
+    <a href="#chilled">Chilled</a>
+    <a href="#milk">Milk</a>
+    <a href="#tasting">Tasting</a>
+</nav>
+
+<div style="max-width:780px;margin:0 auto;padding:0 40px;">
+
+<div class="leaf-note">
+    <strong>Standard Leaf Material</strong>
+    Mature healthy coffee leaves, rinsed, drained, shade-withered 12–24 hours, then dehydrated at 45–50°C until crisp. Store airtight after cooling completely. Fifth to seventh leaf position from branch tip. This is the starting material for all preparations below unless otherwise stated.
+</div>
+
+</div>
+
+<div class="ratio-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Preparation</th>
+                <th>Leaf</th>
+                <th>Water</th>
+                <th>Ratio / Logic</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Baseline infusion</td><td>4 g</td><td>250 g</td><td>1 : 62.5</td></tr>
+            <tr><td>Light daily cup</td><td>2–3 g</td><td>250–300 g</td><td>Gentler daily trial</td></tr>
+            <tr><td>Decoction</td><td>4 g</td><td>400 g, reduced to ~250 g</td><td>Start high — evaporation</td></tr>
+            <tr><td>Long decoction</td><td>6 g</td><td>500 g, reduced to ~250 g</td><td>Traditional / heavier cup</td></tr>
+            <tr><td>Batch decoction</td><td>40 g</td><td>4,000 g, reduce to 2,500 g</td><td>1 : 100 starting ratio</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- PART I -->
+<div class="part-header" id="primary">
+    <div class="part-label">Part I — The Primary Preparations</div>
+    <h2>The leaf in water</h2>
+    <p>Everything else begins here. These preparations isolate temperature, time, and concentration. No additions.</p>
+</div>
+
+<!-- 1 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">1</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Water · Baseline</div>
+                <h3 class="recipe-title">Simple Infusion</h3>
+                <p class="recipe-desc">The reference cup. Everything else is compared against this.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">250 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Heat water to 95°C.</span></li>
+                    <li><span class="step-n">2</span><span>Place dried leaf in a pre-warmed cup or small pot.</span></li>
+                    <li><span class="step-n">3</span><span>Pour water over the leaf. Cover.</span></li>
+                    <li><span class="step-n">4</span><span>Infuse 6 minutes. Do not squeeze the leaf for the first tasting.</span></li>
+                    <li><span class="step-n">5</span><span>Strain fully and serve.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Serve plain. Taste hot, warm, and at room temperature before judging.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>For 1 litre: 16 g leaf + 1,000 g water. Keep the 1 : 62.5 ratio.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 2 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">2</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Water · Time</div>
+                <h3 class="recipe-title">Extended Infusion</h3>
+                <p class="recipe-desc">What time alone extracts, without boiling.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">250 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Heat water to 95°C.</span></li>
+                    <li><span class="step-n">2</span><span>Add leaf and water to a covered vessel.</span></li>
+                    <li><span class="step-n">3</span><span>Infuse 15 minutes. Strain.</span></li>
+                    <li><span class="step-n">4</span><span>Record whether body improves or bitterness dominates.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Tasting cup. Not necessarily a daily drink.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>8 g leaf + 500 g water. 16 g + 1,000 g.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 3 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">3</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Water · Temperature</div>
+                <h3 class="recipe-title">Cold Infusion</h3>
+                <p class="recipe-desc">Sweetness and aftertaste that heat can hide.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Cold drinking water</span><span class="ing-qty">250 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Combine leaf and water in a clean jar. Cover.</span></li>
+                    <li><span class="step-n">2</span><span>Refrigerate 8–12 hours.</span></li>
+                    <li><span class="step-n">3</span><span>Strain without pressing hard.</span></li>
+                    <li><span class="step-n">4</span><span>Taste cold first, then allow a portion to reach room temperature.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Serve chilled in a small glass.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>16 g leaf + 1,000 g water for a 1 litre jar.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 4 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">4</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Heat + Water · Foundation</div>
+                <h3 class="recipe-title">Decoction</h3>
+                <p class="recipe-desc">The first preparation where Buna begins to behave like broth.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">400 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Add leaf and water to a small pot. Bring to a boil.</span></li>
+                    <li><span class="step-n">2</span><span>Lower to a steady simmer, partly covered.</span></li>
+                    <li><span class="step-n">3</span><span>Simmer 20 minutes. Aim for a final volume near 250 g.</span></li>
+                    <li><span class="step-n">4</span><span>Add a little hot water if reduced too far. Strain and serve.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Hot as a small cup, or alongside food as a meal beverage.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>Starting ratio 1 : 100. For 10 cups: 40 g leaf + 4,000 g water, reduce to ~2,500 g.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 5 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">5</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Heat + Water · Intensity</div>
+                <h3 class="recipe-title">Long Decoction</h3>
+                <p class="recipe-desc">A heavier preparation. Use after the simple decoction is understood.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">6 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">500 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Add leaf and water to a pot. Bring to a boil.</span></li>
+                    <li><span class="step-n">2</span><span>Simmer 30 minutes, partly covered. Reduce to 250–300 g.</span></li>
+                    <li><span class="step-n">3</span><span>Strain. Rest 2 minutes before serving.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Serve alongside starchy food — rice, kanji, kappa, bread, grains. This preparation is not designed for empty-stomach consumption. The food context is part of the recipe.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>6 g leaf + 500 g water per serving. For 5 servings: 30 g + 2,500 g water.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PART II -->
+<div class="part-header" id="companions">
+    <div class="part-label">Part II — The Companions</div>
+    <h2>Controlled interventions</h2>
+    <p>Not additions for complexity. Each one isolates a single force — salt, ginger, curry leaf — to understand what it does to the leaf before combining them.</p>
+</div>
+
+<!-- 6 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">6</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Salt · Bitterness Modulation</div>
+                <h3 class="recipe-title">Salted Buna</h3>
+                <p class="recipe-desc">Salt moves the drink toward food. Observe bitterness modulation.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Prepared Buna decoction</span><span class="ing-qty">250 g</span></div>
+                <div class="ing-row"><span class="ing-name">Salt</span><span class="ing-qty">0.5–0.8 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Prepare a standard decoction.</span></li>
+                    <li><span class="step-n">2</span><span>Add 0.5 g salt first. Stir and taste.</span></li>
+                    <li><span class="step-n">3</span><span>Increase only to 0.8 g if needed.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Warm with rice, kanji, or a simple lunch.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>Salt range 0.2–0.3% of final liquid weight. For 1,000 g decoction: 2–3 g salt.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 7 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">7</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Aromatic · Lift</div>
+                <h3 class="recipe-title">Buna with Ginger</h3>
+                <p class="recipe-desc">Ginger should lift the leaf, not become ginger tea.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">400 g</span></div>
+                <div class="ing-row"><span class="ing-name">Fresh ginger, thin slice</span><span class="ing-qty">2–3 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Add leaf, water, and ginger to a pot. Bring to a boil.</span></li>
+                    <li><span class="step-n">2</span><span>Simmer 15–20 minutes. Strain.</span></li>
+                    <li><span class="step-n">3</span><span>Taste before adding salt.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>With meals or as a warm evening cup after food.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>Ginger at 0.5–0.75% of starting water. For 1,000 g water: 5–7.5 g ginger.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 8 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">8</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Aromatic · Cultural Bridge</div>
+                <h3 class="recipe-title">Buna with Curry Leaf</h3>
+                <p class="recipe-desc">Curry leaf should give familiar memory without hiding the coffee leaf.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">400 g</span></div>
+                <div class="ing-row"><span class="ing-name">Fresh curry leaves</span><span class="ing-qty">2–3 leaves</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Add leaf, water, and curry leaves to a pot. Bring to a boil.</span></li>
+                    <li><span class="step-n">2</span><span>Simmer 15–20 minutes. Strain.</span></li>
+                    <li><span class="step-n">3</span><span>Compare directly with the plain decoction.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>With rice-based meals. Test without other spices first.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>1 fresh curry leaf per 125–150 g starting water. Keep restrained.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PART III -->
+<div class="part-header" id="table">
+    <div class="part-label">Part III — The Table</div>
+    <h2>Buna alongside food</h2>
+    <p>These are not beverages served with a meal. They are meal liquids — designed to sit at the table the way rasam or buttermilk does. The food context is part of the preparation.</p>
+</div>
+
+<!-- 9 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">9</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Salt + Aromatic · Table</div>
+                <h3 class="recipe-title">Kerala Meal Beverage</h3>
+                <p class="recipe-desc">The strongest candidate for a table pathway. Buna, ginger, curry leaf, salt.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">400 g</span></div>
+                <div class="ing-row"><span class="ing-name">Fresh ginger</span><span class="ing-qty">2 g</span></div>
+                <div class="ing-row"><span class="ing-name">Fresh curry leaves</span><span class="ing-qty">2 leaves</span></div>
+                <div class="ing-row"><span class="ing-name">Salt</span><span class="ing-qty">0.5 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Add leaf, water, ginger, and curry leaves to a pot. Bring to a boil.</span></li>
+                    <li><span class="step-n">2</span><span>Simmer 15–20 minutes. Strain.</span></li>
+                    <li><span class="step-n">3</span><span>Add salt after straining and adjust lightly.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>In a small tumbler alongside lunch. Treat as a meal liquid, not tea.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>Per 1 litre starting water: 10 g leaf, 5 g ginger, 5–6 curry leaves. Salt 0.2–0.3% of final liquid after reduction.</div>
+                <div class="food-note">This preparation is not specific to any one cuisine. A cook in any kitchen with a starch-based meal and access to ginger can test it. The aromatics are local to the author. The logic is universal.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 10 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">10</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Salt · Table</div>
+                <h3 class="recipe-title">Rice Companion</h3>
+                <p class="recipe-desc">The test is whether Buna completes the meal or distracts from it.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Buna decoction</span><span class="ing-qty">200–250 g</span></div>
+                <div class="ing-row"><span class="ing-name">Salt</span><span class="ing-qty">0.4–0.6 g, optional</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Prepare standard decoction. Keep warm.</span></li>
+                    <li><span class="step-n">2</span><span>Serve in a small tumbler beside rice.</span></li>
+                    <li><span class="step-n">3</span><span>Taste with plain rice first, then with vegetable sides.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Best with simple meals where the leaf can be noticed. The starch base is the point — rice, bread, grain, potato, cassava.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>For 4 people: 1 litre final decoction. Start with ~1,600 g water + 16 g leaf.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 11 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">11</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Simplicity · Table</div>
+                <h3 class="recipe-title">Kanji Companion</h3>
+                <p class="recipe-desc">Kanji exposes flaws. If the Buna is rough, this service will show it.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">3 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">350 g</span></div>
+                <div class="ing-row"><span class="ing-name">Salt</span><span class="ing-qty">0.4 g, optional</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Simmer leaf and water 15 minutes. Strain.</span></li>
+                    <li><span class="step-n">2</span><span>Add a very small amount of salt if desired.</span></li>
+                    <li><span class="step-n">3</span><span>Serve warm beside kanji, not mixed in first.</span></li>
+                    <li><span class="step-n">4</span><span>Sip between spoonfuls. Later test pouring a small amount into the gruel.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Any rice gruel, porridge, or congee. The logic transfers across cuisines — the question is how the leaf sits alongside a plain starchy liquid.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>For 1 litre final: ~12 g leaf + 1,400 g water, reduced and salted lightly.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PART IV -->
+<div class="part-header" id="broth">
+    <div class="part-label">Part IV — The Broth</div>
+    <h2>Closer to food than tea</h2>
+    <p>This is where extraction becomes culinary. Clarity matters.</p>
+</div>
+
+<!-- 12 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">12</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Salt + Aromatics · Savoury</div>
+                <h3 class="recipe-title">Clear Buna Broth</h3>
+                <p class="recipe-desc">A savoury strained preparation. Clarity matters.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">450 g</span></div>
+                <div class="ing-row"><span class="ing-name">Fresh ginger</span><span class="ing-qty">2 g</span></div>
+                <div class="ing-row"><span class="ing-name">Small shallot, optional</span><span class="ing-qty">5–8 g</span></div>
+                <div class="ing-row"><span class="ing-name">Curry leaves</span><span class="ing-qty">2 leaves</span></div>
+                <div class="ing-row"><span class="ing-name">Salt</span><span class="ing-qty">0.6 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Add all ingredients except salt to a pot. Bring to a boil.</span></li>
+                    <li><span class="step-n">2</span><span>Simmer 20 minutes. Strain through a fine sieve.</span></li>
+                    <li><span class="step-n">3</span><span>Add salt after straining. Serve clear, without floating solids.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>As a small first cup before a simple meal, or with rice. Clarity is the point — it signals intention.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>Per 1,000 g starting water: 9 g leaf, 4–5 g ginger, 1 small shallot, 5 curry leaves. Salt 0.25% of final liquid.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PART V -->
+<div class="part-header" id="roasted">
+    <div class="part-label">Part V — The Roasted Leaf</div>
+    <h2>Heat as a flavour tool</h2>
+    <p>Dry roast creates compounds that were not in the leaf before. Dark roast may erase leaf character entirely. Light roast is the working territory.</p>
+</div>
+
+<!-- 13 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">13</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Dry Heat · Maillard · Infusion</div>
+                <h3 class="recipe-title">Dry-Roasted Buna Infusion</h3>
+                <p class="recipe-desc">Compare directly with the unroasted baseline.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dried Buna leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">250 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Heat a dry pan on low.</span></li>
+                    <li><span class="step-n">2</span><span>Add leaves. Move constantly. Stop when aroma becomes warm and slightly toasted — before any smoke appears. Do not blacken.</span></li>
+                    <li><span class="step-n">3</span><span>Transfer immediately to a cool plate.</span></li>
+                    <li><span class="step-n">4</span><span>Infuse with 95°C water for 6–8 minutes. Strain.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Serve plain. The comparison with unroasted leaf is the preparation.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>Roast only the leaf needed for the session. For 1 litre infusion, roast 16 g.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 14 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">14</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Dry Heat · Maillard · Decoction</div>
+                <h3 class="recipe-title">Roasted Buna Decoction</h3>
+                <p class="recipe-desc">May become more acceptable to people who find green leaf notes difficult.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Dry-roasted Buna leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">400 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Lightly dry-roast the leaf as in preparation 13.</span></li>
+                    <li><span class="step-n">2</span><span>Add roasted leaf and water to a pot. Simmer 15–20 minutes. Strain.</span></li>
+                    <li><span class="step-n">3</span><span>Taste plain before adding salt or ginger.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Hot with food, or cool and taste chilled.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>For 5 servings: 20 g roasted leaf + 2,000 g water, reduce to ~1,250 g.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PART VI -->
+<div class="part-header" id="chilled">
+    <div class="part-label">Part VI — Chilled</div>
+    <h2>Cold service</h2>
+    <p>Cold often changes bitterness, sweetness, and mouthfeel dramatically.</p>
+</div>
+
+<!-- 15 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">15</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Temperature · Contrast</div>
+                <h3 class="recipe-title">Chilled Decoction</h3>
+                <p class="recipe-desc">A cooked preparation served cold. Bitterness, sweetness, and mouthfeel change.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Prepared Buna decoction</span><span class="ing-qty">500 g</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Prepare a plain decoction. Strain while hot.</span></li>
+                    <li><span class="step-n">2</span><span>Cool uncovered until steam has escaped.</span></li>
+                    <li><span class="step-n">3</span><span>Refrigerate 4–8 hours.</span></li>
+                    <li><span class="step-n">4</span><span>Taste cold without ice first.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Chilled in a small glass. Good for comparing bitterness and aftertaste against the hot preparation.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>Any decoction can be chilled. Make 1 litre final volume for tasting groups.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PART VII -->
+<div class="part-header" id="milk">
+    <div class="part-label">Part VII — Milk</div>
+    <h2>Fat and protein as moderators</h2>
+    <p>Milk proteins bind a portion of the phenolics. Bitterness softens. This is the Engere pathway — the oldest documented coffee leaf tradition. Zero adverse events across nearly 400 households in the Gofa Zone study.</p>
+</div>
+
+<!-- 16 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">16</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">Extraction · Fat + Protein · Traditional</div>
+                <h3 class="recipe-title">Milk Beverage</h3>
+                <p class="recipe-desc">Milk can soften bitterness but can also hide the leaf. Keep the first trial restrained.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Ingredients</div>
+                <div class="ing-row"><span class="ing-name">Strong Buna decoction</span><span class="ing-qty">150 g</span></div>
+                <div class="ing-row"><span class="ing-name">Milk</span><span class="ing-qty">100 g</span></div>
+                <div class="ing-row"><span class="ing-name">Salt, tiny pinch</span><span class="ing-qty">optional</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Prepare a strong decoction: 5 g leaf + 350 g water simmered to ~180 g.</span></li>
+                    <li><span class="step-n">2</span><span>Warm milk separately.</span></li>
+                    <li><span class="step-n">3</span><span>Combine 150 g decoction with 100 g milk. Do not boil hard after milk is added.</span></li>
+                    <li><span class="step-n">4</span><span>Add only a tiny pinch of salt if testing the salted style.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Serving</span>Warm with food or as a separate tasting cup. Dairy alternatives — oat, coconut, nut milks — will each interact differently with the phenolics and are worth testing separately.</div>
+                <div class="note-item"><span class="ni-label">Scaling</span>Starting structure: 60% decoction, 40% milk. Adjust only after tasting.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PART VIII -->
+<div class="part-header" id="tasting">
+    <div class="part-label">Part VIII — Comparative Tasting</div>
+    <h2>The engine of the project</h2>
+    <p>A method for learning rather than a single dish. Choose one variable only. Keep everything else identical.</p>
+</div>
+
+<!-- 17 -->
+<div class="recipe">
+    <div class="recipe-inner">
+        <div class="recipe-head">
+            <div class="recipe-num">17</div>
+            <div class="recipe-title-block">
+                <div class="recipe-mode">All modes · One variable · Observation</div>
+                <h3 class="recipe-title">Comparative Tasting Set</h3>
+                <p class="recipe-desc">Comparative tasting is the engine of the Buna project.</p>
+            </div>
+        </div>
+        <div class="recipe-body">
+            <div class="recipe-ingredients">
+                <div class="ing-label">Per sample</div>
+                <div class="ing-row"><span class="ing-name">Leaf</span><span class="ing-qty">4 g</span></div>
+                <div class="ing-row"><span class="ing-name">Water</span><span class="ing-qty">250 g</span></div>
+                <div class="ing-row"><span class="ing-name">Samples</span><span class="ing-qty">A, B, C</span></div>
+            </div>
+            <div class="recipe-method">
+                <div class="method-label">Method</div>
+                <ol class="method-steps">
+                    <li><span class="step-n">1</span><span>Choose one variable only: leaf age, wither, roast level, or brew method.</span></li>
+                    <li><span class="step-n">2</span><span>Keep all other quantities identical.</span></li>
+                    <li><span class="step-n">3</span><span>Brew each sample at the same time in identical vessels.</span></li>
+                    <li><span class="step-n">4</span><span>Taste hot, warm, and room temperature.</span></li>
+                    <li><span class="step-n">5</span><span>Record: aroma, bitterness, sweetness, body, aftertaste, food compatibility.</span></li>
+                </ol>
+            </div>
+        </div>
+        <div class="recipe-notes">
+            <div class="note-row">
+                <div class="note-item"><span class="ni-label">Suggested sets</span>Young vs mature leaf · Fresh vs withered · Withered vs roasted · Infusion vs decoction · With food vs without</div>
+                <div class="note-item"><span class="ni-label">Scaling for groups</span>8 g leaf + 500 g water per sample. Pour 50 g servings. Serve in identical small cups. No snacks during first evaluation.</div>
+                <div class="note-item"><span class="ni-label">Leaf position note</span>Young leaf: positions 1–3 from branch tip. Mature leaf: positions 5–7. Keep position consistent within each sample.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PRIORITY MAP -->
+<div class="part-header" style="border-top: 2px solid #e0d8c8; margin-top: 56px; padding-top: 40px;">
+    <div class="part-label">Reference</div>
+    <h2>Priority map</h2>
+    <p>Which preparations to reach for, by intent.</p>
+</div>
+
+<div class="priority-map">
+    <table>
+        <thead>
+            <tr>
+                <th>Intent</th>
+                <th>Start with</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Daily baseline</td><td>1 — Simple infusion, 4 — Decoction</td></tr>
+            <tr><td>Table pathway</td><td>9 — Kerala meal beverage, 10 — Rice companion, 11 — Kanji companion</td></tr>
+            <tr><td>Traditional bridge</td><td>5 — Long decoction, 6 — Salted Buna, 16 — Milk beverage</td></tr>
+            <tr><td>Flavour development</td><td>13 — Roasted infusion, 14 — Roasted decoction, 15 — Chilled decoction</td></tr>
+            <tr><td>Aromatic exploration</td><td>7 — With ginger, 8 — With curry leaf, 12 — Clear broth</td></tr>
+            <tr><td>Research engine</td><td>17 — Comparative tasting set</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="closing-line">
+    Buna does not need to carry the entire spice garden. Each preparation should ask: what does the leaf need here? If the food asks for ginger, use ginger. If the leaf is already speaking clearly, leave it alone.
+</div>
+
+<div class="page-nav">
+    <a href="buna-culinary-elements.html">← The Elements</a>
+    <a href="catalogue.html">Full Catalogue →</a>
+</div>
+
+<footer>
+    Buna Coffee Leaf Library &nbsp;·&nbsp; KoffyKraft &nbsp;·&nbsp; Thumpassery Estate, Karavaloor, Kollam, Kerala
+</footer>
+
+</body>
+</html>
