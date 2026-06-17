@@ -16,7 +16,7 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family: Georgia, serif;
-  background: #0e0e0e;
+  background: #1a1812;
   color: #fff;
   overflow: hidden;
   height: 100vh;
@@ -67,13 +67,13 @@ nav {
   position: absolute;
   top: 0; bottom: 0;
   pointer-events: none;
-  border-right: 1px solid rgba(255,255,255,.04);
+  border-right: 1px solid rgba(255,255,255,.08);
 }
 .zone-title {
   position: absolute;
   top: 18px;
-  font-size: .62rem; letter-spacing:.2em; text-transform:uppercase;
-  opacity: .25; font-weight:bold; font-family:Georgia,serif;
+  font-size: .78rem; letter-spacing:.2em; text-transform:uppercase;
+  opacity: .7; font-weight:bold; font-family:Georgia,serif;
   pointer-events:none;
   left: 50%; transform: translateX(-50%);
   white-space: nowrap;
@@ -90,16 +90,16 @@ svg#edges {
 .node {
   position: absolute;
   border-radius: 5px;
-  padding: 9px 13px;
+  padding: 11px 15px;
   cursor: pointer;
   z-index: 5;
-  width: 148px;
+  width: 172px;
   touch-action: none;
   transition: box-shadow .15s, transform .15s;
   -webkit-user-select:none; user-select:none;
 }
-.node h4 { font-size:.74rem; font-weight:bold; line-height:1.25; margin-bottom:3px; }
-.node p  { font-size:.6rem;  opacity:.72; line-height:1.3; }
+.node h4 { font-size:.88rem; font-weight:bold; line-height:1.25; margin-bottom:4px; }
+.node p  { font-size:.74rem; opacity:.78; line-height:1.35; }
 .node .fuzz-dot {
   position:absolute; top:6px; right:7px;
   width:6px; height:6px; border-radius:50%;
@@ -136,18 +136,18 @@ svg#edges {
   background:none; border:none; color:rgba(255,255,255,.3);
   font-size:1.2rem; cursor:pointer; line-height:1;
 }
-.det-zone  { font-size:.58rem; letter-spacing:.16em; text-transform:uppercase; opacity:.38; margin-bottom:4px; }
-.det-name  { font-size:.98rem; margin-bottom:2px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-.det-fuzz  { font-size:.62rem; padding:2px 8px; border-radius:2px; }
+.det-zone  { font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; opacity:.38; margin-bottom:4px; }
+.det-name  { font-size:1.05rem; margin-bottom:4px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.det-fuzz  { font-size:.7rem; padding:2px 8px; border-radius:2px; }
 .det-fuzz.low    { background:rgba(80,180,80,.2);  color:#90d890; }
 .det-fuzz.medium { background:rgba(200,160,60,.2); color:#e0cc80; }
 .det-fuzz.high   { background:rgba(200,80,80,.2);  color:#f0a0a0; }
-.det-fuzz-note { font-size:.7rem; opacity:.4; font-style:italic; margin-bottom:10px; line-height:1.55; }
-.det-body  { font-size:.8rem; line-height:1.75; opacity:.82; margin-bottom:12px; }
-.det-links-title { font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; opacity:.32; margin-bottom:6px; }
-.det-tags  { display:flex; flex-wrap:wrap; gap:5px; }
+.det-fuzz-note { font-size:.78rem; opacity:.45; font-style:italic; margin-bottom:12px; line-height:1.6; }
+.det-body  { font-size:.9rem; line-height:1.8; opacity:.88; margin-bottom:14px; }
+.det-links-title { font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; opacity:.32; margin-bottom:8px; }
+.det-tags  { display:flex; flex-wrap:wrap; gap:6px; }
 .det-tag {
-  font-size:.68rem; padding:3px 10px; border-radius:2px;
+  font-size:.78rem; padding:5px 12px; border-radius:2px;
   background:rgba(255,255,255,.08); cursor:pointer;
   border-left:3px solid transparent;
 }
@@ -207,20 +207,20 @@ svg#edges {
 <div id="world">
 
   <!-- ZONE BANDS -->
-  <div class="zone-band" style="left:0;width:330px;background:rgba(61,90,62,.06);">
-    <div class="zone-title" style="color:var(--field)">Field</div>
+  <div class="zone-band" style="left:0;width:330px;background:rgba(61,90,62,.18);">
+    <div class="zone-title" style="color:#7ab87c">Field</div>
   </div>
-  <div class="zone-band" style="left:330px;width:310px;background:rgba(122,154,90,.05);">
-    <div class="zone-title" style="color:var(--harvest)">Harvest</div>
+  <div class="zone-band" style="left:330px;width:310px;background:rgba(122,154,90,.14);">
+    <div class="zone-title" style="color:#a8cc80">Harvest</div>
   </div>
-  <div class="zone-band" style="left:640px;width:300px;background:rgba(200,168,75,.04);">
-    <div class="zone-title" style="color:var(--inhand)">In Hand</div>
+  <div class="zone-band" style="left:640px;width:300px;background:rgba(200,168,75,.12);">
+    <div class="zone-title" style="color:#d4b860">In Hand</div>
   </div>
-  <div class="zone-band" style="left:940px;width:480px;background:rgba(212,120,74,.05);">
-    <div class="zone-title" style="color:var(--transform)">Transform</div>
+  <div class="zone-band" style="left:940px;width:480px;background:rgba(212,120,74,.13);">
+    <div class="zone-title" style="color:#e09060">Transform</div>
   </div>
-  <div class="zone-band" style="left:1420px;width:460px;background:rgba(88,136,160,.05);">
-    <div class="zone-title" style="color:var(--brew)">Brew · Cup</div>
+  <div class="zone-band" style="left:1420px;width:460px;background:rgba(88,136,160,.13);">
+    <div class="zone-title" style="color:#80b8d8">Brew · Cup</div>
   </div>
 
   <svg id="edges"></svg>
@@ -613,14 +613,22 @@ function applyTransform() {
   updateMinimap();
 }
 
-// Initial position — show left side on mobile
+// Initial position — readable scale showing Field zone on mobile
 function initView() {
   const vw = viewport.clientWidth;
   const vh = viewport.clientHeight;
-  // Scale to fit world height with some padding
-  scale = Math.min((vw / WORLD_W) * 1.8, (vh / WORLD_H) * 1.2, 0.55);
-  tx = 10;
-  ty = (vh - WORLD_H * scale) / 2;
+  const isMobile = vw < 768;
+  if (isMobile) {
+    // Mobile: start at readable scale showing Field zone
+    scale = 0.72;
+    tx = 16;
+    ty = (vh - WORLD_H * scale) / 2;
+  } else {
+    // Desktop: fit more of the map
+    scale = Math.min((vw / WORLD_W) * 1.4, (vh / WORLD_H) * 1.1, 0.65);
+    tx = 20;
+    ty = (vh - WORLD_H * scale) / 2;
+  }
   applyTransform();
 }
 initView();
@@ -742,15 +750,17 @@ function drawEdges(id) {
   const src = NODE_MAP[id];
   if (!src) return;
   const connects = (src.dataset.to || '').split(',').map(s=>s.trim()).filter(Boolean);
-  connects.forEach(tid => {
+  connects.forEach((tid, i) => {
     const tel = NODE_MAP[tid]; if (!tel) return;
     const a = nodeCenter(src), b = nodeCenter(tel);
     const line = document.createElementNS('http://www.w3.org/2000/svg','line');
     line.setAttribute('x1', a.x); line.setAttribute('y1', a.y);
     line.setAttribute('x2', b.x); line.setAttribute('y2', b.y);
-    line.setAttribute('stroke', src.dataset.color || 'rgba(255,255,255,.2)');
-    line.setAttribute('stroke-width', '1.5');
-    line.setAttribute('stroke-opacity', '0.45');
+    line.setAttribute('stroke', src.dataset.color || 'rgba(255,255,255,.4)');
+    // First connection: clear and bright. Subsequent: faint
+    line.setAttribute('stroke-width', i === 0 ? '2.5' : '1.2');
+    line.setAttribute('stroke-opacity', i === 0 ? '0.8' : '0.22');
+    if (i > 0) line.setAttribute('stroke-dasharray', '4 4');
     svg.appendChild(line);
   });
 }
