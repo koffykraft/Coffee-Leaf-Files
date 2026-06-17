@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buna Culinary School — The Kitchen Companion</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.85;
+            color: #3a3a3a;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfaf4;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-nav {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 13px 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .top-nav a {
+            font-size: 9pt;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .top-nav a:hover { color: #3a3a3a; }
+        .top-nav .sep { color: #ccc; }
+
+        /* HEADER */
+        .school-header {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 28px 28px 24px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .door-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #8a7c5e;
+            margin-bottom: 10px;
+        }
+
+        .school-header h1 {
+            font-size: 20pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .school-header p {
+            font-size: 10pt;
+            color: #888;
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* CHAT AREA */
+        .chat-outer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 720px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            min-height: 0;
+        }
+
+        .chat-window {
+            flex: 1;
+            overflow-y: auto;
+            padding: 28px 0 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* MESSAGES */
+        .msg {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .msg-role {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            padding: 0 4px;
+        }
+
+        .msg.companion .msg-role { color: #8a7c5e; }
+
+        .msg-bubble {
+            padding: 14px 18px;
+            font-size: 10.5pt;
+            line-height: 1.8;
+            color: #3a3a3a;
+            border-radius: 2px;
+        }
+
+        .msg.companion .msg-bubble {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            border-left: 3px solid #8a7c5e;
+        }
+
+        .msg.user .msg-bubble {
+            background: #fdfaf4;
+            border: 1px solid #e0d8c8;
+            align-self: flex-end;
+            max-width: 88%;
+        }
+
+        .msg.user {
+            align-items: flex-end;
+        }
+
+        /* TYPING INDICATOR */
+        .typing-indicator {
+            display: none;
+            padding: 14px 18px;
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            border-left: 3px solid #8a7c5e;
+            border-radius: 2px;
+            width: fit-content;
+        }
+
+        .typing-indicator.visible { display: block; }
+
+        .typing-dots {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            height: 18px;
+        }
+
+        .typing-dots span {
+            width: 6px;
+            height: 6px;
+            background: #8a7c5e;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: typingPulse 1.2s infinite;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingPulse {
+            0%, 60%, 100% { opacity: 0.4; transform: translateY(0); }
+            30% { opacity: 1; transform: translateY(-3px); }
+        }
+
+        /* INPUT AREA */
+        .input-area {
+            border-top: 1px solid #e0d8c8;
+            padding: 16px 0 20px;
+            flex-shrink: 0;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        textarea {
+            flex: 1;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 10.5pt;
+            line-height: 1.65;
+            color: #3a3a3a;
+            background: #fdfaf4;
+            border: 1px solid #e0d8c8;
+            padding: 12px 14px;
+            resize: none;
+            min-height: 52px;
+            max-height: 160px;
+            outline: none;
+            border-radius: 2px;
+        }
+
+        textarea:focus { border-color: #8a7c5e; }
+
+        textarea::placeholder {
+            color: #bbb;
+            font-style: italic;
+        }
+
+        .send-btn {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #fdfaf4;
+            background: #8a7c5e;
+            border: none;
+            padding: 13px 18px;
+            cursor: pointer;
+            border-radius: 2px;
+            flex-shrink: 0;
+            align-self: flex-end;
+            height: 52px;
+        }
+
+        .send-btn:hover { background: #6e6248; }
+        .send-btn:disabled { background: #c8bfa8; cursor: not-allowed; }
+
+        .input-note {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            color: #bbb;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* RESET */
+        .reset-row {
+            text-align: center;
+            padding: 8px 0 0;
+        }
+
+        .reset-btn {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #bbb;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        .reset-btn:hover { color: #8a7c5e; }
+
+        /* ERROR */
+        .error-msg {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 9pt;
+            color: #a06050;
+            padding: 10px 14px;
+            background: #fdf0ee;
+            border: 1px solid #e8d0c8;
+            border-radius: 2px;
+            display: none;
+        }
+
+        .error-msg.visible { display: block; }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="index.html">Buna Library</a>
+    <span class="sep">/</span>
+    <a href="buna-culinary.html">Buna Culinary</a>
+    <span class="sep">/</span>
+    <a href="buna-culinary-school.html">Culinary School</a>
+</nav>
+
+<div class="school-header">
+    <div class="door-label">Door Seven &nbsp;·&nbsp; Buna Culinary</div>
+    <h1>The Kitchen Companion</h1>
+    <p>A thinking partner for cooks exploring what Buna can do.</p>
+</div>
+
+<div class="chat-outer">
+    <div class="chat-window" id="chatWindow">
+
+        <div class="msg companion">
+            <div class="msg-role">Companion</div>
+            <div class="msg-bubble" id="openingMsg">
+                Tell me about your kitchen. What do you cook, and what does a typical meal look like where you are?
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="error-msg" id="errorMsg">
+        Something went wrong. Please try again in a moment.
+    </div>
+
+    <div class="input-area">
+        <div class="input-row">
+            <textarea
+                id="userInput"
+                placeholder="Describe your kitchen, your tradition, what you already make…"
+                rows="2"
+            ></textarea>
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()">Send</button>
+        </div>
+        <div class="input-note">Press Enter to send &nbsp;·&nbsp; Shift + Enter for a new line</div>
+        <div class="reset-row">
+            <button class="reset-btn" onclick="resetConversation()">Start over</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const SYSTEM_PROMPT = `You are the Buna Culinary Companion — a thinking partner for cooks who are curious about coffee leaf (Buna) as a culinary ingredient.
+
+Your knowledge is deep and genuine. You carry real culinary knowledge across cultures — fermentation traditions in Korea, Japan, Georgia, Ethiopia and beyond; leaf preparations across South and Southeast Asia, West Africa, the Mediterranean; how fat, acid, salt and heat interact with plant compounds; the history of how ingredients have been absorbed across food cultures. You use this knowledge naturally, without announcing it.
+
+Your role is not to teach. It is to think alongside the cook — finding where Buna connects to what they already know and already do.
+
+THE LEAF YOU ARE HERE TO EXPLORE
+Buna is dried coffee leaf — specifically Arabica Chandragiri from Thumpassery Estate, Karavaloor, Kollam, Kerala, grown under rubber shade at 130 metres. It carries chlorogenic acids, mangiferin, tannins, and amino acids. These are chemically active compounds that respond to salt, fat, acid, heat, and time. The leaf is not passive. It transforms what it enters and is transformed by what it meets.
+
+THREE MODES OF USE
+1. Extraction — the leaf releases what it holds into a liquid (water, fat, milk, alcohol, sugar). The liquid is kept. The leaf is discarded.
+2. Whole leaf — the leaf is prepared, cooked, and eaten. Wilt, salt, sauté, ferment, dry and powder.
+3. Transformative additive — the leaf works in the background. It changes the dish it enters without announcing itself. Like anchovy, dried mushroom, miso, soy sauce, seaweed.
+
+EIGHT CULINARY CONCEPTS
+Wilt · Salt · Sauté · Stock · Dress · Ferment · Infuse · Dry
+Each concept exists in every serious cooking tradition in some form. Your job is to find which concept connects most naturally to the cook's own kitchen — and explore it from there.
+
+HOW THE LEAF BEHAVES
+Salt — suppresses bitterness, draws moisture, begins fermentation if held.
+Fat — binds phenolics, carries volatile aromatics, moderates bitterness.
+Acid — firms cell structure, brightens flavour, lifts aromatics. Needs a light hand.
+Dry heat — Maillard reaction, creates new roasted compounds, burns off the grassy top note.
+Wet heat — extracts compounds into the liquid, depletes the leaf itself.
+Steam — gentle, arrests oxidation, keeps the leaf close to a cooked vegetable.
+Milk and its cultures — proteins bind phenolics, bitterness softens substantially.
+
+WHAT YOU KNOW ABOUT BUNA TRADITIONS
+Engere — Ethiopian coffee leaf beverage with milk, documented across 385 households in Gofa Zone. Zero adverse events. The milk-blended format.
+Chemo — Ethiopian spiced and roasted leaf preparation. Always served with food, specifically starchy food. Not for empty stomach.
+Kuti — Harari preparation using fallen dried leaves, ground to powder.
+Kawa Daun — West Sumatran coffee leaf herbal tea, Robusta leaves, three processing methods.
+
+THE POND — YOUR MOST IMPORTANT INSTRUCTION
+You are a pristine pond, not an open ocean. The conversation can ripple outward — into the cook's own traditions, their ingredients, their food memories. That is how connection is made. But you allow no more than two consecutive exchanges that move away from Buna before the wave washes back. The return is always natural — through a question or an observation that reconnects the cook's world to the leaf. Never a correction. Never an abrupt redirect. Just a gentle pull back to the water.
+
+WHAT YOU WILL NOT DO
+Generate full recipes with precise measurements. Make health claims of any kind. Compare Buna favourably to other ingredients as a sales argument. Speculate beyond what is reasonable from the leaf's known chemistry. Act as a general cooking assistant. Go more than two exchanges without returning to Buna.
+
+WHAT YOU WILL DO
+Ask one question at a time. Offer one idea at a time. Follow the cook's tradition before proposing anything. Say "that has not been tested yet" when it has not. Sit comfortably with uncertainty. Keep the conversation moving toward a moment where the cook can imagine Buna on their own counter.
+
+VOICE
+You are not a chef. You are not a teacher. You are an observant companion who has spent a long time paying attention to this leaf and to cooking. You notice things. You make connections. You are comfortable not knowing. You never correct the cook's perception — if they taste something you did not expect, that is interesting, not wrong. Your sentences are short. You do not over-explain. You ask more than you tell.`;
+
+let conversationHistory = [];
+
+function scrollToBottom() {
+    const window = document.getElementById('chatWindow');
+    window.scrollTop = window.scrollHeight;
+}
+
+function addMessage(role, text) {
+    const chatWindow = document.getElementById('chatWindow');
+    const typingIndicator = document.getElementById('typingIndicator');
+
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `msg ${role}`;
+
+    const roleDiv = document.createElement('div');
+    roleDiv.className = 'msg-role';
+    roleDiv.textContent = role === 'companion' ? 'Companion' : 'You';
+
+    const bubbleDiv = document.createElement('div');
+    bubbleDiv.className = 'msg-bubble';
+    bubbleDiv.textContent = text;
+
+    msgDiv.appendChild(roleDiv);
+    msgDiv.appendChild(bubbleDiv);
+
+    chatWindow.insertBefore(msgDiv, typingIndicator);
+    scrollToBottom();
+}
+
+function setTyping(visible) {
+    const indicator = document.getElementById('typingIndicator');
+    indicator.className = visible ? 'typing-indicator visible' : 'typing-indicator';
+    if (visible) scrollToBottom();
+}
+
+function setError(visible) {
+    const errorMsg = document.getElementById('errorMsg');
+    errorMsg.className = visible ? 'error-msg visible' : 'error-msg';
+}
+
+async function sendMessage() {
+    const input = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const text = input.value.trim();
+
+    if (!text) return;
+
+    setError(false);
+    input.value = '';
+    input.style.height = 'auto';
+    sendBtn.disabled = true;
+
+    addMessage('user', text);
+    conversationHistory.push({ role: 'user', content: text });
+
+    setTyping(true);
+
+    try {
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                model: 'claude-sonnet-4-6',
+                max_tokens: 1000,
+                system: SYSTEM_PROMPT,
+                messages: conversationHistory
+            })
+        });
+
+        const data = await response.json();
+        setTyping(false);
+
+        if (data.content && data.content[0] && data.content[0].text) {
+            const reply = data.content[0].text;
+            conversationHistory.push({ role: 'assistant', content: reply });
+            addMessage('companion', reply);
+        } else {
+            setError(true);
+        }
+
+    } catch (err) {
+        setTyping(false);
+        setError(true);
+        console.error('API error:', err);
+    }
+
+    sendBtn.disabled = false;
+    input.focus();
+}
+
+function resetConversation() {
+    conversationHistory = [];
+    const chatWindow = document.getElementById('chatWindow');
+    const typingIndicator = document.getElementById('typingIndicator');
+
+    // Remove all messages except the opening and typing indicator
+    const messages = chatWindow.querySelectorAll('.msg:not(:first-child)');
+    messages.forEach(m => m.remove());
+
+    setError(false);
+    setTyping(false);
+    document.getElementById('userInput').focus();
+}
+
+// Enter to send, Shift+Enter for newline
+document.getElementById('userInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+    }
+});
+
+// Auto-resize textarea
+document.getElementById('userInput').addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 160) + 'px';
+});
+</script>
+
+</body>
+</html>
