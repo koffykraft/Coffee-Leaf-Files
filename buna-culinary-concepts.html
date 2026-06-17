@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buna Culinary — Concepts</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.85;
+            color: #3a3a3a;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfaf4;
+        }
+
+        .top-nav {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .top-nav a {
+            font-size: 9pt;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .top-nav a:hover { color: #3a3a3a; }
+        .top-nav .sep { color: #ccc; }
+
+        .hero {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 72px 40px 60px;
+            text-align: center;
+        }
+
+        .door-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #8a7c5e;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 28pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 18px 0;
+            letter-spacing: 0.5px;
+            line-height: 1.25;
+        }
+
+        .hero-sub {
+            font-size: 11.5pt;
+            color: #666;
+            font-style: italic;
+            max-width: 540px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 40px 80px;
+        }
+
+        p { margin: 0 0 1.4em 0; }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0d8c8;
+            margin: 52px 0;
+        }
+
+        .section-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            color: #8a7c5e;
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            font-size: 15pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 22px 0;
+            line-height: 1.35;
+        }
+
+        .pull {
+            border-left: 3px solid #8a7c5e;
+            margin: 38px 0;
+            padding: 4px 0 4px 24px;
+            color: #4a4a4a;
+            font-size: 12pt;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* STATUS */
+        .status-notice {
+            background: #f0ebe0;
+            border: 1px solid #d8d0bc;
+            border-left: 4px solid #8a7c5e;
+            padding: 18px 24px;
+            font-size: 10pt;
+            line-height: 1.75;
+            color: #4a4a3a;
+            margin: 0 0 48px;
+        }
+
+        .status-notice strong {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* CONCEPT CARD */
+        .concept {
+            margin: 0 0 56px;
+        }
+
+        .concept-header {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0 24px;
+            align-items: start;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0d8c8;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 480px) {
+            .concept-header { grid-template-columns: 1fr; gap: 8px 0; }
+        }
+
+        .concept-word {
+            font-size: 20pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            line-height: 1.1;
+            padding-top: 4px;
+        }
+
+        .concept-meta {}
+
+        .concept-elements {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            margin-bottom: 6px;
+        }
+
+        .concept-tagline {
+            font-size: 11pt;
+            color: #555;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .concept-body p {
+            font-size: 10.5pt;
+            color: #3a3a3a;
+            line-height: 1.8;
+            margin: 0 0 1.2em;
+        }
+
+        /* THREE COLUMN: tradition / absorption / buna */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 560px) {
+            .concept-grid { grid-template-columns: 1fr; }
+        }
+
+        .cg-cell {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            padding: 18px 20px;
+        }
+
+        .cg-cell.buna {
+            background: #f0ebe0;
+            border-color: #d8d0bc;
+        }
+
+        .cg-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            margin-bottom: 8px;
+        }
+
+        .cg-cell.buna .cg-label { color: #6a5c3e; }
+
+        .cg-cell p {
+            font-size: 9.5pt;
+            color: #4a4a4a;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .cg-cell.buna p {
+            color: #3a3020;
+        }
+
+        /* QUESTION */
+        .concept-question {
+            background: #fdfaf4;
+            border: 1px solid #e0d8c8;
+            border-left: 3px solid #8a7c5e;
+            padding: 16px 22px;
+            margin-top: 20px;
+            font-size: 10.5pt;
+            color: #3a3a3a;
+            line-height: 1.75;
+        }
+
+        .cq-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            margin-bottom: 8px;
+        }
+
+        /* CLOSING */
+        .closing {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            padding: 28px 32px;
+            margin-top: 56px;
+            font-size: 10.5pt;
+            line-height: 1.85;
+            color: #3a3a3a;
+        }
+
+        .closing strong {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        /* PAGE NAV */
+        .page-nav {
+            background: #f7f2e8;
+            border-top: 1px solid #e0d8c8;
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .page-nav a {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #8a7c5e;
+            text-decoration: none;
+        }
+
+        .page-nav a:hover { color: #3a3a3a; }
+
+        footer {
+            text-align: center;
+            padding: 28px 40px;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #aaa;
+            border-top: 1px solid #e0d8c8;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="index.html">Buna Library</a>
+    <span class="sep">/</span>
+    <a href="buna-culinary.html">Buna Culinary</a>
+    <span class="sep">/</span>
+    <a href="buna-culinary-concepts.html">Concepts</a>
+</nav>
+
+<div class="hero">
+    <div class="door-label">Door Seven &nbsp;·&nbsp; Buna Culinary</div>
+    <h1>Concepts</h1>
+    <p class="hero-sub">How food cultures absorb new ingredients — and what that logic offers for Buna.</p>
+</div>
+
+<div class="content">
+
+    <div class="status-notice">
+        <strong>On the status of this page</strong>
+        These are concepts, not recipes. None of the Buna applications described here have been tested or documented. They are offered as a thinking framework — a way of asking the question before attempting an answer. The reader is invited to bring their own kitchen tradition to these ideas and find where the logic connects.
+    </div>
+
+    <p>Every ingredient that is now considered native to a cuisine arrived from somewhere else. Tapioca came to Kerala from the Americas and became as essential as rice. Tomato came to Italy and became the base of its sauces. Chilli arrived in Korea, in Thailand, in India, in Hungary — and each place made it entirely their own.</p>
+
+    <p>That absorption did not happen through invention. It happened through existing grammar. The new ingredient found the preparation method that was already there. It did not create a new way of cooking. It entered an old one.</p>
+
+    <p>The last few decades have accelerated this further. Miso has entered kitchens far outside Japan. Tamarind appears in places where it was unknown a generation ago. Fermented preparations that belonged to one tradition have been adopted and adapted across many others. The grammar of one culture has become available to all.</p>
+
+    <p>Buna is asking to enter this conversation. Not to be exotic. Not to be fashionable. To find the preparation methods that already exist — in whatever kitchen the cook is standing in — and see whether the leaf belongs there.</p>
+
+    <div class="pull">
+        The question is not what cuisine Buna belongs to. The question is which existing preparation method reveals what the leaf can do.
+    </div>
+
+    <hr class="section-rule">
+
+    <div class="section-label">Eight Concepts</div>
+    <h2>Universal methods, applied to the leaf</h2>
+
+    <!-- 1. WILT -->
+    <div class="concept">
+        <div class="concept-header">
+            <div class="concept-word">Wilt</div>
+            <div class="concept-meta">
+                <div class="concept-elements">Heat · Water · Steam</div>
+                <div class="concept-tagline">Brief application of heat collapses the raw structure and opens the leaf to seasoning.</div>
+            </div>
+        </div>
+        <div class="concept-body">
+            <p>Wilting is one of the oldest preparation steps in leaf cookery. A moment in hot water, a pass over steam, a few seconds in a dry pan — the raw character softens, the structure yields, the leaf becomes ready to receive what follows. It does not cook the leaf. It prepares it.</p>
+            <div class="concept-grid">
+                <div class="cg-cell">
+                    <div class="cg-label">In tradition</div>
+                    <p>Spinach blanched briefly before dressing in Japan — ohitashi. Grape leaves softened before stuffing across the Middle East and Caucasus. Banana blossom wilted before cooking in South and Southeast Asia.</p>
+                </div>
+                <div class="cg-cell">
+                    <div class="cg-label">How it absorbed</div>
+                    <p>As cuisines adopted unfamiliar leaves, wilting became the first test. If the leaf holds colour, holds structure, and opens to seasoning — it has potential. If it collapses into bitterness, the method needs adjustment or the leaf needs a different approach.</p>
+                </div>
+                <div class="cg-cell buna">
+                    <div class="cg-label">Buna question</div>
+                    <p>A young coffee leaf briefly wilted in hot water, then dressed — with oil, with salt, with acid. Does the wilt reduce the raw bitterness enough? Does the leaf hold colour? What does it accept from fat and acid after the wilt?</p>
+                </div>
+            </div>
+            <div class="concept-question">
+                <div class="cq-label">For the cook</div>
+                In your own kitchen, which leaves do you wilt before using? What does wilting do to them? Apply that method to a young Buna leaf and observe what changes.
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. SALT -->
+    <div class="concept">
+        <div class="concept-header">
+            <div class="concept-word">Salt</div>
+            <div class="concept-meta">
+                <div class="concept-elements">Salt · Time · Osmosis</div>
+                <div class="concept-tagline">Salt draws moisture, softens structure, suppresses bitterness, and begins preservation.</div>
+            </div>
+        </div>
+        <div class="concept-body">
+            <p>Packing a leaf in salt and waiting — this is one of the most ancient preparation methods in the world. The osmotic pressure draws moisture out, concentrates flavour, softens the raw structure, and suppresses the bitter receptor response. Held longer, it becomes fermentation. Held briefly, it is simply a wilt by another means.</p>
+            <div class="concept-grid">
+                <div class="cg-cell">
+                    <div class="cg-label">In tradition</div>
+                    <p>Shio-zuke in Japan — vegetables packed briefly in salt and served as a light pickle. Kimchi's first step, before any fermentation, is a long salt rest. Salted capers across the Mediterranean. Salt-preserved grape leaves.</p>
+                </div>
+                <div class="cg-cell">
+                    <div class="cg-label">How it absorbed</div>
+                    <p>The salt-rest logic has moved into contemporary kitchens far outside its origins. Salting vegetables before cooking, salting cucumber before dressing, salting aubergine before frying — all borrowed from traditions where salt-preparation was standard. The method travels without ceremony.</p>
+                </div>
+                <div class="cg-cell buna">
+                    <div class="cg-label">Buna question</div>
+                    <p>Fresh young Buna leaf, packed in salt for thirty minutes, rinsed, dressed. How much bitterness leaves with the drawn moisture? What texture remains? Is the leaf now ready to receive oil and acid in a way the raw leaf was not?</p>
+                </div>
+            </div>
+            <div class="concept-question">
+                <div class="cq-label">For the cook</div>
+                What do you salt before cooking in your kitchen? Cucumber, aubergine, cabbage? Apply the same logic to Buna leaf. The salt treatment is the same. The leaf is different.
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. SAUTÉ -->
+    <div class="concept">
+        <div class="concept-header">
+            <div class="concept-word">Sauté</div>
+            <div class="concept-meta">
+                <div class="concept-elements">Fat · Heat · Aromatics</div>
+                <div class="concept-tagline">Fat in a hot pan with aromatics. The most universal leaf-cooking method in the world.</div>
+            </div>
+        </div>
+        <div class="concept-body">
+            <p>A hot pan, oil, shallot or garlic or ginger or onion — and then the leaf. Two minutes, perhaps three. This method exists in every serious cooking tradition. It takes a raw leaf and gives it a cooked identity — seasoned, aromatic, with a different bitterness than it had before the fat touched it.</p>
+            <div class="concept-grid">
+                <div class="cg-cell">
+                    <div class="cg-label">In tradition</div>
+                    <p>Stir-fried greens in Chinese and Southeast Asian cooking. Sautéed spinach in Italian, French, and Spanish kitchens. Thoran in Kerala — shredded leaf, coconut oil, shallot, curry leaf, grated coconut. Sukuma wiki in East Africa — kale sautéed with onion and tomato.</p>
+                </div>
+                <div class="cg-cell">
+                    <div class="cg-label">How it absorbed</div>
+                    <p>Every new leaf that entered a cooking tradition was tested in the pan first. If it held under brief high heat, if it accepted fat and aromatics, if it produced something the diner would return to — it stayed. The sauté is the admission test for a new leaf ingredient.</p>
+                </div>
+                <div class="cg-cell buna">
+                    <div class="cg-label">Buna question</div>
+                    <p>Mature Buna leaf shredded, sautéed in coconut oil with shallot and curry leaf. What does the fat carry from the leaf? Does the bitterness become rounder under direct heat? What does grated coconut do alongside it?</p>
+                </div>
+            </div>
+            <div class="concept-question">
+                <div class="cq-label">For the cook</div>
+                Which leaf do you reach for when a sauté calls for greens? Spinach, chard, kale, moringa, sweet potato leaf? Replace it with Buna and keep everything else the same. The question is whether the leaf earns its place.
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. STOCK -->
+    <div class="concept">
+        <div class="concept-header">
+            <div class="concept-word">Stock</div>
+            <div class="concept-meta">
+                <div class="concept-elements">Water · Heat · Transformation</div>
+                <div class="concept-tagline">The leaf gives what it holds into a liquid. That liquid becomes the foundation of everything cooked in it.</div>
+            </div>
+        </div>
+        <div class="concept-body">
+            <p>This is Buna in its background mode. Not a beverage. A cooking liquid. Used instead of plain water to cook rice, to simmer a grain, to braise a vegetable, to build a sauce. The leaf disappears. What it carried does not.</p>
+            <div class="concept-grid">
+                <div class="cg-cell">
+                    <div class="cg-label">In tradition</div>
+                    <p>Dashi in Japan — kombu and bonito steeped in water to make the cooking base for almost everything. Mushroom stock in Chinese cooking. Herb-infused broths used as cooking liquids across European cuisines. Tamarind water as a base in South Indian and Southeast Asian cooking.</p>
+                </div>
+                <div class="cg-cell">
+                    <div class="cg-label">How it absorbed</div>
+                    <p>Dashi logic has now entered kitchens far outside Japan. Chefs everywhere steep ingredients — dried mushroom, seaweed, roasted vegetables, fermented pastes — in water and use the result as a foundation. The method is now universal. The ingredient changes. The concept does not.</p>
+                </div>
+                <div class="cg-cell buna">
+                    <div class="cg-label">Buna question</div>
+                    <p>A Buna decoction used as the cooking water for rice, for lentils, for a grain. What does the rice carry from the leaf once cooked? Does the Buna character survive the second cooking? Is it perceptible — or has it become the reason the dish tastes the way it does?</p>
+                </div>
+            </div>
+            <div class="concept-question">
+                <div class="cq-label">For the cook</div>
+                What do you cook rice or grains in? Plain water, stock, coconut milk? Replace the water with a light Buna decoction. Keep the ratio gentle — the leaf should be the background, not the subject.
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. DRESS -->
+    <div class="concept">
+        <div class="concept-header">
+            <div class="concept-word">Dress</div>
+            <div class="concept-meta">
+                <div class="concept-elements">Fat · Acid · Salt</div>
+                <div class="concept-tagline">A prepared leaf brought to the table with fat, acid, and salt. The simplest form of whole leaf as food.</div>
+            </div>
+        </div>
+        <div class="concept-body">
+            <p>After wilting or salt-resting, the leaf is dressed. Oil. Acid — lime, vinegar, fermented liquid. Salt. Sometimes a seed, a nut, a dried fruit. This is the salad concept at its most fundamental, and it exists in every food culture in the world in some form.</p>
+            <div class="concept-grid">
+                <div class="cg-cell">
+                    <div class="cg-label">In tradition</div>
+                    <p>Pkhali in Georgia — blanched leaves ground with walnut, garlic, and vinegar into a dressed preparation. Korean namul — briefly cooked greens dressed with sesame oil, garlic, and soy. Salade de mâche in France — dressed simply with walnut oil and a light acid. Kachumber in India — raw and dressed.</p>
+                </div>
+                <div class="cg-cell">
+                    <div class="cg-label">How it absorbed</div>
+                    <p>The dressed leaf preparation is perhaps the most widely adopted format across cuisines. Any leaf that can be cooked briefly and dressed can enter this category. Contemporary kitchens have borrowed this from Korean, Japanese, Georgian, and North African traditions without ceremony.</p>
+                </div>
+                <div class="cg-cell buna">
+                    <div class="cg-label">Buna question</div>
+                    <p>Young Buna leaf, salt-wilted or briefly blanched, dressed with a neutral oil, lime, and fine salt. Does it hold together as a dressed preparation? Is the bitterness now a flavour rather than a problem? What does a seed or a nut add alongside it?</p>
+                </div>
+            </div>
+            <div class="concept-question">
+                <div class="cq-label">For the cook</div>
+                Which dressed leaf preparation does your kitchen already make? Apply the same dressing logic — the same fat, the same acid, the same proportion — to a prepared Buna leaf. The dressing is yours. The leaf is new.
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. FERMENT -->
+    <div class="concept">
+        <div class="concept-header">
+            <div class="concept-word">Ferment</div>
+            <div class="concept-meta">
+                <div class="concept-elements">Salt · Time · Acid · Transformation</div>
+                <div class="concept-tagline">Salt and time transform the leaf into something the raw leaf was not. The least charted territory for Buna.</div>
+            </div>
+        </div>
+        <div class="concept-body">
+            <p>Lactic fermentation — salt draws moisture, bacteria convert sugars to lactic acid, the environment becomes self-preserving, the flavour deepens and changes. The leaf that goes in does not resemble what comes out. This is the most transformative of all the concepts, and for Buna it is entirely unexplored.</p>
+            <div class="concept-grid">
+                <div class="cg-cell">
+                    <div class="cg-label">In tradition</div>
+                    <p>Kimchi — cabbage fermented with salt, chilli, and time. Miso — fermented soybean paste that transforms everything it enters. Gundruk in Nepal — fermented dried leafy greens. Lahpet in Myanmar — fermented tea leaf eaten as a salad. Fermented tea leaf is eaten, not just brewed.</p>
+                </div>
+                <div class="cg-cell">
+                    <div class="cg-label">How it absorbed</div>
+                    <p>Fermentation has moved from specialist tradition to global kitchen practice in the last two decades. Chefs across the world now ferment ingredients that were never fermented before — applying the lactic logic to whatever leaf, vegetable, or fruit is available to them. The method has become available without the tradition.</p>
+                </div>
+                <div class="cg-cell buna">
+                    <div class="cg-label">Buna question</div>
+                    <p>Lahpet is the closest existing reference — fermented tea leaf prepared as a salad in Myanmar. Coffee leaf is not tea leaf. But the question it opens is real: what does a Buna leaf become after lactic fermentation? Does the bitterness convert? Does the amino acid depth increase? Is it edible and interesting?</p>
+                </div>
+            </div>
+            <div class="concept-question">
+                <div class="cq-label">For the cook</div>
+                What do you ferment in your kitchen? If nothing yet, lahpet is the reference to research before attempting Buna fermentation. The method is established. The leaf is different. Everything after the first taste is new knowledge.
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. INFUSE -->
+    <div class="concept">
+        <div class="concept-header">
+            <div class="concept-word">Infuse</div>
+            <div class="concept-meta">
+                <div class="concept-elements">Fat · Sugar · Dairy · Alcohol</div>
+                <div class="concept-tagline">The leaf releases what it holds into a medium. That medium carries it forward into everything made with it.</div>
+            </div>
+        </div>
+        <div class="concept-body">
+            <p>Infusion into fat, into sugar, into dairy, into alcohol — this is Buna as a background ingredient in its most refined form. The leaf steeps in a medium that can carry its compounds into a wider range of preparations than water alone allows. The leaf then leaves. The medium is changed.</p>
+            <div class="concept-grid">
+                <div class="cg-cell">
+                    <div class="cg-label">In tradition</div>
+                    <p>Herb-infused oils in Italian and Middle Eastern cooking. Pandan leaf infused into coconut milk across Southeast Asia. Rose and saffron infused into sugar syrup in Persian cooking. Bay leaf in cream for a béchamel. Vanilla in alcohol for baking.</p>
+                </div>
+                <div class="cg-cell">
+                    <div class="cg-label">How it absorbed</div>
+                    <p>Infusion logic has become one of the most widely adopted concepts in contemporary cooking. Chefs now infuse almost anything into almost any medium — because once the method is understood, it applies across ingredients. The flavour compound travels. The vessel changes.</p>
+                </div>
+                <div class="cg-cell buna">
+                    <div class="cg-label">Buna question</div>
+                    <p>Buna-infused oil used in a salad dressing. Buna-infused coconut milk used in a curry base. Buna-infused cream used in a dessert. Buna-infused sugar syrup used to sweeten. The leaf gives. The medium carries. The dish receives without knowing the source.</p>
+                </div>
+            </div>
+            <div class="concept-question">
+                <div class="cq-label">For the cook</div>
+                Which infused medium do you already use? Herb oil, vanilla sugar, flavoured cream? Make the same preparation with Buna leaf. The medium is yours. The question is what the leaf adds to it.
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. DRY -->
+    <div class="concept">
+        <div class="concept-header">
+            <div class="concept-word">Dry</div>
+            <div class="concept-meta">
+                <div class="concept-elements">Heat · Time · Concentration</div>
+                <div class="concept-tagline">The leaf reduced to a powder. Concentration without liquid. A seasoning that travels anywhere.</div>
+            </div>
+        </div>
+        <div class="concept-body">
+            <p>Dried and powdered, the leaf becomes a dry ingredient — a seasoning, a spice-blend component, a coating, a finishing dust. Its weight disappears. Its character concentrates. It can enter preparations where liquid would not be appropriate, and it can be stored, carried, and used in small precise amounts.</p>
+            <div class="concept-grid">
+                <div class="cg-cell">
+                    <div class="cg-label">In tradition</div>
+                    <p>Dried and powdered moringa leaf used as a nutritional addition across Africa and Asia. Matcha — stone-ground green tea leaf — used as a flavouring in both savoury and sweet preparations. Dried mushroom powder as an umami seasoning. Sumac as a dry souring agent.</p>
+                </div>
+                <div class="cg-cell">
+                    <div class="cg-label">How it absorbed</div>
+                    <p>Matcha's movement into kitchens outside Japan is the clearest recent example — a powdered leaf used first as a beverage, then adopted as a flavouring ingredient in baking, confectionery, savoury sauces, and dressings. The leaf became a pantry ingredient. Buna powder is the same proposal.</p>
+                </div>
+                <div class="cg-cell buna">
+                    <div class="cg-label">Buna question</div>
+                    <p>Dried Buna leaf ground to a fine powder. Added to a spice blend. Used as a coating on a roasted vegetable. Dusted on a finished dish. Stirred into a dough. What does the powder carry that the decoction does not? What concentration is useful before the bitterness becomes dominant?</p>
+                </div>
+            </div>
+            <div class="concept-question">
+                <div class="cq-label">For the cook</div>
+                Which dry leaf powder do you already use? Matcha, moringa, dried herbs, sumac? Try Buna powder in the same application. The question is whether the leaf's character is still recognisable in that form — and whether it adds something the powder you already use does not.
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-rule">
+
+    <div class="closing">
+        <strong>An invitation</strong>
+        <p>These eight concepts are not a curriculum. They are a way of looking at what already exists in your kitchen and asking a single question: where does Buna fit?</p>
+        <p>The absorption of a new ingredient into a food culture does not begin with a chef and a new dish. It begins with a cook in a familiar kitchen applying a familiar method to an unfamiliar ingredient — and finding that it works well enough to try again.</p>
+        <p>If you test any of these concepts with Buna and arrive at something worth noting — a method that worked, a combination that surprised, a preparation that failed in an interesting way — that observation belongs in this record. This page is the beginning of a conversation, not the end of one.</p>
+    </div>
+
+</div>
+
+<div class="page-nav">
+    <a href="buna-culinary-preparations.html">← The Preparations</a>
+    <a href="catalogue.html">Full Catalogue →</a>
+</div>
+
+<footer>
+    Buna Coffee Leaf Library &nbsp;·&nbsp; KoffyKraft &nbsp;·&nbsp; Thumpassery Estate, Karavaloor, Kollam, Kerala
+</footer>
+
+</body>
+</html>
