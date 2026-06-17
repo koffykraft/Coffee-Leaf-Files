@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buna in Kerala — A Concept Canvas</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.85;
+            color: #3a3a3a;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfaf4;
+        }
+
+        .top-nav {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .top-nav a {
+            font-size: 9pt;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .top-nav a:hover { color: #3a3a3a; }
+        .top-nav .sep { color: #ccc; }
+
+        /* HERO */
+        .hero {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 72px 40px 60px;
+            text-align: center;
+        }
+
+        .door-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #8a7c5e;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 28pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 18px 0;
+            letter-spacing: 0.5px;
+            line-height: 1.25;
+        }
+
+        .hero-sub {
+            font-size: 12pt;
+            color: #666;
+            font-style: italic;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* CONTENT */
+        .content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 40px 80px;
+        }
+
+        p { margin: 0 0 1.4em 0; }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0d8c8;
+            margin: 52px 0;
+        }
+
+        .section-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            color: #8a7c5e;
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            font-size: 15pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 22px 0;
+            line-height: 1.35;
+        }
+
+        .pull {
+            border-left: 3px solid #8a7c5e;
+            margin: 38px 0;
+            padding: 4px 0 4px 24px;
+            color: #4a4a4a;
+            font-size: 12pt;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* CANVAS NOTE */
+        .canvas-note {
+            background: #f0ebe0;
+            border: 1px solid #d8d0bc;
+            border-left: 4px solid #8a7c5e;
+            padding: 18px 24px;
+            font-size: 10pt;
+            line-height: 1.75;
+            color: #4a4a3a;
+            margin: 0 0 48px;
+        }
+
+        .canvas-note strong {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* POSITION CARD */
+        .position {
+            margin: 0 0 56px;
+        }
+
+        .position-header {
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e0d8c8;
+            margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 16px;
+        }
+
+        .position-name {
+            font-size: 19pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            line-height: 1.1;
+        }
+
+        .position-note {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            padding-bottom: 3px;
+        }
+
+        .position-body p {
+            font-size: 10.5pt;
+            color: #3a3a3a;
+            line-height: 1.82;
+            margin: 0 0 1.2em;
+        }
+
+        /* FIT QUESTION */
+        .fit-question {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            border-left: 3px solid #8a7c5e;
+            padding: 18px 22px;
+            margin-top: 22px;
+        }
+
+        .fq-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            margin-bottom: 10px;
+        }
+
+        .fq-question {
+            font-size: 10.5pt;
+            color: #3a3a3a;
+            line-height: 1.78;
+            font-style: italic;
+        }
+
+        /* FIT INDICATOR */
+        .fit-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .fit-chip {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            padding: 5px 13px;
+            border-radius: 2px;
+        }
+
+        .fit-circle {
+            background: #eef4ee;
+            border: 1px solid #c0d4c0;
+            color: #3a5a3a;
+        }
+
+        .fit-maybe {
+            background: #f7f2e8;
+            border: 1px solid #d8d0bc;
+            color: #6a5c3e;
+        }
+
+        .fit-unknown {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #888;
+        }
+
+        /* CLOSING */
+        .closing {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            padding: 28px 32px;
+            margin-top: 16px;
+            font-size: 10.5pt;
+            line-height: 1.85;
+            color: #3a3a3a;
+        }
+
+        .closing strong {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        /* PAGE NAV */
+        .page-nav {
+            background: #f7f2e8;
+            border-top: 1px solid #e0d8c8;
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .page-nav a {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #8a7c5e;
+            text-decoration: none;
+        }
+
+        .page-nav a:hover { color: #3a3a3a; }
+
+        footer {
+            text-align: center;
+            padding: 28px 40px;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #aaa;
+            border-top: 1px solid #e0d8c8;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="index.html">Buna Library</a>
+    <span class="sep">/</span>
+    <a href="buna-culinary.html">Buna Culinary</a>
+    <span class="sep">/</span>
+    <a href="buna-in-kerala.html">Buna in Kerala</a>
+</nav>
+
+<div class="hero">
+    <div class="door-label">Door Seven &nbsp;·&nbsp; Buna Culinary</div>
+    <h1>Buna in Kerala</h1>
+    <p class="hero-sub">A concept canvas. Not recipes. Not claims. A map of the Kerala table — and an honest question about where the leaf might sit.</p>
+</div>
+
+<div class="content">
+
+    <div class="canvas-note">
+        <strong>How to use this page</strong>
+        This is not a recipe page and it is not a claims page. Each section describes a position at the Kerala table — what it is, what function it serves, why it exists. Then it asks a single question about Buna. The answer is not provided. Some positions may be a natural fit. Some may not. The canvas is offered for anyone who cooks in this tradition to place Buna alongside what they already know — and see for themselves whether it belongs.
+    </div>
+
+    <p>The Kerala table is a system. Not a collection of dishes but a sequence — a logic of how food is ordered, how liquids sit alongside solids, how the meal opens and closes. Rice at the centre. Fat to carry. Acid to cut. Salt throughout. A thin liquid at the end to settle.</p>
+
+    <p>This logic did not arrive from one community or one region. It accumulated. From the coast and the hills. From Syrian Christian, Mappilah, Nair, and Ezhava kitchens. From the rubber estates of central Kerala and the backwaters of Kuttanad. From Malabar in the north to the tip of Kovalam in the south. Each community holding its own grammar while sharing the table's deepest structure.</p>
+
+    <p>Buna grows in this landscape. At Thumpassery Estate in Karavaloor, in the rubber shade of Kollam district. The leaf is not imported. It is from here. The question this page asks is a simple one.</p>
+
+    <div class="pull">
+        If coffee leaf had lived in Kerala kitchens for 200 years, where would it sit?
+    </div>
+
+    <hr class="section-rule">
+
+    <div class="section-label">The Positions</div>
+    <h2>Eight seats at the table</h2>
+
+    <!-- 1. RICE -->
+    <div class="position">
+        <div class="position-header">
+            <div class="position-name">Rice</div>
+            <div class="position-note">The centre</div>
+        </div>
+        <div class="position-body">
+            <p>Rice is not a side dish in Kerala. It is the meal itself. Everything else — the curries, the thorans, the pickles, the liquids — orbits rice. The way rice is served, eaten, and accompanied has been refined across generations. You eat with your hand. You mix. Each addition changes what the rice becomes in your mouth.</p>
+            <p>Liquids poured over rice or sipped alongside it have a specific function. They moisten. They season. They carry the flavours of the accompanying dishes into the rice. Rasam is the most deliberate of these — thin, peppery, sour. It does not sit on the rice. It moves through it.</p>
+            <p>A Buna decoction beside rice is asking for that same position. Not poured over. Sipped between mouthfuls. The question is whether its particular bitterness — moderated by salt, perhaps by a small amount of ginger — completes the rice meal or distracts from it.</p>
+        </div>
+        <div class="fit-question">
+            <div class="fq-label">The Buna question</div>
+            <div class="fq-question">A plain salted decoction, served warm in a small tumbler beside a simple rice meal. Does it belong there? Does it add something the meal was missing, or does it sit apart — noticed but not needed?</div>
+            <div class="fit-row">
+                <span class="fit-chip fit-maybe">Possible fit</span>
+                <span class="fit-chip fit-unknown">Needs testing</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. KANJI -->
+    <div class="position">
+        <div class="position-header">
+            <div class="position-name">Kanji</div>
+            <div class="position-note">The simplest meal</div>
+        </div>
+        <div class="position-body">
+            <p>Kanji is rice cooked in excess water until it becomes a soft gruel. It is the meal of early mornings and late nights, of illness and simplicity. It asks very little of what accompanies it. Uppumanga — a salted whole mango preserved in brine. Papadam. A small amount of pickle. Sometimes nothing at all.</p>
+            <p>The liquid beside kanji, when there is one, must not compete. Kanji is already liquid. What sits alongside it must be restrained, quiet, adding without announcing itself. Kanji vellum — the starchy water drained from boiling rice — has historically served this function. Salted, consumed hot, unremarkable to look at but familiar to anyone who grew up in a Kerala household.</p>
+            <p>A light Buna decoction — less concentrated than what would accompany a full rice meal — may find a position here. Or it may be poured into the kanji itself in small amounts, the way one might add kanji vellum. The bitterness in this context is the variable. Kanji exposes what is rough. If the leaf is well prepared, it may sit quietly. If not, the kanji will show it.</p>
+        </div>
+        <div class="fit-question">
+            <div class="fq-label">The Buna question</div>
+            <div class="fq-question">A very light decoction, barely seasoned, served beside kanji. Or a small pour into the kanji itself. Does the leaf sit quietly enough? Does it add something — warmth, depth, a slight edge — that the kanji benefits from?</div>
+            <div class="fit-row">
+                <span class="fit-chip fit-maybe">Possible fit</span>
+                <span class="fit-chip fit-unknown">Needs testing</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. KAPPA -->
+    <div class="position">
+        <div class="position-header">
+            <div class="position-name">Kappa</div>
+            <div class="position-note">The other starch</div>
+        </div>
+        <div class="position-body">
+            <p>Tapioca arrived in Kerala during a famine and stayed permanently. It is now as native as rice in central and southern Kerala — eaten boiled and plain, mashed with coconut and chilli, or combined with beef in the most celebrated pairing in the state. Kappa is a heavier starch than rice. It fills differently. It demands more from what accompanies it.</p>
+            <p>The liquid beside kappa, when there is one, tends to carry more weight. More salt. More spice. More body. The thin liquid that works beside kanji would disappear beside kappa. A stronger decoction may find a more natural fit here than it does beside rice or gruel.</p>
+            <p>There is also the kappa-and-beef tradition to consider. The combination of starchy tapioca with a dry, spiced, slightly sour beef preparation is one of the most complete flavour combinations in Kerala cooking. Whether a Buna decoction could function as a third element in that combination — not alongside the beef but alongside the kappa, moderating the richness — is an open question.</p>
+        </div>
+        <div class="fit-question">
+            <div class="fq-label">The Buna question</div>
+            <div class="fq-question">A stronger, saltier decoction beside a kappa meal. Does the additional body of the preparation match the weight of the starch? And in the kappa-and-beef combination specifically — does a Buna liquid belong at that table, or does it arrive uninvited?</div>
+            <div class="fit-row">
+                <span class="fit-chip fit-maybe">Possible fit — stronger preparation</span>
+                <span class="fit-chip fit-unknown">Needs testing</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. RASAM POSITION -->
+    <div class="position">
+        <div class="position-header">
+            <div class="position-name">The Rasam Position</div>
+            <div class="position-note">The digestive pour</div>
+        </div>
+        <div class="position-body">
+            <p>Rasam is one of the thinnest preparations on the Kerala table. Tamarind water, tomato, black pepper, cumin, dried chilli, a tempering of mustard and curry leaf. It is poured over rice or consumed separately. Its function is digestive — it is the preparation that comes after the heavier curries, that moves through the meal and settles it.</p>
+            <p>The rasam position is the closest existing seat to where a Buna broth might sit. Not because Buna is rasam — it is not. The flavour profiles are entirely different. But the function is comparable. A thin, clear, slightly savoury liquid that completes the meal rather than being part of it.</p>
+            <p>A clear Buna broth — strained, lightly salted, perhaps with a small amount of pepper and a single curry leaf — occupies something close to this position. It is consumed the way rasam is consumed. Not as a curry. Not as a beverage. As the liquid that closes the meal.</p>
+        </div>
+        <div class="fit-question">
+            <div class="fq-label">The Buna question</div>
+            <div class="fq-question">A clear Buna broth with pepper and shallot, served at the rasam moment of a meal. Does it earn that position — does the meal feel complete with it there? Or does it feel like a substitution that reminds you of what is missing?</div>
+            <div class="fit-row">
+                <span class="fit-chip fit-circle">Strongest candidate</span>
+                <span class="fit-chip fit-unknown">Needs testing</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. MORU POSITION -->
+    <div class="position">
+        <div class="position-header">
+            <div class="position-name">The Moru Position</div>
+            <div class="position-note">The closing liquid</div>
+        </div>
+        <div class="position-body">
+            <p>Moru is the final pour of the Kerala meal. Buttermilk tempered with mustard seed, curry leaf, dried chilli, sometimes ginger or shallot. Thin, sour, cooling. It is served at the end of the sadya and at the end of the daily meal. Its function is to settle what has been eaten — to cool, to cut through fat, to close the meal cleanly.</p>
+            <p>Moru is also the preparation most connected to the gut. In a culture that understood digestion long before the word probiotic existed, sour buttermilk served at the end of a meal was both practical and instinctive. The sourness helped. The thinness helped. The fact that it was not sweet helped.</p>
+            <p>Buna is not moru. It is not sour and it does not have the probiotic character of fermented dairy. But the position moru occupies — the closing liquid, the digestive end — is worth asking about. A tempered Buna preparation, finished with a mustard and curry leaf seasoning, is not an obvious preparation. But it is not an impossible one either.</p>
+        </div>
+        <div class="fit-question">
+            <div class="fq-label">The Buna question</div>
+            <div class="fq-question">A Buna decoction finished with a light tempering — mustard seed, curry leaf, a sliver of ginger. Served at the close of the meal. Does the bitterness work in that position, where sourness usually sits? Or does the meal ask for what moru actually provides?</div>
+            <div class="fit-row">
+                <span class="fit-chip fit-maybe">Uncertain fit</span>
+                <span class="fit-chip fit-unknown">Genuinely unknown</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. KANJI VELLUM POSITION -->
+    <div class="position">
+        <div class="position-header">
+            <div class="position-name">Kanji Vellum</div>
+            <div class="position-note">The rice water tradition</div>
+        </div>
+        <div class="position-body">
+            <p>Kanji vellum is the water drained from cooked rice. Starchy, warm, slightly salty when seasoned. It has been consumed in Kerala households for generations — not as a byproduct but as a deliberate preparation. Salted and drunk hot in the morning. Given to children. Used to settle the stomach. Stored in the brass kalam alongside the day's leftovers.</p>
+            <p>It is perhaps the most humble liquid in the Kerala food tradition. No recipe. No occasion. Just the water that was there, made purposeful by salt and intention.</p>
+            <p>The question Buna asks here is not whether it can replace kanji vellum. It cannot and should not. The question is whether, in the same spirit of purposefulness — a liquid that was always present, now made deliberate — a light Buna decoction might occupy an adjacent position. The leaf is here. The water is here. The question is whether the combination earns a place in the morning cup the way kanji vellum did.</p>
+        </div>
+        <div class="fit-question">
+            <div class="fq-label">The Buna question</div>
+            <div class="fq-question">In the spirit of kanji vellum — a simple, warm, lightly salted liquid consumed in the morning as part of the household's rhythm. Is a light Buna decoction a reasonable neighbour to that tradition? Or does it ask too much of a position that valued simplicity above everything?</div>
+            <div class="fit-row">
+                <span class="fit-chip fit-maybe">Adjacent — not equivalent</span>
+                <span class="fit-chip fit-unknown">Needs time to answer</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. THE SADYA POSITION -->
+    <div class="position">
+        <div class="position-header">
+            <div class="position-name">The Sadya</div>
+            <div class="position-note">The feast grammar</div>
+        </div>
+        <div class="position-body">
+            <p>The sadya is the complete expression of the Kerala table. Twenty to twenty-eight preparations served on a banana leaf. A grammar of sweet, sour, bitter, salt, heat, and cooling across the length of the leaf. Nothing is random. The position of each dish, the sequence in which they are eaten, the moment at which parippu gives way to sambar gives way to rasam gives way to moru — all of this is understood without explanation by anyone who grew up eating it.</p>
+            <p>Bitter has a place in the sadya. Bitter gourd pachadi. Kaypakka preparations. The bitterness is not dominant but it is present — it is understood to balance the sweetness of payasam and the richness of the ghee-finished dishes.</p>
+            <p>Whether Buna belongs anywhere on a sadya banana leaf is a question that requires more than testing. It requires the judgment of people who know the sadya from the inside. The position it might occupy — if it occupies any — would be close to the bitter elements. Not as a replacement. As a consideration.</p>
+        </div>
+        <div class="fit-question">
+            <div class="fq-label">The Buna question</div>
+            <div class="fq-question">On a sadya banana leaf — if a small cup of Buna broth were placed where a bitter preparation might sit, would it belong? Does the sadya have a liquid position that Buna could occupy without displacing what is already there?</div>
+            <div class="fit-row">
+                <span class="fit-chip fit-unknown">Requires community judgment</span>
+                <span class="fit-chip fit-unknown">Not for individual testing</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. THE MORNING CUP -->
+    <div class="position">
+        <div class="position-header">
+            <div class="position-name">The Morning Cup</div>
+            <div class="position-note">Before the day begins</div>
+        </div>
+        <div class="position-body">
+            <p>Kerala is a tea and coffee state. The morning cup is not optional. It is the first act of the day — in the teashop, in the household kitchen, on the rubber estate before the tapping begins. The cup is strong. It is sweet. It is milky. It is consumed fast and hot.</p>
+            <p>This is the position Buna is most often placed in when people first encounter it — as a tea or coffee substitute. That framing may be both the most accessible and the least interesting position for the leaf. It asks Buna to compete with two of the most deeply embedded beverage traditions in the state, on their own terms, with their own expectations of sweetness and strength.</p>
+            <p>A more honest question is whether Buna can occupy the morning position on its own terms — not as a substitute but as its own preparation. The light decoction with ginger, served warm. Not sweet. Not milky unless chosen. Something that wakes the palate differently from tea or coffee, and is not apologising for the difference.</p>
+        </div>
+        <div class="fit-question">
+            <div class="fq-label">The Buna question</div>
+            <div class="fq-question">Not as a substitute for tea or coffee — but as its own morning preparation. A light decoction with ginger, served warm, consumed before the first meal. Does the Kerala morning have room for a third option that is not competing with the first two?</div>
+            <div class="fit-row">
+                <span class="fit-chip fit-circle">Possible on its own terms</span>
+                <span class="fit-chip fit-maybe">Not as a substitute</span>
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-rule">
+
+    <div class="closing">
+        <strong>What this canvas is asking</strong>
+        <p>None of these positions are proven. Some may be natural fits. Some may reveal that Buna belongs somewhere else entirely — in a position that has not been named yet because the table has not yet made room for it.</p>
+        <p>The Kerala table has absorbed new ingredients before. Tapioca arrived from the Americas and found its seat. The stew arrived with the Portuguese and became entirely Keralan. Biriyani arrived with the Mughals and the Muslims of Malabar made it their own. Each absorption happened not because the ingredient forced itself in, but because the table recognised something familiar in it — a function, a flavour logic, a gap that had been waiting to be filled.</p>
+        <p>Whether Buna is that kind of ingredient for Kerala is a question that cannot be answered here. It can only be answered in kitchens, at tables, by people who know the food from the inside and are willing to ask an honest question about what they taste.</p>
+        <p>This page is the question. The kitchen is where the answer begins.</p>
+    </div>
+
+</div>
+
+<div class="page-nav">
+    <a href="buna-culinary-concepts.html">← Concepts</a>
+    <a href="buna-culinary-school.html">Kitchen Companion →</a>
+</div>
+
+<footer>
+    Buna Coffee Leaf Library &nbsp;·&nbsp; KoffyKraft &nbsp;·&nbsp; Thumpassery Estate, Karavaloor, Kollam, Kerala
+</footer>
+
+</body>
+</html>
