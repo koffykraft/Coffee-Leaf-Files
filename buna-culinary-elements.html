@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buna and the Elements — Foundational Theory</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.85;
+            color: #3a3a3a;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfaf4;
+        }
+
+        .top-nav {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .top-nav a {
+            font-size: 9pt;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .top-nav a:hover { color: #3a3a3a; }
+        .top-nav .sep { color: #ccc; }
+
+        .hero {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 72px 40px 60px;
+            text-align: center;
+        }
+
+        .door-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #8a7c5e;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 28pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 18px 0;
+            letter-spacing: 0.5px;
+            line-height: 1.25;
+        }
+
+        .hero-sub {
+            font-size: 11.5pt;
+            color: #666;
+            font-style: italic;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* STATUS NOTICE */
+        .status-notice {
+            background: #f0ebe0;
+            border: 1px solid #d8d0bc;
+            border-left: 4px solid #8a7c5e;
+            max-width: 680px;
+            margin: 40px auto 0;
+            padding: 20px 28px;
+            font-size: 10pt;
+            line-height: 1.75;
+            color: #4a4a3a;
+        }
+
+        .status-notice strong {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.1px;
+            color: #8a7c5e;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 60px 40px 80px;
+        }
+
+        p { margin: 0 0 1.4em 0; }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0d8c8;
+            margin: 52px 0;
+        }
+
+        .section-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            color: #8a7c5e;
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            font-size: 15pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 22px 0;
+            line-height: 1.35;
+        }
+
+        /* BASELINE */
+        .baseline-box {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            border-top: 3px solid #8a7c5e;
+            padding: 28px 32px;
+            margin: 28px 0 48px;
+        }
+
+        .baseline-box .bl-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #8a7c5e;
+            margin-bottom: 14px;
+        }
+
+        .sensory-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 540px) {
+            .sensory-row { grid-template-columns: 1fr 1fr; }
+        }
+
+        .sensory-item {
+            font-size: 9.5pt;
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+
+        .sensory-item .si-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* ELEMENT SECTIONS */
+        .element-section {
+            margin: 0 0 52px 0;
+        }
+
+        .element-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #e0d8c8;
+        }
+
+        .element-word {
+            font-size: 20pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            letter-spacing: 0.5px;
+        }
+
+        .element-note {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .sensory-outcomes {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            padding: 20px 24px;
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px 24px;
+        }
+
+        @media (max-width: 480px) {
+            .sensory-outcomes { grid-template-columns: 1fr; }
+        }
+
+        .so-item .so-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .so-item p {
+            font-size: 9.5pt;
+            color: #4a4a4a;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* COMBINATION TABLE */
+        .combo-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin: 28px 0;
+        }
+
+        .combo-row {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 0;
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+        }
+
+        @media (max-width: 480px) {
+            .combo-row { grid-template-columns: 1fr; }
+        }
+
+        .combo-elements {
+            padding: 16px 18px;
+            border-right: 1px solid #e0d8c8;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: #8a7c5e;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+        }
+
+        @media (max-width: 480px) {
+            .combo-elements { border-right: none; border-bottom: 1px solid #e0d8c8; }
+        }
+
+        .combo-desc {
+            padding: 16px 20px;
+            font-size: 10pt;
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+
+        /* PULL */
+        .pull {
+            border-left: 3px solid #8a7c5e;
+            margin: 38px 0;
+            padding: 4px 0 4px 24px;
+            color: #4a4a4a;
+            font-size: 12pt;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* CLOSING NOTICE */
+        .closing-notice {
+            background: #f0ebe0;
+            border: 1px solid #d8d0bc;
+            padding: 22px 28px;
+            margin: 40px 0 0;
+            font-size: 10pt;
+            line-height: 1.8;
+            color: #4a4a3a;
+        }
+
+        .closing-notice strong {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a7c5e;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* PAGE NAV */
+        .page-nav {
+            background: #f7f2e8;
+            border-top: 1px solid #e0d8c8;
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .page-nav a {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #8a7c5e;
+            text-decoration: none;
+        }
+
+        .page-nav a:hover { color: #3a3a3a; }
+
+        footer {
+            text-align: center;
+            padding: 32px 40px;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #aaa;
+            border-top: 1px solid #e0d8c8;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="index.html">Buna Library</a>
+    <span class="sep">/</span>
+    <a href="buna-culinary.html">Buna Culinary</a>
+    <span class="sep">/</span>
+    <a href="buna-culinary-elements.html">The Elements</a>
+</nav>
+
+<div class="hero">
+    <div class="door-label">Door Seven &nbsp;·&nbsp; Buna Culinary</div>
+    <h1>The Leaf and the Elements</h1>
+    <p class="hero-sub">What happens to coffee leaf — and what it does — when salt, fat, acid, and heat are applied. Alone and in combination.</p>
+</div>
+
+<div class="status-notice">
+    <strong>On the status of this page</strong>
+    This is theory. There is no published culinary reference for coffee leaf as a whole food ingredient treated through these elements. No established body of kitchen knowledge exists to draw from. What follows is proposed as a foundation — a set of reasoned observations based on the leaf's known chemistry and the behaviour of comparable ingredients under the same conditions. It is offered here for feedback, for testing, and for collaborative development by anyone working with this material in a serious kitchen. Nothing here should be treated as settled. Everything here should be treated as a starting point.
+</div>
+
+<div class="content">
+
+    <hr class="section-rule">
+
+    <div class="section-label">Before Any Treatment</div>
+    <h2>The baseline leaf</h2>
+
+    <p>Every treatment departs from something. This is what the mature dried coffee leaf delivers before any cooking element is applied.</p>
+
+    <div class="baseline-box">
+        <div class="bl-label">Mature Dried Buna Leaf — Baseline Sensory Profile</div>
+        <div class="sensory-row">
+            <div class="sensory-item">
+                <span class="si-label">Aroma</span>
+                Grassy, dry hay, faint woodiness. Green top note dominant.
+            </div>
+            <div class="sensory-item">
+                <span class="si-label">Taste</span>
+                Pronounced bitterness. Mild astringency. Little sweetness. Amino acid depth if held.
+            </div>
+            <div class="sensory-item">
+                <span class="si-label">Texture</span>
+                Firm, leathery, waxy surface. Brittle when fully dried.
+            </div>
+            <div class="sensory-item">
+                <span class="si-label">Mouthfeel</span>
+                Drying. Tannins coat the mouth and persist.
+            </div>
+            <div class="sensory-item">
+                <span class="si-label">Aftertaste</span>
+                Long, persistent, drying. Bitterness lingers.
+            </div>
+            <div class="sensory-item">
+                <span class="si-label">Structure</span>
+                Holds form. Does not yield easily without preparation.
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-rule">
+
+    <div class="section-label">Single Elements</div>
+    <h2>Each force applied alone</h2>
+
+    <!-- SALT -->
+    <div class="element-section">
+        <div class="element-header">
+            <div class="element-word">Salt</div>
+            <div class="element-note">osmosis · suppression · fermentation</div>
+        </div>
+        <p>Salt draws moisture from the leaf by osmosis. The waxy surface yields. Structure softens without collapsing. As moisture leaves, the bitter compounds become relatively more concentrated initially, then sodium suppresses bitter receptor response directly — the net effect is a reduction in perceived bitterness. Held long enough in salt, the leaf begins to ferment naturally as lactic bacteria activate.</p>
+        <div class="sensory-outcomes">
+            <div class="so-item">
+                <span class="so-label">Aroma</span>
+                <p>Grassy note softens. At longer salting, shifts toward preserved vegetable — rounder, deeper, less raw.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Taste</span>
+                <p>Bitterness reduced. Savouriness increases. Underlying amino acid depth becomes more accessible.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Texture</span>
+                <p>Leathery to pliable. Moisture loss compresses the leaf. Structure remains but yields to pressure.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Mouthfeel</span>
+                <p>Smoother than raw. Less drying. Tannin sensation shortens.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Aftertaste</span>
+                <p>Shorter. Cleaner. Salt suppression reduces the lingering bitter finish.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">As transport</span>
+                <p>A brine made from strong leaf tea carries phenolics and amino acids into whatever it surrounds. The leaf's character seasons from outside in.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAT -->
+    <div class="element-section">
+        <div class="element-header">
+            <div class="element-word">Fat</div>
+            <div class="element-note">coating · transport · surface development</div>
+        </div>
+        <p>Fat enters where the waxy surface has been disrupted. Fat-soluble volatile aromatics dissolve into the fat and are carried outward — this is the transportation function. On the palate, fat coats before bitter compounds arrive, moderating their impact. Bitterness is still present but arrives later and leaves sooner. What the fat has absorbed, it carries to whatever it touches next.</p>
+        <div class="sensory-outcomes">
+            <div class="so-item">
+                <span class="so-label">Aroma</span>
+                <p>Fat carries volatile aromatics. The grassy top note dissolves into the fat and is delivered more broadly to the olfactory. The leaf smells of itself, amplified.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Taste</span>
+                <p>Bitterness arrives later. Fat coats the palate first, delaying the phenolic impact. Overall perception is rounder and less aggressive.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Texture</span>
+                <p>Surface becomes glossy, slightly yielding. Fat lubricates the leaf and changes its feel in the hand before it reaches the mouth.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Mouthfeel</span>
+                <p>Fuller. Rounder. The drying tannin quality is reduced as fat intervenes between tannins and saliva proteins.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Aftertaste</span>
+                <p>Bitterness departs sooner. Fat coats the mouth and holds some aromatic character after swallowing.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">As transport</span>
+                <p>Buna-infused fat — oil, butter, ghee — carries what it has absorbed to every surface it touches. The leaf disappears. Its character travels.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACID -->
+    <div class="element-section">
+        <div class="element-header">
+            <div class="element-word">Acid</div>
+            <div class="element-note">firmness · brightness · competition</div>
+        </div>
+        <p>Acid firms the leaf's cell structure — pectin in the cell walls responds to low pH and tightens. The leaf becomes crisper and more defined. On the palate, acid competes with bitterness. At low concentration this competition reads as balance — the leaf tastes brighter and cleaner. At high concentration, acid dominates and the leaf's own character retreats behind it. A light hand is required throughout.</p>
+        <div class="sensory-outcomes">
+            <div class="so-item">
+                <span class="so-label">Aroma</span>
+                <p>Acid lifts volatile aromatics. The grassy top note becomes more present in the nose. The olfactory experience becomes more forward and alive.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Taste</span>
+                <p>At balance: bright, clean, less bitter. At excess: the leaf disappears behind the acid. Precision matters more here than with any other element.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Texture</span>
+                <p>Firmer. More defined. The acid-treated leaf holds its structure under subsequent heat better than an untreated leaf.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Mouthfeel</span>
+                <p>Crisper. Less coating. The drying tannin quality is disrupted by the pH change. Saliva production increases, which counteracts astringency.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Aftertaste</span>
+                <p>Short and clean when balanced. The acid finish replaces the bitter finish. A different kind of persistence — bright rather than drying.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">As transport</span>
+                <p>Fermented leaf preparations use acid as a preserving and transforming medium. The leaf's compounds change under sustained low pH in ways that are not yet mapped.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEAT — DRY -->
+    <div class="element-section">
+        <div class="element-header">
+            <div class="element-word">Heat — Dry</div>
+            <div class="element-note">Maillard · creation · volatilisation</div>
+        </div>
+        <p>The leaf surface undergoes Maillard reaction under dry heat. Sugars and amino acids interact to produce new compounds — roasted, nutty, slightly caramel aromatics that were not present before. The grassy top note burns off first. What remains is warmer, woodier, more structured. This is the only element that creates new flavour compounds rather than releasing or moderating existing ones.</p>
+        <div class="sensory-outcomes">
+            <div class="so-item">
+                <span class="so-label">Aroma</span>
+                <p>Grassy note replaced by roasted, warm, woody aromatics. The nose encounter is entirely different from the unroasted leaf. Complexity increases.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Taste</span>
+                <p>Bitterness changes character — from raw phenolic bitterness to roasted bitterness, which most palates find more acceptable. A faint sweetness can emerge from caramelisation at lighter roast levels.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Texture</span>
+                <p>Brittle. The leaf loses remaining moisture and becomes fragile. Easily powdered at this stage, which is where its utility as a dry additive begins.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Mouthfeel</span>
+                <p>As a powder, dry and coating. In a preparation using the roasted leaf, warmer and more structured than unroasted.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Aftertaste</span>
+                <p>Warm, roasted, longer than the raw leaf but different in character. The drying quality reduces. A toasted finish replaces the raw bitter finish.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">As transport</span>
+                <p>Roasted leaf powder carries Maillard compounds into spice blends, batters, and dry rubs. It delivers warmth and depth without liquid.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEAT — WET -->
+    <div class="element-section">
+        <div class="element-header">
+            <div class="element-word">Heat — Wet</div>
+            <div class="element-note">extraction · depletion · transformation</div>
+        </div>
+        <p>Water-soluble compounds migrate out of the leaf rapidly under wet heat. Chlorogenic acids, mangiferin, and amino acids move into the liquid. The leaf itself becomes progressively spent — softer, paler, less bitter, less aromatic. What remains after long wet heat is mostly structural. The liquid gains what the leaf gives up. Wet heat is the extraction mode. The leaf and the liquid are in competition, and the liquid wins.</p>
+        <div class="sensory-outcomes">
+            <div class="so-item">
+                <span class="so-label">Aroma</span>
+                <p>Moves from the leaf to the liquid. The spent leaf has little aroma remaining. The liquid carries it.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Taste — leaf</span>
+                <p>Progressive depletion. Short cooking: still bitter. Long cooking: mild, fibrous, little flavour character remaining.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Taste — liquid</span>
+                <p>Builds with time. The decoction deepens, darkens, and becomes more complex as extraction continues.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Texture</span>
+                <p>Softens steadily. Long wet heat produces a leaf that is tender, close to a cooked green vegetable, with little structural resistance.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Mouthfeel</span>
+                <p>The spent leaf is mild. The liquid carries the mouthfeel character — body, astringency, warmth.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Aftertaste</span>
+                <p>From the liquid: persistent, warm, structured. From the spent leaf itself: minimal.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEAT — STEAM -->
+    <div class="element-section">
+        <div class="element-header">
+            <div class="element-word">Heat — Steam</div>
+            <div class="element-note">arrest · preservation · gentleness</div>
+        </div>
+        <p>Steam denatures the polyphenol oxidase enzyme quickly, arresting oxidation and fixing the green character of the leaf. Structure softens without collapsing. Colour stays closer to green than under any other heat treatment. Extraction into steam is limited compared to full immersion. What the leaf holds largely stays in the leaf.</p>
+        <div class="sensory-outcomes">
+            <div class="so-item">
+                <span class="so-label">Aroma</span>
+                <p>Grassy but less raw than fresh. The steam-fixed leaf smells closer to a cooked green vegetable than to a dried herb.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Taste</span>
+                <p>Bitterness present but gentler than raw. The leaf's character is largely preserved. This is the mode closest to eating the leaf as a vegetable.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Texture</span>
+                <p>Tender. Close to a lightly cooked green leaf. Holds form. Does not collapse or become slimy.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Mouthfeel</span>
+                <p>Light. Less coating than fat-treated preparations. The tannin quality is reduced but present.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">Aftertaste</span>
+                <p>Moderate. The green character persists briefly. Bitterness is present but does not dominate the finish.</p>
+            </div>
+            <div class="so-item">
+                <span class="so-label">As whole food</span>
+                <p>Steam is the preparation that brings the leaf closest to a vegetable on the plate. From here, all dressing and seasoning decisions begin with the leaf already cooked.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-rule">
+
+    <div class="section-label">Combinations</div>
+    <h2>What happens when the elements work together</h2>
+
+    <p>Each combination produces a different leaf and a different set of sensory outcomes. The sequence matters as much as the elements chosen.</p>
+
+    <div class="combo-grid">
+
+        <div class="combo-row">
+            <div class="combo-elements">Salt · Fat</div>
+            <div class="combo-desc">Salt has already softened the surface and reduced bitterness perception. Fat now enters more readily and coats what remains. The combined effect on bitterness is significant — sodium suppression followed by fat coating. The result is the mildest version of the whole leaf. Mouthfeel becomes full and rounded. Closest in character to a cooked vegetable preparation.</div>
+        </div>
+
+        <div class="combo-row">
+            <div class="combo-elements">Salt · Acid</div>
+            <div class="combo-desc">Salt softens the structure, acid then firms it again. The result is a leaf with defined texture and a clean, bright flavour. Bitterness suppressed by salt, then lifted and clarified by acid. This is the quick-pickle logic. Aftertaste is short and clean. The olfactory opens — acid and salt together lift volatile aromatics more than either does alone.</div>
+        </div>
+
+        <div class="combo-row">
+            <div class="combo-elements">Fat · Heat (dry)</div>
+            <div class="combo-desc">Oil in a hot pan. The leaf surface undergoes Maillard reaction through the fat medium — new flavour compounds form while fat carries them simultaneously outward. This is the sauté. Aroma becomes rich and complex quickly. Texture moves from pliable to slightly crisped at the edges. On the palate: bitter, roasted, fatty, with a long warm aftertaste. The most complex single-combination whole leaf result.</div>
+        </div>
+
+        <div class="combo-row">
+            <div class="combo-elements">Acid · Heat</div>
+            <div class="combo-desc">The acid-firmed leaf holds its structure better under heat. Less collapse. More defined texture on the plate. Acid's volatile lift combines with heat-generated aromatics to produce a layered olfactory experience — bright at first, then warm. A preparation with more textural integrity than heat alone delivers.</div>
+        </div>
+
+        <div class="combo-row">
+            <div class="combo-elements">Salt · Fat · Acid · Heat</div>
+            <div class="combo-desc">All four elements in sequence. Each has done its work before the next begins. The leaf is seasoned, lubricated, brightened, and developed. Bitterness has been moderated at three distinct points — sodium suppression, fat coating, acid competition. What remains is the character of the leaf without its harshness. The aroma is layered. The texture is defined. The mouthfeel is full. The aftertaste is warm and present but not dominant. This is the destination the preparations are building toward.</div>
+        </div>
+
+    </div>
+
+    <div class="pull">
+        The leaf is not a fixed ingredient. It is a responsive one. Each element changes what it delivers to the palate, the nose, and the hand. Understanding that response is what allows a cook to decide — not to follow a recipe, but to make a decision.
+    </div>
+
+    <hr class="section-rule">
+
+    <div class="closing-notice">
+        <strong>An invitation</strong>
+        Everything on this page is proposed, not proven. The chemistry of the leaf is documented in the research sections of this library. How that chemistry behaves in a kitchen — under real heat, with real fat, alongside real food — has not been studied. These observations are drawn from comparable ingredients and established food science principles, applied to a leaf whose culinary potential is largely unexplored.
+
+        If you work with this material in a kitchen and arrive at different results, we want to know. If you find a combination that produces something unexpected, that observation belongs here. This page is a beginning, not a conclusion. Contributions, corrections, and counter-observations are part of what it is asking for.
+    </div>
+
+</div>
+
+<div class="page-nav">
+    <a href="buna-culinary.html">← The Leaf at the Table</a>
+    <a href="buna-culinary-preparations.html">The Preparations →</a>
+</div>
+
+<footer>
+    Buna Coffee Leaf Library &nbsp;·&nbsp; KoffyKraft &nbsp;·&nbsp; Thumpassery Estate, Karavaloor, Kollam, Kerala
+</footer>
+
+</body>
+</html>

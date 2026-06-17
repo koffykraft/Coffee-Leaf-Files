@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buna Culinary — Door Seven</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.85;
+            color: #3a3a3a;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfaf4;
+        }
+
+        .top-nav {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .top-nav a {
+            font-size: 9pt;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .top-nav a:hover { color: #3a3a3a; }
+        .top-nav .sep { color: #ccc; }
+
+        .hero {
+            background: #fdfaf4;
+            border-bottom: 1px solid #e0d8c8;
+            padding: 72px 40px 60px;
+            text-align: center;
+        }
+
+        .door-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #8a7c5e;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 30pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 18px 0;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .hero-sub {
+            font-size: 12pt;
+            color: #666;
+            font-style: italic;
+            max-width: 540px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 60px 40px 80px;
+        }
+
+        p { margin: 0 0 1.4em 0; }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0d8c8;
+            margin: 52px 0;
+        }
+
+        .section-label {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            color: #8a7c5e;
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            font-size: 15pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            margin: 0 0 22px 0;
+            line-height: 1.35;
+        }
+
+        .pull {
+            border-left: 3px solid #8a7c5e;
+            margin: 38px 0;
+            padding: 4px 0 4px 24px;
+            color: #4a4a4a;
+            font-size: 12pt;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ELEMENT GRID */
+        .element-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin: 36px 0;
+        }
+
+        @media (max-width: 540px) {
+            .element-grid { grid-template-columns: 1fr; }
+        }
+
+        .element-card {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            padding: 24px 26px 26px;
+        }
+
+        .element-word {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #8a7c5e;
+            margin-bottom: 10px;
+        }
+
+        .element-card p {
+            font-size: 10pt;
+            color: #4a4a4a;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        /* MODE STACK */
+        .mode-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin: 36px 0;
+        }
+
+        .mode-card {
+            background: #f7f2e8;
+            border: 1px solid #e0d8c8;
+            padding: 26px 30px;
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 0 28px;
+            align-items: start;
+        }
+
+        @media (max-width: 540px) {
+            .mode-card {
+                grid-template-columns: 1fr;
+                gap: 12px 0;
+            }
+        }
+
+        .mode-name {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1.1px;
+            color: #8a7c5e;
+            margin-bottom: 6px;
+            padding-top: 3px;
+        }
+
+        .mode-title {
+            font-size: 12pt;
+            font-weight: normal;
+            color: #2a2a2a;
+            line-height: 1.3;
+        }
+
+        .mode-body p {
+            font-size: 10.5pt;
+            color: #4a4a4a;
+            line-height: 1.75;
+            margin: 0 0 0.85em 0;
+        }
+
+        .mode-body p:last-child { margin-bottom: 0; }
+
+        .mode-examples {
+            margin-top: 12px;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 9pt;
+            color: #999;
+            line-height: 1.7;
+        }
+
+        /* PAGE NAV */
+        .page-nav {
+            background: #f7f2e8;
+            border-top: 1px solid #e0d8c8;
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .page-nav a {
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #8a7c5e;
+            text-decoration: none;
+        }
+
+        .page-nav a:hover { color: #3a3a3a; }
+
+        footer {
+            text-align: center;
+            padding: 32px 40px;
+            font-family: 'Segoe UI', Helvetica, sans-serif;
+            font-size: 8.5pt;
+            color: #aaa;
+            border-top: 1px solid #e0d8c8;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="index.html">Buna Library</a>
+    <span class="sep">/</span>
+    <a href="catalogue.html">Catalogue</a>
+    <span class="sep">/</span>
+    <a href="buna-culinary.html">Buna Culinary</a>
+</nav>
+
+<div class="hero">
+    <div class="door-label">Door Seven &nbsp;·&nbsp; Buna Culinary</div>
+    <h1>The Leaf at the Table</h1>
+    <p class="hero-sub">How coffee leaf behaves when it meets the universal elements of cooking.</p>
+</div>
+
+<div class="content">
+
+    <p>Every cuisine in the world is built on the same small set of forces. Salt. Fat. Acid. Heat. Water. These are not ingredients. They are what ingredients do. A Persian grandmother and a Japanese cook and a Peruvian chef are working with the same forces, in different combinations, with whatever grows nearby.</p>
+
+    <p>This section asks what happens when those forces meet a coffee leaf.</p>
+
+    <p>Not in one kitchen. Not in one tradition. The leaf is the constant. The cook, the culture, and the pantry belong to whoever is reading this.</p>
+
+    <hr class="section-rule">
+
+    <div class="section-label">The Leaf and the Elements</div>
+    <h2>What Buna does when cooking begins</h2>
+
+    <p>Most leaves added to a dish are passive. They contribute what they carry — aroma, colour, mild nutrition — and leave the dish as they found it. Coffee leaf is different. It carries compounds that are chemically active. Chlorogenic acids. Mangiferin. Tannins. Amino acids. These interact. They respond. They change what they enter.</p>
+
+    <p>Understanding that response, element by element, is where the culinary work begins.</p>
+
+    <div class="element-grid">
+
+        <div class="element-card">
+            <div class="element-word">Salt</div>
+            <p>Softens bitterness perception. Draws moisture from fresh leaf. Moves the cup toward food. A brine made from strong leaf tea seasons from the outside in. Salt is the first intervention worth understanding.</p>
+        </div>
+
+        <div class="element-card">
+            <div class="element-word">Fat</div>
+            <p>Binds phenolics. Carries volatile aromatics differently than water does. A sauté in oil changes the leaf's character entirely. Fat can moderate what might otherwise be too intense, while keeping what matters.</p>
+        </div>
+
+        <div class="element-card">
+            <div class="element-word">Acid</div>
+            <p>At low concentration, brightens and balances. At high concentration, competes with the leaf and wins. Lime, tamarind, fermented cultures — each introduces acid differently. Needs care and a light hand.</p>
+        </div>
+
+        <div class="element-card">
+            <div class="element-word">Heat</div>
+            <p>Dry heat roasts. Wet heat extracts. Steam wilts without destroying. High heat for too long erases character. The leaf responds differently to each form of heat, and the difference is worth knowing before combining them.</p>
+        </div>
+
+        <div class="element-card">
+            <div class="element-word">Water</div>
+            <p>The known territory. Long and slow extracts phenolics and builds body. Short and gentle gives a cleaner, lighter result. Temperature matters. So does time. Everything in the beverages section begins here.</p>
+        </div>
+
+        <div class="element-card">
+            <div class="element-word">Milk and its cultures</div>
+            <p>Proteins bind a portion of the phenolics. Bitterness softens. The cup becomes gentler. Curd, buttermilk, and fresh cheese each bring acid alongside the protein. This is not speculation — it is documented in the Engere tradition across nearly 400 households.</p>
+        </div>
+
+    </div>
+
+    <div class="pull">
+        The question is not what Buna tastes like alone. The question is what it does to everything around it when cooking begins.
+    </div>
+
+    <hr class="section-rule">
+
+    <div class="section-label">Three Modes</div>
+    <h2>How the leaf can be used</h2>
+
+    <div class="mode-stack">
+
+        <div class="mode-card">
+            <div class="mode-left">
+                <div class="mode-name">Mode One</div>
+                <div class="mode-title">Extraction</div>
+            </div>
+            <div class="mode-body">
+                <p>The leaf gives what it holds into a liquid. It is then discarded. What you keep is the brew. This is the most documented mode — four living traditions in this library demonstrate it, and the preparations section develops it further for the table.</p>
+                <p>The cooking liquid itself becomes the ingredient. Used instead of water in a broth, a grain preparation, or a sauce base, the extract works underneath the dish without announcing itself.</p>
+                <div class="mode-examples">Infusion · Decoction · Broth · Cooking liquid · Reduction · Brine</div>
+            </div>
+        </div>
+
+        <div class="mode-card">
+            <div class="mode-left">
+                <div class="mode-name">Mode Two</div>
+                <div class="mode-title">Whole Leaf</div>
+            </div>
+            <div class="mode-body">
+                <p>The leaf stays. It is prepared, cooked, and eaten. Every serious cooking culture has a grammar for this. Leaves are wilted, salted, sautéed, braised, dried, and powdered. The techniques are universal. What is being tested here is how coffee leaf behaves through each of them.</p>
+                <p>Young leaves suit brief, gentle preparation. Mature leaves need more. Both have a different character on the plate. Neither has been fully explored in a culinary context.</p>
+                <div class="mode-examples">Fresh · Steamed · Salt-wilted · Sautéed · Dried and powdered · Fermented</div>
+            </div>
+        </div>
+
+        <div class="mode-card">
+            <div class="mode-left">
+                <div class="mode-name">Mode Three</div>
+                <div class="mode-title">Transformative Additive</div>
+            </div>
+            <div class="mode-body">
+                <p>The leaf does not appear on the plate. It works underneath. It changes the dish it enters without declaring itself. This is the category that anchovy, dried mushroom, soy sauce, miso, and fish sauce occupy. Not the subject of the dish. The reason the dish tastes the way it does.</p>
+                <p>Coffee leaf has the chemistry for this. Concentrated phenolics and amino acids interact with whatever they enter. A dried leaf powder in a spice blend. A reduced decoction used to finish a sauce. A marinade built on strong leaf tea. The leaf disappears. The dish remains, changed.</p>
+                <p>This mode is the least charted and the most interesting. It needs the most kitchen time to understand.</p>
+                <div class="mode-examples">Spice powder · Marinade base · Finishing liquid · Fermentation ingredient</div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="section-rule">
+
+    <div class="section-label">How to Use This Section</div>
+    <h2>One element at a time</h2>
+
+    <p>The preparations that follow are organized to isolate variables. Salt first. Then fat. Then acid. Then combinations. Each preparation is an observation, not a finished dish.</p>
+
+    <p>The author works from a Kerala kitchen. The rubber shade at Thumpassery, the starch meals of the region, the aromatics that grow nearby — these are the local references. But the elements are universal. A cook in Osaka, in Lyon, in Lagos, in Mexico City is working with the same forces. The leaf will behave the same way. The dish it enters will be their own.</p>
+
+    <p>Taste as you go. Write it down. The difference between a preparation that works and one that does not is often in the detail that seemed unimportant at the time.</p>
+
+    <p>No health claims are made here. This is a culinary document, and a working one.</p>
+
+</div>
+
+<div class="page-nav">
+    <a href="catalogue.html">← Catalogue</a>
+    <a href="buna-culinary-preparations.html">The Preparations →</a>
+</div>
+
+<footer>
+    Buna Coffee Leaf Library &nbsp;·&nbsp; KoffyKraft &nbsp;·&nbsp; Thumpassery Estate, Karavaloor, Kollam, Kerala
+</footer>
+
+</body>
+</html>
