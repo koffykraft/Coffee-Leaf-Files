@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BUNA | Projects</title>
+
+<style>
+
+:root{
+    --bg:#f3ecd0;
+    --card:#f8f4e8;
+    --text:#3f3a33;
+    --accent:#9d5a47;
+    --border:#d9cfb5;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height:1.7;
+}
+
+.container{
+    width:min(900px,92%);
+    margin:auto;
+    padding:60px 0 80px;
+}
+
+.kicker{
+    text-transform:uppercase;
+    letter-spacing:4px;
+    color:var(--accent);
+    font-size:0.75rem;
+    margin-bottom:18px;
+}
+
+h1{
+    font-size:clamp(3rem,7vw,5rem);
+    line-height:0.95;
+    margin-bottom:24px;
+    color:var(--accent);
+}
+
+.intro{
+    font-size:1.3rem;
+    max-width:700px;
+    margin-bottom:30px;
+}
+
+.note{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:28px;
+    margin-bottom:50px;
+}
+
+.projects{
+    display:grid;
+    gap:24px;
+}
+
+.project-card{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:30px;
+    transition:all 0.2s ease;
+}
+
+.project-card:hover{
+    transform:translateY(-2px);
+}
+
+.project-type{
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:0.75rem;
+    color:var(--accent);
+    margin-bottom:10px;
+}
+
+.project-card h2{
+    font-size:2rem;
+    margin-bottom:12px;
+}
+
+.project-card p{
+    font-size:1.1rem;
+}
+
+.footer{
+    margin-top:70px;
+    padding-top:24px;
+    border-top:1px solid var(--border);
+    color:#7d7468;
+    font-size:0.9rem;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="kicker">
+Buna Library
+</div>
+
+<h1>
+Explorations of the Coffee Plant
+</h1>
+
+<p class="intro">
+Buna is a library of landscapes.
+Each project explores one part of the coffee plant and the worlds that emerge from it.
+</p>
+
+<div class="note">
+
+<p>
+Coffee is larger than the roasted bean.
+</p>
+
+<br>
+
+<p>
+Seed. Fruit. Leaf.
+</p>
+
+<br>
+
+<p>
+These projects follow the coffee plant through experience, culture, processing, research, tradition, and possibility.
+</p>
+
+</div>
+
+<div class="projects">
+
+<a class="project-card"
+href="https://koffykraft.github.io/coffee-cherry-project/">
+
+<div class="project-type">
+Fruit
+</div>
+
+<h2>
+Coffee Cherry Project
+</h2>
+
+<p>
+A landscape exploration of the coffee fruit:
+ripeness, mucilage, fermentation, drying,
+cascara, by-products, and the traces the fruit leaves behind.
+</p>
+
+</a>
+
+<a class="project-card"
+href="https://buna.koffykraft.coffee/">
+
+<div class="project-type">
+Seed • Cup • Experience
+</div>
+
+<h2>
+Coffee Experience Landscape
+</h2>
+
+<p>
+A guided landscape of coffee as plant,
+fruit, seed, roast, brew, aroma, flavour,
+memory, and human experience.
+</p>
+
+</a>
+
+<a class="project-card"
+href="https://buna.koffykraft.coffee/">
+
+<div class="project-type">
+Leaf
+</div>
+
+<h2>
+Coffee Leaf Library
+</h2>
+
+<p>
+The Buna Coffee Leaf Library of the Citane Project.
+A developing knowledge base for coffee leaves,
+processing, brewing, research, and climate-resilient possibilities.
+</p>
+
+</a>
+
+<a class="project-card"
+href="https://buna.koffykraft.coffee/">
+
+<div class="project-type">
+Sources
+</div>
+
+<h2>
+Research Library
+</h2>
+
+<p>
+Papers, references, field notes,
+and source material supporting the Buna,
+Coffee Cherry, and Citane projects.
+</p>
+
+</a>
+
+</div>
+
+<div class="footer">
+Buna Library · KoffyKraft
+</div>
+
+</div>
+
+</body>
+</html>
