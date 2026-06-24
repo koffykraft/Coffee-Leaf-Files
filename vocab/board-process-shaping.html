@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citane Buna — Process, Shaping the Leaf</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #fdfaf4;
+    color: #2a2a2a;
+    line-height: 1.5;
+}
+.page { max-width: 1100px; margin: 0 auto; padding: 40px 28px 60px; }
+
+/* Header */
+.board-header {
+    text-align: center;
+    border-bottom: 1px solid #c8b89a;
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+}
+.brand-line { font-size: 9pt; letter-spacing: 0.22em; text-transform: uppercase; color: #8a7a5a; margin-bottom: 8px; font-family: 'Segoe UI', Arial, sans-serif; }
+.board-title { font-size: 28pt; font-weight: 400; letter-spacing: 0.06em; color: #1e2e1e; margin-bottom: 6px; }
+.board-subtitle { font-size: 9pt; letter-spacing: 0.18em; text-transform: uppercase; color: #8a7a5a; margin-bottom: 10px; font-family: 'Segoe UI', Arial, sans-serif; }
+.board-note { font-size: 9.5pt; color: #666; font-style: italic; max-width: 620px; margin: 0 auto; font-family: 'Segoe UI', Arial, sans-serif; }
+
+/* Journey steps */
+.journey-section {
+    margin-bottom: 28px;
+    border: 1px solid #e0d8c8;
+}
+.journey-header {
+    background: #f7f2e8;
+    border-bottom: 1px solid #e0d8c8;
+    padding: 12px 16px;
+}
+.journey-header h2 { font-size: 10pt; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: #8a7a5a; font-family: 'Segoe UI', Arial, sans-serif; }
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    padding: 16px;
+    gap: 8px;
+}
+.step-card {
+    border: 1px solid #e0d8c8;
+    background: #fff;
+    padding: 12px 6px 10px;
+    text-align: center;
+    position: relative;
+}
+.step-num {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2a2a2a;
+    color: #fdfaf4;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 8pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 600;
+}
+.step-glyph { font-size: 18pt; display: block; margin: 8px 0 6px; line-height: 1; }
+.step-name {
+    font-size: 7.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #1e2e1e;
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.step-desc {
+    font-size: 7pt;
+    color: #888;
+    line-height: 1.45;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-style: italic;
+}
+.step-goal {
+    margin-top: 6px;
+    font-size: 6.5pt;
+    color: #8a7a5a;
+    border-top: 1px solid #e8e0d0;
+    padding-top: 5px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Tradition pathways */
+.pathways-section {
+    margin-bottom: 28px;
+    border: 1px solid #e0d8c8;
+}
+.pathways-header {
+    background: #f7f2e8;
+    border-bottom: 1px solid #e0d8c8;
+    padding: 12px 16px;
+}
+.pathways-header h2 { font-size: 10pt; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: #8a7a5a; font-family: 'Segoe UI', Arial, sans-serif; }
+
+.pathways-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+}
+.pathway {
+    padding: 18px 16px;
+    border-right: 1px solid #e0d8c8;
+}
+.pathway:last-child { border-right: none; }
+.pathway-name {
+    font-size: 10pt;
+    font-weight: 400;
+    color: #1e2e1e;
+    margin-bottom: 4px;
+}
+.pathway-region {
+    font-size: 7.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #b8a88a;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.pathway-steps {
+    list-style: none;
+    padding: 0;
+}
+.pathway-steps li {
+    font-size: 8pt;
+    color: #555;
+    padding: 3px 0;
+    border-bottom: 1px solid #f0ece0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.pathway-steps li:last-child { border-bottom: none; }
+.pathway-steps li::before {
+    content: "→";
+    color: #b8a88a;
+    font-size: 8pt;
+    flex-shrink: 0;
+}
+.pathway-note {
+    margin-top: 10px;
+    font-size: 7.5pt;
+    color: #999;
+    font-style: italic;
+    line-height: 1.5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Processing vocabulary */
+.vocab-section {
+    margin-bottom: 28px;
+    border: 1px solid #e0d8c8;
+}
+.vocab-header {
+    background: #f7f2e8;
+    border-bottom: 1px solid #e0d8c8;
+    padding: 12px 16px;
+}
+.vocab-header h2 { font-size: 10pt; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: #8a7a5a; font-family: 'Segoe UI', Arial, sans-serif; }
+
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    padding: 16px;
+    gap: 10px;
+}
+.vocab-card {
+    border: 1px solid #e0d8c8;
+    background: #fff;
+    padding: 14px;
+}
+.vocab-card h3 {
+    font-size: 9.5pt;
+    font-weight: 400;
+    color: #1e2e1e;
+    margin-bottom: 4px;
+}
+.vocab-card p {
+    font-size: 8.5pt;
+    color: #666;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Principles */
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+}
+.principle-card {
+    border: 1px solid #e0d8c8;
+    background: #f7f2e8;
+    padding: 14px 12px;
+    text-align: center;
+}
+.principle-glyph { font-size: 16pt; display: block; margin-bottom: 6px; }
+.principle-name {
+    font-size: 8pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #1e2e1e;
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.principle-desc {
+    font-size: 7.5pt;
+    color: #666;
+    line-height: 1.5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Bottom band */
+.bottom-band {
+    border: 1px solid #e0d8c8;
+    background: #f7f2e8;
+    padding: 18px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+.bottom-col-title { font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a7a5a; margin-bottom: 8px; font-family: 'Segoe UI', Arial, sans-serif; }
+.bottom-col p { font-size: 8.5pt; color: #666; line-height: 1.65; font-family: 'Segoe UI', Arial, sans-serif; }
+
+@media (max-width: 800px) {
+    .steps-grid { grid-template-columns: repeat(5, 1fr); }
+    .pathways-grid { grid-template-columns: repeat(2, 1fr); }
+    .pathway { border-bottom: 1px solid #e0d8c8; }
+    .vocab-grid { grid-template-columns: 1fr; }
+    .principles-grid { grid-template-columns: repeat(3, 1fr); }
+    .bottom-band { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="board-header">
+    <div class="brand-line">Citane · KoffyKraft · Thumpassery Estate, Kerala</div>
+    <h1 class="board-title">Process — Shaping the Leaf</h1>
+    <div class="board-subtitle">Crafted with Intention · Guided by Nature · Shaped by Skill</div>
+    <p class="board-note">From fresh leaf to exceptional cup, every step unlocks the leaf's potential. This board covers the ten-step journey, four documented Buna processing traditions, and the vocabulary of the processing shed.</p>
+</div>
+
+<!-- Ten step journey -->
+<div class="journey-section">
+    <div class="journey-header">
+        <h2>The Journey of the Leaf — Ten Steps</h2>
+    </div>
+    <div class="steps-grid">
+
+        <div class="step-card">
+            <div class="step-num">1</div>
+            <span class="step-glyph">✋</span>
+            <span class="step-name">Plucking</span>
+            <span class="step-desc">Right leaf, right stage, hand-picked with care</span>
+            <div class="step-goal">Quality ceiling set here</div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-num">2</div>
+            <span class="step-glyph">💨</span>
+            <span class="step-name">Withering</span>
+            <span class="step-desc">Controlled moisture reduction, leaf becomes pliable</span>
+            <div class="step-goal">Prepare for transformation</div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-num">3</div>
+            <span class="step-glyph">🔥</span>
+            <span class="step-name">De-activation</span>
+            <span class="step-desc">Heat stops enzymes, locks freshness and colour</span>
+            <div class="step-goal">Green styles only</div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-num">4</div>
+            <span class="step-glyph">🔄</span>
+            <span class="step-name">Rolling</span>
+            <span class="step-desc">Shapes cell structure, releases compounds, defines form</span>
+            <div class="step-goal">Shape &amp; character</div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-num">5</div>
+            <span class="step-glyph">🌬️</span>
+            <span class="step-name">Oxidation</span>
+            <span class="step-desc">Controlled air exposure develops colour, aroma, flavour</span>
+            <div class="step-goal">Oxidative styles only</div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-num">6</div>
+            <span class="step-glyph">☀️</span>
+            <span class="step-name">Drying</span>
+            <span class="step-desc">Reduces moisture to stable level, locks quality</span>
+            <div class="step-goal">Stabilise · Preserve</div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-num">7</div>
+            <span class="step-glyph">🔍</span>
+            <span class="step-name">Sorting</span>
+            <span class="step-desc">Removes stems, impurities, off-grade material</span>
+            <div class="step-goal">Quality gate</div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-num">8</div>
+            <span class="step-glyph">⚖️</span>
+            <span class="step-name">Blending</span>
+            <span class="step-desc">Combining batches for balance, depth, signature</span>
+            <div class="step-goal">Consistent identity</div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-num">9</div>
+            <span class="step-glyph">✅</span>
+            <span class="step-name">Quality Check</span>
+            <span class="step-desc">Appearance, aroma, flavour, safety tested per batch</span>
+            <div class="step-goal">Verify before release</div>
+        </div>
+
+        <div class="step-card">
+            <div class="step-num">10</div>
+            <span class="step-glyph">📦</span>
+            <span class="step-name">Packaging</span>
+            <span class="step-desc">Packed to protect freshness, quality, and story</span>
+            <div class="step-goal">Final line of defence</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Four Buna traditions -->
+<div class="pathways-section">
+    <div class="pathways-header">
+        <h2>Four Documented Buna Processing Traditions</h2>
+    </div>
+    <div class="pathways-grid">
+
+        <div class="pathway">
+            <div class="pathway-name">Engere</div>
+            <div class="pathway-region">Southern Ethiopia · Gofa Zone</div>
+            <ul class="pathway-steps">
+                <li>Mature leaf selected</li>
+                <li>Minimal processing</li>
+                <li>Long boil in milk</li>
+                <li>Spice additions (tradition)</li>
+                <li>Served hot, household ritual</li>
+            </ul>
+            <p class="pathway-note">Documented: Yohannis et al. 2026, Awoke et al. 2026. Sweetness from extended milk boil.</p>
+        </div>
+
+        <div class="pathway">
+            <div class="pathway-name">Kuti</div>
+            <div class="pathway-region">Harar · Eastern Ethiopia</div>
+            <ul class="pathway-steps">
+                <li>Whole-plant knowledge</li>
+                <li>Extended water decoction</li>
+                <li>Multiple steepings</li>
+                <li>Amartasa, Sirriwabun (? unknown)</li>
+                <li>Social and ceremonial use</li>
+            </ul>
+            <p class="pathway-note">Documented: Wehib M. Ahmed 2015. Sweetness peaks with extended heat. Not a substitute for coffee — parallel tradition.</p>
+        </div>
+
+        <div class="pathway">
+            <div class="pathway-name">Kawa Daun</div>
+            <div class="pathway-region">West Sumatra · Minangkabau</div>
+            <ul class="pathway-steps">
+                <li>Robusta leaves used</li>
+                <li>Three processing methods</li>
+                <li>Smoked (wood smoke)</li>
+                <li>Flame-toasted</li>
+                <li>Slow kitchen fire</li>
+            </ul>
+            <p class="pathway-note">Documented: Novita et al. 2018. Active Minangkabau trading tradition. Smoke is a deliberate processing agent, not a defect.</p>
+        </div>
+
+        <div class="pathway">
+            <div class="pathway-name">Citane</div>
+            <div class="pathway-region">Kerala · Thumpassery Estate</div>
+            <ul class="pathway-steps">
+                <li>Arabica Chandragiri</li>
+                <li>Rubber shade, ~130m</li>
+                <li>Selective harvest</li>
+                <li>Controlled drying</li>
+                <li>Multiple brew formats</li>
+            </ul>
+            <p class="pathway-note">KoffyKraft adaptation. Drawing from documented traditions. Processing pathways in active development. Evidence-based approach.</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Processing vocabulary -->
+<div class="vocab-section">
+    <div class="vocab-header">
+        <h2>Key Processing Terms</h2>
+    </div>
+    <div class="vocab-grid">
+
+        <div class="vocab-card">
+            <h3>Withering</h3>
+            <p>Controlled moisture reduction of freshly harvested leaf through shade spreading with airflow. Makes the leaf pliable for subsequent steps and initiates gentle enzymatic activity. Duration and humidity control are critical variables.</p>
+        </div>
+
+        <div class="vocab-card">
+            <h3>Bruising / Rolling</h3>
+            <p>Physical breakdown of cell walls — by hand or machine — releasing cellular juices and initiating or extending oxidation. The degree of bruising is the primary control over oxidation intensity. A decisive processing choice.</p>
+        </div>
+
+        <div class="vocab-card">
+            <h3>Oxidation</h3>
+            <p>Controlled exposure of broken cell contents to oxygen. Not spoilage — a deliberate flavour development process. Minimal oxidation preserves green freshness; extended oxidation builds darker, deeper notes. The degree defines the style.</p>
+        </div>
+
+        <div class="vocab-card">
+            <h3>Fermenting</h3>
+            <p>Microbial transformation — bacteria, yeast, or fungi — that alters the leaf's chemical profile over time. Adds complexity, reduces certain bitter compounds, creates unique signatures. Requires temperature, time, and hygiene control.</p>
+        </div>
+
+        <div class="vocab-card">
+            <h3>Smoking</h3>
+            <p>Exposing leaf to wood smoke during or after processing. Documented in Kawa Daun tradition. The wood type and exposure duration determine smoke character. Smoke is a flavour agent, not a preservation shortcut.</p>
+        </div>
+
+        <div class="vocab-card">
+            <h3>Sorting</h3>
+            <p>Removing stems, impurities, broken material, and off-grade leaf to produce a clean, consistent batch. A quality gate. Hand sorting allows the most precise control. What passes through sorting is what goes into the cup.</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Five principles -->
+<div class="principles-grid">
+    <div class="principle-card">
+        <span class="principle-glyph">🌿</span>
+        <span class="principle-name">Preserve Nature</span>
+        <p class="principle-desc">Minimise intervention. Maximise what is natural. Every step should have a reason — and the reason should be the leaf.</p>
+    </div>
+    <div class="principle-card">
+        <span class="principle-glyph">📐</span>
+        <span class="principle-name">Precision &amp; Balance</span>
+        <p class="principle-desc">Every step is measured. Balance creates excellence. Precision means intentional, not rigid.</p>
+    </div>
+    <div class="principle-card">
+        <span class="principle-glyph">🔁</span>
+        <span class="principle-name">Consistency</span>
+        <p class="principle-desc">Standards, skill, and attention in every batch. Built through documented practice, not intuition alone.</p>
+    </div>
+    <div class="principle-card">
+        <span class="principle-glyph">🤝</span>
+        <span class="principle-name">People &amp; Tradition</span>
+        <p class="principle-desc">Honouring knowledge, experience, and craftsmanship. Art and science are both needed. Both deserve respect.</p>
+    </div>
+    <div class="principle-card">
+        <span class="principle-glyph">📈</span>
+        <span class="principle-name">Continuous Improvement</span>
+        <p class="principle-desc">Learn, refine, and evolve. Every batch offers data. Every season offers learning. Every cup offers feedback.</p>
+    </div>
+</div>
+
+<!-- Bottom band -->
+<div class="bottom-band">
+    <div class="bottom-col">
+        <div class="bottom-col-title">Every Step Matters</div>
+        <p>Better leaf → Better cup → Better you → Better for everyone → Better planet. We do not rush nature. We shape with care. So you can taste what is truly exceptional.</p>
+    </div>
+    <div class="bottom-col">
+        <div class="bottom-col-title">Key Sources</div>
+        <p>Yohannis et al. 2026 (Discover Food) · Awoke et al. 2026 (J. Ethnobiology &amp; Ethnomedicine) · Wehib M. Ahmed 2015 (History of Harar and the Hararis) · Novita et al. 2018 (Kawa Daun)</p>
+    </div>
+    <div class="bottom-col">
+        <div class="bottom-col-title">The Art + Science</div>
+        <p><strong>Art:</strong> Experience, intuition, and craftsmanship shape the soul of the leaf. <strong>Science:</strong> Understanding, control, and precision ensure quality, safety, and consistency. Both are required. Neither is sufficient alone.</p>
+    </div>
+</div>
+
+<p style="text-align:center; font-size:8pt; color:#bbb; margin-top:20px; font-family:'Segoe UI',Arial,sans-serif; letter-spacing:0.1em;">CITANE · KOFFYKRAFT · PROCESS, SHAPING THE LEAF · FROM LEAF TO LANDSCAPE</p>
+
+</div>
+</body>
+</html>

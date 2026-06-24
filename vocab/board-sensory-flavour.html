@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citane Buna — Flavour &amp; Sensory Board</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #fdfaf4;
+    color: #2a2a2a;
+    line-height: 1.5;
+}
+.page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+}
+
+/* Header */
+.board-header {
+    text-align: center;
+    border-bottom: 1px solid #c8b89a;
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+}
+.brand-line {
+    font-size: 9pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #8a7a5a;
+    margin-bottom: 8px;
+}
+.board-title {
+    font-size: 28pt;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: #1e2e1e;
+    line-height: 1.1;
+    margin-bottom: 6px;
+}
+.board-subtitle {
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8a7a5a;
+    margin-bottom: 10px;
+}
+.board-note {
+    font-size: 9.5pt;
+    color: #666;
+    font-style: italic;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+/* Section rows */
+.sense-section {
+    margin-bottom: 28px;
+    border: 1px solid #e0d8c8;
+}
+.sense-header {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    align-items: start;
+    border-bottom: 1px solid #e0d8c8;
+}
+.sense-label-block {
+    background: #f7f2e8;
+    border-right: 1px solid #e0d8c8;
+    padding: 16px 14px;
+}
+.sense-number {
+    font-size: 7.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #b8a88a;
+    margin-bottom: 4px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.sense-name {
+    font-size: 12pt;
+    font-weight: 400;
+    color: #1e2e1e;
+    margin-bottom: 6px;
+}
+.sense-desc {
+    font-size: 8pt;
+    color: #888;
+    line-height: 1.55;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.sense-source-note {
+    padding: 12px 14px;
+    font-size: 8pt;
+    color: #999;
+    font-style: italic;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.5;
+}
+
+/* Term grid */
+.term-row {
+    display: grid;
+    padding: 16px 14px;
+    gap: 10px;
+}
+.terms-10 { grid-template-columns: repeat(10, 1fr); }
+.terms-8 { grid-template-columns: repeat(8, 1fr); }
+.terms-9 { grid-template-columns: repeat(9, 1fr); }
+
+.term {
+    text-align: center;
+    padding: 10px 4px 8px;
+    border: 1px solid #e8e0d0;
+    background: #fff;
+}
+.term-glyph {
+    font-size: 18pt;
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1;
+}
+.term-name {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #2a2a2a;
+    display: block;
+    margin-bottom: 3px;
+    letter-spacing: 0.02em;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    text-transform: uppercase;
+}
+.term-note {
+    font-size: 7pt;
+    color: #999;
+    line-height: 1.35;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-style: italic;
+}
+
+/* Evidence tag */
+.ev {
+    display: inline-block;
+    font-size: 6.5pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    padding: 2px 5px;
+    margin-top: 4px;
+    border-radius: 2px;
+}
+.ev-doc { background: #e8f0e8; color: #3a5a3a; border: 1px solid #c0d8c0; }
+.ev-obs { background: #f0ece0; color: #6a5a3a; border: 1px solid #d8cca8; }
+
+/* Footer band */
+.footer-band {
+    margin-top: 32px;
+    border: 1px solid #e0d8c8;
+    background: #f7f2e8;
+    padding: 18px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+.footer-col-title {
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8a7a5a;
+    margin-bottom: 8px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.footer-col p {
+    font-size: 8.5pt;
+    color: #666;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.ev-legend {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+/* Print */
+@media print {
+    body { background: white; }
+    .page { padding: 20px; max-width: 100%; }
+    .board-title { font-size: 22pt; }
+}
+@media (max-width: 800px) {
+    .terms-10 { grid-template-columns: repeat(5, 1fr); }
+    .terms-8 { grid-template-columns: repeat(4, 1fr); }
+    .terms-9 { grid-template-columns: repeat(3, 1fr); }
+    .sense-header { grid-template-columns: 1fr; }
+    .sense-label-block { border-right: none; border-bottom: 1px solid #e0d8c8; }
+    .footer-band { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="board-header">
+    <div class="brand-line">Citane · KoffyKraft · Thumpassery Estate, Kerala</div>
+    <h1 class="board-title">Buna Flavour &amp; Sensory</h1>
+    <div class="board-subtitle">A Living Language — From Leaf to Cup</div>
+    <p class="board-note">Descriptors grounded in published research on coffee leaf. Evidence status marked on each term. Not borrowed from coffee or tea cupping culture — built for this leaf.</p>
+</div>
+
+<!-- 1. FLAVOUR & AROMA — TOP NOTES -->
+<div class="sense-section">
+    <div class="sense-header">
+        <div class="sense-label-block">
+            <div class="sense-number">1</div>
+            <div class="sense-name">Flavour &amp; Aroma<br>Top Notes</div>
+            <div class="sense-desc">The primary scent and taste character. Most volatile — first perceived, often first to fade.</div>
+        </div>
+        <div class="sense-source-note">Green, grassy, and floral notes documented in Rigling et al. 2023 (ICC2023-14837). Honey-like (β-Ionone), floral (α-ionone, geraniol, nerol), citrus (decanal), green (hexanal) identified as key volatile compounds in coffee leaf.</div>
+    </div>
+    <div class="term-row terms-10">
+        <div class="term">
+            <span class="term-glyph">🌿</span>
+            <span class="term-name">Fresh Green</span>
+            <span class="term-note">Chlorophyll-forward, plant-alive</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌾</span>
+            <span class="term-name">Hay / Grass</span>
+            <span class="term-note">Dried green, field-like</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍃</span>
+            <span class="term-name">Herbal</span>
+            <span class="term-note">Green, aromatic, plant oils</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌼</span>
+            <span class="term-name">Floral</span>
+            <span class="term-note">Delicate, α-ionone, geraniol</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍋</span>
+            <span class="term-name">Citrus</span>
+            <span class="term-note">Bright, decanal compound</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍯</span>
+            <span class="term-name">Honey</span>
+            <span class="term-note">β-Ionone, natural sweetness</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌱</span>
+            <span class="term-name">Lemongrass</span>
+            <span class="term-note">Citrusy-herbal, young leaf</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍑</span>
+            <span class="term-name">Stone Fruit</span>
+            <span class="term-note">Dried apricot, fermented</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🫐</span>
+            <span class="term-name">Berry</span>
+            <span class="term-note">Fruity, fermented styles</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌰</span>
+            <span class="term-name">Nutty</span>
+            <span class="term-note">Warm, light thermal work</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+    </div>
+</div>
+
+<!-- 2. FLAVOUR & AROMA — BASE NOTES -->
+<div class="sense-section">
+    <div class="sense-header">
+        <div class="sense-label-block">
+            <div class="sense-number">2</div>
+            <div class="sense-name">Flavour &amp; Aroma<br>Base Notes</div>
+            <div class="sense-desc">Deeper, heavier compounds. Emerge with maturity of leaf, oxidation, or thermal processing.</div>
+        </div>
+        <div class="sense-source-note">Earthy and woody notes documented in mature leaf (Fibrianto et al. 2025 — higher TPC in older leaves). Mineral character observed in Fibrianto et al. 2025 (low-bitterness profile, closest to mineral water). Caramel, roasted notes from Maillard compounds in thermal processing.</div>
+    </div>
+    <div class="term-row terms-10">
+        <div class="term">
+            <span class="term-glyph">🪵</span>
+            <span class="term-name">Woody</span>
+            <span class="term-note">Earthy, mature leaf</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌍</span>
+            <span class="term-name">Earthy</span>
+            <span class="term-note">Soil, mushroom, fermented</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🪨</span>
+            <span class="term-name">Mineral</span>
+            <span class="term-note">Clean, crisp, low bitter</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍫</span>
+            <span class="term-name">Cacao</span>
+            <span class="term-note">Deep, dark roast</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍮</span>
+            <span class="term-name">Caramel</span>
+            <span class="term-note">Sweet thermal compound</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍞</span>
+            <span class="term-name">Toasted</span>
+            <span class="term-note">Maillard, light roast</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌶️</span>
+            <span class="term-name">Spice</span>
+            <span class="term-note">Warming, aromatic</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌿</span>
+            <span class="term-name">Vanilla</span>
+            <span class="term-note">Ester, fermented style</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🔥</span>
+            <span class="term-name">Smoke</span>
+            <span class="term-note">Kawa Daun tradition</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🧂</span>
+            <span class="term-name">Mineral-Salt</span>
+            <span class="term-note">Enhances other notes</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+    </div>
+</div>
+
+<!-- 3. TASTE -->
+<div class="sense-section">
+    <div class="sense-header">
+        <div class="sense-label-block">
+            <div class="sense-number">3</div>
+            <div class="sense-name">Taste</div>
+            <div class="sense-desc">The five basic tastes as experienced in the cup. Sweetness and bitterness are the primary axes for Buna.</div>
+        </div>
+        <div class="sense-source-note">Sweetness documented (hydroxyl compounds, sugars, amino-peptide complexes — Fibrianto 2025). Bitterness from TPC, caffeine (low in Citane). GABA enhances sweetness without bitterness. Extended wet heat increases sweetness, decreases bitterness — opposite to tea logic (Kuti tradition, Fibrianto 2025).</div>
+    </div>
+    <div class="term-row terms-8">
+        <div class="term">
+            <span class="term-glyph">🍬</span>
+            <span class="term-name">Sweet</span>
+            <span class="term-note">GABA, hydroxyl compounds</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">⚫</span>
+            <span class="term-name">Bitter</span>
+            <span class="term-note">Low in Citane, TPC-driven</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍋</span>
+            <span class="term-name">Sour</span>
+            <span class="term-note">Present, not dominant</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌊</span>
+            <span class="term-name">Astringent</span>
+            <span class="term-note">Tannin-driven, varies by age</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍖</span>
+            <span class="term-name">Umami</span>
+            <span class="term-note">Savour, amino acids</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🧊</span>
+            <span class="term-name">Fresh</span>
+            <span class="term-note">Clean, green, lively</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🔥</span>
+            <span class="term-name">Warming</span>
+            <span class="term-note">Spice, decoction style</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">⚖️</span>
+            <span class="term-name">Balanced</span>
+            <span class="term-note">Integration of all taste</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+    </div>
+</div>
+
+<!-- 4. TEXTURE & MOUTHFEEL -->
+<div class="sense-section">
+    <div class="sense-header">
+        <div class="sense-label-block">
+            <div class="sense-number">4</div>
+            <div class="sense-name">Texture &amp;<br>Mouthfeel</div>
+            <div class="sense-desc">The physical feel of Buna in the mouth — viscosity, weight, surface sensation.</div>
+        </div>
+        <div class="sense-source-note">Mouthfeel is a primary quality driver — ranked highest importance value (56.27%) by consumers in Fibrianto et al. 2021 study. Brewing method (infusion vs decoction) directly influences body and texture. Creamy character in milk decoction (Engere) is structurally distinct from water-based preparations.</div>
+    </div>
+    <div class="term-row terms-10">
+        <div class="term">
+            <span class="term-glyph">💧</span>
+            <span class="term-name">Light</span>
+            <span class="term-note">Thin, effortless</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🪶</span>
+            <span class="term-name">Silky</span>
+            <span class="term-note">Smooth, no friction</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🥛</span>
+            <span class="term-name">Creamy</span>
+            <span class="term-note">Milk decoction, Engere</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🫧</span>
+            <span class="term-name">Juicy</span>
+            <span class="term-note">Bright, salivating</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🫙</span>
+            <span class="term-name">Oily</span>
+            <span class="term-note">Lipid-coating</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍲</span>
+            <span class="term-name">Brothy</span>
+            <span class="term-note">Savoury, decoction</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">⬛</span>
+            <span class="term-name">Full-Bodied</span>
+            <span class="term-note">Dense, high extraction</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">📐</span>
+            <span class="term-name">Structured</span>
+            <span class="term-note">Tannin grip, defined</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">⭕</span>
+            <span class="term-name">Round</span>
+            <span class="term-note">Smooth, integrated</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🫴</span>
+            <span class="term-name">Coating</span>
+            <span class="term-note">Lingers on palate</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+    </div>
+</div>
+
+<!-- 5. AFTEREFFECTS & FINISH -->
+<div class="sense-section">
+    <div class="sense-header">
+        <div class="sense-label-block">
+            <div class="sense-number">5</div>
+            <div class="sense-name">Aftereffects<br>&amp; Finish</div>
+            <div class="sense-desc">The lasting impression after the last sip. Buna's finish is typically clean and low in bitterness.</div>
+        </div>
+        <div class="sense-source-note">Sweet return (hui gan) — polyphenol-receptor interaction converting astringency to sweetness. Documented in fine teas; observed in quality Buna. Clean finish associated with low TPC and low bitterness profile of well-processed Citane (Fibrianto et al. 2025 — mineral water bitterness scale comparison).</div>
+    </div>
+    <div class="term-row terms-10">
+        <div class="term">
+            <span class="term-glyph">✨</span>
+            <span class="term-name">Clean</span>
+            <span class="term-note">Pure, no residue</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🍯</span>
+            <span class="term-name">Sweet Return</span>
+            <span class="term-note">Hui Gan, delayed sweet</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌿</span>
+            <span class="term-name">Lingering Green</span>
+            <span class="term-note">Persistent leaf character</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">❄️</span>
+            <span class="term-name">Cooling</span>
+            <span class="term-note">Menthol-adjacent</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🔆</span>
+            <span class="term-name">Warming</span>
+            <span class="term-note">Chest warmth, spice</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">💧</span>
+            <span class="term-name">Salivating</span>
+            <span class="term-note">Mouth-watering</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">⏳</span>
+            <span class="term-name">Long Finish</span>
+            <span class="term-note">30+ seconds persistent</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🔁</span>
+            <span class="term-name">Persistent</span>
+            <span class="term-note">Single note holds</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌊</span>
+            <span class="term-name">Refreshing</span>
+            <span class="term-note">Uplifting, renewing</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🏜️</span>
+            <span class="term-name">Drying</span>
+            <span class="term-note">Tannin, over-extraction</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+    </div>
+</div>
+
+<!-- 6. OVERALL SENSORY IMPRESSION -->
+<div class="sense-section">
+    <div class="sense-header">
+        <div class="sense-label-block">
+            <div class="sense-number">6</div>
+            <div class="sense-name">Overall Sensory<br>Impression</div>
+            <div class="sense-desc">The holistic experience of the cup — mood, energy, and the emotional register of Buna.</div>
+        </div>
+        <div class="sense-source-note">Overall impression is shaped by caffeine level (lower than coffee), GABA content (calming), and compound profile. Buna is documented as holding promise as a functional beverage with complex sensory attributes (Fibrianto et al. 2021, 2025).</div>
+    </div>
+    <div class="term-row terms-10">
+        <div class="term">
+            <span class="term-glyph">☀️</span>
+            <span class="term-name">Uplifting</span>
+            <span class="term-note">Gentle stimulation</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌙</span>
+            <span class="term-name">Calming</span>
+            <span class="term-note">GABA, low caffeine</span>
+            <span class="ev ev-doc">✓ Documented</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🏠</span>
+            <span class="term-name">Comforting</span>
+            <span class="term-note">Warm, domestic</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌾</span>
+            <span class="term-name">Nourishing</span>
+            <span class="term-note">Wholesome, sustaining</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌳</span>
+            <span class="term-name">Grounding</span>
+            <span class="term-note">Earthy, centring</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">⚖️</span>
+            <span class="term-name">Balanced</span>
+            <span class="term-note">No dominant note</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🎼</span>
+            <span class="term-name">Complex</span>
+            <span class="term-note">Multi-layered, evolving</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🎵</span>
+            <span class="term-name">Harmonious</span>
+            <span class="term-note">Components in agreement</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">💎</span>
+            <span class="term-name">Clear</span>
+            <span class="term-note">Transparent, defined</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <div class="term">
+            <span class="term-glyph">🌅</span>
+            <span class="term-name">Memorable</span>
+            <span class="term-note">Stays with you</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+    </div>
+</div>
+
+<!-- Footer band -->
+<div class="footer-band">
+    <div class="footer-col">
+        <div class="footer-col-title">Evidence Status</div>
+        <div class="ev-legend">
+            <span class="ev ev-doc">✓ Documented</span>
+            <span class="ev ev-obs">⚠ Observed</span>
+        </div>
+        <p style="margin-top:8px;">Documented: drawn from published peer-reviewed research on coffee leaf. Observed: recorded in tasting practice or emerging evidence. No speculative claims.</p>
+    </div>
+    <div class="footer-col">
+        <div class="footer-col-title">Key Sources</div>
+        <p>Fibrianto et al. 2025 (Applied Food Research 5:101141) · Rigling et al. 2023 (ICC2023-14837) · Fibrianto et al. 2021 · Novita et al. 2018</p>
+    </div>
+    <div class="footer-col">
+        <div class="footer-col-title">Citane Note</div>
+        <p>Citane is Arabica Chandragiri grown under rubber shade at ~130m, Thumpassery Estate, Kerala. Extended wet heat increases sweetness and decreases bitterness in this leaf — opposite to tea logic.</p>
+    </div>
+</div>
+
+<p style="text-align:center; font-size:8pt; color:#bbb; margin-top:20px; font-family:'Segoe UI',Arial,sans-serif; letter-spacing:0.1em;">CITANE · KOFFYKRAFT · FROM LEAF TO LANDSCAPE · FROM TRADITION TO INNOVATION · FROM OUR FIELDS TO A BETTER FUTURE</p>
+
+</div>
+</body>
+</html>
