@@ -5,427 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Begin With a Cup — The Buna Coffee Leaf Library</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --dark: #1a1a1a;
-            --gray: #636e72;
-            --light-gray: #b2bec3;
-            --cream: #f8f9fa;
-            --accent: #5f4a42;
-            --subtle: #d4c5c0;
-
-            --evidence: #5f4a42;
-            --evidence-bg: #f3ece9;
-            --recipe: #6b7d5f;
-            --recipe-bg: #eef2ec;
-            --caution: #a85d4a;
-            --caution-bg: #f7e9e4;
-            --note: #636e72;
-            --note-bg: #eef0f1;
-            --tradition: #8a6d3b;
-            --tradition-bg: #f6efe2;
-
-            --state-alpha: #6b7d5f;
-            --state-beta: #b08968;
-            --state-gamma: #8a6d3b;
-            --state-delta: #a85d4a;
-            --state-epsilon: #5f4a42;
-
+            --dark: #1a1a1a; --gray: #636e72; --light-gray: #b2bec3;
+            --cream: #f8f9fa; --accent: #5f4a42; --subtle: #d4c5c0;
+            --evidence: #5f4a42; --evidence-bg: #f3ece9;
+            --recipe: #6b7d5f; --recipe-bg: #eef2ec;
+            --caution: #a85d4a; --caution-bg: #f7e9e4;
+            --note: #636e72; --note-bg: #eef0f1;
+            --tradition: #8a6d3b; --tradition-bg: #f6efe2;
             --primer-bg: #fdfbf9;
         }
-
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--cream);
-            color: var(--dark);
-            line-height: 1.6;
-            font-size: 17px;
-        }
-
-        header {
-            background: white;
-            border-bottom: 2px solid var(--subtle);
-            padding: 40px 30px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 2.2em;
-            font-weight: 300;
-            letter-spacing: -0.5px;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-        header .subtitle {
-            font-size: 1.1em;
-            color: var(--gray);
-            font-weight: 400;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .header-back { margin-bottom: 16px; }
-        .header-back a {
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 0.9em;
-            border-bottom: 1px solid var(--subtle);
-        }
-        .header-meta {
-            margin-top: 18px;
-            font-size: 0.85em;
-            color: var(--light-gray);
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        /* Sticky in-page nav */
-        nav.subnav {
-            background: var(--dark);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 0;
-        }
-        .subnav-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .subnav-inner::-webkit-scrollbar { display: none; }
-        .subnav a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            font-size: 0.85em;
-            font-weight: 600;
-            padding: 14px 20px;
-            white-space: nowrap;
-            border-bottom: 2px solid transparent;
-            transition: all 0.15s;
-        }
-        .subnav a:hover, .subnav a.home {
-            color: white;
-        }
-        .subnav a.home { color: var(--subtle); }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 50px 30px;
-        }
-
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--cream); color: var(--dark); line-height: 1.6; font-size: 17px; }
+        header { background: white; border-bottom: 2px solid var(--subtle); padding: 40px 30px; text-align: center; }
+        header h1 { font-size: 2.2em; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 10px; color: var(--dark); }
+        header .subtitle { font-size: 1.1em; color: var(--gray); font-weight: 400; max-width: 700px; margin: 0 auto; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 50px 30px; }
         section { margin-bottom: 60px; }
-
-        /* Primer sections get a subtle distinct background */
-        .primer-section {
-            background: var(--primer-bg);
-            border: 1px solid var(--subtle);
-            border-radius: 8px;
-            padding: 32px;
-            margin-bottom: 32px;
-        }
-        .primer-kicker {
-            font-size: 0.75em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-
-        h2 {
-            font-size: 1.6em;
-            font-weight: 600;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--subtle);
-        }
-        .primer-section h2 { border-bottom: none; padding-bottom: 0; }
+        h2 { font-size: 1.6em; font-weight: 600; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--subtle); }
         h2 em { font-style: italic; font-weight: 400; color: var(--gray); }
-
-        h3 {
-            font-size: 1.2em;
-            font-weight: 600;
-            margin: 28px 0 12px;
-            color: var(--dark);
-        }
-        h4 {
-            font-size: 0.85em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gray);
-            margin: 20px 0 8px;
-        }
-
+        h3 { font-size: 1.2em; font-weight: 600; margin: 28px 0 12px; color: var(--dark); }
         p { margin-bottom: 14px; }
         a { color: var(--accent); }
         strong { font-weight: 700; color: var(--dark); }
-
-        /* Part dividers */
-        .part-divider {
-            margin: 60px 0 30px;
-            padding-top: 24px;
-            border-top: 4px solid var(--dark);
-        }
-        .part-label {
-            font-size: 0.75em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent);
-            margin-bottom: 6px;
-        }
-        .part-title {
-            font-size: 1.9em;
-            font-weight: 300;
-            margin-bottom: 10px;
-            border-bottom: none;
-        }
-        .part-intro {
-            color: var(--gray);
-            font-size: 1.05em;
-            max-width: 760px;
-        }
-
-        .section-num {
-            font-size: 0.75em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--light-gray);
-            margin-bottom: 6px;
-        }
-
-        /* ====================================================
-           TABLE OF CONTENTS
-           ==================================================== */
-        .toc {
-            background: white;
-            border: 1px solid var(--subtle);
-            border-radius: 6px;
-            padding: 28px 32px;
-            margin-bottom: 40px;
-        }
-        .toc-track-label {
-            font-size: 0.8em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent);
-            margin: 24px 0 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--subtle);
-        }
-        .toc-track-label:first-child { margin-top: 0; }
-        .toc-part {
-            font-size: 0.85em;
-            font-weight: 700;
-            color: var(--gray);
-            margin: 18px 0 6px;
-        }
-        .toc-entries { list-style: none; columns: 2; gap: 32px; margin-bottom: 4px; }
-        .toc-entries li { margin-bottom: 4px; break-inside: avoid; }
-        .toc-entries a {
-            text-decoration: none;
-            font-size: 0.92em;
-            display: flex;
-            gap: 8px;
-        }
-        .toc-entries a:hover { text-decoration: underline; }
-        .toc-num {
-            color: var(--light-gray);
-            font-weight: 700;
-            min-width: 28px;
-            flex-shrink: 0;
-        }
-        @media (max-width: 700px) {
-            .toc-entries { columns: 1; }
-        }
-
-        /* ====================================================
-           CALLOUT BOXES
-           ==================================================== */
-        .box {
-            border-radius: 6px;
-            padding: 20px 24px;
-            margin: 20px 0;
-            border-left: 4px solid;
-        }
-        .box-label {
-            display: inline-block;
-            font-size: 0.75em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 10px;
-            padding: 3px 10px;
-            border-radius: 3px;
-        }
-        .box p:last-child { margin-bottom: 0; }
-
-        .box-evidence { background: var(--evidence-bg); border-left-color: var(--evidence); }
-        .box-evidence .box-label { background: var(--evidence); color: white; }
-
-        .box-recipe { background: var(--recipe-bg); border-left-color: var(--recipe); }
-        .box-recipe .box-label { background: var(--recipe); color: white; }
-
-        .box-caution { background: var(--caution-bg); border-left-color: var(--caution); border-left-style: dashed; }
-        .box-caution .box-label { background: var(--caution); color: white; }
-
-        .box-note { background: var(--note-bg); border-left-color: var(--note); }
-        .box-note .box-label { background: var(--note); color: white; }
-
-        .box-tradition { background: var(--tradition-bg); border-left-color: var(--tradition); }
-        .box-tradition .box-label { background: var(--tradition); color: white; }
-
-        /* ====================================================
-           GLOSSARY / DEFINITION GRID
-           ==================================================== */
-
-        /* ====================================================
-           SIMPLE PAGE — prose sections
-           ==================================================== */
-        .simple-section {
-            max-width: 640px;
-            margin: 0 auto 36px;
-        }
-        .simple-section h2 {
-            font-size: 1.3em;
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
-        .simple-section p {
-            font-size: 1.05em;
-            line-height: 1.8;
-            margin-bottom: 12px;
-        }
-        .taste-words {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 16px 0;
-        }
-        .taste-words span {
-            background: white;
-            border: 1px solid var(--subtle);
-            border-radius: 20px;
-            padding: 6px 16px;
-            font-size: 0.92em;
-            color: var(--accent);
-        }
-        /* ====================================================
-           LOUNGE — WELCOME + DOORS
-           ==================================================== */
-        .lounge-welcome {
-            text-align: center;
-            max-width: 640px;
-            margin: 0 auto 50px;
-        }
-        .lounge-welcome p {
-            font-size: 1.08em;
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-        .lounge-welcome .lounge-tagline {
-            font-size: 1.3em;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 24px;
-        }
-        .lounge-welcome .lounge-prompt {
-            font-size: 1.05em;
-            font-weight: 600;
-            margin-top: 28px;
-        }
-
-        .door-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin: 0 0 50px;
-        }
-        .door-card {
-            background: white;
-            border: 1px solid var(--subtle);
-            border-radius: 8px;
-            padding: 30px 32px;
-            transition: box-shadow 0.2s, transform 0.2s;
-        }
-        .door-card:hover {
-            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
-            transform: translateY(-2px);
-        }
-        .door-number {
-            font-size: 0.72em;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--light-gray);
-            margin-bottom: 6px;
-        }
-        .door-card h3 {
-            font-size: 1.4em;
-            margin-bottom: 4px;
-            color: var(--dark);
-        }
-        .door-subtitle {
-            font-size: 0.92em;
-            color: var(--accent);
-            font-style: italic;
-            margin-bottom: 14px;
-        }
-        .door-card .door-question {
-            font-size: 0.95em;
-            color: var(--gray);
-            margin-bottom: 16px;
-        }
-        .door-card ul {
-            list-style: none;
-            margin: 0 0 0;
-            padding: 0;
-        }
-        .door-card ul li {
-            padding: 7px 0;
-            border-top: 1px solid var(--subtle);
-        }
+        .simple-section { max-width: 640px; margin: 0 auto 36px; }
+        .simple-section h2 { font-size: 1.3em; color: var(--accent); margin-bottom: 10px; }
+        .simple-section p { font-size: 1.05em; line-height: 1.8; margin-bottom: 12px; }
+        .taste-words { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+        .taste-words span { background: white; border: 1px solid var(--subtle); border-radius: 20px; padding: 6px 16px; font-size: 0.92em; color: var(--accent); }
+        .door-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 0 0 50px; }
+        .door-card { background: white; border: 1px solid var(--subtle); border-radius: 8px; padding: 30px 32px; transition: box-shadow 0.2s, transform 0.2s; }
+        .door-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
+        .door-number { font-size: 0.72em; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 6px; }
+        .door-card h3 { font-size: 1.4em; margin-bottom: 4px; color: var(--dark); }
+        .door-subtitle { font-size: 0.92em; color: var(--accent); font-style: italic; margin-bottom: 14px; }
+        .door-card .door-question { font-size: 0.95em; color: var(--gray); margin-bottom: 16px; }
+        .door-card ul { list-style: none; margin: 0; padding: 0; }
+        .door-card ul li { padding: 7px 0; border-top: 1px solid var(--subtle); }
         .door-card ul li:first-child { border-top: none; }
-        .door-card ul li a {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95em;
-        }
+        .door-card ul li a { color: var(--dark); text-decoration: none; font-weight: 500; font-size: 0.95em; }
         .door-card ul li a:hover { color: var(--accent); }
         .door-card ul li a::after { content: " →"; opacity: 0.4; }
-
-        @media (max-width: 700px) {
-            .door-grid { grid-template-columns: 1fr; }
-        }
-
-        .lounge-footer-note {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-            color: var(--light-gray);
-            font-size: 0.92em;
-            line-height: 1.8;
-        }
-
+        @media (max-width: 700px) { .door-grid { grid-template-columns: 1fr; } }
+        .lounge-footer-note { text-align: center; max-width: 600px; margin: 0 auto; color: var(--light-gray); font-size: 0.92em; line-height: 1.8; }
+        footer { background: #1a1a1a; color: rgba(255,255,255,0.5); text-align: center; padding: 32px 24px; font-size: 0.85em; line-height: 1.8; margin-top: 60px; }
     </style>
+</head>
 <body>
-    <header style="padding-bottom: 10px;">
-        <h1 style="margin-bottom: 8px;">Begin With a Cup</h1>
-        <div class="subtitle" style="margin-bottom: 0;">A gentle introduction to coffee leaf</div>
+    <header>
+        <h1>Begin With a Cup</h1>
+        <div class="subtitle">A gentle introduction to coffee leaf</div>
     </header>
 
     <div class="container" style="padding-top: 40px;">
@@ -445,15 +75,9 @@
             <h2>What does it taste like?</h2>
             <p>It depends on the leaf and how it's prepared &mdash; but some words that come up often:</p>
             <div class="taste-words">
-                <span>green</span>
-                <span>herbal</span>
-                <span>sweetish</span>
-                <span>honey-like</span>
-                <span>floral</span>
-                <span>fruity</span>
-                <span>roasted</span>
-                <span>smoky</span>
-                <span>earthy</span>
+                <span>green</span><span>herbal</span><span>sweetish</span>
+                <span>honey-like</span><span>floral</span><span>fruity</span>
+                <span>roasted</span><span>smoky</span><span>earthy</span>
             </div>
             <p>If you'd like to know more about why &mdash; which compounds, which processing choices &mdash; <a href="sensory-landscape-of-coffee-leaf.html">The Sensory Landscape of Coffee Leaf</a> goes into this in more detail.</p>
         </div>
@@ -488,6 +112,8 @@
                 <div class="door-subtitle">Sensory Explorer</div>
                 <ul>
                     <li><a href="sensory-landscape-of-coffee-leaf.html">The Sensory Landscape of Coffee Leaf</a></li>
+                    <li><a href="buna-sensory-school.html">The Sensory School</a></li>
+                    <li><a href="vocab/sensory-flavour.html">Flavour &amp; Sensory Vocabulary</a></li>
                 </ul>
             </div>
             <div class="door-card">
@@ -496,12 +122,13 @@
                     <li><a href="citane-reactive-landscape.html">Paper I &mdash; The Reactive Landscape</a></li>
                     <li><a href="citane-processing-manual.html">Paper II &mdash; From Leaf to Cup</a></li>
                     <li><a href="citane-processing-protocols.html">Paper III &mdash; Experimental Pathways</a></li>
+                    <li><a href="vocab/index.html">Buna Vocabulary</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="lounge-footer-note">
-            <p><a href="visitor-lounge.html" style="color: var(--accent);">&larr; Back to the lounge</a> &middot; <a href="index.html" style="color: var(--accent);">Enter the full library (Catalogue) &rarr;</a></p>
+            <p><a href="index.html" style="color: var(--accent);">← Back to Library Home</a> &nbsp;&middot;&nbsp; <a href="catalogue.html" style="color: var(--accent);">Full Catalogue →</a></p>
         </div>
 
     </div>
@@ -511,5 +138,6 @@
         <p>KoffyKraft / Thumpassery Estate &middot; Karavaloor &middot; Kollam &middot; Kerala &middot; India</p>
     </footer>
 
+    <script src="buna-nav.js"></script>
 </body>
 </html>
