@@ -1,5 +1,12 @@
-/* Buna Vocabulary — shared stylesheet */
-/* vocab/assets/vocab-style.css */
+/* ============================================================
+   Buna Vocabulary — Shared Stylesheet v2
+   Changes from v1:
+   - Term cards: no icon space, tighter layout
+   - Added breadcrumb styles
+   - Added prev/next nav band
+   - Added citane-context box
+   - Evidence tag system: documented / observed / traditional / hypothesis
+   ============================================================ */
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -11,79 +18,117 @@ body {
     background: #fdfaf4;
 }
 
-/* ── Navigation bar ── */
-.topnav {
-    background: #fdfaf4;
+/* ── Site nav (injected by buna-nav.js) ── */
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+    padding: 10px 24px;
+    font-size: 8.5pt;
+    color: #aaa;
+    letter-spacing: 0.06em;
+    font-family: 'Segoe UI', Arial, sans-serif;
     border-bottom: 1px solid #e0d8c8;
-    padding: 12px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
+    background: #fdfaf4;
 }
-.topnav-home {
-    font-size: 9pt;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #888;
-    text-decoration: none;
-}
-.topnav-home:hover { color: #3a3a3a; }
-.topnav-pager {
-    display: flex;
-    gap: 16px;
-}
-.topnav-pager a {
-    font-size: 9pt;
+.breadcrumb a {
     color: #8a7a5a;
     text-decoration: none;
-    letter-spacing: 0.06em;
 }
-.topnav-pager a:hover { color: #3a3a3a; }
+.breadcrumb a:hover { color: #3a3a3a; }
+.breadcrumb span { color: #ccc; margin: 0 6px; }
 
 /* ── Page header ── */
 header {
     background: #fdfaf4;
     border-bottom: 1px solid #e0d8c8;
-    padding: 52px 24px 40px;
+    padding: 44px 24px 36px;
     text-align: center;
 }
 .section-number {
-    font-size: 8.5pt;
+    font-size: 8pt;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: #bbb;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 h1 {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 26pt;
+    font-size: 24pt;
     font-weight: 400;
     letter-spacing: 0.04em;
     color: #2a2a2a;
     margin-bottom: 8px;
 }
 .page-subtitle {
-    font-size: 9.5pt;
+    font-size: 9pt;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: #8a7a5a;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 .page-intro {
-    max-width: 620px;
+    max-width: 580px;
     margin: 0 auto;
     font-size: 10pt;
     color: #666;
     line-height: 1.8;
 }
 
+/* ── Prev / Next navigation band ── */
+.section-nav-band {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 24px;
+    border-bottom: 1px solid #e0d8c8;
+    background: #f7f2e8;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 9pt;
+}
+.section-nav-band a {
+    color: #8a7a5a;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+}
+.section-nav-band a:hover { color: #3a3a3a; }
+.section-nav-band .nav-prev::before { content: "← "; }
+.section-nav-band .nav-next::after { content: " →"; }
+.section-nav-band .nav-index {
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #bbb;
+}
+
 /* ── Main container ── */
 .container {
     max-width: 1040px;
     margin: 0 auto;
-    padding: 48px 24px 80px;
+    padding: 44px 24px 80px;
+}
+
+/* ── Citane Context box ── */
+.citane-context {
+    border: 1px solid #c8b89a;
+    border-left: 3px solid #8a7a5a;
+    background: #f7f2e8;
+    padding: 14px 18px;
+    margin-bottom: 36px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.citane-context-label {
+    font-size: 7.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8a7a5a;
+    margin-bottom: 6px;
+}
+.citane-context p {
+    font-size: 9.5pt;
+    color: #555;
+    line-height: 1.65;
 }
 
 /* ── Reference image ── */
@@ -91,95 +136,109 @@ h1 {
     width: 100%;
     border: 1px solid #e0d8c8;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 .image-caption {
-    font-size: 8.5pt;
+    font-size: 8pt;
     color: #aaa;
     text-align: center;
     letter-spacing: 0.08em;
-    margin-bottom: 48px;
+    margin-bottom: 40px;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 /* ── Section dividers ── */
 .section-label {
-    font-size: 8.5pt;
+    font-size: 8pt;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: #999;
     border-bottom: 1px solid #e0d8c8;
-    padding-bottom: 10px;
-    margin-bottom: 24px;
-    margin-top: 48px;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 /* ── Term grid ── */
 .term-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: 14px;
+    margin-bottom: 14px;
 }
 .term-card {
     background: #fff;
     border: 1px solid #e0d8c8;
-    padding: 18px 16px 16px;
-}
-.term-icon {
-    width: 52px;
-    height: 52px;
-    object-fit: contain;
-    display: block;
-    margin-bottom: 12px;
+    padding: 16px 14px 14px;
 }
 .term-name {
     font-family: Georgia, serif;
-    font-size: 11.5pt;
+    font-size: 11pt;
     font-weight: 400;
     color: #2a2a2a;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 .term-tag {
-    font-size: 8pt;
+    font-size: 7.5pt;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #b8a88a;
     margin-bottom: 8px;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 .term-desc {
-    font-size: 9.5pt;
+    font-size: 9pt;
     color: #666;
-    line-height: 1.7;
+    line-height: 1.65;
 }
 .term-link {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 8.5pt;
     color: #8a7a5a;
     text-decoration: none;
     border-bottom: 1px solid #e0d8c8;
     padding-bottom: 1px;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 .term-link:hover { color: #3a3a3a; border-color: #8a7a5a; }
 
-/* ── Notes / principle bands ── */
+/* ── Evidence tags ── */
+.ev {
+    display: inline-block;
+    font-size: 7pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    padding: 2px 6px;
+    margin-top: 6px;
+    border-radius: 2px;
+}
+.ev-doc   { background: #e8f0e8; color: #3a5a3a; border: 1px solid #c0d8c0; }
+.ev-obs   { background: #f0ece0; color: #6a5a3a; border: 1px solid #d8cca8; }
+.ev-trad  { background: #f0ece8; color: #6a4a38; border: 1px solid #d8c0b0; }
+.ev-hyp   { background: #f0f0f0; color: #666;    border: 1px solid #d0d0d0; }
+
+/* ── Note / principle bands ── */
 .note-band {
     background: #f7f2e8;
     border: 1px solid #e0d8c8;
-    padding: 24px 28px;
-    margin: 32px 0;
+    padding: 20px 24px;
+    margin: 28px 0;
 }
 .note-band h3 {
     font-family: Georgia, serif;
-    font-size: 11pt;
+    font-size: 10.5pt;
     font-weight: 400;
     color: #2a2a2a;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 .note-band p, .note-band li {
-    font-size: 10pt;
+    font-size: 9.5pt;
     color: #555;
-    line-height: 1.8;
+    line-height: 1.75;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 .note-band ul { padding-left: 1.2em; }
 .note-band li { margin-bottom: 4px; }
@@ -187,38 +246,41 @@ h1 {
 /* ── Connections box ── */
 .connections {
     border: 1px solid #e0d8c8;
-    padding: 20px 24px;
-    margin-top: 48px;
+    padding: 16px 20px;
+    margin-top: 40px;
 }
 .connections-label {
-    font-size: 8.5pt;
+    font-size: 8pt;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: #aaa;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 .connections-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
 }
 .conn-link {
-    font-size: 9.5pt;
+    font-size: 9pt;
     color: #8a7a5a;
     text-decoration: none;
     border: 1px solid #e0d8c8;
-    padding: 6px 12px;
+    padding: 5px 10px;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 .conn-link:hover { border-color: #b8a88a; color: #3a3a3a; }
 
 /* ── Footer ── */
 footer {
     border-top: 1px solid #e0d8c8;
-    padding: 24px;
+    padding: 20px 24px;
     text-align: center;
-    font-size: 9pt;
+    font-size: 8.5pt;
     color: #aaa;
     letter-spacing: 0.06em;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 footer a { color: #aaa; text-decoration: none; }
 footer a:hover { color: #555; }
@@ -226,8 +288,8 @@ footer a:hover { color: #555; }
 /* ── Responsive ── */
 @media (max-width: 680px) {
     .term-grid { grid-template-columns: 1fr; }
-    h1 { font-size: 20pt; }
-    .topnav { flex-direction: column; align-items: flex-start; }
+    h1 { font-size: 18pt; }
+    .section-nav-band { flex-direction: column; gap: 6px; text-align: center; }
 }
 @media (min-width: 681px) and (max-width: 900px) {
     .term-grid { grid-template-columns: repeat(2, 1fr); }

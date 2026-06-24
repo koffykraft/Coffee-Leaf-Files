@@ -4,313 +4,174 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buna Vocabulary — Citane / KoffyKraft</title>
+<link rel="stylesheet" href="vocab-style.css">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 10.5pt;
-    line-height: 1.75;
-    color: #3a3a3a;
-    background: #fdfaf4;
-}
-header {
-    background: #fdfaf4;
-    border-bottom: 1px solid #e0d8c8;
-    padding: 56px 24px 44px;
-    text-align: center;
-}
-.site-label {
-    font-size: 9pt;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 14px;
-}
-h1 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 30pt;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    color: #2a2a2a;
-    margin-bottom: 10px;
-}
-.subtitle {
-    font-size: 10pt;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 24px;
-}
-.intro {
-    max-width: 640px;
-    margin: 0 auto;
-    font-size: 10.5pt;
-    color: #555;
-    line-height: 1.8;
-}
-.container {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 52px 24px 80px;
-}
-.purpose-band {
-    background: #f7f2e8;
-    border: 1px solid #e0d8c8;
-    padding: 28px 36px;
-    margin-bottom: 52px;
-}
-.purpose-band p {
-    color: #555;
-    font-size: 10pt;
-    line-height: 1.85;
-}
-.purpose-band strong {
-    color: #2a2a2a;
-}
-.section-label {
-    font-size: 8.5pt;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #999;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #e0d8c8;
-    padding-bottom: 10px;
-}
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 52px;
-}
-.card {
-    background: #fff;
-    border: 1px solid #e0d8c8;
-    padding: 24px 22px 20px;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: border-color 0.2s;
-}
-.card:hover {
-    border-color: #b8a88a;
-}
-.card-number {
-    font-size: 8pt;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #bbb;
-    margin-bottom: 8px;
-}
-.card h2 {
-    font-family: Georgia, serif;
-    font-size: 13pt;
-    font-weight: 400;
-    color: #2a2a2a;
-    margin-bottom: 6px;
-    line-height: 1.3;
-}
-.card-tag {
-    font-size: 8pt;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #8a7a5a;
-    margin-bottom: 10px;
-}
-.card p {
-    font-size: 9.5pt;
-    color: #666;
-    line-height: 1.7;
-}
-.card-arrow {
-    margin-top: 14px;
-    font-size: 9pt;
-    color: #b8a88a;
-}
-.how-to {
-    background: #f7f2e8;
-    border: 1px solid #e0d8c8;
-    padding: 28px 36px;
-    margin-bottom: 52px;
-}
-.how-to h3 {
-    font-family: Georgia, serif;
-    font-size: 12pt;
-    font-weight: 400;
-    color: #2a2a2a;
-    margin-bottom: 14px;
-}
-.how-to ul {
-    padding-left: 1.2em;
-}
-.how-to li {
-    font-size: 10pt;
-    color: #555;
-    margin-bottom: 6px;
-    line-height: 1.7;
-}
-footer {
-    border-top: 1px solid #e0d8c8;
-    padding: 28px 24px;
-    text-align: center;
-    font-size: 9pt;
-    color: #aaa;
-    letter-spacing: 0.06em;
-}
-footer a { color: #aaa; text-decoration: none; }
-footer a:hover { color: #555; }
-@media (max-width: 720px) {
-    .card-grid { grid-template-columns: 1fr; }
-    h1 { font-size: 22pt; }
-}
-@media (min-width: 721px) and (max-width: 960px) {
-    .card-grid { grid-template-columns: repeat(2, 1fr); }
-}
+.card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 40px; }
+.card { background:#fff; border:1px solid #e0d8c8; padding:20px 18px 16px; text-decoration:none; color:inherit; display:block; }
+.card:hover { border-color:#b8a88a; }
+.card-number { font-size:7.5pt; letter-spacing:0.14em; text-transform:uppercase; color:#bbb; margin-bottom:6px; font-family:'Segoe UI',Arial,sans-serif; }
+.card h2 { font-family:Georgia,serif; font-size:12pt; font-weight:400; color:#2a2a2a; margin-bottom:4px; line-height:1.3; }
+.card-tag { font-size:7.5pt; letter-spacing:0.1em; text-transform:uppercase; color:#8a7a5a; margin-bottom:8px; font-family:'Segoe UI',Arial,sans-serif; }
+.card p { font-size:9pt; color:#666; line-height:1.6; font-family:'Segoe UI',Arial,sans-serif; }
+.card-arrow { margin-top:10px; font-size:9pt; color:#b8a88a; }
+.how-to { background:#f7f2e8; border:1px solid #e0d8c8; padding:24px 28px; margin-bottom:40px; }
+.how-to h3 { font-family:Georgia,serif; font-size:11pt; font-weight:400; color:#2a2a2a; margin-bottom:10px; }
+.how-to ul { padding-left:1.2em; }
+.how-to li { font-size:9.5pt; color:#555; margin-bottom:5px; line-height:1.7; font-family:'Segoe UI',Arial,sans-serif; }
+.purpose-band { background:#f7f2e8; border:1px solid #e0d8c8; padding:20px 24px; margin-bottom:40px; }
+.purpose-band p { font-size:9.5pt; color:#555; line-height:1.8; font-family:'Segoe UI',Arial,sans-serif; }
+@media(max-width:720px){ .card-grid{grid-template-columns:1fr;} }
+@media(min-width:721px) and (max-width:960px){ .card-grid{grid-template-columns:repeat(2,1fr);} }
 </style>
 </head>
 <body>
 
+<div class="breadcrumb">
+    <a href="../index.html">Buna Library</a>
+    <span>/</span>
+    Vocabulary
+</div>
+
 <header>
-    <div class="site-label">Citane · KoffyKraft · Buna Coffee Leaf Library</div>
     <h1>Buna Vocabulary</h1>
-    <div class="subtitle">A Shared Language from Leaf to Cup</div>
-    <p class="intro">A common reference for farmers, processors, café staff, researchers, and anyone who works with Buna. Each section covers one part of the journey — with terms, descriptions, and connections between them.</p>
+    <div class="page-subtitle">A Shared Language — From Leaf to Cup</div>
+    <p class="page-intro">A common reference for farmers, producers, processors, café staff, and researchers. Fourteen sections. Every term defined, sourced, and cross-linked.</p>
 </header>
 
 <div class="container">
 
-    <div class="purpose-band">
-        <p><strong>Why this exists.</strong> Buna is a new category. Words borrowed from tea, coffee, or herbal medicine carry assumptions that do not always fit. This vocabulary builds a shared platform: one set of terms, agreed meanings, and consistent language across the farm, the processing shed, the café, and the conversation. It is a living document — terms will be refined as understanding grows.</p>
-    </div>
+<div class="purpose-band">
+    <p><strong>Why this exists.</strong> Buna is a new category. Words borrowed from tea, coffee, or herbal medicine carry assumptions that do not always fit. This vocabulary builds a shared platform: one set of terms, agreed meanings, consistent language across the farm, the processing shed, the café, and the conversation. It is a living document — terms will be refined as understanding grows.</p>
+</div>
 
-    <div class="section-label">Twelve Sections</div>
+<div class="section-label">Fourteen Sections</div>
 
-    <div class="card-grid">
+<div class="card-grid">
 
-        <a class="card" href="icon-board.html">
-            <div class="card-number">01</div>
-            <h2>The Icon Board</h2>
-            <div class="card-tag">Master Reference</div>
-            <p>A complete overview of all Citane icon categories — from plant to cup, from tradition to future. The visual language of Buna at a glance.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="icon-board.html">
+        <div class="card-number">01</div>
+        <h2>The Icon Board</h2>
+        <div class="card-tag">Master Reference</div>
+        <p>The complete Citane visual language. All icon categories from plant to cup.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="plant-source.html">
-            <div class="card-number">02</div>
-            <h2>Plant — The Source</h2>
-            <div class="card-tag">Origin · Leaf Stages</div>
-            <p>The coffee plant and its leaf stages — from the root system to the moment of harvest. Ten icons covering the life of the leaf.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="plant-source.html">
+        <div class="card-number">02</div>
+        <h2>Plant — The Source</h2>
+        <div class="card-tag">Origin · Leaf Stages</div>
+        <p>The coffee plant and its leaf stages — from root system to harvest.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="leaf-origin.html">
-            <div class="card-number">03</div>
-            <h2>Leaf Origin</h2>
-            <div class="card-tag">Growth · Environment · Character</div>
-            <p>The ten factors that shape a leaf before it is ever picked — variety, altitude, terroir, soil, rainfall, temperature, humidity, sunlight, wind, and annual cycle.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="leaf-origin.html">
+        <div class="card-number">03</div>
+        <h2>Leaf Origin</h2>
+        <div class="card-tag">Growth · Environment · Character</div>
+        <p>Ten factors that shape a leaf before it is ever picked — variety through annual cycle.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="plant-variety.html">
-            <div class="card-number">04</div>
-            <h2>Plant Variety &amp; Anatomy</h2>
-            <div class="card-tag">Genetics · Structure · Potential</div>
-            <p>Plant variety types from wild landrace to future varieties, leaf anatomy from apical bud to leaf stem, and what the leaf gives in flavour, function, and identity.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="plant-variety.html">
+        <div class="card-number">04</div>
+        <h2>Plant Variety &amp; Anatomy</h2>
+        <div class="card-tag">Genetics · Structure · Potential</div>
+        <p>Variety types from wild landrace to future varieties, and leaf anatomy from bud to stem.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="plant-care.html">
-            <div class="card-number">05</div>
-            <h2>Plant Care</h2>
-            <div class="card-tag">Nourish · Protect · Renew</div>
-            <p>Seventeen care practices from nursery to tools and hygiene. The farm vocabulary for consistent, healthy leaf production.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="plant-care.html">
+        <div class="card-number">05</div>
+        <h2>Plant Care</h2>
+        <div class="card-tag">Nourish · Protect · Renew</div>
+        <p>Seventeen care practices governing what happens between establishment and harvest.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="seasons-phenology.html">
-            <div class="card-number">06</div>
-            <h2>Seasons &amp; Phenology</h2>
-            <div class="card-tag">Rhythm · Timing · Cycle</div>
-            <p>The seasonal stages of the coffee plant — rainy season through dormancy — and the eight environmental factors that influence when and how each stage unfolds.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="seasons-phenology.html">
+        <div class="card-number">06</div>
+        <h2>Seasons &amp; Phenology</h2>
+        <div class="card-tag">Rhythm · Timing · Cycle</div>
+        <p>Seasonal stages of the coffee plant and eight factors that govern their timing.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="quality-at-source.html">
-            <div class="card-number">07</div>
-            <h2>Quality at Source</h2>
-            <div class="card-tag">Harvest · Standards · Identity</div>
-            <p>Ten source-quality principles from right variety to quality culture, plus the qualities expressed in the leaf itself — aroma potential, balance, consistency, uniqueness.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="how-to-read-a-leaf.html">
+        <div class="card-number">07</div>
+        <h2>How to Read a Leaf</h2>
+        <div class="card-tag">Citane Framework · Field Assessment</div>
+        <p>A bridge between plant and process. Six questions to ask before the leaf enters processing.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="process.html">
-            <div class="card-number">08</div>
-            <h2>Process — Icon Board</h2>
-            <div class="card-tag">Shaping · Brewing · Transformation</div>
-            <p>Twenty-nine process and brewing icons in three rows — from withering and oxidation through to service. The core processing vocabulary for Buna.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="quality-at-source.html">
+        <div class="card-number">08</div>
+        <h2>Quality at Source</h2>
+        <div class="card-tag">Harvest · Standards · Identity</div>
+        <p>Ten source-quality principles and the qualities they produce in the leaf.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="process-shaping.html">
-            <div class="card-number">09</div>
-            <h2>Process — Shaping the Leaf</h2>
-            <div class="card-tag">Journey · Steps · Craft</div>
-            <p>The ten-step journey from plucking to packaging, with process principles, tea-type comparisons for context, and the art-and-science balance in every batch.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="process.html">
+        <div class="card-number">09</div>
+        <h2>Process — Icon Board</h2>
+        <div class="card-tag">Shaping · Brewing · Transformation</div>
+        <p>Twenty-nine process and brewing icons across three rows.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="thermal-transformation.html">
-            <div class="card-number">10</div>
-            <h2>Thermal Transformation</h2>
-            <div class="card-tag">Heat · Precision · Purpose</div>
-            <p>Seven stages of heat application — from initial heating through cooling — and what happens inside the leaf at each stage. The science of controlled thermal work.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="process-shaping.html">
+        <div class="card-number">10</div>
+        <h2>Process — Shaping the Leaf</h2>
+        <div class="card-tag">Journey · Steps · Craft</div>
+        <p>The ten-step journey from plucking to packaging, and the principles behind each step.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="sensory-flavour.html">
-            <div class="card-number">11</div>
-            <h2>Flavour &amp; Sensory</h2>
-            <div class="card-tag">Taste · Aroma · Mouthfeel · Impression</div>
-            <p>The complete Buna sensory vocabulary — forty-plus descriptors across taste, aroma, aftertaste, mouthfeel, and sensory impressions. Exclusive to Buna.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="thermal-transformation.html">
+        <div class="card-number">11</div>
+        <h2>Thermal Transformation</h2>
+        <div class="card-tag">Heat · Precision · Purpose</div>
+        <p>Seven stages of heat application and what happens inside the leaf at each one.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="environment-impact.html">
-            <div class="card-number">12</div>
-            <h2>Environment &amp; Impact</h2>
-            <div class="card-tag">Landscape · Sustainability · Future</div>
-            <p>Ten environmental concepts from biodiversity to ecosystem balance, the full value chain from landscape to positive impact, and Citane's commitment.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="sensory-flavour.html">
+        <div class="card-number">12</div>
+        <h2>Flavour &amp; Aroma</h2>
+        <div class="card-tag">Taste · Aroma · Documented Compounds</div>
+        <p>Primary taste and aroma terms, grounded in published research on coffee leaf volatiles.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <a class="card" href="ritual-context.html">
-            <div class="card-number">13</div>
-            <h2>Ritual Context</h2>
-            <div class="card-tag">Use &amp; Experience · When and How</div>
-            <p>Ten contexts for Buna — morning, midday, evening, alone, shared, ceremony, travel, work, and rest. Matching the right preparation to the right moment.</p>
-            <div class="card-arrow">→</div>
-        </a>
+    <a class="card" href="sensory-mouthfeel.html">
+        <div class="card-number">13</div>
+        <h2>Mouthfeel, Finish &amp; Impression</h2>
+        <div class="card-tag">Texture · Aftereffects · Overall</div>
+        <p>Mouthfeel, aftereffects, finish, and overall sensory impression terms.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-        <div class="door-card" style="border-color: #5a7a5a; background: #f8faf6;">
-            <div class="card-number" style="color:#5a7a5a;">08</div>
-            <h2 style="font-family:Georgia,serif; font-size:13pt; font-weight:400; color:#1e3a1e; margin-bottom:6px;">Buna Vocabulary</h2>
-            <div class="card-tag" style="color:#5a7a5a;">Shared Language · From Leaf to Cup</div>
-            <p style="font-size:9.5pt; color:#666; line-height:1.7; margin-top:10px;">A common reference for farmers, producers, café staff, and researchers. Thirteen sections — leaf origin, processing, thermal transformation, sensory language, and ritual context. Every term defined, sourced, and cross-linked.</p>
-            <a class="card-arrow" href="vocab/index.html" style="margin-top:14px; font-size:9pt; color:#5a7a5a; text-decoration:none; display:block;">Enter Vocabulary →</a>
-        </div>
+    <a class="card" href="environment-impact.html">
+        <div class="card-number">14</div>
+        <h2>Environment &amp; Impact</h2>
+        <div class="card-tag">Landscape · Sustainability · Future</div>
+        <p>Ten environmental concepts and the full value chain from landscape to positive impact.</p>
+        <div class="card-arrow">→</div>
+    </a>
 
-    </div>
+</div>
 
-    <div class="how-to">
-        <h3>How to use this reference</h3>
-        <ul>
-            <li><strong>Farmers and producers</strong> — use Sections 02 through 07 for field and processing vocabulary.</li>
-            <li><strong>Processing teams</strong> — use Sections 08, 09, and 10 for process and thermal terminology.</li>
-            <li><strong>Café and service staff</strong> — use Section 11 for sensory and flavour language when describing Buna to guests.</li>
-            <li><strong>All users</strong> — when a term in one section connects to another section, a cross-link is provided. Follow it to build a fuller picture.</li>
-            <li>Each section page displays the source reference image followed by every term extracted and explained. Return to this index at any time using the link at the top of each page.</li>
-            <li><strong>Café and service staff</strong> — use Section 13 (Ritual Context) to match Buna preparations to the occasion and the guest.</li>
-        </ul>
-    </div>
+<div class="how-to">
+    <h3>How to use this reference</h3>
+    <ul>
+        <li><strong>Farmers and producers</strong> — Sections 02 through 08 for field and growing vocabulary.</li>
+        <li><strong>Processing teams</strong> — Sections 09, 10, and 11 for process and thermal terminology.</li>
+        <li><strong>Café and service staff</strong> — Sections 12 and 13 for sensory and flavour language.</li>
+        <li><strong>All users</strong> — Section 07 (How to Read a Leaf) is the bridge between source and processing. Start here if you are new to Buna.</li>
+        <li>Evidence is marked on each term: <strong>Research</strong> (peer-reviewed), <strong>Traditional</strong> (documented practice), <strong>Observed</strong> (recorded in practice), or <strong>Hypothesis</strong> (reasoned but untested).</li>
+    </ul>
+</div>
 
 </div>
 
@@ -318,6 +179,6 @@ footer a:hover { color: #555; }
     <p>Buna Vocabulary · Citane / KoffyKraft · Thumpassery Estate, Karavaloor, Kerala &nbsp;·&nbsp; <a href="../index.html">Buna Library</a></p>
 </footer>
 
-    <script src="../buna-nav.js"></script>
+<script src="../buna-nav.js"></script>
 </body>
 </html>
