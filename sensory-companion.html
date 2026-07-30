@@ -303,7 +303,7 @@ nav {
 <body>
 
 <nav>
-  <a class="brand" href="index.html">Citane</a>
+  <a class="brand" href="index.html">Buna</a>
   <span class="sep">/</span>
   <span class="page-t">The Companion</span>
   <a class="back" href="buna-sensory-school.html">← School</a>
@@ -468,6 +468,11 @@ async function send(userContent) {
     const data = await res.json();
     thinkEl.remove();
 
+    if (!res.ok) {
+      showError(data.error || 'The Companion is temporarily unavailable.');
+      return;
+    }
+
     const text = data.content
       ? data.content.filter(b => b.type === 'text').map(b => b.text).join('')
       : '';
@@ -560,12 +565,12 @@ function addThinking() {
   return el;
 }
 
-function showError() {
+function showError(message) {
   const thread = document.getElementById('thread');
   const el = document.createElement('div');
   el.className = 'c-bubble';
   el.style.borderColor = '#c08060';
-  el.textContent = 'Something interrupted the walk. You might try again — or use the navigation above to explore the written pages directly.';
+  el.textContent = message || 'Something interrupted the walk. You might try again — or use the navigation above to explore the written pages directly.';
   thread.appendChild(el);
 }
 
