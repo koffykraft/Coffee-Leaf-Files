@@ -22,4 +22,55 @@
       }
     };
   }
+
+  if(path.endsWith('/catalogue') || path.endsWith('/catalogue.html')){
+    const oldHeader=document.querySelector('body > header');
+    const hero=document.querySelector('.container .hero');
+    const oldNav=oldHeader && oldHeader.querySelector('.nav');
+
+    if(oldHeader) oldHeader.style.display='none';
+
+    if(hero && oldNav && !document.getElementById('catalogue-page-index')){
+      const wrap=document.createElement('details');
+      wrap.id='catalogue-page-index';
+      wrap.className='catalogue-page-index';
+      wrap.open=window.innerWidth>=769;
+
+      const summary=document.createElement('summary');
+      summary.textContent='On this page';
+      wrap.appendChild(summary);
+
+      const links=document.createElement('div');
+      links.className='catalogue-page-index-links';
+
+      Array.from(oldNav.querySelectorAll('a')).forEach(function(a){
+        if(!a.getAttribute('href') || !a.getAttribute('href').startsWith('#')) return;
+        const copy=document.createElement('a');
+        copy.href=a.getAttribute('href');
+        copy.textContent=a.textContent.trim();
+        links.appendChild(copy);
+      });
+
+      wrap.appendChild(links);
+      hero.insertAdjacentElement('afterend',wrap);
+
+      const style=document.createElement('style');
+      style.textContent=`
+        .catalogue-page-index{max-width:900px;margin:-54px auto 70px;border-top:1px solid var(--subtle);border-bottom:1px solid var(--subtle);padding:16px 0;background:transparent}
+        .catalogue-page-index summary{cursor:pointer;list-style:none;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:600;padding:0 4px}
+        .catalogue-page-index summary::-webkit-details-marker{display:none}
+        .catalogue-page-index summary:after{content:' +';float:right;font-size:1rem;font-weight:400}
+        .catalogue-page-index[open] summary:after{content:' -'}
+        .catalogue-page-index-links{display:flex;flex-wrap:wrap;gap:8px 18px;padding:16px 4px 2px}
+        .catalogue-page-index-links a{font-size:.9rem;color:var(--gray);text-decoration:none;border-bottom:1px solid transparent}
+        .catalogue-page-index-links a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+        @media(max-width:768px){
+          .catalogue-page-index{margin:-62px 0 48px;padding:14px 0}
+          .catalogue-page-index-links{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
+          .catalogue-page-index-links a{padding:8px 0;border-bottom:1px solid #e6dfda;font-size:.88rem}
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
 })();
