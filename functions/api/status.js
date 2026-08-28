@@ -1,0 +1,1 @@
+export async function onRequestGet(context){return Response.json({service:'Buna Coffee Leaf Library AI',runtime:'cloudflare-pages-functions',companion:true,guide:true,aiConfigured:Boolean(context.env.ANTHROPIC_API_KEY),modelConfigured:Boolean(context.env.BUNA_AI_MODEL),timestamp:new Date().toISOString()},{headers:{'Cache-Control':'no-store','Content-Type':'application/json'}})}
