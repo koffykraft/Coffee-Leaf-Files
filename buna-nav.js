@@ -1,5 +1,6 @@
 /* buna-nav.js - Shared navigation for the Buna Coffee Leaf Library */
 (function(){
+ if(document.getElementById('buna-nav')) return;
  const inVocab=window.location.pathname.includes('/vocab/');
  const root=inVocab?'../':'';
  const style=document.createElement('style');
@@ -18,7 +19,25 @@
   {label:'D9 Biology',href:root+'coffee-leaf-human-biology.html'},
   {label:'Catalogue',href:root+'catalogue.html'}
  ];
- const nav=document.createElement('nav');nav.id='buna-nav';const inner=document.createElement('div');inner.id='buna-nav-inner';const currentPath=window.location.pathname;
- links.forEach(function(link){const a=document.createElement('a');a.href=link.href;a.textContent=link.label;if(link.cls)a.classList.add(link.cls);const linkFile=link.href.split('/').pop();if(currentPath.endsWith(linkFile)||currentPath.endsWith(linkFile.replace('.html','')))a.classList.add('buna-nav-active');inner.appendChild(a)});
- nav.appendChild(inner);const header=document.querySelector('header');if(header&&header.nextSibling)header.parentNode.insertBefore(nav,header.nextSibling);else if(header)header.parentNode.appendChild(nav);else document.body.insertBefore(nav,document.body.firstChild);
+ const nav=document.createElement('nav');
+ nav.id='buna-nav';
+ const inner=document.createElement('div');
+ inner.id='buna-nav-inner';
+ const currentPath=window.location.pathname;
+ links.forEach(function(link){
+  const a=document.createElement('a');
+  a.href=link.href;
+  a.textContent=link.label;
+  if(link.cls)a.classList.add(link.cls);
+  const linkFile=link.href.split('/').pop();
+  if(currentPath.endsWith(linkFile)||currentPath.endsWith(linkFile.replace('.html','')))a.classList.add('buna-nav-active');
+  inner.appendChild(a);
+ });
+ nav.appendChild(inner);
+ const localNav=Array.from(document.body.children).find(function(el){return el.tagName==='NAV'&&el.id!=='buna-nav';});
+ const header=document.querySelector('header');
+ if(localNav){localNav.insertAdjacentElement('afterend',nav);}
+ else if(header&&header.nextSibling){header.parentNode.insertBefore(nav,header.nextSibling);}
+ else if(header){header.parentNode.appendChild(nav);}
+ else{document.body.insertBefore(nav,document.body.firstChild);}
 })();
