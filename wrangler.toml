@@ -1,0 +1,12 @@
+name = "buna-coffee-leaf-library"
+compatibility_date = "2026-08-28"
+pages_build_output_dir = "."
+
+# Cloudflare Pages configuration notes:
+# 1. Connect repository: koffykraft/Coffee-Leaf-Files
+# 2. Production branch: main (after review/merge)
+# 3. Build command: none
+# 4. Output directory: .
+# 5. Add encrypted secret: ANTHROPIC_API_KEY
+# 6. Optional variable: BUNA_AI_MODEL=claude-sonnet-4-6
+# Functions are served automatically from /functions.
