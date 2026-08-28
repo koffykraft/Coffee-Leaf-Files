@@ -1,0 +1,24 @@
+Door Nine release scope
+
+Included:
+- Coffee Leaf and Human Biology overview
+- From the Cup to the Body
+- Gut Barrier and Microbiome
+- Metabolic Signals
+- Rest, Stress and Human Response
+- Restorative Traditions
+- Safety, Dose and Variability
+- What We Still Do Not Know
+- Door Nine source list
+- Door Nine shared stylesheet
+- D9 Biology in shared navigation
+- old health-benefits URL converted to a Door Nine gateway
+- separate whole-site improvement suggestions file
+
+Not included:
+- Buna Guide assistant
+- Cloudflare AI work
+- redesign of Doors One to Eight
+- catalogue redesign
+
+Door Nine is written as a plain-language guide and links back to existing Buna chemistry, processing, sensory and tradition pages instead of repeating them.
