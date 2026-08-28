@@ -2,6 +2,11 @@
 (function(){
   const path=window.location.pathname.replace(/\/$/,'');
 
+  /* Canonical KoffyKraft contact address. */
+  document.querySelectorAll('a[href="mailto:hello@koffykraft.com"]').forEach(function(a){
+    a.setAttribute('href','mailto:info@koffykraft.com');
+  });
+
   if(path.endsWith('/buna-culinary-school') || path.endsWith('/buna-culinary-school.html')){
     const style=document.createElement('style');
     style.textContent=`
