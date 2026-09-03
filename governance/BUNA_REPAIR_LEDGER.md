@@ -56,6 +56,68 @@ The baseline audit identified these main structural families for later staged re
 11. Source-level header/navigation patch debt.
 12. Accessibility / structural heading defects and stale wording.
 
+## Phase I - Immediate integrity defects
+
+Status: COMPLETE — PASS
+
+### Work performed
+
+- repaired homepage broken Catalogue fragment by routing the professional shortcut to existing `catalogue.html#citane`;
+- converted 133 Door Eight `doc / obs / trad / hyp` pseudo-destination anchors into non-clickable status spans without assigning new evidence meaning;
+- corrected the wrong relative Chemo Deep destination in `vocab/process.html`;
+- repaired all internal relative paths in `assets/vocab/icon-board.html` while leaving its orphan/retirement decision to the later classification phase;
+- investigated `buna-in-kerala.html` references and confirmed that no static page exists;
+- did not invent a Kerala page from Kitchen Companion prompt material;
+- removed the broken Kerala destination promises and returned Culinary Concepts to its existing Buna Culinary parent.
+
+### Candidate site commit
+
+`e9e7a4fea25b39a7f784d12bae12a4acd116b914`
+
+### Examination 1
+
+PASS — full 91-page structural audit from a fresh checkout.
+
+Results:
+
+- broken internal links: 0
+- missing fragments: 0
+- broken JavaScript HTML references: 0
+- zero-incoming pages: 19 (unchanged from baseline)
+- one-incoming pages: 6 (unchanged)
+- hierarchy bypasses: 8 (unchanged; reserved for later phase)
+
+Baseline comparison:
+
+- broken internal links: 156 -> 0
+- missing fragments: 1 -> 0
+
+### Examination 2
+
+PASS — independent full-site repeat plus hierarchy/navigation review.
+
+Confirmed:
+
+- no Phase I target remains broken;
+- no invented substitute page was introduced;
+- no new orphan was created;
+- no new hierarchy bypass was introduced;
+- later-phase defects remained visible rather than being hidden by Phase I.
+
+### Revert decision
+
+Revert: NO.
+
+Reason: both examinations passed. Reversion would restore verified defects.
+
+### Remaining Phase I work
+
+NONE.
+
+All remaining structural findings belong to later phases and remain explicitly open.
+
+Final disposition: PASS.
+
 ## Repair stages
 
 Later stages will be entered below only when begun. Each stage may contain multiple correction units, but every unit must independently pass Examination 1 and Examination 2 before the next unit starts.
