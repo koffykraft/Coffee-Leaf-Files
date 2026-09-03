@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - buna-structural-repair
+      - main
   pull_request:
     branches:
       - main
