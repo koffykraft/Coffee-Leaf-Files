@@ -118,6 +118,91 @@ All remaining structural findings belong to later phases and remain explicitly o
 
 Final disposition: PASS.
 
+## Phase II - Canonical hierarchy repair
+
+Status: COMPLETE — DEPLOYED — PASS
+
+### Work performed
+
+- changed `begin-with-a-cup.html` so Engere, Kuti, Chemo and Kawa Daun are entered through their canonical `*-intro.html` pages;
+- reduced homepage Door Eight to one canonical Vocabulary entry through `vocab/index.html`, instead of four peer deep-entry routes;
+- changed Citane Logic Board contextual tradition entries to the relevant tradition intro pages;
+- added Ritual Context to the Vocabulary Index so the removal of the homepage deep link did not make it an orphan;
+- left family-internal tradition sequencing intact;
+- left `visitor-lounge.html` indirect routing untouched for the next phase.
+
+### Candidate site commits
+
+Primary hierarchy repair: `2ebe44c4238a3839ba24480277349ccb95ce5610`
+
+Regression correction: `2d399fd4ed4eeb2f50a7b3aaf3a016bcbd1a577b`
+
+### Examination failure caught during Phase II
+
+The first post-repair examination showed hierarchy bypasses reduced from 8 to 0, but zero-incoming pages increased from 19 to 20 because `vocab/ritual-context.html` became orphaned.
+
+Phase II was therefore NOT accepted at that point.
+
+The Vocabulary Index was corrected to become Ritual Context's canonical parent, and BOTH examinations were restarted from the beginning.
+
+### Final pre-deployment examinations
+
+PASS.
+
+Final candidate results:
+
+- HTML pages: 91
+- broken internal links: 0
+- missing fragments: 0
+- broken JavaScript HTML references: 0
+- potential hierarchy bypasses: 0
+- zero-incoming pages: 19
+- one-incoming pages: 6
+
+### Production promotion
+
+PR: `#4 — Phase II: deploy canonical hierarchy repairs`
+
+Production merge commit: `0bbe1db59eb2dac66085e05a4d92554a7796a742`
+
+Production deployment/build: PASS.
+
+### Post-deployment Examination 1
+
+PASS against exact production merge commit `0bbe1db59eb2dac66085e05a4d92554a7796a742`.
+
+Results:
+
+- HTML pages: 91
+- internal edges: 1013
+- broken internal links: 0
+- missing fragments: 0
+- duplicate link-target groups: 147
+- zero-incoming pages: 19
+- one-incoming pages: 6
+- JavaScript HTML references: 57
+- broken JavaScript HTML references: 0
+- shared navigation targets: 41
+- potential hierarchy bypasses: 0
+
+### Post-deployment Examination 2
+
+PASS — independent full repeat against the same production merge commit.
+
+### Revert decision
+
+Revert: NO.
+
+Reason: the initial regression was corrected before promotion; both corrected pre-deployment examinations passed; deployment succeeded; and both post-deployment examinations passed without regression.
+
+### Remaining Phase II work
+
+NONE.
+
+Known defects belonging to later phases remain visible, including `visitor-lounge.html` indirect routing, orphan/hidden-page classification, Catalogue completion, shell/accessibility cleanup, stale platform routes/text, and the later validity and honesty audit.
+
+Final disposition: PASS.
+
 ## Repair stages
 
 Later stages will be entered below only when begun. Each stage may contain multiple correction units, but every unit must independently pass Examination 1 and Examination 2 before the next unit starts.
