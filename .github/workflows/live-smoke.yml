@@ -1,0 +1,69 @@
+name: Buna Live Production Smoke
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Buna v2 to reach production
+        shell: bash
+        run: |
+          set -euo pipefail
+          ok=0
+          for i in $(seq 1 24); do
+            body=$(curl -fsSL --max-time 15 -H 'Cache-Control: no-cache' "https://buna.koffykraft.coffee/?smoke=${GITHUB_SHA}" || true)
+            if grep -q '/assets/buna-v2.css' <<<"$body"; then
+              ok=1
+              break
+            fi
+            echo "Attempt $i: v2 not visible yet"
+            sleep 10
+          done
+          test "$ok" = 1
+
+      - name: Probe canonical routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          for route in / /foundation/ /cup/ /cup/understand/ /traditions/ /processing/ /chemistry/ /tools/ /sensory/ /culinary/ /vocabulary/ /biology/ /biology/safety/ /catalogue/ /sources/; do
+            code=$(curl -sS -o /tmp/body -w '%{http_code}' --max-time 15 -H 'Cache-Control: no-cache' "https://buna.koffykraft.coffee${route}?smoke=${GITHUB_SHA}")
+            echo "$route -> $code"
+            test "$code" = 200
+            grep -q '/assets/buna-v2.css' /tmp/body
+          done
+
+      - name: Probe legacy redirects
+        shell: bash
+        run: |
+          set -euo pipefail
+          check_redirect () {
+            local old="$1" expected="$2"
+            headers=$(curl -sSI --max-time 15 -H 'Cache-Control: no-cache' "https://buna.koffykraft.coffee${old}")
+            code=$(awk 'NR==1{print $2}' <<<"$headers")
+            location=$(awk 'BEGIN{IGNORECASE=1}/^location:/{gsub("\r",""); print $2; exit}' <<<"$headers")
+            echo "$old -> $code $location"
+            [[ "$code" =~ ^30[1278]$ ]]
+            [[ "$location" == "$expected" || "$location" == "https://buna.koffykraft.coffee$expected" ]]
+          }
+          check_redirect /the-foliage-of-buna.html /foundation/
+          check_redirect /begin-with-a-cup.html /cup/
+          check_redirect /catalogue.html /catalogue/
+          check_redirect /coffee-leaf-human-biology.html /biology/
+
+      - name: Probe Cloudflare API route
+        shell: bash
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -o /tmp/api -w '%{http_code}' --max-time 15 -X OPTIONS \
+            -H 'Origin: https://buna.koffykraft.coffee' \
+            -H 'Access-Control-Request-Method: POST' \
+            https://buna.koffykraft.coffee/api/epsilon)
+          echo "/api/epsilon OPTIONS -> $code"
+          [[ "$code" =~ ^(200|204)$ ]]
