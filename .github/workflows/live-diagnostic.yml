@@ -1,8 +1,6 @@
 name: Buna Live Diagnostic
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -24,4 +22,3 @@ jobs:
           curl -sSL --max-time 20 -H 'Cache-Control: no-cache' "https://buna.koffykraft.coffee/?diag=${GITHUB_SHA}" | grep -Eo 'buna-v2.css|A library about brewing coffee leaves|Coffee leaf, made understandable|Buna Coffee Leaf Library' | head -20 || true
           echo '=== GITHUB PAGES DIRECT ==='
           curl -sSIL --max-time 20 https://koffykraft.github.io/Coffee-Leaf-Files/ | sed -n '1,40p' || true
-          curl -sSL --max-time 20 https://koffykraft.github.io/Coffee-Leaf-Files/ | grep -Eo 'buna-v2.css|A library about brewing coffee leaves|Coffee leaf, made understandable|Buna Coffee Leaf Library' | head -20 || true
