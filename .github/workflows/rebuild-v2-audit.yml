@@ -1,0 +1,42 @@
+name: Buna V2 Rebuild Examinations
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main, buna-rebuild-production]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rebuild-examination-1:
+    name: V2 Examination 1 - Runtime and route integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: JavaScript syntax
+        run: |
+          node --check assets/buna-v2.js
+          node --check data/buna-content.js
+          node --check data/buna-claims.js
+          node --check data/buna-sources.js
+          node --check data/buna-terms.js
+      - name: Rebuild integrity audit
+        run: python3 scripts/audit_rebuild_v2.py
+
+  rebuild-examination-2:
+    name: V2 Examination 2 - Independent repeat
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: JavaScript syntax independently
+        run: |
+          node --check assets/buna-v2.js
+          node --check data/buna-content.js
+          node --check data/buna-claims.js
+          node --check data/buna-sources.js
+          node --check data/buna-terms.js
+      - name: Rebuild integrity audit independently
+        run: python3 scripts/audit_rebuild_v2.py

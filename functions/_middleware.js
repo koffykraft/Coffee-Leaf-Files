@@ -1,16 +1,8 @@
 export async function onRequest(context) {
-  const response = await context.next();
-  const contentType = response.headers.get('Content-Type') || '';
-
-  if (!contentType.toLowerCase().includes('text/html')) {
-    return response;
-  }
-
-  return new HTMLRewriter()
-    .on('body', {
-      element(element) {
-        element.append('<script src="/buna-nav.js"></script><script src="/buna-site-fixes.js"></script>', { html: true });
-      }
-    })
-    .transform(response);
+  // Buna v2 pages own their navigation and presentation. The old middleware
+  // injected a second global navigation into every HTML response, creating
+  // duplicate bars on pages that already had local/site navigation.
+  // Keep middleware transparent: Cloudflare serves the requested asset or
+  // Pages Function without mutating reader-facing HTML.
+  return context.next();
 }
