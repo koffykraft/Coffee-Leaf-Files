@@ -1,0 +1,26 @@
+name: Buna Rebuild Audit Inventory
+
+on:
+  push:
+    branches:
+      - buna-structural-repair
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rebuild-inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fresh checkout
+        uses: actions/checkout@v4
+      - name: Build reconstruction inventory
+        run: python3 scripts/rebuild_audit.py
+      - name: Show summary
+        run: cat rebuild-audit-output/summary.md
+      - name: Upload reconstruction inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: buna-rebuild-audit-${{ github.sha }}
+          path: rebuild-audit-output/
