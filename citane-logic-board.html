@@ -1121,7 +1121,7 @@ Format exactly as:
   document.getElementById('eps-heading').textContent = 'ε Pathway: ' + (DESCRIPTOR_LABELS[desc] || desc);
 }
 
-// Generate epsilon via Netlify function
+// Generate epsilon via Buna API
 document.getElementById('gen-epsilon-btn').addEventListener('click', async function() {
   if (!epsilonContext) return;
   const btn = this;
@@ -1134,7 +1134,7 @@ document.getElementById('gen-epsilon-btn').addEventListener('click', async funct
   textEl.innerHTML = '<span class="eps-loading">Reading the leaf chemistry…</span>';
 
   try {
-    const res = await fetch('/.netlify/functions/epsilon', {
+    const res = await fetch('/api/epsilon', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: [{ role: 'user', content: epsilonContext }] })

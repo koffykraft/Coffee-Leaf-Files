@@ -353,12 +353,12 @@ hr.dashed { border: none; border-top: 1px dashed var(--ruled); margin: 26px 0; }
 </head>
 <body>
 
-<a id="gh-notice" href="https://magnificent-starlight-38c2ae.netlify.app/citane-epsilon-board.html"
+<a id="gh-notice" href="https://buna.koffykraft.coffee/citane-epsilon-board.html"
   style="display:none;position:fixed;top:0;left:0;right:0;z-index:999;
   background:#8b3a2a;color:#fff;padding:14px 16px;font-family:Georgia,serif;
   font-size:.88rem;line-height:1.6;text-align:center;text-decoration:none;cursor:pointer;">
-  ε Epsilon Board requires Netlify to run. &nbsp;
-  <span style="color:#ffd0c0;font-weight:bold;text-decoration:underline;">Open on Netlify →</span>
+  ε Epsilon Board requires Buna hosting to run. &nbsp;
+  <span style="color:#ffd0c0;font-weight:bold;text-decoration:underline;">Open on Buna hosting →</span>
 </a>
 
 <nav>
@@ -644,7 +644,7 @@ Format exactly as follows (use these exact numbered headings, nothing else):
 [3–5 bullet points starting with •. Concrete steps someone could actually attempt at a small estate or home setup. Grounded in the selections made.]`;
 
   try {
-    const res = await fetch('/.netlify/functions/epsilon', {
+    const res = await fetch('/api/epsilon', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: [{ role: 'user', content: prompt }] })
