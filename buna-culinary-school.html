@@ -598,7 +598,7 @@ async function sendMessage() {
     setTyping(true);
 
     try {
-        const response = await fetch('/.netlify/functions/epsilon', {
+        const response = await fetch('/api/epsilon', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
