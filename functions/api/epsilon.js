@@ -15,8 +15,7 @@ function corsHeaders(origin) {
 function allowedOrigin(origin) {
   if (ALLOWED_ORIGINS.has(origin)) return true;
   try {
-    const host = new URL(origin).hostname;
-    return host.endsWith(".pages.dev") || host.endsWith(".netlify.app");
+    return new URL(origin).hostname.endsWith(".pages.dev");
   } catch {
     return false;
   }
