@@ -1,0 +1,27 @@
+name: Package 1 Follow-up
+
+on:
+  push:
+    branches:
+      - buna-structural-repair
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: ${{ !startsWith(github.event.head_commit.message, 'Package 1 follow-up apply:') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: python3 scripts/package1_followup.py
+      - name: Commit follow-up
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "koffykraft"
+          git config user.email "info@koffykraft.com"
+          git add sensory-companion.html
+          git commit -m "Package 1 follow-up apply: remove final six-door label"
+          git push
