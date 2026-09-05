@@ -16,7 +16,11 @@ routes=set(re.findall(r'^"(/[^"]*)":\{', content, re.M))
 expected={
 '/', '/foundation/','/catalogue/','/sources/',
 '/cup/','/cup/understand/','/cup/examine/',
-'/traditions/','/traditions/understand/','/traditions/examine/',
+'/traditions/',
+'/traditions/engere/','/traditions/engere/understand/','/traditions/engere/examine/',
+'/traditions/kuti/','/traditions/kuti/understand/','/traditions/kuti/examine/',
+'/traditions/chemo/','/traditions/chemo/understand/','/traditions/chemo/examine/',
+'/traditions/kawa-daun/','/traditions/kawa-daun/understand/','/traditions/kawa-daun/examine/',
 '/processing/','/processing/understand/','/processing/examine/',
 '/chemistry/','/chemistry/understand/','/chemistry/examine/',
 '/tools/','/tools/understand/','/tools/examine/',
@@ -32,7 +36,7 @@ for route in sorted(expected):
     p=ROOT/'index.html' if route=='/' else ROOT/route.strip('/')/'index.html'
     if not p.exists(): errors.append(f'Missing route file: {p.relative_to(ROOT)}')
 
-for asset in ['assets/buna-v2.css','assets/buna-v2.js','data/buna-content.js','data/buna-claims.js','data/buna-sources.js','data/buna-terms.js']:
+for asset in ['assets/buna-v2.css','assets/buna-v2.js','data/buna-content.js','data/buna-claims.js','data/buna-sources.js','data/buna-terms.js','data/buna-holds.js','data/buna-legacy-map.js']:
     if not (ROOT/asset).exists(): errors.append(f'Missing runtime asset: {asset}')
 
 if 'buna-nav.js' in shell: errors.append('v2 shell still loads legacy buna-nav.js')
@@ -76,6 +80,24 @@ for idx,para in enumerate(re.findall(r'<p(?:\s[^>]*)?>(.*?)</p>', content, flags
     duplicates=sorted({x for x in hrefs if hrefs.count(x)>1})
     if duplicates:
         errors.append(f'Paragraph {idx} repeats the same destination: {duplicates}')
+
+
+# Every held claim remains non-public and records its legacy provenance.
+holds=(ROOT/'data/buna-holds.js').read_text()
+for hid,block in re.findall(r'"([^"]+)":\{(.*?)\}(?:,|\n)', holds, flags=re.S):
+    if 'status:"hold"' not in block: errors.append(f'Hold record missing hold status: {hid}')
+    if 'legacy:[' not in block: errors.append(f'Hold record missing legacy provenance: {hid}')
+    if hid in content: errors.append(f'Held claim referenced by public content: {hid}')
+
+# Every legacy HTML file is explicitly accounted for as redirect or archive.
+legacy_map=(ROOT/'data/buna-legacy-map.js').read_text()
+legacy_names=set(re.findall(r"^  '([^']+)':\{status:", legacy_map, flags=re.M))
+canonical_index_paths={str(p.relative_to(ROOT)).replace('\\','/') for p in ROOT.rglob('index.html')}
+for p in ROOT.rglob('*.html'):
+    rel=str(p.relative_to(ROOT)).replace('\\','/')
+    if rel in canonical_index_paths and (rel=='index.html' or rel.startswith(('foundation/','catalogue/','sources/','cup/','traditions/','processing/','chemistry/','tools/','sensory/','culinary/','vocabulary/','biology/'))):
+        continue
+    if rel not in legacy_names: errors.append(f'Legacy HTML not classified: {rel}')
 
 print(f'canonical_routes={len(routes)} expected={len(expected)} redirects={len([x for x in redirects if x.strip()])}')
 if errors:
