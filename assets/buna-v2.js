@@ -4,7 +4,7 @@ const normalise=p=>{if(!p)return'/';p=p.replace(/index\.html$/,'');if(!p.endsWit
 const path=normalise(location.pathname);
 const page=P[path]||P['/'];
 const nav=[['/','Library'],['/cup/','Begin'],['/traditions/','Traditions'],['/processing/','Processing'],['/chemistry/','Chemistry'],['/tools/','Tools'],['/sensory/','Sensory'],['/culinary/','Culinary'],['/vocabulary/','Vocabulary'],['/biology/','Biology']];
-function h(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));}
+function h(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function isCurrent(url){return path===url||((url!=='/')&&path.startsWith(url));}
 function header(){const links=nav.map(([u,l])=>`<a href="${u}"${isCurrent(u)?' aria-current="page"':''}>${h(l)}</a>`).join('');return `<div class="topbar"><a class="brand" href="/"><img src="/buna-leaf.svg" alt=""><span>Buna Coffee Leaf Library</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav">Library Map</button></div><nav id="global-nav" class="global-nav" aria-label="Primary">${links}</nav>`;}
 function footer(){return `<div class="footer-inner"><div>Buna Coffee Leaf Library · KoffyKraft · Karavaloor, Kerala</div><div><a href="/foundation/">Foundation</a> · <a href="/catalogue/">Catalogue</a> · <a href="/sources/">Sources</a></div></div>`;}
