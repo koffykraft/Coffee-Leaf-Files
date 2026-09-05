@@ -41,7 +41,17 @@ repls={
 'How should definitions work across the Library?':'How are definitions shared across the Library?',
 'Each term has one canonical plain definition. Other pages may explain it briefly in context, but they should not maintain their own competing definition.':'Each term has one shared plain definition. Other pages may explain the term briefly in context and link back to that definition.',
 '<strong>Category correction</strong>Farm-management doctrine, processing frameworks and proposed ritual-use categories are not vocabulary merely because they were once presented as term cards.':'<strong>Scope of the vocabulary</strong>The vocabulary contains definitions. Farm-management frameworks, processing models and proposed use categories belong with the subjects they describe.',
-'Those stages should not be collapsed.':'Each stage answers a different question and may use a different kind of measurement.'
+'Those stages should not be collapsed.':'Each stage answers a different question and may use a different kind of measurement.',
+'<strong>Door Nine rule</strong>No result is promoted above the level where it was observed. A mouse result stays a mouse result. A traditional report stays a traditional report.':'<strong>Evidence levels</strong>Animal studies, human studies, laboratory measurements and traditional reports represent different kinds of evidence.',
+'What should a producer or reader ask?':'What information affects safety and exposure?',
+'<strong>Define the material</strong>':'<strong>Material</strong>',
+'<strong>Define the process</strong>':'<strong>Process</strong>',
+'<strong>Define the serving</strong>':'<strong>Serving</strong>',
+'<strong>Measure what matters</strong>':'<strong>Measurements</strong>',
+'<strong>Do not borrow safety</strong>A low caffeine value or safety result from one product should not be silently transferred to another cultivar, extract or brew strength.':'<strong>Product-specific safety</strong>Caffeine and other safety measurements can vary between cultivars, extracts, processing methods and brew strengths.',
+'The strongest current story is not a list of benefits. It is a chain of increasingly specific research questions.':'Current research spans composition, laboratory models, animal studies and a smaller amount of human work.',
+'What does current research suggest, without turning it into a treatment claim?':'What has current research measured?',
+'What does a measured compound in a leaf tell us about a cup?':'How does a leaf measurement relate to the brewed cup?'
 }
 changed=0
 for old,new in repls.items():
