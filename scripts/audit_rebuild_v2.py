@@ -57,6 +57,12 @@ app=(ROOT/'assets/buna-v2.js').read_text()
 for door in ['/cup/','/traditions/','/processing/','/chemistry/','/tools/','/sensory/','/culinary/','/vocabulary/','/biology/']:
     if app.count("'"+door+"'") < 1: errors.append(f'Global nav missing {door}')
 
+# Internal project-status language must never leak into the public v2 runtime.
+public_runtime='\n'.join([app, content, claims, sources, (ROOT/'data/buna-terms.js').read_text()])
+for phrase in ['Rebuild status:', 'canonical v2 page', 'migration status:', 'audit status:', 'older unverified pages remain outside the canonical navigation']:
+    if phrase.lower() in public_runtime.lower():
+        errors.append(f'Internal project-status language exposed publicly: {phrase}')
+
 print(f'canonical_routes={len(routes)} expected={len(expected)} redirects={len([x for x in redirects if x.strip()])}')
 if errors:
     print('FAIL')
