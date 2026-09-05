@@ -1,0 +1,28 @@
+name: Complete Buna message and content migration
+on:
+  push:
+    branches: [buna-complete-message-migration]
+    paths:
+      - 'scripts/complete_message_migration.py'
+      - '.github/workflows/complete-message-migration.yml'
+permissions:
+  contents: write
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: buna-complete-message-migration
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: python scripts/complete_message_migration.py
+      - name: Commit migration
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data assets traditions _redirects scripts/audit_rebuild_v2.py governance/ITEM_5_7_MIGRATION_RECORD.md
+          git diff --cached --quiet && exit 0
+          git commit -m "Complete shared message engine and content migration"
+          git push origin HEAD:buna-complete-message-migration
