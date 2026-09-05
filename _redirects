@@ -7,33 +7,33 @@
 /catalogue.html /catalogue/ 301
 /visitor-lounge.html / 301
 
-/engere-intro.html /traditions/ 301
-/engere.html /traditions/understand/ 301
-/engere-deep.html /traditions/examine/ 301
-/engere-recipe.html /traditions/understand/ 301
-/engere-people-work-context.html /traditions/understand/ 301
-/engere-schoolbook-guide-part-1.html /traditions/examine/ 301
-/engere-schoolbook-guide-part-2.html /traditions/examine/ 301
-/engere-visual-pictogram-guide.html /traditions/examine/ 301
-/kuti-intro.html /traditions/ 301
-/kuti.html /traditions/understand/ 301
-/kuti-deep.html /traditions/examine/ 301
-/kuti-recipe.html /traditions/understand/ 301
-/kuti-schoolbook-guide.html /traditions/examine/ 301
-/kuti-visual-pictogram-guide.html /traditions/examine/ 301
-/chemo-intro.html /traditions/ 301
-/chemo.html /traditions/understand/ 301
-/chemo-deep.html /traditions/examine/ 301
-/chemo-recipe.html /traditions/understand/ 301
-/chemo-plants.html /traditions/understand/ 301
-/chemo-schoolbook-guide.html /traditions/examine/ 301
-/chemo-visual-pictogram-guide.html /traditions/examine/ 301
-/kawa-daun-intro.html /traditions/ 301
-/kawa-daun.html /traditions/understand/ 301
-/kawa-daun-deep.html /traditions/examine/ 301
-/kawa-daun-recipe.html /traditions/understand/ 301
-/kawa-daun-schoolbook-guide.html /traditions/examine/ 301
-/kawa-daun-visual-pictogram-guide.html /traditions/examine/ 301
+/engere-intro.html /traditions/engere/ 301
+/engere.html /traditions/engere/understand/ 301
+/engere-deep.html /traditions/engere/examine/ 301
+/engere-recipe.html /traditions/engere/understand/ 301
+/engere-people-work-context.html /traditions/engere/understand/ 301
+/engere-schoolbook-guide-part-1.html /traditions/engere/examine/ 301
+/engere-schoolbook-guide-part-2.html /traditions/engere/examine/ 301
+/engere-visual-pictogram-guide.html /traditions/engere/examine/ 301
+/kuti-intro.html /traditions/kuti/ 301
+/kuti.html /traditions/kuti/understand/ 301
+/kuti-deep.html /traditions/kuti/examine/ 301
+/kuti-recipe.html /traditions/kuti/understand/ 301
+/kuti-schoolbook-guide.html /traditions/kuti/examine/ 301
+/kuti-visual-pictogram-guide.html /traditions/kuti/examine/ 301
+/chemo-intro.html /traditions/chemo/ 301
+/chemo.html /traditions/chemo/understand/ 301
+/chemo-deep.html /traditions/chemo/examine/ 301
+/chemo-recipe.html /traditions/chemo/understand/ 301
+/chemo-plants.html /traditions/chemo/understand/ 301
+/chemo-schoolbook-guide.html /traditions/chemo/examine/ 301
+/chemo-visual-pictogram-guide.html /traditions/chemo/examine/ 301
+/kawa-daun-intro.html /traditions/kawa-daun/ 301
+/kawa-daun.html /traditions/kawa-daun/understand/ 301
+/kawa-daun-deep.html /traditions/kawa-daun/examine/ 301
+/kawa-daun-recipe.html /traditions/kawa-daun/understand/ 301
+/kawa-daun-schoolbook-guide.html /traditions/kawa-daun/examine/ 301
+/kawa-daun-visual-pictogram-guide.html /traditions/kawa-daun/examine/ 301
 
 /citane-process-compass.html /processing/understand/ 301
 /citane-processing-protocols.html /processing/examine/ 301
@@ -64,7 +64,7 @@
 /vocab/sensory-flavour.html /sensory/understand/ 301
 /vocab/sensory-mouthfeel.html /sensory/understand/ 301
 /vocab/environment-impact.html /vocabulary/examine/ 301
-/vocab/ritual-context.html /traditions/understand/ 301
+/vocab/ritual-context.html /traditions/ 301
 
 /coffee-leaf-human-biology.html /biology/ 301
 /post-cup-landscape.html /biology/understand/ 301
@@ -78,3 +78,6 @@
 /coffee-leaf-health-benefits.html /biology/ 301
 /functional-compendium.html /biology/ 301
 /the-buna-lifestyle-manual.html /biology/ 301
+
+/traditions/understand/ /traditions/ 301
+/traditions/examine/ /traditions/ 301

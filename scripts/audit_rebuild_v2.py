@@ -6,6 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 content=(ROOT/'data/buna-content.js').read_text()
 claims=(ROOT/'data/buna-claims.js').read_text()
 sources=(ROOT/'data/buna-sources.js').read_text()
+terms=(ROOT/'data/buna-terms.js').read_text()
 shell=(ROOT/'index.html').read_text()
 middleware=(ROOT/'functions/_middleware.js').read_text()
 redirects=(ROOT/'_redirects').read_text().splitlines()
@@ -15,7 +16,11 @@ routes=set(re.findall(r'^"(/[^"]*)":\{', content, re.M))
 expected={
 '/', '/foundation/','/catalogue/','/sources/',
 '/cup/','/cup/understand/','/cup/examine/',
-'/traditions/','/traditions/understand/','/traditions/examine/',
+'/traditions/',
+'/traditions/engere/','/traditions/engere/understand/','/traditions/engere/examine/',
+'/traditions/kuti/','/traditions/kuti/understand/','/traditions/kuti/examine/',
+'/traditions/chemo/','/traditions/chemo/understand/','/traditions/chemo/examine/',
+'/traditions/kawa-daun/','/traditions/kawa-daun/understand/','/traditions/kawa-daun/examine/',
 '/processing/','/processing/understand/','/processing/examine/',
 '/chemistry/','/chemistry/understand/','/chemistry/examine/',
 '/tools/','/tools/understand/','/tools/examine/',
@@ -31,7 +36,7 @@ for route in sorted(expected):
     p=ROOT/'index.html' if route=='/' else ROOT/route.strip('/')/'index.html'
     if not p.exists(): errors.append(f'Missing route file: {p.relative_to(ROOT)}')
 
-for asset in ['assets/buna-v2.css','assets/buna-v2.js','data/buna-content.js','data/buna-claims.js','data/buna-sources.js','data/buna-terms.js']:
+for asset in ['assets/buna-v2.css','assets/buna-v2.js','data/buna-content.js','data/buna-claims.js','data/buna-sources.js','data/buna-terms.js','data/buna-holds.js','data/buna-legacy-map.js']:
     if not (ROOT/asset).exists(): errors.append(f'Missing runtime asset: {asset}')
 
 if 'buna-nav.js' in shell: errors.append('v2 shell still loads legacy buna-nav.js')
@@ -58,10 +63,41 @@ for door in ['/cup/','/traditions/','/processing/','/chemistry/','/tools/','/sen
     if app.count("'"+door+"'") < 1: errors.append(f'Global nav missing {door}')
 
 # Internal project-status language must never leak into the public v2 runtime.
-public_runtime='\n'.join([app, content, claims, sources, (ROOT/'data/buna-terms.js').read_text()])
+public_runtime='\n'.join([app, content, claims, sources, terms])
 for phrase in ['Rebuild status:', 'canonical v2 page', 'migration status:', 'audit status:', 'older unverified pages remain outside the canonical navigation']:
     if phrase.lower() in public_runtime.lower():
         errors.append(f'Internal project-status language exposed publicly: {phrase}')
+
+# Public prose is informational rather than directive/editorial.
+for phrase in ['Do not skip a step', 'Reading rule', 'Catalogue rule', 'Rebuild rule', 'Ordinary-reader rule', 'AI rule', 'Tradition is not treatment']:
+    if phrase.lower() in content.lower():
+        errors.append(f'Directive/editorial public wording found: {phrase}')
+
+# Within a prose paragraph, the same destination should appear only once.
+# Multiple distinct destinations are allowed when each has a separate use case.
+for idx,para in enumerate(re.findall(r'<p(?:\s[^>]*)?>(.*?)</p>', content, flags=re.I|re.S), start=1):
+    hrefs=re.findall(r'href=["\']([^"\']+)["\']', para, flags=re.I)
+    duplicates=sorted({x for x in hrefs if hrefs.count(x)>1})
+    if duplicates:
+        errors.append(f'Paragraph {idx} repeats the same destination: {duplicates}')
+
+
+# Every held claim remains non-public and records its legacy provenance.
+holds=(ROOT/'data/buna-holds.js').read_text()
+for hid,block in re.findall(r'"([^"]+)":\{(.*?)\}(?:,|\n)', holds, flags=re.S):
+    if 'status:"hold"' not in block: errors.append(f'Hold record missing hold status: {hid}')
+    if 'legacy:[' not in block: errors.append(f'Hold record missing legacy provenance: {hid}')
+    if hid in content: errors.append(f'Held claim referenced by public content: {hid}')
+
+# Every legacy HTML file is explicitly accounted for as redirect or archive.
+legacy_map=(ROOT/'data/buna-legacy-map.js').read_text()
+legacy_names=set(re.findall(r"^  '([^']+)':\{status:", legacy_map, flags=re.M))
+canonical_index_paths={str(p.relative_to(ROOT)).replace('\\','/') for p in ROOT.rglob('index.html')}
+for p in ROOT.rglob('*.html'):
+    rel=str(p.relative_to(ROOT)).replace('\\','/')
+    if rel in canonical_index_paths and (rel=='index.html' or rel.startswith(('foundation/','catalogue/','sources/','cup/','traditions/','processing/','chemistry/','tools/','sensory/','culinary/','vocabulary/','biology/'))):
+        continue
+    if rel not in legacy_names: errors.append(f'Legacy HTML not classified: {rel}')
 
 print(f'canonical_routes={len(routes)} expected={len(expected)} redirects={len([x for x in redirects if x.strip()])}')
 if errors:

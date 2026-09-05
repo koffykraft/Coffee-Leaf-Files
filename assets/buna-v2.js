@@ -11,12 +11,13 @@ function footer(){return `<div class="footer-inner"><div>Buna Coffee Leaf Librar
 function crumbs(){
   if(path==='/')return'';
   const bits=[`<a href="/">Library</a>`];
+  if(page.parent) bits.push(`<a href="${page.parent.url}">${h(page.parent.label)}</a>`);
   if(page.group&&path!==G[page.group].look) bits.push(`<a href="${G[page.group].look}">${h(G[page.group].label)}</a>`);
   bits.push(`<span aria-current="page">${h(page.title)}</span>`);
   return `<div class="breadcrumbs">${bits.join('<span>/</span>')}</div>`;
 }
 function depth(){if(!page.group)return'';const g=G[page.group];let labels=[['look','LOOK',g.look],['understand','UNDERSTAND',g.understand],['examine','EXAMINE',g.examine]];return `<nav class="depthbar" aria-label="Depth">${labels.map(([k,l,u])=>`<a href="${u}" class="${page.depth===k?'active':''}">${l}</a>`).join('')}</nav>`;}
-function claims(){if(!page.claims?.length)return'';return `<section><h2>Evidence position</h2>${page.claims.map(id=>{const c=C[id];if(!c)return'';return `<div class="evidence"><div class="evidence-label">${h(c.type)} · ${h(c.level)}</div><p><strong>${h(c.plain)}</strong></p><p>${h(c.detail)}</p>${c.sources?.length?`<p class="source-note">Sources: ${c.sources.map(x=>S[x]?`<a href="${S[x].url}">${h(S[x].year+' '+S[x].type)}</a>`:'').join(' · ')}</p>`:''}</div>`;}).join('')}</section>`;}
+function claims(){if(!page.claims?.length)return'';return `<section><h2>Evidence notes</h2>${page.claims.map(id=>{const c=C[id];if(!c)return'';return `<div class="evidence"><div class="evidence-label">${h(c.type)} · ${h(c.level)}</div><p><strong>${h(c.plain)}</strong></p><p>${h(c.detail)}</p>${c.sources?.length?`<p class="source-note">Sources: ${c.sources.map(x=>S[x]?`<a href="${S[x].url}">${h(S[x].year+' '+S[x].type)}</a>`:'').join(' · ')}</p>`:''}</div>`;}).join('')}</section>`;}
 function sources(){if(!page.sources?.length)return'';return `<section><h2>Sources for this page</h2><ul class="source-list">${page.sources.map(id=>{const s=S[id];if(!s)return'';return `<li><a href="${s.url}"><strong>${h(s.title)}</strong></a><div class="source-note">${h(s.year)} · ${h(s.type)} — ${h(s.note)}</div></li>`;}).join('')}</ul></section>`;}
 function catalogue(){const el=document.getElementById('catalogue-grid');if(!el)return;const order=Object.entries(P).filter(([r,p])=>r!=='/'&&r!=='/catalogue/'&&r!=='/sources/');el.innerHTML=order.map(([r,p])=>`<a class="card" href="${r}"><div class="kicker">${h(p.eye||'Library')}</div><h3>${h(p.title)}</h3><p>${h(p.lead||'')}</p></a>`).join('');}
 function sourceRegistry(){const el=document.getElementById('source-registry');if(!el)return;el.innerHTML=`<ul class="source-list">${Object.values(S).map(s=>`<li><a href="${s.url}"><strong>${h(s.title)}</strong></a><div class="source-note">${h(s.year)} · ${h(s.type)} — ${h(s.note)}</div></li>`).join('')}</ul>`;}
