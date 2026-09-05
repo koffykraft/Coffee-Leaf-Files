@@ -6,6 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 content=(ROOT/'data/buna-content.js').read_text()
 claims=(ROOT/'data/buna-claims.js').read_text()
 sources=(ROOT/'data/buna-sources.js').read_text()
+terms=(ROOT/'data/buna-terms.js').read_text()
 shell=(ROOT/'index.html').read_text()
 middleware=(ROOT/'functions/_middleware.js').read_text()
 redirects=(ROOT/'_redirects').read_text().splitlines()
@@ -58,10 +59,23 @@ for door in ['/cup/','/traditions/','/processing/','/chemistry/','/tools/','/sen
     if app.count("'"+door+"'") < 1: errors.append(f'Global nav missing {door}')
 
 # Internal project-status language must never leak into the public v2 runtime.
-public_runtime='\n'.join([app, content, claims, sources, (ROOT/'data/buna-terms.js').read_text()])
+public_runtime='\n'.join([app, content, claims, sources, terms])
 for phrase in ['Rebuild status:', 'canonical v2 page', 'migration status:', 'audit status:', 'older unverified pages remain outside the canonical navigation']:
     if phrase.lower() in public_runtime.lower():
         errors.append(f'Internal project-status language exposed publicly: {phrase}')
+
+# Public prose is informational rather than directive/editorial.
+for phrase in ['Do not skip a step', 'Reading rule', 'Catalogue rule', 'Rebuild rule', 'Ordinary-reader rule', 'AI rule', 'Tradition is not treatment']:
+    if phrase.lower() in content.lower():
+        errors.append(f'Directive/editorial public wording found: {phrase}')
+
+# Within a prose paragraph, the same destination should appear only once.
+# Multiple distinct destinations are allowed when each has a separate use case.
+for idx,para in enumerate(re.findall(r'<p(?:\s[^>]*)?>(.*?)</p>', content, flags=re.I|re.S), start=1):
+    hrefs=re.findall(r'href=["\']([^"\']+)["\']', para, flags=re.I)
+    duplicates=sorted({x for x in hrefs if hrefs.count(x)>1})
+    if duplicates:
+        errors.append(f'Paragraph {idx} repeats the same destination: {duplicates}')
 
 print(f'canonical_routes={len(routes)} expected={len(expected)} redirects={len([x for x in redirects if x.strip()])}')
 if errors:
