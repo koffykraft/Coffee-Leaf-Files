@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citane · ε Epsilon Board</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --leaf: #3d5a3e;
+  --leaf-lt: #5c7a5d;
+  --leaf-pale: #eaf1ea;
+  --parchment: #f7f4ef;
+  --cream: #fdfbf8;
+  --ruled: #d8d2c8;
+  --accent: #8b6f47;
+  --muted: #6b6560;
+  --epsilon: #2a3a5a;
+  --epsilon-lt: #4a6a9a;
+  --epsilon-bg: #eef2f8;
+  --warn: #8b3a2a;
+  --warn-bg: #fdf0ed;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: Georgia, serif;
+  background: var(--parchment);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+/* NAV */
+nav {
+  background: var(--ink);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.brand { color: #fff; font-size: 1rem; letter-spacing: .14em; text-transform: uppercase; }
+.sep { color: #555; }
+.page-t { color: #999; font-size: .82rem; }
+.back { margin-left: auto; color: #aaa; font-size: .75rem; text-decoration: none; letter-spacing: .04em; }
+.back:hover { color: #fff; }
+
+/* HERO */
+.hero {
+  background: var(--epsilon);
+  color: #fff;
+  padding: 28px 20px 24px;
+  text-align: center;
+}
+.hero .eye {
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  opacity: .5;
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 1.7rem;
+  font-weight: normal;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: .9rem;
+  opacity: .75;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* MAIN */
+main { max-width: 680px; margin: 0 auto; padding: 20px 18px 60px; }
+
+/* NOTICE */
+.notice {
+  background: var(--epsilon-bg);
+  border: 1.5px solid var(--epsilon-lt);
+  border-radius: 5px;
+  padding: 14px 16px;
+  margin-bottom: 26px;
+  font-size: .88rem;
+  color: var(--epsilon);
+  line-height: 1.65;
+}
+.notice strong { color: var(--epsilon-lt); }
+
+/* SECTION GROUPS */
+.group { margin-bottom: 26px; }
+.group-label {
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ruled);
+}
+.group-hint {
+  font-size: .84rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* CHIPS */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: var(--cream);
+  border: 1.5px solid var(--ruled);
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: .88rem;
+  cursor: pointer;
+  font-family: Georgia, serif;
+  color: var(--ink);
+  transition: all .15s;
+  line-height: 1.3;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.chip:hover { border-color: var(--leaf-lt); background: var(--leaf-pale); }
+.chip.on {
+  border-color: var(--leaf);
+  background: var(--leaf-pale);
+  color: var(--leaf);
+  font-weight: bold;
+}
+.chip.koji {
+  border-style: dashed;
+  color: var(--muted);
+  font-size: .82rem;
+}
+.chip.koji.on { border-style: dashed; border-color: var(--leaf); color: var(--leaf); }
+
+/* OPTIONAL FIELDS */
+.optional-group { margin-bottom: 26px; }
+.opt-row { display: flex; flex-direction: column; gap: 10px; }
+@media (min-width: 480px) {
+  .opt-row { flex-direction: row; gap: 14px; }
+  .opt-row .field { flex: 1; }
+}
+.field label {
+  display: block;
+  font-size: .68rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.field input {
+  width: 100%;
+  background: var(--cream);
+  border: 1.5px solid var(--ruled);
+  border-radius: 4px;
+  padding: 10px 13px;
+  font-family: Georgia, serif;
+  font-size: .9rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .15s;
+}
+.field input:focus { border-color: var(--epsilon-lt); }
+.field input::placeholder { color: var(--ruled); }
+
+/* DIVIDER */
+hr.dashed { border: none; border-top: 1px dashed var(--ruled); margin: 26px 0; }
+
+/* SUMMARY */
+.summary {
+  background: var(--cream);
+  border: 1px solid var(--ruled);
+  border-radius: 4px;
+  padding: 12px 15px;
+  margin-bottom: 14px;
+  font-size: .86rem;
+  color: var(--muted);
+  display: none;
+  line-height: 1.6;
+}
+.summary strong { color: var(--accent); }
+
+/* GENERATE BUTTON */
+.gen-btn {
+  width: 100%;
+  background: var(--epsilon);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 16px;
+  font-family: Georgia, serif;
+  font-size: .95rem;
+  cursor: pointer;
+  letter-spacing: .04em;
+  margin-bottom: 8px;
+  transition: background .15s;
+  touch-action: manipulation;
+}
+.gen-btn:hover:not(:disabled) { background: var(--epsilon-lt); }
+.gen-btn:disabled { background: #9aa0b0; cursor: not-allowed; }
+.hint { font-size: .8rem; color: var(--muted); text-align: center; margin-bottom: 16px; }
+
+/* ERROR */
+.error {
+  background: var(--warn-bg);
+  border-left: 3px solid var(--warn);
+  border-radius: 0 4px 4px 0;
+  padding: 13px 15px;
+  margin-top: 14px;
+  font-size: .86rem;
+  color: var(--warn);
+  display: none;
+  line-height: 1.6;
+}
+
+/* OUTPUT */
+#output {
+  background: var(--epsilon);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 20px;
+  display: none;
+}
+.out-head {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.eps-tag {
+  display: inline-block;
+  background: var(--epsilon-lt);
+  color: #fff;
+  border-radius: 3px;
+  padding: 3px 10px;
+  font-size: .66rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.out-head h3 {
+  font-size: 1.05rem;
+  font-weight: normal;
+  color: #fff;
+  line-height: 1.3;
+}
+.out-body { padding: 18px 20px; }
+.sec {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.sec:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.sec-title {
+  font-size: .66rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  margin-bottom: 8px;
+}
+.sec-content {
+  font-size: .92rem;
+  line-height: 1.78;
+  color: rgba(255,255,255,.88);
+  white-space: pre-wrap;
+}
+.sec-content br { display: block; margin-bottom: 4px; content: ''; }
+.out-foot {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: .72rem;
+  color: rgba(255,255,255,.3);
+  font-style: italic;
+}
+.loading {
+  font-size: .9rem;
+  color: rgba(255,255,255,.55);
+  font-style: italic;
+  padding: 24px 20px;
+}
+
+/* PDF BUTTON */
+.pdf-btn {
+  display: none;
+  width: 100%;
+  background: none;
+  border: 1.5px solid var(--epsilon-lt);
+  border-radius: 4px;
+  padding: 13px;
+  font-family: Georgia, serif;
+  font-size: .88rem;
+  color: var(--epsilon-lt);
+  cursor: pointer;
+  letter-spacing: .04em;
+  margin-top: 14px;
+  touch-action: manipulation;
+}
+.pdf-btn:hover { background: var(--epsilon-bg); }
+
+/* BOARD LINK */
+.board-link { margin-top: 24px; text-align: center; }
+.board-link a { font-size: .8rem; color: var(--accent); text-decoration: none; }
+
+/* PRINT */
+@media print {
+  nav, .hero, .notice, .group, .optional-group, hr.dashed,
+  .summary, .gen-btn, .hint, .error, .pdf-btn, .board-link { display: none !important; }
+  #print-header { display: flex !important; align-items: center; gap: 14px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 2px solid #3d5a3e; }
+  #print-header img { height: 36px; width: auto; }
+  #print-header .print-title { font-family: Georgia, serif; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: #3d5a3e; }
+  #print-header .print-estate { font-family: Georgia, serif; font-size: .68rem; color: #6b6560; margin-top: 3px; }
+  body { background: #fff; margin: 0; font-size: 14px; }
+  #output {
+    display: block !important;
+    background: #fff !important;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  .out-head { padding: 0 0 16px; border-bottom: 2px solid #2a3a5a; }
+  .eps-tag { background: #2a3a5a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .out-head h3 { color: #2a3a5a !important; font-size: 1.1rem; }
+  .out-body { padding: 16px 0; overflow: visible !important; height: auto !important; max-height: none !important; }
+  .sec {
+    border-bottom: 1px solid #d8d2c8 !important;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  .sec:last-child { border-bottom: none !important; }
+  .sec-title { color: #8b6f47 !important; }
+  .sec-content {
+    color: #1a1a1a !important;
+    font-size: .88rem;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  .out-foot { color: #999 !important; border-top: 1px solid #d8d2c8 !important; padding: 10px 0; }
+  #pdf-selections { display: block !important; font-size: .72rem; color: #6b6560; font-style: italic; margin-bottom: 14px; }
+}
+</style>
+</head>
+<body>
+
+<a id="gh-notice" href="https://magnificent-starlight-38c2ae.netlify.app/citane-epsilon-board.html"
+  style="display:none;position:fixed;top:0;left:0;right:0;z-index:999;
+  background:#8b3a2a;color:#fff;padding:14px 16px;font-family:Georgia,serif;
+  font-size:.88rem;line-height:1.6;text-align:center;text-decoration:none;cursor:pointer;">
+  ε Epsilon Board requires Netlify to run. &nbsp;
+  <span style="color:#ffd0c0;font-weight:bold;text-decoration:underline;">Open on Netlify →</span>
+</a>
+
+<nav>
+  <span class="brand">Citane</span>
+  <span class="sep">/</span>
+  <span class="page-t">ε Epsilon Board</span>
+  <a class="back" href="citane-logic-board.html">← Research Board</a>
+</nav>
+
+<div class="hero">
+  <div class="eye">KoffyKraft · Thumpassery Estate · Kerala</div>
+  <h1>ε Epsilon Board</h1>
+  <p>Speculative CLT pathways — AI-generated, not validated. Pick your parameters and see where the chemistry might go.</p>
+</div>
+
+<main>
+
+  <div class="notice">
+    <strong>ε Theoretical Territory.</strong> Everything here is AI-generated speculation grounded in known CLT chemistry. It is <strong>not validated research</strong> and should not be treated as likely outcomes. A creative space for direction, not instruction.
+  </div>
+
+  <!-- TARGET DESCRIPTOR -->
+  <div class="group">
+    <div class="group-label">What flavour are you chasing?</div>
+    <div class="group-hint">Optional — but sets the direction</div>
+    <div class="chips" data-group="descriptor">
+      <div class="chip" data-val="sweet">Sweet / Honey-like</div>
+      <div class="chip" data-val="floral">Floral / Perfumed</div>
+      <div class="chip" data-val="fruity">Fruity / Melon</div>
+      <div class="chip" data-val="green">Green / Herbal</div>
+      <div class="chip" data-val="refreshing">Refreshing / Cucumber</div>
+      <div class="chip" data-val="woody">Woody / Earthy</div>
+      <div class="chip" data-val="bitter">Bitter / Astringent</div>
+      <div class="chip" data-val="mineral">Mineral / Savoury</div>
+      <div class="chip" data-val="smoky">Smoky / Roasty</div>
+    </div>
+  </div>
+
+  <!-- LEAF -->
+  <div class="group">
+    <div class="group-label">Leaf maturity</div>
+    <div class="chips" data-group="leaf">
+      <div class="chip" data-val="young">Young / Flush (1–3 months)</div>
+      <div class="chip" data-val="mixed">Mixed / Mid-maturity</div>
+      <div class="chip" data-val="mature">Mature (3–6 months)</div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="group">
+    <div class="group-label">Processing method</div>
+    <div class="chips" data-group="process">
+      <div class="chip" data-val="steamed">Steamed (Green / JGTP)</div>
+      <div class="chip" data-val="panfired">Pan-fired (CGTP)</div>
+      <div class="chip" data-val="white">Sun-dried / White style</div>
+      <div class="chip" data-val="oolong">Partial oxidation (Oolong)</div>
+      <div class="chip" data-val="black">Full oxidation (Black)</div>
+      <div class="chip" data-val="yeast">Yeast fermentation</div>
+      <div class="chip" data-val="wild">Wild fermentation</div>
+      <div class="chip" data-val="smoke">Smoke-dried (Kawa Daun)</div>
+      <div class="chip" data-val="roast">Flat-pan roast (Kuti)</div>
+      <div class="chip" data-val="decoction">Decoction (Engere / Chemo)</div>
+      <div class="chip" data-val="shade">Shade wither ◐</div>
+      <div class="chip koji" data-val="koji_soak">Koji soak ○</div>
+      <div class="chip koji" data-val="koji_mist">Koji mist ○</div>
+      <div class="chip koji" data-val="water_soak">Water soak activation ○</div>
+    </div>
+    <div style="margin-top:10px;font-size:.78rem;color:var(--muted);">○ Citane experimental — not yet formally documented for CLT</div>
+  </div>
+
+  <!-- BREW -->
+  <div class="group">
+    <div class="group-label">Brew method</div>
+    <div class="chips" data-group="brew">
+      <div class="chip" data-val="infusion">Infusion / Steep</div>
+      <div class="chip" data-val="decoction">Decoction (boiled)</div>
+      <div class="chip" data-val="cold">Cold brew</div>
+    </div>
+  </div>
+
+  <!-- BREW TEMP -->
+  <div class="group">
+    <div class="group-label">Brew temperature</div>
+    <div class="chips" data-group="temp">
+      <div class="chip" data-val="cold">Cold / Room (≤25°C)</div>
+      <div class="chip" data-val="low">Low (74–78°C)</div>
+      <div class="chip" data-val="medium">Medium (78–85°C)</div>
+      <div class="chip" data-val="high">High (89–95°C)</div>
+      <div class="chip" data-val="boiling">Boiling (95–100°C)</div>
+    </div>
+  </div>
+
+  <!-- DURATION -->
+  <div class="group">
+    <div class="group-label">Brew duration</div>
+    <div class="chips" data-group="duration">
+      <div class="chip" data-val="short">Short (2–5 min)</div>
+      <div class="chip" data-val="medium">Medium (5–10 min)</div>
+      <div class="chip" data-val="long">Long (10–30 min decoction)</div>
+      <div class="chip" data-val="extended_cold">Extended cold (8–24h)</div>
+    </div>
+  </div>
+
+  <!-- SERVE -->
+  <div class="group">
+    <div class="group-label">Serving temperature</div>
+    <div class="chips" data-group="serve">
+      <div class="chip" data-val="hot">Hot (immediate)</div>
+      <div class="chip" data-val="warm">Warm (cooled briefly)</div>
+      <div class="chip" data-val="chilled">Chilled (10°C)</div>
+      <div class="chip" data-val="iced">Iced</div>
+    </div>
+  </div>
+
+  <hr class="dashed">
+
+  <!-- OPTIONAL FIELDS -->
+  <div class="optional-group">
+    <div class="group-label">Optional — adds context to the pathway</div>
+    <div class="opt-row">
+      <div class="field">
+        <label for="variety-input">Coffee variety</label>
+        <input type="text" id="variety-input" placeholder="e.g. Arabica Chandragiri" maxlength="80">
+      </div>
+      <div class="field">
+        <label for="location-input">Location / estate</label>
+        <input type="text" id="location-input" placeholder="e.g. Thumpassery, 130m" maxlength="80">
+      </div>
+    </div>
+  </div>
+
+  <div class="summary" id="summary"><strong>Selections: </strong><span id="summary-text"></span></div>
+
+  <button class="gen-btn" id="gen-btn" disabled>ε Generate Theoretical Pathway</button>
+  <p class="hint" id="hint">Select at least one parameter above</p>
+  <div class="error" id="error-box"></div>
+
+  <!-- PRINT HEADER (hidden on screen) -->
+  <div id="print-header" style="display:none;">
+    <div>
+      <div class="print-title">Citane · ε Epsilon Board</div>
+      <div class="print-estate">KoffyKraft · Thumpassery Estate · Karavaloor, Kollam, Kerala</div>
+    </div>
+  </div>
+  <div id="pdf-selections" style="display:none;"></div>
+
+  <!-- OUTPUT -->
+  <div id="output">
+    <div class="out-head">
+      <div class="eps-tag">ε Theoretical — Not Research-Validated</div>
+      <h3 id="out-title">Epsilon Pathway</h3>
+    </div>
+    <div class="out-body" id="out-body"></div>
+    <div class="out-foot">Generated by Claude · Citane ε Epsilon Board · KoffyKraft, Thumpassery Estate · <span id="pdf-date"></span></div>
+  </div>
+
+  <button class="pdf-btn" id="pdf-btn" onclick="downloadPDF()">⬇ Save as PDF</button>
+
+  <div class="board-link">
+    <a href="citane-logic-board.html">← Back to Research Board (evidence-grounded)</a>
+  </div>
+
+</main>
+
+<script>
+// State
+const SEL = {
+  descriptor: null, leaf: null, process: null,
+  brew: null, temp: null, duration: null, serve: null
+};
+
+const DESCRIPTOR_LABELS = {
+  sweet: 'Sweet / Honey-like', floral: 'Floral / Perfumed', fruity: 'Fruity / Melon',
+  green: 'Green / Herbal', refreshing: 'Refreshing / Cucumber', woody: 'Woody / Earthy',
+  bitter: 'Bitter / Astringent', mineral: 'Mineral / Savoury', smoky: 'Smoky / Roasty'
+};
+
+// Chip toggle
+document.querySelectorAll('.chips').forEach(function(group) {
+  group.addEventListener('click', function(e) {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    const g = group.dataset.group;
+    const v = chip.dataset.val;
+    if (SEL[g] === v) {
+      SEL[g] = null;
+      chip.classList.remove('on');
+    } else {
+      group.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+      chip.classList.add('on');
+      SEL[g] = v;
+    }
+    updateUI();
+  });
+});
+
+function updateUI() {
+  const labelMap = {
+    descriptor: 'Descriptor', leaf: 'Leaf', process: 'Process',
+    brew: 'Brew', temp: 'Temp', duration: 'Duration', serve: 'Serve'
+  };
+  const parts = Object.entries(SEL)
+    .filter(([, v]) => v)
+    .map(([k, v]) => labelMap[k] + ': ' + v);
+  const hasMin = SEL.descriptor || SEL.process || SEL.leaf;
+  const summary = document.getElementById('summary');
+  if (parts.length) {
+    document.getElementById('summary-text').textContent = parts.join(' · ');
+    summary.style.display = 'block';
+  } else {
+    summary.style.display = 'none';
+  }
+  document.getElementById('gen-btn').disabled = !hasMin;
+  document.getElementById('hint').style.display = hasMin ? 'none' : 'block';
+}
+
+// Generate
+document.getElementById('gen-btn').addEventListener('click', async function() {
+  const btn = this;
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+  document.getElementById('error-box').style.display = 'none';
+
+  const outEl = document.getElementById('output');
+  const bodyEl = document.getElementById('out-body');
+  outEl.style.display = 'block';
+  bodyEl.innerHTML = '<div class="loading">Reading the leaf chemistry…</div>';
+
+  const label = SEL.descriptor
+    ? (DESCRIPTOR_LABELS[SEL.descriptor] || SEL.descriptor)
+    : (SEL.process || SEL.leaf || 'Custom Selection');
+  document.getElementById('out-title').textContent = 'ε Pathway: ' + label;
+  outEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  const variety = document.getElementById('variety-input').value.trim();
+  const location = document.getElementById('location-input').value.trim();
+
+  const optionalContext = [
+    variety ? '- Coffee variety: ' + variety : null,
+    location ? '- Location / altitude: ' + location : null
+  ].filter(Boolean).join('\n');
+
+  const prompt = `You are the Citane Epsilon Board — a speculative flavour exploration tool for Coffee Leaf Tea (CLT) developed by KoffyKraft at Thumpassery Estate, Kerala, India. Arabica Chandragiri leaves grown under rubber shade at approximately 130m altitude.
+
+User selections:
+- Target flavour: ${SEL.descriptor || 'not specified'}
+- Leaf maturity: ${SEL.leaf || 'not specified'}
+- Processing method: ${SEL.process || 'not specified'}
+- Brew method: ${SEL.brew || 'not specified'}
+- Brew temperature: ${SEL.temp || 'not specified'}
+- Brew duration: ${SEL.duration || 'not specified'}
+- Serving temperature: ${SEL.serve || 'not specified'}
+${optionalContext ? optionalContext : ''}
+
+CLT Research Context (for grounding only — do not reproduce verbatim):
+- Sweet: β-ionone OAV 132–927, α-ionone OAV 30–100, amino acids L-proline/L-threonine. Oolong 12–24h wither optimal (Fibrianto 2025).
+- Green/Herbal: hexanal OAV 1–10, 4-heptenal OAV 1–9, mangiferin (young leaves). Steam 100°C arrests enzymes.
+- Refreshing: (E,Z)-2,6-nonadienal OAV 18–256. Young leaves + steam + serve chilled.
+- Floral: α-ionone, decanal OAV 14–301. Partial oxidation or yeast fermentation.
+- Fruity: octanal OAV 7–23, limonene (OCLT-exclusive), phenyl-methylene heptanoate. Rolling enhances.
+- Woody: diphenyl sulfone, guaiacol, tannins. Mature leaves, full oxidation 24h.
+- Bitter: caffeine, chlorogenic acids, tannins. Managed by lower brew temp and cold serving.
+- Mineral: amino acids, mineral salts. Engere decoction (Yohannis 2026).
+- Smoky: guaiacol, furfural, pyrazines. Kuti roast, Kawa Daun cassia smoke.
+- Optimal brew parameters: 78°C/8.5min oolong; 74–78°C/5–8min green; 95°C/5min decoction (Fibrianto 2024).
+- Koji (experimental Citane adaptation): Aspergillus oryzae enzymes theoretically convert leaf starches to sugars (sweetness) and release amino acids (savoury/umami). Not formally documented for CLT.
+- Four compounds present in ALL CLT samples: (E,E)-3,5-octadien-2-one, (E,Z)-2,6-nonadienal, α-ionone, β-ionone.
+
+Generate a short, accessible speculative pathway. Write for both a curious beginner and a serious practitioner — plain language, no jargon without explanation, concrete rather than vague. Mark everything as theoretical.
+
+Format exactly as follows (use these exact numbered headings, nothing else):
+
+1. HYPOTHESIS
+[2–3 sentences. What might happen and why. A proposition, not a conclusion.]
+
+2. WHAT MIGHT HAPPEN
+[4–6 bullet points starting with •. The probable sequence of events in the leaf chemistry. One clear idea per bullet.]
+
+3. WATCH OUT FOR
+[3–4 bullet points starting with •. The main risks, failure modes, or unknowns. Practical, not academic.]
+
+4. TRY IT
+[3–5 bullet points starting with •. Concrete steps someone could actually attempt at a small estate or home setup. Grounded in the selections made.]`;
+
+  try {
+    const res = await fetch('/.netlify/functions/epsilon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: [{ role: 'user', content: prompt }] })
+    });
+    const data = await res.json();
+    if (data.error) {
+      showError('API error: ' + (data.error.message || JSON.stringify(data.error)));
+    } else {
+      const text = data.content
+        ? data.content.filter(b => b.type === 'text').map(b => b.text).join('\n')
+        : '';
+      if (!text) {
+        showError('No response returned. Please try again.');
+      } else {
+        renderOutput(text);
+      }
+    }
+  } catch(e) {
+    showError('Connection error: ' + e.message);
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'ε Generate Theoretical Pathway';
+  updateUI();
+});
+
+function showError(msg) {
+  const el = document.getElementById('error-box');
+  el.textContent = msg;
+  el.style.display = 'block';
+  document.getElementById('output').style.display = 'none';
+}
+
+function cleanText(text) {
+  return text
+    .replace(/^---+$/gm, '')
+    .replace(/^#{1,4}\s*/gm, '')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/^[-–]\s*[•·]\s*/gm, '• ')
+    .replace(/^[-–]\s+/gm, '• ')
+    .replace(/\n{2,}/g, '<br><br>')
+    .replace(/\n/g, '<br>')
+    .trim();
+}
+
+function renderOutput(text) {
+  const headings = [
+    { key: 'HYPOTHESIS',       label: 'Hypothesis' },
+    { key: 'WHAT MIGHT HAPPEN', label: 'What Might Happen' },
+    { key: 'WATCH OUT FOR',    label: 'Watch Out For' },
+    { key: 'TRY IT',           label: 'Try It' }
+  ];
+
+  const sections = [];
+  headings.forEach(function(h, i) {
+    const re = new RegExp(
+      (i + 1) + '\\.\\s*' + h.key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ':?',
+      'i'
+    );
+    const nextRe = i < headings.length - 1
+      ? new RegExp(
+          (i + 2) + '\\.\\s*' + headings[i + 1].key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ':?',
+          'i'
+        )
+      : null;
+    const start = text.search(re);
+    if (start === -1) return;
+    const contentStart = text.indexOf('\n', start) + 1;
+    const end = nextRe ? text.search(nextRe) : text.length;
+    const content = text.slice(contentStart, end > 0 ? end : text.length).trim();
+    sections.push({ label: h.label, content: cleanText(content) });
+  });
+
+  if (!sections.length) {
+    sections.push({ label: 'Epsilon Pathway', content: cleanText(text) });
+  }
+
+  document.getElementById('out-body').innerHTML = sections.map(function(sec) {
+    return '<div class="sec"><div class="sec-title">' + sec.label +
+           '</div><div class="sec-content">' + sec.content + '</div></div>';
+  }).join('');
+
+  document.getElementById('pdf-btn').style.display = 'block';
+  document.getElementById('pdf-date').textContent =
+    new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  // Set print selections summary
+  const parts = Object.entries(SEL).filter(([, v]) => v).map(([k, v]) => k + ': ' + v);
+  const variety = document.getElementById('variety-input').value.trim();
+  const location = document.getElementById('location-input').value.trim();
+  if (variety) parts.push('variety: ' + variety);
+  if (location) parts.push('location: ' + location);
+  document.getElementById('pdf-selections').textContent = 'Selections — ' + parts.join(' · ');
+}
+
+function downloadPDF() {
+  document.getElementById('pdf-selections').style.display = 'block';
+  document.getElementById('print-header').style.display = 'flex';
+  window.print();
+  setTimeout(function() {
+    document.getElementById('pdf-selections').style.display = 'none';
+    document.getElementById('print-header').style.display = 'none';
+  }, 1200);
+}
+
+// GitHub Pages notice
+if (window.location.hostname.indexOf('github.io') !== -1) {
+  var n = document.getElementById('gh-notice');
+  if (n) n.style.display = 'block';
+}
+</script>
+</body>
+</html>

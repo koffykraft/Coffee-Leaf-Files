@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Begin With a Cup — The Buna Coffee Leaf Library</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --dark: #1a1a1a; --gray: #636e72; --light-gray: #b2bec3;
+            --cream: #f8f9fa; --accent: #5f4a42; --subtle: #d4c5c0;
+            --evidence: #5f4a42; --evidence-bg: #f3ece9;
+            --recipe: #6b7d5f; --recipe-bg: #eef2ec;
+            --caution: #a85d4a; --caution-bg: #f7e9e4;
+            --note: #636e72; --note-bg: #eef0f1;
+            --tradition: #8a6d3b; --tradition-bg: #f6efe2;
+            --primer-bg: #fdfbf9;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--cream); color: var(--dark); line-height: 1.6; font-size: 17px; }
+        header { background: white; border-bottom: 2px solid var(--subtle); padding: 40px 30px; text-align: center; }
+        header h1 { font-size: 2.2em; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 10px; color: var(--dark); }
+        header .subtitle { font-size: 1.1em; color: var(--gray); font-weight: 400; max-width: 700px; margin: 0 auto; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 50px 30px; }
+        section { margin-bottom: 60px; }
+        h2 { font-size: 1.6em; font-weight: 600; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--subtle); }
+        h2 em { font-style: italic; font-weight: 400; color: var(--gray); }
+        h3 { font-size: 1.2em; font-weight: 600; margin: 28px 0 12px; color: var(--dark); }
+        p { margin-bottom: 14px; }
+        a { color: var(--accent); }
+        strong { font-weight: 700; color: var(--dark); }
+        .simple-section { max-width: 640px; margin: 0 auto 36px; }
+        .simple-section h2 { font-size: 1.3em; color: var(--accent); margin-bottom: 10px; }
+        .simple-section p { font-size: 1.05em; line-height: 1.8; margin-bottom: 12px; }
+        .taste-words { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+        .taste-words span { background: white; border: 1px solid var(--subtle); border-radius: 20px; padding: 6px 16px; font-size: 0.92em; color: var(--accent); }
+        .door-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 0 0 50px; }
+        .door-card { background: white; border: 1px solid var(--subtle); border-radius: 8px; padding: 30px 32px; transition: box-shadow 0.2s, transform 0.2s; }
+        .door-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
+        .door-number { font-size: 0.72em; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 6px; }
+        .door-card h3 { font-size: 1.4em; margin-bottom: 4px; color: var(--dark); }
+        .door-subtitle { font-size: 0.92em; color: var(--accent); font-style: italic; margin-bottom: 14px; }
+        .door-card .door-question { font-size: 0.95em; color: var(--gray); margin-bottom: 16px; }
+        .door-card ul { list-style: none; margin: 0; padding: 0; }
+        .door-card ul li { padding: 7px 0; border-top: 1px solid var(--subtle); }
+        .door-card ul li:first-child { border-top: none; }
+        .door-card ul li a { color: var(--dark); text-decoration: none; font-weight: 500; font-size: 0.95em; }
+        .door-card ul li a:hover { color: var(--accent); }
+        .door-card ul li a::after { content: " →"; opacity: 0.4; }
+        @media (max-width: 700px) { .door-grid { grid-template-columns: 1fr; } }
+        .lounge-footer-note { text-align: center; max-width: 600px; margin: 0 auto; color: var(--light-gray); font-size: 0.92em; line-height: 1.8; }
+        footer { background: #1a1a1a; color: rgba(255,255,255,0.5); text-align: center; padding: 32px 24px; font-size: 0.85em; line-height: 1.8; margin-top: 60px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Begin With a Cup</h1>
+        <div class="subtitle">A gentle introduction to coffee leaf</div>
+    </header>
+
+    <div class="container" style="padding-top: 40px;">
+
+        <div class="simple-section">
+            <h2>What is coffee leaf?</h2>
+            <p>Coffee is not only a bean. The same plant also has leaves &mdash; and in several places where coffee grows, those leaves have been dried, boiled, smoked, or brewed and shared as their own beverage, separate from the bean entirely.</p>
+        </div>
+
+        <div class="simple-section">
+            <h2>Where has it been used?</h2>
+            <p>Coffee originates in the highlands of Ethiopia, where the plant still grows wild in forest understory. Leaf preparations such as Engere, Kuti, and Chemo are documented there. A similar tradition, Kawa Daun, exists in the highlands of West Sumatra, Indonesia.</p>
+            <p>These aren't the only places, and they aren't presented here as a list to memorise &mdash; just as a few starting points, each with its own page if you'd like to read further.</p>
+        </div>
+
+        <div class="simple-section">
+            <h2>What does it taste like?</h2>
+            <p>It depends on the leaf and how it's prepared &mdash; but some words that come up often:</p>
+            <div class="taste-words">
+                <span>green</span><span>herbal</span><span>sweetish</span>
+                <span>honey-like</span><span>floral</span><span>fruity</span>
+                <span>roasted</span><span>smoky</span><span>earthy</span>
+            </div>
+            <p>If you'd like to know more about why &mdash; which compounds, which processing choices &mdash; <a href="sensory-landscape-of-coffee-leaf.html">The Sensory Landscape of Coffee Leaf</a> goes into this in more detail.</p>
+        </div>
+
+        <div class="simple-section">
+            <h2>How is it different from coffee and tea?</h2>
+            <p>It isn't coffee without the beans, and it isn't tea from the tea plant (<em>Camellia sinensis</em>) either. It's a different part of the coffee plant, with its own character &mdash; sometimes closer to one, sometimes closer to the other, and sometimes its own thing entirely.</p>
+        </div>
+
+        <div class="simple-section">
+            <h2>Why are we studying it?</h2>
+            <p>Because traditional use exists and is documented, scientific interest in coffee leaf is growing, and &mdash; compared to the bean, which has been processed and studied for centuries &mdash; the leaf's processing possibilities remain comparatively unexplored. That combination seemed worth taking seriously.</p>
+        </div>
+
+        <div class="simple-section">
+            <h2>Where should I go next?</h2>
+            <p>Wherever you're curious about. A few directions:</p>
+        </div>
+
+        <div class="door-grid" style="grid-template-columns: 1fr 1fr 1fr; max-width: 900px; margin: 0 auto 50px;">
+            <div class="door-card">
+                <div class="door-subtitle">Cultural Explorer</div>
+                <ul>
+                    <li><a href="the-foliage-of-buna.html">The Foliage of Buna</a></li>
+                    <li><a href="engere.html">Engere</a></li>
+                    <li><a href="kuti.html">Kuti</a></li>
+                    <li><a href="chemo.html">Chemo</a></li>
+                    <li><a href="kawa-daun.html">Kawa Daun</a></li>
+                </ul>
+            </div>
+            <div class="door-card">
+                <div class="door-subtitle">Sensory Explorer</div>
+                <ul>
+                    <li><a href="sensory-landscape-of-coffee-leaf.html">The Sensory Landscape of Coffee Leaf</a></li>
+                    <li><a href="buna-sensory-school.html">The Sensory School</a></li>
+                    <li><a href="vocab/sensory-flavour.html">Flavour &amp; Sensory Vocabulary</a></li>
+                </ul>
+            </div>
+            <div class="door-card">
+                <div class="door-subtitle">Processor / Researcher</div>
+                <ul>
+                    <li><a href="citane-reactive-landscape.html">Paper I &mdash; The Reactive Landscape</a></li>
+                    <li><a href="citane-processing-manual.html">Paper II &mdash; From Leaf to Cup</a></li>
+                    <li><a href="citane-processing-protocols.html">Paper III &mdash; Experimental Pathways</a></li>
+                    <li><a href="vocab/index.html">Buna Vocabulary</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lounge-footer-note">
+            <p><a href="index.html" style="color: var(--accent);">← Back to Library Home</a> &nbsp;&middot;&nbsp; <a href="catalogue.html" style="color: var(--accent);">Full Catalogue →</a></p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p><strong>The Buna Coffee Leaf Library</strong></p>
+        <p>KoffyKraft / Thumpassery Estate &middot; Karavaloor &middot; Kollam &middot; Kerala &middot; India</p>
+    </footer>
+
+    <script src="buna-nav.js"></script>
+</body>
+</html>

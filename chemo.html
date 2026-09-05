@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemo · What's Fascinating</title>
+<style>
+:root {
+  --ink:    #1e1a14;
+  --ember:  #8b4a1a;
+  --ember-lt:#c4784a;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f7f0e4;
+  --ruled:  #e0d4c0;
+  --muted:  #7a6a54;
+  --dark:   #1a1410;
+  --sage:   #5a7a5a;
+  --sage-pale:#edf3ed;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:19px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ember); }
+.sep   { color:var(--ruled); }
+.page-t{ font-size:.8rem; color:var(--muted); }
+.back  { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--ember); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--ember); border-bottom-color:var(--ember); }
+.tab:hover { color:var(--ink); }
+
+/* OPENING */
+.opening-band { padding:56px 24px 48px; text-align:center; border-bottom:1px solid var(--ruled); }
+.opening-band .label { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.opening-band h1 { font-size:clamp(1.8rem,5vw,2.8rem); font-weight:normal; color:var(--ink); line-height:1.2; margin-bottom:14px; max-width:560px; margin-left:auto; margin-right:auto; }
+.opening-band p  { font-size:1.05rem; color:var(--muted); max-width:500px; margin:0 auto; line-height:1.8; }
+
+/* ROAST SCIENCE */
+.roast-science { background:var(--dark); color:#fff; padding:56px 24px; }
+.roast-inner { max-width:640px; margin:0 auto; }
+.roast-inner .label { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; opacity:.4; margin-bottom:20px; }
+.roast-inner h2 { font-size:clamp(1.5rem,4vw,2.2rem); font-weight:normal; line-height:1.25; margin-bottom:20px; }
+.roast-inner p { font-size:1rem; opacity:.8; line-height:1.85; margin-bottom:18px; }
+.roast-inner p:last-child { margin-bottom:0; }
+.roast-inner .aside { background:rgba(255,255,255,.07); border-radius:6px; padding:18px 20px; margin-top:20px; font-size:.92rem; opacity:.75; line-height:1.75; font-style:italic; }
+.roast-inner .aside strong { color:var(--ember-lt); font-style:normal; }
+
+/* DISCOVERIES */
+.discoveries { max-width:680px; margin:0 auto; padding:56px 24px; }
+.discoveries h2 { font-size:1rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:normal; margin-bottom:40px; }
+
+.discovery { margin-bottom:48px; padding-bottom:48px; border-bottom:1px solid var(--ruled); }
+.discovery:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.discovery-header { display:flex; align-items:flex-start; gap:20px; margin-bottom:18px; }
+.discovery-icon { width:48px; height:48px; flex-shrink:0; background:var(--pale); border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:4px; }
+.discovery h3 { font-size:1.3rem; font-weight:normal; color:var(--ink); line-height:1.3; }
+.discovery p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:16px; }
+.discovery p:last-child { margin-bottom:0; }
+.discovery .aside { background:var(--pale); border-radius:4px; padding:16px 20px; margin-top:14px; font-size:.92rem; color:var(--muted); line-height:1.75; font-style:italic; }
+.discovery .aside strong { color:var(--ember); font-style:normal; }
+
+/* SPICE SECTION */
+.spice-section { background:var(--pale); padding:56px 24px; border-top:1px solid var(--ruled); border-bottom:1px solid var(--ruled); }
+.spice-inner { max-width:680px; margin:0 auto; }
+.spice-inner h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:8px; }
+.spice-inner .sub { font-size:.95rem; color:var(--muted); margin-bottom:28px; font-style:italic; }
+.spice-inner p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:20px; }
+
+.spice-categories { display:grid; grid-template-columns:1fr; gap:12px; margin:24px 0; }
+.spice-cat { background:var(--cream); border-radius:6px; padding:0; overflow:hidden; }
+.spice-cat-header { display:flex; align-items:center; gap:14px; padding:18px 20px; cursor:pointer; }
+.spice-cat-header h3 { font-size:1.05rem; font-weight:normal; color:var(--ink); margin:0; }
+.spice-cat-icon { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.spice-cat-arrow { margin-left:auto; color:var(--ember); transition:transform .2s; font-size:1.2rem; }
+.spice-cat-header.open .spice-cat-arrow { transform:rotate(90deg); }
+.spice-cat-body { display:none; padding:0 20px 20px; border-top:1px solid var(--ruled); }
+.spice-cat-body.show { display:block; }
+.spice-item { padding:12px 0; border-bottom:1px solid var(--ruled); font-size:.95rem; line-height:1.65; }
+.spice-item:last-child { border-bottom:none; }
+.spice-item .s-name { font-weight:bold; color:var(--ember); }
+.spice-item .s-local { color:var(--muted); font-style:italic; font-size:.85rem; }
+.spice-item .s-amt  { color:var(--gold); font-size:.88rem; }
+
+/* GENDER + KNOWLEDGE */
+.knowledge-section { max-width:680px; margin:0 auto; padding:56px 24px; }
+.knowledge-section h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:18px; }
+.knowledge-section p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:18px; }
+.knowledge-section .pull { font-size:1.3rem; line-height:1.65; color:var(--ember); font-style:italic; border-left:3px solid var(--ember); padding-left:24px; margin:28px 0; }
+
+/* COFFEE ECONOMY */
+.economy-band { background:var(--dark); color:#fff; padding:48px 24px; }
+.economy-inner { max-width:640px; margin:0 auto; }
+.economy-inner h2 { font-size:1.4rem; font-weight:normal; margin-bottom:16px; line-height:1.3; }
+.economy-inner p  { font-size:1rem; opacity:.8; line-height:1.85; margin-bottom:18px; }
+.economy-inner p:last-child { margin-bottom:0; }
+.economy-inner .highlight { background:rgba(255,255,255,.07); border-radius:4px; padding:18px 20px; font-size:.95rem; opacity:.85; line-height:1.75; margin-top:20px; font-style:italic; }
+
+/* NEXT */
+.next-section { max-width:640px; margin:0 auto; padding:56px 24px 40px; text-align:center; }
+.next-section p { font-size:1.05rem; color:var(--muted); line-height:1.85; margin-bottom:28px; }
+.next-link  { display:inline-block; padding:18px 36px; background:var(--ember); color:#fff; text-decoration:none; font-size:1rem; border-radius:3px; }
+.next-link:hover { background:var(--ink); }
+.prev-link  { display:block; margin-top:14px; font-size:.88rem; color:var(--muted); text-decoration:none; }
+.prev-link:hover { color:var(--ember); }
+
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Chemo</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab" href="chemo-intro.html">What is this?</a>
+  <a class="tab active" href="chemo.html">What's fascinating</a>
+  <a class="tab" href="chemo-deep.html">Go deeper</a>
+</div>
+
+<div class="opening-band">
+  <div class="label">What makes Chemo worth knowing about</div>
+  <h1>Fire. Spice. Community. And a piece of the coffee plant that gets left behind everywhere else.</h1>
+  <p>A coffee leaf beverage that begins with roasting the leaves over an open fire — and has been doing so, quietly, in Southwestern Ethiopia, long before researchers came to document it.</p>
+</div>
+
+<!-- ROAST SCIENCE -->
+<div class="roast-science">
+  <div class="roast-inner">
+    <div class="label">The chemistry of the defining step</div>
+    <h2>Why roasting the leaf first changes everything</h2>
+    <p>When a coffee leaf is held over fire and roasted until golden-brown, a cascade of chemical reactions likely begins. The heat drives off moisture, concentrates volatile aromatic compounds, and is expected to initiate the Maillard reaction — the same reaction associated with the distinctive flavour of roasted coffee beans, bread crust, and caramelised onions.</p>
+    <p>New flavour compounds are expected to form that do not exist in the raw leaf. The chlorophyll breaks down. The proteins and sugars interact at high temperature, likely producing a deeper, sweeter, more complex flavour substrate than any fresh or dried leaf can produce.</p>
+    <p>When this roasted leaf is then crushed while still warm — releasing the newly formed aromatic compounds — and boiled with spices, the brew that results is genuinely different from any other coffee leaf beverage. Not better or worse. Different in a way that is chemically specific.</p>
+    <div class="aside"><strong>What the research records:</strong> 55.8% of Tepi Town households use this roasted method as their standard preparation. The families who use it describe it as producing "a sweeter and more balanced flavour" compared to unroasted methods — which is consistent with what the Maillard reaction is known to do in analogous food systems, though the specific compounds in roasted coffee leaves have not yet been formally measured.</div>
+  </div>
+</div>
+
+<!-- DISCOVERIES -->
+<div class="discoveries">
+  <h2>Four things worth knowing</h2>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="#8b4a1a" stroke-width="1.5"/>
+          <path d="M11 7v4l3 2.5" stroke="#8b4a1a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>The spice blend is not optional — it defines the drink</h3>
+    </div>
+    <p>In the Awoke et al. 2026 study of 64 Tepi Town households, not one household made Chemo without spices. Not one. The spice blend is not a flavour enhancement added to a base recipe — it is structurally inseparable from what Chemo is.</p>
+    <p>The core spices appear across virtually all households: basil, Koseret (a distinctive Ethiopian herb), lemongrass, ginger, and black pepper. Additional ingredients vary. But the principle — that Chemo requires a botanical blend alongside the leaf — does not.</p>
+    <div class="aside"><strong>Why this matters:</strong> If you make a plain coffee leaf brew without spices and call it Chemo, you have made something else. The community whose tradition this is would not recognise it as their drink.</div>
+  </div>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M11 2L4 6v5c0 5 3.5 9.5 7 11 3.5-1.5 7-6 7-11V6L11 2z" stroke="#8b4a1a" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>It is always served with food — and this is deliberate</h3>
+    </div>
+    <p>Chemo is never served alone. The research documents consistent pairing with starchy foods — injera, bread, root vegetables, boiled grains. This is not incidental. Community understanding is that Chemo and food together are a complete offering. One without the other is incomplete.</p>
+    <p>The practical logic is clear: the starch moderates the intensity of the brew and extends the drinking experience. The brew adds warmth and aromatic complexity to a starchy meal. But the combination is also social logic — sharing food and sharing drink together is the fuller expression of hospitality than either alone.</p>
+    <div class="aside"><strong>Practical implication:</strong> Anyone serving Chemo outside its original context — in a café, at a tasting, as a beverage product — is implicitly making a decision to separate the drink from this pairing. That is a legitimate adaptation, but it changes what is being offered.</div>
+  </div>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#8b4a1a" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="9" cy="7" r="4" stroke="#8b4a1a" stroke-width="1.5"/>
+          <path d="M21 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#8b4a1a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>The knowledge lives in women, passed down without being written</h3>
+    </div>
+    <p>In Tepi Town, Chemo is made primarily by women. The knowledge of how to make it — which spices, in what proportions, how long to roast, when the colour is right, how long to boil — is transmitted through observation and practice. A daughter learns by watching her mother. No recipe is written down. No standardised instruction exists.</p>
+    <p>This transmission pattern means the knowledge is robust in one sense — it has survived without institutional support — and fragile in another. If the practice stops being performed regularly, the experiential knowledge that maintains it begins to erode. Written documentation is a supplement to that knowledge, not a replacement for it.</p>
+    <div class="aside"><strong>The research notes:</strong> Younger generations and urban residents are among those with diminishing access to Chemo-making knowledge. The ethnobotanical record is partly a response to that concern — to document before the opportunity is lost.</div>
+  </div>
+
+  <div class="discovery">
+    <div class="discovery-header">
+      <div class="discovery-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="#8b4a1a" stroke-width="1.5"/>
+          <path d="M11 6v5l4 4" stroke="#8b4a1a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Three methods exist, and they trace different communities</h3>
+    </div>
+    <p>The three leaf preparation methods documented in Tepi Town are not simply variations in flavour preference — they reflect different communities and different relationships to the coffee plant.</p>
+    <p>The roasted method is the dominant Tepi Town practice. The fresh-leaf method is documented as the Majang people's preferred approach — a different ethnic community with a different relationship to the forest and the plants within it. The lightly heated method sits between the two, used by households who prefer less intensity than roasting produces but more warmth than the fresh method offers.</p>
+    <div class="aside"><strong>What this tells us:</strong> Even within a small study area, coffee leaf beverage preparation encodes community identity, not just individual taste. The method chosen is partly a statement of who you are and where your knowledge comes from.</div>
+  </div>
+
+</div>
+
+<!-- SPICE SECTION -->
+<div class="spice-section">
+  <div class="spice-inner">
+    <h2>The botanical dimension of Chemo</h2>
+    <p class="sub">Tap a category to explore the documented ingredients</p>
+    <p>The spice blend in Chemo represents household botanical knowledge accumulated over generations. Ten ingredients are documented across Tepi Town households. The research categorises them in three groups: aromatic leafy herbs, root and bark spices, and flavour modifiers. Each plays a distinct role.</p>
+
+    <div class="spice-categories">
+
+      <div class="spice-cat">
+        <div class="spice-cat-header" onclick="toggleSpiceCat(this)">
+          <div class="spice-cat-icon" style="background:#e8f5e8;">🌿</div>
+          <h3>Aromatic leafy herbs</h3>
+          <span class="spice-cat-arrow">›</span>
+        </div>
+        <div class="spice-cat-body">
+          <div class="spice-item">
+            <div class="s-name">Basil <span class="s-local">· Besobila · Ocimum basilicum</span></div>
+            <span class="s-amt">~24g per litre</span><br>
+            Sweet, herbal, garden-fresh. Used as fresh leaves. One of the most consistently present herbs across all households.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Koseret <span class="s-local">· Lippia adoensis</span></div>
+            <span class="s-amt">~19g per litre</span><br>
+            The signature herb of Ethiopian beverages. A distinctive herbal aroma unlike any common Western spice. Native to Ethiopia. If one ingredient makes Chemo unmistakably Ethiopian, this is it.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Lemongrass <span class="s-local">· Tejisar · Cymbopogon citratus</span></div>
+            <span class="s-amt">~22g per litre</span><br>
+            Bright citrus and floral aroma. Adds freshness that lifts the heavier roasted and spiced base notes.
+          </div>
+        </div>
+      </div>
+
+      <div class="spice-cat">
+        <div class="spice-cat-header" onclick="toggleSpiceCat(this)">
+          <div class="spice-cat-icon" style="background:#fdf5e8;">🫚</div>
+          <h3>Root, seed and bark spices</h3>
+          <span class="spice-cat-arrow">›</span>
+        </div>
+        <div class="spice-cat-body">
+          <div class="spice-item">
+            <div class="s-name">Ginger <span class="s-local">· Jingibil · Zingiber officinale</span></div>
+            <span class="s-amt">~18g per litre</span><br>
+            Warmth and heat. Fresh or dried. The spice most associated with recovery and digestion across Ethiopian traditional preparations.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Ethiopian cardamom <span class="s-local">· Korerima · Aframomum corrorima</span></div>
+            Earthier and more complex than green cardamom. Native to Ethiopia. Adds depth and a characteristic warmth distinct from any imported spice substitute.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Cinnamon bark <span class="s-local">· Qerfa · Cinnamomum verum</span></div>
+            Sweet-warm, slightly woody. Used as bark rather than ground powder. Adds a sustained background warmth to the brew.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Clove <span class="s-local">· Qerenfud · Syzygium aromaticum</span></div>
+            Intense and aromatic. Used in small quantities. One of the few spices in the blend that can dominate if overused.
+          </div>
+        </div>
+      </div>
+
+      <div class="spice-cat">
+        <div class="spice-cat-header" onclick="toggleSpiceCat(this)">
+          <div class="spice-cat-icon" style="background:#fdf0f0;">🌶</div>
+          <h3>Flavour modifiers</h3>
+          <span class="spice-cat-arrow">›</span>
+        </div>
+        <div class="spice-cat-body">
+          <div class="spice-item">
+            <div class="s-name">Black pepper <span class="s-local">· Kundo berbere · Piper nigrum</span></div>
+            Heat and bite. Present in most documented households. Adds sharpness that cuts through the richness of the leaf brew and dairy-adjacent mouthfeel of a well-made Chemo.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Bird's eye chilli <span class="s-local">· Mitmita · Capsicum frutescens</span></div>
+            A smaller quantity than the black pepper. The combination of the two produces layered heat — immediate sharpness from the pepper, sustained warmth from the chilli.
+          </div>
+          <div class="spice-item">
+            <div class="s-name">Salt <span class="s-local">· Chew</span></div>
+            <span class="s-amt">~8g per litre</span><br>
+            As in Engere, salt is documented in Chemo. Suppresses bitterness, amplifies aromatic compounds, rounds the overall flavour. Its presence is consistent with traditional leaf beverage preparations across multiple cultures.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- GENDER AND KNOWLEDGE -->
+<div class="knowledge-section">
+  <h2>Knowledge that lives in practice</h2>
+  <p>The research notes something that statistics cannot fully capture: in Tepi Town, the knowledge of how to make Chemo has never been written down. It exists in the hands of women who learned by watching their mothers, who learned by watching theirs.</p>
+  <div class="pull">A recipe on paper can tell you what to add. It cannot tell you what the leaves smell like when they have been roasted long enough, or what the colour looks like when the brew is ready to strain.</div>
+  <p>The study also notes that this knowledge is under pressure. Younger generations and urban residents have less regular exposure to Chemo preparation. Ingredient availability is changing — some traditional herbs are harder to find near towns than they were in the villages where Chemo originated.</p>
+  <p>Ethnobotanical documentation — the kind this study represents — is a form of conservation. Not of the practice itself, which can only be maintained through regular performance, but of the knowledge that makes the practice possible if someone decides to revive it.</p>
+</div>
+
+<!-- COFFEE ECONOMY -->
+<div class="economy-band">
+  <div class="economy-inner">
+    <h2>The leaf that doesn't compete with the bean</h2>
+    <p>One of the most practically significant aspects of Chemo — and of all coffee leaf traditions — is documented in a single sentence of the Awoke et al. research:</p>
+    <p style="font-size:1.05rem; font-style:italic; opacity:.85; border-left:3px solid var(--ember); padding-left:20px; margin:20px 0;">"The beverage reflects locally adapted strategies of resource use — by utilising renewable coffee leaves rather than beans, it does not compete with market-oriented coffee production."</p>
+    <p>The Tepi Town communities who make Chemo are also coffee producers. The beans they grow go to market. The leaves they use for Chemo stay local. The two are not in competition — they are two different relationships with the same plant, operating in two different economies simultaneously.</p>
+    <div class="highlight">This is precisely the kind of whole-plant thinking that Citane / KoffyKraft is exploring with the Arabica Chandragiri coffee plants at Thumpassery Estate. The Tepi Town model offers a documented precedent: coffee leaf use does not require reducing bean production. It uses what would otherwise be unused.</div>
+  </div>
+</div>
+
+<!-- NEXT -->
+<div class="next-section">
+  <p>If you want the full ethnobotanical record — the complete ingredient documentation, the evidence framework, what the research establishes and what it does not — the deep page has all of it.</p>
+  <a class="next-link" href="chemo-deep.html">Go deeper into Chemo →</a>
+  <a class="prev-link" href="chemo-intro.html">← Back to: What is this?</a>
+</div>
+
+<div class="page-source">
+  Source: Awoke et al. 2026 · Journal of Ethnobiology and Ethnomedicine · Vol. 22, Art. 25 · DOI 10.1186/s13002-026-00863-y
+</div>
+
+<script>
+function toggleSpiceCat(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('show');
+  body.classList.toggle('show', !isOpen);
+  header.classList.toggle('open', !isOpen);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kawa Daun · What Is This?</title>
+<style>
+:root {
+  --ink:    #1a1814;
+  --smoke:  #4a6a5a;
+  --smoke-lt:#6a9a7a;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f2f5f0;
+  --ruled:  #d8e0d4;
+  --muted:  #6a7860;
+  --dark:   #141a12;
+  --amber:  #8b6a2a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:19px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--smoke); }
+.sep { color:var(--ruled); }
+.page-t { font-size:.8rem; color:var(--muted); }
+.back { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--smoke); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--smoke); border-bottom-color:var(--smoke); }
+.tab:hover { color:var(--ink); }
+
+/* HERO */
+.hero { min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:60px 24px 40px; }
+.smoke-illustration { width:72px; height:72px; margin:0 auto 28px; }
+.hero-origin { font-size:.75rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.hero h1 { font-size:clamp(2.4rem,9vw,4.5rem); font-weight:normal; color:var(--ink); line-height:1; margin-bottom:18px; }
+.hero-line { width:40px; height:2px; background:var(--smoke); margin:0 auto 18px; }
+.hero-what { font-size:clamp(1.05rem,3vw,1.3rem); color:var(--muted); font-style:italic; max-width:440px; line-height:1.7; margin-bottom:40px; }
+.scroll-hint { font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ruled); display:flex; flex-direction:column; align-items:center; gap:8px; }
+.scroll-hint::after { content:'↓'; font-size:1.2rem; color:var(--smoke); opacity:.6; }
+
+/* OPENING */
+.opening { max-width:640px; margin:0 auto; padding:60px 24px; }
+.opening p { font-size:1.1rem; line-height:1.9; margin-bottom:26px; }
+.opening p.large { font-size:1.35rem; line-height:1.8; }
+.opening .pull { font-size:1.4rem; line-height:1.6; color:var(--smoke); font-style:italic; border-left:3px solid var(--smoke); padding-left:24px; margin:36px 0; }
+
+/* COLONIAL BAND */
+.colonial-band { background:var(--dark); color:#fff; padding:48px 24px; }
+.colonial-inner { max-width:580px; margin:0 auto; }
+.colonial-inner .label { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; opacity:.4; margin-bottom:16px; }
+.colonial-inner h2 { font-size:clamp(1.3rem,4vw,1.9rem); font-weight:normal; line-height:1.3; margin-bottom:16px; }
+.colonial-inner p { font-size:1rem; opacity:.75; line-height:1.8; margin-bottom:16px; }
+.colonial-inner p:last-child { margin-bottom:0; }
+
+/* THREE FACTS */
+.three-facts { background:var(--pale); padding:56px 24px; border-top:1px solid var(--ruled); border-bottom:1px solid var(--ruled); }
+.three-facts-inner { max-width:640px; margin:0 auto; }
+.three-facts h2 { font-size:1rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:40px; font-weight:normal; }
+.fact { display:flex; gap:22px; align-items:flex-start; margin-bottom:40px; padding-bottom:40px; border-bottom:1px solid var(--ruled); }
+.fact:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.fact-num { font-size:2.5rem; color:var(--smoke); font-weight:bold; line-height:1; flex-shrink:0; width:48px; text-align:center; padding-top:4px; }
+.fact-body h3 { font-size:1.2rem; font-weight:normal; color:var(--ink); margin-bottom:10px; line-height:1.3; }
+.fact-body p { font-size:1rem; color:var(--muted); line-height:1.8; margin:0; }
+
+/* METHODS PREVIEW */
+.methods-preview { max-width:640px; margin:0 auto; padding:56px 24px; }
+.methods-preview h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:8px; }
+.methods-preview .sub { font-size:.95rem; color:var(--muted); margin-bottom:32px; font-style:italic; }
+.method-strip { display:flex; border:1px solid var(--ruled); border-radius:6px; overflow:hidden; margin-bottom:12px; }
+.method-strip:last-child { margin-bottom:0; }
+.method-bar { background:var(--smoke); color:#fff; padding:20px 18px; display:flex; align-items:center; justify-content:center; min-width:90px; font-size:.85rem; font-weight:normal; text-align:center; flex-shrink:0; line-height:1.3; }
+.method-strip-body { padding:18px 20px; background:var(--pale); flex:1; }
+.method-strip-body h3 { font-size:1rem; font-weight:normal; color:var(--ink); margin-bottom:4px; }
+.method-strip-body p { font-size:.88rem; color:var(--muted); margin:0; line-height:1.6; }
+
+/* FORMULA */
+.formula { background:var(--smoke); color:#fff; padding:48px 24px; }
+.formula-inner { max-width:500px; margin:0 auto; text-align:center; }
+.formula h3 { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; opacity:.5; margin-bottom:28px; font-weight:normal; }
+.f-step { padding:16px 0; border-bottom:1px solid rgba(255,255,255,.15); display:flex; align-items:center; gap:16px; text-align:left; }
+.f-step:last-child { border-bottom:none; }
+.f-num { width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.2); color:#fff; display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:bold; flex-shrink:0; }
+.f-text { font-size:1rem; line-height:1.5; opacity:.92; }
+.f-note { font-size:.8rem; opacity:.5; display:block; margin-top:2px; }
+
+/* SERVING NOTE */
+.serving-note { max-width:640px; margin:0 auto; padding:56px 24px 40px; }
+.serving-note p { font-size:1.1rem; line-height:1.85; margin-bottom:20px; }
+.serving-note .pull { font-size:1.3rem; line-height:1.65; color:var(--smoke); font-style:italic; border-left:3px solid var(--smoke); padding-left:22px; margin:28px 0; }
+
+/* INVITATION */
+.invitation { max-width:640px; margin:0 auto; padding:20px 24px 56px; text-align:center; }
+.invitation p { font-size:1.05rem; color:var(--muted); line-height:1.85; margin-bottom:24px; }
+.next-link { display:inline-block; padding:18px 36px; background:var(--smoke); color:#fff; text-decoration:none; font-size:1rem; border-radius:3px; }
+.next-link:hover { background:var(--dark); }
+
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Kawa Daun</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab active" href="kawa-daun-intro.html">What is this?</a>
+  <a class="tab" href="kawa-daun.html">What's fascinating</a>
+  <a class="tab" href="kawa-daun-deep.html">Go deeper</a>
+</div>
+
+<div class="hero">
+  <!-- Smoke / leaf illustration -->
+  <svg class="smoke-illustration" viewBox="0 0 72 72" fill="none">
+    <!-- Leaf clamped between sticks -->
+    <rect x="8" y="30" width="56" height="4" rx="2" fill="#6a9a7a" opacity=".5"/>
+    <rect x="8" y="38" width="56" height="4" rx="2" fill="#6a9a7a" opacity=".5"/>
+    <!-- Leaf between sticks -->
+    <ellipse cx="36" cy="36" rx="20" ry="8" fill="#f2f5f0" stroke="#4a6a5a" stroke-width="1.5"/>
+    <line x1="36" y1="28" x2="36" y2="44" stroke="#4a6a5a" stroke-width="1" opacity=".5"/>
+    <!-- Smoke wisps rising -->
+    <path d="M20 28 Q18 20 22 14 Q20 22 26 18 Q22 26 24 22" stroke="#6a9a7a" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".6"/>
+    <path d="M36 26 Q34 18 38 10 Q36 20 42 16 Q38 24 40 20" stroke="#4a6a5a" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".5"/>
+    <path d="M52 28 Q50 22 54 16 Q52 24 58 20" stroke="#6a9a7a" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".4"/>
+    <!-- Fire underneath -->
+    <path d="M24 44 Q20 52 26 58 Q22 50 30 54 Q26 46 36 50 Q30 58 36 54" stroke="#b8892a" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".7"/>
+    <path d="M42 46 Q46 52 42 58 Q44 50 50 54" stroke="#8b6a2a" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".5"/>
+  </svg>
+
+  <div class="hero-origin">Minangkabau Highlands · West Sumatra · Indonesia · Robusta Coffee Leaf</div>
+  <h1>Kawa Daun</h1>
+  <div class="hero-line"></div>
+  <p class="hero-what">Coffee leaves smoked over wood fire, brewed long and dark, served in a coconut shell. A tradition that predates the Dutch, survived colonial prohibition, and is still made the same way today.</p>
+  <div class="scroll-hint">read on</div>
+</div>
+
+<!-- OPENING -->
+<div class="opening">
+  <p class="large">When the Dutch colonial administration ordered the Minangkabau people of West Sumatra to grow coffee and surrender the beans, they had already been using the leaves for generations.</p>
+  <p>The beans went to the Dutch warehouse — the pankhuis. The leaves stayed. They were smoked over fire, dried slowly, and brewed into a dark, aromatic drink that the highlanders had made before any colonial system arrived to claim the crop.</p>
+  <div class="pull">The bean could be taken. The knowledge of the leaf could not.</div>
+  <p>That is the essential story of Kawa Daun. Not a substitute invented under oppression, but a pre-existing tradition that survived it — and that continues today in the same three highland districts of West Sumatra where it was first documented.</p>
+</div>
+
+<!-- COLONIAL BAND -->
+<div class="colonial-band">
+  <div class="colonial-inner">
+    <div class="label">The historical context</div>
+    <h2>The cultuurstelsel — and why it didn't end Kawa Daun</h2>
+    <p>In the mid-19th century, the Dutch imposed the cultuurstelsel (forced cultivation system) on the Minangkabau highlands. Coffee was the Dutch's most important trading commodity. Farmers were required to grow it and deposit the beans at Dutch storehouses after harvest. Local people who wanted the beans had to buy them back.</p>
+    <p>The Minangkabau response was not passive. They had cultivated coffee before the Dutch arrived and had used the leaves to produce kahwa. When the beans were claimed, the leaf tradition continued. And when coffee bean prices rose, Minangkabau merchants went further — selling beans themselves to Singapore and Malacca, bypassing Dutch control entirely.</p>
+    <p>The leaf tradition did not emerge from the colonial period. It survived it.</p>
+  </div>
+</div>
+
+<!-- THREE FACTS -->
+<div class="three-facts">
+  <div class="three-facts-inner">
+    <h2>Three things to know right now</h2>
+    <div class="fact">
+      <div class="fact-num">1</div>
+      <div class="fact-body">
+        <h3>It is made from Robusta leaves — not Arabica</h3>
+        <p>Kawa Daun uses Coffea canephora (Robusta) leaves — locally called "the old coffee." These are large, wide, green leaves from the mature plant. This is distinct from all three Ethiopian traditions, which use Arabica. The choice of Robusta is part of what makes Kawa Daun a specifically Sumatran tradition.</p>
+      </div>
+    </div>
+    <div class="fact">
+      <div class="fact-num">2</div>
+      <div class="fact-body">
+        <h3>The leaves are smoked — preferably over cinnamon wood</h3>
+        <p>The defining processing step is smoke-drying — and the preferred wood is Indonesian cinnamon (Cinnamomum burmannii). The smoke from cinnamon wood imparts a specific aromatic character that becomes part of the drink's flavour. This is not incidental seasoning. The smoke is the process.</p>
+      </div>
+    </div>
+    <div class="fact">
+      <div class="fact-num">3</div>
+      <div class="fact-body">
+        <h3>It is served in a coconut shell — stored in bamboo</h3>
+        <p>The traditional vessel for Kawa Daun is a coconut shell cup with a bamboo base. The prepared dried leaves are stored in bamboo tubes called perian, covered with ijuk — the black fibres from the Arenga pinnata palm. These are not decorative choices. They are part of a material culture that belongs to the tradition.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THREE METHODS -->
+<div class="methods-preview">
+  <h2>Three documented processing methods</h2>
+  <p class="sub">The processing method is what creates Kawa Daun — the leaf without it is just a leaf. Three techniques are documented across the highland districts.</p>
+
+  <div class="method-strip">
+    <div class="method-bar">Smoking</div>
+    <div class="method-strip-body">
+      <h3>Pendiangan — traditional smoke drying</h3>
+      <p>Leaves clamped between bamboo sticks and smoked in batches of 4–15kg at high heat for 1–2 hours. The most widely used current method. Creates complex aromatic character from the smoke compounds.</p>
+    </div>
+  </div>
+  <div class="method-strip">
+    <div class="method-bar">Toasting</div>
+    <div class="method-strip-body">
+      <h3>Rotation over open flame</h3>
+      <p>Leaves rotated 30–40cm from the flame of a wood fire — preferably cinnamon tree wood — until dry. Produces a slightly darker leaf with more pronounced heat-derived character than smoke alone.</p>
+    </div>
+  </div>
+  <div class="method-strip">
+    <div class="method-bar" style="background:var(--amber);">Original</div>
+    <div class="method-strip-body">
+      <h3>Pendiangan — slow domestic drying</h3>
+      <p>The oldest documented method. Leaves pierced with bamboo skewers and dried over domestic kitchen fires for more than two weeks. Slow, low-heat, continuous exposure. Now used only by one of the four documented producers.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FORMULA -->
+<div class="formula">
+  <div class="formula-inner">
+    <h3>The structure of every cup</h3>
+    <div class="f-step">
+      <div class="f-num">1</div>
+      <div class="f-text">Harvest mature Robusta leaves<span class="f-note">Collected 8–11am from small private plantations. Both attached and fallen leaves used.</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">2</div>
+      <div class="f-text">Clamp between bamboo sticks<span class="f-note">Small branches intact · individual leaves pierced with bamboo skewers</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">3</div>
+      <div class="f-text">Smoke or toast over wood fire<span class="f-note">Cinnamon wood preferred · 1–2 hours at high heat for smoking · or 2+ weeks slow over kitchen fire</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">4</div>
+      <div class="f-text">Store in bamboo tube<span class="f-note">Perian — covered with ijuk (Arenga pinnata fibres)</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">5</div>
+      <div class="f-text">Brew by decoction and serve<span class="f-note">Boiled in water · strained · served in coconut shell cup</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVING NOTE -->
+<div class="serving-note">
+  <p>Kawa Daun is consumed before physical labour, in the morning, and at social occasions — weddings, circumcisions, community gatherings. The Minangkabau say: if they do not drink Kawa Daun before work, they lack strength and energy.</p>
+  <div class="pull">It is a drink of the highlands before the working day. Warming, dark, aromatic from the smoke of the fire it was dried over.</div>
+  <p>The knowledge of how to make it belongs to women. The oldest documented producer learned from her grandmother and has been making it continuously since 2001. The three other producers in the study learned from mothers and mothers-in-law. The tradition transmits through direct observation, not written instruction.</p>
+</div>
+
+<!-- INVITATION -->
+<div class="invitation">
+  <p>That is Kawa Daun in its essential form. For the colonial history in full, the material culture, what the research documents and what it doesn't, and why this tradition matters beyond its borders — the next page has it.</p>
+  <a class="next-link" href="kawa-daun.html">What's fascinating about Kawa Daun →</a>
+</div>
+
+<div class="page-source">
+  Source: Novita, R. et al. (2018). Kahwa Daun: Traditional Knowledge of a Coffee Leaf Herbal Tea from West Sumatera, Indonesia. Journal of Ethnic Foods, 5, 286–291. DOI 10.1016/j.jef.2018.11.005
+</div>
+
+</body>
+</html>

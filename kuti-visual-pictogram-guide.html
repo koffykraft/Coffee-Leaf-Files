@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuti: Visual Pictogram Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --pale-gold: #f4ead5;
+            --warm-gray: #d4cbc0;
+            --soft-brown: #9d8b7a;
+            --deep-brown: #6b5d4f;
+            --text-dark: #4a4541;
+            --text-light: #7a7268;
+            --highlight: #b89968;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background: var(--pale-gold);
+            color: var(--text-dark);
+            line-height: 1.7;
+            padding: 30px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 50px 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            font-size: 2.8em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--deep-brown);
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: var(--soft-brown);
+            font-style: italic;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        
+        .tagline {
+            font-size: 0.95em;
+            color: var(--text-light);
+            line-height: 1.7;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            color: var(--deep-brown);
+            font-size: 2em;
+            font-weight: 300;
+            margin: 60px 0 40px 0;
+            text-align: center;
+            letter-spacing: 1px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--warm-gray);
+        }
+        
+        .intro-box {
+            background: white;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 2px solid var(--soft-brown);
+            border-radius: 4px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .intro-box p {
+            color: var(--text-dark);
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* FALLEN LEAF SECTION */
+        .fallen-leaf-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+            align-items: start;
+        }
+        
+        .leaf-illustration {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .leaf-stage {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+        
+        .leaf-label {
+            font-size: 1.2em;
+            font-weight: 400;
+            color: var(--deep-brown);
+            margin-bottom: 10px;
+        }
+        
+        .leaf-description {
+            font-size: 0.95em;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .leaf-info {
+            background: rgba(212, 203, 192, 0.2);
+            padding: 25px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        
+        /* METHOD CARDS */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .method-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 3px solid var(--soft-brown);
+        }
+        
+        .method-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .method-name {
+            font-size: 1.3em;
+            font-weight: 400;
+            color: var(--deep-brown);
+            margin-bottom: 8px;
+        }
+        
+        .method-number {
+            font-size: 0.8em;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        
+        .method-time {
+            display: inline-block;
+            background: rgba(157, 139, 122, 0.1);
+            padding: 6px 12px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            color: var(--soft-brown);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .method-description {
+            font-size: 0.95em;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .method-steps {
+            background: rgba(244, 234, 213, 0.5);
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .step-item {
+            margin-bottom: 10px;
+        }
+        
+        .step-item strong {
+            color: var(--deep-brown);
+        }
+        
+        /* SPICE CARDS */
+        .spice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .spice-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 3px solid var(--highlight);
+        }
+        
+        .spice-icon {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+        
+        .spice-name {
+            font-size: 1.2em;
+            font-weight: 400;
+            color: var(--deep-brown);
+            margin-bottom: 4px;
+        }
+        
+        .spice-local {
+            font-size: 0.85em;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        
+        .spice-origin {
+            font-size: 0.9em;
+            color: var(--soft-brown);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .spice-description {
+            font-size: 0.95em;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        /* TIMELINE */
+        .timeline {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
+        }
+        
+        .timeline-event {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--warm-gray);
+            align-items: flex-start;
+        }
+        
+        .timeline-event:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .timeline-time {
+            font-weight: 500;
+            color: var(--deep-brown);
+            min-width: 80px;
+            font-size: 0.95em;
+            background: rgba(244, 234, 213, 0.6);
+            padding: 8px 12px;
+            border-radius: 3px;
+            text-align: center;
+        }
+        
+        .timeline-icon {
+            font-size: 1.8em;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .timeline-content strong {
+            display: block;
+            color: var(--deep-brown);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .timeline-content p {
+            font-size: 0.95em;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        /* SERVING SECTION */
+        .serving-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .serving-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .serving-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .serving-title {
+            font-size: 1.1em;
+            font-weight: 400;
+            color: var(--deep-brown);
+            margin-bottom: 10px;
+        }
+        
+        .serving-description {
+            font-size: 0.95em;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        /* SPECIAL HIGHLIGHT */
+        .highlight-box {
+            background: rgba(157, 139, 122, 0.1);
+            padding: 35px;
+            border-left: 2px solid var(--soft-brown);
+            border-radius: 4px;
+            margin: 50px 0;
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+        
+        .highlight-box strong {
+            color: var(--deep-brown);
+        }
+        
+        .closing {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            margin: 50px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .closing p {
+            font-size: 1.1em;
+            color: var(--text-dark);
+            line-height: 1.85;
+            margin-bottom: 15px;
+        }
+        
+        .closing p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .closing em {
+            color: var(--soft-brown);
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .section-title {
+                font-size: 1.6em;
+            }
+            
+            .fallen-leaf-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .methods-grid,
+            .spice-grid,
+            .serving-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.6em;
+            }
+            
+            .leaf-illustration,
+            .method-card,
+            .spice-card,
+            .serving-card {
+                padding: 20px;
+            }
+            
+            .timeline {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Kuti</h1>
+            <div class="subtitle">Visual Pictogram Guide</div>
+            <div class="tagline">A gentle guide to understanding fallen leaves, simple preparation, and the quiet care that Kuti represents.</div>
+        </header>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- THE FALLEN LEAF -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">Understanding the Fallen Leaf</h2>
+        
+        <div class="intro-box">
+            <p>Kuti begins with a simple truth: a coffee leaf has a life. It grows, it works in the sun, it matures, and when the tree is ready, it falls. This fallen leaf is not waste. It is completion. It is what Kuti is made from.</p>
+        </div>
+        
+        <div class="fallen-leaf-grid">
+            
+            <div class="leaf-illustration">
+                <div class="leaf-stage">🌱</div>
+                <div class="leaf-label">Young Leaf</div>
+                <div class="leaf-description">Bright green, full of energy. High in caffeine. Strong and intense. Not for Kuti.</div>
+            </div>
+            
+            <div class="leaf-illustration">
+                <div class="leaf-stage">🍂</div>
+                <div class="leaf-label">Fallen Leaf</div>
+                <div class="leaf-description">Yellowed, mature, complete. Low in caffeine. Gentle and mild. Perfect for Kuti. Safe for children.</div>
+            </div>
+            
+        </div>
+        
+        <div class="leaf-info">
+            <strong>Why Fallen Leaves Matter</strong><br>
+            When a leaf is young, it contains a lot of caffeine — the stimulant that makes coffee strong. As the leaf matures and ages on the tree, the tree slowly takes back what it gave. By the time the leaf falls naturally, most of its caffeine has returned to the tree. The fallen leaf is gentle, mild, and safe for anyone — even children under twelve. This is not accident. This is how nature designed it. Harar people recognized this gift centuries ago.
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- FOUR BREWING METHODS -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">Four Ways to Brew Kuti</h2>
+        
+        <div class="intro-box">
+            <p>All four methods start with the same simple ingredient: fallen leaves, dried in the sun. The difference is in how much you process them and how long you brew. Each method creates a different character, but all are gentle.</p>
+        </div>
+        
+        <div class="methods-grid">
+            
+            <!-- METHOD 1: PLAIN -->
+            <div class="method-card">
+                <div class="method-icon">☕</div>
+                <div class="method-number">Preparation 1</div>
+                <div class="method-name">Kouttee — Plain</div>
+                <div class="method-time">The Simplest</div>
+                <div class="method-description">Ground leaf powder added to hot water with salt only. This is the foundational preparation — pure, minimal, just leaf and water.</div>
+                <div class="method-steps">
+                    <div class="step-item"><strong>1</strong> Grind dried leaves to powder</div>
+                    <div class="step-item"><strong>2</strong> Add powder to hot water</div>
+                    <div class="step-item"><strong>3</strong> Add pinch of salt</div>
+                    <div class="step-item"><strong>4</strong> Serve warm</div>
+                </div>
+            </div>
+            
+            <!-- METHOD 2: BOILED TRADITIONAL -->
+            <div class="method-card">
+                <div class="method-icon">🔥</div>
+                <div class="method-number">Preparation 2</div>
+                <div class="method-name">Kuti — Boiled Traditional</div>
+                <div class="method-time">30+ minutes boiling</div>
+                <div class="method-description">Dried leaves boiled for a long time. The longer you boil, the gentler and less bitter the result. Salt before boiling, sugar at serve.</div>
+                <div class="method-steps">
+                    <div class="step-item"><strong>1</strong> Add dried leaves to cold water with salt</div>
+                    <div class="step-item"><strong>2</strong> Bring to boil, then simmer 30+ minutes</div>
+                    <div class="step-item"><strong>3</strong> Strain through cloth</div>
+                    <div class="step-item"><strong>4</strong> Add sugar to taste at serve</div>
+                </div>
+            </div>
+            
+            <!-- METHOD 3: PAN-ROASTED -->
+            <div class="method-card">
+                <div class="method-icon">🌞</div>
+                <div class="method-number">Preparation 3</div>
+                <div class="method-name">Kuti — Pan-Roasted</div>
+                <div class="method-time">Light roasting before brewing</div>
+                <div class="method-description">Dried leaves roasted flat on a pan until dark and tarry, then brewed. Creates deeper, richer flavor than plain preparations.</div>
+                <div class="method-steps">
+                    <div class="step-item"><strong>1</strong> Roast whole dried leaves on flat pan</div>
+                    <div class="step-item"><strong>2</strong> Toast until dark brown but not burnt</div>
+                    <div class="step-item"><strong>3</strong> Cool, crumble, and brew</div>
+                    <div class="step-item"><strong>4</strong> Add salt before boiling, sugar at serve</div>
+                </div>
+            </div>
+            
+            <!-- METHOD 4: KUTI SHAI -->
+            <div class="method-card">
+                <div class="method-icon">✨</div>
+                <div class="method-number">Preparation 4</div>
+                <div class="method-name">Kuti Shai — Spiced with Milk</div>
+                <div class="method-time">The Special Occasion</div>
+                <div class="method-description">Dry-fried leaves, boiled with three trade-route spices: cinnamon, cardamom, cloves. Served with hot milk. This honors history and memory.</div>
+                <div class="method-steps">
+                    <div class="step-item"><strong>1</strong> Dry-fry leaves 3 minutes until fragrant</div>
+                    <div class="step-item"><strong>2</strong> Add water and whole spices</div>
+                    <div class="step-item"><strong>3</strong> Simmer 20-30 minutes</div>
+                    <div class="step-item"><strong>4</strong> Strain and serve with warm milk</div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- THE THREE SPICES -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">The Three Trade Route Spices</h2>
+        
+        <div class="intro-box">
+            <p>These three spices only appear in Kuti Shai, the special occasion version. They are not everyday spices. They arrived in Harar centuries ago carried by merchants across the Indian Ocean. When you use them in Kuti, you are holding history in your cup.</p>
+        </div>
+        
+        <div class="spice-grid">
+            
+            <div class="spice-card">
+                <div class="spice-icon">🤎</div>
+                <div class="spice-name">Cinnamon</div>
+                <div class="spice-local">Qarfa · قرفة</div>
+                <div class="spice-origin">From Sri Lanka and the Malabar coast</div>
+                <div class="spice-description">Sweet, warm, aromatic. When merchants brought cinnamon to Harar, it became part of how the city tasted. A whole cinnamon stick in Kuti Shai is a memory of that trade.</div>
+            </div>
+            
+            <div class="spice-card">
+                <div class="spice-icon">💚</div>
+                <div class="spice-name">Cardamom</div>
+                <div class="spice-local">Heil · هيل</div>
+                <div class="spice-origin">From Kerala on the Malabar coast of India</div>
+                <div class="spice-description">Complex, a little floral, a little warm. Cardamom arrived in the same merchant ships as cinnamon. Green pods, lightly crushed, release their oils when brewed.</div>
+            </div>
+            
+            <div class="spice-card">
+                <div class="spice-icon">❤️</div>
+                <div class="spice-name">Cloves</div>
+                <div class="spice-local">Qurumful · قرنفل</div>
+                <div class="spice-origin">From the Maluku Islands across the Indian Ocean</div>
+                <div class="spice-description">Intensely aromatic, warm, precious. Wars were fought over the islands that grew cloves. That someone in Harar could add them to Kuti meant something about their place in the world.</div>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- BREWING TIMELINE -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">The Brewing Timeline — Plain Kuti</h2>
+        
+        <div class="intro-box">
+            <p>Here is how to make the simplest version of Kuti. This is the one children drink, that nursing mothers drink, that the elderly drink. It takes patience, but not much time.</p>
+        </div>
+        
+        <div class="timeline">
+            
+            <div class="timeline-event">
+                <div class="timeline-time">Step 1</div>
+                <div class="timeline-icon">🌍</div>
+                <div class="timeline-content">
+                    <strong>Gather fallen leaves</strong>
+                    <p>Walk beneath the coffee trees. Collect yellow leaves that rest on the ground. Choose whole, undamaged ones. Leave behind any that look sick or eaten.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">Step 2</div>
+                <div class="timeline-icon">☀️</div>
+                <div class="timeline-content">
+                    <strong>Sun dry for several days</strong>
+                    <p>Spread leaves on a clean mat in single layer. Turn once a day. When they become crispy and break easily, they are ready. Store in cool, dry place.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">Step 3</div>
+                <div class="timeline-icon">🔨</div>
+                <div class="timeline-content">
+                    <strong>Grind to powder</strong>
+                    <p>Use mortar and pestle to grind dried leaves into powder. A little coarse is fine. You want the leaves to break down so their flavor comes out.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">Step 4</div>
+                <div class="timeline-icon">💧</div>
+                <div class="timeline-content">
+                    <strong>Pour water into pot</strong>
+                    <p>One liter (four cups) of clean water. You can use cold water and bring it to boil, or start with hot water.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">Step 5</div>
+                <div class="timeline-icon">🧂</div>
+                <div class="timeline-content">
+                    <strong>Add salt</strong>
+                    <p>A small pinch of salt to the water before heating. Salt balances the flavor. Start with less — you can always add more.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">Step 6</div>
+                <div class="timeline-icon">🔥</div>
+                <div class="timeline-content">
+                    <strong>Bring to boil</strong>
+                    <p>Heat the salted water until it reaches a rolling boil. Add about one handful (20g) of ground leaf powder.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">Step 7</div>
+                <div class="timeline-icon">⏱️</div>
+                <div class="timeline-content">
+                    <strong>Simmer slowly</strong>
+                    <p>The longer you boil, the gentler and sweeter it becomes. Simmer for at least 30 minutes. Some people simmer for much longer — even an hour. This is not a rush.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">Step 8</div>
+                <div class="timeline-icon">🧹</div>
+                <div class="timeline-content">
+                    <strong>Strain through cloth</strong>
+                    <p>Pour through fine cloth or sieve into cups. Leave the spent leaf powder behind. It gave everything it had.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">Step 9</div>
+                <div class="timeline-icon">☕</div>
+                <div class="timeline-content">
+                    <strong>Serve warm</strong>
+                    <p>Pour into cups and serve warm. Not necessarily hot. Throughout the day is fine. This is all.</p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- WHO DRINKS KUTI -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">Who Drinks Kuti</h2>
+        
+        <div class="intro-box">
+            <p>Kuti is made for people who need gentleness. This is not just preference. This is care.</p>
+        </div>
+        
+        <div class="serving-cards">
+            
+            <div class="serving-card">
+                <div class="serving-icon">👧</div>
+                <div class="serving-title">Children Under Twelve</div>
+                <div class="serving-description">Kuti is so gentle it is almost like flavored water. Only about 10mg of caffeine per cup — far less than any tea. Safe and kind for growing bodies.</div>
+            </div>
+            
+            <div class="serving-card">
+                <div class="serving-icon">👩‍🍼</div>
+                <div class="serving-title">Nursing Mothers</div>
+                <div class="serving-description">A warm drink during long nights of nursing. The gentle caffeine causes no harm to babies. The warmth and comfort matter as much as what is in it.</div>
+            </div>
+            
+            <div class="serving-card">
+                <div class="serving-icon">👵</div>
+                <div class="serving-title">The Elderly</div>
+                <div class="serving-description">A morning ritual. Something warm to hold in their hands. A reason to sit quietly. Kuti warms them without strain. Comfort is part of the medicine.</div>
+            </div>
+            
+            <div class="serving-card">
+                <div class="serving-icon">💚</div>
+                <div class="serving-title">People Who Are Healing</div>
+                <div class="serving-description">When someone is ill or recovering, Kuti is a comfort. It does not strain the body. It provides warmth and the ritual of being cared for. This matters.</div>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- HIGHLIGHT: THE QUIET MESSAGE -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="highlight-box">
+            <strong>Why Kuti Is Different</strong><br>
+            Kuti says something by what it does not have. No aggressive roasting. No many spices to overwhelm. No pushing to be strong or impressive. Instead, it says: "I see that you need gentleness. I gathered what the tree naturally gave. I dried it slowly in the sun. I made it simple. This is for you, and you are safe here."
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- CLOSING -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="closing">
+            <p>Kuti is not complicated. It is not meant to impress anyone. It is meant to be held in your hands on a cool morning, or shared quietly with someone you love.</p>
+            <p>Make it slowly. Boil it long. Remember what the fallen leaf means: <em>completion, gentleness, and care.</em></p>
+        </div>
+        
+    </div>
+</body>
+</html>

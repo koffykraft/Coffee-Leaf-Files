@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemo · What Is This?</title>
+<style>
+:root {
+  --ink:    #1e1a14;
+  --ember:  #8b4a1a;
+  --ember-lt:#c4784a;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f7f0e4;
+  --ruled:  #e0d4c0;
+  --muted:  #7a6a54;
+  --dark:   #1a1410;
+  --sage:   #5a7a5a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 19px;
+  line-height: 1.85;
+}
+nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(253,250,244,.96); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--ruled);
+  padding:12px 24px; display:flex; align-items:center; gap:10px;
+}
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ember); }
+.sep   { color:var(--ruled); }
+.page-t{ font-size:.8rem; color:var(--muted); }
+.back  { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--ember); }
+
+.tabs {
+  background:var(--pale); border-bottom:1px solid var(--ruled);
+  display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px;
+}
+.tab {
+  padding:14px 20px; font-size:.88rem; color:var(--muted);
+  text-decoration:none; white-space:nowrap; flex-shrink:0;
+  border-bottom:2px solid transparent;
+}
+.tab.active { color:var(--ember); border-bottom-color:var(--ember); }
+.tab:hover  { color:var(--ink); }
+
+/* HERO */
+.hero {
+  min-height:72vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; padding:60px 24px 40px;
+}
+.fire-illustration {
+  width:72px; height:72px; margin:0 auto 28px;
+}
+.hero-origin {
+  font-size:.75rem; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:14px;
+}
+.hero h1 {
+  font-size:clamp(3.2rem,11vw,5.5rem);
+  font-weight:normal; color:var(--ink);
+  line-height:1; margin-bottom:18px; letter-spacing:-.01em;
+}
+.hero-line { width:40px; height:2px; background:var(--ember); margin:0 auto 18px; }
+.hero-what {
+  font-size:clamp(1.05rem,3vw,1.3rem);
+  color:var(--muted); font-style:italic;
+  max-width:420px; line-height:1.7; margin-bottom:40px;
+}
+.scroll-hint {
+  font-size:.75rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ruled); display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.scroll-hint::after { content:'↓'; font-size:1.2rem; color:var(--ember); opacity:.6; }
+
+/* OPENING */
+.opening { max-width:640px; margin:0 auto; padding:60px 24px; }
+.opening p { font-size:1.1rem; line-height:1.9; margin-bottom:26px; color:var(--ink); }
+.opening p.large { font-size:1.35rem; line-height:1.8; }
+.opening .pull {
+  font-size:1.45rem; line-height:1.6; color:var(--ember);
+  font-style:italic; border-left:3px solid var(--ember);
+  padding-left:24px; margin:36px 0;
+}
+
+/* THE ROAST BAND */
+.roast-band {
+  background:var(--dark); color:#fff;
+  padding:48px 24px; text-align:center;
+  border-top:3px solid var(--ember);
+}
+.roast-band-inner { max-width:540px; margin:0 auto; }
+.roast-band .label {
+  font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+  opacity:.4; margin-bottom:16px;
+}
+.roast-band h2 {
+  font-size:clamp(1.4rem,4vw,2rem); font-weight:normal;
+  line-height:1.3; margin-bottom:16px; opacity:.9;
+}
+.roast-band p { font-size:1rem; opacity:.65; line-height:1.75; margin:0; }
+
+/* THREE FACTS */
+.three-facts {
+  background:var(--pale); padding:56px 24px;
+  border-top:1px solid var(--ruled); border-bottom:1px solid var(--ruled);
+}
+.three-facts-inner { max-width:640px; margin:0 auto; }
+.three-facts h2 {
+  font-size:1rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:40px; font-weight:normal;
+}
+.fact { display:flex; gap:22px; align-items:flex-start; margin-bottom:40px; padding-bottom:40px; border-bottom:1px solid var(--ruled); }
+.fact:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.fact-num { font-size:2.5rem; color:var(--ember); font-weight:bold; line-height:1; flex-shrink:0; width:48px; text-align:center; padding-top:4px; }
+.fact-body h3 { font-size:1.2rem; font-weight:normal; color:var(--ink); margin-bottom:10px; line-height:1.3; }
+.fact-body p  { font-size:1rem; color:var(--muted); line-height:1.8; margin:0; }
+
+/* METHODS PREVIEW */
+.methods-preview { max-width:640px; margin:0 auto; padding:56px 24px; }
+.methods-preview h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:8px; }
+.methods-preview .sub { font-size:.95rem; color:var(--muted); margin-bottom:32px; font-style:italic; }
+
+.method-strip { display:flex; gap:0; border:1px solid var(--ruled); border-radius:6px; overflow:hidden; margin-bottom:12px; }
+.method-strip:last-child { margin-bottom:0; }
+.method-pct-bar { background:var(--ember); color:#fff; padding:20px 18px; display:flex; align-items:center; justify-content:center; min-width:70px; font-size:1rem; font-weight:bold; text-align:center; flex-shrink:0; }
+.method-strip-body { padding:18px 20px; background:var(--pale); flex:1; }
+.method-strip-body h3 { font-size:1rem; font-weight:normal; color:var(--ink); margin-bottom:4px; }
+.method-strip-body p  { font-size:.88rem; color:var(--muted); margin:0; line-height:1.6; }
+
+/* FORMULA */
+.formula { background:var(--dark); color:#fff; padding:48px 24px; text-align:center; }
+.formula-inner { max-width:500px; margin:0 auto; }
+.formula h3 { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; opacity:.4; margin-bottom:28px; font-weight:normal; }
+.f-step { padding:16px 0; border-bottom:1px solid rgba(255,255,255,.1); display:flex; align-items:center; gap:16px; text-align:left; }
+.f-step:last-child { border-bottom:none; }
+.f-num { width:32px; height:32px; border-radius:50%; background:var(--ember); color:#fff; display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:bold; flex-shrink:0; }
+.f-text { font-size:1rem; line-height:1.5; opacity:.9; }
+.f-note { font-size:.8rem; opacity:.45; display:block; margin-top:2px; }
+
+/* SOCIAL NOTE */
+.social-note { max-width:640px; margin:0 auto; padding:56px 24px 40px; }
+.social-note p { font-size:1.1rem; line-height:1.85; margin-bottom:20px; }
+.social-note .pull { font-size:1.3rem; line-height:1.65; color:var(--ember); font-style:italic; border-left:3px solid var(--ember); padding-left:24px; margin:28px 0; }
+
+/* INVITATION */
+.invitation { max-width:640px; margin:0 auto; padding:20px 24px 56px; text-align:center; }
+.invitation p { font-size:1.05rem; color:var(--muted); line-height:1.85; margin-bottom:24px; }
+.next-link { display:inline-block; padding:18px 36px; background:var(--ember); color:#fff; text-decoration:none; font-size:1rem; border-radius:3px; }
+.next-link:hover { background:var(--ink); }
+
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Chemo</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab active" href="chemo-intro.html">What is this?</a>
+  <a class="tab" href="chemo.html">What's fascinating</a>
+  <a class="tab" href="chemo-deep.html">Go deeper</a>
+</div>
+
+<div class="hero">
+  <!-- Fire / roast illustration -->
+  <svg class="fire-illustration" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Pot -->
+    <ellipse cx="36" cy="58" rx="22" ry="5" fill="#e0d4c0" opacity=".6"/>
+    <path d="M14 42 Q14 62 36 62 Q58 62 58 42 L54 30 H18 Z" fill="#f7f0e4" stroke="#1e1a14" stroke-width="1.5"/>
+    <!-- Liquid surface -->
+    <ellipse cx="36" cy="30" rx="18" ry="4" fill="#c4784a" opacity=".3"/>
+    <!-- Flames -->
+    <path d="M24 30 Q20 22 26 16 Q22 24 30 20 Q26 28 34 22 Q30 30 36 26 Q32 34 36 30" stroke="#b8892a" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".8"/>
+    <path d="M40 30 Q36 20 42 14 Q38 22 46 18 Q42 26 48 22 Q44 30 48 28" stroke="#8b4a1a" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".7"/>
+    <!-- Steam -->
+    <path d="M30 62 Q28 68 30 72" stroke="#b8892a" stroke-width="1" stroke-linecap="round" opacity=".3"/>
+    <path d="M36 63 Q34 70 36 74" stroke="#b8892a" stroke-width="1" stroke-linecap="round" opacity=".3"/>
+  </svg>
+
+  <div class="hero-origin">Tepi Town · Sheka Zone · Southwestern Ethiopia · Coffee Leaf Tradition</div>
+  <h1>Chemo</h1>
+  <div class="hero-line"></div>
+  <p class="hero-what">A roasted coffee leaf brew. Made with spices. Shared with food. The drink that defines hospitality in the coffee-growing highlands of Southwestern Ethiopia.</p>
+  <div class="scroll-hint">read on</div>
+</div>
+
+<!-- OPENING -->
+<div class="opening">
+  <p class="large">Before the beans are sorted for export, before the cherries are picked, before any of the processes that make coffee a global commodity — the leaves are already there.</p>
+  <p>In Tepi Town, Southwestern Ethiopia, those leaves don't go to waste. They get roasted over a fire, crushed while still warm, boiled with a generous blend of herbs and spices, and strained into cups that are served alongside food to whoever is present.</p>
+  <div class="pull">Not a quick drink. Not a solitary one. Chemo is the drink you make when someone comes to your home.</div>
+  <p>Every single household in the study used spices. Not most — all. The spices are not optional additions to a plain leaf brew. They are what Chemo is. Without them, you have something else.</p>
+</div>
+
+<!-- ROAST BAND -->
+<div class="roast-band">
+  <div class="roast-band-inner">
+    <div class="label">The defining step</div>
+    <h2>Most preparations begin with roasting the leaves over fire</h2>
+    <p>This is what separates Chemo from every other coffee leaf tradition. The Maillard reaction — the same chemistry that makes toast, roasted coffee, and caramelised sugar — transforms the leaf before it ever touches water. It creates new flavour compounds that cannot come from steaming, boiling, or simply drying. 55.8% of Tepi Town households use this method as standard.</p>
+  </div>
+</div>
+
+<!-- THREE FACTS -->
+<div class="three-facts">
+  <div class="three-facts-inner">
+    <h2>Three things to know right now</h2>
+    <div class="fact">
+      <div class="fact-num">1</div>
+      <div class="fact-body">
+        <h3>It is always made with spices — no exceptions</h3>
+        <p>All 64 households in the documented study used aromatic herbs and spices every time they made Chemo. This is not regional variation or personal preference. The spice blend is structurally part of the drink. A plain leaf brew is Chemo without its character.</p>
+      </div>
+    </div>
+    <div class="fact">
+      <div class="fact-num">2</div>
+      <div class="fact-body">
+        <h3>It is always served with food</h3>
+        <p>Chemo is never served alone. The research documents consistent pairing with starchy foods — injera, bread, root vegetables. This is not incidental. The food moderates the intensity of the brew. The two are understood as a unit.</p>
+      </div>
+    </div>
+    <div class="fact">
+      <div class="fact-num">3</div>
+      <div class="fact-body">
+        <h3>It is a social drink, not a private one</h3>
+        <p>Chemo is shared at communal activities, religious ceremonies, and daily social interactions. The act of making and sharing Chemo is itself a form of hospitality. You make it when someone is present. The preparation is part of the welcome.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THREE METHODS -->
+<div class="methods-preview">
+  <h2>Three ways to prepare the leaves</h2>
+  <p class="sub">The leaf preparation method is chosen before brewing begins. Each produces a different flavour character.</p>
+
+  <div class="method-strip">
+    <div class="method-pct-bar">55.8%</div>
+    <div class="method-strip-body">
+      <h3>Roasted leaves</h3>
+      <p>Leaves roasted over fire until golden-brown, crushed warm. Sweetest, deepest, most complex character. The dominant household method.</p>
+    </div>
+  </div>
+  <div class="method-strip">
+    <div class="method-pct-bar" style="background:var(--gold);">Less common</div>
+    <div class="method-strip-body">
+      <h3>Lightly heated leaves</h3>
+      <p>Gentle heat only — leaves warm but not browned. More delicate flavour. Lighter aroma. Between roasted and fresh in character.</p>
+    </div>
+  </div>
+  <div class="method-strip">
+    <div class="method-pct-bar" style="background:var(--sage);">Majang</div>
+    <div class="method-strip-body">
+      <h3>Fresh leaves</h3>
+      <p>No heat applied to leaves. Crushed and brewed directly. Brightest, most grassy character. Quickest to prepare. The Majang people's preferred method.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FORMULA -->
+<div class="formula">
+  <div class="formula-inner">
+    <h3>The structure of every cup</h3>
+    <div class="f-step">
+      <div class="f-num">1</div>
+      <div class="f-text">Prepare the leaves<span class="f-note">Roast, heat gently, or use fresh — one method chosen first</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">2</div>
+      <div class="f-text">Crush the prepared leaves<span class="f-note">While warm — breaks cell walls, releases aroma</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">3</div>
+      <div class="f-text">Boil with water and spices<span class="f-note">All spices go in — none are optional</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">4</div>
+      <div class="f-text">Strain completely<span class="f-note">All leaf and spice material removed</span></div>
+    </div>
+    <div class="f-step">
+      <div class="f-num">5</div>
+      <div class="f-text">Serve hot alongside food<span class="f-note">Never alone — always with something to eat</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL NOTE -->
+<div class="social-note">
+  <p>Unlike Engere — which is made for a specific person in a specific condition — Chemo is made for the group. It marks the social moment. Someone arrives. A gathering begins. A ceremony needs to be hosted.</p>
+  <div class="pull">The preparation of Chemo is itself an act of hospitality. The time it takes is part of the gift.</div>
+  <p>In Tepi Town, the knowledge of how to make Chemo belongs primarily to women. It is transmitted through observation and practice, not formal instruction. A daughter learns by watching her mother. The knowledge lives in hands and habits, not in written recipes.</p>
+</div>
+
+<!-- INVITATION -->
+<div class="invitation">
+  <p>That is Chemo in its essential form. If you want to understand what makes it genuinely surprising — the roasting chemistry, the spice complexity, its relationship to the coffee economy — the next page has that.</p>
+  <a class="next-link" href="chemo.html">What's fascinating about Chemo →</a>
+</div>
+
+<div class="page-source">
+  Source: Awoke et al. 2026 · Journal of Ethnobiology and Ethnomedicine · Vol. 22, Art. 25 · DOI 10.1186/s13002-026-00863-y
+</div>
+
+</body>
+</html>

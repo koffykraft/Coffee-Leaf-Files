@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kawa Daun · Recipes & Mechanics</title>
+<style>
+:root {
+  --ink:    #1a1814;
+  --smoke:  #4a6a5a;
+  --smoke-lt:#6a9a7a;
+  --gold:   #b8892a;
+  --cream:  #fdfaf4;
+  --pale:   #f2f5f0;
+  --ruled:  #d8e0d4;
+  --muted:  #6a7860;
+  --dark:   #141a12;
+  --amber:  #8b6a2a;
+  --sage-pale:#edf3ed;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:Georgia,serif; background:var(--cream); color:var(--ink); font-size:18px; line-height:1.85; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(253,250,244,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--ruled); padding:12px 24px; display:flex; align-items:center; gap:10px; }
+.brand { font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; color:var(--smoke); }
+.sep { color:var(--ruled); }
+.page-t { font-size:.8rem; color:var(--muted); }
+.back { margin-left:auto; font-size:.8rem; color:var(--muted); text-decoration:none; }
+.back:hover { color:var(--smoke); }
+
+.tabs { background:var(--pale); border-bottom:1px solid var(--ruled); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:0 24px; }
+.tab { padding:14px 20px; font-size:.88rem; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0; border-bottom:2px solid transparent; }
+.tab.active { color:var(--smoke); border-bottom-color:var(--smoke); }
+.tab:hover { color:var(--ink); }
+
+/* HERO — warm not dark */
+.hero { background:var(--smoke); color:#fff; padding:40px 24px 36px; text-align:center; }
+.hero .tradition { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; opacity:.7; margin-bottom:10px; }
+.hero h1 { font-size:clamp(1.8rem,5vw,2.6rem); font-weight:normal; margin-bottom:8px; }
+.hero .subtitle { font-size:1rem; opacity:.8; font-style:italic; max-width:440px; margin:0 auto; line-height:1.7; }
+
+/* SCALER */
+.scaler-wrap { background:var(--amber); color:#fff; padding:20px 24px; text-align:center; }
+.scaler-wrap p { font-size:.85rem; opacity:.8; margin-bottom:12px; }
+.scaler-controls { display:flex; align-items:center; justify-content:center; gap:16px; }
+.scaler-btn { width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.2); border:none; color:#fff; font-size:1.4rem; cursor:pointer; font-family:Georgia,serif; }
+.scaler-btn:hover { background:rgba(255,255,255,.35); }
+.scaler-count { font-size:1.5rem; font-weight:bold; min-width:40px; text-align:center; }
+.scaler-label { font-size:.82rem; opacity:.75; }
+
+/* BEFORE START */
+.before-start { max-width:680px; margin:28px auto 0; padding:0 24px; }
+.before-inner { background:var(--pale); border:1px solid var(--ruled); border-radius:6px; padding:20px 24px; }
+.before-inner h3 { font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--smoke); margin-bottom:14px; }
+.before-rule { display:flex; align-items:flex-start; gap:14px; padding:10px 0; border-bottom:1px solid var(--ruled); font-size:.95rem; line-height:1.7; }
+.before-rule:last-child { border-bottom:none; }
+.before-rule .dot { width:8px; height:8px; border-radius:50%; background:var(--smoke); flex-shrink:0; margin-top:8px; }
+
+main { max-width:680px; margin:0 auto; padding:40px 24px 60px; }
+
+.s-label { font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--smoke); display:block; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--ruled); }
+h2 { font-size:1.4rem; font-weight:normal; color:var(--ink); margin-bottom:18px; }
+h3 { font-size:1.05rem; font-weight:normal; color:var(--ink); margin-bottom:10px; margin-top:28px; }
+p { font-size:1rem; line-height:1.85; color:var(--ink); margin-bottom:16px; }
+hr.divider { border:none; border-top:1px solid var(--ruled); margin:44px 0; }
+
+/* METHOD SELECTOR */
+.method-selector { display:flex; gap:8px; margin-bottom:28px; flex-wrap:wrap; }
+.ms-btn { padding:10px 14px; border:1.5px solid var(--ruled); border-radius:4px; background:var(--cream); color:var(--muted); font-family:Georgia,serif; font-size:.88rem; cursor:pointer; transition:all .15s; flex:1; min-width:100px; text-align:center; }
+.ms-btn.active { background:var(--smoke); color:#fff; border-color:var(--smoke); }
+
+.recipe-panel { display:none; }
+.recipe-panel.show { display:block; }
+
+.recipe-header { background:var(--pale); border-radius:6px 6px 0 0; padding:20px 24px; border-bottom:2px solid var(--smoke); }
+.recipe-name-row { display:flex; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap; }
+.recipe-name { font-size:1.25rem; color:var(--ink); font-weight:normal; }
+.recipe-badge { font-size:.75rem; background:var(--smoke); color:#fff; padding:2px 10px; border-radius:3px; }
+.recipe-desc { font-size:.95rem; color:var(--muted); line-height:1.65; font-style:italic; }
+
+.ing-table { width:100%; border-collapse:collapse; margin:20px 0; font-size:.92rem; }
+.ing-table th { background:var(--ink); color:#fff; padding:10px 14px; text-align:left; font-weight:normal; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+.ing-table td { padding:12px 14px; border-bottom:1px solid var(--ruled); vertical-align:top; line-height:1.55; }
+.ing-table tr:nth-child(even) td { background:var(--pale); }
+.ing-table .amount { font-weight:bold; color:var(--smoke); }
+.ing-table .note-cell { font-size:.82rem; color:var(--muted); font-style:italic; }
+
+.steps-list { list-style:none; margin:20px 0; }
+.steps-list li { display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--ruled); font-size:1rem; line-height:1.8; }
+.steps-list li:last-child { border-bottom:none; }
+.step-num { min-width:36px; height:36px; border-radius:50%; background:var(--smoke); color:#fff; display:flex; align-items:center; justify-content:center; font-size:.9rem; font-weight:bold; flex-shrink:0; margin-top:2px; }
+.step-content h4 { font-size:1rem; font-weight:bold; color:var(--ink); margin-bottom:4px; }
+.step-content p { font-size:.95rem; margin:0; color:var(--ink); line-height:1.75; }
+.step-note { background:var(--pale); border-radius:4px; padding:8px 12px; margin-top:8px; font-size:.85rem; color:var(--muted); font-style:italic; line-height:1.6; }
+
+/* yield — pale not dark */
+.yield-box { background:var(--pale); border:1px solid var(--ruled); border-top:3px solid var(--smoke); border-radius:0 0 6px 6px; padding:16px 24px; display:flex; gap:24px; flex-wrap:wrap; }
+.yield-item { text-align:center; }
+.yield-num { font-size:1.4rem; font-weight:bold; color:var(--smoke); display:block; }
+.yield-label { font-size:.75rem; color:var(--muted); }
+
+.note-box { background:var(--sage-pale); border-left:3px solid var(--smoke-lt); border-radius:0 4px 4px 0; padding:16px 20px; margin:18px 0; font-size:.92rem; line-height:1.75; }
+.note-box .note-title { font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:var(--smoke); margin-bottom:6px; }
+.warn-box { background:#fef9f0; border-left:3px solid #c8902a; border-radius:0 4px 4px 0; padding:16px 20px; margin:18px 0; font-size:.92rem; line-height:1.75; }
+.warn-box strong { color:#8b6020; }
+
+.quality-list { list-style:none; margin:16px 0; }
+.quality-list li { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--ruled); font-size:.95rem; line-height:1.65; }
+.quality-list li:last-child { border-bottom:none; }
+.q-mark { font-size:1rem; flex-shrink:0; margin-top:2px; }
+
+.serving-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:20px 0; }
+.serving-card { background:var(--pale); border-radius:6px; padding:16px; text-align:center; }
+.sv-num { font-size:1.4rem; color:var(--smoke); font-weight:bold; display:block; margin-bottom:4px; }
+.sv-label { font-size:.82rem; color:var(--muted); line-height:1.4; }
+
+.page-nav { max-width:680px; margin:0 auto; padding:24px 24px 48px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--ruled); }
+.page-nav a { color:var(--smoke); text-decoration:none; font-size:.95rem; }
+.page-nav a:hover { color:var(--ink); }
+.page-source { border-top:1px solid var(--ruled); padding:20px 24px; text-align:center; font-size:.78rem; color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Buna Library</span>
+  <span class="sep">/</span>
+  <span class="page-t">Kawa Daun · Recipes</span>
+  <a class="back" href="visitor-lounge.html">← Library</a>
+</nav>
+
+<div class="tabs">
+  <a class="tab" href="kawa-daun-intro.html">What is this?</a>
+  <a class="tab" href="kawa-daun.html">What's fascinating</a>
+  <a class="tab" href="kawa-daun-deep.html">Go deeper</a>
+  <a class="tab active" href="#">Recipes & Mechanics</a>
+</div>
+
+<div class="hero">
+  <div class="tradition">Minangkabau Highlands · West Sumatra · Indonesia</div>
+  <h1>Kawa Daun — Recipes & Mechanics</h1>
+  <p class="subtitle">Processing the leaf comes before brewing. The three documented techniques, their character differences, and how to brew and serve.</p>
+</div>
+
+<div class="scaler-wrap">
+  <p>All quantities adjust to your serving size</p>
+  <div class="scaler-controls">
+    <button class="scaler-btn" onclick="changeServings(-1)">−</button>
+    <div>
+      <div class="scaler-count" id="serving-count">4</div>
+      <div class="scaler-label">servings (~250ml each)</div>
+    </div>
+    <button class="scaler-btn" onclick="changeServings(1)">+</button>
+  </div>
+</div>
+
+<div class="before-start">
+  <div class="before-inner">
+    <h3>Before brewing — the leaf must be processed first</h3>
+    <div class="before-rule"><div class="dot"></div>Kawa Daun cannot be brewed from fresh leaves. The leaves must be smoke-dried or heat-dried first. This processing step is what creates the characteristic aromatic and flavour profile.</div>
+    <div class="before-rule"><div class="dot"></div>Robusta (Coffea canephora) leaves are the traditional material — large, wide, and green. Arabica leaves can be used as a practical substitute but will produce a different character.</div>
+    <div class="before-rule"><div class="dot"></div>Mature leaves from pruning are preferred — not young flush growth. Both attached and detached leaves can be used.</div>
+    <div class="before-rule"><div class="dot"></div>The processed dried leaves are stored in bamboo tubes (perian) with palm fibre lids (ijuk). Sealed airtight containers work as a modern substitute.</div>
+    <div class="before-rule"><div class="dot"></div>Once processed, the dried Kawa Daun has a moisture content of 3.6–7.6%. It keeps well in sealed storage for months.</div>
+  </div>
+</div>
+
+<main>
+
+<!-- PROCESSING SECTION -->
+<span class="s-label">Step One — Process the leaves</span>
+<h2>Three documented processing techniques</h2>
+
+<p style="margin-bottom:8px;font-size:.88rem;color:var(--muted);font-style:italic;">These techniques are documented from producers in Tanah Datar and Lima Puluh Kota districts, West Sumatra. The processed Kawa Daun can be purchased ready-made from producers in these districts if you are not making it yourself.</p>
+
+<div class="method-selector">
+  <button class="ms-btn active" onclick="showRecipe('smoked', this)">Smoked</button>
+  <button class="ms-btn" onclick="showRecipe('toasted', this)">Flame-toasted</button>
+  <button class="ms-btn" onclick="showRecipe('slow', this)">Slow kitchen fire</button>
+</div>
+
+<!-- SMOKED -->
+<div class="recipe-panel show" id="recipe-smoked">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Smoked Kawa Daun</span>
+      <span class="recipe-badge">Most widely practiced</span>
+    </div>
+    <p class="recipe-desc">Leaves clamped between bamboo sticks and smoked at high heat for 1–2 hours. Produces complex aromatic character from the smoke compounds. The dominant commercial production method in the highland districts.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Material</th><th>Amount</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Mature Robusta coffee leaves</td><td class="amount">4–15 kg per batch</td><td class="note-cell">Both attached (small branches) and detached leaves can be used. No washing or sorting required.</td></tr>
+      <tr><td>Wood for smoking</td><td class="amount">sufficient for 1–2 hours sustained smoke</td><td class="note-cell">Cinnamon tree wood (Cinnamomum burmannii) preferred. Other hardwoods can be used.</td></tr>
+      <tr><td>Bamboo sticks for clamping</td><td class="amount">pairs of 180cm flat sticks</td><td class="note-cell">Or sugar palm leaf spines. Leaves clamped between the two sticks. Individual leaves can be pierced with bamboo skewers instead.</td></tr>
+    </tbody>
+  </table>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Prepare leaves</h4>
+        <p>Collect mature Robusta leaves from small private plantations in the morning (8–11am documented as optimal time). No washing or sorting required. Small branches with several leaves can be processed intact. Individual detached leaves are pierced through their centres with bamboo skewers.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Clamp between bamboo sticks</h4>
+        <p>Place leaves between two 180cm flat bamboo sticks. The sticks hold the leaves in position and allow the smoke to reach them evenly. Small branches are clamped intact. Individual leaves on skewers are suspended between the sticks.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Smoke at high heat for 1–2 hours</h4>
+        <p>Smoke in batches of 4–15kg at high heat for 1–2 hours. The leaves absorb the aromatic compounds from the smoke. The moisture content at the end of this process should be 3.6–7.6%.</p>
+        <div class="step-note">Cinnamon wood is documented as the preferred smoking material. It contributes specific aromatic compounds that become part of the Kawa Daun character. Other hardwoods produce different aromatic profiles.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Package and store</h4>
+        <p>Transfer processed dry leaves to bamboo perian tubes covered with ijuk (Arenga pinnata palm fibre). Modern airtight containers are an acceptable substitute. Store in a cool, dry place.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num">10–20%</span><span class="yield-label">yield by weight from fresh leaf</span></div>
+    <div class="yield-item"><span class="yield-num">3.6–7.6%</span><span class="yield-label">moisture content of processed leaf</span></div>
+    <div class="yield-item"><span class="yield-num">1–2 hrs</span><span class="yield-label">processing time</span></div>
+  </div>
+</div>
+
+<!-- FLAME TOASTED -->
+<div class="recipe-panel" id="recipe-toasted">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Flame-Toasted Kawa Daun</span>
+      <span class="recipe-badge">Cinnamon wood preferred</span>
+    </div>
+    <p class="recipe-desc">Leaves rotated 30–40cm from the flame of a wood fire until dry. Produces a slightly darker leaf with more pronounced heat-derived character. Higher heat than smoking but lower than direct roasting. Cinnamon tree wood gives both the drying heat and aromatic smoke.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Material</th><th>Amount</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Mature Robusta coffee leaves</td><td class="amount">as required</td><td class="note-cell">Same leaf selection as smoked method.</td></tr>
+      <tr><td>Wood fire — cinnamon tree preferred</td><td class="amount">sustained open flame</td><td class="note-cell">Cinnamomum burmannii specifically documented. The cinnamon smoke contributes aromatic compounds to the leaf while the heat dries it.</td></tr>
+      <tr><td>Bamboo sticks or skewers for handling</td><td class="amount">as required</td><td class="note-cell">Same clamping frame as smoked method.</td></tr>
+    </tbody>
+  </table>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Prepare leaves and clamping frame</h4>
+        <p>Same as smoked method. Clamp branches between bamboo sticks or pierce individual leaves with skewers.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Rotate over open flame at 30–40cm distance</h4>
+        <p>Hold the clamped leaves 30–40cm from the flame of a wood fire. Rotate continuously so all surfaces receive heat and smoke exposure evenly. Continue until leaves are dry.</p>
+        <div class="step-note">The distance of 30–40cm from the flame is what distinguishes this from direct roasting. Close enough for heat and smoke to penetrate, far enough to avoid burning. Monitor continuously.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Test dryness and store</h4>
+        <p>Leaves are done when they are dry and slightly darker in colour, with a pronounced heat-derived and smoke aromatic. Store in perian or sealed container as per smoked method.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num">10–20%</span><span class="yield-label">yield by weight</span></div>
+    <div class="yield-item"><span class="yield-num">Darker</span><span class="yield-label">leaf colour than smoked method</span></div>
+    <div class="yield-item"><span class="yield-num">Higher PAH</span><span class="yield-label">than smoked · lower than roasted beans</span></div>
+  </div>
+</div>
+
+<!-- SLOW KITCHEN FIRE -->
+<div class="recipe-panel" id="recipe-slow">
+  <div class="recipe-header">
+    <div class="recipe-name-row">
+      <span class="recipe-name">Slow Kitchen Fire — Original Method</span>
+      <span class="recipe-badge">Traditional · 2+ weeks</span>
+    </div>
+    <p class="recipe-desc">The original documented technique. Leaves pierced with bamboo skewers and dried over domestic kitchen fires for more than two weeks. Low sustained heat. Produces the lowest PAH of the three methods. Now used by only one of the four documented producers as it is not scalable for commercial production.</p>
+  </div>
+
+  <table class="ing-table">
+    <thead><tr><th>Material</th><th>Amount</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Mature Robusta coffee leaves</td><td class="amount">household quantity</td><td class="note-cell">This is a domestic method — not suited to commercial scale.</td></tr>
+      <tr><td>Bamboo skewers</td><td class="amount">one per leaf or cluster</td><td class="note-cell">Leaves are pierced through their centres with bamboo skewers to suspend them.</td></tr>
+      <tr><td>Domestic kitchen fire</td><td class="amount">regular cooking fire</td><td class="note-cell">The leaves dry over the heat of ordinary cooking. No special fire required — the kitchen fire that is already burning is the heat source.</td></tr>
+    </tbody>
+  </table>
+
+  <ol class="steps-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Pierce leaves with bamboo skewers</h4>
+        <p>Pierce each leaf or small cluster through the centre with a bamboo skewer. The skewer allows the leaf to be suspended above the cooking fire without contact.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Suspend over kitchen fire</h4>
+        <p>Suspend the skewered leaves above the domestic cooking fire — at a height that captures the warmth and some of the smoke without direct flame contact. The cooking fire continues its normal use; the leaves dry gradually from the heat above it.</p>
+        <div class="step-note">This is the most patient of the three methods. The leaves absorb cooking smoke over time — whatever wood or fuel is used in the domestic fire contributes to the aromatic profile. Each household's fire is different, making each batch unique.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Dry for more than two weeks</h4>
+        <p>The leaves remain suspended over the kitchen fire for more than two weeks, dried gradually by the low sustained heat of everyday cooking. They are ready when fully dry, flexible but not brittle.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Store in perian</h4>
+        <p>Transfer to bamboo storage tube (perian) or sealed container. Keeps well for months.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="yield-box">
+    <div class="yield-item"><span class="yield-num">2+ weeks</span><span class="yield-label">processing time</span></div>
+    <div class="yield-item"><span class="yield-num">Lowest PAH</span><span class="yield-label">of all three methods</span></div>
+    <div class="yield-item"><span class="yield-num">Variable</span><span class="yield-label">character — depends on domestic fire fuel</span></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- BREWING -->
+<span class="s-label">Step Two — Brew</span>
+<h2>How to brew Kawa Daun</h2>
+
+<p>Once the leaves are processed and dried, the brewing method is consistent across all three processing variants. Kawa Daun is brewed by decoction — extended boiling in water.</p>
+
+<div style="margin-bottom:16px;font-size:.88rem;color:var(--muted);font-style:italic;">Approximate quantities — traditional Kawa Daun is prepared to household taste and no standardised measurements are documented in the research.</div>
+
+<table class="ing-table">
+  <thead><tr><th>Ingredient</th><th>Amount (base 4 servings)</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Processed dried Kawa Daun leaves</td><td class="amount scaled" data-base="20">20g</td><td class="note-cell">Smoked, toasted, or slow-dried. Crumble roughly if whole leaves.</td></tr>
+    <tr><td>Water</td><td class="amount scaled" data-base="1000">1000ml</td><td class="note-cell">Clean water. Start with cold water.</td></tr>
+  </tbody>
+</table>
+
+<ol class="steps-list">
+  <li>
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h4>Add leaves to cold water</h4>
+      <p>Add <span class="scaled" data-base="20">20</span>g of processed dried Kawa Daun leaves to <span class="scaled" data-base="1000">1000</span>ml of cold water in a pot. Starting in cold water allows gradual extraction.</p>
+    </div>
+  </li>
+  <li>
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h4>Bring to boil, then simmer</h4>
+      <p>Bring to a full boil over medium heat, then reduce to a steady simmer. Cover to retain heat and aromatics.</p>
+      <div class="step-note">The smoked leaf releases its aromatic compounds slowly. A steady simmer — not a rolling boil — maintains the volatile aromatics in the brew rather than driving them off as steam.</div>
+    </div>
+  </li>
+  <li>
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h4>Simmer 15–30 minutes</h4>
+      <p>Decoction brewing. The longer the simmer, the darker and more concentrated the brew. Traditional Kawa Daun is dark and full-bodied. Start with 15 minutes and adjust based on your preferred strength.</p>
+    </div>
+  </li>
+  <li>
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <h4>Strain and serve</h4>
+      <p>Strain through fine cloth or mesh into a coconut shell cup or standard cup. Serve immediately while hot. Add sugar to taste if desired.</p>
+    </div>
+  </li>
+</ol>
+
+<div class="yield-box">
+  <div class="yield-item"><span class="yield-num scaled" data-base="900">900</span><span class="yield-label">ml yield</span></div>
+  <div class="yield-item"><span class="yield-num scaled" data-base="4">4</span><span class="yield-label">servings</span></div>
+  <div class="yield-item"><span class="yield-num">15–30 min</span><span class="yield-label">brew time</span></div>
+</div>
+
+<hr class="divider">
+
+<!-- QUALITY -->
+<span class="s-label">Quality checks</span>
+<h2>What good Kawa Daun looks and tastes like</h2>
+
+<ul class="quality-list">
+  <li><div class="q-mark">✓</div><div><strong>Colour:</strong> Dark amber to deep brown. Darker than most teas. The colour reflects both the extended decoction and the smoke compounds absorbed during processing.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Aroma:</strong> Smoky, earthy, with the aromatic warmth of cinnamon wood smoke if that wood was used. Compared to coffee but without the roasted bean sharpness — more rounded, more herbal.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Taste:</strong> Earthy, mellow, distinctly smoky without being harsh. Slightly bitter, smoothing out over the brew time. Not acidic. The traditional description is warming and restorative.</div></li>
+  <li><div class="q-mark">✓</div><div><strong>Body:</strong> Full. Heavier than green tea, lighter than black coffee. The extended decoction contributes body.</div></li>
+  <li><div class="q-mark">✗</div><div><strong>Thin, pale, weak:</strong> Under-brewed. Add more leaf or extend the simmer time.</div></li>
+  <li><div class="q-mark">✗</div><div><strong>Acrid or burnt note:</strong> Leaves were processed too close to the flame, or brewing was too vigorous. Use a gentler simmer.</div></li>
+</ul>
+
+<hr class="divider">
+
+<!-- SERVING -->
+<span class="s-label">Serving</span>
+<h2>How Kawa Daun is traditionally consumed</h2>
+
+<div class="serving-grid">
+  <div class="serving-card"><span class="sv-num">Hot</span><span class="sv-label">Always served hot. The warmth is central to the experience.</span></div>
+  <div class="serving-card"><span class="sv-num">Morning</span><span class="sv-label">Before physical labour. A drink of the working day.</span></div>
+  <div class="serving-card"><span class="sv-num">Coconut shell</span><span class="sv-label">Traditional vessel. Bamboo base. Contributes to the tactile character.</span></div>
+  <div class="serving-card"><span class="sv-num">Social</span><span class="sv-label">At weddings, circumcisions, and community gatherings. Not only a private drink.</span></div>
+</div>
+
+<div class="warn-box">
+  <strong>On health claims:</strong> Kawa Daun is locally regarded as a healthy drink. The research states that its efficacy and potential as a health drink "still requires further research." No specific health benefits should be claimed from the Novita et al. study, which documents production methods, not health outcomes.
+</div>
+
+</main>
+
+<div class="page-nav">
+  <a href="kawa-daun-deep.html">← Go Deeper</a>
+  <a href="visitor-lounge.html">Library →</a>
+</div>
+
+<div class="page-source">
+  Source: Novita et al. 2018 · Journal of Ethnic Foods · Vol. 5, pp. 286–291 · DOI 10.1016/j.jef.2018.11.005
+</div>
+
+<script>
+let servings = 4;
+const BASE = 4;
+function changeServings(delta) {
+  servings = Math.max(1, Math.min(20, servings + delta));
+  document.getElementById('serving-count').textContent = servings;
+  const ratio = servings / BASE;
+  document.querySelectorAll('.scaled').forEach(el => {
+    const base = parseFloat(el.dataset.base);
+    if (isNaN(base)) return;
+    const val = base * ratio;
+    el.textContent = Number.isInteger(val) ? val : Math.round(val * 10) / 10;
+  });
+}
+function showRecipe(id, btn) {
+  document.querySelectorAll('.recipe-panel').forEach(p => p.classList.remove('show'));
+  document.querySelectorAll('.ms-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('recipe-' + id).classList.add('show');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>

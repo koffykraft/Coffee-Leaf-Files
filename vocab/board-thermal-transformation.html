@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citane Buna — Thermal Transformation Board</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #fdfaf4;
+    color: #2a2a2a;
+    line-height: 1.5;
+}
+.page { max-width: 1100px; margin: 0 auto; padding: 40px 28px 60px; }
+
+.board-header {
+    text-align: center;
+    border-bottom: 1px solid #c8b89a;
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+}
+.brand-line { font-size: 9pt; letter-spacing: 0.22em; text-transform: uppercase; color: #8a7a5a; margin-bottom: 8px; font-family: 'Segoe UI', Arial, sans-serif; }
+.board-title { font-size: 28pt; font-weight: 400; letter-spacing: 0.06em; color: #1e2e1e; margin-bottom: 6px; }
+.board-subtitle { font-size: 9pt; letter-spacing: 0.18em; text-transform: uppercase; color: #8a7a5a; margin-bottom: 10px; font-family: 'Segoe UI', Arial, sans-serif; }
+.board-note { font-size: 9.5pt; color: #666; font-style: italic; max-width: 620px; margin: 0 auto; font-family: 'Segoe UI', Arial, sans-serif; }
+
+/* Principle band */
+.principle-band {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+.principle-box {
+    border: 1px solid #e0d8c8;
+    background: #f7f2e8;
+    padding: 16px 18px;
+}
+.principle-box h3 {
+    font-size: 9pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8a7a5a;
+    margin-bottom: 8px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.principle-box p {
+    font-size: 9.5pt;
+    color: #555;
+    line-height: 1.65;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.principle-box strong { color: #1e2e1e; }
+
+/* The counterintuitive principle — highlighted */
+.key-principle {
+    border: 1px solid #b8a88a;
+    background: #f0ece0;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: center;
+}
+.key-glyph { font-size: 28pt; }
+.key-text h3 {
+    font-size: 10pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6a4a2a;
+    margin-bottom: 6px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.key-text p {
+    font-size: 9.5pt;
+    color: #555;
+    line-height: 1.65;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Wet heat stages */
+.stage-section {
+    margin-bottom: 28px;
+    border: 1px solid #e0d8c8;
+}
+.stage-header {
+    background: #f7f2e8;
+    border-bottom: 1px solid #e0d8c8;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.stage-header h2 {
+    font-size: 11pt;
+    font-weight: 400;
+    color: #1e2e1e;
+}
+.stage-header span {
+    font-size: 8pt;
+    color: #999;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-style: italic;
+}
+.stage-grid {
+    display: grid;
+    padding: 16px;
+    gap: 10px;
+}
+.stages-5 { grid-template-columns: repeat(5, 1fr); }
+.stages-4 { grid-template-columns: repeat(4, 1fr); }
+.stages-6 { grid-template-columns: repeat(6, 1fr); }
+
+.stage-card {
+    border: 1px solid #e0d8c8;
+    background: #fff;
+    padding: 14px 10px 12px;
+    text-align: center;
+}
+.stage-number {
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b8a88a;
+    margin-bottom: 4px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.stage-glyph {
+    font-size: 20pt;
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1;
+}
+.stage-name {
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: #1e2e1e;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.stage-sub {
+    font-size: 7.5pt;
+    color: #888;
+    font-style: italic;
+    display: block;
+    margin-bottom: 6px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.stage-desc {
+    font-size: 7.5pt;
+    color: #666;
+    line-height: 1.5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.stage-goal {
+    margin-top: 8px;
+    font-size: 7pt;
+    color: #8a7a5a;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    border-top: 1px solid #e8e0d0;
+    padding-top: 6px;
+}
+
+/* Heat scale diagram */
+.heat-scale {
+    border: 1px solid #e0d8c8;
+    margin-bottom: 28px;
+    padding: 16px;
+}
+.heat-scale h2 {
+    font-size: 9pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8a7a5a;
+    margin-bottom: 14px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.heat-bar {
+    height: 28px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #e8f4e8, #b8d8a8, #f8d88a, #e8a860, #c86830, #8a2800);
+    margin-bottom: 8px;
+    position: relative;
+}
+.heat-markers {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    font-size: 7.5pt;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #666;
+    text-align: center;
+}
+.heat-marker strong {
+    display: block;
+    color: #2a2a2a;
+    font-size: 8pt;
+}
+
+/* What happens inside */
+.inside-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 28px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 8.5pt;
+}
+.inside-table th {
+    background: #f7f2e8;
+    border: 1px solid #e0d8c8;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a7a5a;
+    font-weight: 600;
+}
+.inside-table td {
+    border: 1px solid #e0d8c8;
+    padding: 8px 10px;
+    color: #555;
+    line-height: 1.5;
+    vertical-align: top;
+}
+.inside-table tr:nth-child(even) td { background: #fdfaf4; }
+
+/* Footer */
+.footer-band {
+    border: 1px solid #e0d8c8;
+    background: #f7f2e8;
+    padding: 18px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+.footer-col-title { font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a7a5a; margin-bottom: 8px; font-family: 'Segoe UI', Arial, sans-serif; }
+.footer-col p { font-size: 8.5pt; color: #666; line-height: 1.6; font-family: 'Segoe UI', Arial, sans-serif; }
+
+@media (max-width: 800px) {
+    .stages-5, .stages-6 { grid-template-columns: repeat(3, 1fr); }
+    .stages-4 { grid-template-columns: repeat(2, 1fr); }
+    .principle-band, .footer-band { grid-template-columns: 1fr; }
+    .heat-markers { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="board-header">
+    <div class="brand-line">Citane · KoffyKraft · Thumpassery Estate, Kerala</div>
+    <h1 class="board-title">Thermal Transformation</h1>
+    <div class="board-subtitle">Heat · Precision · Transformation with Purpose</div>
+    <p class="board-note">How heat shapes Buna — from the gentlest simmer to the darkest roast. Built for coffee leaf, not tea. The rules here are different.</p>
+</div>
+
+<!-- Key principle — counterintuitive -->
+<div class="key-principle">
+    <div class="key-glyph">⚠</div>
+    <div class="key-text">
+        <h3>The Buna Thermal Principle — Not Tea Logic</h3>
+        <p>In conventional tea, extended wet heat increases bitterness and astringency. <strong>In coffee leaf, extended wet heat increases sweetness and decreases bitterness.</strong> This is the single most important thermal fact for anyone preparing Buna. The Kuti tradition of extended decoction, and the Engere milk boil, both rely on this principle. Do not apply tea logic to Buna thermal work.</p>
+    </div>
+</div>
+
+<div class="principle-band">
+    <div class="principle-box">
+        <h3>Our Principle</h3>
+        <p>Apply the right heat, for the right time, at the right stage — to bring out the best, and preserve the rest. <strong>Right heat. Right time. Right care. Right result.</strong></p>
+    </div>
+    <div class="principle-box">
+        <h3>Our Promise</h3>
+        <p>Respect the leaf · Precision in every step · Consistency in quality · Transparency always. Heat is not just a tool — it is a way of honouring the leaf.</p>
+    </div>
+</div>
+
+<!-- WET HEAT STAGES -->
+<div class="stage-section">
+    <div class="stage-header">
+        <h2>Wet Heat Stages</h2>
+        <span>Water or milk as the medium · Temperature determines extraction rate and flavour development</span>
+    </div>
+    <div class="stage-grid stages-5">
+
+        <div class="stage-card">
+            <div class="stage-number">WH 1</div>
+            <span class="stage-glyph">〰️</span>
+            <span class="stage-name">Light Simmer</span>
+            <span class="stage-sub">~70–80°C</span>
+            <p class="stage-desc">Barely moving liquid. Small bubbles forming slowly. For delicate preparations where aromatic volatiles must be preserved and extraction is intentionally slow. Preserves green and floral notes.</p>
+            <div class="stage-goal">Gentle aromatic extraction</div>
+        </div>
+
+        <div class="stage-card">
+            <div class="stage-number">WH 2</div>
+            <span class="stage-glyph">🌊</span>
+            <span class="stage-name">Simmer</span>
+            <span class="stage-sub">~85–90°C</span>
+            <p class="stage-desc">Steady movement, regular bubbles. The standard heat stage for most Buna decoction preparations. Compound release is steady and controlled. Sweetness begins to develop.</p>
+            <div class="stage-goal">Balanced extraction</div>
+        </div>
+
+        <div class="stage-card">
+            <div class="stage-number">WH 3</div>
+            <span class="stage-glyph">💨</span>
+            <span class="stage-name">Strong Simmer</span>
+            <span class="stage-sub">~90–95°C</span>
+            <p class="stage-desc">Active agitation approaching boil. Faster extraction, fuller body, beginning concentration through evaporation. Sweetness increases; bitterness remains low in good leaf.</p>
+            <div class="stage-goal">Fuller body, more sweetness</div>
+        </div>
+
+        <div class="stage-card">
+            <div class="stage-number">WH 4</div>
+            <span class="stage-glyph">♨️</span>
+            <span class="stage-name">Long Boil</span>
+            <span class="stage-sub">100°C, extended</span>
+            <p class="stage-desc">The Engere and Kuti traditional stage. Extended boiling in water or milk. Sweetness peaks, bitterness decreases. Colour deepens. A brothy, full-bodied character develops. This is where Buna diverges most clearly from tea.</p>
+            <div class="stage-goal">Maximum sweetness · Traditional</div>
+        </div>
+
+        <div class="stage-card">
+            <div class="stage-number">WH 5</div>
+            <span class="stage-glyph">🫙</span>
+            <span class="stage-name">Reduction</span>
+            <span class="stage-sub">Sustained boil</span>
+            <p class="stage-desc">Volume decreases through evaporation, concentrating all compounds. Used for syrups, concentrates, culinary Buna bases. Quality of the base extraction determines quality of the reduction — concentration amplifies both virtues and faults.</p>
+            <div class="stage-goal">Concentration · Culinary use</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- DRY HEAT STAGES -->
+<div class="stage-section">
+    <div class="stage-header">
+        <h2>Dry Heat Stages — Roasting</h2>
+        <span>No water medium · Maillard reaction and caramelisation · Applied to dried leaf</span>
+    </div>
+    <div class="stage-grid stages-4">
+
+        <div class="stage-card">
+            <div class="stage-number">DH 1</div>
+            <span class="stage-glyph">🌿</span>
+            <span class="stage-name">Light Roast</span>
+            <span class="stage-sub">Early Maillard</span>
+            <p class="stage-desc">Gentle dry heat. Toast and hay notes develop. Green character still dominant. Leaf remains visibly pale. Increases shelf stability without significantly altering the fresh leaf flavour profile.</p>
+            <div class="stage-goal">Green + toast · Shelf stable</div>
+        </div>
+
+        <div class="stage-card">
+            <div class="stage-number">DH 2</div>
+            <span class="stage-glyph">🌾</span>
+            <span class="stage-name">Medium Roast</span>
+            <span class="stage-sub">Caramel development</span>
+            <p class="stage-desc">Moderate dry heat. Caramel, nutty, toasted grain notes develop. Leaf visibly darker. Green character partially replaced by roasted compounds. Most versatile thermal treatment — balances fresh and developed character.</p>
+            <div class="stage-goal">Balance of green + roasted</div>
+        </div>
+
+        <div class="stage-card">
+            <div class="stage-number">DH 3</div>
+            <span class="stage-glyph">🟫</span>
+            <span class="stage-name">Dark Roast</span>
+            <span class="stage-sub">Cacao development</span>
+            <p class="stage-desc">High dry heat. Cacao, woody, deep notes dominate. Green and floral notes largely lost. Produces a full-bodied cup with significant roasted character. Requires careful control to avoid crossing into char.</p>
+            <div class="stage-goal">Roasted · Full body</div>
+        </div>
+
+        <div class="stage-card">
+            <div class="stage-number">DH 4</div>
+            <span class="stage-glyph">⬛</span>
+            <span class="stage-name">Char / Toast</span>
+            <span class="stage-sub">Boundary condition</span>
+            <p class="stage-desc">The limit of dry heat. Intentional in some smoked traditional preparations (Kawa Daun adjacent). Otherwise signals a processing error. Understanding this boundary is essential for consistent quality control.</p>
+            <div class="stage-goal">Boundary · Handle with care</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- TEMPERATURE & COOLING -->
+<div class="stage-section">
+    <div class="stage-header">
+        <h2>Temperature Control &amp; Cooling</h2>
+        <span>After heat · Preserving what was created</span>
+    </div>
+    <div class="stage-grid stages-4">
+
+        <div class="stage-card">
+            <span class="stage-glyph">❄️</span>
+            <span class="stage-name">Cooling</span>
+            <span class="stage-sub">Ambient airflow</span>
+            <p class="stage-desc">Allowing leaf or liquid to return to ambient temperature, stopping residual heat from continuing to transform the product. Cooling must be complete before packaging or storing. Warm leaf in a sealed container traps steam and degrades quality.</p>
+            <div class="stage-goal">Protect aroma · Protect texture</div>
+        </div>
+
+        <div class="stage-card">
+            <span class="stage-glyph">🧊</span>
+            <span class="stage-name">Chilling</span>
+            <span class="stage-sub">Rapid temperature drop</span>
+            <p class="stage-desc">Rapidly reducing temperature of a brewed extraction. Crash chilling after hot extraction preserves aromatic volatiles that would otherwise dissipate slowly. Essential step for cold brew and iced Buna preparation.</p>
+            <div class="stage-goal">Lock in aroma · Cold service</div>
+        </div>
+
+        <div class="stage-card">
+            <span class="stage-glyph">🗄️</span>
+            <span class="stage-name">Cold Storage</span>
+            <span class="stage-sub">Refrigeration</span>
+            <p class="stage-desc">Holding prepared extractions at refrigeration temperature to slow degradation. Dried leaf does not require cold storage if moisture is correctly managed. Prepared liquid extractions do. A quality decision, not a default.</p>
+            <div class="stage-goal">Extend extraction quality</div>
+        </div>
+
+        <div class="stage-card">
+            <span class="stage-glyph">🌡️</span>
+            <span class="stage-name">Warm Hold</span>
+            <span class="stage-sub">Controlled temperature</span>
+            <p class="stage-desc">Maintaining a prepared brew at a specific elevated temperature for service. For decoction-style preparations served over extended periods. Temperature and duration must be defined to prevent continued extraction or quality loss.</p>
+            <div class="stage-goal">Service consistency</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- What happens inside -->
+<table class="inside-table">
+    <thead>
+        <tr>
+            <th>Stage</th>
+            <th>Heat Type</th>
+            <th>What Happens in the Leaf</th>
+            <th>Buna Result</th>
+            <th>Key Difference from Tea</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Light Simmer</strong></td>
+            <td>Wet, gentle</td>
+            <td>Volatile aromatics released slowly; minimal compound breakdown</td>
+            <td>Green, floral, delicate cup</td>
+            <td>Similar to tea at this stage</td>
+        </tr>
+        <tr>
+            <td><strong>Simmer</strong></td>
+            <td>Wet, steady</td>
+            <td>Steady compound extraction; sweetness begins developing</td>
+            <td>Balanced, rounded cup</td>
+            <td>Sweetness increases (not bitterness)</td>
+        </tr>
+        <tr>
+            <td><strong>Long Boil</strong></td>
+            <td>Wet, extended</td>
+            <td>Sweetness peaks; bitterness compounds break down; brothy body develops</td>
+            <td>Sweet, full-bodied, traditional</td>
+            <td><strong>Opposite to tea — bitterness falls</strong></td>
+        </tr>
+        <tr>
+            <td><strong>Light Roast</strong></td>
+            <td>Dry, low</td>
+            <td>Early Maillard compounds form; green notes preserved</td>
+            <td>Toast, hay, green character</td>
+            <td>Coffee leaf is thinner — lower heat needed than bean roasting</td>
+        </tr>
+        <tr>
+            <td><strong>Dark Roast</strong></td>
+            <td>Dry, high</td>
+            <td>Cacao and woody Maillard compounds dominate; green character lost</td>
+            <td>Full-bodied, deep, roasted</td>
+            <td>Char threshold reached faster than in tea or coffee bean</td>
+        </tr>
+        <tr>
+            <td><strong>Cooling</strong></td>
+            <td>Ambient</td>
+            <td>Residual heat dissipates; volatile compounds stabilise</td>
+            <td>Aroma and texture protected</td>
+            <td>Critical step — often skipped in informal preparation</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Footer -->
+<div class="footer-band">
+    <div class="footer-col">
+        <div class="footer-col-title">Key Source</div>
+        <p>Fibrianto et al. 2025 (Applied Food Research 5:101141) — documents sweetness increase and bitterness decrease under extended wet heat in coffee leaf. Kuti tradition (Wehib M. Ahmed 2015) — whole-plant preparation using extended decoction.</p>
+    </div>
+    <div class="footer-col">
+        <div class="footer-col-title">Citane Thermal Practice</div>
+        <p>Arabica Chandragiri at 130m altitude under rubber shade. Lower altitude means warmer ambient conditions — thermal steps proceed faster than highland equivalents. Monitor time, not just temperature.</p>
+    </div>
+    <div class="footer-col">
+        <div class="footer-col-title">Principle</div>
+        <p>Heat is not just a tool. It is our way of honouring the leaf and shaping excellence. We do not rush thermal work. Every second matters. Right heat · Right time · Right care · Right result.</p>
+    </div>
+</div>
+
+<p style="text-align:center; font-size:8pt; color:#bbb; margin-top:20px; font-family:'Segoe UI',Arial,sans-serif; letter-spacing:0.1em;">CITANE · KOFFYKRAFT · THERMAL TRANSFORMATION · FROM LEAF TO LANDSCAPE</p>
+
+</div>
+</body>
+</html>

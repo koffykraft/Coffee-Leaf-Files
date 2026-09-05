@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemo: Visual Pictogram Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
+            padding: 20px;
+            line-height: 1.6;
+            color: #3a3a3a;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            background: white;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 3em;
+            color: #8b4513;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        
+        header .subtitle {
+            font-size: 1.3em;
+            color: #a67c52;
+            margin: 10px 0;
+        }
+        
+        header .tagline {
+            font-size: 1.05em;
+            color: #666;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        
+        /* SECTION TITLES */
+        .section-title {
+            color: white;
+            font-size: 2.2em;
+            margin: 50px 0 35px 0;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
+        }
+        
+        .intro-text {
+            background: white;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            border-left: 4px solid #a67c52;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .intro-text p {
+            color: #555;
+            margin-bottom: 12px;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+        
+        /* METHOD CARDS */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .method-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .method-header {
+            background: linear-gradient(135deg, #a67c52 0%, #8b6f47 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .method-number {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        
+        .method-title {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .method-subtitle {
+            font-size: 0.95em;
+            opacity: 0.95;
+            font-style: italic;
+        }
+        
+        .method-visual {
+            padding: 40px;
+            text-align: center;
+            font-size: 5em;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f6f3;
+        }
+        
+        .method-body {
+            padding: 25px;
+        }
+        
+        .method-stat {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding: 12px;
+            background: #f9f6f3;
+            border-radius: 6px;
+            align-items: center;
+        }
+        
+        .stat-icon {
+            font-size: 1.8em;
+            min-width: 40px;
+        }
+        
+        .stat-text strong {
+            display: block;
+            color: #8b4513;
+            margin-bottom: 2px;
+            font-size: 0.95em;
+        }
+        
+        .stat-text span {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .steps-list {
+            margin-bottom: 20px;
+        }
+        
+        .step {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .step-num {
+            background: #a67c52;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+            font-size: 0.9em;
+        }
+        
+        .step-text {
+            flex: 1;
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .step-text strong {
+            color: #8b4513;
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        /* SPICE CATEGORIES */
+        .spices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .spice-category {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .spice-category-title {
+            font-size: 1.4em;
+            color: #8b4513;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .spice-category-icon {
+            font-size: 2.5em;
+            margin-bottom: 12px;
+        }
+        
+        .spice-item {
+            padding: 15px;
+            background: #f9f6f3;
+            margin-bottom: 12px;
+            border-left: 3px solid #a67c52;
+            border-radius: 4px;
+        }
+        
+        .spice-name {
+            font-weight: 600;
+            color: #8b4513;
+            font-size: 1em;
+            margin-bottom: 4px;
+        }
+        
+        .spice-local {
+            color: #a67c52;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+        }
+        
+        .spice-description {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        /* TIMELINE */
+        .timeline {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
+        }
+        
+        .timeline-event {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e8d4b8;
+        }
+        
+        .timeline-event:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-time {
+            font-weight: 700;
+            color: #8b4513;
+            min-width: 100px;
+            font-size: 0.95em;
+            background: #f9f6f3;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .timeline-icon {
+            font-size: 2em;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .timeline-content strong {
+            color: #8b4513;
+            display: block;
+            margin-bottom: 6px;
+        }
+        
+        .timeline-content p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        /* SERVING SECTION */
+        .serving-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .serving-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .serving-visual {
+            padding: 40px;
+            text-align: center;
+            font-size: 4em;
+            min-height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f6f3;
+        }
+        
+        .serving-content {
+            padding: 25px;
+        }
+        
+        .serving-title {
+            font-size: 1.2em;
+            color: #8b4513;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .serving-description {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .serving-label {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #a67c52;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        /* KEY TAKEAWAY */
+        .key-message {
+            background: linear-gradient(135deg, #a67c52 0%, #8b6f47 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 50px 0;
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+        
+        .key-message strong {
+            font-size: 1.3em;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .section-title {
+                font-size: 1.6em;
+            }
+            
+            .method-visual,
+            .serving-visual {
+                font-size: 3em;
+            }
+            
+            .methods-grid,
+            .spices-grid,
+            .serving-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+            
+            header {
+                padding: 20px 12px;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section-title {
+                font-size: 1.4em;
+            }
+            
+            .method-visual,
+            .serving-visual {
+                font-size: 2.5em;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>CHEMO</h1>
+            <div class="subtitle">Visual Pictogram Guide</div>
+            <div class="tagline">Three ways to prepare coffee leaves. Learn through pictures and simple steps.</div>
+        </header>
+        
+        <!-- INTRODUCTION -->
+        <div class="intro-text">
+            <p><strong>Chemo</strong> is an Ethiopian coffee leaf beverage made with many spices and herbs. It is warming, aromatic, and full of flavor. This guide shows you the three main ways to prepare the leaves, what spices go in, how long it takes, and why you always serve it WITH food.</p>
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SECTION 1: THREE LEAF PREPARATION METHODS -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">How to Prepare the Leaves</h2>
+        
+        <div class="intro-text">
+            <p>The first choice in making Chemo is how you prepare the coffee leaves. You have three main options. Each one creates a different flavor and character.</p>
+        </div>
+        
+        <div class="methods-grid">
+            
+            <!-- METHOD 1: ROASTED (MOST POPULAR) -->
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-number">Method 1 • 55.8% of households</div>
+                    <div class="method-title">Roasted Leaves</div>
+                    <div class="method-subtitle">The most popular — sweetest and deepest flavor</div>
+                </div>
+                
+                <div class="method-visual">🔥 ☕ 🌟</div>
+                
+                <div class="method-body">
+                    <div class="method-stat">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-text">
+                            <strong>Preparation</strong>
+                            <span>5-10 minutes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">🎨</div>
+                        <div class="stat-text">
+                            <strong>Color</strong>
+                            <span>Golden-brown leaves</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">👃</div>
+                        <div class="stat-text">
+                            <strong>Aroma</strong>
+                            <span>Rich, warm, toasted</span>
+                        </div>
+                    </div>
+                    
+                    <div class="steps-list">
+                        <div class="step">
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <strong>Pick tender tips</strong>
+                                The newest, brightest green leaves from branch tips
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <strong>Roast over fire</strong>
+                                Medium heat until leaves turn golden-brown. Watch carefully! Stop before they get dark brown.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <strong>Crush while warm</strong>
+                                Break into small pieces while the heat releases the aroma
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #8b4513; font-weight: 600; margin-top: 15px;">Why this method?</p>
+                    <p style="color: #666; font-size: 0.9em;">Heat creates new flavors (called Maillard reaction — the same thing that makes toast delicious). The result is sweet, balanced, and warming. This is what most families make.</p>
+                </div>
+            </div>
+            
+            <!-- METHOD 2: LIGHTLY HEATED -->
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-number">Method 2 • Less common</div>
+                    <div class="method-title">Lightly Heated Leaves</div>
+                    <div class="method-subtitle">Gentler — more delicate flavor</div>
+                </div>
+                
+                <div class="method-visual">🔥 ☕ ✨</div>
+                
+                <div class="method-body">
+                    <div class="method-stat">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-text">
+                            <strong>Preparation</strong>
+                            <span>5 minutes only</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">🎨</div>
+                        <div class="stat-text">
+                            <strong>Color</strong>
+                            <span>Light brown leaves</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">👃</div>
+                        <div class="stat-text">
+                            <strong>Aroma</strong>
+                            <span>Fresh, light, delicate</span>
+                        </div>
+                    </div>
+                    
+                    <div class="steps-list">
+                        <div class="step">
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <strong>Pick tender tips</strong>
+                                The newest, brightest green leaves. Keep them slightly damp.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <strong>Heat gently (NOT roast)</strong>
+                                Just 5 minutes over gentle fire or low heat. You want them warm, NOT brown.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <strong>Crush while warm</strong>
+                                Break into pieces. The warmth helps release aroma.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #8b4513; font-weight: 600; margin-top: 15px;">Why this method?</p>
+                    <p style="color: #666; font-size: 0.9em;">Less processing = more delicate flavor. Good if you want something lighter or more refreshing. Not as warming as roasted, but still full of flavor.</p>
+                </div>
+            </div>
+            
+            <!-- METHOD 3: FRESH -->
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-number">Method 3 • Simple way</div>
+                    <div class="method-title">Fresh Leaves</div>
+                    <div class="method-subtitle">The quickest — brightest flavor</div>
+                </div>
+                
+                <div class="method-visual">🍃 ☕ 💚</div>
+                
+                <div class="method-body">
+                    <div class="method-stat">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-text">
+                            <strong>Preparation</strong>
+                            <span>Just crush & brew</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">🎨</div>
+                        <div class="stat-text">
+                            <strong>Color</strong>
+                            <span>Light green liquid</span>
+                        </div>
+                    </div>
+                    
+                    <div class="method-stat">
+                        <div class="stat-icon">👃</div>
+                        <div class="stat-text">
+                            <strong>Aroma</strong>
+                            <span>Fresh, grassy, gentle</span>
+                        </div>
+                    </div>
+                    
+                    <div class="steps-list">
+                        <div class="step">
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <strong>Pick tender tips</strong>
+                                The newest, greenest leaves from branch tips
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <strong>Wash gently</strong>
+                                Remove any dirt or debris with clean water
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <strong>Crush immediately</strong>
+                                Break into small pieces. Use right away while aromatic oils are strongest.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #8b4513; font-weight: 600; margin-top: 15px;">Why this method?</p>
+                    <p style="color: #666; font-size: 0.9em;">No processing = brightest flavor. Very quick. Good in summer or when you want something refreshing rather than warming. The flavor is delicate.</p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SECTION 2: THE SPICES -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">The Spices That Make Chemo Special</h2>
+        
+        <div class="intro-text">
+            <p><strong>All 64 households studied always added spices.</strong> No household in Tepi Town makes Chemo without aromatic herbs and spices. The spices are not optional — they ARE Chemo. Here are the three main categories.</p>
+        </div>
+        
+        <div class="spices-grid">
+            
+            <!-- CATEGORY 1: AROMATIC LEAFY HERBS -->
+            <div class="spice-category">
+                <div class="spice-category-icon">🌿</div>
+                <div class="spice-category-title">Aromatic Leafy Herbs</div>
+                <p style="color: #666; font-size: 0.95em; margin-bottom: 15px;">These give Chemo its distinctive aroma and freshness.</p>
+                
+                <div class="spice-item">
+                    <div class="spice-name">Basil (Besobila)</div>
+                    <div class="spice-local">በሶቢላ</div>
+                    <div class="spice-description">Sweet, herbal, garden-fresh. Use fresh leaves. About 24g per batch.</div>
+                </div>
+                
+                <div class="spice-item">
+                    <div class="spice-name">Koseret (Lippia)</div>
+                    <div class="spice-local">ቆሰሪት</div>
+                    <div class="spice-description">THE signature herb of Ethiopian drinks. Distinctive herbal aroma. If you can find it, don't skip it. About 19g per batch.</div>
+                </div>
+                
+                <div class="spice-item">
+                    <div class="spice-name">Lemongrass (Tejisar)</div>
+                    <div class="spice-local">ተጅሳር</div>
+                    <div class="spice-description">Bright citrus aroma. Adds freshness to the warmth of other spices. About 22g per batch.</div>
+                </div>
+                
+                <div class="spice-item">
+                    <div class="spice-name">Fennel Leaves (Ensilal)</div>
+                    <div class="spice-local">እንሲላል</div>
+                    <div class="spice-description">Sweet, anise-like flavor. Aids digestion. Adds gentle sweetness. About 15g per batch.</div>
+                </div>
+                
+                <div class="spice-item">
+                    <div class="spice-name">Mint (Nanna)</div>
+                    <div class="spice-local">ናና</div>
+                    <div class="spice-description">Cooling, fresh flavor. Balances bitterness. Use small amounts — it's strong! About 9g per batch.</div>
+                </div>
+            </div>
+            
+            <!-- CATEGORY 2: WARMING BULBS & ROOTS -->
+            <div class="spice-category">
+                <div class="spice-category-icon">🔥</div>
+                <div class="spice-category-title">Warming Bulbs & Roots</div>
+                <p style="color: #666; font-size: 0.95em; margin-bottom: 15px;">These create warmth, depth, and a nourishing feeling.</p>
+                
+                <div class="spice-item">
+                    <div class="spice-name">Ginger (Zingibil)</div>
+                    <div class="spice-local">ዝንጅቢል</div>
+                    <div class="spice-description">THE warming spice. Makes you feel warm inside. Aids digestion and energy. About 24g fresh per batch.</div>
+                </div>
+                
+                <div class="spice-item">
+                    <div class="spice-name">Garlic (Nech Shinkurt)</div>
+                    <div class="spice-local">ነች ሽንኩርት</div>
+                    <div class="spice-description">Savory, pungent flavor. Strengthens immunity. Adds earthiness and depth. About 21g per batch.</div>
+                </div>
+                
+                <div class="spice-item">
+                    <div class="spice-name">Onion (Key Shinkurt)</div>
+                    <div class="spice-local">ቅይ ሽንኩርት</div>
+                    <div class="spice-description">Sweet onion flavor. Adds savory balance (umami). Slice or chop. About 19g per batch.</div>
+                </div>
+            </div>
+            
+            <!-- CATEGORY 3: HEAT & MEDICINAL -->
+            <div class="spice-category">
+                <div class="spice-category-icon">🌶️</div>
+                <div class="spice-category-title">Heat & Medicinal Punch</div>
+                <p style="color: #666; font-size: 0.95em; margin-bottom: 15px;">Small amounts add heat and medicinal strength. Use sparingly.</p>
+                
+                <div class="spice-item">
+                    <div class="spice-name">Chili Peppers (Mitmita)</div>
+                    <div class="spice-local">ምትሚታ</div>
+                    <div class="spice-description">Heat and spice. Stimulates the body. More chili = more medicinal effect. Good for colds. About 10g fresh per batch.</div>
+                </div>
+                
+                <div class="spice-item">
+                    <div class="spice-name">Cardamom, Coriander, Cinnamon</div>
+                    <div class="spice-local">Warming spice set</div>
+                    <div class="spice-description">Optional but traditional. Add sweetness and complexity. Use whole seeds or small pieces. Just a pinch of each.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SECTION 3: THE COOKING TIMELINE -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">The Complete Cooking Timeline</h2>
+        
+        <div class="intro-text">
+            <p>Here is exactly what happens, step-by-step, from start to finish. Chemo takes about 60 minutes total. This is not a quick drink — it's a process you do with care.</p>
+        </div>
+        
+        <div class="timeline">
+            
+            <div class="timeline-event">
+                <div class="timeline-time">0 min</div>
+                <div class="timeline-icon">💧</div>
+                <div class="timeline-content">
+                    <strong>Boil water</strong>
+                    <p>Pour 1 liter of water into your pot. Place on fire and bring to a rolling boil (about 5-10 minutes).</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">5-10 min</div>
+                <div class="timeline-icon">🌊</div>
+                <div class="timeline-content">
+                    <strong>Water boils</strong>
+                    <p>Water is now boiling vigorously. Bubbles rise quickly. Steam rises. The water is ready.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">10-11 min</div>
+                <div class="timeline-icon">☕</div>
+                <div class="timeline-content">
+                    <strong>Add crushed leaves</strong>
+                    <p>Pour your prepared leaves (164g fresh or 39g dried) into the boiling water. Stir continuously so all leaves get wet and don't stick together.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">11-26 min</div>
+                <div class="timeline-icon">🎨</div>
+                <div class="timeline-content">
+                    <strong>First simmer (7-15 minutes)</strong>
+                    <p>Watch the color change: clear water → light brown → medium brown. The aroma develops. Leaf flavor comes out into the water. This is magic happening.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">25-27 min</div>
+                <div class="timeline-icon">🧹</div>
+                <div class="timeline-content">
+                    <strong>Strain out the leaves</strong>
+                    <p>Pour through fine cloth or sieve into a clean bowl. Leave the spent leaves behind — they gave everything they had to the water.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">27-28 min</div>
+                <div class="timeline-icon">🌿</div>
+                <div class="timeline-content">
+                    <strong>Add spice-butter mixture</strong>
+                    <p>Stir in your prepared spice paste (mixed with butter). The heat activates all the aromatic oils. This is where the magic intensifies.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">28-29 min</div>
+                <div class="timeline-icon">🧂</div>
+                <div class="timeline-content">
+                    <strong>Add salt</strong>
+                    <p>Sprinkle in salt (about 32g, but taste as you add). Salt balances bitterness. Start with less, you can always add more.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">28-58 min</div>
+                <div class="timeline-icon">🔥</div>
+                <div class="timeline-content">
+                    <strong>Final simmer (25-30 minutes)</strong>
+                    <p>Keep on medium heat. Watch the mixture thicken slightly. Flavors blend together. The aroma becomes rich and complex. This is the heart of Chemo coming alive.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">58-60 min</div>
+                <div class="timeline-icon">⏸️</div>
+                <div class="timeline-content">
+                    <strong>Rest & finish</strong>
+                    <p>Remove from heat. Cover for 5 minutes. Let flavors settle and combine. The resting period is important — don't skip it.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="timeline-time">60 min+</div>
+                <div class="timeline-icon">🎉</div>
+                <div class="timeline-content">
+                    <strong>Serve!</strong>
+                    <p>Pour into cups. Serve hot. But remember: you do NOT drink this alone...</p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SECTION 4: SERVING — WITH FOOD -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <h2 class="section-title">The Most Important Part: Serving WITH Food</h2>
+        
+        <div class="intro-text">
+            <p><strong>This is not an option — it is THE tradition.</strong> Chemo is NEVER drunk alone. It is always served WITH food. This is not just a rule. It is part of what makes Chemo, Chemo.</p>
+        </div>
+        
+        <div class="serving-showcase">
+            
+            <div class="serving-card">
+                <div class="serving-visual">🍞</div>
+                <div class="serving-content">
+                    <div class="serving-label">Breads</div>
+                    <div class="serving-title">The Foundation</div>
+                    <div class="serving-description">Injera, sourdough, flatbread, wheat bread. These are the base. You sip Chemo while eating bread. The bread balances the spices.</div>
+                </div>
+            </div>
+            
+            <div class="serving-card">
+                <div class="serving-visual">🥔</div>
+                <div class="serving-content">
+                    <div class="serving-label">Vegetables</div>
+                    <div class="serving-title">The Balance</div>
+                    <div class="serving-description">Boiled potatoes, cassava, sweet potatoes, cooked greens. These provide substance and balance the warming spices.</div>
+                </div>
+            </div>
+            
+            <div class="serving-card">
+                <div class="serving-visual">🫘</div>
+                <div class="serving-content">
+                    <div class="serving-label">Legumes</div>
+                    <div class="serving-title">The Protein</div>
+                    <div class="serving-description">Beans, lentils, peas, chickpeas. These create fullness and anchor the Chemo's intensity.</div>
+                </div>
+            </div>
+            
+            <div class="serving-card">
+                <div class="serving-visual">🌾</div>
+                <div class="serving-content">
+                    <div class="serving-label">Grains</div>
+                    <div class="serving-title">The Sustenance</div>
+                    <div class="serving-description">Corn, millet, teff, barley, oats. These make the meal complete and substantial.</div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="intro-text">
+            <p><strong>Why WITH food?</strong> The spices are intense. Ginger, garlic, chili — they are powerful. Food grounds them. Food makes them safe. Food makes them nourishing instead of just stimulating. Chemo alone is too much. Chemo WITH food is perfect.</p>
+        </div>
+        
+        <!-- KEY MESSAGE -->
+        <div class="key-message">
+            <strong>Remember This</strong>
+            Chemo is made with care for someone. It takes an hour. It has many spices. It asks to be shared WITH food, WITH family, WITH intention. When you make Chemo, you are saying: "I care about you. I spent time on you. Come and sit with me while we share this."
+        </div>
+        
+    </div>
+</body>
+</html>

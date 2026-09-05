@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuti: A Guide for Caring & Sharing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --pale-gold: #f4ead5;
+            --warm-gray: #d4cbc0;
+            --soft-brown: #9d8b7a;
+            --deep-brown: #6b5d4f;
+            --text-dark: #4a4541;
+            --text-light: #7a7268;
+            --highlight: #c4a886;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background: var(--pale-gold);
+            color: var(--text-dark);
+            line-height: 1.8;
+            padding: 30px 20px;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--warm-gray);
+        }
+        
+        h1 {
+            font-size: 3em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--deep-brown);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: var(--soft-brown);
+            font-style: italic;
+            font-weight: 300;
+        }
+        
+        .tagline {
+            font-size: 0.95em;
+            color: var(--text-light);
+            margin-top: 20px;
+            line-height: 1.7;
+        }
+        
+        section {
+            margin-bottom: 70px;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--warm-gray);
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            font-weight: 300;
+            color: var(--deep-brown);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        
+        h3 {
+            font-size: 1.3em;
+            font-weight: 400;
+            color: var(--soft-brown);
+            margin: 35px 0 20px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--highlight);
+        }
+        
+        p {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 1.05em;
+            line-height: 1.85;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+        
+        .intro-box {
+            background: rgba(212, 203, 192, 0.3);
+            padding: 35px;
+            border-left: 3px solid var(--soft-brown);
+            margin: 30px 0;
+            font-size: 1.1em;
+            line-height: 1.85;
+            color: var(--text-dark);
+        }
+        
+        .feature {
+            background: rgba(196, 168, 134, 0.15);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 2px;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            color: var(--deep-brown);
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        .feature p {
+            margin: 0;
+            font-size: 1em;
+        }
+        
+        .step-box {
+            padding: 25px;
+            margin: 20px 0;
+            background: white;
+            border-left: 4px solid var(--soft-brown);
+            border-radius: 2px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: var(--soft-brown);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.1em;
+        }
+        
+        .step-text {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--deep-brown);
+        }
+        
+        .step-description {
+            color: var(--text-light);
+            font-size: 0.98em;
+            line-height: 1.7;
+        }
+        
+        .memory {
+            background: var(--pale-gold);
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid var(--warm-gray);
+            font-size: 1em;
+            line-height: 1.8;
+        }
+        
+        .memory strong {
+            color: var(--deep-brown);
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .comparison-item {
+            padding: 25px;
+            background: white;
+            border-radius: 2px;
+        }
+        
+        .comparison-label {
+            font-weight: 600;
+            color: var(--deep-brown);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .comparison-text {
+            font-size: 0.95em;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        
+        .highlight-text {
+            color: var(--soft-brown);
+            font-weight: 500;
+        }
+        
+        .story {
+            background: rgba(212, 203, 192, 0.2);
+            padding: 30px;
+            margin: 30px 0;
+            font-style: italic;
+            color: var(--text-dark);
+            border-left: 2px solid var(--soft-brown);
+            font-size: 1.05em;
+            line-height: 1.85;
+        }
+        
+        .spice-box {
+            padding: 20px;
+            background: white;
+            margin: 15px 0;
+            border-left: 3px solid var(--highlight);
+        }
+        
+        .spice-name {
+            font-weight: 600;
+            color: var(--deep-brown);
+            margin-bottom: 5px;
+            font-size: 1.05em;
+        }
+        
+        .spice-origin {
+            font-size: 0.9em;
+            color: var(--soft-brown);
+            margin-bottom: 8px;
+        }
+        
+        .spice-meaning {
+            font-size: 0.95em;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        
+        .closing {
+            text-align: center;
+            padding: 50px 0;
+            font-size: 1.1em;
+            color: var(--soft-brown);
+            line-height: 1.9;
+            font-style: italic;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-box,
+            .feature,
+            .memory,
+            .story {
+                padding: 25px;
+            }
+            
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>Kuti</h1>
+            <div class="subtitle">A Gentle Drink from Fallen Leaves</div>
+            <div class="tagline">A guide for caring for children, nursing mothers, the elderly, and those who are healing. From the walled city of Harar, Ethiopia.</div>
+        </header>
+        
+        <!-- WHAT IS KUTI -->
+        <section>
+            <h2>What Is Kuti?</h2>
+            
+            <p>Kuti is made from leaves that have fallen naturally from the coffee tree. Not the young, bright green leaves that new growth brings. Not leaves you pick from branches. But the mature yellow leaves that the tree lets go.</p>
+            
+            <p>You dry them in the sun, grind them to powder, and brew them gently in hot water with a pinch of salt. That is all. There are no many spices. There is no roasting to make them darker or more intense. Kuti stays simple, quiet, restful.</p>
+            
+            <div class="intro-box">
+                <p>This drink has been made the same way in Harar for centuries. Children under twelve drink it. Nursing mothers drink it. The elderly drink it. People who are healing drink it. This is how you know it is safe and gentle — the people who need the most care have been drinking it forever.</p>
+            </div>
+        </section>
+        
+        <!-- THE FALLEN LEAF -->
+        <section>
+            <h2>Understanding the Fallen Leaf</h2>
+            
+            <h3>Why We Use Fallen Leaves</h3>
+            <p>This is the heart of kuti. The leaf that falls is not weak or worthless. It is wise.</p>
+            
+            <p>When a leaf is young and growing on the branch, it is full of strength. It works hard in the sun, making energy for the whole plant. This young leaf contains a lot of caffeine — the same stimulant that makes coffee beans strong and dark.</p>
+            
+            <p>As the leaf grows older and matures, something natural happens. The tree slowly takes back what it gave the leaf. The leaf becomes yellow. Its edges soften. When it is ready, the tree lets it fall.</p>
+            
+            <p>By the time a leaf falls, it has given most of its caffeine back to the tree. It is gentle. It is mild. It is safe for a child to drink.</p>
+            
+            <div class="feature">
+                <div class="feature-title">The Science Behind What People Always Knew</div>
+                <p>Researchers measured the caffeine in kuti and found something interesting: one cup of kuti has only about 10 milligrams of caffeine. A cup of green tea has 150 to 300 milligrams. Kuti is so gentle it is almost like drinking warm water with a light flavor.</p>
+                <p>The people of Harar never had a laboratory. But they observed for centuries. They saw that children could safely drink kuti. They saw that mothers nursing their babies could drink kuti. They built their tradition on this quiet knowledge.</p>
+            </div>
+            
+            <h3>Collecting Fallen Leaves</h3>
+            <p>You do not need to pick from branches. You walk beneath the coffee trees in the early morning and gather the yellow leaves that rest on the ground. Choose leaves that are whole and undamaged. Leave behind any that look diseased or eaten by insects.</p>
+            
+            <p>This teaches something important: you use what the tree naturally gives you. You do not force. You do not take more than is offered. You work with nature's pace, not against it.</p>
+        </section>
+        
+        <!-- DRYING AND STORING -->
+        <section>
+            <h2>Preparing Fallen Leaves</h2>
+            
+            <h3>Sun Drying</h3>
+            <p>Spread your gathered leaves on a clean mat or cloth in the sun. Keep them in a single layer so air can reach all of them. If it rains, bring them inside. Turn them once a day so they dry evenly.</p>
+            
+            <p>After several days — how long depends on how sunny and dry your place is — the leaves will become crispy and break easily in your fingers. They will feel light and papery. This means they are ready.</p>
+            
+            <p>Store dried leaves in a cloth bag or sealed container, in a cool dry place. They will keep for many months.</p>
+            
+            <h3>Grinding to Powder</h3>
+            <p>When you are ready to make kuti, take some dried leaves and grind them into a powder using a mortar and pestle. It does not need to be perfect. A little coarse is fine. You want the leaves to break down so their flavor can come out into the hot water.</p>
+        </section>
+        
+        <!-- MAKING KUTI -->
+        <section>
+            <h2>How to Make Kuti</h2>
+            
+            <h3>The Simple Version — Plain Kuti</h3>
+            <p>This is the most traditional way. You need only three things: fallen leaves, water, and salt.</p>
+            
+            <div class="step-box">
+                <span class="step-number">1</span>
+                <div class="step-text">Measure the water</div>
+                <div class="step-description">Pour about one liter (four cups) of clean water into a pot.</div>
+            </div>
+            
+            <div class="step-box">
+                <span class="step-number">2</span>
+                <div class="step-text">Add salt</div>
+                <div class="step-description">Add a small pinch of salt to the cold water before heating. Salt balances the flavor and brings out the taste of the leaf. Start with less — you can always add more.</div>
+            </div>
+            
+            <div class="step-box">
+                <span class="step-number">3</span>
+                <div class="step-text">Boil gently</div>
+                <div class="step-description">Bring the water to a boil, then add about one handful of ground dried leaves (or about 20 grams if you can measure). The longer you boil, the gentler and less bitter the kuti becomes. Simmer for at least 30 minutes. Some people simmer for much longer — even an hour or more. This is not a rush.</div>
+            </div>
+            
+            <div class="step-box">
+                <span class="step-number">4</span>
+                <div class="step-text">Strain and serve</div>
+                <div class="step-description">Pour through a cloth or fine sieve into cups. Serve warm. That is all.</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-title">Why This Works</div>
+                <p>Long, slow boiling breaks down the bitter compounds in the leaf. The longer you boil, the smoother and sweeter the kuti becomes. This is not the same as other beverages. You are not steeping for five minutes. You are simmering, giving time for the leaf to share its gentleness.</p>
+            </div>
+        </section>
+        
+        <!-- KUTI SHAI -->
+        <section>
+            <h2>The Spiced Version — Kuti Shai</h2>
+            
+            <p>Sometimes, to mark a special occasion or to honor a memory, people add three spices to kuti. These are not everyday spices. They are precious spices that arrived in Harar centuries ago through merchant ships crossing the Indian Ocean.</p>
+            
+            <h3>The Three Spices & Where They Come From</h3>
+            
+            <div class="spice-box">
+                <div class="spice-name">Cinnamon</div>
+                <div class="spice-origin">From Sri Lanka and the coast of India</div>
+                <div class="spice-meaning">Sweet and warm. When merchants brought cinnamon to Harar, it became part of how the city tasted. A cinnamon stick in kuti is a memory of that trade, that meeting of worlds.</div>
+            </div>
+            
+            <div class="spice-box">
+                <div class="spice-name">Cardamom</div>
+                <div class="spice-origin">From Kerala, on the Malabar coast of India</div>
+                <div class="spice-meaning">Complex, a little floral, a little camphoraceous. Cardamom arrived the same way cinnamon did — in the holds of dhow boats crossing the Indian Ocean. When you taste cardamom in kuti, you are tasting history.</div>
+            </div>
+            
+            <div class="spice-box">
+                <div class="spice-name">Cloves</div>
+                <div class="spice-origin">From the Maluku Islands in Indonesia, across the great Indian Ocean</div>
+                <div class="spice-meaning">Intensely aromatic, warm, a little spicy. The most precious of the three. Cloves were so rare and expensive that wars were fought over the islands that grew them. That a person in Harar could add them to kuti meant something.</div>
+            </div>
+            
+            <h3>Making Kuti Shai</h3>
+            
+            <div class="step-box">
+                <span class="step-number">1</span>
+                <div class="step-text">Warm the leaves</div>
+                <div class="step-description">Place dried leaves in a dry pan over medium heat for just three minutes. Stir gently. You are not roasting — just warming them until they become fragrant. This is enough.</div>
+            </div>
+            
+            <div class="step-box">
+                <span class="step-number">2</span>
+                <div class="step-text">Add water and spices</div>
+                <div class="step-description">Pour one liter of water into a pot. Add the warmed leaves. Add one cinnamon stick, a few cardamom pods (lightly crushed), and a few whole cloves. Bring to a boil.</div>
+            </div>
+            
+            <div class="step-box">
+                <span class="step-number">3</span>
+                <div class="step-text">Simmer slowly</div>
+                <div class="step-description">Let it simmer for 20-30 minutes. The spices will soften and their oils will blend with the kuti. Remove from heat and cover for five minutes. This keeps the aroma inside.</div>
+            </div>
+            
+            <div class="step-box">
+                <span class="step-number">4</span>
+                <div class="step-text">Strain and serve with milk</div>
+                <div class="step-description">Pour through cloth into cups. Add a little warm fresh milk to each cup if you like. Some people serve it plain. There is no right way — only your way.</div>
+            </div>
+            
+            <div class="memory">
+                <strong>A Memory of Connection</strong>
+                <p>When you make Kuti Shai, you are not just making a drink. You are holding in your hands a history of merchants and ships and the Indian Ocean. You are tasting the world that met in Harar. This is why these three spices, and no others. They are not about flavor alone. They are about remembering.</p>
+            </div>
+        </section>
+        
+        <!-- WHO DRINKS KUTI -->
+        <section>
+            <h2>Who Drinks Kuti & Why</h2>
+            
+            <div class="comparison">
+                <div class="comparison-item">
+                    <div class="comparison-label">Children</div>
+                    <div class="comparison-text">Children under twelve can drink kuti safely. It is so gentle it is almost like flavored water. No worries about keeping them awake or overstimulating them.</div>
+                </div>
+                
+                <div class="comparison-item">
+                    <div class="comparison-label">Nursing Mothers</div>
+                    <div class="comparison-text">Mothers who are nursing their babies can drink kuti without concern. The gentle caffeine is not passed strongly to the baby. The warmth and comfort it brings is sometimes as important as what is in it.</div>
+                </div>
+                
+                <div class="comparison-item">
+                    <div class="comparison-label">The Elderly</div>
+                    <div class="comparison-text">Older people who need gentleness and ease can drink kuti daily. It warms them, comforts them, gives them something warm to hold in their hands in the morning.</div>
+                </div>
+                
+                <div class="comparison-item">
+                    <div class="comparison-label">People Who Are Healing</div>
+                    <div class="comparison-text">When someone is ill or recovering, kuti is a comfort. It does not strain the body. It provides warmth and the ritual of being cared for. This matters as much as any medicine.</div>
+                </div>
+            </div>
+            
+            <h3>Why This Matters</h3>
+            <p>In Harar, they did not have hospitals or clinics in every neighborhood. They had kuti. When a child had a fever, the mother made kuti. When an elderly person felt weak, the family gathered to share kuti. When someone was recovering from illness, kuti was part of their healing.</p>
+            
+            <p>This is not magic. But it is something: a warm drink made with care, a ritual that says "you are not alone," and a beverage so gentle it cannot harm anyone.</p>
+        </section>
+        
+        <!-- KUTI AND CHEMO -->
+        <section>
+            <h2>Kuti and Chemo: Two Sides of the Same Leaf</h2>
+            
+            <p>In Ethiopia, there are two great traditions of coffee leaf beverages. Chemo is made from young, picked leaves. Many spices, much warmth, much energy. It is for adults, for laborers, for people who need strength.</p>
+            
+            <p>Kuti is made from fallen, aged leaves. Few spices, gentle warmth, restful. It is for children, for mothers, for people who need care.</p>
+            
+            <div class="story">
+                Imagine a coffee tree. It works all year, its leaves making food from the sun. When a leaf grows old, the tree lets it fall. This fallen leaf is not waste. It is completion. In Harar, someone notices this gift. They gather it, dry it, and make it into something that cares for the vulnerable. This is kuti.
+            </div>
+            
+            <h3>Share, Care, Community</h3>
+            <p>Both kuti and chemo are made to be shared. Both are made with intention. Both say something about the person making them: <span class="highlight-text">I am thinking of you.</span></p>
+            
+            <p>Chemo says it loudly: "I gathered many spices, I spent time heating and grinding, I made something warming and strong for you."</p>
+            
+            <p>Kuti says it quietly: "I noticed what the tree gave naturally, I dried it slowly in the sun, I made something safe and gentle for you."</p>
+            
+            <p>The volume is different. The message is the same.</p>
+        </section>
+        
+        <!-- CLOSING -->
+        <section>
+            <div class="closing">
+                <p>Kuti is not complicated. It is not meant to impress. It is meant to hold in your hands on a cool morning. It is meant for the people you care about most. It is what a grandmother makes for a grandchild. It is what a mother makes for herself during the long nights of nursing. It is what a neighbor brings to someone who is ill.</p>
+                
+                <p>Make it slowly. Boil it long. Share it with the people you love.</p>
+                
+                <p>This is all kuti asks.</p>
+            </div>
+        </section>
+        
+    </div>
+</body>
+</html>

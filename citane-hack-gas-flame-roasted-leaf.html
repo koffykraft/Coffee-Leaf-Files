@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citane Hack: Gas-Flame Roasted Leaf</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --dark: #1a1a1a;
+            --gray: #636e72;
+            --light-gray: #b2bec3;
+            --cream: #f8f9fa;
+            --accent: #5f4a42;
+            --subtle: #d4c5c0;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: white;
+            border-bottom: 2px solid var(--subtle);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.2em;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        header .subtitle {
+            font-size: 1.1em;
+            color: var(--gray);
+            font-weight: 400;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 30px;
+        }
+        
+        section {
+            margin-bottom: 60px;
+        }
+        
+        section h2 {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--subtle);
+            color: var(--dark);
+        }
+        
+        section p {
+            margin-bottom: 18px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        .method-box {
+            background: white;
+            border-left: 4px solid var(--accent);
+            padding: 30px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .method-box h3 {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .method-box p {
+            margin-bottom: 12px;
+        }
+        
+        .step-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .step-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--gray);
+        }
+        
+        .step-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .spec-table th {
+            background: #f5f0ed;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 1px solid var(--subtle);
+        }
+        
+        .spec-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--subtle);
+            color: var(--gray);
+        }
+        
+        .spec-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .callout {
+            background: #f5f0ed;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 25px 0;
+        }
+        
+        .callout strong {
+            color: var(--accent);
+        }
+        
+        .tasting-notes {
+            background: white;
+            padding: 25px;
+            border-radius: 6px;
+            border: 1px solid var(--subtle);
+            margin: 25px 0;
+        }
+        
+        .tasting-notes h4 {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .note-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--subtle);
+        }
+        
+        .note-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .note-label {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .note-text {
+            color: var(--gray);
+        }
+        
+        footer {
+            border-top: 1px solid var(--subtle);
+            padding: 30px;
+            text-align: center;
+            color: var(--light-gray);
+            font-size: 0.9em;
+            background: white;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.6em;
+            }
+            
+            section h2 {
+                font-size: 1.3em;
+            }
+            
+            .spec-table {
+                font-size: 0.9em;
+            }
+            
+            .spec-table th,
+            .spec-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>Citane Hack: Gas-Flame Roasted Leaf</h1>
+        <div class="subtitle">Direct-heat roasting over gas flame for deeper Maillard development</div>
+    </header>
+    
+    <div class="container">
+        
+        <!-- OVERVIEW -->
+        <section>
+            <h2>Overview</h2>
+            <p>Gas-flame roasting is a traditional method for developing leaf tea through direct heat application. Unlike the sandwich grill method which uses pressure and enclosed heat, gas-flame roasting applies open heat directly to leaves held over a gas burner, creating more intense Maillard development and deeper roasted character.</p>
+            <p>This hack adapts the traditional technique for simple home use with a basic metal grill rack and a gas stove. The method requires active management—turning leaves frequently to avoid charring—but produces distinctive results in under 3 minutes of active time.</p>
+        </section>
+        
+        <!-- THE METHOD -->
+        <section>
+            <h2>The Method</h2>
+            
+            <div class="method-box">
+                <h3>Equipment</h3>
+                <ul class="step-list">
+                    <li>Metal grill rack (roughly 6-8 inches diameter)</li>
+                    <li>Gas stove or portable gas burner</li>
+                    <li>Fresh coffee leaves (picked that morning)</li>
+                    <li>Tongs or long-handled utensil for turning leaves</li>
+                </ul>
+            </div>
+            
+            <div class="method-box">
+                <h3>Process</h3>
+                <ol class="step-list" style="list-style: decimal; margin-left: 20px;">
+                    <li style="padding-left: 10px;">Place fresh leaves in a single layer on the metal grill rack</li>
+                    <li style="padding-left: 10px;">Hold rack above the gas flame at medium height (not directly touching flame)</li>
+                    <li style="padding-left: 10px;"><strong>Constantly move the rack</strong> — rotate, lift, turn leaves to ensure even heat exposure</li>
+                    <li style="padding-left: 10px;">Periodically lift the rack to allow hot air to circulate underneath</li>
+                    <li style="padding-left: 10px;">Watch for edges beginning to glow — immediately pull back if you see this (indicates over-roasting)</li>
+                    <li style="padding-left: 10px;">Continue until leaves are paper-dry and golden-tan (approximately 2-3 minutes total)</li>
+                    <li style="padding-left: 10px;">Remove from heat and cool on a clean surface</li>
+                </ol>
+            </div>
+            
+            <div class="callout">
+                <strong>Critical timing principle:</strong> Do not rush the roasting. The Maillard reaction requires sustained heat exposure for flavor development. If you move too quickly, you'll lose the browning and character development. Conversely, if edges begin to glow red/black, pull back immediately — that's scorching, not roasting.
+            </div>
+        </section>
+        
+        <!-- PROCESS STAGES -->
+        <section>
+            <h2>Roasting Stages</h2>
+            <p>Gas-flame roasting progresses through three visible stages. Experienced practitioners can judge completion by color and texture:</p>
+            
+            <table class="spec-table">
+                <tr>
+                    <th>Stage</th>
+                    <th>Visual Appearance</th>
+                    <th>What's Happening</th>
+                </tr>
+                <tr>
+                    <td><strong>Initial</strong></td>
+                    <td>Bright green leaves, fresh moisture visible</td>
+                    <td>Moisture evaporating; no color change yet</td>
+                </tr>
+                <tr>
+                    <td><strong>Midway</strong></td>
+                    <td>Yellow-green to pale tan; edges beginning to show brown</td>
+                    <td>Maillard reaction accelerating; browning developing</td>
+                </tr>
+                <tr>
+                    <td><strong>Complete</strong></td>
+                    <td>Tan-brown throughout; papery, crisp texture; some pale green remaining on undersides</td>
+                    <td>Moisture nearly gone; Maillard development complete; ready to store or brew</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- BREWING -->
+        <section>
+            <h2>Brewing the Roasted Leaves</h2>
+            
+            <table class="spec-table">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Specification</th>
+                </tr>
+                <tr>
+                    <td>Leaf amount</td>
+                    <td>5–6g per 500ml water (or 1:80–1:100 ratio)</td>
+                </tr>
+                <tr>
+                    <td>Water temperature</td>
+                    <td>Boil, then simmer (100°C or near-boil)</td>
+                </tr>
+                <tr>
+                    <td>Brew method</td>
+                    <td>Boil on flame for initial heating; finish on induction heat or low flame</td>
+                </tr>
+                <tr>
+                    <td>Brew time</td>
+                    <td>20 minutes total (approximately 10 minutes boil + 10 minutes simmer)</td>
+                </tr>
+                <tr>
+                    <td>Vessel</td>
+                    <td>Stainless steel pot or standard kettle</td>
+                </tr>
+            </table>
+            
+            <p style="margin-top: 20px;"><strong>Method:</strong> Boil water directly in pot with leaves. Once boiling, reduce to simmer on low flame or induction heat. Maintain gentle simmer for full extraction time. The longer contact time (vs. sandwich grill method) ensures the roasted leaf fully releases its Maillard character.</p>
+        </section>
+        
+        <!-- TASTING PROFILE -->
+        <section>
+            <h2>Flavor Profile</h2>
+            
+            <div class="tasting-notes">
+                <h4>Gas-Flame Roasted Leaf Character</h4>
+                
+                <div class="note-item">
+                    <div class="note-label">Taste</div>
+                    <div class="note-text">Non-bitter, deeply roasted character. Toasted, nutty undertones similar to sandwich grill method but with intensified Maillard complexity from direct flame exposure.</div>
+                </div>
+                
+                <div class="note-item">
+                    <div class="note-label">Aroma</div>
+                    <div class="note-text">Roasted/toasted quality reminiscent of the beginning of coffee roasting. Warm, inviting aroma that carries through the entire brew.</div>
+                </div>
+                
+                <div class="note-item">
+                    <div class="note-label">Color</div>
+                    <div class="note-text">Golden-amber when brewed. Clarity similar to sandwich grill method; deep golden tone indicates successful roasting.</div>
+                </div>
+                
+                <div class="note-item">
+                    <div class="note-label">Body</div>
+                    <div class="note-text">Fuller-bodied than sandwich grill version due to longer brew time and slightly deeper roast. Smooth, no harshness or bitterness.</div>
+                </div>
+                
+                <div class="note-item">
+                    <div class="note-label">Experience</div>
+                    <div class="note-text">Warming, grounding. The roasted character creates a beverage that feels substantial and satisfying — distinct from fresh green leaf preparations.</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- COMPARISON -->
+        <section>
+            <h2>Sandwich Grill vs. Gas-Flame Roasting</h2>
+            
+            <table class="spec-table">
+                <tr>
+                    <th>Aspect</th>
+                    <th>Sandwich Grill</th>
+                    <th>Gas-Flame</th>
+                </tr>
+                <tr>
+                    <td><strong>Heat source</strong></td>
+                    <td>Enclosed pressing plates</td>
+                    <td>Open direct flame</td>
+                </tr>
+                <tr>
+                    <td><strong>Roasting time</strong></td>
+                    <td>~8–10 minutes</td>
+                    <td>~2–3 minutes</td>
+                </tr>
+                <tr>
+                    <td><strong>Skill required</strong></td>
+                    <td>Lower—mostly automated by closing lids</td>
+                    <td>Higher—constant active management needed</td>
+                </tr>
+                <tr>
+                    <td><strong>Flavor intensity</strong></td>
+                    <td>Moderate roasted/toasted</td>
+                    <td>Deeper, more intense roasted</td>
+                </tr>
+                <tr>
+                    <td><strong>Consistency</strong></td>
+                    <td>Very consistent batch to batch</td>
+                    <td>Varies with flame management and timing</td>
+                </tr>
+                <tr>
+                    <td><strong>Equipment accessibility</strong></td>
+                    <td>Requires sandwich grill (appliance)</td>
+                    <td>Only requires gas stove + metal rack</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- KEY PRINCIPLES -->
+        <section>
+            <h2>Key Principles</h2>
+            
+            <div class="method-box">
+                <h3>Movement Is Critical</h3>
+                <p>Unlike the sandwich grill which applies pressure evenly, gas-flame roasting must be constantly managed. Leaves must be turned frequently to avoid hot spots, uneven browning, or scorching. Think of it like hand-roasting coffee: you're applying heat but must stay engaged with the process.</p>
+            </div>
+            
+            <div class="method-box">
+                <h3>The Edge Glow Test</h3>
+                <p>If leaves begin to glow at the edges (red/orange light), you're approaching scorching. Pull the rack back immediately. Glowing edges indicate temperature is too high. The goal is golden-tan browning, not charring.</p>
+            </div>
+            
+            <div class="method-box">
+                <h3>Don't Rush Development</h3>
+                <p>The Maillard reaction requires sustained heat. If you move too quickly or pull away too soon, you'll have partially dried leaves without flavor development. Keep leaves over the heat long enough for browning to occur visibly.</p>
+            </div>
+            
+            <div class="method-box">
+                <h3>Same Chemistry, Different Delivery</h3>
+                <p>Gas-flame roasting and sandwich grill wilting both use heat to trigger Maillard reactions and remove moisture. The difference is heat source intensity and application method. Both produce non-bitter, roasted leaf character — this method simply delivers heat more intensely and requires more active control.</p>
+            </div>
+        </section>
+        
+        <!-- STORAGE -->
+        <section>
+            <h2>Storage</h2>
+            <p>Gas-flame roasted leaves should be completely cool before storage. Store in an airtight container in a cool, dark place. Properly roasted and dried leaves will keep for several months. Paper-dry leaves indicate successful roasting and good shelf stability.</p>
+            <p>Like sandwich grill-wilted leaves, roasted leaves can be stored whole and broken up during brewing, or ground to powder before storage (both methods work).</p>
+        </section>
+        
+        <!-- NOTES -->
+        <section>
+            <h2>Notes</h2>
+            <ul class="step-list">
+                <li>Gas-flame roasting is faster than sandwich grill roasting but requires more attention and skill</li>
+                <li>The method works best with fresh leaves picked the same day</li>
+                <li>Batch size is limited by rack size, but leaves can be roasted in multiple small batches</li>
+                <li>The roasting process itself generates a pleasant Maillard aroma — this is normal and indicates successful development</li>
+                <li>Over-roasting (charring) ruins the batch — it's better to under-roast slightly than push too far</li>
+            </ul>
+        </section>
+        
+    </div>
+    
+    <footer>
+        <p><strong>Citane Hack: Gas-Flame Roasted Leaf</strong></p>
+        <p>Documented from Thomas Thumpassery's practice at Thumpassery Estate, Karavloor, Kerala | May 2026</p>
+        <p>Part of The Foliage of Buna monograph series</p>
+    </footer>
+    
+</body>
+</html>

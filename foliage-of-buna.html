@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Foliage of Buna — Foundation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark: #1a1a1a;
+            --gray: #636e72;
+            --light-gray: #b2bec3;
+            --cream: #f8f9fa;
+            --accent: #5f4a42;
+            --subtle: #d4c5c0;
+
+            --evidence: #5f4a42;
+            --evidence-bg: #f3ece9;
+            --recipe: #6b7d5f;
+            --recipe-bg: #eef2ec;
+            --caution: #a85d4a;
+            --caution-bg: #f7e9e4;
+            --note: #636e72;
+            --note-bg: #eef0f1;
+            --tradition: #8a6d3b;
+            --tradition-bg: #f6efe2;
+
+            --state-alpha: #6b7d5f;
+            --state-beta: #b08968;
+            --state-gamma: #8a6d3b;
+            --state-delta: #a85d4a;
+            --state-epsilon: #5f4a42;
+
+            --primer-bg: #fdfbf9;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        header {
+            background: white;
+            border-bottom: 2px solid var(--subtle);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.2em;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        header .subtitle {
+            font-size: 1.1em;
+            color: var(--gray);
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .header-back { margin-bottom: 16px; }
+        .header-back a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9em;
+            border-bottom: 1px solid var(--subtle);
+        }
+        .header-meta {
+            margin-top: 18px;
+            font-size: 0.85em;
+            color: var(--light-gray);
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        /* Sticky in-page nav */
+        nav.subnav {
+            background: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0;
+        }
+        .subnav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .subnav-inner::-webkit-scrollbar { display: none; }
+        .subnav a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 600;
+            padding: 14px 20px;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.15s;
+        }
+        .subnav a:hover, .subnav a.home {
+            color: white;
+        }
+        .subnav a.home { color: var(--subtle); }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 30px;
+        }
+
+        section { margin-bottom: 60px; }
+
+        /* Primer sections get a subtle distinct background */
+        .primer-section {
+            background: var(--primer-bg);
+            border: 1px solid var(--subtle);
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+        .primer-kicker {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--subtle);
+        }
+        .primer-section h2 { border-bottom: none; padding-bottom: 0; }
+        h2 em { font-style: italic; font-weight: 400; color: var(--gray); }
+
+        h3 {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 28px 0 12px;
+            color: var(--dark);
+        }
+        h4 {
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray);
+            margin: 20px 0 8px;
+        }
+
+        p { margin-bottom: 14px; }
+        a { color: var(--accent); }
+        strong { font-weight: 700; color: var(--dark); }
+
+        /* Part dividers */
+        .part-divider {
+            margin: 60px 0 30px;
+            padding-top: 24px;
+            border-top: 4px solid var(--dark);
+        }
+        .part-label {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .part-title {
+            font-size: 1.9em;
+            font-weight: 300;
+            margin-bottom: 10px;
+            border-bottom: none;
+        }
+        .part-intro {
+            color: var(--gray);
+            font-size: 1.05em;
+            max-width: 760px;
+        }
+
+        .section-num {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--light-gray);
+            margin-bottom: 6px;
+        }
+
+        /* ====================================================
+           TABLE OF CONTENTS
+           ==================================================== */
+        .toc {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 28px 32px;
+            margin-bottom: 40px;
+        }
+        .toc-track-label {
+            font-size: 0.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin: 24px 0 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--subtle);
+        }
+        .toc-track-label:first-child { margin-top: 0; }
+        .toc-part {
+            font-size: 0.85em;
+            font-weight: 700;
+            color: var(--gray);
+            margin: 18px 0 6px;
+        }
+        .toc-entries { list-style: none; columns: 2; gap: 32px; margin-bottom: 4px; }
+        .toc-entries li { margin-bottom: 4px; break-inside: avoid; }
+        .toc-entries a {
+            text-decoration: none;
+            font-size: 0.92em;
+            display: flex;
+            gap: 8px;
+        }
+        .toc-entries a:hover { text-decoration: underline; }
+        .toc-num {
+            color: var(--light-gray);
+            font-weight: 700;
+            min-width: 28px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 700px) {
+            .toc-entries { columns: 1; }
+        }
+
+        /* ====================================================
+           CALLOUT BOXES
+           ==================================================== */
+        .box {
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-left: 4px solid;
+        }
+        .box-label {
+            display: inline-block;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+            padding: 3px 10px;
+            border-radius: 3px;
+        }
+        .box p:last-child { margin-bottom: 0; }
+
+        .box-evidence { background: var(--evidence-bg); border-left-color: var(--evidence); }
+        .box-evidence .box-label { background: var(--evidence); color: white; }
+
+        .box-recipe { background: var(--recipe-bg); border-left-color: var(--recipe); }
+        .box-recipe .box-label { background: var(--recipe); color: white; }
+
+        .box-caution { background: var(--caution-bg); border-left-color: var(--caution); border-left-style: dashed; }
+        .box-caution .box-label { background: var(--caution); color: white; }
+
+        .box-note { background: var(--note-bg); border-left-color: var(--note); }
+        .box-note .box-label { background: var(--note); color: white; }
+
+        .box-tradition { background: var(--tradition-bg); border-left-color: var(--tradition); }
+        .box-tradition .box-label { background: var(--tradition); color: white; }
+
+        /* ====================================================
+           GLOSSARY / DEFINITION GRID
+           ==================================================== */
+
+        /* ====================================================
+           LIBRARY MAP (four-part structure)
+           ==================================================== */
+        .library-map {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .library-map-item {
+            background: white;
+            border: 1px solid var(--subtle);
+            border-radius: 6px;
+            padding: 16px 18px;
+        }
+        .library-map-item .lm-num {
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .library-map-item .lm-title { font-weight: 700; margin-bottom: 6px; }
+        .library-map-item p { font-size: 0.88em; color: var(--gray); margin: 0; }
+        .library-map-item ul { font-size: 0.85em; color: var(--gray); margin: 6px 0 0; padding-left: 18px; }
+        @media (max-width: 800px) { .library-map { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 500px) { .library-map { grid-template-columns: 1fr; } }
+
+        /* Simple evidence table */
+        .ev-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92em; }
+        .ev-table th, .ev-table td {
+            border: 1px solid var(--subtle);
+            padding: 10px 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .ev-table th { background: #f5f0ed; font-weight: 700; }
+
+    </style>
+<body>
+
+    <header>
+        <div class="header-back"><a href="index.html">&larr; Back to BUNA Library</a></div>
+        <h1>The Foliage of Buna</h1>
+        <div class="subtitle">History, ethnobotany, and cultural context for the coffee leaf — a starting point before the library's traditions, research, and experimentation.</div>
+        <div class="header-meta">
+            <span>BUNA Coffee Leaf Library &middot; Foundation</span>
+            <span>KoffyKraft &middot; Thumpassery Estate</span>
+            <span>Version 2.0</span>
+        </div>
+    </header>
+
+    <nav class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="index.html">Index</a>
+            <a href="#purpose">Purpose</a>
+            <a href="#history">History</a>
+            <a href="#culture">Culture</a>
+            <a href="#ethnobotany">Ethnobotany</a>
+            <a href="#evidence">Evidence</a>
+            <a href="#navigating">Navigating the Library</a>
+            <a href="#references">Sources</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- PURPOSE -->
+        <section id="purpose">
+            <div class="section-num">Purpose</div>
+            <h2>What This Document Does</h2>
+            <p>This page examines coffee leaves as a traditional food and beverage resource, as a subject of modern research, and as a living part of household knowledge in several coffee-growing regions.</p>
+            <p>The coffee bean became one of the world's most important agricultural commodities. The leaves of the same plant followed a different path. In several regions, leaf use remained local, household-based, and only partly documented outside the communities that practiced it.</p>
+            <p>Coffee leaf use has been documented in traditional practice, is increasingly studied by researchers, and deserves careful treatment as part of the wider coffee plant story.</p>
+
+            <div class="box box-note">
+                <span class="box-label">Reading Rule</span>
+                <p>When evidence is direct, this page says so. When interpretation is plausible but not proven, it is labelled as interpretation. No medicinal or therapeutic claim should be read as advice.</p>
+            </div>
+
+            <div class="box box-evidence">
+                <span class="box-label">What This Page Is For</span>
+                <p>This is the Foundation page of the BUNA Coffee Leaf Library &mdash; the reader's entry point before exploring the library's traditions, research, and experimentation. Its job is to answer a small number of questions before anything else: what is Buna, why does coffee leaf deserve study, how does this library approach evidence, how are claims handled, and how should a reader move between traditions, research, and experimentation.</p>
+                <p style="margin-bottom:0;">It is not a traditions page, not a Citane page, not a research paper, and not a product page. Those exist elsewhere in the library and are linked from "Navigating the Library" below. This page exists to orient the reader before they reach any of them.</p>
+            </div>
+
+            <p style="font-size: 0.85em; color: var(--light-gray);">Supports: [1], [2], [5], [6], [7]</p>
+        </section>
+
+        <!-- HISTORY -->
+        <section id="history">
+            <div class="section-num">Section One</div>
+            <h2>History: The Bean Became Global, <em>the Leaf Remained Local</em></h2>
+            <p>Coffee history is usually written through the seed: the cherry, the bean, roasting, trade, export, cafés, and global consumption. That history is real and powerful. It should not be diminished. However, a seed-centred history does not exhaust the human relationship with the coffee plant.</p>
+            <p>In Ethiopia, coffee is widely known as Buna or related forms. The English word "coffee" has a complex linguistic history, commonly traced through Arabic <em>qahwa</em>, Turkish <em>kahve</em>, Dutch <em>koffie</em>, and related European forms. Some older popular accounts connect "coffee" with the Kaffa region, but that etymology is debated. For this reason, the safer claim is not that the word "coffee" is wrong, but that coffee's naming history reflects trade, language movement, and later global circulation.</p>
+            <p>The coffee plant itself is native to the forested highlands of Ethiopia and neighbouring parts of eastern Africa. Wild and semi-wild Arabica populations, shade systems, and household coffee landscapes form part of this larger ecological background. In such settings, communities encountered not only beans but the entire plant: leaves, branches, shade, flowers, cherries, and wood.</p>
+
+            <h3>The Historical Imbalance</h3>
+            <p>Once coffee entered long-distance trade, the seed became the commercial centre. Beans could be dried, stored, taxed, shipped, roasted, and sold. Leaves did not fit the same commodity logic. They were perishable, local, easier to gather for household use, and less suited to export systems.</p>
+            <p>This offers a practical explanation for why leaf knowledge remained less visible. The bean entered global commerce while the leaf remained closer to farms, households, and local food systems &mdash; not necessarily because it was hidden or suppressed, but because it never needed to travel the way the bean did.</p>
+
+            <div class="box box-note">
+                <span class="box-label">Careful Conclusion</span>
+                <p>Coffee leaf knowledge was not necessarily erased. It was overshadowed by the seed-centred coffee economy, and received less scientific, commercial, and cultural attention outside its home contexts. This distinction &mdash; <strong>overshadowed, not erased</strong> &mdash; is used consistently throughout this library.</p>
+            </div>
+
+            <p style="font-size: 0.85em; color: var(--light-gray);">Supports: [1], [2], [3], [4], [7]</p>
+        </section>
+
+        <!-- CULTURE -->
+        <section id="culture">
+            <div class="section-num">Section Two</div>
+            <h2>Culture: A Plant Becomes Meaningful <em>Through Use</em></h2>
+            <p>Coffee leaf beverages matter because they are not merely extracts of plant chemistry. They are prepared inside households, served within social relationships, and adapted to local ingredients. This is especially visible in South Ethiopian coffee leaf preparations such as coffee leaf brew and Engere.</p>
+            <p>Engere is a documented preparation in Gofa Zone, South Ethiopia. It combines coffee leaf brew with fresh cow's milk and may include sweeteners, spices, and herbs. The cited field study used household surveys, focus group discussions, and observation. It recorded multiple preparation types and reported patterns of household use.</p>
+            <p>The cultural significance of Engere is not only that it uses coffee leaves. It joins plant-based and livestock-based household resources: coffee leaves and herbs come from the farming and botanical side of life, while milk comes from animal husbandry. The beverage therefore sits within mixed livelihood systems rather than within a narrow beverage category &mdash; a meeting point between two household economies, not a single-ingredient tonic.</p>
+
+            <h3>Why Daily Life Matters</h3>
+            <p>Many rural livelihoods in southern Ethiopia involve farming, livestock care, fuelwood collection, food preparation, carrying loads, walking, household labour, and seasonal uncertainty. The Engere paper does not provide a time-use diary, so this page does not claim a measured work-performance effect. It is, however, plausible that a warm milk-based coffee leaf beverage would be valued in households where people report strength, recovery, nourishment, and medicinal associations.</p>
+            <p>In this sense, Engere should not be described as a modern herbal product. It is better understood as a household beverage system: leaf, milk, spice, fire, vessel, family, and use context.</p>
+
+            <h3>A Practical Distinction: Decoction and Infusion</h3>
+            <p>Several coffee leaf traditions &mdash; including Kuti (Harar) and Chemo (southwestern Ethiopia) &mdash; prepare the leaf by extended boiling (decoction) rather than brief steeping (infusion), the method more familiar from <em>Camellia sinensis</em> tea. Reports describe Kuti boiled for thirty minutes or more, producing a smooth, sweet, earthy liquid without the sharp astringency associated with over-steeped tea.</p>
+            <p>This is a useful distinction for a reader approaching coffee leaf for the first time: the leaf does not necessarily follow tea's rules. A preparation method that would over-extract and over-bitter a tea leaf may be the traditional, intended method for a coffee leaf preparation. Whether this reflects a genuine difference in tannin content, a difference in what each tradition considers a desirable result, or both, is better explored within each tradition's own page than asserted here.</p>
+
+            <div class="box box-note" style="margin-top: 24px;">
+                <span class="box-label">Documented</span>
+                <p>Field research records coffee leaf brew and Engere preparation, including household ingredients, preparation practices, and reported uses. Decoction-based preparation (extended boiling) is documented for Kuti and Chemo.</p>
+            </div>
+            <div class="box box-note">
+                <span class="box-label">Plausible Interpretation</span>
+                <p>The combination of coffee leaf and milk can be read as a meeting point between farming and livestock systems, but this should be stated as interpretation rather than proof of a formal exchange system. Similarly, the prevalence of decoction over infusion in several traditions is documented; why it became the preferred method &mdash; tannin content, taste preference, available fuel, or some combination &mdash; is not yet established and is treated as an open question within each tradition's page.</p>
+            </div>
+
+            <p style="font-size: 0.85em; color: var(--light-gray);">Supports: [5], [6], [7], [8]</p>
+        </section>
+
+        <!-- ETHNOBOTANY -->
+        <section id="ethnobotany">
+            <div class="section-num">Section Three</div>
+            <h2>Ethnobotany: The Coffee Plant in a Wider <em>Medicinal and Food Landscape</em></h2>
+            <p>Ethnobotany studies how people classify, use, and transmit knowledge about plants. In Ethiopia, traditional plant knowledge remains important for household health, food preparation, and rural practice. A review of medicinal plants used for diarrhoeal diseases in Ethiopia recorded 132 plant species across 52 families, with leaves being the most frequently used plant part. This shows that leaf use is not unusual within the wider Ethiopian plant knowledge system.</p>
+            <p>The same review lists <em>Coffea arabica</em> as one of the plants reported in Ethiopian antidiarrhoeal practice, especially through roasted seeds mixed with honey. The review also records several remedies administered with coffee or measured in coffee cups. This does not prove that coffee leaves themselves were the active remedy in those cases. It does show that coffee was deeply embedded in domestic medicinal practice as plant, drink, measure, and medium.</p>
+            <p>Coffee leaf beverages belong inside this broader context. They are not isolated curiosities. They exist in societies where leaves, roots, seeds, honey, milk, butter, salt, hot water, crushing, decoction, and household vessels are all part of practical plant knowledge.</p>
+
+            <h3>Chemistry and Modern Study</h3>
+            <p>Modern studies on coffee leaves have identified compounds of interest, including chlorogenic acids, mangiferin, rutin, caffeine, trigonelline, and related polyphenols. Processing studies indicate that leaf age, drying, rolling, roasting, fermentation, and brewing can change the resulting sensory and chemical profile. Recent work on coffee leaf tea has also investigated aroma, consumer acceptance, stress-related markers, and relaxation-related interpretations.</p>
+            <p>These findings do not convert every traditional statement into a proven medical claim. They do, however, explain why coffee leaves deserve serious research as beverage material. Traditional practice gives cultural evidence of feasibility. Modern science can then test chemistry, safety, sensory value, and physiological relevance &mdash; separately, and on its own terms.</p>
+
+            <table class="ev-table">
+                <thead><tr><th>Observation</th><th>What It Supports</th><th>What It Does Not Prove</th></tr></thead>
+                <tbody>
+                    <tr><td>Coffee leaf beverages are documented in Ethiopia and Indonesia.</td><td>Traditional and cultural feasibility.</td><td>Universal safety or medical effect.</td></tr>
+                    <tr><td>Engere is reported in household studies as a milk-based coffee leaf beverage.</td><td>Domestic preparation, reported use, and cultural relevance.</td><td>Clinical stamina, lactation, or treatment claims.</td></tr>
+                    <tr><td>Coffee leaves contain studied bioactive compounds.</td><td>Scientific basis for further food and beverage research.</td><td>That every brew has the same concentration or effect.</td></tr>
+                    <tr><td>Processing changes coffee leaf chemistry and sensory character.</td><td>Need for controlled process design.</td><td>That all processing methods are equally safe or desirable.</td></tr>
+                </tbody>
+            </table>
+
+            <p style="font-size: 0.85em; color: var(--light-gray);">Supports: [5], [6], [7], [8], [9], [10]</p>
+        </section>
+
+        <!-- EVIDENCE DISCIPLINE -->
+        <section id="evidence">
+            <div class="section-num">Evidence Discipline</div>
+            <h2>How Claims Are Handled <em>in This Library</em></h2>
+            <p>The BUNA library should remain useful to ordinary readers while also being strong enough for researchers and skeptical visitors. That means keeping a clear boundary between documentation, interpretation, observation, and experiment.</p>
+
+            <div class="box box-evidence">
+                <span class="box-label">Direct Evidence</span>
+                <p>Field studies, papers, tables, recorded preparation methods, chemical analyses, and documented sensory studies.</p>
+            </div>
+            <div class="box box-note">
+                <span class="box-label">Plausible Interpretation</span>
+                <p>Reasonable explanations based on livelihood, household practice, food culture, or processing logic &mdash; stated as interpretation, not as proof.</p>
+            </div>
+            <div class="box box-tradition">
+                <span class="box-label">Observation</span>
+                <p>Coffee leaf traditions are not presented in this library as relics of the past, nor as proof of efficacy. They are presented as <strong>observations accumulated by communities over long periods of time</strong> &mdash; what was tried, what was noticed, what was passed on, and under what circumstances.</p>
+                <p>Some of these observations may later align with a scientific explanation. Others may not. Both outcomes remain valuable: an observation that doesn't (yet) have a chemical explanation is not thereby false, and a chemical explanation does not retroactively make an observation "correct" in the way it was originally understood. The purpose of documentation is not to prove traditions correct, nor to dismiss them, but to record what was observed and how those observations were interpreted &mdash; by the communities who made them, and separately, by researchers and by this library.</p>
+                <p style="margin-bottom:0;">This applies equally to modern observation. Paper III of the Citane research (see "Navigating the Library" below) records its own unplanned observations from processing trials in exactly this spirit &mdash; not as findings, but as things noticed, worth a place in the record alongside the traditions that came before them.</p>
+            </div>
+            <div class="box box-caution">
+                <span class="box-label">Modern Experiment</span>
+                <p>KoffyKraft and Citane trials are useful as observations but are not equivalent to peer-reviewed studies. Where this library describes a Citane experiment, it is describing what was tried and what was noticed &mdash; in the same observational spirit as the traditions above, not as a validated result.</p>
+            </div>
+            <div class="box box-caution">
+                <span class="box-label">Avoided Claims</span>
+                <p>No cure claims, no superiority claims, no unsupported histories of deliberate erasure, and no invented trade routes.</p>
+            </div>
+
+            <div class="box box-note">
+                <span class="box-label">Best Summary</span>
+                <p>Coffee leaf use is best presented as an overlooked and under-documented part of coffee culture, not as a miracle leaf or a lost truth that replaces coffee. The leaf extends the coffee story beyond the seed.</p>
+            </div>
+
+            <p style="font-size: 0.85em; color: var(--light-gray);">Supports: [5], [6], [7], [10]</p>
+        </section>
+
+        <!-- NAVIGATING THE LIBRARY -->
+        <section id="navigating">
+            <div class="section-num">Orientation</div>
+            <h2>Navigating <em>the Library</em></h2>
+            <p>This page is the foundation the rest of the library sits on. From here, readers can move in three directions &mdash; toward documented traditions, toward the research papers, or toward Citane's own experimentation &mdash; in whatever order suits them. None of these is a prerequisite for the others.</p>
+
+            <div class="library-map">
+                <div class="library-map-item">
+                    <div class="lm-num">Foundation</div>
+                    <div class="lm-title">The Foliage of Buna</div>
+                    <p>This page. History, culture, ethnobotany, and the evidence discipline used throughout the library.</p>
+                </div>
+                <div class="library-map-item">
+                    <div class="lm-num">Traditions</div>
+                    <div class="lm-title">Engere, Kuti, Chemo, Kawa Daun</div>
+                    <p>Documented household and community preparations, presented as observation &mdash; not as instruction, and not as proof.</p>
+                </div>
+                <div class="library-map-item">
+                    <div class="lm-num">Research</div>
+                    <div class="lm-title">Papers I&ndash;III</div>
+                    <ul>
+                        <li>I &mdash; The Reactive Landscape (framework)</li>
+                        <li>II &mdash; From Leaf to Cup (manual)</li>
+                        <li>III &mdash; Experimental Pathways (workbook)</li>
+                    </ul>
+                </div>
+                <div class="library-map-item">
+                    <div class="lm-num">Application</div>
+                    <div class="lm-title">Citane &amp; Future Expressions</div>
+                    <p>KoffyKraft's own beverage development, built on &mdash; and feeding back into &mdash; the framework, traditions, and observations above.</p>
+                </div>
+            </div>
+
+            <p>A reader who wants the cultural and historical grounding should continue from here into the traditions. A reader who wants the chemistry and processing framework should move to the Research papers, starting with Paper I. A reader interested in where this is all heading commercially should look at the Application section &mdash; but the same evidence discipline set out above applies there too: Citane's own trials are observations, not proof, in exactly the same sense as the traditions that preceded them.</p>
+        </section>
+
+        <!-- REFERENCES -->
+        <section id="references">
+            <div class="section-num">Sources</div>
+            <h2>Citations and Support by Section</h2>
+
+            <h3>History</h3>
+            <div class="box box-evidence">
+                <p>[1] Alan S. Kaye. 1986. <em>The Etymology of Coffee: The Dark Brew.</em> Journal of the American Oriental Society. Used for caution on the etymology of "coffee" and the Arabic <em>qahwa</em> pathway.</p>
+                <p>[2] Oxford English Dictionary and standard etymological references. Used for English, Dutch, Turkish, and Arabic word history of "coffee."</p>
+                <p>[3] A. P. Davis et al. 2012. <em>The Impact of Climate Change on Indigenous Arabica Coffee (Coffea arabica): Predicting Future Trends and Identifying Priorities.</em> PLoS ONE. Used for Arabica coffee's Ethiopian forest context.</p>
+                <p style="margin-bottom:0;">[4] General coffee history sources, including William H. Ukers, <em>All About Coffee</em>, and modern coffee history references. Used only for broad bean-centred trade history, not for unsupported claims of erasure.</p>
+            </div>
+
+            <h3>Cultural Context</h3>
+            <div class="box box-evidence">
+                <p>[5] Yohannis, E., Teka, T. A., Tola, Y. B., and Teferra, T. F. 2026. <em>Indigenous coffee leaf brew and Engere brewing practices, and consumption patterns in South Ethiopia.</em> Discover Food. DOI: 10.1007/s44187-026-00927-8. Used for Engere, coffee leaf brew, household methods, survey structure, and reported uses.</p>
+                <p>[6] Engere working documents in the BUNA library. Used for extracted preparation details, ingredient patterns, and later cautious rewriting of the Engere page.</p>
+                <p style="margin-bottom:0;">[7] Citane Comprehensive Working Paper v5, KoffyKraft Research and Development. Used for the framing that coffee remains a complex seed-centred system while coffee leaves form a separate leaf-centred design space.</p>
+            </div>
+
+            <h3>Ethnobotany and Science</h3>
+            <div class="box box-evidence">
+                <p>[8] Bizuneh Woldeab, Reta Regassa, Tibebu Alemu, and Moa Megersa. 2018. <em>Medicinal Plants Used for Treatment of Diarrhoeal Related Diseases in Ethiopia.</em> Evidence-Based Complementary and Alternative Medicine. Used for Ethiopian traditional medicine context, plant-part patterns, additives, preparation methods, and the listing of <em>Coffea arabica</em>.</p>
+                <p>[9] Chen et al. 2018. Coffee leaf phytochemistry and bioactivity study in Food Chemistry. Used for coffee leaf compounds including chlorogenic acids, mangiferin, rutin, caffeine, and trigonelline.</p>
+                <p style="margin-bottom:0;">[10] Recent coffee leaf tea sensory and functional studies summarized in the BUNA health and functional compendium pages, including work on volatile fingerprinting, consumer acceptance, oolong-style processing, emotional response, and cortisol findings. These are treated as research signals requiring careful interpretation.</p>
+            </div>
+
+            <p style="font-size: 0.85em; color: var(--light-gray); margin-top: 20px;">This reference page is a public-facing synthesis. It should be updated whenever a source is corrected, replaced, or found to be weaker than originally believed.</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="footer-back"><a href="index.html">&larr; Back to BUNA Library</a></div>
+        <p><strong>The Foliage of Buna</strong> &middot; Foundation</p>
+        <p>KoffyKraft / Thumpassery Estate &middot; Karavaloor &middot; Kollam &middot; Kerala &middot; India</p>
+        <div class="source-block">
+            Published openly by KoffyKraft. Shared for study, correction, discussion, and further exploration.
+        </div>
+    </footer>
+
+</body>
+</html>
