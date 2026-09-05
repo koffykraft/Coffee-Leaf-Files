@@ -1,1 +1,0 @@
-The audit will continue to report visitor-lounge.html as a meta-refresh. This is intentional legacy compatibility. Package 2 removes ordinary internal navigation to that URL; the redirect itself is retained for old bookmarks.

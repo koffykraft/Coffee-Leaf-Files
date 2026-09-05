@@ -1,1 +1,0 @@
-Production promotion scope: Catalogue title, homepage semantic H1 and contact address, Terrain Map semantic H1, Sensory Companion nine-door wording, and explicit visitor-lounge legacy redirect treatment. No content validity claims are changed.

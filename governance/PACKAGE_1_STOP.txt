@@ -1,1 +1,0 @@
-STOP. No further Package 1 commits before promotion. Latest site state unchanged since the successful exact-head examinations.

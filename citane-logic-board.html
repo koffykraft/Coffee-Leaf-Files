@@ -183,7 +183,7 @@ nav { background: var(--ink); padding: 14px 18px; display: flex; align-items: ce
   <span class="brand">Citane</span>
   <span class="sep">/</span>
   <span class="page-t">Flavour Logic Board</span>
-  <a class="back-link" href="index.html">↩ Library</a>
+  <a class="back-link" href="visitor-lounge.html">↩ Library</a>
 </nav>
 
 <div class="hero">
@@ -489,8 +489,8 @@ const DESCRIPTOR_OUTPUTS = {
       { stage: "Serving temperature", text: "Hot serving amplifies bitter and astringent perception. Bitterness at 60°C is perceived more intensely than at 10°C. Sweetness becomes more apparent at cool serving temperatures." }
     ],
     links: [
-      { label: "Kawa Daun (sun-dried pathway)", url: "kawa-daun-intro.html" },
-      { label: "Engere compendium", url: "engere-intro.html" },
+      { label: "Kawa Daun (sun-dried pathway)", url: "kawa-daun.html" },
+      { label: "Engere compendium", url: "engere.html" },
       { label: "CLT Flavour Wheel", url: "clt-flavour-wheel.html" }
     ]
   },
@@ -521,7 +521,7 @@ const DESCRIPTOR_OUTPUTS = {
       { stage: "Storage", text: "Green-processed CLT is more volatile-unstable than oxidised styles. Store vacuum-sealed, away from light, and use within 3 months for best character retention." }
     ],
     links: [
-      { label: "Engere (green decoction tradition)", url: "engere-intro.html" },
+      { label: "Engere (green decoction tradition)", url: "engere.html" },
       { label: "CLT Flavour Wheel", url: "clt-flavour-wheel.html" }
     ]
   },
@@ -549,8 +549,8 @@ const DESCRIPTOR_OUTPUTS = {
       { stage: "Decoction time", text: "Over-extraction in decoction produces harsh, phenolic, bitter-dominant brew. The smoky character should be aromatic, not punishing. Test at 15 min before extending." }
     ],
     links: [
-      { label: "Kuti (Harar tradition)", url: "kuti-intro.html" },
-      { label: "Kawa Daun (Sumatran tradition)", url: "kawa-daun-intro.html" },
+      { label: "Kuti (Harar tradition)", url: "kuti.html" },
+      { label: "Kawa Daun (Sumatran tradition)", url: "kawa-daun.html" },
       { label: "CLT Flavour Wheel", url: "clt-flavour-wheel.html" }
     ]
   },
@@ -579,8 +579,8 @@ const DESCRIPTOR_OUTPUTS = {
       { stage: "Serving temperature", text: "Mineral-savoury character is most apparent warm. Chilling suppresses amino acid perception." }
     ],
     links: [
-      { label: "Engere compendium", url: "engere-intro.html" },
-      { label: "Chemo (Ethiopian tradition)", url: "chemo-intro.html" },
+      { label: "Engere compendium", url: "engere.html" },
+      { label: "Chemo (Ethiopian tradition)", url: "chemo.html" },
       { label: "CLT Flavour Wheel", url: "clt-flavour-wheel.html" }
     ]
   },
@@ -608,7 +608,7 @@ const DESCRIPTOR_OUTPUTS = {
       { stage: "Serving temperature", text: "Serving hot eliminates the refreshing perception entirely. This character is cold-dependent. Fibrianto et al. 2024 confirm that cold serving is the single biggest lever for sensory acceptability of this profile." }
     ],
     links: [
-      { label: "Engere (served chilled)", url: "engere-intro.html" },
+      { label: "Engere (served chilled)", url: "engere.html" },
       { label: "CLT Flavour Wheel", url: "clt-flavour-wheel.html" }
     ]
   },
@@ -634,7 +634,7 @@ const DESCRIPTOR_OUTPUTS = {
       { stage: "Serving temperature", text: "Both too hot (>65°C) and too cold (<15°C) suppress floral perception. The optimal serve window for floral character is 40–55°C." }
     ],
     links: [
-      { label: "Kawa Daun (sun-dried pathway)", url: "kawa-daun-intro.html" },
+      { label: "Kawa Daun (sun-dried pathway)", url: "kawa-daun.html" },
       { label: "CLT Flavour Wheel", url: "clt-flavour-wheel.html" }
     ]
   },
@@ -660,7 +660,7 @@ const DESCRIPTOR_OUTPUTS = {
       { stage: "Wither duration", text: "Withering beyond 24h without fermentation control pushes into full oxidation territory — fruity esters convert to woody and earthy compounds." }
     ],
     links: [
-      { label: "Kawa Daun (processing methods)", url: "kawa-daun-intro.html" },
+      { label: "Kawa Daun (processing methods)", url: "kawa-daun.html" },
       { label: "CLT Flavour Wheel", url: "clt-flavour-wheel.html" }
     ]
   },
@@ -684,8 +684,8 @@ const DESCRIPTOR_OUTPUTS = {
       { stage: "Brew temperature", text: "Above 85°C with fully oxidised leaves over-extracts tannins — produces harsh astringent-bitter notes that mask the cleaner woody character underneath." }
     ],
     links: [
-      { label: "Kuti (Harar tradition)", url: "kuti-intro.html" },
-      { label: "Kawa Daun (smoked)", url: "kawa-daun-intro.html" },
+      { label: "Kuti (Harar tradition)", url: "kuti.html" },
+      { label: "Kawa Daun (smoked)", url: "kawa-daun.html" },
       { label: "CLT Flavour Wheel", url: "clt-flavour-wheel.html" }
     ]
   },
@@ -757,7 +757,7 @@ const DESCRIPTOR_OUTPUTS = {
     ],
     links: [
       { label: "Consumer perception study (altitude)", url: "clt-flavour-wheel.html#sources" },
-      { label: "Kuti (bold bitter profile)", url: "kuti-intro.html" }
+      { label: "Kuti (bold bitter profile)", url: "kuti.html" }
     ]
   }
 };
@@ -1121,7 +1121,7 @@ Format exactly as:
   document.getElementById('eps-heading').textContent = 'ε Pathway: ' + (DESCRIPTOR_LABELS[desc] || desc);
 }
 
-// Generate epsilon via Buna API
+// Generate epsilon via Netlify function
 document.getElementById('gen-epsilon-btn').addEventListener('click', async function() {
   if (!epsilonContext) return;
   const btn = this;
@@ -1134,7 +1134,7 @@ document.getElementById('gen-epsilon-btn').addEventListener('click', async funct
   textEl.innerHTML = '<span class="eps-loading">Reading the leaf chemistry…</span>';
 
   try {
-    const res = await fetch('/api/epsilon', {
+    const res = await fetch('/.netlify/functions/epsilon', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: [{ role: 'user', content: epsilonContext }] })

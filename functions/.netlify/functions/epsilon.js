@@ -15,7 +15,7 @@ function corsHeaders(origin) {
 function allowedOrigin(origin) {
   if (ALLOWED_ORIGINS.has(origin)) return true;
   try {
-    return new URL(origin).hostname.endsWith(".pages.dev");
+    return new URL(origin).hostname.endsWith(".pages.dev") || new URL(origin).hostname.endsWith(".netlify.app");
   } catch {
     return false;
   }
@@ -101,7 +101,7 @@ export async function onRequestPost(context) {
 
     return json(data, 200, origin);
   } catch (err) {
-    console.error("Buna epsilon API error", err);
+    console.error("Legacy Buna AI function error", err);
     return json({ error: "Something interrupted the request. Please try again." }, 500, origin);
   }
 }
