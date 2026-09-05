@@ -19,15 +19,34 @@ repls={
 'In Buna, the safest explanation distinguishes reactions measured in coffee-leaf research from mechanisms inferred from broader food science.':'Some reactions have been measured directly in coffee-leaf research, while other explanations are inferred from broader food science. The two have different evidence bases.',
 'Where a connection is an inference or proposed mechanism, that status must be visible at the connection itself.':'Connections can be identified according to whether they are measured relationships, inferences or proposed mechanisms.',
 'Interactive tools help you ask questions; they do not become evidence simply because they draw a map or generate an answer.':'Interactive tools provide ways to explore relationships, maps and possible interpretations. Their outputs draw on the evidence and assumptions described with each tool.',
-'A tool helps explore an idea. It does not by itself prove that the idea is true.':'Tool outputs are exploratory representations; supporting evidence is shown separately where available.'
+'A tool helps explore an idea. It does not by itself prove that the idea is true.':'Tool outputs are exploratory representations; supporting evidence is shown separately where available.',
+'What should we preserve when we explain a tradition?':'What forms part of a documented tradition?',
+'Reported roles must stay reported roles; they are not automatically medicinal effects.':'The study records reported roles. Medicinal effects were not established by that study.',
+'How should a processing pathway be described?':'What information describes a processing pathway?',
+'What makes a field or kitchen trial credible?':'What information is available from a field or kitchen trial?',
+'How should we talk about reactions without overclaiming?':'Which reactions are measured directly, and which are inferred?',
+'Every line, number and recommendation in a tool rests on an assumption or evidence object.':'Lines, numbers and generated relationships in a tool depend on underlying evidence, assumptions or calculations.',
+'<strong>AI rule</strong>The prompt controls behaviour. Knowledge comes from the same audited claim/source registry used by pages. AI is not allowed to carry a second hard-coded set of facts.':'<strong>AI knowledge source</strong>The prompt controls behaviour. Factual material is drawn from the same claim and source registry used by the Library pages.',
+'What must be inspectable?':'What information sits behind a tool output?',
+'The legacy interactive pages remain implementation references until each data relationship is migrated to this model.':'The interactive tools can show the source, scope, calculation and evidence status behind their relationships where those records are available.',
+'<strong>Ordinary-reader rule</strong>Your perception is an observation. It does not need a chemical explanation before it is useful.':'<strong>Sensory observation</strong>Aroma, taste, texture and finish can be described directly from the cup. Chemical explanations are a separate layer of information.',
+'Descriptors should be grounded either in published sensory work or clearly labelled direct tasting observations.':'Descriptors may come from published sensory work or from identified tasting observations.',
+'A plausible compound association should not be displayed as if one molecule “causes” the entire sensory impression.':'A compound association describes one possible contribution within a mixture; sensory impressions also depend on concentration, matrix and perception.',
+'<strong>Correction carried into rebuild</strong>Old statements such as taste being mapped to fixed tongue zones or an unnamed compound being “the same cooling mechanism as mint” are not admitted without appropriate evidence.':'<strong>Sensory evidence</strong>Taste is not confined to fixed tongue zones. Specific cooling mechanisms require identification and supporting evidence before they can be attributed to a coffee-leaf cup.',
+'Coffee leaf can be explored in the kitchen, but a modern experiment should not be disguised as inherited tradition.':'Coffee leaf appears in documented traditions and in modern culinary experiments. These are different sources of knowledge.',
+'<strong>Status matters</strong>A documented traditional preparation, a KoffyKraft trial, a reconstruction and an untested idea are four different things.':'<strong>Preparation context</strong>A documented traditional preparation, a recorded KoffyKraft trial, a reconstruction and an untested concept describe different kinds of material.',
+'Methods are easier to learn when the page says what was actually tried and what remains an idea.':'Methods can be described by separating what was documented or tried from what remains a proposed idea.',
+'Advanced culinary pages should be reproducible records, and the Kitchen Companion must use the same audited knowledge as the public text.':'Advanced culinary records can include reproducible details, while the Kitchen Companion draws factual material from the same shared knowledge records as the public text.',
+'<strong>Prompt audit</strong>The old Kitchen Companion contained stronger claims than the visible culinary essays. Those hidden claims are not admitted into the rebuilt knowledge layer.':'<strong>Kitchen Companion knowledge</strong>The Kitchen Companion uses the shared Library knowledge records rather than a separate set of factual claims.',
+'How should definitions work across the Library?':'How are definitions shared across the Library?',
+'Each term has one canonical plain definition. Other pages may explain it briefly in context, but they should not maintain their own competing definition.':'Each term has one shared plain definition. Other pages may explain the term briefly in context and link back to that definition.',
+'<strong>Category correction</strong>Farm-management doctrine, processing frameworks and proposed ritual-use categories are not vocabulary merely because they were once presented as term cards.':'<strong>Scope of the vocabulary</strong>The vocabulary contains definitions. Farm-management frameworks, processing models and proposed use categories belong with the subjects they describe.',
+'Those stages should not be collapsed.':'Each stage answers a different question and may use a different kind of measurement.'
 }
-missing=[]
+changed=0
 for old,new in repls.items():
-    if old not in s:
-        missing.append(old[:80])
-    s=s.replace(old,new)
+    if old in s:
+        s=s.replace(old,new)
+        changed+=1
 p.write_text(s,encoding='utf-8')
-print(f'replacements={len(repls)-len(missing)} missing={len(missing)}')
-if missing:
-    print('Missing patterns:')
-    for x in missing: print('-',x)
+print(f'replacements_applied={changed}')
