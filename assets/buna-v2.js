@@ -4,7 +4,7 @@ const normalise=p=>{if(!p)return'/';p=p.replace(/index\.html$/,'');if(!p.endsWit
 const path=normalise(location.pathname);
 const page=P[path]||P['/'];
 const nav=[['/','Library'],['/cup/','Begin'],['/traditions/','Traditions'],['/processing/','Processing'],['/chemistry/','Chemistry'],['/tools/','Tools'],['/sensory/','Sensory'],['/culinary/','Culinary'],['/vocabulary/','Vocabulary'],['/biology/','Biology']];
-function h(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function h(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));}
 function isCurrent(url){return path===url||((url!=='/')&&path.startsWith(url));}
 function header(){const links=nav.map(([u,l])=>`<a href="${u}"${isCurrent(u)?' aria-current="page"':''}>${h(l)}</a>`).join('');return `<div class="topbar"><a class="brand" href="/"><img src="/buna-leaf.svg" alt=""><span>Buna Coffee Leaf Library</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav">Library Map</button></div><nav id="global-nav" class="global-nav" aria-label="Primary">${links}</nav>`;}
 function footer(){return `<div class="footer-inner"><div>Buna Coffee Leaf Library · KoffyKraft · Karavaloor, Kerala</div><div><a href="/foundation/">Foundation</a> · <a href="/catalogue/">Catalogue</a> · <a href="/sources/">Sources</a></div></div>`;}
@@ -24,15 +24,14 @@ function terms(){const el=document.getElementById('term-list');if(!el)return;el.
 function toolLaunches(){
   if(path!=='/tools/')return;
   const main=document.getElementById('content');
-  const notice=main.querySelector('.notice');
   const block=document.createElement('section');
-  block.innerHTML=`<h2>Open the current tools</h2><div class="cards two"><a class="card" href="/citane-terrain-map.html"><div class="kicker">Current interactive tool</div><h3>Terrain Map</h3><p>Explore growing-condition relationships. Treat causal-looking edges according to their evidence status.</p></a><a class="card" href="/citane-flavour-landscape.html"><div class="kicker">Current interactive tool</div><h3>Flavour Landscape</h3><p>Explore sensory territories and process relationships.</p></a><a class="card" href="/citane-logic-board.html"><div class="kicker">Current interactive tool</div><h3>Logic Board</h3><p>Follow structured reasoning across traditions and process questions.</p></a><a class="card" href="/citane-epsilon-board.html"><div class="kicker">Speculative tool</div><h3>Epsilon Board</h3><p>Generate clearly labelled speculative directions, not validated instructions.</p></a></div><p class="notice">These are preserved interactive implementations. Their data relationships are being governed by the same evidence rules as the rebuilt Library; a tool does not become a source merely because it visualises a claim.</p>`;
-  main.insertBefore(block,notice);
+  block.innerHTML=`<h2>Open the tools</h2><div class="cards two"><a class="card" href="/citane-terrain-map.html"><div class="kicker">Interactive tool</div><h3>Terrain Map</h3><p>Explore growing-condition relationships. Treat causal-looking edges according to their evidence status.</p></a><a class="card" href="/citane-flavour-landscape.html"><div class="kicker">Interactive tool</div><h3>Flavour Landscape</h3><p>Explore sensory territories and process relationships.</p></a><a class="card" href="/citane-logic-board.html"><div class="kicker">Interactive tool</div><h3>Logic Board</h3><p>Follow structured reasoning across traditions and process questions.</p></a><a class="card" href="/citane-epsilon-board.html"><div class="kicker">Speculative tool</div><h3>Epsilon Board</h3><p>Generate clearly labelled speculative directions, not validated instructions.</p></a></div><p class="notice">A tool helps explore an idea. It does not by itself prove that the idea is true.</p>`;
+  main.appendChild(block);
 }
 document.title=`${page.title} · Buna`;
 document.getElementById('site-header').innerHTML=header();
 document.getElementById('site-footer').innerHTML=footer();
-document.getElementById('content').innerHTML=`${crumbs()}<header class="hero"><div class="eyebrow">${h(page.eye||'Buna')}</div><h1>${h(page.title)}</h1><p class="lead">${h(page.lead||'')}</p></header>${page.question?`<p class="question">${h(page.question)}</p>`:''}${depth()}${page.body||''}${claims()}${sources()}<div class="notice">Rebuild status: canonical v2 page. Claims are admitted only at the evidence level shown; older unverified pages remain outside the canonical navigation.</div>`;
+document.getElementById('content').innerHTML=`${crumbs()}<header class="hero"><div class="eyebrow">${h(page.eye||'Buna')}</div><h1>${h(page.title)}</h1><p class="lead">${h(page.lead||'')}</p></header>${page.question?`<p class="question">${h(page.question)}</p>`:''}${depth()}${page.body||''}${claims()}${sources()}`;
 const btn=document.querySelector('.nav-toggle'),gn=document.getElementById('global-nav');btn?.addEventListener('click',()=>{const open=gn.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));});
 catalogue();sourceRegistry();terms();toolLaunches();
 })();
