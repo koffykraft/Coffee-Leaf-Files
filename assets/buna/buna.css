@@ -1,0 +1,75 @@
+/* Buna Coffee Leaf Library: shared shell.
+   Tokens and header/nav/button shape follow roast.koffykraft.coffee (app.css + kk.css). */
+:root {
+  --bg: #f6f5ef;
+  --ink: #1d1512;
+  --muted: #76695f;
+  --line: #ded4ca;
+  --app: #3f6b4a;
+  --accent: #b5651d;
+  --soft: #fbf8f4;
+  --bad: #b4432f;
+}
+* { box-sizing: border-box; }
+html, body { max-width: 100%; overflow-x: hidden; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+img, svg, video, canvas { max-width: 100%; height: auto; }
+a { color: var(--app); }
+
+/* Page frame: one column, phone-first */
+.bn-wrap { max-width: 760px; margin: 0 auto; padding: 18px 16px 70px; }
+
+/* Header: brand on one row, section menu below (same pattern as the roast app) */
+header.bn-h { margin: 0 0 22px; padding: 6px 0 0; border-bottom: 1px solid var(--line); }
+.bn-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+.bn-brand { font-size: 19px; font-weight: 300; letter-spacing: 1px; color: var(--ink); text-decoration: none; white-space: nowrap; padding: 11px 0; }
+.bn-brand small { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+nav.bn-nav { display: flex; justify-content: space-between; gap: 2px; font-size: 14px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin: 6px -4px 0; padding: 0 0 8px; }
+nav.bn-nav::-webkit-scrollbar { display: none; }
+nav.bn-nav a { flex: 0 0 auto; padding: 8px 7px; border-radius: 999px; font-size: 14px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+nav.bn-nav a[aria-current="page"] { background: var(--ink); color: #fff; font-weight: 600; }
+@media (max-width: 380px) { nav.bn-nav a { padding: 8px 5px; font-size: 13.5px; } }
+
+/* Typography */
+h1 { font-size: 30px; line-height: 1.15; letter-spacing: -0.03em; margin: 8px 0 6px; font-weight: 600; }
+h2 { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--app); margin: 30px 0 10px; font-weight: 700; }
+h3 { font-size: 18px; margin: 18px 0 6px; font-weight: 600; }
+p { margin: 0 0 14px; }
+.bn-lead { font-size: 17px; color: var(--ink); margin-bottom: 18px; }
+.bn-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin: 0 0 4px; }
+.bn-muted { color: var(--muted); font-size: 14px; }
+
+/* Cards and boxes */
+.bn-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; margin: 10px 0; }
+.bn-card h3 { margin-top: 2px; }
+.bn-card p:last-child { margin-bottom: 0; }
+.bn-note { background: var(--soft); border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; padding: 12px 14px; margin: 14px 0; }
+.bn-note strong { color: var(--ink); }
+
+/* Door index: each door is a list of pages */
+.bn-door-list { list-style: none; margin: 0; padding: 0; }
+.bn-door-list li { border-top: 1px solid var(--line); }
+.bn-door-list li:first-child { border-top: 0; }
+.bn-door-list a { display: block; padding: 12px 0; text-decoration: none; color: var(--ink); font-weight: 600; }
+.bn-door-list a span { display: block; font-weight: 400; color: var(--muted); font-size: 14px; margin-top: 2px; }
+.bn-door-list a:hover { color: var(--app); }
+
+/* Pill buttons, same shape as the roast app */
+.bn-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 9px 15px; border-radius: 999px; border: 1px solid var(--app); background: #fff; color: var(--app); font-size: 14px; font-weight: 600; text-decoration: none; }
+.bn-btn.solid { background: var(--app); color: #fff; }
+
+/* Previous / next */
+.bn-pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; }
+.bn-pager a { color: var(--app); text-decoration: none; }
+
+/* Footer */
+footer.bn-f { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.7; }
+footer.bn-f a { color: var(--muted); }
