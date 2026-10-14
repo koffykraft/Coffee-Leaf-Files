@@ -1,4 +1,5 @@
 const ALLOWED_ORIGINS = new Set([
+  "https://library.koffykraft.coffee",
   "https://buna.koffykraft.coffee"
 ]);
 
@@ -38,7 +39,7 @@ export async function onRequestPost(context) {
   const origin = context.request.headers.get("Origin") || "";
 
   if (!allowedOrigin(origin)) {
-    return json({ error: "Request origin is not allowed." }, 403, "https://buna.koffykraft.coffee");
+    return json({ error: "Request origin is not allowed." }, 403, "https://library.koffykraft.coffee");
   }
 
   if (!context.env.ANTHROPIC_API_KEY) {
